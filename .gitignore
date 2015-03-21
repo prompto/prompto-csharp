@@ -1,0 +1,10 @@
+**/bin/
+**/obj/
+packages/
+Presto.userprefs
+
+Presto.vsmdi
+
+Local.testsettings
+
+Csharp-Test/TestResult.xml

@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{76B00E9B-0168-4A45-8F59-089079E1D4F1}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Core_Test</RootNamespace>
+    <AssemblyName>Core-Test</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;XAMARIN</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;XAMARIN</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Antlr4.Runtime">
+      <HintPath>..\..\..\antlr4\antlr\antlr4-csharp\runtime\CSharp\Antlr4.Runtime\bin\net20\Release\Antlr4.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="nunit.framework">
+      <HintPath>..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="src\presto\debug\TestDebugger.cs" />
+    <Compile Include="src\presto\runtime\utils\MyClass.cs" />
+    <Compile Include="src\presto\runtime\utils\MyResource.cs" />
+    <Compile Include="src\presto\utils\PeriodTest.cs" />
+    <Compile Include="src\presto\utils\RuntimePatch.cs" />
+    <Compile Include="src\presto\parser\e\BaseELexerTest.cs" />
+    <Compile Include="src\presto\parser\e\BaseEParserTest.cs" />
+    <Compile Include="src\presto\parser\e\TestELexer.cs" />
+    <Compile Include="src\presto\parser\e\TestJavaParser.cs" />
+    <Compile Include="src\presto\parser\e\TestParserAtoms.cs" />
+    <Compile Include="src\presto\parser\e\TestParserFiles.cs" />
+    <Compile Include="src\presto\parser\o\BaseOLexerTest.cs" />
+    <Compile Include="src\presto\parser\o\BaseOParserTest.cs" />
+    <Compile Include="src\presto\parser\o\TestOLexer.cs" />
+    <Compile Include="src\presto\parser\o\TestParserAtoms.cs" />
+    <Compile Include="src\presto\parser\o\TestParserFiles.cs" />
+    <Compile Include="src\presto\runtime\e\TestAdd.cs" />
+    <Compile Include="src\presto\runtime\e\TestCategories.cs" />
+    <Compile Include="src\presto\runtime\e\TestClosures.cs" />
+    <Compile Include="src\presto\runtime\e\TestContains.cs" />
+    <Compile Include="src\presto\runtime\e\TestDiv.cs" />
+    <Compile Include="src\presto\runtime\e\TestDocuments.cs" />
+    <Compile Include="src\presto\runtime\e\TestEnums.cs" />
+    <Compile Include="src\presto\runtime\e\TestEquals.cs" />
+    <Compile Include="src\presto\runtime\e\TestErrors.cs" />
+    <Compile Include="src\presto\runtime\e\TestFetch.cs" />
+    <Compile Include="src\presto\runtime\e\TestForward.cs" />
+    <Compile Include="src\presto\runtime\e\TestGreater.cs" />
+    <Compile Include="src\presto\runtime\e\TestInjections.cs" />
+    <Compile Include="src\presto\runtime\e\TestItem.cs" />
+    <Compile Include="src\presto\runtime\e\TestLazy.cs" />
+    <Compile Include="src\presto\runtime\e\TestLess.cs" />
+    <Compile Include="src\presto\runtime\e\TestLogic.cs" />
+    <Compile Include="src\presto\runtime\e\TestLoops.cs" />
+    <Compile Include="src\presto\runtime\e\TestMethods.cs" />
+    <Compile Include="src\presto\runtime\e\TestMinus.cs" />
+    <Compile Include="src\presto\runtime\e\TestMult.cs" />
+    <Compile Include="src\presto\runtime\e\TestNative.cs" />
+    <Compile Include="src\presto\runtime\e\TestPatterns.cs" />
+    <Compile Include="src\presto\runtime\e\TestSlice.cs" />
+    <Compile Include="src\presto\runtime\e\TestSub.cs" />
+    <Compile Include="src\presto\runtime\e\TestTuples.cs" />
+    <Compile Include="src\presto\runtime\o\TestAdd.cs" />
+    <Compile Include="src\presto\runtime\o\TestBuiltIns.cs" />
+    <Compile Include="src\presto\runtime\o\TestCategories.cs" />
+    <Compile Include="src\presto\runtime\o\TestClosures.cs" />
+    <Compile Include="src\presto\runtime\o\TestContains.cs" />
+    <Compile Include="src\presto\runtime\o\TestDiv.cs" />
+    <Compile Include="src\presto\runtime\o\TestDocuments.cs" />
+    <Compile Include="src\presto\runtime\o\TestEnums.cs" />
+    <Compile Include="src\presto\runtime\o\TestEquals.cs" />
+    <Compile Include="src\presto\runtime\o\TestErrors.cs" />
+    <Compile Include="src\presto\runtime\o\TestFetch.cs" />
+    <Compile Include="src\presto\runtime\o\TestForward.cs" />
+    <Compile Include="src\presto\runtime\o\TestGreater.cs" />
+    <Compile Include="src\presto\runtime\o\TestInjections.cs" />
+    <Compile Include="src\presto\runtime\o\TestItem.cs" />
+    <Compile Include="src\presto\runtime\o\TestLazy.cs" />
+    <Compile Include="src\presto\runtime\o\TestLess.cs" />
+    <Compile Include="src\presto\runtime\o\TestLogic.cs" />
+    <Compile Include="src\presto\runtime\o\TestLoops.cs" />
+    <Compile Include="src\presto\runtime\o\TestMethods.cs" />
+    <Compile Include="src\presto\runtime\o\TestMinus.cs" />
+    <Compile Include="src\presto\runtime\o\TestMult.cs" />
+    <Compile Include="src\presto\runtime\o\TestNative.cs" />
+    <Compile Include="src\presto\runtime\o\TestPatterns.cs" />
+    <Compile Include="src\presto\runtime\o\TestSlice.cs" />
+    <Compile Include="src\presto\runtime\o\TestSub.cs" />
+    <Compile Include="src\presto\runtime\o\TestTuples.cs" />
+    <Compile Include="src\presto\runtime\p\TestAdd.cs" />
+    <Compile Include="src\presto\parser\p\BasePLexerTest.cs" />
+    <Compile Include="src\presto\parser\p\BasePParserTest.cs" />
+    <Compile Include="src\presto\runtime\utils\BaseParserTest.cs" />
+    <Compile Include="src\presto\parser\e\TestRuntime.cs" />
+    <Compile Include="src\presto\parser\e\TestAnonymousTypes.cs" />
+    <Compile Include="src\presto\parser\e\TestDeclaredTypes.cs" />
+    <Compile Include="src\presto\parser\e\TestPrecedence.cs" />
+    <Compile Include="src\presto\parser\e\TestResource.cs" />
+    <Compile Include="src\presto\parser\e\TestScope.cs" />
+    <Compile Include="src\presto\translate\eoe\TestAdd.cs" />
+    <Compile Include="src\presto\translate\eoe\TestBuiltins.cs" />
+    <Compile Include="src\presto\translate\eoe\TestCategories.cs" />
+    <Compile Include="src\presto\translate\eoe\TestClosures.cs" />
+    <Compile Include="src\presto\translate\eoe\TestCondition.cs" />
+    <Compile Include="src\presto\translate\eoe\TestContains.cs" />
+    <Compile Include="src\presto\translate\eoe\TestDebug.cs" />
+    <Compile Include="src\presto\translate\eoe\TestDiv.cs" />
+    <Compile Include="src\presto\translate\eoe\TestDocuments.cs" />
+    <Compile Include="src\presto\translate\eoe\TestEnums.cs" />
+    <Compile Include="src\presto\translate\eoe\TestEquals.cs" />
+    <Compile Include="src\presto\translate\eoe\TestErrors.cs" />
+    <Compile Include="src\presto\translate\eoe\TestFetch.cs" />
+    <Compile Include="src\presto\translate\eoe\TestForward.cs" />
+    <Compile Include="src\presto\translate\eoe\TestGreater.cs" />
+    <Compile Include="src\presto\translate\eoe\TestInjections.cs" />
+    <Compile Include="src\presto\translate\eoe\TestIssues.cs" />
+    <Compile Include="src\presto\translate\eoe\TestItem.cs" />
+    <Compile Include="src\presto\translate\eoe\TestLazy.cs" />
+    <Compile Include="src\presto\translate\eoe\TestLess.cs" />
+    <Compile Include="src\presto\translate\eoe\TestLogic.cs" />
+    <Compile Include="src\presto\translate\eoe\TestLoops.cs" />
+    <Compile Include="src\presto\translate\eoe\TestMethods.cs" />
+    <Compile Include="src\presto\translate\eoe\TestMinus.cs" />
+    <Compile Include="src\presto\translate\eoe\TestMult.cs" />
+    <Compile Include="src\presto\translate\eoe\TestNative.cs" />
+    <Compile Include="src\presto\translate\eoe\TestPatterns.cs" />
+    <Compile Include="src\presto\translate\eoe\TestResource.cs" />
+    <Compile Include="src\presto\translate\eoe\TestSetters.cs" />
+    <Compile Include="src\presto\translate\eoe\TestSlice.cs" />
+    <Compile Include="src\presto\translate\eoe\TestSub.cs" />
+    <Compile Include="src\presto\translate\eoe\TestTuples.cs" />
+    <Compile Include="src\presto\translate\epe\TestAdd.cs" />
+    <Compile Include="src\presto\translate\epe\TestBuiltins.cs" />
+    <Compile Include="src\presto\translate\epe\TestCategories.cs" />
+    <Compile Include="src\presto\translate\epe\TestClosures.cs" />
+    <Compile Include="src\presto\translate\epe\TestCondition.cs" />
+    <Compile Include="src\presto\translate\epe\TestContains.cs" />
+    <Compile Include="src\presto\translate\epe\TestDebug.cs" />
+    <Compile Include="src\presto\translate\epe\TestDiv.cs" />
+    <Compile Include="src\presto\translate\epe\TestDocuments.cs" />
+    <Compile Include="src\presto\translate\epe\TestEnums.cs" />
+    <Compile Include="src\presto\translate\epe\TestEquals.cs" />
+    <Compile Include="src\presto\translate\epe\TestErrors.cs" />
+    <Compile Include="src\presto\translate\epe\TestFetch.cs" />
+    <Compile Include="src\presto\translate\epe\TestForward.cs" />
+    <Compile Include="src\presto\translate\epe\TestGreater.cs" />
+    <Compile Include="src\presto\translate\epe\TestInjections.cs" />
+    <Compile Include="src\presto\translate\epe\TestIssues.cs" />
+    <Compile Include="src\presto\translate\epe\TestItem.cs" />
+    <Compile Include="src\presto\translate\epe\TestLazy.cs" />
+    <Compile Include="src\presto\translate\epe\TestLess.cs" />
+    <Compile Include="src\presto\translate\epe\TestLogic.cs" />
+    <Compile Include="src\presto\translate\epe\TestLoops.cs" />
+    <Compile Include="src\presto\translate\epe\TestMethods.cs" />
+    <Compile Include="src\presto\translate\epe\TestMinus.cs" />
+    <Compile Include="src\presto\translate\epe\TestMult.cs" />
+    <Compile Include="src\presto\translate\epe\TestNative.cs" />
+    <Compile Include="src\presto\translate\epe\TestPatterns.cs" />
+    <Compile Include="src\presto\translate\epe\TestResource.cs" />
+    <Compile Include="src\presto\translate\epe\TestSetters.cs" />
+    <Compile Include="src\presto\translate\epe\TestSlice.cs" />
+    <Compile Include="src\presto\translate\epe\TestSub.cs" />
+    <Compile Include="src\presto\translate\epe\TestTuples.cs" />
+    <Compile Include="src\presto\translate\oeo\TestAdd.cs" />
+    <Compile Include="src\presto\translate\oeo\TestBuiltins.cs" />
+    <Compile Include="src\presto\translate\oeo\TestCategories.cs" />
+    <Compile Include="src\presto\translate\oeo\TestClosures.cs" />
+    <Compile Include="src\presto\translate\oeo\TestCondition.cs" />
+    <Compile Include="src\presto\translate\oeo\TestContains.cs" />
+    <Compile Include="src\presto\translate\oeo\TestDiv.cs" />
+    <Compile Include="src\presto\translate\oeo\TestDocuments.cs" />
+    <Compile Include="src\presto\translate\oeo\TestEnums.cs" />
+    <Compile Include="src\presto\translate\oeo\TestEquals.cs" />
+    <Compile Include="src\presto\translate\oeo\TestErrors.cs" />
+    <Compile Include="src\presto\translate\oeo\TestFetch.cs" />
+    <Compile Include="src\presto\translate\oeo\TestForward.cs" />
+    <Compile Include="src\presto\translate\oeo\TestGreater.cs" />
+    <Compile Include="src\presto\translate\oeo\TestInjections.cs" />
+    <Compile Include="src\presto\translate\oeo\TestItem.cs" />
+    <Compile Include="src\presto\translate\oeo\TestLazy.cs" />
+    <Compile Include="src\presto\translate\oeo\TestLess.cs" />
+    <Compile Include="src\presto\translate\oeo\TestLogic.cs" />
+    <Compile Include="src\presto\translate\oeo\TestLoops.cs" />
+    <Compile Include="src\presto\translate\oeo\TestMethods.cs" />
+    <Compile Include="src\presto\translate\oeo\TestMinus.cs" />
+    <Compile Include="src\presto\translate\oeo\TestMult.cs" />
+    <Compile Include="src\presto\translate\oeo\TestNative.cs" />
+    <Compile Include="src\presto\translate\oeo\TestPatterns.cs" />
+    <Compile Include="src\presto\translate\oeo\TestResource.cs" />
+    <Compile Include="src\presto\translate\oeo\TestSetters.cs" />
+    <Compile Include="src\presto\translate\oeo\TestSlice.cs" />
+    <Compile Include="src\presto\translate\oeo\TestSub.cs" />
+    <Compile Include="src\presto\translate\oeo\TestTuples.cs" />
+    <Compile Include="src\presto\runtime\e\TestBuiltins.cs" />
+    <Compile Include="src\presto\runtime\e\TestCondition.cs" />
+    <Compile Include="src\presto\parser\o\TestAnonymousTypes.cs" />
+    <Compile Include="src\presto\parser\o\TestDeclaredTypes.cs" />
+    <Compile Include="src\presto\parser\o\TestPrecedence.cs" />
+    <Compile Include="src\presto\parser\o\TestResource.cs" />
+    <Compile Include="src\presto\parser\o\TestScope.cs" />
+    <Compile Include="src\presto\runtime\o\TestCondition.cs" />
+    <Compile Include="src\presto\parser\e\TestCheck.cs" />
+    <Compile Include="src\presto\parser\e\TestIssues.cs" />
+    <Compile Include="src\presto\runtime\e\TestSetters.cs" />
+    <Compile Include="src\presto\parser\o\TestCheck.cs" />
+    <Compile Include="src\presto\runtime\o\TestSetters.cs" />
+    <Compile Include="src\presto\runtime\e\TestCast.cs" />
+    <Compile Include="src\presto\runtime\o\TestCast.cs" />
+    <Compile Include="src\presto\translate\eoe\TestCast.cs" />
+    <Compile Include="src\presto\translate\epe\TestCast.cs" />
+    <Compile Include="src\presto\translate\oeo\TestCast.cs" />
+    <Compile Include="src\presto\translate\opo\TestAdd.cs" />
+    <Compile Include="src\presto\translate\opo\TestBuiltins.cs" />
+    <Compile Include="src\presto\translate\opo\TestCategories.cs" />
+    <Compile Include="src\presto\translate\opo\TestClosures.cs" />
+    <Compile Include="src\presto\translate\opo\TestCondition.cs" />
+    <Compile Include="src\presto\translate\opo\TestContains.cs" />
+    <Compile Include="src\presto\translate\opo\TestDiv.cs" />
+    <Compile Include="src\presto\translate\opo\TestDocuments.cs" />
+    <Compile Include="src\presto\translate\opo\TestEnums.cs" />
+    <Compile Include="src\presto\translate\opo\TestEquals.cs" />
+    <Compile Include="src\presto\translate\opo\TestErrors.cs" />
+    <Compile Include="src\presto\translate\opo\TestFetch.cs" />
+    <Compile Include="src\presto\translate\opo\TestForward.cs" />
+    <Compile Include="src\presto\translate\opo\TestGreater.cs" />
+    <Compile Include="src\presto\translate\opo\TestInjections.cs" />
+    <Compile Include="src\presto\translate\opo\TestItem.cs" />
+    <Compile Include="src\presto\translate\opo\TestLazy.cs" />
+    <Compile Include="src\presto\translate\opo\TestLess.cs" />
+    <Compile Include="src\presto\translate\opo\TestLogic.cs" />
+    <Compile Include="src\presto\translate\opo\TestLoops.cs" />
+    <Compile Include="src\presto\translate\opo\TestMethods.cs" />
+    <Compile Include="src\presto\translate\opo\TestMinus.cs" />
+    <Compile Include="src\presto\translate\opo\TestMult.cs" />
+    <Compile Include="src\presto\translate\opo\TestNative.cs" />
+    <Compile Include="src\presto\translate\opo\TestPatterns.cs" />
+    <Compile Include="src\presto\translate\opo\TestResource.cs" />
+    <Compile Include="src\presto\translate\opo\TestSetters.cs" />
+    <Compile Include="src\presto\translate\opo\TestSlice.cs" />
+    <Compile Include="src\presto\translate\opo\TestSub.cs" />
+    <Compile Include="src\presto\translate\opo\TestTuples.cs" />
+    <Compile Include="src\presto\translate\opo\TestCast.cs" />
+    <Compile Include="src\presto\utils\DoubleTest.cs" />
+    <Compile Include="src\presto\runtime\e\TestSortList.cs" />
+    <Compile Include="src\presto\runtime\e\TestSortSet.cs" />
+    <Compile Include="src\presto\runtime\o\TestSortList.cs" />
+    <Compile Include="src\presto\runtime\o\TestSortSet.cs" />
+    <Compile Include="src\presto\translate\opo\TestSortList.cs" />
+    <Compile Include="src\presto\translate\opo\TestSortSet.cs" />
+    <Compile Include="src\presto\translate\oeo\TestSortList.cs" />
+    <Compile Include="src\presto\translate\oeo\TestSortSet.cs" />
+    <Compile Include="src\presto\translate\epe\TestSortList.cs" />
+    <Compile Include="src\presto\translate\epe\TestSortSet.cs" />
+    <Compile Include="src\presto\translate\eoe\TestSortList.cs" />
+    <Compile Include="src\presto\translate\eoe\TestSortSet.cs" />
+    <Compile Include="src\presto\runtime\e\TestSelf.cs" />
+    <Compile Include="src\presto\runtime\o\TestSelf.cs" />
+    <Compile Include="src\presto\translate\eoe\TestSelf.cs" />
+    <Compile Include="src\presto\translate\epe\TestSelf.cs" />
+    <Compile Include="src\presto\translate\oeo\TestSelf.cs" />
+    <Compile Include="src\presto\translate\opo\TestSelf.cs" />
+    <Compile Include="src\presto\runtime\e\TestSingleton.cs" />
+    <Compile Include="src\presto\runtime\o\TestSingleton.cs" />
+    <Compile Include="src\presto\translate\eoe\TestSingleton.cs" />
+    <Compile Include="src\presto\translate\epe\TestSingleton.cs" />
+    <Compile Include="src\presto\translate\oeo\TestSingleton.cs" />
+    <Compile Include="src\presto\translate\opo\TestSingleton.cs" />
+    <Compile Include="src\presto\runtime\e\TestOperators.cs" />
+    <Compile Include="src\presto\runtime\o\TestOperators.cs" />
+    <Compile Include="src\presto\translate\eoe\TestOperators.cs" />
+    <Compile Include="src\presto\translate\epe\TestOperators.cs" />
+    <Compile Include="src\presto\translate\oeo\TestOperators.cs" />
+    <Compile Include="src\presto\translate\opo\TestOperators.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="src\presto\parser\e\" />
+    <Folder Include="src\presto\parser\o\" />
+    <Folder Include="src\presto\runtime\e\" />
+    <Folder Include="src\presto\runtime\o\" />
+    <Folder Include="src\presto\runtime\p\" />
+    <Folder Include="src\presto\parser\p\" />
+    <Folder Include="src\presto\translate\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CSharp-Core\CSharp-Core.csproj">
+      <Project>{066EA73C-B3DD-41CA-9AD7-81A1D7D3A6DA}</Project>
+      <Name>CSharp-Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+</Project>
