@@ -61,13 +61,25 @@ namespace presto.parser
 			}
 		}
 
+		public DeclarationList parsePResource (String resourceName)
+		{
+			context = Context.newGlobalContext ();
+			Stream input = OpenResource (resourceName);
+			try {
+				PCleverParser parser = new PCleverParser (input);
+				return parser.parse_declaration_list ();
+			} finally {
+				input.Close ();
+			}
+		}
+
 		public abstract DeclarationList parseResource (String resourceName);
 
 		private Stream OpenResource (String resourceName)
 		{
 			String resourceDir = Path.GetDirectoryName (Path.GetDirectoryName (
 				                     Path.GetDirectoryName (Path.GetDirectoryName (Directory.GetCurrentDirectory ()))));
-			String fullPath = resourceDir + SEP + "Test" + SEP + "resources" + SEP + resourceName;
+			String fullPath = resourceDir + SEP + "presto-tests" + SEP + "Tests" + SEP + "resources" + SEP + resourceName;
 			Assert.IsTrue (File.Exists (fullPath), "resource not found:" + fullPath);
 			return new FileStream (fullPath, FileMode.Open, FileAccess.Read);
 		}
