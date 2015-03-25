@@ -137,7 +137,7 @@ namespace presto.e.runtime
         [Test]
         public void testList()
         {
-            DeclarationList stmts = parseString("define test as: method receiving: Text value doing:\r\n" +
+            DeclarationList stmts = parseString("define testMethod as: method receiving: Text value doing:\r\n" +
                         "\tlist = [ \"john\" , \"jim\" ]\r\n" +
                         "\telem = list[1]\r\n");
             stmts.register(context);
@@ -147,7 +147,7 @@ namespace presto.e.runtime
         [Test]
         public void testDict()
         {
-            DeclarationList stmts = parseString("define test as: method receiving: Text value doing:\r\n" +
+			DeclarationList stmts = parseString("define testMethod as: method receiving: Text value doing:\r\n" +
                         "\tdict = { \"john\":123, \"jim\":345 }\r\n" +
                         "\telem = dict[\"john\"]\r\n");
             stmts.register(context);

@@ -21,6 +21,14 @@ namespace presto.runtime {
         {
         }
 
+		public static void interpretTests(Context context) {
+			foreach(TestMethodDeclaration test in context.getTests()) {
+				Context local = context.newLocalContext();
+				test.interpret(local);
+			}
+
+		}
+
         public static void interpretMainNoArgs(Context context)
         {
             interpret(context, "main", "");

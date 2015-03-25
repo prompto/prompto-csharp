@@ -9,11 +9,12 @@ using presto.type;
 using presto.grammar;
 using presto.utils;
 using presto.error;
+using presto.declaration;
 
 namespace presto.expression
 {
 
-    public class EqualsExpression : IExpression
+	public class EqualsExpression : IExpression, IAssertion
     {
 
         IExpression left;
@@ -30,65 +31,54 @@ namespace presto.expression
         public void ToDialect(CodeWriter writer)
         {
 			left.ToDialect (writer);
-			writer.append (' ');
-			EqOpToDialect (writer);
-			writer.append (' ');
+			writer.append(operatorToString (writer.getDialect()));
 			right.ToDialect(writer);
         }
  		
 		const string VOWELS = "AEIO"; // sufficient here
 
-		public void EqOpToDialect(CodeWriter writer) {
+		public String operatorToString(Dialect dialect) {
 			switch(oper) {
 			case EqOp.IS:
-				writer.append("is");
-				break;
+				return " is ";
 			case EqOp.IS_NOT:
-				writer.append("is not");
-				break;
+				return " is not ";
 			case EqOp.IS_A:
-				writer.append("is a");
-				if (VOWELS.IndexOf (right.ToString () [0]) >= 0)
-					writer.append ("n");
-				break;
+				return " is a" + (VOWELS.IndexOf (right.ToString () [0]) >= 0 ? "n " : " ");
 			case EqOp.IS_NOT_A:
-				writer.append ("is not a");
-				if (VOWELS.IndexOf (right.ToString () [0]) >= 0)
-					writer.append ("n");
-				break;
+				return " is not a" + (VOWELS.IndexOf (right.ToString () [0]) >= 0 ? "n " : " ");
 			case EqOp.EQUALS:
-				switch(writer.getDialect()) {
+				switch(dialect) {
 				case Dialect.E:
-					writer.append('=');
-					break;
+					return " = ";
 				case Dialect.O:
 				case Dialect.P:
-					writer.append("==");
-					break;
+					return " == ";
+				default:
+					throw new Exception ("Unimplemented!");
 				}
-				break;
 			case EqOp.NOT_EQUALS:
-				switch(writer.getDialect()) {
+				switch(dialect) {
 				case Dialect.E:
-					writer.append("<>");
-					break;
+					return " <> ";
 				case Dialect.O:
 				case Dialect.P:
-					writer.append("!=");
-					break;
+					return " != ";
+				default:
+					throw new Exception ("Unimplemented!");
 				}
-				break;
 			case EqOp.ROUGHLY:
-				switch(writer.getDialect()) {
+				switch(dialect) {
 				case Dialect.E:
-					writer.append("~");
-					break;
+					return " ~ ";
 				case Dialect.O:
 				case Dialect.P:
-					writer.append("~=");
-					break;
+					return " ~= ";
+				default:
+					throw new Exception ("Unimplemented!");
 				}
-				break;
+			default:
+				throw new Exception ("Unimplemented!");
 			}
 		}
 
@@ -100,10 +90,15 @@ namespace presto.expression
         }
 
 		public IValue interpret(Context context)
-        {
+		{
+			IValue lval = left.interpret (context);
+			IValue rval = right.interpret (context);
+			return interpret (context, lval, rval);
+		}
+
+		public IValue interpret(Context context, IValue lval, IValue rval)
+		{
 			bool equal = false;
-			IValue lval = left.interpret(context);
-			IValue rval = right.interpret(context);
 			switch (oper) {
 			case EqOp.IS:
 				equal = lval == rval;
@@ -164,6 +159,21 @@ namespace presto.expression
 				return ((UnresolvedIdentifier)left).getName();
 			return null;
 		}
+
+		public bool interpretAssert(Context context, TestMethodDeclaration test) {
+			IValue lval = left.interpret(context);
+			IValue rval = right.interpret(context);
+			IValue result = interpret(context, lval, rval);
+			if(result==Boolean.TRUE) 
+				return true;
+			CodeWriter writer = new CodeWriter(test.Dialect, context);
+			this.ToDialect(writer);
+			String expected = writer.ToString();
+			String actual = lval.ToString() + operatorToString(test.Dialect) + rval.ToString();
+			test.printFailure(context, expected, actual);
+			return false;
+		}
+
 			
     }
 

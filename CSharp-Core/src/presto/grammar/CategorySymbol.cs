@@ -97,7 +97,8 @@ namespace presto.grammar
                     instance.set(context, assignment.getName(), value);
                 }
             }
-            return instance;
+			instance.set(context, "name", new Text(this.getName()));
+			return instance;
         }
 
     }

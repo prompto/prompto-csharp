@@ -334,6 +334,30 @@ public partial class OParserBaseListener : IOParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitNative_method_declaration([NotNull] OParser.Native_method_declarationContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="OParser.test_method_declaration"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterTest_method_declaration([NotNull] OParser.Test_method_declarationContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="OParser.test_method_declaration"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitTest_method_declaration([NotNull] OParser.Test_method_declarationContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="OParser.assertion"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterAssertion([NotNull] OParser.AssertionContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="OParser.assertion"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitAssertion([NotNull] OParser.AssertionContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="OParser.typed_argument"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
@@ -2662,6 +2686,18 @@ public partial class OParserBaseListener : IOParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitNativeMethod([NotNull] OParser.NativeMethodContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="OParser.TestMethod"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterTestMethod([NotNull] OParser.TestMethodContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="OParser.TestMethod"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitTestMethod([NotNull] OParser.TestMethodContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="OParser.NativeStatementList"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
@@ -2793,6 +2829,30 @@ public partial class OParserBaseListener : IOParserListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitStatementList([NotNull] OParser.StatementListContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="OParser.AssertionListItem"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterAssertionListItem([NotNull] OParser.AssertionListItemContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="OParser.AssertionListItem"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitAssertionListItem([NotNull] OParser.AssertionListItemContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="OParser.AssertionList"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterAssertionList([NotNull] OParser.AssertionListContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="OParser.AssertionList"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitAssertionList([NotNull] OParser.AssertionListContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="OParser.SwitchCaseStatementListItem"/>.
 	/// <para>The default implementation does nothing.</para>

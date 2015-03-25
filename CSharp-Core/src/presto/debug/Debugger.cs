@@ -74,7 +74,7 @@ namespace presto.debug
             this.listener = listener;
         }
 
-        public void enterMethod(Context context, IMethodDeclaration method)
+        public void enterMethod(Context context, IDeclaration method)
         {
             terminateIfRequested();
             stack.Push(new StackFrame(context, method.getName(), method));

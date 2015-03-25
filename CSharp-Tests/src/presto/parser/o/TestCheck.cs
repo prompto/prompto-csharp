@@ -137,7 +137,7 @@ namespace presto.o.runtime
         [Test]
         public void testList()
         {
-            DeclarationList stmts = parseString("method test (Text value) {" +
+			DeclarationList stmts = parseString("method testMethod (Text value) {" +
                         "list = [ \"john\" , \"jim\" ];" +
                         "elem = list[1]; }");
             stmts.register(context);
@@ -147,7 +147,7 @@ namespace presto.o.runtime
         [Test]
         public void testDict()
         {
-            DeclarationList stmts = parseString("method test (Text value) {" +
+			DeclarationList stmts = parseString("method testMethod (Text value) {" +
                         "dict = { \"john\":123, \"jim\":345 };" +
                         "elem = dict[\"john\"]; }");
             stmts.register(context);

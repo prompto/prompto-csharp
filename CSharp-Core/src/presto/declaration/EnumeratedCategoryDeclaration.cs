@@ -106,9 +106,10 @@ namespace presto.declaration
 					writer.append(" with attributes: ");
 				attributes.ToDialect(writer, true);
 				if(symbols!=null && symbols.Count>0)
-					writer.append(",");
+					writer.append(", and symbols:\n");
 			}
-			writer.append(" with symbols:\n");
+			else
+				writer.append(" with symbols:\n");
 			writer.indent();
 			foreach(Object symbol in symbols) {
 				((CategorySymbol)symbol).ToDialect(writer);

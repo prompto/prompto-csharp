@@ -8,6 +8,7 @@ namespace presto.parser
         String Path { get; }
         ILocation Start { get; }
         ILocation End { get; }
+		Dialect Dialect{ get; }
         bool Breakpoint { get; set; }
  
     }

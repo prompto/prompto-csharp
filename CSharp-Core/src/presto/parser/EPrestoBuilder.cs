@@ -60,7 +60,7 @@ namespace presto.parser
 		{
 			IToken first = FindFirstValidToken (node.Start.TokenIndex);
 			IToken last = FindLastValidToken (node.Stop.TokenIndex);
-			section.SetFrom (path, first, last);
+			section.SetFrom (path, first, last, Dialect.E);
 		}
 
 		private IToken FindFirstValidToken (int idx)
@@ -235,6 +235,20 @@ namespace presto.parser
 		}
 
 		
+		public override void ExitTest_method_declaration(EParser.Test_method_declarationContext ctx) {
+			String name = ctx.name.Text;
+			StatementList stmts = this.GetNodeValue<StatementList>(ctx.stmts);
+			ExpressionList exps = this.GetNodeValue<ExpressionList>(ctx.exps);
+			String errorName = this.GetNodeValue<String>(ctx.error);
+			SymbolExpression error = errorName==null ? null : new SymbolExpression(errorName);
+			SetNodeValue(ctx, new TestMethodDeclaration(name, stmts, exps, error));
+		}
+
+		public override void ExitTestMethod(EParser.TestMethodContext ctx) {
+			IDeclaration decl = this.GetNodeValue<IDeclaration>(ctx.decl);
+			SetNodeValue(ctx, decl);
+		}
+
 		public override void ExitTextLiteral (EParser.TextLiteralContext ctx)
 		{
 			SetNodeValue (ctx, new TextLiteral (ctx.t.Text));
@@ -942,7 +956,24 @@ namespace presto.parser
 			SetNodeValue (ctx, new ConstructorExpression (type, args));
 		}
 
-		
+		public override void ExitAssertion(EParser.AssertionContext ctx) {
+			IExpression exp = this.GetNodeValue<IExpression>(ctx.exp);
+			SetNodeValue(ctx, exp);
+		}
+
+		public override void ExitAssertionList(EParser.AssertionListContext ctx) {
+			IExpression item = this.GetNodeValue<IExpression>(ctx.item);
+			ExpressionList items = new ExpressionList(item);
+			SetNodeValue(ctx, items);
+		}
+
+		public override void ExitAssertionListItem(EParser.AssertionListItemContext ctx) {
+			IExpression item = this.GetNodeValue<IExpression>(ctx.item);
+			ExpressionList items = this.GetNodeValue<ExpressionList>(ctx.items);
+			items.add(item);
+			SetNodeValue(ctx, items);
+		}
+			
 		public override void ExitAssign_instance_statement (EParser.Assign_instance_statementContext ctx)
 		{
 			IAssignableInstance inst = this.GetNodeValue<IAssignableInstance> (ctx.inst);
@@ -2645,7 +2676,7 @@ namespace presto.parser
 		public override void ExitJavascript_module (EParser.Javascript_moduleContext ctx)
 		{
 			List<String> ids = new List<String> ();
-			foreach (EParser.IdentifierContext ic in ctx.identifier())
+			foreach (EParser.Javascript_identifierContext ic in ctx.javascript_identifier())
 				ids.Add (ic.GetText ());
 			JavaScriptModule module = new JavaScriptModule (ids);
 			SetNodeValue (ctx, module);

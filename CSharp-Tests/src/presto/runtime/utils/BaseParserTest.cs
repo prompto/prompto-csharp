@@ -95,7 +95,10 @@ namespace presto.parser
 		protected void runResource (String resourceName)
 		{
 			loadResource (resourceName);
-			Interpreter.interpretMainNoArgs (context);
+			if(context.hasTests())
+				Interpreter.interpretTests(context);
+			else
+				Interpreter.interpretMainNoArgs(context);
 		}
 
 		protected void runResource (String resourceName, String methodName, String cmdLineArgs)

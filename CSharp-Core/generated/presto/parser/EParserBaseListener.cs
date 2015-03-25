@@ -310,6 +310,30 @@ public partial class EParserBaseListener : IEParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitNative_method_declaration([NotNull] EParser.Native_method_declarationContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="EParser.test_method_declaration"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterTest_method_declaration([NotNull] EParser.Test_method_declarationContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="EParser.test_method_declaration"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitTest_method_declaration([NotNull] EParser.Test_method_declarationContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="EParser.assertion"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterAssertion([NotNull] EParser.AssertionContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="EParser.assertion"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitAssertion([NotNull] EParser.AssertionContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="EParser.full_argument_list"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
@@ -2722,6 +2746,18 @@ public partial class EParserBaseListener : IEParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitNativeMethod([NotNull] EParser.NativeMethodContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="EParser.TestMethod"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterTestMethod([NotNull] EParser.TestMethodContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="EParser.TestMethod"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitTestMethod([NotNull] EParser.TestMethodContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="EParser.NativeStatementList"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
@@ -2853,6 +2889,30 @@ public partial class EParserBaseListener : IEParserListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitStatementList([NotNull] EParser.StatementListContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="EParser.AssertionListItem"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterAssertionListItem([NotNull] EParser.AssertionListItemContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="EParser.AssertionListItem"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitAssertionListItem([NotNull] EParser.AssertionListItemContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="EParser.AssertionList"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterAssertionList([NotNull] EParser.AssertionListContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="EParser.AssertionList"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitAssertionList([NotNull] EParser.AssertionListContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="EParser.SwitchCaseStatementListItem"/>.
 	/// <para>The default implementation does nothing.</para>

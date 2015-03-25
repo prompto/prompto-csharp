@@ -416,6 +416,8 @@
     <Compile Include="src\presto\grammar\Operator.cs" />
     <Compile Include="src\presto\declaration\OperatorMethodDeclaration.cs" />
     <Compile Include="src\presto\utils\Enums.cs" />
+    <Compile Include="src\presto\declaration\TestMethodDeclaration.cs" />
+    <Compile Include="src\presto\expression\IAssertion.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Antlr4.Runtime">

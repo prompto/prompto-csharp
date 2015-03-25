@@ -272,6 +272,26 @@ public interface IEParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitNative_method_declaration([NotNull] EParser.Native_method_declarationContext context);
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="EParser.test_method_declaration"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterTest_method_declaration([NotNull] EParser.Test_method_declarationContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="EParser.test_method_declaration"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitTest_method_declaration([NotNull] EParser.Test_method_declarationContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="EParser.assertion"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterAssertion([NotNull] EParser.AssertionContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="EParser.assertion"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitAssertion([NotNull] EParser.AssertionContext context);
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="EParser.full_argument_list"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
@@ -2592,6 +2612,18 @@ public interface IEParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitNativeMethod([NotNull] EParser.NativeMethodContext context);
 	/// <summary>
+	/// Enter a parse tree produced by the <c>TestMethod</c>
+	/// labeled alternative in <see cref="EParser.method_declaration"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterTestMethod([NotNull] EParser.TestMethodContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>TestMethod</c>
+	/// labeled alternative in <see cref="EParser.method_declaration"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitTestMethod([NotNull] EParser.TestMethodContext context);
+	/// <summary>
 	/// Enter a parse tree produced by the <c>NativeStatementList</c>
 	/// labeled alternative in <see cref="EParser.native_statement_list"/>.
 	/// </summary>
@@ -2719,6 +2751,30 @@ public interface IEParserListener : IParseTreeListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void ExitStatementList([NotNull] EParser.StatementListContext context);
+	/// <summary>
+	/// Enter a parse tree produced by the <c>AssertionListItem</c>
+	/// labeled alternative in <see cref="EParser.assertion_list"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterAssertionListItem([NotNull] EParser.AssertionListItemContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>AssertionListItem</c>
+	/// labeled alternative in <see cref="EParser.assertion_list"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitAssertionListItem([NotNull] EParser.AssertionListItemContext context);
+	/// <summary>
+	/// Enter a parse tree produced by the <c>AssertionList</c>
+	/// labeled alternative in <see cref="EParser.assertion_list"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterAssertionList([NotNull] EParser.AssertionListContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>AssertionList</c>
+	/// labeled alternative in <see cref="EParser.assertion_list"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitAssertionList([NotNull] EParser.AssertionListContext context);
 	/// <summary>
 	/// Enter a parse tree produced by the <c>SwitchCaseStatementListItem</c>
 	/// labeled alternative in <see cref="EParser.switch_case_statement_list"/>.

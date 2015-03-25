@@ -10,11 +10,12 @@ namespace presto.parser
         {
         }
 
-        public void SetFrom(String path, IToken start, IToken end)
+		public void SetFrom(String path, IToken start, IToken end, Dialect dialect)
         {
             this.Path = path;
             this.Start = new Location(start);
             this.End = new Location(end, true);
+			this.Dialect = dialect;
         }
 
 
@@ -24,6 +25,8 @@ namespace presto.parser
   
         public ILocation End { set; get; }
    
-        public bool Breakpoint{ set; get; }
+		public Dialect Dialect { set; get; }
+
+		public bool Breakpoint{ set; get; }
       }
 }

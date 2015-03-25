@@ -296,6 +296,26 @@ public interface IOParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitNative_method_declaration([NotNull] OParser.Native_method_declarationContext context);
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="OParser.test_method_declaration"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterTest_method_declaration([NotNull] OParser.Test_method_declarationContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="OParser.test_method_declaration"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitTest_method_declaration([NotNull] OParser.Test_method_declarationContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="OParser.assertion"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterAssertion([NotNull] OParser.AssertionContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="OParser.assertion"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitAssertion([NotNull] OParser.AssertionContext context);
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="OParser.typed_argument"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
@@ -2544,6 +2564,18 @@ public interface IOParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitNativeMethod([NotNull] OParser.NativeMethodContext context);
 	/// <summary>
+	/// Enter a parse tree produced by the <c>TestMethod</c>
+	/// labeled alternative in <see cref="OParser.method_declaration"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterTestMethod([NotNull] OParser.TestMethodContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>TestMethod</c>
+	/// labeled alternative in <see cref="OParser.method_declaration"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitTestMethod([NotNull] OParser.TestMethodContext context);
+	/// <summary>
 	/// Enter a parse tree produced by the <c>NativeStatementList</c>
 	/// labeled alternative in <see cref="OParser.native_statement_list"/>.
 	/// </summary>
@@ -2671,6 +2703,30 @@ public interface IOParserListener : IParseTreeListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void ExitStatementList([NotNull] OParser.StatementListContext context);
+	/// <summary>
+	/// Enter a parse tree produced by the <c>AssertionListItem</c>
+	/// labeled alternative in <see cref="OParser.assertion_list"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterAssertionListItem([NotNull] OParser.AssertionListItemContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>AssertionListItem</c>
+	/// labeled alternative in <see cref="OParser.assertion_list"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitAssertionListItem([NotNull] OParser.AssertionListItemContext context);
+	/// <summary>
+	/// Enter a parse tree produced by the <c>AssertionList</c>
+	/// labeled alternative in <see cref="OParser.assertion_list"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterAssertionList([NotNull] OParser.AssertionListContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>AssertionList</c>
+	/// labeled alternative in <see cref="OParser.assertion_list"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitAssertionList([NotNull] OParser.AssertionListContext context);
 	/// <summary>
 	/// Enter a parse tree produced by the <c>SwitchCaseStatementListItem</c>
 	/// labeled alternative in <see cref="OParser.switch_case_statement_list"/>.

@@ -302,6 +302,12 @@
     <Compile Include="src\presto\translate\epe\TestOperators.cs" />
     <Compile Include="src\presto\translate\oeo\TestOperators.cs" />
     <Compile Include="src\presto\translate\opo\TestOperators.cs" />
+    <Compile Include="src\presto\runtime\e\TestTesting.cs" />
+    <Compile Include="src\presto\runtime\o\TestTesting.cs" />
+    <Compile Include="src\presto\translate\eoe\TestTesting.cs" />
+    <Compile Include="src\presto\translate\epe\TestTesting.cs" />
+    <Compile Include="src\presto\translate\oeo\TestTesting.cs" />
+    <Compile Include="src\presto\translate\opo\TestTesting.cs" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />

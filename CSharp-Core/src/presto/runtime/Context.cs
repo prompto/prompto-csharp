@@ -34,7 +34,8 @@ namespace presto.runtime
         Debugger debugger;
 
         Dictionary<String, IDeclaration> declarations = new Dictionary<String, IDeclaration>();
-        protected Dictionary<String, INamed> instances = new Dictionary<String, INamed>();
+		Dictionary<String,TestMethodDeclaration> tests = new Dictionary<String, TestMethodDeclaration>();
+		protected Dictionary<String, INamed> instances = new Dictionary<String, INamed>();
 		Dictionary<String, IValue> values = new Dictionary<String, IValue>();
 
         protected Context()
@@ -205,7 +206,19 @@ namespace presto.runtime
             ((MethodDeclarationMap)actual).register(declaration, this);
         }
 
+		public void registerDeclaration(TestMethodDeclaration declaration) {
+			if(tests.ContainsKey(declaration.getName()))
+				throw new SyntaxError("Duplicate test: \"" + declaration.getName() + "\"");
+			tests[declaration.getName()] = declaration;
+		}
 
+		public bool hasTests() {
+			return tests.Count>0;
+		}
+
+		public Dictionary<String,TestMethodDeclaration>.ValueCollection getTests() {
+			return tests.Values;
+		}
 
 		public T getRegisteredValue<T>(String name) where T : INamed
         {
@@ -294,13 +307,13 @@ namespace presto.runtime
             return null;
         }
 
-        public void enterMethod(IMethodDeclaration method)
+        public void enterMethod(IDeclaration method)
         {
             if (debugger != null)
                 debugger.enterMethod(this, method);
         }
 
-        public void leaveMethod(IMethodDeclaration method)
+		public void leaveMethod(IDeclaration method)
         {
             if (debugger != null)
                 debugger.leaveMethod(this, method);
@@ -491,7 +504,12 @@ namespace presto.runtime
             get { throw new Exception("Should never get there!"); }
         }
 
-        public bool Breakpoint
+		public Dialect Dialect
+		{
+			get { throw new Exception("Should never get there!"); }
+		}
+
+		public bool Breakpoint
         {
             get { throw new Exception("Should never get there!"); }
              set { throw new Exception("Should never get there!"); }
