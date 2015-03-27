@@ -22,6 +22,30 @@ namespace presto.runtime.o
 		}
 
 		[Test]
+		public void testAnd()
+		{
+			CheckOutput("testing/and.o");
+		}
+
+		[Test]
+		public void testContains()
+		{
+			CheckOutput("testing/contains.o");
+		}
+
+		[Test]
+		public void testGreater()
+		{
+			CheckOutput("testing/greater.o");
+		}
+
+		[Test]
+		public void testMethod()
+		{
+			CheckOutput("testing/method.o");
+		}
+
+		[Test]
 		public void testNegative()
 		{
 			CheckOutput("testing/negative.o");
@@ -31,6 +55,18 @@ namespace presto.runtime.o
 		public void testNegativeError()
 		{
 			CheckOutput("testing/negativeError.o");
+		}
+
+		[Test]
+		public void testNot()
+		{
+			CheckOutput("testing/not.o");
+		}
+
+		[Test]
+		public void testOr()
+		{
+			CheckOutput("testing/or.o");
 		}
 
 		[Test]

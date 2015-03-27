@@ -5080,21 +5080,6 @@ public partial class PParser : AbstractParser {
 			if (typedListener != null) typedListener.ExitReadExpression(this);
 		}
 	}
-	public partial class FetchExpressionContext : Method_expressionContext {
-		public Fetch_expressionContext exp;
-		public Fetch_expressionContext fetch_expression() {
-			return GetRuleContext<Fetch_expressionContext>(0);
-		}
-		public FetchExpressionContext(Method_expressionContext context) { CopyFrom(context); }
-		public override void EnterRule(IParseTreeListener listener) {
-			IPParserListener typedListener = listener as IPParserListener;
-			if (typedListener != null) typedListener.EnterFetchExpression(this);
-		}
-		public override void ExitRule(IParseTreeListener listener) {
-			IPParserListener typedListener = listener as IPParserListener;
-			if (typedListener != null) typedListener.ExitFetchExpression(this);
-		}
-	}
 	public partial class ConstructorExpressionContext : Method_expressionContext {
 		public Constructor_expressionContext exp;
 		public Constructor_expressionContext constructor_expression() {
@@ -5108,6 +5093,21 @@ public partial class PParser : AbstractParser {
 		public override void ExitRule(IParseTreeListener listener) {
 			IPParserListener typedListener = listener as IPParserListener;
 			if (typedListener != null) typedListener.ExitConstructorExpression(this);
+		}
+	}
+	public partial class FetchExpressionContext : Method_expressionContext {
+		public Fetch_expressionContext exp;
+		public Fetch_expressionContext fetch_expression() {
+			return GetRuleContext<Fetch_expressionContext>(0);
+		}
+		public FetchExpressionContext(Method_expressionContext context) { CopyFrom(context); }
+		public override void EnterRule(IParseTreeListener listener) {
+			IPParserListener typedListener = listener as IPParserListener;
+			if (typedListener != null) typedListener.EnterFetchExpression(this);
+		}
+		public override void ExitRule(IParseTreeListener listener) {
+			IPParserListener typedListener = listener as IPParserListener;
+			if (typedListener != null) typedListener.ExitFetchExpression(this);
 		}
 	}
 	public partial class DocumentExpressionContext : Method_expressionContext {
@@ -5141,38 +5141,38 @@ public partial class PParser : AbstractParser {
 				}
 				break;
 			case 2:
-				_localctx = new ConstructorExpressionContext(_localctx);
+				_localctx = new FetchExpressionContext(_localctx);
 				EnterOuterAlt(_localctx, 2);
 				{
-				State = 992; ((ConstructorExpressionContext)_localctx).exp = constructor_expression();
+				State = 992; ((FetchExpressionContext)_localctx).exp = fetch_expression();
 				}
 				break;
 			case 3:
-				_localctx = new FetchExpressionContext(_localctx);
+				_localctx = new ReadExpressionContext(_localctx);
 				EnterOuterAlt(_localctx, 3);
 				{
-				State = 993; ((FetchExpressionContext)_localctx).exp = fetch_expression();
+				State = 993; ((ReadExpressionContext)_localctx).exp = read_expression();
 				}
 				break;
 			case 4:
-				_localctx = new ReadExpressionContext(_localctx);
+				_localctx = new SortedExpressionContext(_localctx);
 				EnterOuterAlt(_localctx, 4);
 				{
-				State = 994; ((ReadExpressionContext)_localctx).exp = read_expression();
+				State = 994; ((SortedExpressionContext)_localctx).exp = sorted_expression();
 				}
 				break;
 			case 5:
-				_localctx = new SortedExpressionContext(_localctx);
+				_localctx = new MethodCallExpressionContext(_localctx);
 				EnterOuterAlt(_localctx, 5);
 				{
-				State = 995; ((SortedExpressionContext)_localctx).exp = sorted_expression();
+				State = 995; ((MethodCallExpressionContext)_localctx).exp = method_call();
 				}
 				break;
 			case 6:
-				_localctx = new MethodCallExpressionContext(_localctx);
+				_localctx = new ConstructorExpressionContext(_localctx);
 				EnterOuterAlt(_localctx, 6);
 				{
-				State = 996; ((MethodCallExpressionContext)_localctx).exp = method_call();
+				State = 996; ((ConstructorExpressionContext)_localctx).exp = constructor_expression();
 				}
 				break;
 			}
@@ -18055,8 +18055,8 @@ public partial class PParser : AbstractParser {
 		"\x1\x2\x3D8\x3D9\x5\xEAv\x2\x3D9\x3DE\x3\x2\x2\x2\x3DA\x3DB\f\x3\x2\x2"+
 		"\x3DB\x3DD\x5\\/\x2\x3DC\x3DA\x3\x2\x2\x2\x3DD\x3E0\x3\x2\x2\x2\x3DE\x3DC"+
 		"\x3\x2\x2\x2\x3DE\x3DF\x3\x2\x2\x2\x3DFY\x3\x2\x2\x2\x3E0\x3DE\x3\x2\x2"+
-		"\x2\x3E1\x3E8\x5^\x30\x2\x3E2\x3E8\x5`\x31\x2\x3E3\x3E8\x5j\x36\x2\x3E4"+
-		"\x3E8\x5\x66\x34\x2\x3E5\x3E8\x5l\x37\x2\x3E6\x3E8\x5\x32\x1A\x2\x3E7"+
+		"\x2\x3E1\x3E8\x5^\x30\x2\x3E2\x3E8\x5j\x36\x2\x3E3\x3E8\x5\x66\x34\x2"+
+		"\x3E4\x3E8\x5l\x37\x2\x3E5\x3E8\x5\x32\x1A\x2\x3E6\x3E8\x5`\x31\x2\x3E7"+
 		"\x3E1\x3\x2\x2\x2\x3E7\x3E2\x3\x2\x2\x2\x3E7\x3E3\x3\x2\x2\x2\x3E7\x3E4"+
 		"\x3\x2\x2\x2\x3E7\x3E5\x3\x2\x2\x2\x3E7\x3E6\x3\x2\x2\x2\x3E8[\x3\x2\x2"+
 		"\x2\x3E9\x3EA\x6/ \x3\x3EA\x3EB\a\x14\x2\x2\x3EB\x3F7\x5\xACW\x2\x3EC"+

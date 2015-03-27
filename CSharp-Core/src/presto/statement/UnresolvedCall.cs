@@ -1,4 +1,3 @@
-using presto.statement;
 using presto.expression;
 using System;
 using presto.parser;
@@ -8,13 +7,14 @@ using presto.declaration;
 using presto.error;
 using presto.utils;
 using presto.value;
+using presto.grammar;
 
 
-namespace presto.grammar
+namespace presto.statement
 {
 
 
-	public class UnresolvedCall : SimpleStatement
+	public class UnresolvedCall : SimpleStatement, IAssertion
     {
 
         IExpression resolved;
@@ -64,7 +64,19 @@ namespace presto.grammar
             return resolved.interpret(context);
         }
 
-        private IType resolveAndCheck(Context context) {
+		public bool interpretAssert(Context context, TestMethodDeclaration testMethodDeclaration) {
+			if(resolved==null)
+				resolveAndCheck(context);
+			if(resolved is IAssertion)
+				return ((IAssertion)resolved).interpretAssert(context, testMethodDeclaration);
+			else {
+				CodeWriter writer = new CodeWriter(this.Dialect, context);
+				resolved.ToDialect(writer);
+				throw new SyntaxError("Cannot test '" + writer.ToString() + "'");
+			}
+		}
+
+		private IType resolveAndCheck(Context context) {
 			resolve (context);
 			return resolved.check (context);
 		}

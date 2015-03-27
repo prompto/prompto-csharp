@@ -1226,18 +1226,6 @@ public interface IOParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitDocumentExpression([NotNull] OParser.DocumentExpressionContext context);
 	/// <summary>
-	/// Enter a parse tree produced by the <c>ConstructorExpression</c>
-	/// labeled alternative in <see cref="OParser.method_expression"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterConstructorExpression([NotNull] OParser.ConstructorExpressionContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>ConstructorExpression</c>
-	/// labeled alternative in <see cref="OParser.method_expression"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitConstructorExpression([NotNull] OParser.ConstructorExpressionContext context);
-	/// <summary>
 	/// Enter a parse tree produced by the <c>FetchExpression</c>
 	/// labeled alternative in <see cref="OParser.method_expression"/>.
 	/// </summary>
@@ -1285,6 +1273,18 @@ public interface IOParserListener : IParseTreeListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void ExitMethodCallExpression([NotNull] OParser.MethodCallExpressionContext context);
+	/// <summary>
+	/// Enter a parse tree produced by the <c>ConstructorExpression</c>
+	/// labeled alternative in <see cref="OParser.method_expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterConstructorExpression([NotNull] OParser.ConstructorExpressionContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>ConstructorExpression</c>
+	/// labeled alternative in <see cref="OParser.method_expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitConstructorExpression([NotNull] OParser.ConstructorExpressionContext context);
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="OParser.document_expression"/>.
 	/// </summary>

@@ -1294,18 +1294,6 @@ public partial class OParserBaseListener : IOParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitDocumentExpression([NotNull] OParser.DocumentExpressionContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="OParser.ConstructorExpression"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void EnterConstructorExpression([NotNull] OParser.ConstructorExpressionContext context) { }
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="OParser.ConstructorExpression"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void ExitConstructorExpression([NotNull] OParser.ConstructorExpressionContext context) { }
-	/// <summary>
 	/// Enter a parse tree produced by <see cref="OParser.FetchExpression"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
@@ -1353,6 +1341,18 @@ public partial class OParserBaseListener : IOParserListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitMethodCallExpression([NotNull] OParser.MethodCallExpressionContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="OParser.ConstructorExpression"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterConstructorExpression([NotNull] OParser.ConstructorExpressionContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="OParser.ConstructorExpression"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitConstructorExpression([NotNull] OParser.ConstructorExpressionContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="OParser.document_expression"/>.
 	/// <para>The default implementation does nothing.</para>

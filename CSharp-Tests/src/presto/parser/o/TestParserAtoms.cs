@@ -174,7 +174,7 @@ namespace presto.parser
         {
             String statement = "print (\"person\" + p.name );";
             OTestParser parser = new OTestParser(statement);
-            MethodCall ac = parser.parse_method_call();
+            UnresolvedCall ac = parser.parse_method_call();
             Assert.IsNotNull(ac);
         }
 
@@ -183,9 +183,9 @@ namespace presto.parser
         {
             String statement = "print( value = \"person\" + p.name ); ";
             OTestParser parser = new OTestParser(statement);
-            MethodCall mc = parser.parse_method_call();
+			UnresolvedCall mc = parser.parse_method_call();
             Assert.IsNotNull(mc);
-            Assert.AreEqual("print", mc.getMethod().getName());
+			Assert.AreEqual("print", mc.getCaller().ToString());
             Assert.IsNotNull(mc.getAssignments());
             ArgumentAssignment ars = mc.getAssignments()[0];
             Assert.AreEqual("value", ars.getName());
@@ -291,7 +291,7 @@ namespace presto.parser
             OTestParser parser = new OTestParser(statement);
             AssignInstanceStatement a = parser.parse_assign_instance_statement();
             Assert.IsNotNull(a);
-            Assert.IsTrue(a.getExpression() is ConstructorExpression);
+			Assert.IsTrue(a.getExpression() is UnresolvedCall);
         }
 
         [Test]
@@ -657,12 +657,12 @@ namespace presto.parser
 			return builder.GetNodeValue<ArgumentList>(tree);
 		}
 
-		public MethodCall parse_method_call() {
+		public UnresolvedCall parse_method_call() {
 			IParseTree tree = method_call();
 			OPrestoBuilder builder = new OPrestoBuilder(this);
 			ParseTreeWalker walker = new ParseTreeWalker();
 			walker.Walk(builder, tree);
-			return builder.GetNodeValue<MethodCall>(tree);
+			return builder.GetNodeValue<UnresolvedCall>(tree);
 		}
 
 		public NativeMethodDeclaration parse_native_method_declaration() {

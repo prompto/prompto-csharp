@@ -13,7 +13,7 @@ using presto.value;
 namespace presto.statement
 {
 
-	public class MethodCall : SimpleStatement
+	public class MethodCall : SimpleStatement, IAssertion
     {
 
         MethodSelector method;
@@ -140,6 +140,17 @@ namespace presto.statement
             }
             return declaration.interpret(local);
         }
+
+		public bool interpretAssert(Context context, TestMethodDeclaration testMethodDeclaration) {
+			IValue value = this.interpret(context);
+			if(value is presto.value.Boolean)
+				return ((presto.value.Boolean)value).Value;
+			else {
+				CodeWriter writer = new CodeWriter(this.Dialect, context);
+				this.ToDialect(writer);
+				throw new SyntaxError("Cannot test '" + writer.ToString() + "'");
+			}
+		}
 
         private IMethodDeclaration findDeclaration(Context context)
         {

@@ -1150,18 +1150,6 @@ public interface IPParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitDocumentExpression([NotNull] PParser.DocumentExpressionContext context);
 	/// <summary>
-	/// Enter a parse tree produced by the <c>ConstructorExpression</c>
-	/// labeled alternative in <see cref="PParser.method_expression"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterConstructorExpression([NotNull] PParser.ConstructorExpressionContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>ConstructorExpression</c>
-	/// labeled alternative in <see cref="PParser.method_expression"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitConstructorExpression([NotNull] PParser.ConstructorExpressionContext context);
-	/// <summary>
 	/// Enter a parse tree produced by the <c>FetchExpression</c>
 	/// labeled alternative in <see cref="PParser.method_expression"/>.
 	/// </summary>
@@ -1209,6 +1197,18 @@ public interface IPParserListener : IParseTreeListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void ExitMethodCallExpression([NotNull] PParser.MethodCallExpressionContext context);
+	/// <summary>
+	/// Enter a parse tree produced by the <c>ConstructorExpression</c>
+	/// labeled alternative in <see cref="PParser.method_expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterConstructorExpression([NotNull] PParser.ConstructorExpressionContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>ConstructorExpression</c>
+	/// labeled alternative in <see cref="PParser.method_expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitConstructorExpression([NotNull] PParser.ConstructorExpressionContext context);
 	/// <summary>
 	/// Enter a parse tree produced by the <c>MemberSelector</c>
 	/// labeled alternative in <see cref="PParser.instance_selector"/>.

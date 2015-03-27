@@ -9,11 +9,12 @@ using presto.parser;
 using presto.type;
 using presto.grammar;
 using presto.utils;
+using presto.declaration;
 
 namespace presto.expression
 {
 
-    public class CompareExpression : IExpression
+	public class CompareExpression : IExpression, IAssertion
     {
 
         IExpression left;
@@ -85,5 +86,19 @@ namespace presto.expression
                     throw new SyntaxError("Illegal compare operand: " + oper.ToString());
             }
         }
+
+		public bool interpretAssert(Context context, TestMethodDeclaration test) {
+			IValue lval = left.interpret(context);
+			IValue rval = right.interpret(context);
+			IValue result = compare(context, lval, rval);
+			if(result==Boolean.TRUE) 
+				return true;
+			CodeWriter writer = new CodeWriter(test.Dialect, context);
+			this.ToDialect(writer);
+			String expected = writer.ToString();
+			String actual = lval.ToString() + " " + oper.ToString() + " " + rval.ToString();
+			test.printFailure(context, expected, actual);
+			return false;
+		}
     }
 }

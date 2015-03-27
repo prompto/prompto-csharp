@@ -7,11 +7,12 @@ using presto.value;
 using presto.parser;
 using presto.type;
 using presto.grammar;
+using presto.declaration;
 
 namespace presto.expression
 {
 
-    public class ContainsExpression : IExpression
+	public class ContainsExpression : IExpression, IAssertion
     {
 
         IExpression left;
@@ -57,10 +58,14 @@ namespace presto.expression
         }
 
 		public IValue interpret(Context context)
-        {
-            String name = Enum.GetName(typeof(ContOp), oper);
-			IValue lval = left.interpret(context);
-			IValue rval = right.interpret(context);
+		{
+			IValue lval = left.interpret (context);
+			IValue rval = right.interpret (context);
+			return interpret (context, lval, rval);
+		}
+
+		public IValue interpret(Context context, IValue lval, IValue rval)
+		{
             bool? result = null;
             switch (oper)
             {
@@ -85,6 +90,7 @@ namespace presto.expression
                         result = ContainsAny(context, (IContainer)lval, (IContainer)rval);
                     break;
             }
+			String name = Enum.GetName (typeof(ContOp), oper);
             if (result != null)
             {
                 if (name.StartsWith("NOT_"))
@@ -135,5 +141,19 @@ namespace presto.expression
             }
             return false;
         }
+
+		public bool interpretAssert(Context context, TestMethodDeclaration test) {
+			IValue lval = left.interpret(context);
+			IValue rval = right.interpret(context);
+			IValue result = interpret(context, lval, rval);
+			if(result==Boolean.TRUE) 
+				return true;
+			CodeWriter writer = new CodeWriter(test.Dialect, context);
+			this.ToDialect(writer);
+			String expected = writer.ToString();
+			String actual = lval.ToString() + " " + oper.ToString() + " " + rval.ToString();
+			test.printFailure(context, expected, actual);
+			return false;
+		}
     }
 }

@@ -1222,18 +1222,6 @@ public partial class PParserBaseListener : IPParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitDocumentExpression([NotNull] PParser.DocumentExpressionContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="PParser.ConstructorExpression"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void EnterConstructorExpression([NotNull] PParser.ConstructorExpressionContext context) { }
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="PParser.ConstructorExpression"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void ExitConstructorExpression([NotNull] PParser.ConstructorExpressionContext context) { }
-	/// <summary>
 	/// Enter a parse tree produced by <see cref="PParser.FetchExpression"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
@@ -1281,6 +1269,18 @@ public partial class PParserBaseListener : IPParserListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitMethodCallExpression([NotNull] PParser.MethodCallExpressionContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="PParser.ConstructorExpression"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterConstructorExpression([NotNull] PParser.ConstructorExpressionContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="PParser.ConstructorExpression"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitConstructorExpression([NotNull] PParser.ConstructorExpressionContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="PParser.MemberSelector"/>.
 	/// <para>The default implementation does nothing.</para>

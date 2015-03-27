@@ -712,7 +712,7 @@ namespace presto.parser
 		public override void ExitMethodName (PParser.MethodNameContext ctx)
 		{
 			String name = this.GetNodeValue<String> (ctx.name);
-			SetNodeValue (ctx, new MethodSelector (null, name));
+			SetNodeValue (ctx, new UnresolvedIdentifier (name));
 		}
 
 	
@@ -728,9 +728,9 @@ namespace presto.parser
 		
 		public override void ExitMethod_call (PParser.Method_callContext ctx)
 		{
-			MethodSelector method = this.GetNodeValue<MethodSelector> (ctx.method);
+			IExpression method = this.GetNodeValue<IExpression> (ctx.method);
 			ArgumentAssignmentList args = this.GetNodeValue<ArgumentAssignmentList> (ctx.args);
-			SetNodeValue (ctx, new MethodCall (method, args));
+			SetNodeValue (ctx, new UnresolvedCall (method, args));
 		}
 
 		public override void ExitExpressionAssignmentList (PParser.ExpressionAssignmentListContext ctx)

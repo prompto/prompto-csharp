@@ -6,11 +6,12 @@ using presto.parser;
 using presto.type;
 using presto.utils;
 using presto.value;
+using presto.declaration;
 
 namespace presto.expression
 {
 
-    public class AndExpression : IExpression
+	public class AndExpression : IExpression, IAssertion
     {
 
         IExpression left;
@@ -25,18 +26,23 @@ namespace presto.expression
         public void ToDialect(CodeWriter writer)
         {
 			left.ToDialect(writer);
-			switch(writer.getDialect()) {
-			case Dialect.E:
-			case Dialect.P:
-				writer.append(" and ");
-				break;
-			case Dialect.O:
-				writer.append(" && ");
-				break;
-			}
+			writer.append(operatorToDialect(writer.getDialect()));
 			right.ToDialect(writer);
         }
 
+		private String operatorToDialect(Dialect dialect) 
+		{
+			switch(dialect) 
+			{
+			case Dialect.E:
+			case Dialect.P:
+				return " and ";
+			case Dialect.O:
+				return " && ";
+			default:
+				throw new Exception ("Unsupported!");
+			}
+		}
 
         public IType check(Context context)
         {
@@ -48,14 +54,33 @@ namespace presto.expression
         }
 
 		public IValue interpret(Context context)
-        {
-			IValue lval = left.interpret(context);
-			IValue rval = right.interpret(context);
-            if (lval is Boolean && rval is Boolean)
+		{
+			IValue lval = left.interpret (context);
+			IValue rval = right.interpret (context);
+			return interpret (lval, rval);
+		}
+
+		public IValue interpret(IValue lval, IValue rval)
+		{
+			if (lval is Boolean && rval is Boolean)
                 return Boolean.ValueOf(((Boolean)lval).Value && ((Boolean)rval).Value);
             else
                 throw new SyntaxError("Illegal: " + lval.GetType().Name + " + " + rval.GetType().Name);
         }
+
+		public bool interpretAssert(Context context, TestMethodDeclaration test) {
+			IValue lval = left.interpret(context);
+			IValue rval = right.interpret(context);
+			IValue result = interpret(lval, rval);
+			if(result==Boolean.TRUE) 
+				return true;
+			CodeWriter writer = new CodeWriter(test.Dialect, context);
+			this.ToDialect(writer);
+			String expected = writer.ToString();
+			String actual = lval.ToString() + operatorToDialect(test.Dialect) + rval.ToString();
+			test.printFailure(context, expected, actual);
+			return false;
+		}
 
     }
 }
