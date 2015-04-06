@@ -59,14 +59,14 @@ namespace presto.debug
 		[Test]
         public void testStackNoDebug()
         {
-            runResource("debug/stack.e");
+            runResource("debug/stack.pec");
             Assert.AreEqual("test123-ok", Out.read());
         }
 
 		[Test]
         public void testResume()
         {
-            debugResource("debug/stack.e");
+            debugResource("debug/stack.pec");
             thread.Start();
             waitBlocked();
             Assert.AreEqual(Status.SUSPENDED, debugger.getStatus());
@@ -79,7 +79,7 @@ namespace presto.debug
 		[Test]
         public void testStepOver()
         {
-            debugResource("debug/stack.e");
+            debugResource("debug/stack.pec");
             thread.Start();
             waitBlocked();
             Assert.AreEqual(Status.SUSPENDED, debugger.getStatus());
@@ -100,7 +100,7 @@ namespace presto.debug
 		[Test]
         public void testStepInto()
         {
-            debugResource("debug/stack.e");
+            debugResource("debug/stack.pec");
             thread.Start();
             waitBlocked();
             Assert.AreEqual(Status.SUSPENDED, debugger.getStatus());
@@ -125,7 +125,7 @@ namespace presto.debug
 		[Test]
         public void testSilentStepInto()
         {
-            debugResource("debug/stack.e");
+            debugResource("debug/stack.pec");
             thread.Start();
             waitBlocked();
             Assert.AreEqual(Status.SUSPENDED, debugger.getStatus());
@@ -155,7 +155,7 @@ namespace presto.debug
 		[Test]
         public void testStepOut()
         {
-            debugResource("debug/stack.e");
+            debugResource("debug/stack.pec");
             thread.Start();
             waitBlocked();
             Assert.AreEqual(Status.SUSPENDED, debugger.getStatus());
@@ -192,7 +192,7 @@ namespace presto.debug
 		[Test]
         public void testBreakpoint()
         {
-            debugResource("debug/stack.e");
+            debugResource("debug/stack.pec");
             thread.Start();
             waitBlocked();
             Assert.AreEqual(Status.SUSPENDED, debugger.getStatus());

@@ -11,7 +11,7 @@ namespace presto.translate.oeo
 		[Test]
 		public void testForward()
 		{
-			compareResourceOEO("forward/forward.o");
+			compareResourceOEO("forward/forward.poc");
 		}
 
 	}

@@ -24,19 +24,19 @@ namespace presto.runtime.o
 		[Test]
 		public void testSliceList()
 		{
-			CheckOutput("slice/sliceList.o");
+			CheckOutput("slice/sliceList.poc");
 		}
 
 		[Test]
 		public void testSliceRange()
 		{
-			CheckOutput("slice/sliceRange.o");
+			CheckOutput("slice/sliceRange.poc");
 		}
 
 		[Test]
 		public void testSliceText()
 		{
-			CheckOutput("slice/sliceText.o");
+			CheckOutput("slice/sliceText.poc");
 		}
 
 	}

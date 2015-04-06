@@ -11,13 +11,13 @@ namespace presto.translate.eoe
 		[Test]
 		public void testSelfAsParameter()
 		{
-			compareResourceEOE("self/selfAsParameter.e");
+			compareResourceEOE("self/selfAsParameter.pec");
 		}
 
 		[Test]
 		public void testSelfMember()
 		{
-			compareResourceEOE("self/selfMember.e");
+			compareResourceEOE("self/selfMember.pec");
 		}
 
 	}

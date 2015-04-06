@@ -24,73 +24,73 @@ namespace presto.runtime.e
 		[Test]
 		public void testAddCharacter()
 		{
-			CheckOutput("add/addCharacter.e");
+			CheckOutput("add/addCharacter.pec");
 		}
 
 		[Test]
 		public void testAddDate()
 		{
-			CheckOutput("add/addDate.e");
+			CheckOutput("add/addDate.pec");
 		}
 
 		[Test]
 		public void testAddDateTime()
 		{
-			CheckOutput("add/addDateTime.e");
+			CheckOutput("add/addDateTime.pec");
 		}
 
 		[Test]
 		public void testAddDecimal()
 		{
-			CheckOutput("add/addDecimal.e");
+			CheckOutput("add/addDecimal.pec");
 		}
 
 		[Test]
 		public void testAddDict()
 		{
-			CheckOutput("add/addDict.e");
+			CheckOutput("add/addDict.pec");
 		}
 
 		[Test]
 		public void testAddInteger()
 		{
-			CheckOutput("add/addInteger.e");
+			CheckOutput("add/addInteger.pec");
 		}
 
 		[Test]
 		public void testAddList()
 		{
-			CheckOutput("add/addList.e");
+			CheckOutput("add/addList.pec");
 		}
 
 		[Test]
 		public void testAddPeriod()
 		{
-			CheckOutput("add/addPeriod.e");
+			CheckOutput("add/addPeriod.pec");
 		}
 
 		[Test]
 		public void testAddSet()
 		{
-			CheckOutput("add/addSet.e");
+			CheckOutput("add/addSet.pec");
 		}
 
 		[Test]
 		public void testAddText()
 		{
-			CheckOutput("add/addText.e");
+			CheckOutput("add/addText.pec");
 		}
 
 		[Test]
 		public void testAddTime()
 		{
-			CheckOutput("add/addTime.e");
+			CheckOutput("add/addTime.pec");
 		}
 
 		[Test]
 		public void testAddTuple()
 		{
-			CheckOutput("add/addTuple.e");
+			CheckOutput("add/addTuple.pec");
 		}
 
 	}

@@ -27,45 +27,45 @@ namespace presto.o.runtime {
         [ExpectedException(typeof(SyntaxError))]
         public void testBadRead()
         {
-            runResource("resource/badRead.o");
+            runResource("resource/badRead.poc");
         }
 
         [Test]
         [ExpectedException(typeof(SyntaxError))]
         public void testBadWrite()
         {
-            runResource("resource/badWrite.o");
+            runResource("resource/badWrite.poc");
         }
 
         [Test]
         [ExpectedException(typeof(SyntaxError))]
         public void testBadResource()
         {
-            runResource("resource/badResource.o");
+            runResource("resource/badResource.poc");
         }
 
         [Test]
         public void testReadResource()
         {
-            CheckOutput("resource/readResource.o");
+            CheckOutput("resource/readResource.poc");
         }
 
         [Test]
         public void testWriteResource()
         {
-            CheckOutput("resource/writeResource.o");
+            CheckOutput("resource/writeResource.poc");
         }
 
         [Test]
         public void testReadWithResource()
         {
-            CheckOutput("resource/readWithResource.o");
+            CheckOutput("resource/readWithResource.poc");
         }
 
         [Test]
         public void testWriteWithResource()
         {
-            CheckOutput("resource/writeWithResource.o");
+            CheckOutput("resource/writeWithResource.poc");
         }
 
     }

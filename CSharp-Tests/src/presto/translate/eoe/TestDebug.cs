@@ -11,7 +11,7 @@ namespace presto.translate.eoe
 		[Test]
 		public void testStack()
 		{
-			compareResourceEOE("debug/stack.e");
+			compareResourceEOE("debug/stack.pec");
 		}
 
 	}

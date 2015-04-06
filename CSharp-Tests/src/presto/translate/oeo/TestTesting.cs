@@ -11,61 +11,61 @@ namespace presto.translate.oeo
 		[Test]
 		public void testAnd()
 		{
-			compareResourceOEO("testing/and.o");
+			compareResourceOEO("testing/and.poc");
 		}
 
 		[Test]
 		public void testContains()
 		{
-			compareResourceOEO("testing/contains.o");
+			compareResourceOEO("testing/contains.poc");
 		}
 
 		[Test]
 		public void testGreater()
 		{
-			compareResourceOEO("testing/greater.o");
+			compareResourceOEO("testing/greater.poc");
 		}
 
 		[Test]
 		public void testMethod()
 		{
-			compareResourceOEO("testing/method.o");
+			compareResourceOEO("testing/method.poc");
 		}
 
 		[Test]
 		public void testNegative()
 		{
-			compareResourceOEO("testing/negative.o");
+			compareResourceOEO("testing/negative.poc");
 		}
 
 		[Test]
 		public void testNegativeError()
 		{
-			compareResourceOEO("testing/negativeError.o");
+			compareResourceOEO("testing/negativeError.poc");
 		}
 
 		[Test]
 		public void testNot()
 		{
-			compareResourceOEO("testing/not.o");
+			compareResourceOEO("testing/not.poc");
 		}
 
 		[Test]
 		public void testOr()
 		{
-			compareResourceOEO("testing/or.o");
+			compareResourceOEO("testing/or.poc");
 		}
 
 		[Test]
 		public void testPositive()
 		{
-			compareResourceOEO("testing/positive.o");
+			compareResourceOEO("testing/positive.poc");
 		}
 
 		[Test]
 		public void testPositiveError()
 		{
-			compareResourceOEO("testing/positiveError.o");
+			compareResourceOEO("testing/positiveError.poc");
 		}
 
 	}

@@ -24,13 +24,13 @@ namespace presto.runtime.e
 		[Test]
 		public void testAttribute()
 		{
-			CheckOutput("singleton/attribute.e");
+			CheckOutput("singleton/attribute.pec");
 		}
 
 		[Test]
 		public void testMember()
 		{
-			CheckOutput("singleton/member.e");
+			CheckOutput("singleton/member.pec");
 		}
 
 	}

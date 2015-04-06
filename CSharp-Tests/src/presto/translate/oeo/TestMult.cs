@@ -11,37 +11,37 @@ namespace presto.translate.oeo
 		[Test]
 		public void testMultCharacter()
 		{
-			compareResourceOEO("mult/multCharacter.o");
+			compareResourceOEO("mult/multCharacter.poc");
 		}
 
 		[Test]
 		public void testMultDecimal()
 		{
-			compareResourceOEO("mult/multDecimal.o");
+			compareResourceOEO("mult/multDecimal.poc");
 		}
 
 		[Test]
 		public void testMultInteger()
 		{
-			compareResourceOEO("mult/multInteger.o");
+			compareResourceOEO("mult/multInteger.poc");
 		}
 
 		[Test]
 		public void testMultList()
 		{
-			compareResourceOEO("mult/multList.o");
+			compareResourceOEO("mult/multList.poc");
 		}
 
 		[Test]
 		public void testMultPeriod()
 		{
-			compareResourceOEO("mult/multPeriod.o");
+			compareResourceOEO("mult/multPeriod.poc");
 		}
 
 		[Test]
 		public void testMultText()
 		{
-			compareResourceOEO("mult/multText.o");
+			compareResourceOEO("mult/multText.poc");
 		}
 
 	}

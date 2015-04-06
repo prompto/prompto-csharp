@@ -11,25 +11,25 @@ namespace presto.translate.oeo
 		[Test]
 		public void testDivDecimal()
 		{
-			compareResourceOEO("div/divDecimal.o");
+			compareResourceOEO("div/divDecimal.poc");
 		}
 
 		[Test]
 		public void testDivInteger()
 		{
-			compareResourceOEO("div/divInteger.o");
+			compareResourceOEO("div/divInteger.poc");
 		}
 
 		[Test]
 		public void testIdivInteger()
 		{
-			compareResourceOEO("div/idivInteger.o");
+			compareResourceOEO("div/idivInteger.poc");
 		}
 
 		[Test]
 		public void testModInteger()
 		{
-			compareResourceOEO("div/modInteger.o");
+			compareResourceOEO("div/modInteger.poc");
 		}
 
 	}

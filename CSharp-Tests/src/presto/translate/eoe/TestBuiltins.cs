@@ -11,145 +11,145 @@ namespace presto.translate.eoe
 		[Test]
 		public void testDateDayOfMonth()
 		{
-			compareResourceEOE("builtins/dateDayOfMonth.e");
+			compareResourceEOE("builtins/dateDayOfMonth.pec");
 		}
 
 		[Test]
 		public void testDateDayOfYear()
 		{
-			compareResourceEOE("builtins/dateDayOfYear.e");
+			compareResourceEOE("builtins/dateDayOfYear.pec");
 		}
 
 		[Test]
 		public void testDateMonth()
 		{
-			compareResourceEOE("builtins/dateMonth.e");
+			compareResourceEOE("builtins/dateMonth.pec");
 		}
 
 		[Test]
 		public void testDateTimeDayOfMonth()
 		{
-			compareResourceEOE("builtins/dateTimeDayOfMonth.e");
+			compareResourceEOE("builtins/dateTimeDayOfMonth.pec");
 		}
 
 		[Test]
 		public void testDateTimeDayOfYear()
 		{
-			compareResourceEOE("builtins/dateTimeDayOfYear.e");
+			compareResourceEOE("builtins/dateTimeDayOfYear.pec");
 		}
 
 		[Test]
 		public void testDateTimeHour()
 		{
-			compareResourceEOE("builtins/dateTimeHour.e");
+			compareResourceEOE("builtins/dateTimeHour.pec");
 		}
 
 		[Test]
 		public void testDateTimeMinute()
 		{
-			compareResourceEOE("builtins/dateTimeMinute.e");
+			compareResourceEOE("builtins/dateTimeMinute.pec");
 		}
 
 		[Test]
 		public void testDateTimeMonth()
 		{
-			compareResourceEOE("builtins/dateTimeMonth.e");
+			compareResourceEOE("builtins/dateTimeMonth.pec");
 		}
 
 		[Test]
 		public void testDateTimeSecond()
 		{
-			compareResourceEOE("builtins/dateTimeSecond.e");
+			compareResourceEOE("builtins/dateTimeSecond.pec");
 		}
 
 		[Test]
 		public void testDateTimeTZName()
 		{
-			compareResourceEOE("builtins/dateTimeTZName.e");
+			compareResourceEOE("builtins/dateTimeTZName.pec");
 		}
 
 		[Test]
 		public void testDateTimeTZOffset()
 		{
-			compareResourceEOE("builtins/dateTimeTZOffset.e");
+			compareResourceEOE("builtins/dateTimeTZOffset.pec");
 		}
 
 		[Test]
 		public void testDateTimeYear()
 		{
-			compareResourceEOE("builtins/dateTimeYear.e");
+			compareResourceEOE("builtins/dateTimeYear.pec");
 		}
 
 		[Test]
 		public void testDateYear()
 		{
-			compareResourceEOE("builtins/dateYear.e");
+			compareResourceEOE("builtins/dateYear.pec");
 		}
 
 		[Test]
 		public void testDictLength()
 		{
-			compareResourceEOE("builtins/dictLength.e");
+			compareResourceEOE("builtins/dictLength.pec");
 		}
 
 		[Test]
 		public void testEnumName()
 		{
-			compareResourceEOE("builtins/enumName.e");
+			compareResourceEOE("builtins/enumName.pec");
 		}
 
 		[Test]
 		public void testEnumSymbols()
 		{
-			compareResourceEOE("builtins/enumSymbols.e");
+			compareResourceEOE("builtins/enumSymbols.pec");
 		}
 
 		[Test]
 		public void testEnumValue()
 		{
-			compareResourceEOE("builtins/enumValue.e");
+			compareResourceEOE("builtins/enumValue.pec");
 		}
 
 		[Test]
 		public void testListLength()
 		{
-			compareResourceEOE("builtins/listLength.e");
+			compareResourceEOE("builtins/listLength.pec");
 		}
 
 		[Test]
 		public void testSetLength()
 		{
-			compareResourceEOE("builtins/setLength.e");
+			compareResourceEOE("builtins/setLength.pec");
 		}
 
 		[Test]
 		public void testTextLength()
 		{
-			compareResourceEOE("builtins/textLength.e");
+			compareResourceEOE("builtins/textLength.pec");
 		}
 
 		[Test]
 		public void testTimeHour()
 		{
-			compareResourceEOE("builtins/timeHour.e");
+			compareResourceEOE("builtins/timeHour.pec");
 		}
 
 		[Test]
 		public void testTimeMinute()
 		{
-			compareResourceEOE("builtins/timeMinute.e");
+			compareResourceEOE("builtins/timeMinute.pec");
 		}
 
 		[Test]
 		public void testTimeSecond()
 		{
-			compareResourceEOE("builtins/timeSecond.e");
+			compareResourceEOE("builtins/timeSecond.pec");
 		}
 
 		[Test]
 		public void testTupleLength()
 		{
-			compareResourceEOE("builtins/tupleLength.e");
+			compareResourceEOE("builtins/tupleLength.pec");
 		}
 
 	}

@@ -11,37 +11,37 @@ namespace presto.translate.oeo
 		[Test]
 		public void testSubDate()
 		{
-			compareResourceOEO("sub/subDate.o");
+			compareResourceOEO("sub/subDate.poc");
 		}
 
 		[Test]
 		public void testSubDateTime()
 		{
-			compareResourceOEO("sub/subDateTime.o");
+			compareResourceOEO("sub/subDateTime.poc");
 		}
 
 		[Test]
 		public void testSubDecimal()
 		{
-			compareResourceOEO("sub/subDecimal.o");
+			compareResourceOEO("sub/subDecimal.poc");
 		}
 
 		[Test]
 		public void testSubInteger()
 		{
-			compareResourceOEO("sub/subInteger.o");
+			compareResourceOEO("sub/subInteger.poc");
 		}
 
 		[Test]
 		public void testSubPeriod()
 		{
-			compareResourceOEO("sub/subPeriod.o");
+			compareResourceOEO("sub/subPeriod.poc");
 		}
 
 		[Test]
 		public void testSubTime()
 		{
-			compareResourceOEO("sub/subTime.o");
+			compareResourceOEO("sub/subTime.poc");
 		}
 
 	}

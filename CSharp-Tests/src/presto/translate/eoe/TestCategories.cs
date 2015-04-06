@@ -11,25 +11,25 @@ namespace presto.translate.eoe
 		[Test]
 		public void testCopyFromAscendant()
 		{
-			compareResourceEOE("categories/copyFromAscendant.e");
+			compareResourceEOE("categories/copyFromAscendant.pec");
 		}
 
 		[Test]
 		public void testCopyFromAscendantWithOverride()
 		{
-			compareResourceEOE("categories/copyFromAscendantWithOverride.e");
+			compareResourceEOE("categories/copyFromAscendantWithOverride.pec");
 		}
 
 		[Test]
 		public void testCopyFromDescendant()
 		{
-			compareResourceEOE("categories/copyFromDescendant.e");
+			compareResourceEOE("categories/copyFromDescendant.pec");
 		}
 
 		[Test]
 		public void testCopyFromDescendantWithOverride()
 		{
-			compareResourceEOE("categories/copyFromDescendantWithOverride.e");
+			compareResourceEOE("categories/copyFromDescendantWithOverride.pec");
 		}
 
 	}

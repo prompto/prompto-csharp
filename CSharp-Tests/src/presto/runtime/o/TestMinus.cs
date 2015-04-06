@@ -24,19 +24,19 @@ namespace presto.runtime.o
 		[Test]
 		public void testMinusDecimal()
 		{
-			CheckOutput("minus/minusDecimal.o");
+			CheckOutput("minus/minusDecimal.poc");
 		}
 
 		[Test]
 		public void testMinusInteger()
 		{
-			CheckOutput("minus/minusInteger.o");
+			CheckOutput("minus/minusInteger.poc");
 		}
 
 		[Test]
 		public void testMinusPeriod()
 		{
-			CheckOutput("minus/minusPeriod.o");
+			CheckOutput("minus/minusPeriod.poc");
 		}
 
 	}

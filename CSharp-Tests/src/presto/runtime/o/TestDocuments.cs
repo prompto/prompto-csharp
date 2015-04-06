@@ -24,25 +24,25 @@ namespace presto.runtime.o
 		[Test]
 		public void testDeepItem()
 		{
-			CheckOutput("documents/deepItem.o");
+			CheckOutput("documents/deepItem.poc");
 		}
 
 		[Test]
 		public void testDeepVariable()
 		{
-			CheckOutput("documents/deepVariable.o");
+			CheckOutput("documents/deepVariable.poc");
 		}
 
 		[Test]
 		public void testItem()
 		{
-			CheckOutput("documents/item.o");
+			CheckOutput("documents/item.poc");
 		}
 
 		[Test]
 		public void testVariable()
 		{
-			CheckOutput("documents/variable.o");
+			CheckOutput("documents/variable.poc");
 		}
 
 	}

@@ -356,13 +356,6 @@
     <Compile Include="src\presto\parser\ONamingLexer.cs" />
     <Compile Include="src\presto\parser\OParserFactory.cs" />
     <Compile Include="src\presto\parser\OPrestoBuilder.cs" />
-    <Compile Include="generated\presto\parser\PLexer.cs" />
-    <Compile Include="generated\presto\parser\PParser.cs" />
-    <Compile Include="generated\presto\parser\PParserBaseListener.cs" />
-    <Compile Include="generated\presto\parser\PParserListener.cs" />
-    <Compile Include="src\presto\parser\PIndentingLexer.cs" />
-    <Compile Include="src\presto\parser\PCleverParser.cs" />
-    <Compile Include="src\presto\parser\PPrestoBuilder.cs" />
     <Compile Include="src\presto\javascript\JavaScriptBooleanLiteral.cs" />
     <Compile Include="src\presto\javascript\JavaScriptDecimalLiteral.cs" />
     <Compile Include="src\presto\javascript\JavaScriptExpression.cs" />
@@ -418,6 +411,13 @@
     <Compile Include="src\presto\declaration\TestMethodDeclaration.cs" />
     <Compile Include="src\presto\expression\IAssertion.cs" />
     <Compile Include="src\presto\statement\UnresolvedCall.cs" />
+    <Compile Include="generated\presto\parser\SLexer.cs" />
+    <Compile Include="generated\presto\parser\SParser.cs" />
+    <Compile Include="generated\presto\parser\SParserBaseListener.cs" />
+    <Compile Include="generated\presto\parser\SParserListener.cs" />
+    <Compile Include="src\presto\parser\SIndentingLexer.cs" />
+    <Compile Include="src\presto\parser\SCleverParser.cs" />
+    <Compile Include="src\presto\parser\SPrestoBuilder.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Antlr4.Runtime">

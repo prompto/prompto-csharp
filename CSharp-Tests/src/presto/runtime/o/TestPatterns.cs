@@ -24,37 +24,37 @@ namespace presto.runtime.o
 		[Test]
 		public void testIntegerEnumeration()
 		{
-			CheckOutput("patterns/integerEnumeration.o");
+			CheckOutput("patterns/integerEnumeration.poc");
 		}
 
 		[Test]
 		public void testIntegerPattern()
 		{
-			CheckOutput("patterns/integerPattern.o");
+			CheckOutput("patterns/integerPattern.poc");
 		}
 
 		[Test]
 		public void testNegativeIntegerRange()
 		{
-			CheckOutput("patterns/negativeIntegerRange.o");
+			CheckOutput("patterns/negativeIntegerRange.poc");
 		}
 
 		[Test]
 		public void testPositiveIntegerRange()
 		{
-			CheckOutput("patterns/positiveIntegerRange.o");
+			CheckOutput("patterns/positiveIntegerRange.poc");
 		}
 
 		[Test]
 		public void testTextEnumeration()
 		{
-			CheckOutput("patterns/textEnumeration.o");
+			CheckOutput("patterns/textEnumeration.poc");
 		}
 
 		[Test]
 		public void testTextPattern()
 		{
-			CheckOutput("patterns/textPattern.o");
+			CheckOutput("patterns/textPattern.poc");
 		}
 
 	}

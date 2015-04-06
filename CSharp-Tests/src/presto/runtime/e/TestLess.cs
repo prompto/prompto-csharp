@@ -24,85 +24,85 @@ namespace presto.runtime.e
 		[Test]
 		public void testLtCharacter()
 		{
-			CheckOutput("less/ltCharacter.e");
+			CheckOutput("less/ltCharacter.pec");
 		}
 
 		[Test]
 		public void testLtDate()
 		{
-			CheckOutput("less/ltDate.e");
+			CheckOutput("less/ltDate.pec");
 		}
 
 		[Test]
 		public void testLtDateTime()
 		{
-			CheckOutput("less/ltDateTime.e");
+			CheckOutput("less/ltDateTime.pec");
 		}
 
 		[Test]
 		public void testLtDecimal()
 		{
-			CheckOutput("less/ltDecimal.e");
+			CheckOutput("less/ltDecimal.pec");
 		}
 
 		[Test]
 		public void testLteCharacter()
 		{
-			CheckOutput("less/lteCharacter.e");
+			CheckOutput("less/lteCharacter.pec");
 		}
 
 		[Test]
 		public void testLteDate()
 		{
-			CheckOutput("less/lteDate.e");
+			CheckOutput("less/lteDate.pec");
 		}
 
 		[Test]
 		public void testLteDateTime()
 		{
-			CheckOutput("less/lteDateTime.e");
+			CheckOutput("less/lteDateTime.pec");
 		}
 
 		[Test]
 		public void testLteDecimal()
 		{
-			CheckOutput("less/lteDecimal.e");
+			CheckOutput("less/lteDecimal.pec");
 		}
 
 		[Test]
 		public void testLteInteger()
 		{
-			CheckOutput("less/lteInteger.e");
+			CheckOutput("less/lteInteger.pec");
 		}
 
 		[Test]
 		public void testLteText()
 		{
-			CheckOutput("less/lteText.e");
+			CheckOutput("less/lteText.pec");
 		}
 
 		[Test]
 		public void testLteTime()
 		{
-			CheckOutput("less/lteTime.e");
+			CheckOutput("less/lteTime.pec");
 		}
 
 		[Test]
 		public void testLtInteger()
 		{
-			CheckOutput("less/ltInteger.e");
+			CheckOutput("less/ltInteger.pec");
 		}
 
 		[Test]
 		public void testLtText()
 		{
-			CheckOutput("less/ltText.e");
+			CheckOutput("less/ltText.pec");
 		}
 
 		[Test]
 		public void testLtTime()
 		{
-			CheckOutput("less/ltTime.e");
+			CheckOutput("less/ltTime.pec");
 		}
 
 	}

@@ -24,19 +24,19 @@ namespace presto.runtime.e
 		[Test]
 		public void testAndBoolean()
 		{
-			CheckOutput("logic/andBoolean.e");
+			CheckOutput("logic/andBoolean.pec");
 		}
 
 		[Test]
 		public void testNotBoolean()
 		{
-			CheckOutput("logic/notBoolean.e");
+			CheckOutput("logic/notBoolean.pec");
 		}
 
 		[Test]
 		public void testOrBoolean()
 		{
-			CheckOutput("logic/orBoolean.e");
+			CheckOutput("logic/orBoolean.pec");
 		}
 
 	}

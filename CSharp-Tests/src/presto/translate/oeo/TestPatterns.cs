@@ -11,37 +11,37 @@ namespace presto.translate.oeo
 		[Test]
 		public void testIntegerEnumeration()
 		{
-			compareResourceOEO("patterns/integerEnumeration.o");
+			compareResourceOEO("patterns/integerEnumeration.poc");
 		}
 
 		[Test]
 		public void testIntegerPattern()
 		{
-			compareResourceOEO("patterns/integerPattern.o");
+			compareResourceOEO("patterns/integerPattern.poc");
 		}
 
 		[Test]
 		public void testNegativeIntegerRange()
 		{
-			compareResourceOEO("patterns/negativeIntegerRange.o");
+			compareResourceOEO("patterns/negativeIntegerRange.poc");
 		}
 
 		[Test]
 		public void testPositiveIntegerRange()
 		{
-			compareResourceOEO("patterns/positiveIntegerRange.o");
+			compareResourceOEO("patterns/positiveIntegerRange.poc");
 		}
 
 		[Test]
 		public void testTextEnumeration()
 		{
-			compareResourceOEO("patterns/textEnumeration.o");
+			compareResourceOEO("patterns/textEnumeration.poc");
 		}
 
 		[Test]
 		public void testTextPattern()
 		{
-			compareResourceOEO("patterns/textPattern.o");
+			compareResourceOEO("patterns/textPattern.poc");
 		}
 
 	}

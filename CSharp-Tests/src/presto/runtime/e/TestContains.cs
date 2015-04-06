@@ -24,151 +24,151 @@ namespace presto.runtime.e
 		[Test]
 		public void testContainsAllList()
 		{
-			CheckOutput("contains/containsAllList.e");
+			CheckOutput("contains/containsAllList.pec");
 		}
 
 		[Test]
 		public void testContainsAllSet()
 		{
-			CheckOutput("contains/containsAllSet.e");
+			CheckOutput("contains/containsAllSet.pec");
 		}
 
 		[Test]
 		public void testContainsAllText()
 		{
-			CheckOutput("contains/containsAllText.e");
+			CheckOutput("contains/containsAllText.pec");
 		}
 
 		[Test]
 		public void testContainsAllTuple()
 		{
-			CheckOutput("contains/containsAllTuple.e");
+			CheckOutput("contains/containsAllTuple.pec");
 		}
 
 		[Test]
 		public void testContainsAnyList()
 		{
-			CheckOutput("contains/containsAnyList.e");
+			CheckOutput("contains/containsAnyList.pec");
 		}
 
 		[Test]
 		public void testContainsAnySet()
 		{
-			CheckOutput("contains/containsAnySet.e");
+			CheckOutput("contains/containsAnySet.pec");
 		}
 
 		[Test]
 		public void testContainsAnyText()
 		{
-			CheckOutput("contains/containsAnyText.e");
+			CheckOutput("contains/containsAnyText.pec");
 		}
 
 		[Test]
 		public void testContainsAnyTuple()
 		{
-			CheckOutput("contains/containsAnyTuple.e");
+			CheckOutput("contains/containsAnyTuple.pec");
 		}
 
 		[Test]
 		public void testInCharacterRange()
 		{
-			CheckOutput("contains/inCharacterRange.e");
+			CheckOutput("contains/inCharacterRange.pec");
 		}
 
 		[Test]
 		public void testInDateRange()
 		{
-			CheckOutput("contains/inDateRange.e");
+			CheckOutput("contains/inDateRange.pec");
 		}
 
 		[Test]
 		public void testInDict()
 		{
-			CheckOutput("contains/inDict.e");
+			CheckOutput("contains/inDict.pec");
 		}
 
 		[Test]
 		public void testInIntegerRange()
 		{
-			CheckOutput("contains/inIntegerRange.e");
+			CheckOutput("contains/inIntegerRange.pec");
 		}
 
 		[Test]
 		public void testInList()
 		{
-			CheckOutput("contains/inList.e");
+			CheckOutput("contains/inList.pec");
 		}
 
 		[Test]
 		public void testInSet()
 		{
-			CheckOutput("contains/inSet.e");
+			CheckOutput("contains/inSet.pec");
 		}
 
 		[Test]
 		public void testInText()
 		{
-			CheckOutput("contains/inText.e");
+			CheckOutput("contains/inText.pec");
 		}
 
 		[Test]
 		public void testInTimeRange()
 		{
-			CheckOutput("contains/inTimeRange.e");
+			CheckOutput("contains/inTimeRange.pec");
 		}
 
 		[Test]
 		public void testInTuple()
 		{
-			CheckOutput("contains/inTuple.e");
+			CheckOutput("contains/inTuple.pec");
 		}
 
 		[Test]
 		public void testNinCharacterRange()
 		{
-			CheckOutput("contains/ninCharacterRange.e");
+			CheckOutput("contains/ninCharacterRange.pec");
 		}
 
 		[Test]
 		public void testNinDateRange()
 		{
-			CheckOutput("contains/ninDateRange.e");
+			CheckOutput("contains/ninDateRange.pec");
 		}
 
 		[Test]
 		public void testNinDict()
 		{
-			CheckOutput("contains/ninDict.e");
+			CheckOutput("contains/ninDict.pec");
 		}
 
 		[Test]
 		public void testNinIntegerRange()
 		{
-			CheckOutput("contains/ninIntegerRange.e");
+			CheckOutput("contains/ninIntegerRange.pec");
 		}
 
 		[Test]
 		public void testNinList()
 		{
-			CheckOutput("contains/ninList.e");
+			CheckOutput("contains/ninList.pec");
 		}
 
 		[Test]
 		public void testNinSet()
 		{
-			CheckOutput("contains/ninSet.e");
+			CheckOutput("contains/ninSet.pec");
 		}
 
 		[Test]
 		public void testNinText()
 		{
-			CheckOutput("contains/ninText.e");
+			CheckOutput("contains/ninText.pec");
 		}
 
 		[Test]
 		public void testNinTimeRange()
 		{
-			CheckOutput("contains/ninTimeRange.e");
+			CheckOutput("contains/ninTimeRange.pec");
 		}
 
 	}

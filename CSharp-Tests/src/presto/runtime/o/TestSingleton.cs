@@ -24,13 +24,13 @@ namespace presto.runtime.o
 		[Test]
 		public void testAttribute()
 		{
-			CheckOutput("singleton/attribute.o");
+			CheckOutput("singleton/attribute.poc");
 		}
 
 		[Test]
 		public void testMember()
 		{
-			CheckOutput("singleton/member.o");
+			CheckOutput("singleton/member.poc");
 		}
 
 	}

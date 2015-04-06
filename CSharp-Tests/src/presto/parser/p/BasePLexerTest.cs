@@ -12,7 +12,7 @@ namespace presto.parser {
         {
             List<IToken> result = new List<IToken>();
             IToken t = lexer.NextToken();
-            while (t.Type != PLexer.Eof)
+            while (t.Type != SLexer.Eof)
             {
                 if (t.Channel != Lexer.Hidden)
                     result.Add(t);

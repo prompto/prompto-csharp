@@ -24,13 +24,13 @@ namespace presto.runtime.e
 		[Test]
 		public void testSelfAsParameter()
 		{
-			CheckOutput("self/selfAsParameter.e");
+			CheckOutput("self/selfAsParameter.pec");
 		}
 
 		[Test]
 		public void testSelfMember()
 		{
-			CheckOutput("self/selfMember.e");
+			CheckOutput("self/selfMember.pec");
 		}
 
 	}

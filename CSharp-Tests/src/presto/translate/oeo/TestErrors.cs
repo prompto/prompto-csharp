@@ -11,67 +11,67 @@ namespace presto.translate.oeo
 		[Test]
 		public void testDivideByZero()
 		{
-			compareResourceOEO("errors/divideByZero.o");
+			compareResourceOEO("errors/divideByZero.poc");
 		}
 
 		[Test]
 		public void testIndexOutOfRange_listItem()
 		{
-			compareResourceOEO("errors/indexOutOfRange-listItem.o");
+			compareResourceOEO("errors/indexOutOfRange-listItem.poc");
 		}
 
 		[Test]
 		public void testIndexOutOfRange_sliceList()
 		{
-			compareResourceOEO("errors/indexOutOfRange-sliceList.o");
+			compareResourceOEO("errors/indexOutOfRange-sliceList.poc");
 		}
 
 		[Test]
 		public void testIndexOutOfRange_sliceRange()
 		{
-			compareResourceOEO("errors/indexOutOfRange-sliceRange.o");
+			compareResourceOEO("errors/indexOutOfRange-sliceRange.poc");
 		}
 
 		[Test]
 		public void testIndexOutOfRange_sliceText()
 		{
-			compareResourceOEO("errors/indexOutOfRange-sliceText.o");
+			compareResourceOEO("errors/indexOutOfRange-sliceText.poc");
 		}
 
 		[Test]
 		public void testNullDict()
 		{
-			compareResourceOEO("errors/nullDict.o");
+			compareResourceOEO("errors/nullDict.poc");
 		}
 
 		[Test]
 		public void testNullItem()
 		{
-			compareResourceOEO("errors/nullItem.o");
+			compareResourceOEO("errors/nullItem.poc");
 		}
 
 		[Test]
 		public void testNullKey()
 		{
-			compareResourceOEO("errors/nullKey.o");
+			compareResourceOEO("errors/nullKey.poc");
 		}
 
 		[Test]
 		public void testNullMember()
 		{
-			compareResourceOEO("errors/nullMember.o");
+			compareResourceOEO("errors/nullMember.poc");
 		}
 
 		[Test]
 		public void testNullMethod()
 		{
-			compareResourceOEO("errors/nullMethod.o");
+			compareResourceOEO("errors/nullMethod.poc");
 		}
 
 		[Test]
 		public void testUserException()
 		{
-			compareResourceOEO("errors/userException.o");
+			compareResourceOEO("errors/userException.poc");
 		}
 
 	}

@@ -11,85 +11,85 @@ namespace presto.translate.oeo
 		[Test]
 		public void testLtCharacter()
 		{
-			compareResourceOEO("less/ltCharacter.o");
+			compareResourceOEO("less/ltCharacter.poc");
 		}
 
 		[Test]
 		public void testLtDate()
 		{
-			compareResourceOEO("less/ltDate.o");
+			compareResourceOEO("less/ltDate.poc");
 		}
 
 		[Test]
 		public void testLtDateTime()
 		{
-			compareResourceOEO("less/ltDateTime.o");
+			compareResourceOEO("less/ltDateTime.poc");
 		}
 
 		[Test]
 		public void testLtDecimal()
 		{
-			compareResourceOEO("less/ltDecimal.o");
+			compareResourceOEO("less/ltDecimal.poc");
 		}
 
 		[Test]
 		public void testLteCharacter()
 		{
-			compareResourceOEO("less/lteCharacter.o");
+			compareResourceOEO("less/lteCharacter.poc");
 		}
 
 		[Test]
 		public void testLteDate()
 		{
-			compareResourceOEO("less/lteDate.o");
+			compareResourceOEO("less/lteDate.poc");
 		}
 
 		[Test]
 		public void testLteDateTime()
 		{
-			compareResourceOEO("less/lteDateTime.o");
+			compareResourceOEO("less/lteDateTime.poc");
 		}
 
 		[Test]
 		public void testLteDecimal()
 		{
-			compareResourceOEO("less/lteDecimal.o");
+			compareResourceOEO("less/lteDecimal.poc");
 		}
 
 		[Test]
 		public void testLteInteger()
 		{
-			compareResourceOEO("less/lteInteger.o");
+			compareResourceOEO("less/lteInteger.poc");
 		}
 
 		[Test]
 		public void testLteText()
 		{
-			compareResourceOEO("less/lteText.o");
+			compareResourceOEO("less/lteText.poc");
 		}
 
 		[Test]
 		public void testLteTime()
 		{
-			compareResourceOEO("less/lteTime.o");
+			compareResourceOEO("less/lteTime.poc");
 		}
 
 		[Test]
 		public void testLtInteger()
 		{
-			compareResourceOEO("less/ltInteger.o");
+			compareResourceOEO("less/ltInteger.poc");
 		}
 
 		[Test]
 		public void testLtText()
 		{
-			compareResourceOEO("less/ltText.o");
+			compareResourceOEO("less/ltText.poc");
 		}
 
 		[Test]
 		public void testLtTime()
 		{
-			compareResourceOEO("less/ltTime.o");
+			compareResourceOEO("less/ltTime.poc");
 		}
 
 	}

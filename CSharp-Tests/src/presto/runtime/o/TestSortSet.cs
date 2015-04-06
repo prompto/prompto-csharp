@@ -24,67 +24,67 @@ namespace presto.runtime.o
 		[Test]
 		public void testSortBooleans()
 		{
-			CheckOutput("sortSet/sortBooleans.o");
+			CheckOutput("sortSet/sortBooleans.poc");
 		}
 
 		[Test]
 		public void testSortDates()
 		{
-			CheckOutput("sortSet/sortDates.o");
+			CheckOutput("sortSet/sortDates.poc");
 		}
 
 		[Test]
 		public void testSortDateTimes()
 		{
-			CheckOutput("sortSet/sortDateTimes.o");
+			CheckOutput("sortSet/sortDateTimes.poc");
 		}
 
 		[Test]
 		public void testSortDecimals()
 		{
-			CheckOutput("sortSet/sortDecimals.o");
+			CheckOutput("sortSet/sortDecimals.poc");
 		}
 
 		[Test]
 		public void testSortExpressions()
 		{
-			CheckOutput("sortSet/sortExpressions.o");
+			CheckOutput("sortSet/sortExpressions.poc");
 		}
 
 		[Test]
 		public void testSortIntegers()
 		{
-			CheckOutput("sortSet/sortIntegers.o");
+			CheckOutput("sortSet/sortIntegers.poc");
 		}
 
 		[Test]
 		public void testSortKeys()
 		{
-			CheckOutput("sortSet/sortKeys.o");
+			CheckOutput("sortSet/sortKeys.poc");
 		}
 
 		[Test]
 		public void testSortMethods()
 		{
-			CheckOutput("sortSet/sortMethods.o");
+			CheckOutput("sortSet/sortMethods.poc");
 		}
 
 		[Test]
 		public void testSortNames()
 		{
-			CheckOutput("sortSet/sortNames.o");
+			CheckOutput("sortSet/sortNames.poc");
 		}
 
 		[Test]
 		public void testSortTexts()
 		{
-			CheckOutput("sortSet/sortTexts.o");
+			CheckOutput("sortSet/sortTexts.poc");
 		}
 
 		[Test]
 		public void testSortTimes()
 		{
-			CheckOutput("sortSet/sortTimes.o");
+			CheckOutput("sortSet/sortTimes.poc");
 		}
 
 	}

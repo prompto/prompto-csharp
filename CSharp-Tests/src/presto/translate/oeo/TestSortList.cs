@@ -11,67 +11,67 @@ namespace presto.translate.oeo
 		[Test]
 		public void testSortBooleans()
 		{
-			compareResourceOEO("sortList/sortBooleans.o");
+			compareResourceOEO("sortList/sortBooleans.poc");
 		}
 
 		[Test]
 		public void testSortDates()
 		{
-			compareResourceOEO("sortList/sortDates.o");
+			compareResourceOEO("sortList/sortDates.poc");
 		}
 
 		[Test]
 		public void testSortDateTimes()
 		{
-			compareResourceOEO("sortList/sortDateTimes.o");
+			compareResourceOEO("sortList/sortDateTimes.poc");
 		}
 
 		[Test]
 		public void testSortDecimals()
 		{
-			compareResourceOEO("sortList/sortDecimals.o");
+			compareResourceOEO("sortList/sortDecimals.poc");
 		}
 
 		[Test]
 		public void testSortExpressions()
 		{
-			compareResourceOEO("sortList/sortExpressions.o");
+			compareResourceOEO("sortList/sortExpressions.poc");
 		}
 
 		[Test]
 		public void testSortIntegers()
 		{
-			compareResourceOEO("sortList/sortIntegers.o");
+			compareResourceOEO("sortList/sortIntegers.poc");
 		}
 
 		[Test]
 		public void testSortKeys()
 		{
-			compareResourceOEO("sortList/sortKeys.o");
+			compareResourceOEO("sortList/sortKeys.poc");
 		}
 
 		[Test]
 		public void testSortMethods()
 		{
-			compareResourceOEO("sortList/sortMethods.o");
+			compareResourceOEO("sortList/sortMethods.poc");
 		}
 
 		[Test]
 		public void testSortNames()
 		{
-			compareResourceOEO("sortList/sortNames.o");
+			compareResourceOEO("sortList/sortNames.poc");
 		}
 
 		[Test]
 		public void testSortTexts()
 		{
-			compareResourceOEO("sortList/sortTexts.o");
+			compareResourceOEO("sortList/sortTexts.poc");
 		}
 
 		[Test]
 		public void testSortTimes()
 		{
-			compareResourceOEO("sortList/sortTimes.o");
+			compareResourceOEO("sortList/sortTimes.poc");
 		}
 
 	}

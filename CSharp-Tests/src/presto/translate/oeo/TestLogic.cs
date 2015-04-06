@@ -11,19 +11,19 @@ namespace presto.translate.oeo
 		[Test]
 		public void testAndBoolean()
 		{
-			compareResourceOEO("logic/andBoolean.o");
+			compareResourceOEO("logic/andBoolean.poc");
 		}
 
 		[Test]
 		public void testNotBoolean()
 		{
-			compareResourceOEO("logic/notBoolean.o");
+			compareResourceOEO("logic/notBoolean.poc");
 		}
 
 		[Test]
 		public void testOrBoolean()
 		{
-			compareResourceOEO("logic/orBoolean.o");
+			compareResourceOEO("logic/orBoolean.poc");
 		}
 
 	}

@@ -24,13 +24,13 @@ namespace presto.runtime.e
 		[Test]
 		public void testCategory()
 		{
-			CheckOutput("native/category.e");
+			CheckOutput("native/category.pec");
 		}
 
 		[Test]
 		public void testMethod()
 		{
-			CheckOutput("native/method.e");
+			CheckOutput("native/method.pec");
 		}
 
 	}

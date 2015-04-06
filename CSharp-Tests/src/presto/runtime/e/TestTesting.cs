@@ -24,61 +24,61 @@ namespace presto.runtime.e
 		[Test]
 		public void testAnd()
 		{
-			CheckOutput("testing/and.e");
+			CheckOutput("testing/and.pec");
 		}
 
 		[Test]
 		public void testContains()
 		{
-			CheckOutput("testing/contains.e");
+			CheckOutput("testing/contains.pec");
 		}
 
 		[Test]
 		public void testGreater()
 		{
-			CheckOutput("testing/greater.e");
+			CheckOutput("testing/greater.pec");
 		}
 
 		[Test]
 		public void testMethod()
 		{
-			CheckOutput("testing/method.e");
+			CheckOutput("testing/method.pec");
 		}
 
 		[Test]
 		public void testNegative()
 		{
-			CheckOutput("testing/negative.e");
+			CheckOutput("testing/negative.pec");
 		}
 
 		[Test]
 		public void testNegativeError()
 		{
-			CheckOutput("testing/negativeError.e");
+			CheckOutput("testing/negativeError.pec");
 		}
 
 		[Test]
 		public void testNot()
 		{
-			CheckOutput("testing/not.e");
+			CheckOutput("testing/not.pec");
 		}
 
 		[Test]
 		public void testOr()
 		{
-			CheckOutput("testing/or.e");
+			CheckOutput("testing/or.pec");
 		}
 
 		[Test]
 		public void testPositive()
 		{
-			CheckOutput("testing/positive.e");
+			CheckOutput("testing/positive.pec");
 		}
 
 		[Test]
 		public void testPositiveError()
 		{
-			CheckOutput("testing/positiveError.e");
+			CheckOutput("testing/positiveError.pec");
 		}
 
 	}

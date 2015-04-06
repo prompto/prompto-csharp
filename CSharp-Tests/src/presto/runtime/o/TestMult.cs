@@ -24,37 +24,37 @@ namespace presto.runtime.o
 		[Test]
 		public void testMultCharacter()
 		{
-			CheckOutput("mult/multCharacter.o");
+			CheckOutput("mult/multCharacter.poc");
 		}
 
 		[Test]
 		public void testMultDecimal()
 		{
-			CheckOutput("mult/multDecimal.o");
+			CheckOutput("mult/multDecimal.poc");
 		}
 
 		[Test]
 		public void testMultInteger()
 		{
-			CheckOutput("mult/multInteger.o");
+			CheckOutput("mult/multInteger.poc");
 		}
 
 		[Test]
 		public void testMultList()
 		{
-			CheckOutput("mult/multList.o");
+			CheckOutput("mult/multList.poc");
 		}
 
 		[Test]
 		public void testMultPeriod()
 		{
-			CheckOutput("mult/multPeriod.o");
+			CheckOutput("mult/multPeriod.poc");
 		}
 
 		[Test]
 		public void testMultText()
 		{
-			CheckOutput("mult/multText.o");
+			CheckOutput("mult/multText.poc");
 		}
 
 	}

@@ -24,91 +24,91 @@ namespace presto.runtime.o
 		[Test]
 		public void testCategory()
 		{
-			CheckOutput("native/category.o");
+			CheckOutput("native/category.poc");
 		}
 
 		[Test]
 		public void testMethod()
 		{
-			CheckOutput("native/method.o");
+			CheckOutput("native/method.poc");
 		}
 
 		[Test]
 		public void testReturnBooleanLiteral()
 		{
-			CheckOutput("native/returnBooleanLiteral.o");
+			CheckOutput("native/returnBooleanLiteral.poc");
 		}
 
 		[Test]
 		public void testReturnBooleanObject()
 		{
-			CheckOutput("native/returnBooleanObject.o");
+			CheckOutput("native/returnBooleanObject.poc");
 		}
 
 		[Test]
 		public void testReturnBooleanValue()
 		{
-			CheckOutput("native/returnBooleanValue.o");
+			CheckOutput("native/returnBooleanValue.poc");
 		}
 
 		[Test]
 		public void testReturnCharacterLiteral()
 		{
-			CheckOutput("native/returnCharacterLiteral.o");
+			CheckOutput("native/returnCharacterLiteral.poc");
 		}
 
 		[Test]
 		public void testReturnCharacterObject()
 		{
-			CheckOutput("native/returnCharacterObject.o");
+			CheckOutput("native/returnCharacterObject.poc");
 		}
 
 		[Test]
 		public void testReturnCharacterValue()
 		{
-			CheckOutput("native/returnCharacterValue.o");
+			CheckOutput("native/returnCharacterValue.poc");
 		}
 
 		[Test]
 		public void testReturnDecimalLiteral()
 		{
-			CheckOutput("native/returnDecimalLiteral.o");
+			CheckOutput("native/returnDecimalLiteral.poc");
 		}
 
 		[Test]
 		public void testReturnIntegerLiteral()
 		{
-			CheckOutput("native/returnIntegerLiteral.o");
+			CheckOutput("native/returnIntegerLiteral.poc");
 		}
 
 		[Test]
 		public void testReturnIntegerObject()
 		{
-			CheckOutput("native/returnIntegerObject.o");
+			CheckOutput("native/returnIntegerObject.poc");
 		}
 
 		[Test]
 		public void testReturnIntegerValue()
 		{
-			CheckOutput("native/returnIntegerValue.o");
+			CheckOutput("native/returnIntegerValue.poc");
 		}
 
 		[Test]
 		public void testReturnLongObject()
 		{
-			CheckOutput("native/returnLongObject.o");
+			CheckOutput("native/returnLongObject.poc");
 		}
 
 		[Test]
 		public void testReturnLongValue()
 		{
-			CheckOutput("native/returnLongValue.o");
+			CheckOutput("native/returnLongValue.poc");
 		}
 
 		[Test]
 		public void testReturnStringLiteral()
 		{
-			CheckOutput("native/returnStringLiteral.o");
+			CheckOutput("native/returnStringLiteral.poc");
 		}
 
 	}

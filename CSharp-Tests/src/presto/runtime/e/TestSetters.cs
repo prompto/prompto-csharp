@@ -24,13 +24,13 @@ namespace presto.runtime.e
 		[Test]
 		public void testGetter()
 		{
-			CheckOutput("setters/getter.e");
+			CheckOutput("setters/getter.pec");
 		}
 
 		[Test]
 		public void testSetter()
 		{
-			CheckOutput("setters/setter.e");
+			CheckOutput("setters/setter.pec");
 		}
 
 	}

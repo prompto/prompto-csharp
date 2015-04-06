@@ -11,19 +11,19 @@ namespace presto.translate.oeo
 		[Test]
 		public void testMultiAssignment()
 		{
-			compareResourceOEO("tuples/multiAssignment.o");
+			compareResourceOEO("tuples/multiAssignment.poc");
 		}
 
 		[Test]
 		public void testSingleAssignment()
 		{
-			compareResourceOEO("tuples/singleAssignment.o");
+			compareResourceOEO("tuples/singleAssignment.poc");
 		}
 
 		[Test]
 		public void testTupleElement()
 		{
-			compareResourceOEO("tuples/tupleElement.o");
+			compareResourceOEO("tuples/tupleElement.poc");
 		}
 
 	}

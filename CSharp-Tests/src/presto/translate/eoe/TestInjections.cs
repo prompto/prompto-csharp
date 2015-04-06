@@ -11,7 +11,7 @@ namespace presto.translate.eoe
 		[Test]
 		public void testExpressionInjection()
 		{
-			compareResourceEOE("injections/expressionInjection.e");
+			compareResourceEOE("injections/expressionInjection.pec");
 		}
 
 	}

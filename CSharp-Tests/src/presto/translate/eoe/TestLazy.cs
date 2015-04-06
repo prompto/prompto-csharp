@@ -11,31 +11,31 @@ namespace presto.translate.eoe
 		[Test]
 		public void testCyclic()
 		{
-			compareResourceEOE("lazy/cyclic.e");
+			compareResourceEOE("lazy/cyclic.pec");
 		}
 
 		[Test]
 		public void testDict()
 		{
-			compareResourceEOE("lazy/dict.e");
+			compareResourceEOE("lazy/dict.pec");
 		}
 
 		[Test]
 		public void testList()
 		{
-			compareResourceEOE("lazy/list.e");
+			compareResourceEOE("lazy/list.pec");
 		}
 
 		[Test]
 		public void testSet()
 		{
-			compareResourceEOE("lazy/set.e");
+			compareResourceEOE("lazy/set.pec");
 		}
 
 		[Test]
 		public void testTransient()
 		{
-			compareResourceEOE("lazy/transient.e");
+			compareResourceEOE("lazy/transient.pec");
 		}
 
 	}

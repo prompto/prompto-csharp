@@ -18,7 +18,7 @@ namespace presto.parser
         [Test]
         public void testNative()
         {
-            DeclarationList stmts = parseResource("native/method.e");
+            DeclarationList stmts = parseResource("native/method.pec");
             Assert.IsNotNull(stmts);
             Assert.AreEqual(2, stmts.Count);
         }
@@ -26,7 +26,7 @@ namespace presto.parser
         [Test]
         public void testSpecified()
         {
-            DeclarationList stmts = parseResource("methods/specified.e");
+            DeclarationList stmts = parseResource("methods/specified.pec");
             Assert.IsNotNull(stmts);
             Assert.AreEqual(6, stmts.Count);
         }
@@ -34,7 +34,7 @@ namespace presto.parser
         [Test]
         public void testAttribute()
         {
-            DeclarationList stmts = parseResource("methods/attribute.e");
+            DeclarationList stmts = parseResource("methods/attribute.pec");
             Assert.IsNotNull(stmts);
             Assert.AreEqual(6, stmts.Count);
         }
@@ -42,7 +42,7 @@ namespace presto.parser
         [Test]
         public void testImplicit()
         {
-            DeclarationList stmts = parseResource("methods/implicit.e");
+            DeclarationList stmts = parseResource("methods/implicit.pec");
             Assert.IsNotNull(stmts);
             Assert.AreEqual(6, stmts.Count);
         }
@@ -50,7 +50,7 @@ namespace presto.parser
         [Test]
         public void testPolymorphicImplicit()
         {
-            DeclarationList stmts = parseResource("methods/polymorphic_implicit.e");
+            DeclarationList stmts = parseResource("methods/polymorphic_implicit.pec");
             Assert.IsNotNull(stmts);
             Assert.AreEqual(12, stmts.Count);
         }
@@ -58,7 +58,7 @@ namespace presto.parser
         // [Test]
         public void testEnumeratedCategory()
         {
-            DeclarationList stmts = parseResource("enums/categoryEnum.e");
+            DeclarationList stmts = parseResource("enums/categoryEnum.pec");
             Assert.IsNotNull(stmts);
             Assert.AreEqual(3, stmts.Count);
         }

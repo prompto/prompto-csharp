@@ -24,37 +24,37 @@ namespace presto.runtime.o
 		[Test]
 		public void testComplexIf()
 		{
-			CheckOutput("condition/complexIf.o");
+			CheckOutput("condition/complexIf.poc");
 		}
 
 		[Test]
 		public void testElseIf()
 		{
-			CheckOutput("condition/elseIf.o");
+			CheckOutput("condition/elseIf.poc");
 		}
 
 		[Test]
 		public void testReturnIf()
 		{
-			CheckOutput("condition/returnIf.o");
+			CheckOutput("condition/returnIf.poc");
 		}
 
 		[Test]
 		public void testSimpleIf()
 		{
-			CheckOutput("condition/simpleIf.o");
+			CheckOutput("condition/simpleIf.poc");
 		}
 
 		[Test]
 		public void testSwitch()
 		{
-			CheckOutput("condition/switch.o");
+			CheckOutput("condition/switch.poc");
 		}
 
 		[Test]
 		public void testTernary()
 		{
-			CheckOutput("condition/ternary.o");
+			CheckOutput("condition/ternary.poc");
 		}
 
 	}

@@ -24,19 +24,19 @@ namespace presto.runtime.o
 		[Test]
 		public void testCategoryEnum()
 		{
-			CheckOutput("enums/categoryEnum.o");
+			CheckOutput("enums/categoryEnum.poc");
 		}
 
 		[Test]
 		public void testIntegerEnum()
 		{
-			CheckOutput("enums/integerEnum.o");
+			CheckOutput("enums/integerEnum.poc");
 		}
 
 		[Test]
 		public void testTextEnum()
 		{
-			CheckOutput("enums/textEnum.o");
+			CheckOutput("enums/textEnum.poc");
 		}
 
 	}

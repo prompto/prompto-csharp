@@ -11,19 +11,19 @@ namespace presto.translate.oeo
 		[Test]
 		public void testCategoryEnum()
 		{
-			compareResourceOEO("enums/categoryEnum.o");
+			compareResourceOEO("enums/categoryEnum.poc");
 		}
 
 		[Test]
 		public void testIntegerEnum()
 		{
-			compareResourceOEO("enums/integerEnum.o");
+			compareResourceOEO("enums/integerEnum.poc");
 		}
 
 		[Test]
 		public void testTextEnum()
 		{
-			compareResourceOEO("enums/textEnum.o");
+			compareResourceOEO("enums/textEnum.poc");
 		}
 
 	}

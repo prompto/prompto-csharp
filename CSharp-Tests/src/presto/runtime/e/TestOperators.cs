@@ -24,37 +24,37 @@ namespace presto.runtime.e
 		[Test]
 		public void testAddAmount()
 		{
-			CheckOutput("operators/addAmount.e");
+			CheckOutput("operators/addAmount.pec");
 		}
 
 		[Test]
 		public void testDivAmount()
 		{
-			CheckOutput("operators/divAmount.e");
+			CheckOutput("operators/divAmount.pec");
 		}
 
 		[Test]
 		public void testIdivAmount()
 		{
-			CheckOutput("operators/idivAmount.e");
+			CheckOutput("operators/idivAmount.pec");
 		}
 
 		[Test]
 		public void testModAmount()
 		{
-			CheckOutput("operators/modAmount.e");
+			CheckOutput("operators/modAmount.pec");
 		}
 
 		[Test]
 		public void testMultAmount()
 		{
-			CheckOutput("operators/multAmount.e");
+			CheckOutput("operators/multAmount.pec");
 		}
 
 		[Test]
 		public void testSubAmount()
 		{
-			CheckOutput("operators/subAmount.e");
+			CheckOutput("operators/subAmount.pec");
 		}
 
 	}

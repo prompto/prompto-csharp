@@ -26,7 +26,7 @@ namespace presto.parser
 		public DeclarationList parsePString (String code)
 		{
 			context = Context.newGlobalContext ();
-			PCleverParser parser = new PCleverParser (code);
+			SCleverParser parser = new SCleverParser (code);
 			return parser.parse_declaration_list ();
 		}
 
@@ -61,12 +61,12 @@ namespace presto.parser
 			}
 		}
 
-		public DeclarationList parsePResource (String resourceName)
+		public DeclarationList parseSResource (String resourceName)
 		{
 			context = Context.newGlobalContext ();
 			Stream input = OpenResource (resourceName);
 			try {
-				PCleverParser parser = new PCleverParser (input);
+				SCleverParser parser = new SCleverParser (input);
 				return parser.parse_declaration_list ();
 			} finally {
 				input.Close ();
@@ -187,7 +187,7 @@ namespace presto.parser
 			assertEquivalent(expected, actual);
 		}
 
-		public void compareResourceEPE(String resourceName) {
+		public void compareResourceESE(String resourceName) {
 			String expected = getResourceAsString(resourceName);
 			// Console.WriteLine(expected);
 			// parse e source code
@@ -237,7 +237,7 @@ namespace presto.parser
 			assertEquivalent(expected, actual);
 		}
 
-		public void compareResourceOPO(String resourceName) {
+		public void compareResourceOSO(String resourceName) {
 			String expected = getResourceAsString(resourceName);
 			// Console.WriteLine(expected);
 			// parse o source code

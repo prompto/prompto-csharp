@@ -24,31 +24,31 @@ namespace presto.runtime.o
 		[Test]
 		public void testItemDict()
 		{
-			CheckOutput("item/itemDict.o");
+			CheckOutput("item/itemDict.poc");
 		}
 
 		[Test]
 		public void testItemList()
 		{
-			CheckOutput("item/itemList.o");
+			CheckOutput("item/itemList.poc");
 		}
 
 		[Test]
 		public void testItemRange()
 		{
-			CheckOutput("item/itemRange.o");
+			CheckOutput("item/itemRange.poc");
 		}
 
 		[Test]
 		public void testItemSet()
 		{
-			CheckOutput("item/itemSet.o");
+			CheckOutput("item/itemSet.poc");
 		}
 
 		[Test]
 		public void testItemText()
 		{
-			CheckOutput("item/itemText.o");
+			CheckOutput("item/itemText.poc");
 		}
 
 	}

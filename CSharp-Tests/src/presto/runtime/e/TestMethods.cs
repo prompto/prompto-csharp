@@ -24,73 +24,73 @@ namespace presto.runtime.e
 		[Test]
 		public void testAnonymous()
 		{
-			CheckOutput("methods/anonymous.e");
+			CheckOutput("methods/anonymous.pec");
 		}
 
 		[Test]
 		public void testAttribute()
 		{
-			CheckOutput("methods/attribute.e");
+			CheckOutput("methods/attribute.pec");
 		}
 
 		[Test]
 		public void testDefault()
 		{
-			CheckOutput("methods/default.e");
+			CheckOutput("methods/default.pec");
 		}
 
 		[Test]
 		public void testE_as_e_bug()
 		{
-			CheckOutput("methods/e_as_e_bug.e");
+			CheckOutput("methods/e_as_e_bug.pec");
 		}
 
 		[Test]
 		public void testExpressionWith()
 		{
-			CheckOutput("methods/expressionWith.e");
+			CheckOutput("methods/expressionWith.pec");
 		}
 
 		[Test]
 		public void testImplicit()
 		{
-			CheckOutput("methods/implicit.e");
+			CheckOutput("methods/implicit.pec");
 		}
 
 		[Test]
 		public void testMember()
 		{
-			CheckOutput("methods/member.e");
+			CheckOutput("methods/member.pec");
 		}
 
 		[Test]
 		public void testPolymorphic_abstract()
 		{
-			CheckOutput("methods/polymorphic_abstract.e");
+			CheckOutput("methods/polymorphic_abstract.pec");
 		}
 
 		[Test]
 		public void testPolymorphic_implicit()
 		{
-			CheckOutput("methods/polymorphic_implicit.e");
+			CheckOutput("methods/polymorphic_implicit.pec");
 		}
 
 		[Test]
 		public void testPolymorphic_named()
 		{
-			CheckOutput("methods/polymorphic_named.e");
+			CheckOutput("methods/polymorphic_named.pec");
 		}
 
 		[Test]
 		public void testPolymorphic_runtime()
 		{
-			CheckOutput("methods/polymorphic_runtime.e");
+			CheckOutput("methods/polymorphic_runtime.pec");
 		}
 
 		[Test]
 		public void testSpecified()
 		{
-			CheckOutput("methods/specified.e");
+			CheckOutput("methods/specified.pec");
 		}
 
 	}

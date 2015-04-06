@@ -11,37 +11,37 @@ namespace presto.translate.oeo
 		[Test]
 		public void testAddAmount()
 		{
-			compareResourceOEO("operators/addAmount.o");
+			compareResourceOEO("operators/addAmount.poc");
 		}
 
 		[Test]
 		public void testDivAmount()
 		{
-			compareResourceOEO("operators/divAmount.o");
+			compareResourceOEO("operators/divAmount.poc");
 		}
 
 		[Test]
 		public void testIdivAmount()
 		{
-			compareResourceOEO("operators/idivAmount.o");
+			compareResourceOEO("operators/idivAmount.poc");
 		}
 
 		[Test]
 		public void testModAmount()
 		{
-			compareResourceOEO("operators/modAmount.o");
+			compareResourceOEO("operators/modAmount.poc");
 		}
 
 		[Test]
 		public void testMultAmount()
 		{
-			compareResourceOEO("operators/multAmount.o");
+			compareResourceOEO("operators/multAmount.poc");
 		}
 
 		[Test]
 		public void testSubAmount()
 		{
-			compareResourceOEO("operators/subAmount.o");
+			compareResourceOEO("operators/subAmount.poc");
 		}
 
 	}

@@ -11,19 +11,19 @@ namespace presto.translate.eoe
 		[Test]
 		public void testCategory()
 		{
-			compareResourceEOE("native/category.e");
+			compareResourceEOE("native/category.pec");
 		}
 
 		[Test]
 		public void testMethod()
 		{
-			compareResourceEOE("native/method.e");
+			compareResourceEOE("native/method.pec");
 		}
 
 		[Test]
 		public void testReturn()
 		{
-			compareResourceEOE("native/return.e");
+			compareResourceEOE("native/return.pec");
 		}
 
 	}

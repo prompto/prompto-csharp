@@ -11,7 +11,7 @@ namespace presto.translate.eoe
 		[Test]
 		public void testMinimal()
 		{
-			compareResourceEOE("issues/minimal.e");
+			compareResourceEOE("issues/minimal.pec");
 		}
 
 	}

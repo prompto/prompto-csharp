@@ -11,37 +11,37 @@ namespace presto.translate.eoe
 		[Test]
 		public void testComplexIf()
 		{
-			compareResourceEOE("condition/complexIf.e");
+			compareResourceEOE("condition/complexIf.pec");
 		}
 
 		[Test]
 		public void testElseIf()
 		{
-			compareResourceEOE("condition/elseIf.e");
+			compareResourceEOE("condition/elseIf.pec");
 		}
 
 		[Test]
 		public void testReturnIf()
 		{
-			compareResourceEOE("condition/returnIf.e");
+			compareResourceEOE("condition/returnIf.pec");
 		}
 
 		[Test]
 		public void testSimpleIf()
 		{
-			compareResourceEOE("condition/simpleIf.e");
+			compareResourceEOE("condition/simpleIf.pec");
 		}
 
 		[Test]
 		public void testSwitch()
 		{
-			compareResourceEOE("condition/switch.e");
+			compareResourceEOE("condition/switch.pec");
 		}
 
 		[Test]
 		public void testTernary()
 		{
-			compareResourceEOE("condition/ternary.e");
+			compareResourceEOE("condition/ternary.pec");
 		}
 
 	}

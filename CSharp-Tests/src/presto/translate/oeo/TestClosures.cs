@@ -11,19 +11,19 @@ namespace presto.translate.oeo
 		[Test]
 		public void testGlobalClosureNoArg()
 		{
-			compareResourceOEO("closures/globalClosureNoArg.o");
+			compareResourceOEO("closures/globalClosureNoArg.poc");
 		}
 
 		[Test]
 		public void testGlobalClosureWithArg()
 		{
-			compareResourceOEO("closures/globalClosureWithArg.o");
+			compareResourceOEO("closures/globalClosureWithArg.poc");
 		}
 
 		[Test]
 		public void testInstanceClosureNoArg()
 		{
-			compareResourceOEO("closures/instanceClosureNoArg.o");
+			compareResourceOEO("closures/instanceClosureNoArg.poc");
 		}
 
 	}

@@ -24,7 +24,7 @@ namespace presto.runtime.o
 		[Test]
 		public void testForward()
 		{
-			CheckOutput("forward/forward.o");
+			CheckOutput("forward/forward.poc");
 		}
 
 	}

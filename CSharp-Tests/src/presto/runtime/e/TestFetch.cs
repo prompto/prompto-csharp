@@ -24,13 +24,13 @@ namespace presto.runtime.e
 		[Test]
 		public void testFetchFromList()
 		{
-			CheckOutput("fetch/fetchFromList.e");
+			CheckOutput("fetch/fetchFromList.pec");
 		}
 
 		[Test]
 		public void testFetchFromSet()
 		{
-			CheckOutput("fetch/fetchFromSet.e");
+			CheckOutput("fetch/fetchFromSet.pec");
 		}
 
 	}

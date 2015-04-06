@@ -11,79 +11,79 @@ namespace presto.translate.oeo
 		[Test]
 		public void testAnonymous()
 		{
-			compareResourceOEO("methods/anonymous.o");
+			compareResourceOEO("methods/anonymous.poc");
 		}
 
 		[Test]
 		public void testAttribute()
 		{
-			compareResourceOEO("methods/attribute.o");
+			compareResourceOEO("methods/attribute.poc");
 		}
 
 		[Test]
 		public void testDefault()
 		{
-			compareResourceOEO("methods/default.o");
+			compareResourceOEO("methods/default.poc");
 		}
 
 		[Test]
 		public void testE_as_e_bug()
 		{
-			compareResourceOEO("methods/e_as_e_bug.o");
+			compareResourceOEO("methods/e_as_e_bug.poc");
 		}
 
 		[Test]
 		public void testExpressionWith()
 		{
-			compareResourceOEO("methods/expressionWith.o");
+			compareResourceOEO("methods/expressionWith.poc");
 		}
 
 		[Test]
 		public void testImplicit()
 		{
-			compareResourceOEO("methods/implicit.o");
+			compareResourceOEO("methods/implicit.poc");
 		}
 
 		[Test]
 		public void testMember()
 		{
-			compareResourceOEO("methods/member.o");
+			compareResourceOEO("methods/member.poc");
 		}
 
 		[Test]
 		public void testPolymorphic_abstract()
 		{
-			compareResourceOEO("methods/polymorphic_abstract.o");
+			compareResourceOEO("methods/polymorphic_abstract.poc");
 		}
 
 		[Test]
 		public void testPolymorphic_implicit()
 		{
-			compareResourceOEO("methods/polymorphic_implicit.o");
+			compareResourceOEO("methods/polymorphic_implicit.poc");
 		}
 
 		[Test]
 		public void testPolymorphic_named()
 		{
-			compareResourceOEO("methods/polymorphic_named.o");
+			compareResourceOEO("methods/polymorphic_named.poc");
 		}
 
 		[Test]
 		public void testPolymorphic_runtime()
 		{
-			compareResourceOEO("methods/polymorphic_runtime.o");
+			compareResourceOEO("methods/polymorphic_runtime.poc");
 		}
 
 		[Test]
 		public void testReturn()
 		{
-			compareResourceOEO("methods/return.o");
+			compareResourceOEO("methods/return.poc");
 		}
 
 		[Test]
 		public void testSpecified()
 		{
-			compareResourceOEO("methods/specified.o");
+			compareResourceOEO("methods/specified.poc");
 		}
 
 	}

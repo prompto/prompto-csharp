@@ -11,13 +11,13 @@ namespace presto.translate.eoe
 		[Test]
 		public void testGetter()
 		{
-			compareResourceEOE("setters/getter.e");
+			compareResourceEOE("setters/getter.pec");
 		}
 
 		[Test]
 		public void testSetter()
 		{
-			compareResourceEOE("setters/setter.e");
+			compareResourceEOE("setters/setter.pec");
 		}
 
 	}

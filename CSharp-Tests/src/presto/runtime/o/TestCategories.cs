@@ -24,25 +24,25 @@ namespace presto.runtime.o
 		[Test]
 		public void testCopyFromAscendant()
 		{
-			CheckOutput("categories/copyFromAscendant.o");
+			CheckOutput("categories/copyFromAscendant.poc");
 		}
 
 		[Test]
 		public void testCopyFromAscendantWithOverride()
 		{
-			CheckOutput("categories/copyFromAscendantWithOverride.o");
+			CheckOutput("categories/copyFromAscendantWithOverride.poc");
 		}
 
 		[Test]
 		public void testCopyFromDescendant()
 		{
-			CheckOutput("categories/copyFromDescendant.o");
+			CheckOutput("categories/copyFromDescendant.poc");
 		}
 
 		[Test]
 		public void testCopyFromDescendantWithOverride()
 		{
-			CheckOutput("categories/copyFromDescendantWithOverride.o");
+			CheckOutput("categories/copyFromDescendantWithOverride.poc");
 		}
 
 	}

@@ -24,19 +24,19 @@ namespace presto.runtime.o
 		[Test]
 		public void testAndBoolean()
 		{
-			CheckOutput("logic/andBoolean.o");
+			CheckOutput("logic/andBoolean.poc");
 		}
 
 		[Test]
 		public void testNotBoolean()
 		{
-			CheckOutput("logic/notBoolean.o");
+			CheckOutput("logic/notBoolean.poc");
 		}
 
 		[Test]
 		public void testOrBoolean()
 		{
-			CheckOutput("logic/orBoolean.o");
+			CheckOutput("logic/orBoolean.poc");
 		}
 
 	}

@@ -22,7 +22,7 @@ namespace presto.e.runtime {
         [Test]
         public void testMinimal()
         {
-            runResource("issues/minimal.e", "mainNoCmdLine", null);
+            runResource("issues/minimal.pec", "mainNoCmdLine", null);
         }
     }
 

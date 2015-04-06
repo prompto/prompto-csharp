@@ -24,31 +24,31 @@ namespace presto.runtime.o
 		[Test]
 		public void testCyclic()
 		{
-			CheckOutput("lazy/cyclic.o");
+			CheckOutput("lazy/cyclic.poc");
 		}
 
 		[Test]
 		public void testDict()
 		{
-			CheckOutput("lazy/dict.o");
+			CheckOutput("lazy/dict.poc");
 		}
 
 		[Test]
 		public void testList()
 		{
-			CheckOutput("lazy/list.o");
+			CheckOutput("lazy/list.poc");
 		}
 
 		[Test]
 		public void testSet()
 		{
-			CheckOutput("lazy/set.o");
+			CheckOutput("lazy/set.poc");
 		}
 
 		[Test]
 		public void testTransient()
 		{
-			CheckOutput("lazy/transient.o");
+			CheckOutput("lazy/transient.poc");
 		}
 
 	}

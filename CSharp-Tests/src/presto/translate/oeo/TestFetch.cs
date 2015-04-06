@@ -11,13 +11,13 @@ namespace presto.translate.oeo
 		[Test]
 		public void testFetchFromList()
 		{
-			compareResourceOEO("fetch/fetchFromList.o");
+			compareResourceOEO("fetch/fetchFromList.poc");
 		}
 
 		[Test]
 		public void testFetchFromSet()
 		{
-			compareResourceOEO("fetch/fetchFromSet.o");
+			compareResourceOEO("fetch/fetchFromSet.poc");
 		}
 
 	}

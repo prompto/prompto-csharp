@@ -11,97 +11,97 @@ namespace presto.translate.oeo
 		[Test]
 		public void testCategory()
 		{
-			compareResourceOEO("native/category.o");
+			compareResourceOEO("native/category.poc");
 		}
 
 		[Test]
 		public void testMethod()
 		{
-			compareResourceOEO("native/method.o");
+			compareResourceOEO("native/method.poc");
 		}
 
 		[Test]
 		public void testReturn()
 		{
-			compareResourceOEO("native/return.o");
+			compareResourceOEO("native/return.poc");
 		}
 
 		[Test]
 		public void testReturnBooleanLiteral()
 		{
-			compareResourceOEO("native/returnBooleanLiteral.o");
+			compareResourceOEO("native/returnBooleanLiteral.poc");
 		}
 
 		[Test]
 		public void testReturnBooleanObject()
 		{
-			compareResourceOEO("native/returnBooleanObject.o");
+			compareResourceOEO("native/returnBooleanObject.poc");
 		}
 
 		[Test]
 		public void testReturnBooleanValue()
 		{
-			compareResourceOEO("native/returnBooleanValue.o");
+			compareResourceOEO("native/returnBooleanValue.poc");
 		}
 
 		[Test]
 		public void testReturnCharacterLiteral()
 		{
-			compareResourceOEO("native/returnCharacterLiteral.o");
+			compareResourceOEO("native/returnCharacterLiteral.poc");
 		}
 
 		[Test]
 		public void testReturnCharacterObject()
 		{
-			compareResourceOEO("native/returnCharacterObject.o");
+			compareResourceOEO("native/returnCharacterObject.poc");
 		}
 
 		[Test]
 		public void testReturnCharacterValue()
 		{
-			compareResourceOEO("native/returnCharacterValue.o");
+			compareResourceOEO("native/returnCharacterValue.poc");
 		}
 
 		[Test]
 		public void testReturnDecimalLiteral()
 		{
-			compareResourceOEO("native/returnDecimalLiteral.o");
+			compareResourceOEO("native/returnDecimalLiteral.poc");
 		}
 
 		[Test]
 		public void testReturnIntegerLiteral()
 		{
-			compareResourceOEO("native/returnIntegerLiteral.o");
+			compareResourceOEO("native/returnIntegerLiteral.poc");
 		}
 
 		[Test]
 		public void testReturnIntegerObject()
 		{
-			compareResourceOEO("native/returnIntegerObject.o");
+			compareResourceOEO("native/returnIntegerObject.poc");
 		}
 
 		[Test]
 		public void testReturnIntegerValue()
 		{
-			compareResourceOEO("native/returnIntegerValue.o");
+			compareResourceOEO("native/returnIntegerValue.poc");
 		}
 
 		[Test]
 		public void testReturnLongObject()
 		{
-			compareResourceOEO("native/returnLongObject.o");
+			compareResourceOEO("native/returnLongObject.poc");
 		}
 
 		[Test]
 		public void testReturnLongValue()
 		{
-			compareResourceOEO("native/returnLongValue.o");
+			compareResourceOEO("native/returnLongValue.poc");
 		}
 
 		[Test]
 		public void testReturnStringLiteral()
 		{
-			compareResourceOEO("native/returnStringLiteral.o");
+			compareResourceOEO("native/returnStringLiteral.poc");
 		}
 
 	}

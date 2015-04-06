@@ -11,13 +11,13 @@ namespace presto.translate.oeo
 		[Test]
 		public void testAttribute()
 		{
-			compareResourceOEO("singleton/attribute.o");
+			compareResourceOEO("singleton/attribute.poc");
 		}
 
 		[Test]
 		public void testMember()
 		{
-			compareResourceOEO("singleton/member.o");
+			compareResourceOEO("singleton/member.poc");
 		}
 
 	}

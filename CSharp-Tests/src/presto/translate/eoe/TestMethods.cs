@@ -11,79 +11,79 @@ namespace presto.translate.eoe
 		[Test]
 		public void testAnonymous()
 		{
-			compareResourceEOE("methods/anonymous.e");
+			compareResourceEOE("methods/anonymous.pec");
 		}
 
 		[Test]
 		public void testAttribute()
 		{
-			compareResourceEOE("methods/attribute.e");
+			compareResourceEOE("methods/attribute.pec");
 		}
 
 		[Test]
 		public void testDefault()
 		{
-			compareResourceEOE("methods/default.e");
+			compareResourceEOE("methods/default.pec");
 		}
 
 		[Test]
 		public void testE_as_e_bug()
 		{
-			compareResourceEOE("methods/e_as_e_bug.e");
+			compareResourceEOE("methods/e_as_e_bug.pec");
 		}
 
 		[Test]
 		public void testExpressionWith()
 		{
-			compareResourceEOE("methods/expressionWith.e");
+			compareResourceEOE("methods/expressionWith.pec");
 		}
 
 		[Test]
 		public void testImplicit()
 		{
-			compareResourceEOE("methods/implicit.e");
+			compareResourceEOE("methods/implicit.pec");
 		}
 
 		[Test]
 		public void testMember()
 		{
-			compareResourceEOE("methods/member.e");
+			compareResourceEOE("methods/member.pec");
 		}
 
 		[Test]
 		public void testPolymorphic_abstract()
 		{
-			compareResourceEOE("methods/polymorphic_abstract.e");
+			compareResourceEOE("methods/polymorphic_abstract.pec");
 		}
 
 		[Test]
 		public void testPolymorphic_implicit()
 		{
-			compareResourceEOE("methods/polymorphic_implicit.e");
+			compareResourceEOE("methods/polymorphic_implicit.pec");
 		}
 
 		[Test]
 		public void testPolymorphic_named()
 		{
-			compareResourceEOE("methods/polymorphic_named.e");
+			compareResourceEOE("methods/polymorphic_named.pec");
 		}
 
 		[Test]
 		public void testPolymorphic_runtime()
 		{
-			compareResourceEOE("methods/polymorphic_runtime.e");
+			compareResourceEOE("methods/polymorphic_runtime.pec");
 		}
 
 		[Test]
 		public void testReturn()
 		{
-			compareResourceEOE("methods/return.e");
+			compareResourceEOE("methods/return.pec");
 		}
 
 		[Test]
 		public void testSpecified()
 		{
-			compareResourceEOE("methods/specified.e");
+			compareResourceEOE("methods/specified.pec");
 		}
 
 	}

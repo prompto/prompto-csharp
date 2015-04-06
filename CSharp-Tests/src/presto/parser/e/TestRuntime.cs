@@ -54,14 +54,14 @@ namespace presto.parser.e {
         [Test]
         public void testReturn()
         {
-            runResource("native/return.e");
+            runResource("native/return.pec");
             Assert.AreEqual(System.Environment.MachineName, Out.read());
         }
 
 		[Test]
 		public void testDateTimeTZName()
 		{
-			runResource("builtins/dateTimeTZName.e");
+			runResource("builtins/dateTimeTZName.pec");
 			String tzName = TimeZoneInfo.Utc.StandardName;
 			Assert.AreEqual("tzName=" + tzName, Out.read());
 		}

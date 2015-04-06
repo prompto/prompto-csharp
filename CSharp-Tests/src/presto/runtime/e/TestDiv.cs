@@ -24,25 +24,25 @@ namespace presto.runtime.e
 		[Test]
 		public void testDivDecimal()
 		{
-			CheckOutput("div/divDecimal.e");
+			CheckOutput("div/divDecimal.pec");
 		}
 
 		[Test]
 		public void testDivInteger()
 		{
-			CheckOutput("div/divInteger.e");
+			CheckOutput("div/divInteger.pec");
 		}
 
 		[Test]
 		public void testIdivInteger()
 		{
-			CheckOutput("div/idivInteger.e");
+			CheckOutput("div/idivInteger.pec");
 		}
 
 		[Test]
 		public void testModInteger()
 		{
-			CheckOutput("div/modInteger.e");
+			CheckOutput("div/modInteger.pec");
 		}
 
 	}

@@ -11,43 +11,43 @@ namespace presto.translate.oeo
 		[Test]
 		public void testBadRead()
 		{
-			compareResourceOEO("resource/badRead.o");
+			compareResourceOEO("resource/badRead.poc");
 		}
 
 		[Test]
 		public void testBadResource()
 		{
-			compareResourceOEO("resource/badResource.o");
+			compareResourceOEO("resource/badResource.poc");
 		}
 
 		[Test]
 		public void testBadWrite()
 		{
-			compareResourceOEO("resource/badWrite.o");
+			compareResourceOEO("resource/badWrite.poc");
 		}
 
 		[Test]
 		public void testReadResource()
 		{
-			compareResourceOEO("resource/readResource.o");
+			compareResourceOEO("resource/readResource.poc");
 		}
 
 		[Test]
 		public void testReadWithResource()
 		{
-			compareResourceOEO("resource/readWithResource.o");
+			compareResourceOEO("resource/readWithResource.poc");
 		}
 
 		[Test]
 		public void testWriteResource()
 		{
-			compareResourceOEO("resource/writeResource.o");
+			compareResourceOEO("resource/writeResource.poc");
 		}
 
 		[Test]
 		public void testWriteWithResource()
 		{
-			compareResourceOEO("resource/writeWithResource.o");
+			compareResourceOEO("resource/writeWithResource.poc");
 		}
 
 	}

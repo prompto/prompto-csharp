@@ -11,25 +11,25 @@ namespace presto.translate.oeo
 		[Test]
 		public void testDeepItem()
 		{
-			compareResourceOEO("documents/deepItem.o");
+			compareResourceOEO("documents/deepItem.poc");
 		}
 
 		[Test]
 		public void testDeepVariable()
 		{
-			compareResourceOEO("documents/deepVariable.o");
+			compareResourceOEO("documents/deepVariable.poc");
 		}
 
 		[Test]
 		public void testItem()
 		{
-			compareResourceOEO("documents/item.o");
+			compareResourceOEO("documents/item.poc");
 		}
 
 		[Test]
 		public void testVariable()
 		{
-			compareResourceOEO("documents/variable.o");
+			compareResourceOEO("documents/variable.poc");
 		}
 
 	}

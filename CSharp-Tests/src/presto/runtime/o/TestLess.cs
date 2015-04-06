@@ -24,85 +24,85 @@ namespace presto.runtime.o
 		[Test]
 		public void testLtCharacter()
 		{
-			CheckOutput("less/ltCharacter.o");
+			CheckOutput("less/ltCharacter.poc");
 		}
 
 		[Test]
 		public void testLtDate()
 		{
-			CheckOutput("less/ltDate.o");
+			CheckOutput("less/ltDate.poc");
 		}
 
 		[Test]
 		public void testLtDateTime()
 		{
-			CheckOutput("less/ltDateTime.o");
+			CheckOutput("less/ltDateTime.poc");
 		}
 
 		[Test]
 		public void testLtDecimal()
 		{
-			CheckOutput("less/ltDecimal.o");
+			CheckOutput("less/ltDecimal.poc");
 		}
 
 		[Test]
 		public void testLteCharacter()
 		{
-			CheckOutput("less/lteCharacter.o");
+			CheckOutput("less/lteCharacter.poc");
 		}
 
 		[Test]
 		public void testLteDate()
 		{
-			CheckOutput("less/lteDate.o");
+			CheckOutput("less/lteDate.poc");
 		}
 
 		[Test]
 		public void testLteDateTime()
 		{
-			CheckOutput("less/lteDateTime.o");
+			CheckOutput("less/lteDateTime.poc");
 		}
 
 		[Test]
 		public void testLteDecimal()
 		{
-			CheckOutput("less/lteDecimal.o");
+			CheckOutput("less/lteDecimal.poc");
 		}
 
 		[Test]
 		public void testLteInteger()
 		{
-			CheckOutput("less/lteInteger.o");
+			CheckOutput("less/lteInteger.poc");
 		}
 
 		[Test]
 		public void testLteText()
 		{
-			CheckOutput("less/lteText.o");
+			CheckOutput("less/lteText.poc");
 		}
 
 		[Test]
 		public void testLteTime()
 		{
-			CheckOutput("less/lteTime.o");
+			CheckOutput("less/lteTime.poc");
 		}
 
 		[Test]
 		public void testLtInteger()
 		{
-			CheckOutput("less/ltInteger.o");
+			CheckOutput("less/ltInteger.poc");
 		}
 
 		[Test]
 		public void testLtText()
 		{
-			CheckOutput("less/ltText.o");
+			CheckOutput("less/ltText.poc");
 		}
 
 		[Test]
 		public void testLtTime()
 		{
-			CheckOutput("less/ltTime.o");
+			CheckOutput("less/ltTime.poc");
 		}
 
 	}

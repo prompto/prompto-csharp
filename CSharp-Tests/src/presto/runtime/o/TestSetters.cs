@@ -24,13 +24,13 @@ namespace presto.runtime.o
 		[Test]
 		public void testGetter()
 		{
-			CheckOutput("setters/getter.o");
+			CheckOutput("setters/getter.poc");
 		}
 
 		[Test]
 		public void testSetter()
 		{
-			CheckOutput("setters/setter.o");
+			CheckOutput("setters/setter.poc");
 		}
 
 	}

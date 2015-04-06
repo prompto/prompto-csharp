@@ -24,37 +24,37 @@ namespace presto.runtime.e
 		[Test]
 		public void testSubDate()
 		{
-			CheckOutput("sub/subDate.e");
+			CheckOutput("sub/subDate.pec");
 		}
 
 		[Test]
 		public void testSubDateTime()
 		{
-			CheckOutput("sub/subDateTime.e");
+			CheckOutput("sub/subDateTime.pec");
 		}
 
 		[Test]
 		public void testSubDecimal()
 		{
-			CheckOutput("sub/subDecimal.e");
+			CheckOutput("sub/subDecimal.pec");
 		}
 
 		[Test]
 		public void testSubInteger()
 		{
-			CheckOutput("sub/subInteger.e");
+			CheckOutput("sub/subInteger.pec");
 		}
 
 		[Test]
 		public void testSubPeriod()
 		{
-			CheckOutput("sub/subPeriod.e");
+			CheckOutput("sub/subPeriod.pec");
 		}
 
 		[Test]
 		public void testSubTime()
 		{
-			CheckOutput("sub/subTime.e");
+			CheckOutput("sub/subTime.pec");
 		}
 
 	}

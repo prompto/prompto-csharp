@@ -24,187 +24,187 @@ namespace presto.runtime.o
 		[Test]
 		public void testEqBoolean()
 		{
-			CheckOutput("equals/eqBoolean.o");
+			CheckOutput("equals/eqBoolean.poc");
 		}
 
 		[Test]
 		public void testEqCharacter()
 		{
-			CheckOutput("equals/eqCharacter.o");
+			CheckOutput("equals/eqCharacter.poc");
 		}
 
 		[Test]
 		public void testEqDate()
 		{
-			CheckOutput("equals/eqDate.o");
+			CheckOutput("equals/eqDate.poc");
 		}
 
 		[Test]
 		public void testEqDateTime()
 		{
-			CheckOutput("equals/eqDateTime.o");
+			CheckOutput("equals/eqDateTime.poc");
 		}
 
 		[Test]
 		public void testEqDecimal()
 		{
-			CheckOutput("equals/eqDecimal.o");
+			CheckOutput("equals/eqDecimal.poc");
 		}
 
 		[Test]
 		public void testEqDict()
 		{
-			CheckOutput("equals/eqDict.o");
+			CheckOutput("equals/eqDict.poc");
 		}
 
 		[Test]
 		public void testEqInteger()
 		{
-			CheckOutput("equals/eqInteger.o");
+			CheckOutput("equals/eqInteger.poc");
 		}
 
 		[Test]
 		public void testEqList()
 		{
-			CheckOutput("equals/eqList.o");
+			CheckOutput("equals/eqList.poc");
 		}
 
 		[Test]
 		public void testEqPeriod()
 		{
-			CheckOutput("equals/eqPeriod.o");
+			CheckOutput("equals/eqPeriod.poc");
 		}
 
 		[Test]
 		public void testEqRange()
 		{
-			CheckOutput("equals/eqRange.o");
+			CheckOutput("equals/eqRange.poc");
 		}
 
 		[Test]
 		public void testEqSet()
 		{
-			CheckOutput("equals/eqSet.o");
+			CheckOutput("equals/eqSet.poc");
 		}
 
 		[Test]
 		public void testEqText()
 		{
-			CheckOutput("equals/eqText.o");
+			CheckOutput("equals/eqText.poc");
 		}
 
 		[Test]
 		public void testEqTime()
 		{
-			CheckOutput("equals/eqTime.o");
+			CheckOutput("equals/eqTime.poc");
 		}
 
 		[Test]
 		public void testIsBoolean()
 		{
-			CheckOutput("equals/isBoolean.o");
+			CheckOutput("equals/isBoolean.poc");
 		}
 
 		[Test]
 		public void testIsInstance()
 		{
-			CheckOutput("equals/isInstance.o");
+			CheckOutput("equals/isInstance.poc");
 		}
 
 		[Test]
 		public void testIsNotBoolean()
 		{
-			CheckOutput("equals/isNotBoolean.o");
+			CheckOutput("equals/isNotBoolean.poc");
 		}
 
 		[Test]
 		public void testIsNotInstance()
 		{
-			CheckOutput("equals/isNotInstance.o");
+			CheckOutput("equals/isNotInstance.poc");
 		}
 
 		[Test]
 		public void testNeqBoolean()
 		{
-			CheckOutput("equals/neqBoolean.o");
+			CheckOutput("equals/neqBoolean.poc");
 		}
 
 		[Test]
 		public void testNeqCharacter()
 		{
-			CheckOutput("equals/neqCharacter.o");
+			CheckOutput("equals/neqCharacter.poc");
 		}
 
 		[Test]
 		public void testNeqDate()
 		{
-			CheckOutput("equals/neqDate.o");
+			CheckOutput("equals/neqDate.poc");
 		}
 
 		[Test]
 		public void testNeqDateTime()
 		{
-			CheckOutput("equals/neqDateTime.o");
+			CheckOutput("equals/neqDateTime.poc");
 		}
 
 		[Test]
 		public void testNeqDecimal()
 		{
-			CheckOutput("equals/neqDecimal.o");
+			CheckOutput("equals/neqDecimal.poc");
 		}
 
 		[Test]
 		public void testNeqDict()
 		{
-			CheckOutput("equals/neqDict.o");
+			CheckOutput("equals/neqDict.poc");
 		}
 
 		[Test]
 		public void testNeqInteger()
 		{
-			CheckOutput("equals/neqInteger.o");
+			CheckOutput("equals/neqInteger.poc");
 		}
 
 		[Test]
 		public void testNeqList()
 		{
-			CheckOutput("equals/neqList.o");
+			CheckOutput("equals/neqList.poc");
 		}
 
 		[Test]
 		public void testNeqPeriod()
 		{
-			CheckOutput("equals/neqPeriod.o");
+			CheckOutput("equals/neqPeriod.poc");
 		}
 
 		[Test]
 		public void testNeqRange()
 		{
-			CheckOutput("equals/neqRange.o");
+			CheckOutput("equals/neqRange.poc");
 		}
 
 		[Test]
 		public void testNeqSet()
 		{
-			CheckOutput("equals/neqSet.o");
+			CheckOutput("equals/neqSet.poc");
 		}
 
 		[Test]
 		public void testNeqText()
 		{
-			CheckOutput("equals/neqText.o");
+			CheckOutput("equals/neqText.poc");
 		}
 
 		[Test]
 		public void testNeqTime()
 		{
-			CheckOutput("equals/neqTime.o");
+			CheckOutput("equals/neqTime.poc");
 		}
 
 		[Test]
 		public void testReqText()
 		{
-			CheckOutput("equals/reqText.o");
+			CheckOutput("equals/reqText.poc");
 		}
 
 	}

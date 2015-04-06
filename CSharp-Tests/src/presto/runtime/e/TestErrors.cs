@@ -24,67 +24,67 @@ namespace presto.runtime.e
 		[Test]
 		public void testDivideByZero()
 		{
-			CheckOutput("errors/divideByZero.e");
+			CheckOutput("errors/divideByZero.pec");
 		}
 
 		[Test]
 		public void testIndexOutOfRange_listItem()
 		{
-			CheckOutput("errors/indexOutOfRange-listItem.e");
+			CheckOutput("errors/indexOutOfRange-listItem.pec");
 		}
 
 		[Test]
 		public void testIndexOutOfRange_sliceList()
 		{
-			CheckOutput("errors/indexOutOfRange-sliceList.e");
+			CheckOutput("errors/indexOutOfRange-sliceList.pec");
 		}
 
 		[Test]
 		public void testIndexOutOfRange_sliceRange()
 		{
-			CheckOutput("errors/indexOutOfRange-sliceRange.e");
+			CheckOutput("errors/indexOutOfRange-sliceRange.pec");
 		}
 
 		[Test]
 		public void testIndexOutOfRange_sliceText()
 		{
-			CheckOutput("errors/indexOutOfRange-sliceText.e");
+			CheckOutput("errors/indexOutOfRange-sliceText.pec");
 		}
 
 		[Test]
 		public void testNullDict()
 		{
-			CheckOutput("errors/nullDict.e");
+			CheckOutput("errors/nullDict.pec");
 		}
 
 		[Test]
 		public void testNullItem()
 		{
-			CheckOutput("errors/nullItem.e");
+			CheckOutput("errors/nullItem.pec");
 		}
 
 		[Test]
 		public void testNullKey()
 		{
-			CheckOutput("errors/nullKey.e");
+			CheckOutput("errors/nullKey.pec");
 		}
 
 		[Test]
 		public void testNullMember()
 		{
-			CheckOutput("errors/nullMember.e");
+			CheckOutput("errors/nullMember.pec");
 		}
 
 		[Test]
 		public void testNullMethod()
 		{
-			CheckOutput("errors/nullMethod.e");
+			CheckOutput("errors/nullMethod.pec");
 		}
 
 		[Test]
 		public void testUserException()
 		{
-			CheckOutput("errors/userException.e");
+			CheckOutput("errors/userException.pec");
 		}
 
 	}

@@ -24,139 +24,139 @@ namespace presto.runtime.e
 		[Test]
 		public void testDateDayOfMonth()
 		{
-			CheckOutput("builtins/dateDayOfMonth.e");
+			CheckOutput("builtins/dateDayOfMonth.pec");
 		}
 
 		[Test]
 		public void testDateDayOfYear()
 		{
-			CheckOutput("builtins/dateDayOfYear.e");
+			CheckOutput("builtins/dateDayOfYear.pec");
 		}
 
 		[Test]
 		public void testDateMonth()
 		{
-			CheckOutput("builtins/dateMonth.e");
+			CheckOutput("builtins/dateMonth.pec");
 		}
 
 		[Test]
 		public void testDateTimeDayOfMonth()
 		{
-			CheckOutput("builtins/dateTimeDayOfMonth.e");
+			CheckOutput("builtins/dateTimeDayOfMonth.pec");
 		}
 
 		[Test]
 		public void testDateTimeDayOfYear()
 		{
-			CheckOutput("builtins/dateTimeDayOfYear.e");
+			CheckOutput("builtins/dateTimeDayOfYear.pec");
 		}
 
 		[Test]
 		public void testDateTimeHour()
 		{
-			CheckOutput("builtins/dateTimeHour.e");
+			CheckOutput("builtins/dateTimeHour.pec");
 		}
 
 		[Test]
 		public void testDateTimeMinute()
 		{
-			CheckOutput("builtins/dateTimeMinute.e");
+			CheckOutput("builtins/dateTimeMinute.pec");
 		}
 
 		[Test]
 		public void testDateTimeMonth()
 		{
-			CheckOutput("builtins/dateTimeMonth.e");
+			CheckOutput("builtins/dateTimeMonth.pec");
 		}
 
 		[Test]
 		public void testDateTimeSecond()
 		{
-			CheckOutput("builtins/dateTimeSecond.e");
+			CheckOutput("builtins/dateTimeSecond.pec");
 		}
 
 		[Test]
 		public void testDateTimeTZOffset()
 		{
-			CheckOutput("builtins/dateTimeTZOffset.e");
+			CheckOutput("builtins/dateTimeTZOffset.pec");
 		}
 
 		[Test]
 		public void testDateTimeYear()
 		{
-			CheckOutput("builtins/dateTimeYear.e");
+			CheckOutput("builtins/dateTimeYear.pec");
 		}
 
 		[Test]
 		public void testDateYear()
 		{
-			CheckOutput("builtins/dateYear.e");
+			CheckOutput("builtins/dateYear.pec");
 		}
 
 		[Test]
 		public void testDictLength()
 		{
-			CheckOutput("builtins/dictLength.e");
+			CheckOutput("builtins/dictLength.pec");
 		}
 
 		[Test]
 		public void testEnumName()
 		{
-			CheckOutput("builtins/enumName.e");
+			CheckOutput("builtins/enumName.pec");
 		}
 
 		[Test]
 		public void testEnumSymbols()
 		{
-			CheckOutput("builtins/enumSymbols.e");
+			CheckOutput("builtins/enumSymbols.pec");
 		}
 
 		[Test]
 		public void testEnumValue()
 		{
-			CheckOutput("builtins/enumValue.e");
+			CheckOutput("builtins/enumValue.pec");
 		}
 
 		[Test]
 		public void testListLength()
 		{
-			CheckOutput("builtins/listLength.e");
+			CheckOutput("builtins/listLength.pec");
 		}
 
 		[Test]
 		public void testSetLength()
 		{
-			CheckOutput("builtins/setLength.e");
+			CheckOutput("builtins/setLength.pec");
 		}
 
 		[Test]
 		public void testTextLength()
 		{
-			CheckOutput("builtins/textLength.e");
+			CheckOutput("builtins/textLength.pec");
 		}
 
 		[Test]
 		public void testTimeHour()
 		{
-			CheckOutput("builtins/timeHour.e");
+			CheckOutput("builtins/timeHour.pec");
 		}
 
 		[Test]
 		public void testTimeMinute()
 		{
-			CheckOutput("builtins/timeMinute.e");
+			CheckOutput("builtins/timeMinute.pec");
 		}
 
 		[Test]
 		public void testTimeSecond()
 		{
-			CheckOutput("builtins/timeSecond.e");
+			CheckOutput("builtins/timeSecond.pec");
 		}
 
 		[Test]
 		public void testTupleLength()
 		{
-			CheckOutput("builtins/tupleLength.e");
+			CheckOutput("builtins/tupleLength.pec");
 		}
 
 	}

@@ -24,31 +24,31 @@ namespace presto.runtime.e
 		[Test]
 		public void testItemDict()
 		{
-			CheckOutput("item/itemDict.e");
+			CheckOutput("item/itemDict.pec");
 		}
 
 		[Test]
 		public void testItemList()
 		{
-			CheckOutput("item/itemList.e");
+			CheckOutput("item/itemList.pec");
 		}
 
 		[Test]
 		public void testItemRange()
 		{
-			CheckOutput("item/itemRange.e");
+			CheckOutput("item/itemRange.pec");
 		}
 
 		[Test]
 		public void testItemSet()
 		{
-			CheckOutput("item/itemSet.e");
+			CheckOutput("item/itemSet.pec");
 		}
 
 		[Test]
 		public void testItemText()
 		{
-			CheckOutput("item/itemText.e");
+			CheckOutput("item/itemText.pec");
 		}
 
 	}

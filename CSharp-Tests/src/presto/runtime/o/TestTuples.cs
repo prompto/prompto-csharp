@@ -24,19 +24,19 @@ namespace presto.runtime.o
 		[Test]
 		public void testMultiAssignment()
 		{
-			CheckOutput("tuples/multiAssignment.o");
+			CheckOutput("tuples/multiAssignment.poc");
 		}
 
 		[Test]
 		public void testSingleAssignment()
 		{
-			CheckOutput("tuples/singleAssignment.o");
+			CheckOutput("tuples/singleAssignment.poc");
 		}
 
 		[Test]
 		public void testTupleElement()
 		{
-			CheckOutput("tuples/tupleElement.o");
+			CheckOutput("tuples/tupleElement.poc");
 		}
 
 	}

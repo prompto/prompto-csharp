@@ -24,13 +24,13 @@ namespace presto.runtime.o
 		[Test]
 		public void testSelfAsParameter()
 		{
-			CheckOutput("self/selfAsParameter.o");
+			CheckOutput("self/selfAsParameter.poc");
 		}
 
 		[Test]
 		public void testSelfMember()
 		{
-			CheckOutput("self/selfMember.o");
+			CheckOutput("self/selfMember.poc");
 		}
 
 	}

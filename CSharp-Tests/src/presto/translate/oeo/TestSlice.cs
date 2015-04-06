@@ -11,19 +11,19 @@ namespace presto.translate.oeo
 		[Test]
 		public void testSliceList()
 		{
-			compareResourceOEO("slice/sliceList.o");
+			compareResourceOEO("slice/sliceList.poc");
 		}
 
 		[Test]
 		public void testSliceRange()
 		{
-			compareResourceOEO("slice/sliceRange.o");
+			compareResourceOEO("slice/sliceRange.poc");
 		}
 
 		[Test]
 		public void testSliceText()
 		{
-			compareResourceOEO("slice/sliceText.o");
+			compareResourceOEO("slice/sliceText.poc");
 		}
 
 	}

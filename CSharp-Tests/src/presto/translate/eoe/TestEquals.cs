@@ -11,187 +11,187 @@ namespace presto.translate.eoe
 		[Test]
 		public void testEqBoolean()
 		{
-			compareResourceEOE("equals/eqBoolean.e");
+			compareResourceEOE("equals/eqBoolean.pec");
 		}
 
 		[Test]
 		public void testEqCharacter()
 		{
-			compareResourceEOE("equals/eqCharacter.e");
+			compareResourceEOE("equals/eqCharacter.pec");
 		}
 
 		[Test]
 		public void testEqDate()
 		{
-			compareResourceEOE("equals/eqDate.e");
+			compareResourceEOE("equals/eqDate.pec");
 		}
 
 		[Test]
 		public void testEqDateTime()
 		{
-			compareResourceEOE("equals/eqDateTime.e");
+			compareResourceEOE("equals/eqDateTime.pec");
 		}
 
 		[Test]
 		public void testEqDecimal()
 		{
-			compareResourceEOE("equals/eqDecimal.e");
+			compareResourceEOE("equals/eqDecimal.pec");
 		}
 
 		[Test]
 		public void testEqDict()
 		{
-			compareResourceEOE("equals/eqDict.e");
+			compareResourceEOE("equals/eqDict.pec");
 		}
 
 		[Test]
 		public void testEqInteger()
 		{
-			compareResourceEOE("equals/eqInteger.e");
+			compareResourceEOE("equals/eqInteger.pec");
 		}
 
 		[Test]
 		public void testEqList()
 		{
-			compareResourceEOE("equals/eqList.e");
+			compareResourceEOE("equals/eqList.pec");
 		}
 
 		[Test]
 		public void testEqPeriod()
 		{
-			compareResourceEOE("equals/eqPeriod.e");
+			compareResourceEOE("equals/eqPeriod.pec");
 		}
 
 		[Test]
 		public void testEqRange()
 		{
-			compareResourceEOE("equals/eqRange.e");
+			compareResourceEOE("equals/eqRange.pec");
 		}
 
 		[Test]
 		public void testEqSet()
 		{
-			compareResourceEOE("equals/eqSet.e");
+			compareResourceEOE("equals/eqSet.pec");
 		}
 
 		[Test]
 		public void testEqText()
 		{
-			compareResourceEOE("equals/eqText.e");
+			compareResourceEOE("equals/eqText.pec");
 		}
 
 		[Test]
 		public void testEqTime()
 		{
-			compareResourceEOE("equals/eqTime.e");
+			compareResourceEOE("equals/eqTime.pec");
 		}
 
 		[Test]
 		public void testIsBoolean()
 		{
-			compareResourceEOE("equals/isBoolean.e");
+			compareResourceEOE("equals/isBoolean.pec");
 		}
 
 		[Test]
 		public void testIsInstance()
 		{
-			compareResourceEOE("equals/isInstance.e");
+			compareResourceEOE("equals/isInstance.pec");
 		}
 
 		[Test]
 		public void testIsNotBoolean()
 		{
-			compareResourceEOE("equals/isNotBoolean.e");
+			compareResourceEOE("equals/isNotBoolean.pec");
 		}
 
 		[Test]
 		public void testIsNotInstance()
 		{
-			compareResourceEOE("equals/isNotInstance.e");
+			compareResourceEOE("equals/isNotInstance.pec");
 		}
 
 		[Test]
 		public void testNeqBoolean()
 		{
-			compareResourceEOE("equals/neqBoolean.e");
+			compareResourceEOE("equals/neqBoolean.pec");
 		}
 
 		[Test]
 		public void testNeqCharacter()
 		{
-			compareResourceEOE("equals/neqCharacter.e");
+			compareResourceEOE("equals/neqCharacter.pec");
 		}
 
 		[Test]
 		public void testNeqDate()
 		{
-			compareResourceEOE("equals/neqDate.e");
+			compareResourceEOE("equals/neqDate.pec");
 		}
 
 		[Test]
 		public void testNeqDateTime()
 		{
-			compareResourceEOE("equals/neqDateTime.e");
+			compareResourceEOE("equals/neqDateTime.pec");
 		}
 
 		[Test]
 		public void testNeqDecimal()
 		{
-			compareResourceEOE("equals/neqDecimal.e");
+			compareResourceEOE("equals/neqDecimal.pec");
 		}
 
 		[Test]
 		public void testNeqDict()
 		{
-			compareResourceEOE("equals/neqDict.e");
+			compareResourceEOE("equals/neqDict.pec");
 		}
 
 		[Test]
 		public void testNeqInteger()
 		{
-			compareResourceEOE("equals/neqInteger.e");
+			compareResourceEOE("equals/neqInteger.pec");
 		}
 
 		[Test]
 		public void testNeqList()
 		{
-			compareResourceEOE("equals/neqList.e");
+			compareResourceEOE("equals/neqList.pec");
 		}
 
 		[Test]
 		public void testNeqPeriod()
 		{
-			compareResourceEOE("equals/neqPeriod.e");
+			compareResourceEOE("equals/neqPeriod.pec");
 		}
 
 		[Test]
 		public void testNeqRange()
 		{
-			compareResourceEOE("equals/neqRange.e");
+			compareResourceEOE("equals/neqRange.pec");
 		}
 
 		[Test]
 		public void testNeqSet()
 		{
-			compareResourceEOE("equals/neqSet.e");
+			compareResourceEOE("equals/neqSet.pec");
 		}
 
 		[Test]
 		public void testNeqText()
 		{
-			compareResourceEOE("equals/neqText.e");
+			compareResourceEOE("equals/neqText.pec");
 		}
 
 		[Test]
 		public void testNeqTime()
 		{
-			compareResourceEOE("equals/neqTime.e");
+			compareResourceEOE("equals/neqTime.pec");
 		}
 
 		[Test]
 		public void testReqText()
 		{
-			compareResourceEOE("equals/reqText.e");
+			compareResourceEOE("equals/reqText.pec");
 		}
 
 	}

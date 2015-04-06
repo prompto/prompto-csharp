@@ -24,85 +24,85 @@ namespace presto.runtime.o
 		[Test]
 		public void testGtCharacter()
 		{
-			CheckOutput("greater/gtCharacter.o");
+			CheckOutput("greater/gtCharacter.poc");
 		}
 
 		[Test]
 		public void testGtDate()
 		{
-			CheckOutput("greater/gtDate.o");
+			CheckOutput("greater/gtDate.poc");
 		}
 
 		[Test]
 		public void testGtDateTime()
 		{
-			CheckOutput("greater/gtDateTime.o");
+			CheckOutput("greater/gtDateTime.poc");
 		}
 
 		[Test]
 		public void testGtDecimal()
 		{
-			CheckOutput("greater/gtDecimal.o");
+			CheckOutput("greater/gtDecimal.poc");
 		}
 
 		[Test]
 		public void testGteCharacter()
 		{
-			CheckOutput("greater/gteCharacter.o");
+			CheckOutput("greater/gteCharacter.poc");
 		}
 
 		[Test]
 		public void testGteDate()
 		{
-			CheckOutput("greater/gteDate.o");
+			CheckOutput("greater/gteDate.poc");
 		}
 
 		[Test]
 		public void testGteDateTime()
 		{
-			CheckOutput("greater/gteDateTime.o");
+			CheckOutput("greater/gteDateTime.poc");
 		}
 
 		[Test]
 		public void testGteDecimal()
 		{
-			CheckOutput("greater/gteDecimal.o");
+			CheckOutput("greater/gteDecimal.poc");
 		}
 
 		[Test]
 		public void testGteInteger()
 		{
-			CheckOutput("greater/gteInteger.o");
+			CheckOutput("greater/gteInteger.poc");
 		}
 
 		[Test]
 		public void testGteText()
 		{
-			CheckOutput("greater/gteText.o");
+			CheckOutput("greater/gteText.poc");
 		}
 
 		[Test]
 		public void testGteTime()
 		{
-			CheckOutput("greater/gteTime.o");
+			CheckOutput("greater/gteTime.poc");
 		}
 
 		[Test]
 		public void testGtInteger()
 		{
-			CheckOutput("greater/gtInteger.o");
+			CheckOutput("greater/gtInteger.poc");
 		}
 
 		[Test]
 		public void testGtText()
 		{
-			CheckOutput("greater/gtText.o");
+			CheckOutput("greater/gtText.poc");
 		}
 
 		[Test]
 		public void testGtTime()
 		{
-			CheckOutput("greater/gtTime.o");
+			CheckOutput("greater/gtTime.poc");
 		}
 
 	}

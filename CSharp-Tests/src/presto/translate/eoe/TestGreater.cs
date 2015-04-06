@@ -11,85 +11,85 @@ namespace presto.translate.eoe
 		[Test]
 		public void testGtCharacter()
 		{
-			compareResourceEOE("greater/gtCharacter.e");
+			compareResourceEOE("greater/gtCharacter.pec");
 		}
 
 		[Test]
 		public void testGtDate()
 		{
-			compareResourceEOE("greater/gtDate.e");
+			compareResourceEOE("greater/gtDate.pec");
 		}
 
 		[Test]
 		public void testGtDateTime()
 		{
-			compareResourceEOE("greater/gtDateTime.e");
+			compareResourceEOE("greater/gtDateTime.pec");
 		}
 
 		[Test]
 		public void testGtDecimal()
 		{
-			compareResourceEOE("greater/gtDecimal.e");
+			compareResourceEOE("greater/gtDecimal.pec");
 		}
 
 		[Test]
 		public void testGteCharacter()
 		{
-			compareResourceEOE("greater/gteCharacter.e");
+			compareResourceEOE("greater/gteCharacter.pec");
 		}
 
 		[Test]
 		public void testGteDate()
 		{
-			compareResourceEOE("greater/gteDate.e");
+			compareResourceEOE("greater/gteDate.pec");
 		}
 
 		[Test]
 		public void testGteDateTime()
 		{
-			compareResourceEOE("greater/gteDateTime.e");
+			compareResourceEOE("greater/gteDateTime.pec");
 		}
 
 		[Test]
 		public void testGteDecimal()
 		{
-			compareResourceEOE("greater/gteDecimal.e");
+			compareResourceEOE("greater/gteDecimal.pec");
 		}
 
 		[Test]
 		public void testGteInteger()
 		{
-			compareResourceEOE("greater/gteInteger.e");
+			compareResourceEOE("greater/gteInteger.pec");
 		}
 
 		[Test]
 		public void testGteText()
 		{
-			compareResourceEOE("greater/gteText.e");
+			compareResourceEOE("greater/gteText.pec");
 		}
 
 		[Test]
 		public void testGteTime()
 		{
-			compareResourceEOE("greater/gteTime.e");
+			compareResourceEOE("greater/gteTime.pec");
 		}
 
 		[Test]
 		public void testGtInteger()
 		{
-			compareResourceEOE("greater/gtInteger.e");
+			compareResourceEOE("greater/gtInteger.pec");
 		}
 
 		[Test]
 		public void testGtText()
 		{
-			compareResourceEOE("greater/gtText.e");
+			compareResourceEOE("greater/gtText.pec");
 		}
 
 		[Test]
 		public void testGtTime()
 		{
-			compareResourceEOE("greater/gtTime.e");
+			compareResourceEOE("greater/gtTime.pec");
 		}
 
 	}

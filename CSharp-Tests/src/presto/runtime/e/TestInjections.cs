@@ -24,7 +24,7 @@ namespace presto.runtime.e
 		[Test]
 		public void testExpressionInjection()
 		{
-			CheckOutput("injections/expressionInjection.e");
+			CheckOutput("injections/expressionInjection.pec");
 		}
 
 	}

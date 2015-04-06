@@ -24,25 +24,25 @@ namespace presto.runtime.e
 		[Test]
 		public void testAutoDowncast()
 		{
-			CheckOutput("cast/autoDowncast.e");
+			CheckOutput("cast/autoDowncast.pec");
 		}
 
 		[Test]
 		public void testCastChild()
 		{
-			CheckOutput("cast/castChild.e");
+			CheckOutput("cast/castChild.pec");
 		}
 
 		[Test]
 		public void testIsAChild()
 		{
-			CheckOutput("cast/isAChild.e");
+			CheckOutput("cast/isAChild.pec");
 		}
 
 		[Test]
 		public void testIsAText()
 		{
-			CheckOutput("cast/isAText.e");
+			CheckOutput("cast/isAText.pec");
 		}
 
 	}

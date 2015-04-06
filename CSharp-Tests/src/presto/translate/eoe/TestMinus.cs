@@ -11,19 +11,19 @@ namespace presto.translate.eoe
 		[Test]
 		public void testMinusDecimal()
 		{
-			compareResourceEOE("minus/minusDecimal.e");
+			compareResourceEOE("minus/minusDecimal.pec");
 		}
 
 		[Test]
 		public void testMinusInteger()
 		{
-			compareResourceEOE("minus/minusInteger.e");
+			compareResourceEOE("minus/minusInteger.pec");
 		}
 
 		[Test]
 		public void testMinusPeriod()
 		{
-			compareResourceEOE("minus/minusPeriod.e");
+			compareResourceEOE("minus/minusPeriod.pec");
 		}
 
 	}

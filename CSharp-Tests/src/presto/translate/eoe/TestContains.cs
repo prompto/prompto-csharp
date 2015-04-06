@@ -11,151 +11,151 @@ namespace presto.translate.eoe
 		[Test]
 		public void testContainsAllList()
 		{
-			compareResourceEOE("contains/containsAllList.e");
+			compareResourceEOE("contains/containsAllList.pec");
 		}
 
 		[Test]
 		public void testContainsAllSet()
 		{
-			compareResourceEOE("contains/containsAllSet.e");
+			compareResourceEOE("contains/containsAllSet.pec");
 		}
 
 		[Test]
 		public void testContainsAllText()
 		{
-			compareResourceEOE("contains/containsAllText.e");
+			compareResourceEOE("contains/containsAllText.pec");
 		}
 
 		[Test]
 		public void testContainsAllTuple()
 		{
-			compareResourceEOE("contains/containsAllTuple.e");
+			compareResourceEOE("contains/containsAllTuple.pec");
 		}
 
 		[Test]
 		public void testContainsAnyList()
 		{
-			compareResourceEOE("contains/containsAnyList.e");
+			compareResourceEOE("contains/containsAnyList.pec");
 		}
 
 		[Test]
 		public void testContainsAnySet()
 		{
-			compareResourceEOE("contains/containsAnySet.e");
+			compareResourceEOE("contains/containsAnySet.pec");
 		}
 
 		[Test]
 		public void testContainsAnyText()
 		{
-			compareResourceEOE("contains/containsAnyText.e");
+			compareResourceEOE("contains/containsAnyText.pec");
 		}
 
 		[Test]
 		public void testContainsAnyTuple()
 		{
-			compareResourceEOE("contains/containsAnyTuple.e");
+			compareResourceEOE("contains/containsAnyTuple.pec");
 		}
 
 		[Test]
 		public void testInCharacterRange()
 		{
-			compareResourceEOE("contains/inCharacterRange.e");
+			compareResourceEOE("contains/inCharacterRange.pec");
 		}
 
 		[Test]
 		public void testInDateRange()
 		{
-			compareResourceEOE("contains/inDateRange.e");
+			compareResourceEOE("contains/inDateRange.pec");
 		}
 
 		[Test]
 		public void testInDict()
 		{
-			compareResourceEOE("contains/inDict.e");
+			compareResourceEOE("contains/inDict.pec");
 		}
 
 		[Test]
 		public void testInIntegerRange()
 		{
-			compareResourceEOE("contains/inIntegerRange.e");
+			compareResourceEOE("contains/inIntegerRange.pec");
 		}
 
 		[Test]
 		public void testInList()
 		{
-			compareResourceEOE("contains/inList.e");
+			compareResourceEOE("contains/inList.pec");
 		}
 
 		[Test]
 		public void testInSet()
 		{
-			compareResourceEOE("contains/inSet.e");
+			compareResourceEOE("contains/inSet.pec");
 		}
 
 		[Test]
 		public void testInText()
 		{
-			compareResourceEOE("contains/inText.e");
+			compareResourceEOE("contains/inText.pec");
 		}
 
 		[Test]
 		public void testInTimeRange()
 		{
-			compareResourceEOE("contains/inTimeRange.e");
+			compareResourceEOE("contains/inTimeRange.pec");
 		}
 
 		[Test]
 		public void testInTuple()
 		{
-			compareResourceEOE("contains/inTuple.e");
+			compareResourceEOE("contains/inTuple.pec");
 		}
 
 		[Test]
 		public void testNinCharacterRange()
 		{
-			compareResourceEOE("contains/ninCharacterRange.e");
+			compareResourceEOE("contains/ninCharacterRange.pec");
 		}
 
 		[Test]
 		public void testNinDateRange()
 		{
-			compareResourceEOE("contains/ninDateRange.e");
+			compareResourceEOE("contains/ninDateRange.pec");
 		}
 
 		[Test]
 		public void testNinDict()
 		{
-			compareResourceEOE("contains/ninDict.e");
+			compareResourceEOE("contains/ninDict.pec");
 		}
 
 		[Test]
 		public void testNinIntegerRange()
 		{
-			compareResourceEOE("contains/ninIntegerRange.e");
+			compareResourceEOE("contains/ninIntegerRange.pec");
 		}
 
 		[Test]
 		public void testNinList()
 		{
-			compareResourceEOE("contains/ninList.e");
+			compareResourceEOE("contains/ninList.pec");
 		}
 
 		[Test]
 		public void testNinSet()
 		{
-			compareResourceEOE("contains/ninSet.e");
+			compareResourceEOE("contains/ninSet.pec");
 		}
 
 		[Test]
 		public void testNinText()
 		{
-			compareResourceEOE("contains/ninText.e");
+			compareResourceEOE("contains/ninText.pec");
 		}
 
 		[Test]
 		public void testNinTimeRange()
 		{
-			compareResourceEOE("contains/ninTimeRange.e");
+			compareResourceEOE("contains/ninTimeRange.pec");
 		}
 
 	}

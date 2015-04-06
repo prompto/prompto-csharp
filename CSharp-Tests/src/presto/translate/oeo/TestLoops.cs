@@ -11,169 +11,169 @@ namespace presto.translate.oeo
 		[Test]
 		public void testDoWhile()
 		{
-			compareResourceOEO("loops/doWhile.o");
+			compareResourceOEO("loops/doWhile.poc");
 		}
 
 		[Test]
 		public void testForEachCharacterRange()
 		{
-			compareResourceOEO("loops/forEachCharacterRange.o");
+			compareResourceOEO("loops/forEachCharacterRange.poc");
 		}
 
 		[Test]
 		public void testForEachCharacterRangeWithIndex()
 		{
-			compareResourceOEO("loops/forEachCharacterRangeWithIndex.o");
+			compareResourceOEO("loops/forEachCharacterRangeWithIndex.poc");
 		}
 
 		[Test]
 		public void testForEachDateRange()
 		{
-			compareResourceOEO("loops/forEachDateRange.o");
+			compareResourceOEO("loops/forEachDateRange.poc");
 		}
 
 		[Test]
 		public void testForEachDateRangeWithIndex()
 		{
-			compareResourceOEO("loops/forEachDateRangeWithIndex.o");
+			compareResourceOEO("loops/forEachDateRangeWithIndex.poc");
 		}
 
 		[Test]
 		public void testForEachDictionaryItem()
 		{
-			compareResourceOEO("loops/forEachDictionaryItem.o");
+			compareResourceOEO("loops/forEachDictionaryItem.poc");
 		}
 
 		[Test]
 		public void testForEachDictionaryItemWithIndex()
 		{
-			compareResourceOEO("loops/forEachDictionaryItemWithIndex.o");
+			compareResourceOEO("loops/forEachDictionaryItemWithIndex.poc");
 		}
 
 		[Test]
 		public void testForEachDictionaryKey()
 		{
-			compareResourceOEO("loops/forEachDictionaryKey.o");
+			compareResourceOEO("loops/forEachDictionaryKey.poc");
 		}
 
 		[Test]
 		public void testForEachDictionaryKeyWithIndex()
 		{
-			compareResourceOEO("loops/forEachDictionaryKeyWithIndex.o");
+			compareResourceOEO("loops/forEachDictionaryKeyWithIndex.poc");
 		}
 
 		[Test]
 		public void testForEachDictionaryValue()
 		{
-			compareResourceOEO("loops/forEachDictionaryValue.o");
+			compareResourceOEO("loops/forEachDictionaryValue.poc");
 		}
 
 		[Test]
 		public void testForEachDictionaryValueWithIndex()
 		{
-			compareResourceOEO("loops/forEachDictionaryValueWithIndex.o");
+			compareResourceOEO("loops/forEachDictionaryValueWithIndex.poc");
 		}
 
 		[Test]
 		public void testForEachInstanceList()
 		{
-			compareResourceOEO("loops/forEachInstanceList.o");
+			compareResourceOEO("loops/forEachInstanceList.poc");
 		}
 
 		[Test]
 		public void testForEachInstanceListWithIndex()
 		{
-			compareResourceOEO("loops/forEachInstanceListWithIndex.o");
+			compareResourceOEO("loops/forEachInstanceListWithIndex.poc");
 		}
 
 		[Test]
 		public void testForEachInstanceSet()
 		{
-			compareResourceOEO("loops/forEachInstanceSet.o");
+			compareResourceOEO("loops/forEachInstanceSet.poc");
 		}
 
 		[Test]
 		public void testForEachInstanceSetWithIndex()
 		{
-			compareResourceOEO("loops/forEachInstanceSetWithIndex.o");
+			compareResourceOEO("loops/forEachInstanceSetWithIndex.poc");
 		}
 
 		[Test]
 		public void testForEachIntegerList()
 		{
-			compareResourceOEO("loops/forEachIntegerList.o");
+			compareResourceOEO("loops/forEachIntegerList.poc");
 		}
 
 		[Test]
 		public void testForEachIntegerListWithIndex()
 		{
-			compareResourceOEO("loops/forEachIntegerListWithIndex.o");
+			compareResourceOEO("loops/forEachIntegerListWithIndex.poc");
 		}
 
 		[Test]
 		public void testForEachIntegerRange()
 		{
-			compareResourceOEO("loops/forEachIntegerRange.o");
+			compareResourceOEO("loops/forEachIntegerRange.poc");
 		}
 
 		[Test]
 		public void testForEachIntegerRangeWithIndex()
 		{
-			compareResourceOEO("loops/forEachIntegerRangeWithIndex.o");
+			compareResourceOEO("loops/forEachIntegerRangeWithIndex.poc");
 		}
 
 		[Test]
 		public void testForEachIntegerSet()
 		{
-			compareResourceOEO("loops/forEachIntegerSet.o");
+			compareResourceOEO("loops/forEachIntegerSet.poc");
 		}
 
 		[Test]
 		public void testForEachIntegerSetWithIndex()
 		{
-			compareResourceOEO("loops/forEachIntegerSetWithIndex.o");
+			compareResourceOEO("loops/forEachIntegerSetWithIndex.poc");
 		}
 
 		[Test]
 		public void testForEachTimeRange()
 		{
-			compareResourceOEO("loops/forEachTimeRange.o");
+			compareResourceOEO("loops/forEachTimeRange.poc");
 		}
 
 		[Test]
 		public void testForEachTimeRangeWithIndex()
 		{
-			compareResourceOEO("loops/forEachTimeRangeWithIndex.o");
+			compareResourceOEO("loops/forEachTimeRangeWithIndex.poc");
 		}
 
 		[Test]
 		public void testForEachTupleList()
 		{
-			compareResourceOEO("loops/forEachTupleList.o");
+			compareResourceOEO("loops/forEachTupleList.poc");
 		}
 
 		[Test]
 		public void testForEachTupleListWithIndex()
 		{
-			compareResourceOEO("loops/forEachTupleListWithIndex.o");
+			compareResourceOEO("loops/forEachTupleListWithIndex.poc");
 		}
 
 		[Test]
 		public void testForEachTupleSet()
 		{
-			compareResourceOEO("loops/forEachTupleSet.o");
+			compareResourceOEO("loops/forEachTupleSet.poc");
 		}
 
 		[Test]
 		public void testForEachTupleSetWithIndex()
 		{
-			compareResourceOEO("loops/forEachTupleSetWithIndex.o");
+			compareResourceOEO("loops/forEachTupleSetWithIndex.poc");
 		}
 
 		[Test]
 		public void testWhile()
 		{
-			compareResourceOEO("loops/while.o");
+			compareResourceOEO("loops/while.poc");
 		}
 
 	}

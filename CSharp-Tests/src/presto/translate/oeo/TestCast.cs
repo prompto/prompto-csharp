@@ -11,25 +11,25 @@ namespace presto.translate.oeo
 		[Test]
 		public void testAutoDowncast()
 		{
-			compareResourceOEO("cast/autoDowncast.o");
+			compareResourceOEO("cast/autoDowncast.poc");
 		}
 
 		[Test]
 		public void testCastChild()
 		{
-			compareResourceOEO("cast/castChild.o");
+			compareResourceOEO("cast/castChild.poc");
 		}
 
 		[Test]
 		public void testIsAChild()
 		{
-			compareResourceOEO("cast/isAChild.o");
+			compareResourceOEO("cast/isAChild.poc");
 		}
 
 		[Test]
 		public void testIsAText()
 		{
-			compareResourceOEO("cast/isAText.o");
+			compareResourceOEO("cast/isAText.poc");
 		}
 
 	}

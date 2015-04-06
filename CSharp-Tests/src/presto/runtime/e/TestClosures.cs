@@ -24,19 +24,19 @@ namespace presto.runtime.e
 		[Test]
 		public void testGlobalClosureNoArg()
 		{
-			CheckOutput("closures/globalClosureNoArg.e");
+			CheckOutput("closures/globalClosureNoArg.pec");
 		}
 
 		[Test]
 		public void testGlobalClosureWithArg()
 		{
-			CheckOutput("closures/globalClosureWithArg.e");
+			CheckOutput("closures/globalClosureWithArg.pec");
 		}
 
 		[Test]
 		public void testInstanceClosureNoArg()
 		{
-			CheckOutput("closures/instanceClosureNoArg.e");
+			CheckOutput("closures/instanceClosureNoArg.pec");
 		}
 
 	}

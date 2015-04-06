@@ -24,169 +24,169 @@ namespace presto.runtime.o
 		[Test]
 		public void testDoWhile()
 		{
-			CheckOutput("loops/doWhile.o");
+			CheckOutput("loops/doWhile.poc");
 		}
 
 		[Test]
 		public void testForEachCharacterRange()
 		{
-			CheckOutput("loops/forEachCharacterRange.o");
+			CheckOutput("loops/forEachCharacterRange.poc");
 		}
 
 		[Test]
 		public void testForEachCharacterRangeWithIndex()
 		{
-			CheckOutput("loops/forEachCharacterRangeWithIndex.o");
+			CheckOutput("loops/forEachCharacterRangeWithIndex.poc");
 		}
 
 		[Test]
 		public void testForEachDateRange()
 		{
-			CheckOutput("loops/forEachDateRange.o");
+			CheckOutput("loops/forEachDateRange.poc");
 		}
 
 		[Test]
 		public void testForEachDateRangeWithIndex()
 		{
-			CheckOutput("loops/forEachDateRangeWithIndex.o");
+			CheckOutput("loops/forEachDateRangeWithIndex.poc");
 		}
 
 		[Test]
 		public void testForEachDictionaryItem()
 		{
-			CheckOutput("loops/forEachDictionaryItem.o");
+			CheckOutput("loops/forEachDictionaryItem.poc");
 		}
 
 		[Test]
 		public void testForEachDictionaryItemWithIndex()
 		{
-			CheckOutput("loops/forEachDictionaryItemWithIndex.o");
+			CheckOutput("loops/forEachDictionaryItemWithIndex.poc");
 		}
 
 		[Test]
 		public void testForEachDictionaryKey()
 		{
-			CheckOutput("loops/forEachDictionaryKey.o");
+			CheckOutput("loops/forEachDictionaryKey.poc");
 		}
 
 		[Test]
 		public void testForEachDictionaryKeyWithIndex()
 		{
-			CheckOutput("loops/forEachDictionaryKeyWithIndex.o");
+			CheckOutput("loops/forEachDictionaryKeyWithIndex.poc");
 		}
 
 		[Test]
 		public void testForEachDictionaryValue()
 		{
-			CheckOutput("loops/forEachDictionaryValue.o");
+			CheckOutput("loops/forEachDictionaryValue.poc");
 		}
 
 		[Test]
 		public void testForEachDictionaryValueWithIndex()
 		{
-			CheckOutput("loops/forEachDictionaryValueWithIndex.o");
+			CheckOutput("loops/forEachDictionaryValueWithIndex.poc");
 		}
 
 		[Test]
 		public void testForEachInstanceList()
 		{
-			CheckOutput("loops/forEachInstanceList.o");
+			CheckOutput("loops/forEachInstanceList.poc");
 		}
 
 		[Test]
 		public void testForEachInstanceListWithIndex()
 		{
-			CheckOutput("loops/forEachInstanceListWithIndex.o");
+			CheckOutput("loops/forEachInstanceListWithIndex.poc");
 		}
 
 		[Test]
 		public void testForEachInstanceSet()
 		{
-			CheckOutput("loops/forEachInstanceSet.o");
+			CheckOutput("loops/forEachInstanceSet.poc");
 		}
 
 		[Test]
 		public void testForEachInstanceSetWithIndex()
 		{
-			CheckOutput("loops/forEachInstanceSetWithIndex.o");
+			CheckOutput("loops/forEachInstanceSetWithIndex.poc");
 		}
 
 		[Test]
 		public void testForEachIntegerList()
 		{
-			CheckOutput("loops/forEachIntegerList.o");
+			CheckOutput("loops/forEachIntegerList.poc");
 		}
 
 		[Test]
 		public void testForEachIntegerListWithIndex()
 		{
-			CheckOutput("loops/forEachIntegerListWithIndex.o");
+			CheckOutput("loops/forEachIntegerListWithIndex.poc");
 		}
 
 		[Test]
 		public void testForEachIntegerRange()
 		{
-			CheckOutput("loops/forEachIntegerRange.o");
+			CheckOutput("loops/forEachIntegerRange.poc");
 		}
 
 		[Test]
 		public void testForEachIntegerRangeWithIndex()
 		{
-			CheckOutput("loops/forEachIntegerRangeWithIndex.o");
+			CheckOutput("loops/forEachIntegerRangeWithIndex.poc");
 		}
 
 		[Test]
 		public void testForEachIntegerSet()
 		{
-			CheckOutput("loops/forEachIntegerSet.o");
+			CheckOutput("loops/forEachIntegerSet.poc");
 		}
 
 		[Test]
 		public void testForEachIntegerSetWithIndex()
 		{
-			CheckOutput("loops/forEachIntegerSetWithIndex.o");
+			CheckOutput("loops/forEachIntegerSetWithIndex.poc");
 		}
 
 		[Test]
 		public void testForEachTimeRange()
 		{
-			CheckOutput("loops/forEachTimeRange.o");
+			CheckOutput("loops/forEachTimeRange.poc");
 		}
 
 		[Test]
 		public void testForEachTimeRangeWithIndex()
 		{
-			CheckOutput("loops/forEachTimeRangeWithIndex.o");
+			CheckOutput("loops/forEachTimeRangeWithIndex.poc");
 		}
 
 		[Test]
 		public void testForEachTupleList()
 		{
-			CheckOutput("loops/forEachTupleList.o");
+			CheckOutput("loops/forEachTupleList.poc");
 		}
 
 		[Test]
 		public void testForEachTupleListWithIndex()
 		{
-			CheckOutput("loops/forEachTupleListWithIndex.o");
+			CheckOutput("loops/forEachTupleListWithIndex.poc");
 		}
 
 		[Test]
 		public void testForEachTupleSet()
 		{
-			CheckOutput("loops/forEachTupleSet.o");
+			CheckOutput("loops/forEachTupleSet.poc");
 		}
 
 		[Test]
 		public void testForEachTupleSetWithIndex()
 		{
-			CheckOutput("loops/forEachTupleSetWithIndex.o");
+			CheckOutput("loops/forEachTupleSetWithIndex.poc");
 		}
 
 		[Test]
 		public void testWhile()
 		{
-			CheckOutput("loops/while.o");
+			CheckOutput("loops/while.poc");
 		}
 
 	}

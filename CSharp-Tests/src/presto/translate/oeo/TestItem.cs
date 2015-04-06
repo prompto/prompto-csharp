@@ -11,31 +11,31 @@ namespace presto.translate.oeo
 		[Test]
 		public void testItemDict()
 		{
-			compareResourceOEO("item/itemDict.o");
+			compareResourceOEO("item/itemDict.poc");
 		}
 
 		[Test]
 		public void testItemList()
 		{
-			compareResourceOEO("item/itemList.o");
+			compareResourceOEO("item/itemList.poc");
 		}
 
 		[Test]
 		public void testItemRange()
 		{
-			compareResourceOEO("item/itemRange.o");
+			compareResourceOEO("item/itemRange.poc");
 		}
 
 		[Test]
 		public void testItemSet()
 		{
-			compareResourceOEO("item/itemSet.o");
+			compareResourceOEO("item/itemSet.poc");
 		}
 
 		[Test]
 		public void testItemText()
 		{
-			compareResourceOEO("item/itemText.o");
+			compareResourceOEO("item/itemText.poc");
 		}
 
 	}
