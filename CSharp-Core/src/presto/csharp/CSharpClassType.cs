@@ -5,6 +5,7 @@ using DateTime = presto.value.DateTime;
 using Boolean = System.Boolean;
 using presto.error;
 using presto.type;
+using presto.declaration;
 
 namespace presto.csharp
 {
@@ -59,8 +60,8 @@ namespace presto.csharp
                 return result;
         }
 
-        override
-        public IValue convertSystemValueToPrestoValue(Object value)
+    
+		public IValue convertSystemValueToPrestoValue(Object value, IType returnType)
         {
             if(value is IValue)
                 return (IValue)value;
@@ -68,6 +69,8 @@ namespace presto.csharp
             csharpToTypeMap.TryGetValue(klass, out result);
             if (result != null)
                 return result.convertSystemValueToPrestoValue(value);
+			else if(returnType==AnyType.Instance)
+				return new NativeInstance(AnyNativeCategoryDeclaration.Instance, value);
             else
                 throw new InternalError("Unable to convert:" + value.GetType().Name);
         }

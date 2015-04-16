@@ -132,7 +132,7 @@ namespace presto.grammar
         {
             try
             {
-                IExpression method = new ConstructorExpression(new CategoryType(name), null);
+                IExpression method = new ConstructorExpression(new CategoryType(name), false, null);
                 method.check(context);
                 return method;
             }

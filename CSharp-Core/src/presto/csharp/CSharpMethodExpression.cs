@@ -66,7 +66,9 @@ namespace presto.csharp
     	public Object interpret (Context context)
 		{
 			Object instance = parent.interpret (context);
-			MethodInfo method = findMethod (context);
+			if (instance is NativeInstance)
+				instance = ((NativeInstance)instance).getInstance ();
+			MethodInfo method = findMethod (context, instance);
 			Object[] args = evaluate_arguments (context, method);
 			Type klass = instance is Type ? (Type)instance : instance.GetType (); 
 			if (instance == (Object)klass)
@@ -124,6 +126,19 @@ namespace presto.csharp
 					klass = ((NativeCategoryDeclaration)named).getMappedClass ();
 			} else
 				klass = type.ToSystemType ();
+			return findMethod (context, klass);
+		}
+
+		public MethodInfo findMethod(Context context, Object instance) 
+		{
+			if(instance is Type)
+				return findMethod(context, (Type)instance);
+			else
+				return findMethod(context, instance.GetType());
+		}
+
+		public MethodInfo findMethod (Context context, Type klass)
+		{
 			if (klass == null)
 				return null;
 			MethodInfo[] methods = klass.GetMethods ();

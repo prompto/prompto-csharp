@@ -346,6 +346,7 @@ namespace presto.runtime
 					if(!(decl is ConcreteCategoryDeclaration))
 						throw new InternalError("No such singleton:" + type.getName());
 					value = new ConcreteInstance((ConcreteCategoryDeclaration)decl);
+					((IInstance)value).setMutable(true); // a singleton is protected by "with x do", so always mutable in that context
 					values[type.getName()] = value;
 				}
 				if(value is ConcreteInstance)

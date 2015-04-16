@@ -212,7 +212,6 @@
     <Compile Include="src\presto\grammar\MatchingExpressionConstraint.cs" />
     <Compile Include="src\presto\grammar\MatchingPatternConstraint.cs" />
     <Compile Include="src\presto\grammar\MemberInstance.cs" />
-    <Compile Include="src\presto\declaration\MemberMethodDeclaration.cs" />
     <Compile Include="src\presto\expression\MemberSelector.cs" />
     <Compile Include="src\presto\grammar\MethodArgument.cs" />
     <Compile Include="src\presto\statement\MethodCall.cs" />
@@ -418,6 +417,8 @@
     <Compile Include="src\presto\parser\SIndentingLexer.cs" />
     <Compile Include="src\presto\parser\SCleverParser.cs" />
     <Compile Include="src\presto\parser\SPrestoBuilder.cs" />
+    <Compile Include="src\presto\error\NotMutableError.cs" />
+    <Compile Include="src\presto\declaration\AnyNativeCategoryDeclaration.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Antlr4.Runtime">

@@ -18,6 +18,7 @@ namespace presto.value
 
         NativeCategoryDeclaration declaration;
         protected Object instance;
+		bool mutable = false;
 
         public NativeInstance(NativeCategoryDeclaration declaration)
 			: base(new CategoryType(declaration.getName()))
@@ -26,7 +27,26 @@ namespace presto.value
             this.instance = makeInstance();
         }
 
-        public Object getInstance()
+		public NativeInstance(NativeCategoryDeclaration declaration, Object instance)
+			: base(new CategoryType(declaration.getName()))
+		{
+			this.declaration = declaration;
+			this.instance = instance;
+		}
+
+		public bool setMutable(bool set)
+		{
+			bool result = mutable;
+			mutable = set;
+			return result;
+		}
+
+		public bool isMutable()
+		{
+			return mutable;
+		}
+
+       public Object getInstance()
         {
             return instance;
         }
@@ -53,7 +73,7 @@ namespace presto.value
         {
             Object value = getPropertyOrField(attrName);
             CSharpClassType ct = new CSharpClassType(value.GetType());
-            return ct.convertSystemValueToPrestoValue(value);
+            return ct.convertSystemValueToPrestoValue(value, null);
         }
 
         private Object getPropertyOrField(String attrName)

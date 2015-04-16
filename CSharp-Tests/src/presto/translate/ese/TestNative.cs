@@ -21,6 +21,12 @@ namespace presto.translate.ese
 		}
 
 		[Test]
+		public void testPrint()
+		{
+			compareResourceESE("native/print.pec");
+		}
+
+		[Test]
 		public void testReturn()
 		{
 			compareResourceESE("native/return.pec");

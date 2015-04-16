@@ -20,11 +20,6 @@ namespace presto.declaration
 		}
 
 
-		public void check(ConcreteCategoryDeclaration declaration, Context context) {
-			// TODO Auto-generated method stub
-
-		}	
-
 		protected override void toPDialect(CodeWriter writer) {
 			writer.append("def operator ");
 			writer.append(Enums.OperatorToString(oper));

@@ -46,7 +46,7 @@ namespace presto.parser.e {
             IArgument arg = new CategoryArgument(TextType.Instance, "value");
             arg.register(context);
             context.setValue("value", new presto.value.Text("test")); // StringLiteral trims enclosing quotes
-            Object result = statement.interpret(context);
+            Object result = statement.interpret(context, null);
             Assert.IsNull(result);
             Assert.AreEqual("test", Out.read());
         }

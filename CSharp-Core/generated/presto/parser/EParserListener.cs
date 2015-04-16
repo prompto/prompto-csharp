@@ -124,16 +124,6 @@ public interface IEParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitDerivedListItem([NotNull] EParser.DerivedListItemContext context);
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="EParser.member_method_declaration"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterMember_method_declaration([NotNull] EParser.Member_method_declarationContext context);
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="EParser.member_method_declaration"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitMember_method_declaration([NotNull] EParser.Member_method_declarationContext context);
-	/// <summary>
 	/// Enter a parse tree produced by <see cref="EParser.operator_method_declaration"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
@@ -2371,76 +2361,88 @@ public interface IEParserListener : IParseTreeListener {
 	void ExitAnyDictType([NotNull] EParser.AnyDictTypeContext context);
 	/// <summary>
 	/// Enter a parse tree produced by the <c>CategoryMethodListItem</c>
-	/// labeled alternative in <see cref="EParser.category_method_declaration_list"/>.
+	/// labeled alternative in <see cref="EParser.member_method_declaration_list"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void EnterCategoryMethodListItem([NotNull] EParser.CategoryMethodListItemContext context);
 	/// <summary>
 	/// Exit a parse tree produced by the <c>CategoryMethodListItem</c>
-	/// labeled alternative in <see cref="EParser.category_method_declaration_list"/>.
+	/// labeled alternative in <see cref="EParser.member_method_declaration_list"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void ExitCategoryMethodListItem([NotNull] EParser.CategoryMethodListItemContext context);
 	/// <summary>
 	/// Enter a parse tree produced by the <c>CategoryMethodList</c>
-	/// labeled alternative in <see cref="EParser.category_method_declaration_list"/>.
+	/// labeled alternative in <see cref="EParser.member_method_declaration_list"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void EnterCategoryMethodList([NotNull] EParser.CategoryMethodListContext context);
 	/// <summary>
 	/// Exit a parse tree produced by the <c>CategoryMethodList</c>
-	/// labeled alternative in <see cref="EParser.category_method_declaration_list"/>.
+	/// labeled alternative in <see cref="EParser.member_method_declaration_list"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void ExitCategoryMethodList([NotNull] EParser.CategoryMethodListContext context);
 	/// <summary>
-	/// Enter a parse tree produced by the <c>SetterMethod</c>
-	/// labeled alternative in <see cref="EParser.category_method_declaration"/>.
+	/// Enter a parse tree produced by the <c>SetterMemberMethod</c>
+	/// labeled alternative in <see cref="EParser.member_method_declaration"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterSetterMethod([NotNull] EParser.SetterMethodContext context);
+	void EnterSetterMemberMethod([NotNull] EParser.SetterMemberMethodContext context);
 	/// <summary>
-	/// Exit a parse tree produced by the <c>SetterMethod</c>
-	/// labeled alternative in <see cref="EParser.category_method_declaration"/>.
+	/// Exit a parse tree produced by the <c>SetterMemberMethod</c>
+	/// labeled alternative in <see cref="EParser.member_method_declaration"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitSetterMethod([NotNull] EParser.SetterMethodContext context);
+	void ExitSetterMemberMethod([NotNull] EParser.SetterMemberMethodContext context);
 	/// <summary>
-	/// Enter a parse tree produced by the <c>GetterMethod</c>
-	/// labeled alternative in <see cref="EParser.category_method_declaration"/>.
+	/// Enter a parse tree produced by the <c>GetterMemberMethod</c>
+	/// labeled alternative in <see cref="EParser.member_method_declaration"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterGetterMethod([NotNull] EParser.GetterMethodContext context);
+	void EnterGetterMemberMethod([NotNull] EParser.GetterMemberMethodContext context);
 	/// <summary>
-	/// Exit a parse tree produced by the <c>GetterMethod</c>
-	/// labeled alternative in <see cref="EParser.category_method_declaration"/>.
+	/// Exit a parse tree produced by the <c>GetterMemberMethod</c>
+	/// labeled alternative in <see cref="EParser.member_method_declaration"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitGetterMethod([NotNull] EParser.GetterMethodContext context);
+	void ExitGetterMemberMethod([NotNull] EParser.GetterMemberMethodContext context);
 	/// <summary>
-	/// Enter a parse tree produced by the <c>MemberMethod</c>
-	/// labeled alternative in <see cref="EParser.category_method_declaration"/>.
+	/// Enter a parse tree produced by the <c>ConcreteMemberMethod</c>
+	/// labeled alternative in <see cref="EParser.member_method_declaration"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterMemberMethod([NotNull] EParser.MemberMethodContext context);
+	void EnterConcreteMemberMethod([NotNull] EParser.ConcreteMemberMethodContext context);
 	/// <summary>
-	/// Exit a parse tree produced by the <c>MemberMethod</c>
-	/// labeled alternative in <see cref="EParser.category_method_declaration"/>.
+	/// Exit a parse tree produced by the <c>ConcreteMemberMethod</c>
+	/// labeled alternative in <see cref="EParser.member_method_declaration"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitMemberMethod([NotNull] EParser.MemberMethodContext context);
+	void ExitConcreteMemberMethod([NotNull] EParser.ConcreteMemberMethodContext context);
 	/// <summary>
-	/// Enter a parse tree produced by the <c>OperatorMethod</c>
-	/// labeled alternative in <see cref="EParser.category_method_declaration"/>.
+	/// Enter a parse tree produced by the <c>AbstractMemberMethod</c>
+	/// labeled alternative in <see cref="EParser.member_method_declaration"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterOperatorMethod([NotNull] EParser.OperatorMethodContext context);
+	void EnterAbstractMemberMethod([NotNull] EParser.AbstractMemberMethodContext context);
 	/// <summary>
-	/// Exit a parse tree produced by the <c>OperatorMethod</c>
-	/// labeled alternative in <see cref="EParser.category_method_declaration"/>.
+	/// Exit a parse tree produced by the <c>AbstractMemberMethod</c>
+	/// labeled alternative in <see cref="EParser.member_method_declaration"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitOperatorMethod([NotNull] EParser.OperatorMethodContext context);
+	void ExitAbstractMemberMethod([NotNull] EParser.AbstractMemberMethodContext context);
+	/// <summary>
+	/// Enter a parse tree produced by the <c>OperatorMemberMethod</c>
+	/// labeled alternative in <see cref="EParser.member_method_declaration"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterOperatorMemberMethod([NotNull] EParser.OperatorMemberMethodContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>OperatorMemberMethod</c>
+	/// labeled alternative in <see cref="EParser.member_method_declaration"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitOperatorMemberMethod([NotNull] EParser.OperatorMemberMethodContext context);
 	/// <summary>
 	/// Enter a parse tree produced by the <c>JavaCategoryMapping</c>
 	/// labeled alternative in <see cref="EParser.native_category_mapping"/>.

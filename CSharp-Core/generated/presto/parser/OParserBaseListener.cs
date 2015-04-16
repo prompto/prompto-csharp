@@ -166,18 +166,6 @@ public partial class OParserBaseListener : IOParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitCurlyCategoryMethodList([NotNull] OParser.CurlyCategoryMethodListContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="OParser.member_method_declaration"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void EnterMember_method_declaration([NotNull] OParser.Member_method_declarationContext context) { }
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="OParser.member_method_declaration"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void ExitMember_method_declaration([NotNull] OParser.Member_method_declarationContext context) { }
-	/// <summary>
 	/// Enter a parse tree produced by <see cref="OParser.operator_method_declaration"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
@@ -2458,53 +2446,65 @@ public partial class OParserBaseListener : IOParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitCategoryMethodList([NotNull] OParser.CategoryMethodListContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="OParser.SetterMethod"/>.
+	/// Enter a parse tree produced by <see cref="OParser.SetterMemberMethod"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void EnterSetterMethod([NotNull] OParser.SetterMethodContext context) { }
+	public virtual void EnterSetterMemberMethod([NotNull] OParser.SetterMemberMethodContext context) { }
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="OParser.SetterMethod"/>.
+	/// Exit a parse tree produced by <see cref="OParser.SetterMemberMethod"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void ExitSetterMethod([NotNull] OParser.SetterMethodContext context) { }
+	public virtual void ExitSetterMemberMethod([NotNull] OParser.SetterMemberMethodContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="OParser.GetterMethod"/>.
+	/// Enter a parse tree produced by <see cref="OParser.GetterMemberMethod"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void EnterGetterMethod([NotNull] OParser.GetterMethodContext context) { }
+	public virtual void EnterGetterMemberMethod([NotNull] OParser.GetterMemberMethodContext context) { }
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="OParser.GetterMethod"/>.
+	/// Exit a parse tree produced by <see cref="OParser.GetterMemberMethod"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void ExitGetterMethod([NotNull] OParser.GetterMethodContext context) { }
+	public virtual void ExitGetterMemberMethod([NotNull] OParser.GetterMemberMethodContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="OParser.MemberMethod"/>.
+	/// Enter a parse tree produced by <see cref="OParser.ConcreteMemberMethod"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void EnterMemberMethod([NotNull] OParser.MemberMethodContext context) { }
+	public virtual void EnterConcreteMemberMethod([NotNull] OParser.ConcreteMemberMethodContext context) { }
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="OParser.MemberMethod"/>.
+	/// Exit a parse tree produced by <see cref="OParser.ConcreteMemberMethod"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void ExitMemberMethod([NotNull] OParser.MemberMethodContext context) { }
+	public virtual void ExitConcreteMemberMethod([NotNull] OParser.ConcreteMemberMethodContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="OParser.OperatorMethod"/>.
+	/// Enter a parse tree produced by <see cref="OParser.AbstractMemberMethod"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void EnterOperatorMethod([NotNull] OParser.OperatorMethodContext context) { }
+	public virtual void EnterAbstractMemberMethod([NotNull] OParser.AbstractMemberMethodContext context) { }
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="OParser.OperatorMethod"/>.
+	/// Exit a parse tree produced by <see cref="OParser.AbstractMemberMethod"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void ExitOperatorMethod([NotNull] OParser.OperatorMethodContext context) { }
+	public virtual void ExitAbstractMemberMethod([NotNull] OParser.AbstractMemberMethodContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="OParser.OperatorMemberMethod"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterOperatorMemberMethod([NotNull] OParser.OperatorMemberMethodContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="OParser.OperatorMemberMethod"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitOperatorMemberMethod([NotNull] OParser.OperatorMemberMethodContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="OParser.JavaCategoryMapping"/>.
 	/// <para>The default implementation does nothing.</para>

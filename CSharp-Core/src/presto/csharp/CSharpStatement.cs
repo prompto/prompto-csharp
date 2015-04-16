@@ -20,7 +20,7 @@ namespace presto.csharp
             this.isReturn = isReturn;
         }
 
-		public IValue interpret(Context context)
+		public IValue interpret(Context context, IType returnType)
         {
             Object result = expression.interpret(context);
 			if(result==null) 
@@ -28,7 +28,7 @@ namespace presto.csharp
 			else {	
 				IType type = expression.check(context);
 				if (type is CSharpClassType)
-					return ((CSharpClassType)type).convertSystemValueToPrestoValue(result);
+					return ((CSharpClassType)type).convertSystemValueToPrestoValue(result, returnType);
 				else
 					// TODO warning or exception?
 					return VoidResult.Instance;

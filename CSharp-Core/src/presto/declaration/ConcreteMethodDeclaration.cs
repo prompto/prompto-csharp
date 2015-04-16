@@ -11,7 +11,7 @@ using presto.value;
 namespace presto.declaration
 {
 
-    public class ConcreteMethodDeclaration : BaseMethodDeclaration
+	public class ConcreteMethodDeclaration : BaseMethodDeclaration, ICategoryMethodDeclaration
     {
 
         protected StatementList statements;
@@ -92,6 +92,12 @@ namespace presto.declaration
         {
             return statements;
         }
+
+		public void check(ConcreteCategoryDeclaration declaration, Context context)
+		{
+			// TODO Auto-generated method stub
+
+		}
 
         override
         public IType check(Context context)

@@ -25,7 +25,7 @@ public abstract class ExecutionError : PrestoError {
 				ArgumentAssignmentList args = new ArgumentAssignmentList();
 				args.add(new ArgumentAssignment(new UnresolvedArgument("name"), new TextLiteral(this.GetType().Name)));
 				args.add(new ArgumentAssignment(new UnresolvedArgument("text"), new TextLiteral(this.Message)));
-				exp = new ConstructorExpression(new CategoryType("Error"), args);
+				exp = new ConstructorExpression(new CategoryType("Error"), false, args);
 			}
 			if(context.getRegisteredValue<INamed>(errorName)==null)
 				context.registerValue(new ErrorVariable(errorName));

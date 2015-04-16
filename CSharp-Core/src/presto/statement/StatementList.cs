@@ -6,6 +6,7 @@ using presto.type;
 using presto.utils;
 using presto.parser;
 using presto.value;
+using presto.csharp;
 
 
 namespace presto.statement
@@ -44,7 +45,7 @@ namespace presto.statement
         {
             try
             {
-                return doEvaluate(context);
+                return doInterpret(context);
             }
             catch (NullReferenceException)
             {
@@ -52,7 +53,7 @@ namespace presto.statement
             }
         }
 
-		private IValue doEvaluate(Context context)
+		private IValue doInterpret(Context context)
         {
             foreach (IStatement statement in this)
             {
@@ -70,6 +71,39 @@ namespace presto.statement
             }
             return null;
         }
+
+		public IValue interpretNative(Context context, IType returnType)
+		{
+			try
+			{
+				return doInterpretNative(context, returnType);
+			}
+			catch (NullReferenceException)
+			{
+				throw new NullReferenceError();
+			}
+		}
+
+		private IValue doInterpretNative(Context context, IType returnType)
+		{
+			foreach (IStatement statement in this)
+			{
+				if(!(statement is CSharpNativeCall))
+					continue;
+				context.enterStatement(statement);
+				try
+				{
+					IValue result = ((CSharpNativeCall)statement).interpretNative(context, returnType);
+					if (result != null)
+						return result;
+				}
+				finally
+				{
+					context.leaveStatement(statement);
+				}
+			}
+			return null;
+		}
 
 		public void ToDialect(CodeWriter writer) {
 			foreach(IStatement statement in this) {

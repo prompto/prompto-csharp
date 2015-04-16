@@ -36,8 +36,13 @@ namespace presto.csharp
 
         override
 		public IValue interpret(Context context)
-        {
-            return statement.interpret(context);
+		{
+			throw new Exception ("Should never get there!");
+		}
+
+		public IValue interpretNative(Context context, IType returnType)
+		{
+			return statement.interpret(context, returnType);
         }
 
     }

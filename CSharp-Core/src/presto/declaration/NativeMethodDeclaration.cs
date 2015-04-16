@@ -40,8 +40,8 @@ namespace presto.declaration
             context.enterMethod(this);
             try
             {
-                IStatement stmt = FindStatement();
-                return stmt.interpret(context);
+				CSharpNativeCall stmt = FindStatement();
+                return stmt.interpretNative(context, returnType);
             }
             finally
             {
@@ -50,12 +50,12 @@ namespace presto.declaration
         }
 
   
-        private IStatement FindStatement()
+		private CSharpNativeCall FindStatement()
         {
             foreach (IStatement stmt in statements)
             {
                 if (stmt is CSharpNativeCall)
-                    return stmt;
+					return (CSharpNativeCall)stmt;
             }
             throw new System.NotImplementedException(); // TODO
         }

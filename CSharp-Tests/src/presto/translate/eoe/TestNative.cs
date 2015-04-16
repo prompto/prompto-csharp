@@ -21,6 +21,12 @@ namespace presto.translate.eoe
 		}
 
 		[Test]
+		public void testPrint()
+		{
+			compareResourceEOE("native/print.pec");
+		}
+
+		[Test]
 		public void testReturn()
 		{
 			compareResourceEOE("native/return.pec");

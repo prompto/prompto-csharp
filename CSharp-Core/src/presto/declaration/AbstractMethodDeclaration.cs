@@ -10,7 +10,7 @@ using presto.value;
 namespace presto.declaration
 {
 
-    public class AbstractMethodDeclaration : BaseMethodDeclaration
+	public class AbstractMethodDeclaration : BaseMethodDeclaration, ICategoryMethodDeclaration
     {
 
    
@@ -19,8 +19,8 @@ namespace presto.declaration
         {
         }
 
-        override
-        public IType check(Context context)
+        
+		public override IType check(Context context)
         {
             if (arguments != null)
                 arguments.check(context);
@@ -28,6 +28,13 @@ namespace presto.declaration
             registerArguments(local);
             return returnType;
         }
+
+		public void check(ConcreteCategoryDeclaration declaration, Context context)
+		{
+			// TODO Auto-generated method stub
+
+		}
+
 
         override
 		public IValue interpret(Context context)

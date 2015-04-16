@@ -17,12 +17,14 @@ namespace presto.expression
     {
 
         CategoryType type;
+		bool mutable;
         IExpression copyFrom;
         ArgumentAssignmentList assignments;
 
-        public ConstructorExpression(CategoryType type, ArgumentAssignmentList assignments)
+        public ConstructorExpression(CategoryType type, bool mutable, ArgumentAssignmentList assignments)
         {
             this.type = type;
+			this.mutable = mutable;
             setAssignments(assignments);
         }
 
@@ -77,6 +79,8 @@ namespace presto.expression
 		}
 
 		private void toODialect(CodeWriter writer) {
+			if(this.mutable)
+				writer.append("mutable ");
 			writer.append(type.getName());
 			ArgumentAssignmentList assignments = new ArgumentAssignmentList();
 			if (copyFrom != null)
@@ -87,6 +91,8 @@ namespace presto.expression
 		}
 
 		private void toEDialect(CodeWriter writer) {
+			if(this.mutable)
+				writer.append("mutable ");
 			writer.append(type.getName());
 			if (copyFrom != null) {
 				writer.append(" from ");
@@ -127,29 +133,35 @@ namespace presto.expression
         public IValue interpret(Context context)
         {
             IInstance instance = type.newInstance(context);
-            if (copyFrom != null)
-            {
-                Object copyObj = copyFrom.interpret(context);
-                if (copyObj is IInstance)
-                {
-                    IInstance initFrom = (IInstance)copyObj;
-                    CategoryDeclaration cd = context.getRegisteredDeclaration<CategoryDeclaration>(type.getName());
-                    foreach (String name in initFrom.getAttributeNames())
-                    {
-                        if (cd.hasAttribute(context, name))
-                            instance.set(context, name, initFrom.GetMember(context, name));
-                    }
-                }
-            }
-            if (assignments != null)
-            {
-                foreach (ArgumentAssignment assignment in assignments)
-                {
-                    IValue value = assignment.getExpression().interpret(context);
-                    instance.set(context, assignment.getName(), value);
-                }
-            }
-            return instance;
+			instance.setMutable (true);
+			try
+			{
+	            if (copyFrom != null)
+	            {
+	                Object copyObj = copyFrom.interpret(context);
+	                if (copyObj is IInstance)
+	                {
+	                    IInstance initFrom = (IInstance)copyObj;
+	                    CategoryDeclaration cd = context.getRegisteredDeclaration<CategoryDeclaration>(type.getName());
+	                    foreach (String name in initFrom.getAttributeNames())
+	                    {
+	                        if (cd.hasAttribute(context, name))
+	                            instance.set(context, name, initFrom.GetMember(context, name));
+	                    }
+	                }
+	            }
+	            if (assignments != null)
+	            {
+	                foreach (ArgumentAssignment assignment in assignments)
+	                {
+	                    IValue value = assignment.getExpression().interpret(context);
+	                    instance.set(context, assignment.getName(), value);
+	                }
+	            }
+	            return instance;
+			} finally {
+				instance.setMutable (this.mutable);
+			}
         }
 
     }

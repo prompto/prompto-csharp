@@ -92,7 +92,11 @@ namespace presto.expression
 		public IValue interpret(Context context)
 		{
 			IValue lval = left.interpret (context);
+			if(lval==null)
+				lval = NullValue.Instance;
 			IValue rval = right.interpret (context);
+			if(rval==null)
+				rval = NullValue.Instance;
 			return interpret (context, lval, rval);
 		}
 

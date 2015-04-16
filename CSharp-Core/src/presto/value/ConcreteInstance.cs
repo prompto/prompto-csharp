@@ -19,13 +19,27 @@ namespace presto.value
 
         ConcreteCategoryDeclaration declaration;
         Dictionary<String, IValue> values = new Dictionary<String, IValue>();
+		bool mutable = false;
 
-        public ConcreteInstance(ConcreteCategoryDeclaration declaration)
+		public ConcreteInstance(ConcreteCategoryDeclaration declaration)
 		: base(new CategoryType(declaration.getName()))
 		     {
             this.declaration = declaration;
         }
 
+		public bool setMutable(bool set)
+		{
+			bool result = mutable;
+			mutable = set;
+			return result;
+		}
+
+		public bool isMutable()
+		{
+			return mutable;
+		}
+
+			
         public ConcreteCategoryDeclaration getDeclaration()
         {
             return declaration;
@@ -87,7 +101,9 @@ namespace presto.value
 
         public void set(Context context, String attrName, IValue value)
         {
-            Context stacked;
+			if(!mutable)
+				throw new NotMutableError();
+			Context stacked;
             activeSetters.Value.TryGetValue(attrName, out stacked);
             try
             {

@@ -89,6 +89,7 @@ namespace presto.grammar
         public IValue interpret(Context context)
         {
             IInstance instance = type.newInstance(context);
+			instance.setMutable (true);
             if (assignments != null)
             {
                 foreach (ArgumentAssignment assignment in assignments)
@@ -98,6 +99,7 @@ namespace presto.grammar
                 }
             }
 			instance.set(context, "name", new Text(this.getName()));
+			instance.setMutable (false);
 			return instance;
         }
 
