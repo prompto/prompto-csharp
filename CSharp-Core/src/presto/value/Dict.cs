@@ -27,6 +27,11 @@ namespace presto.value
 			this.type = new DictType (itemType);
         }
 
+		public bool IsMutable()
+		{
+			return false;
+		}
+
 		public IType ItemType
 		{
 			get { return this.type.GetItemType (); }
@@ -113,7 +118,12 @@ namespace presto.value
                 throw new NotSupportedException("No such member:" + name);
         }
 
-        public virtual IValue GetItem(Context context, IValue index)
+		public virtual void SetMember(Context context, String name, IValue value)
+		{
+			throw new NotSupportedException("No such member:" + name);
+		}
+
+		public virtual IValue GetItem(Context context, IValue index)
         {
             if (index is Text)
             {

@@ -80,12 +80,12 @@ namespace presto.grammar {
             list[index - 1] = expression.interpret(context);
         }
 
-        public Object interpret(Context context)
+        public IValue interpret(Context context)
         {
-            Object parent = this.parent.interpret(context);
-            Object item = this.item.interpret(context);
-            if (parent is IContainer && item is IValue)
-                return ((IContainer)parent).GetItem(context, (IValue)item);
+			IValue parent = this.parent.interpret(context);
+			IValue item = this.item.interpret(context);
+            if (parent is IContainer)
+                return ((IContainer)parent).GetItem(context, item);
              else
                 throw new SyntaxError("Unknown item/key: " + item.GetType().Name);
         }

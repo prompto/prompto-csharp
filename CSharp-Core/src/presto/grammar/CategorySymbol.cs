@@ -95,10 +95,10 @@ namespace presto.grammar
                 foreach (ArgumentAssignment assignment in assignments)
                 {
 					IValue value = assignment.getExpression().interpret(context);
-                    instance.set(context, assignment.getName(), value);
+                    instance.SetMember(context, assignment.getName(), value);
                 }
             }
-			instance.set(context, "name", new Text(this.getName()));
+			instance.SetMember(context, "name", new Text(this.getName()));
 			instance.setMutable (false);
 			return instance;
         }

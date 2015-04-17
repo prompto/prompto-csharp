@@ -13,10 +13,8 @@ namespace presto.value
     {
 
         CategoryType getType();
-        void set(Context context, String attrName, IValue value);
-        ICollection<String> getAttributeNames();
+        ICollection<String> getMemberNames();
 		bool setMutable(bool set);
-		bool isMutable();
 
     }
 

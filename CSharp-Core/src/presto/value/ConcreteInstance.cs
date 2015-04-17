@@ -34,7 +34,7 @@ namespace presto.value
 			return result;
 		}
 
-		public bool isMutable()
+		public override bool IsMutable()
 		{
 			return mutable;
 		}
@@ -50,7 +50,7 @@ namespace presto.value
 			return (CategoryType)type;
         }
 
-        public ICollection<String> getAttributeNames()
+        public ICollection<String> getMemberNames()
         {
             return values.Keys;
         }
@@ -63,8 +63,8 @@ namespace presto.value
         // don't call getters from getters, so register them
         ThreadLocal<Dictionary<String, Context>> activeGetters = new ThreadLocal<Dictionary<String, Context>>(Factory);
 
-        override
-        public IValue GetMember(Context context, String attrName)
+        
+		public override IValue GetMember(Context context, String attrName)
         {
             Context stacked;
             activeGetters.Value.TryGetValue(attrName, out stacked);
@@ -99,7 +99,7 @@ namespace presto.value
         // don't call setters from setters, so register them
         ThreadLocal<Dictionary<String, Context>> activeSetters = new ThreadLocal<Dictionary<String, Context>>(Factory);
 
-        public void set(Context context, String attrName, IValue value)
+        public override void SetMember(Context context, String attrName, IValue value)
         {
 			if(!mutable)
 				throw new NotMutableError();

@@ -18,6 +18,11 @@ namespace presto.grammar
 			this.Add (symbol);
 		}
 
+		public bool IsMutable()
+		{
+			return false;
+		}
+
 		public IType Type {
 			get { return type; }
 			set { this.type = value; }
@@ -83,6 +88,11 @@ namespace presto.grammar
 		}
 
 		public virtual IValue GetMember(Context context, String name)
+		{
+			throw new NotSupportedException("No member support for " + this.GetType().Name);
+		}
+
+		public virtual void SetMember(Context context, String name, IValue value)
 		{
 			throw new NotSupportedException("No member support for " + this.GetType().Name);
 		}

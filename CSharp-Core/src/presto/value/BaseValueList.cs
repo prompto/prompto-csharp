@@ -35,6 +35,11 @@ namespace presto.value
 			this.AddRange(items);
 		}
 
+		public virtual bool IsMutable()
+		{
+			return false;
+		}
+
 		public void SetType(CollectionType type)
 		{
 			this.type = type;
@@ -107,7 +112,12 @@ namespace presto.value
                 throw new NotSupportedException("No such member:" + name);
         }
 
-        public virtual IValue GetItem(Context context, IValue index)
+		public virtual void SetMember(Context context, String name, IValue value)
+		{
+			throw new NotSupportedException("No such member:" + name);
+		}
+
+		public virtual IValue GetItem(Context context, IValue index)
         {
             if (index is Integer)
             {

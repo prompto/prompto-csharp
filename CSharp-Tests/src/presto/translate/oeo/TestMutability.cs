@@ -15,9 +15,21 @@ namespace presto.translate.oeo
 		}
 
 		[Test]
+		public void testImmutableMember()
+		{
+			compareResourceOEO("mutability/immutableMember.poc");
+		}
+
+		[Test]
 		public void testMutable()
 		{
 			compareResourceOEO("mutability/mutable.poc");
+		}
+
+		[Test]
+		public void testMutableMember()
+		{
+			compareResourceOEO("mutability/mutableMember.poc");
 		}
 
 	}

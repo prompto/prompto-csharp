@@ -15,6 +15,11 @@ namespace presto.value
 			this.type = type;
 		}
 
+		public virtual bool IsMutable()
+		{
+			return false;
+		}
+
 		public virtual IType GetType(Context context) {
 			return this.type;
 		}
@@ -59,7 +64,12 @@ namespace presto.value
             throw new NotSupportedException("No member support for " + this.GetType().Name);
         }
 
-        public virtual Object ConvertTo(Type type)
+		public virtual void SetMember(Context context, String name, IValue value)
+		{
+			throw new NotSupportedException("No member support for " + this.GetType().Name);
+		}
+
+		public virtual Object ConvertTo(Type type)
         {
             return this;
         }

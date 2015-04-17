@@ -15,9 +15,21 @@ namespace presto.translate.oso
 		}
 
 		[Test]
+		public void testImmutableMember()
+		{
+			compareResourceOSO("mutability/immutableMember.poc");
+		}
+
+		[Test]
 		public void testMutable()
 		{
 			compareResourceOSO("mutability/mutable.poc");
+		}
+
+		[Test]
+		public void testMutableMember()
+		{
+			compareResourceOSO("mutability/mutableMember.poc");
 		}
 
 	}

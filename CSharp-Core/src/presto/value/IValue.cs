@@ -9,6 +9,7 @@ namespace presto.value
 {
     public interface IValue
     {
+		bool IsMutable();
 		IType GetType(Context context);
 		IValue Add(Context context, IValue value);
         IValue Subtract(Context context, IValue iValue);
@@ -16,7 +17,8 @@ namespace presto.value
         IValue Divide(Context context, IValue iValue);
         IValue IntDivide(Context context, IValue iValue);
         IValue Modulo(Context context, IValue iValue);
-        IValue GetMember(Context context, String name);
+		IValue GetMember(Context context, String attrName);
+		void SetMember(Context context, String attrName, IValue value);
         Int32 CompareTo(Context context, IValue value);
         Object ConvertTo(Type type);
 		bool Equals(Context context, IValue value);

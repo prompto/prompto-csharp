@@ -436,7 +436,7 @@ namespace presto.runtime
         {
             if (value is IExpression)
                 value = ((IExpression)value).interpret(this);
-            instance.set(calling, name, (IValue)value);
+            instance.SetMember(calling, name, (IValue)value);
         }
     }
 

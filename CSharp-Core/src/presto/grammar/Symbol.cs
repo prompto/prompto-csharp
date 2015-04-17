@@ -21,6 +21,11 @@ namespace presto.grammar
             this.symbol = symbol;
         }
 
+		public bool IsMutable()
+		{
+			return false;
+		}
+
         public String getSymbol()
         {
             return symbol;
@@ -84,7 +89,10 @@ namespace presto.grammar
 			throw new NotSupportedException("No member support for " + this.GetType().Name);
 		}
 
-		
+		public void SetMember(Context context, String name, IValue value) {
+			throw new NotSupportedException("No member support for " + this.GetType().Name);
+		}
+
 		public virtual Object ConvertTo(Type type)
 		{
 			return this;

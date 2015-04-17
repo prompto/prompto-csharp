@@ -61,23 +61,17 @@ namespace presto.grammar {
 
         public void assign(Context context, IExpression expression)
         {
-            Object doc = parent.interpret(context);
-            if (doc is Document)
-            {
-                IValue value = (IValue)expression.interpret(context);
-                ((Document)doc).SetMember(name, value);
-            }
-            else
-                throw new InvalidDataError("Expecting a document, got:" + doc.GetType().Name);
+			IValue root = parent.interpret(context);
+			if(!root.IsMutable())
+				throw new NotMutableError();
+            IValue value = expression.interpret(context);
+			root.SetMember(context, name, value);
         }
 
-        public Object interpret(Context context)
+		public IValue interpret(Context context)
         {
-            Object doc = parent.interpret(context);
-            if (doc is Document)
-                return ((Document)doc).GetMember(context, name);
-            else
-                throw new InvalidDataError("Expecting a document, got:" + doc.GetType().Name);
+			IValue root = parent.interpret(context);
+            return root.GetMember(context, name);
         }
 
     }

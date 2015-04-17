@@ -52,8 +52,6 @@ namespace presto.grammar
 			INamed actual = context.getRegisteredValue<INamed>(name);
             if (actual == null)
                 throw new SyntaxError("Unknown variable:" + this.name);
-            if (actual.GetType(context) != DocumentType.Instance)
-                throw new SyntaxError(this.name + " is not a document. Cannot assign member!");
         }
 
         public void checkAssignElement(Context context)
@@ -70,7 +68,7 @@ namespace presto.grammar
             context.setValue(name, value);
         }
 
-        public Object interpret(Context context)
+        public IValue interpret(Context context)
         {
             return context.getValue(name);
         }

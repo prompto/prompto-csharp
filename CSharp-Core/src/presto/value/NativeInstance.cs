@@ -41,7 +41,7 @@ namespace presto.value
 			return result;
 		}
 
-		public bool isMutable()
+		public override bool IsMutable()
 		{
 			return mutable;
 		}
@@ -62,7 +62,7 @@ namespace presto.value
 			return (CategoryType)this.type;
         }
 
-        public ICollection<String> getAttributeNames()
+        public ICollection<String> getMemberNames()
         {
             // TODO Auto-generated method stub
             return null;
@@ -107,7 +107,7 @@ namespace presto.value
         }
 	
    
-        public void set(Context context, String attrName, IValue value)
+        public override void SetMember(Context context, String attrName, IValue value)
         {
             Object o = value;
             if (o is IExpression)

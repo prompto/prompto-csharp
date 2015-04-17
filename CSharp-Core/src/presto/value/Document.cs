@@ -17,8 +17,13 @@ namespace presto.value
 		{
 		}
 
-        override
-        public IValue GetMember(Context context, String name)
+		public override bool IsMutable ()
+		{
+			return true;
+		}
+
+        
+		public override IValue GetMember(Context context, String name)
         {
             IValue result;
             if(!members.TryGetValue(name, out result))
@@ -30,7 +35,7 @@ namespace presto.value
         }
 
 
-        public void SetMember(String name, IValue value)
+		public override void SetMember(Context context, String name, IValue value)
         {
             members[name] = value;
         }

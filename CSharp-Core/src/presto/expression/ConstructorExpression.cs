@@ -143,10 +143,15 @@ namespace presto.expression
 	                {
 	                    IInstance initFrom = (IInstance)copyObj;
 	                    CategoryDeclaration cd = context.getRegisteredDeclaration<CategoryDeclaration>(type.getName());
-	                    foreach (String name in initFrom.getAttributeNames())
+	                    foreach (String name in initFrom.getMemberNames())
 	                    {
 	                        if (cd.hasAttribute(context, name))
-	                            instance.set(context, name, initFrom.GetMember(context, name));
+							{
+								IValue value = initFrom.GetMember(context, name);
+								if(value!=null && value.IsMutable() && !this.mutable)
+									throw new NotMutableError();
+								instance.SetMember(context, name, value);
+							}
 	                    }
 	                }
 	            }
@@ -155,7 +160,9 @@ namespace presto.expression
 	                foreach (ArgumentAssignment assignment in assignments)
 	                {
 	                    IValue value = assignment.getExpression().interpret(context);
-	                    instance.set(context, assignment.getName(), value);
+						if(value!=null && value.IsMutable() && !this.mutable)
+							throw new NotMutableError();
+	                    instance.SetMember(context, assignment.getName(), value);
 	                }
 	            }
 	            return instance;

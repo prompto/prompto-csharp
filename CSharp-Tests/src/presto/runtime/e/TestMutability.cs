@@ -28,9 +28,21 @@ namespace presto.runtime.e
 		}
 
 		[Test]
+		public void testImmutableMember()
+		{
+			CheckOutput("mutability/immutableMember.pec");
+		}
+
+		[Test]
 		public void testMutable()
 		{
 			CheckOutput("mutability/mutable.pec");
+		}
+
+		[Test]
+		public void testMutableMember()
+		{
+			CheckOutput("mutability/mutableMember.pec");
 		}
 
 	}

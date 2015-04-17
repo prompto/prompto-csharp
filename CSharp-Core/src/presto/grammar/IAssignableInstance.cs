@@ -3,6 +3,7 @@ using presto.runtime;
 using presto.parser;
 using presto.expression;
 using presto.utils;
+using presto.value;
 
 
 namespace presto.grammar
@@ -15,7 +16,7 @@ namespace presto.grammar
         void checkAssignMember(Context context, String name);
         void checkAssignElement(Context context);
         void assign(Context context, IExpression expression);
-        Object interpret(Context context);
+        IValue interpret(Context context);
         void ToDialect(CodeWriter writer);
 
     }
