@@ -69,6 +69,12 @@ namespace presto.translate.eoe
 		}
 
 		[Test]
+		public void testUnexpected()
+		{
+			compareResourceEOE("errors/unexpected.pec");
+		}
+
+		[Test]
 		public void testUserException()
 		{
 			compareResourceEOE("errors/userException.pec");

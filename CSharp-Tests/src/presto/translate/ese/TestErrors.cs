@@ -69,6 +69,12 @@ namespace presto.translate.ese
 		}
 
 		[Test]
+		public void testUnexpected()
+		{
+			compareResourceESE("errors/unexpected.pec");
+		}
+
+		[Test]
 		public void testUserException()
 		{
 			compareResourceESE("errors/userException.pec");

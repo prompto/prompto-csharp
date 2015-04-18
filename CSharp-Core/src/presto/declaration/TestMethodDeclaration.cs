@@ -101,13 +101,14 @@ namespace presto.declaration
 
 		private void interpretError (Context context, ExecutionError e)
 		{
-			IValue expected = error.interpret (context);
 			IValue actual = e.interpret (context, "__test_error__");
-			if (expected.Equals (actual))
+			IValue expectedError = error==null ? null : error.interpret (context);
+			if (expectedError!=null && expectedError.Equals (actual))
 				printSuccess (context);
 			else {
 				String actualName = ((IInstance)actual).GetMember (context, "name").ToString ();
-				printFailure (context, error.getName (), actualName);
+				String expectedName = error == null ? "SUCCESS" : error.getName ();
+				printFailure (context, expectedName, actualName);
 			}
 		}
 
