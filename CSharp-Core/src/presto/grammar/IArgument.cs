@@ -17,5 +17,7 @@ namespace presto.grammar
         void check(Context context);
 		IValue checkValue(Context context, IExpression expression);
 		IExpression DefaultValue { get; }
+		bool setMutable(bool set);
+		bool isMutable();
     }
 }

@@ -14,6 +14,7 @@ namespace presto.grammar
     {
 
         protected String name;
+		protected bool mutable;
 
         protected BaseArgument(String name)
         {
@@ -24,6 +25,18 @@ namespace presto.grammar
         {
             return name;
         }
+
+		public bool setMutable(bool set)
+		{
+			bool result = this.mutable;
+			this.mutable = set;
+			return result;
+		}
+
+		public bool isMutable()
+		{
+			return this.mutable;
+		}
 
 		public IExpression DefaultValue { get; set; }
 

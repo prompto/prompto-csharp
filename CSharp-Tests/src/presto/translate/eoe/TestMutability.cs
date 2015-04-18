@@ -15,6 +15,12 @@ namespace presto.translate.eoe
 		}
 
 		[Test]
+		public void testImmutableArgument()
+		{
+			compareResourceEOE("mutability/immutableArgument.pec");
+		}
+
+		[Test]
 		public void testImmutableMember()
 		{
 			compareResourceEOE("mutability/immutableMember.pec");
@@ -24,6 +30,12 @@ namespace presto.translate.eoe
 		public void testMutable()
 		{
 			compareResourceEOE("mutability/mutable.pec");
+		}
+
+		[Test]
+		public void testMutableArgument()
+		{
+			compareResourceEOE("mutability/mutableArgument.pec");
 		}
 
 		[Test]

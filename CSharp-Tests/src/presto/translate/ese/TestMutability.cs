@@ -15,6 +15,12 @@ namespace presto.translate.ese
 		}
 
 		[Test]
+		public void testImmutableArgument()
+		{
+			compareResourceESE("mutability/immutableArgument.pec");
+		}
+
+		[Test]
 		public void testImmutableMember()
 		{
 			compareResourceESE("mutability/immutableMember.pec");
@@ -24,6 +30,12 @@ namespace presto.translate.ese
 		public void testMutable()
 		{
 			compareResourceESE("mutability/mutable.pec");
+		}
+
+		[Test]
+		public void testMutableArgument()
+		{
+			compareResourceESE("mutability/mutableArgument.pec");
 		}
 
 		[Test]

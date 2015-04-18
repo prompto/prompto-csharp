@@ -63,6 +63,8 @@ namespace presto.grammar
         override
        	public void ToDialect(CodeWriter writer)
         {
+			if(this.mutable)
+				writer.append("mutable ");
 			switch(writer.getDialect()) {
 			case Dialect.E:
 				toEDialect(writer);

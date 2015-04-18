@@ -28,6 +28,12 @@ namespace presto.runtime.e
 		}
 
 		[Test]
+		public void testImmutableArgument()
+		{
+			CheckOutput("mutability/immutableArgument.pec");
+		}
+
+		[Test]
 		public void testImmutableMember()
 		{
 			CheckOutput("mutability/immutableMember.pec");
@@ -37,6 +43,12 @@ namespace presto.runtime.e
 		public void testMutable()
 		{
 			CheckOutput("mutability/mutable.pec");
+		}
+
+		[Test]
+		public void testMutableArgument()
+		{
+			CheckOutput("mutability/mutableArgument.pec");
 		}
 
 		[Test]

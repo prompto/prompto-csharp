@@ -135,7 +135,10 @@ namespace presto.statement
             foreach (ArgumentAssignment assignment in assignments)
             {
                 IExpression expression = assignment.resolve(local, declaration, true);
-                IValue value = assignment.getArgument().checkValue(context, expression);
+				IArgument arg = assignment.getArgument ();
+                IValue value = arg.checkValue(context, expression);
+				if (value != null && value.IsMutable () && !arg.isMutable ())
+					throw new NotMutableError ();
                 local.setValue(assignment.getName(), value);
             }
             return declaration.interpret(local);

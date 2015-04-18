@@ -1953,7 +1953,9 @@ namespace presto.parser
 		}
 
 		public override void ExitOperatorArgument(OParser.OperatorArgumentContext ctx) {
+			bool mutable = ctx.MUTABLE () != null;
 			IArgument arg = this.GetNodeValue<IArgument>(ctx.arg);
+			arg.setMutable (mutable);
 			SetNodeValue(ctx, arg);
 		}
 
