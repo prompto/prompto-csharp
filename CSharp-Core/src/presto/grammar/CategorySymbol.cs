@@ -75,6 +75,7 @@ namespace presto.grammar
                 throw new SyntaxError("Unknown category " + type.getName());
             if (assignments != null)
             {
+				context = context.newLocalContext ();
                 foreach (ArgumentAssignment assignment in assignments)
                 {
                     if (!cd.hasAttribute(context, assignment.getName()))
@@ -92,6 +93,7 @@ namespace presto.grammar
 			instance.setMutable (true);
             if (assignments != null)
             {
+				context = context.newLocalContext ();
                 foreach (ArgumentAssignment assignment in assignments)
                 {
 					IValue value = assignment.getExpression().interpret(context);
