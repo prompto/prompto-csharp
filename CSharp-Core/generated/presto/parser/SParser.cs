@@ -41,10 +41,10 @@ public partial class SParser : AbstractParser {
 		BOOLEAN=49, CHARACTER=50, TEXT=51, INTEGER=52, DECIMAL=53, DATE=54, TIME=55, 
 		DATETIME=56, PERIOD=57, METHOD_T=58, CODE=59, DOCUMENT=60, ABSTRACT=61, 
 		ALL=62, ALWAYS=63, AND=64, ANY=65, AS=66, ATTR=67, ATTRIBUTE=68, ATTRIBUTES=69, 
-		CASE=70, CATCH=71, CATEGORY=72, CLASS=73, CLOSE=74, CONTAINS=75, DEF=76, 
-		DEFAULT=77, DEFINE=78, DO=79, DOING=80, EACH=81, ELSE=82, ENUM=83, ENUMERATED=84, 
-		EXCEPT=85, EXECUTE=86, EXPECTING=87, EXTENDS=88, FETCH=89, FINALLY=90, 
-		FOR=91, FROM=92, GETTER=93, IF=94, IN=95, INVOKE=96, IS=97, MAPPINGS=98, 
+		BINDINGS=70, CASE=71, CATCH=72, CATEGORY=73, CLASS=74, CLOSE=75, CONTAINS=76, 
+		DEF=77, DEFAULT=78, DEFINE=79, DO=80, DOING=81, EACH=82, ELSE=83, ENUM=84, 
+		ENUMERATED=85, EXCEPT=86, EXECUTE=87, EXPECTING=88, EXTENDS=89, FETCH=90, 
+		FINALLY=91, FOR=92, FROM=93, GETTER=94, IF=95, IN=96, INVOKE=97, IS=98, 
 		MATCHING=99, METHOD=100, METHODS=101, MODULO=102, MUTABLE=103, NATIVE=104, 
 		NONE=105, NOT=106, NOTHING=107, NULL=108, ON=109, OPEN=110, OPERATOR=111, 
 		OR=112, OTHERWISE=113, PASS=114, RAISE=115, READ=116, RECEIVING=117, RESOURCE=118, 
@@ -62,8 +62,8 @@ public partial class SParser : AbstractParser {
 		RULE_concrete_category_declaration = 5, RULE_singleton_category_declaration = 6, 
 		RULE_derived_list = 7, RULE_operator_method_declaration = 8, RULE_setter_method_declaration = 9, 
 		RULE_getter_method_declaration = 10, RULE_native_category_declaration = 11, 
-		RULE_native_resource_declaration = 12, RULE_native_category_mappings = 13, 
-		RULE_native_category_mapping_list = 14, RULE_attribute_list = 15, RULE_abstract_method_declaration = 16, 
+		RULE_native_resource_declaration = 12, RULE_native_category_bindings = 13, 
+		RULE_native_category_binding_list = 14, RULE_attribute_list = 15, RULE_abstract_method_declaration = 16, 
 		RULE_concrete_method_declaration = 17, RULE_native_method_declaration = 18, 
 		RULE_test_method_declaration = 19, RULE_assertion = 20, RULE_typed_argument = 21, 
 		RULE_statement = 22, RULE_method_call = 23, RULE_method_selector = 24, 
@@ -90,9 +90,9 @@ public partial class SParser : AbstractParser {
 		RULE_symbol_identifier = 86, RULE_argument_list = 87, RULE_argument = 88, 
 		RULE_operator_argument = 89, RULE_named_argument = 90, RULE_code_argument = 91, 
 		RULE_category_or_any_type = 92, RULE_any_type = 93, RULE_member_method_declaration_list = 94, 
-		RULE_member_method_declaration = 95, RULE_native_category_mapping = 96, 
-		RULE_python_category_mapping = 97, RULE_python_module = 98, RULE_module_token = 99, 
-		RULE_javascript_category_mapping = 100, RULE_javascript_module = 101, 
+		RULE_member_method_declaration = 95, RULE_native_category_binding = 96, 
+		RULE_python_category_binding = 97, RULE_python_module = 98, RULE_module_token = 99, 
+		RULE_javascript_category_binding = 100, RULE_javascript_module = 101, 
 		RULE_variable_identifier_list = 102, RULE_method_declaration = 103, RULE_native_statement_list = 104, 
 		RULE_native_statement = 105, RULE_python_native_statement = 106, RULE_javascript_native_statement = 107, 
 		RULE_statement_list = 108, RULE_assertion_list = 109, RULE_switch_case_statement_list = 110, 
@@ -130,7 +130,7 @@ public partial class SParser : AbstractParser {
 		"category_symbol", "attribute_declaration", "concrete_category_declaration", 
 		"singleton_category_declaration", "derived_list", "operator_method_declaration", 
 		"setter_method_declaration", "getter_method_declaration", "native_category_declaration", 
-		"native_resource_declaration", "native_category_mappings", "native_category_mapping_list", 
+		"native_resource_declaration", "native_category_bindings", "native_category_binding_list", 
 		"attribute_list", "abstract_method_declaration", "concrete_method_declaration", 
 		"native_method_declaration", "test_method_declaration", "assertion", "typed_argument", 
 		"statement", "method_call", "method_selector", "callable_parent", "callable_selector", 
@@ -151,8 +151,8 @@ public partial class SParser : AbstractParser {
 		"variable_identifier", "type_identifier", "symbol_identifier", "argument_list", 
 		"argument", "operator_argument", "named_argument", "code_argument", "category_or_any_type", 
 		"any_type", "member_method_declaration_list", "member_method_declaration", 
-		"native_category_mapping", "python_category_mapping", "python_module", 
-		"module_token", "javascript_category_mapping", "javascript_module", "variable_identifier_list", 
+		"native_category_binding", "python_category_binding", "python_module", 
+		"module_token", "javascript_category_binding", "javascript_module", "variable_identifier_list", 
 		"method_declaration", "native_statement_list", "native_statement", "python_native_statement", 
 		"javascript_native_statement", "statement_list", "assertion_list", "switch_case_statement_list", 
 		"catch_statement_list", "literal_collection", "atomic_literal", "literal_list_literal", 
@@ -187,14 +187,14 @@ public partial class SParser : AbstractParser {
 		"'~'", "'<-'", "'->'", "'Boolean'", "'Character'", "'Text'", "'Integer'", 
 		"'Decimal'", "'Date'", "'Time'", "'DateTime'", "'Period'", "'Method'", 
 		"'Code'", "'Document'", "'abstract'", "'all'", "'always'", "'and'", "'any'", 
-		"'as'", "'attr'", "'attribute'", "'attributes'", "'case'", "'catch'", 
-		"'category'", "'class'", "'close'", "'contains'", "'def'", "'default'", 
-		"'define'", "'do'", "'doing'", "'each'", "'else'", "'enum'", "'enumerated'", 
-		"'except'", "'execute'", "'expecting'", "'extends'", "'fetch'", "'finally'", 
-		"'for'", "'from'", "'getter'", "'if'", "'in'", "'invoke'", "'is'", "'mappings'", 
-		"'matching'", "'method'", "'methods'", "'modulo'", "'mutable'", "'native'", 
-		"'None'", "'not'", null, "'null'", "'on'", "'open'", "'operator'", "'or'", 
-		"'otherwise'", "'pass'", "'raise'", "'read'", "'receiving'", "'resource'", 
+		"'as'", "'attr'", "'attribute'", "'attributes'", "'bindings'", "'case'", 
+		"'catch'", "'category'", "'class'", "'close'", "'contains'", "'def'", 
+		"'default'", "'define'", "'do'", "'doing'", "'each'", "'else'", "'enum'", 
+		"'enumerated'", "'except'", "'execute'", "'expecting'", "'extends'", "'fetch'", 
+		"'finally'", "'for'", "'from'", "'getter'", "'if'", "'in'", "'invoke'", 
+		"'is'", "'matching'", "'method'", "'methods'", "'modulo'", "'mutable'", 
+		"'native'", "'None'", "'not'", null, "'null'", "'on'", "'open'", "'operator'", 
+		"'or'", "'otherwise'", "'pass'", "'raise'", "'read'", "'receiving'", "'resource'", 
 		"'return'", "'returning'", "'self'", "'setter'", "'singleton'", "'sorted'", 
 		"'switch'", "'test'", "'this'", "'throw'", "'to'", "'try'", "'with'", 
 		"'when'", "'where'", "'while'", "'write'", null, null, "'MIN_INTEGER'", 
@@ -209,10 +209,10 @@ public partial class SParser : AbstractParser {
 		"XEQ", "EQ2", "TEQ", "TILDE", "LARROW", "RARROW", "BOOLEAN", "CHARACTER", 
 		"TEXT", "INTEGER", "DECIMAL", "DATE", "TIME", "DATETIME", "PERIOD", "METHOD_T", 
 		"CODE", "DOCUMENT", "ABSTRACT", "ALL", "ALWAYS", "AND", "ANY", "AS", "ATTR", 
-		"ATTRIBUTE", "ATTRIBUTES", "CASE", "CATCH", "CATEGORY", "CLASS", "CLOSE", 
-		"CONTAINS", "DEF", "DEFAULT", "DEFINE", "DO", "DOING", "EACH", "ELSE", 
-		"ENUM", "ENUMERATED", "EXCEPT", "EXECUTE", "EXPECTING", "EXTENDS", "FETCH", 
-		"FINALLY", "FOR", "FROM", "GETTER", "IF", "IN", "INVOKE", "IS", "MAPPINGS", 
+		"ATTRIBUTE", "ATTRIBUTES", "BINDINGS", "CASE", "CATCH", "CATEGORY", "CLASS", 
+		"CLOSE", "CONTAINS", "DEF", "DEFAULT", "DEFINE", "DO", "DOING", "EACH", 
+		"ELSE", "ENUM", "ENUMERATED", "EXCEPT", "EXECUTE", "EXPECTING", "EXTENDS", 
+		"FETCH", "FINALLY", "FOR", "FROM", "GETTER", "IF", "IN", "INVOKE", "IS", 
 		"MATCHING", "METHOD", "METHODS", "MODULO", "MUTABLE", "NATIVE", "NONE", 
 		"NOT", "NOTHING", "NULL", "ON", "OPEN", "OPERATOR", "OR", "OTHERWISE", 
 		"PASS", "RAISE", "READ", "RECEIVING", "RESOURCE", "RETURN", "RETURNING", 
@@ -494,7 +494,7 @@ public partial class SParser : AbstractParser {
 			State = 400; Match(LPAR);
 			State = 402;
 			_la = TokenStream.La(1);
-			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << LPAR) | (1L << LBRAK) | (1L << LCURL) | (1L << MINUS) | (1L << LT) | (1L << CODE) | (1L << DOCUMENT))) != 0) || ((((_la - 86)) & ~0x3f) == 0 && ((1L << (_la - 86)) & ((1L << (EXECUTE - 86)) | (1L << (FETCH - 86)) | (1L << (MUTABLE - 86)) | (1L << (NONE - 86)) | (1L << (NOT - 86)) | (1L << (READ - 86)) | (1L << (SELF - 86)) | (1L << (SORTED - 86)) | (1L << (THIS - 86)) | (1L << (BOOLEAN_LITERAL - 86)) | (1L << (CHAR_LITERAL - 86)) | (1L << (MIN_INTEGER - 86)) | (1L << (MAX_INTEGER - 86)) | (1L << (SYMBOL_IDENTIFIER - 86)) | (1L << (TYPE_IDENTIFIER - 86)) | (1L << (VARIABLE_IDENTIFIER - 86)) | (1L << (TEXT_LITERAL - 86)) | (1L << (INTEGER_LITERAL - 86)) | (1L << (HEXA_LITERAL - 86)) | (1L << (DECIMAL_LITERAL - 86)) | (1L << (DATETIME_LITERAL - 86)))) != 0) || ((((_la - 150)) & ~0x3f) == 0 && ((1L << (_la - 150)) & ((1L << (TIME_LITERAL - 150)) | (1L << (DATE_LITERAL - 150)) | (1L << (PERIOD_LITERAL - 150)))) != 0)) {
+			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << LPAR) | (1L << LBRAK) | (1L << LCURL) | (1L << MINUS) | (1L << LT) | (1L << CODE) | (1L << DOCUMENT))) != 0) || ((((_la - 87)) & ~0x3f) == 0 && ((1L << (_la - 87)) & ((1L << (EXECUTE - 87)) | (1L << (FETCH - 87)) | (1L << (MUTABLE - 87)) | (1L << (NONE - 87)) | (1L << (NOT - 87)) | (1L << (READ - 87)) | (1L << (SELF - 87)) | (1L << (SORTED - 87)) | (1L << (THIS - 87)) | (1L << (BOOLEAN_LITERAL - 87)) | (1L << (CHAR_LITERAL - 87)) | (1L << (MIN_INTEGER - 87)) | (1L << (MAX_INTEGER - 87)) | (1L << (SYMBOL_IDENTIFIER - 87)) | (1L << (TYPE_IDENTIFIER - 87)) | (1L << (VARIABLE_IDENTIFIER - 87)) | (1L << (TEXT_LITERAL - 87)) | (1L << (INTEGER_LITERAL - 87)) | (1L << (HEXA_LITERAL - 87)) | (1L << (DECIMAL_LITERAL - 87)) | (1L << (DATETIME_LITERAL - 87)) | (1L << (TIME_LITERAL - 87)))) != 0) || _la==DATE_LITERAL || _la==PERIOD_LITERAL) {
 				{
 				State = 401; _localctx.args = argument_assignment_list(0);
 				}
@@ -1050,7 +1050,7 @@ public partial class SParser : AbstractParser {
 	public partial class Native_category_declarationContext : ParserRuleContext {
 		public Type_identifierContext name;
 		public Attribute_listContext attrs;
-		public Native_category_mappingsContext mappings;
+		public Native_category_bindingsContext bindings;
 		public ITerminalNode NATIVE() { return GetToken(SParser.NATIVE, 0); }
 		public ITerminalNode LPAR() { return GetToken(SParser.LPAR, 0); }
 		public ITerminalNode RPAR() { return GetToken(SParser.RPAR, 0); }
@@ -1066,8 +1066,8 @@ public partial class SParser : AbstractParser {
 		public Type_identifierContext type_identifier() {
 			return GetRuleContext<Type_identifierContext>(0);
 		}
-		public Native_category_mappingsContext native_category_mappings() {
-			return GetRuleContext<Native_category_mappingsContext>(0);
+		public Native_category_bindingsContext native_category_bindings() {
+			return GetRuleContext<Native_category_bindingsContext>(0);
 		}
 		public Attribute_listContext attribute_list() {
 			return GetRuleContext<Attribute_listContext>(0);
@@ -1115,7 +1115,7 @@ public partial class SParser : AbstractParser {
 			State = 496; Match(RPAR);
 			State = 497; Match(COLON);
 			State = 498; indent();
-			State = 499; _localctx.mappings = native_category_mappings();
+			State = 499; _localctx.bindings = native_category_bindings();
 			State = 500; dedent();
 			}
 		}
@@ -1133,7 +1133,7 @@ public partial class SParser : AbstractParser {
 	public partial class Native_resource_declarationContext : ParserRuleContext {
 		public Type_identifierContext name;
 		public Attribute_listContext attrs;
-		public Native_category_mappingsContext mappings;
+		public Native_category_bindingsContext bindings;
 		public ITerminalNode NATIVE() { return GetToken(SParser.NATIVE, 0); }
 		public ITerminalNode RESOURCE() { return GetToken(SParser.RESOURCE, 0); }
 		public ITerminalNode LPAR() { return GetToken(SParser.LPAR, 0); }
@@ -1148,8 +1148,8 @@ public partial class SParser : AbstractParser {
 		public Type_identifierContext type_identifier() {
 			return GetRuleContext<Type_identifierContext>(0);
 		}
-		public Native_category_mappingsContext native_category_mappings() {
-			return GetRuleContext<Native_category_mappingsContext>(0);
+		public Native_category_bindingsContext native_category_bindings() {
+			return GetRuleContext<Native_category_bindingsContext>(0);
 		}
 		public Attribute_listContext attribute_list() {
 			return GetRuleContext<Attribute_listContext>(0);
@@ -1192,7 +1192,7 @@ public partial class SParser : AbstractParser {
 			State = 509; Match(RPAR);
 			State = 510; Match(COLON);
 			State = 511; indent();
-			State = 512; _localctx.mappings = native_category_mappings();
+			State = 512; _localctx.bindings = native_category_bindings();
 			State = 513; dedent();
 			}
 		}
@@ -1207,9 +1207,9 @@ public partial class SParser : AbstractParser {
 		return _localctx;
 	}
 
-	public partial class Native_category_mappingsContext : ParserRuleContext {
-		public Native_category_mapping_listContext items;
-		public ITerminalNode MAPPINGS() { return GetToken(SParser.MAPPINGS, 0); }
+	public partial class Native_category_bindingsContext : ParserRuleContext {
+		public Native_category_binding_listContext items;
+		public ITerminalNode BINDINGS() { return GetToken(SParser.BINDINGS, 0); }
 		public ITerminalNode COLON() { return GetToken(SParser.COLON, 0); }
 		public IndentContext indent() {
 			return GetRuleContext<IndentContext>(0);
@@ -1217,35 +1217,35 @@ public partial class SParser : AbstractParser {
 		public DedentContext dedent() {
 			return GetRuleContext<DedentContext>(0);
 		}
-		public Native_category_mapping_listContext native_category_mapping_list() {
-			return GetRuleContext<Native_category_mapping_listContext>(0);
+		public Native_category_binding_listContext native_category_binding_list() {
+			return GetRuleContext<Native_category_binding_listContext>(0);
 		}
-		public Native_category_mappingsContext(ParserRuleContext parent, int invokingState)
+		public Native_category_bindingsContext(ParserRuleContext parent, int invokingState)
 			: base(parent, invokingState)
 		{
 		}
-		public override int RuleIndex { get { return RULE_native_category_mappings; } }
+		public override int RuleIndex { get { return RULE_native_category_bindings; } }
 		public override void EnterRule(IParseTreeListener listener) {
 			ISParserListener typedListener = listener as ISParserListener;
-			if (typedListener != null) typedListener.EnterNative_category_mappings(this);
+			if (typedListener != null) typedListener.EnterNative_category_bindings(this);
 		}
 		public override void ExitRule(IParseTreeListener listener) {
 			ISParserListener typedListener = listener as ISParserListener;
-			if (typedListener != null) typedListener.ExitNative_category_mappings(this);
+			if (typedListener != null) typedListener.ExitNative_category_bindings(this);
 		}
 	}
 
 	[RuleVersion(0)]
-	public Native_category_mappingsContext native_category_mappings() {
-		Native_category_mappingsContext _localctx = new Native_category_mappingsContext(Context, State);
-		EnterRule(_localctx, 26, RULE_native_category_mappings);
+	public Native_category_bindingsContext native_category_bindings() {
+		Native_category_bindingsContext _localctx = new Native_category_bindingsContext(Context, State);
+		EnterRule(_localctx, 26, RULE_native_category_bindings);
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 515; Match(MAPPINGS);
+			State = 515; Match(BINDINGS);
 			State = 516; Match(COLON);
 			State = 517; indent();
-			State = 518; _localctx.items = native_category_mapping_list(0);
+			State = 518; _localctx.items = native_category_binding_list(0);
 			State = 519; dedent();
 			}
 		}
@@ -1260,78 +1260,78 @@ public partial class SParser : AbstractParser {
 		return _localctx;
 	}
 
-	public partial class Native_category_mapping_listContext : ParserRuleContext {
-		public Native_category_mapping_listContext(ParserRuleContext parent, int invokingState)
+	public partial class Native_category_binding_listContext : ParserRuleContext {
+		public Native_category_binding_listContext(ParserRuleContext parent, int invokingState)
 			: base(parent, invokingState)
 		{
 		}
-		public override int RuleIndex { get { return RULE_native_category_mapping_list; } }
+		public override int RuleIndex { get { return RULE_native_category_binding_list; } }
 	 
-		public Native_category_mapping_listContext() { }
-		public virtual void CopyFrom(Native_category_mapping_listContext context) {
+		public Native_category_binding_listContext() { }
+		public virtual void CopyFrom(Native_category_binding_listContext context) {
 			base.CopyFrom(context);
 		}
 	}
-	public partial class NativeCategoryMappingListContext : Native_category_mapping_listContext {
-		public Native_category_mappingContext item;
-		public Native_category_mappingContext native_category_mapping() {
-			return GetRuleContext<Native_category_mappingContext>(0);
+	public partial class NativeCategoryBindingListContext : Native_category_binding_listContext {
+		public Native_category_bindingContext item;
+		public Native_category_bindingContext native_category_binding() {
+			return GetRuleContext<Native_category_bindingContext>(0);
 		}
-		public NativeCategoryMappingListContext(Native_category_mapping_listContext context) { CopyFrom(context); }
+		public NativeCategoryBindingListContext(Native_category_binding_listContext context) { CopyFrom(context); }
 		public override void EnterRule(IParseTreeListener listener) {
 			ISParserListener typedListener = listener as ISParserListener;
-			if (typedListener != null) typedListener.EnterNativeCategoryMappingList(this);
+			if (typedListener != null) typedListener.EnterNativeCategoryBindingList(this);
 		}
 		public override void ExitRule(IParseTreeListener listener) {
 			ISParserListener typedListener = listener as ISParserListener;
-			if (typedListener != null) typedListener.ExitNativeCategoryMappingList(this);
+			if (typedListener != null) typedListener.ExitNativeCategoryBindingList(this);
 		}
 	}
-	public partial class NativeCategoryMappingListItemContext : Native_category_mapping_listContext {
-		public Native_category_mapping_listContext items;
-		public Native_category_mappingContext item;
+	public partial class NativeCategoryBindingListItemContext : Native_category_binding_listContext {
+		public Native_category_binding_listContext items;
+		public Native_category_bindingContext item;
 		public LfpContext lfp() {
 			return GetRuleContext<LfpContext>(0);
 		}
-		public Native_category_mapping_listContext native_category_mapping_list() {
-			return GetRuleContext<Native_category_mapping_listContext>(0);
+		public Native_category_binding_listContext native_category_binding_list() {
+			return GetRuleContext<Native_category_binding_listContext>(0);
 		}
-		public Native_category_mappingContext native_category_mapping() {
-			return GetRuleContext<Native_category_mappingContext>(0);
+		public Native_category_bindingContext native_category_binding() {
+			return GetRuleContext<Native_category_bindingContext>(0);
 		}
-		public NativeCategoryMappingListItemContext(Native_category_mapping_listContext context) { CopyFrom(context); }
+		public NativeCategoryBindingListItemContext(Native_category_binding_listContext context) { CopyFrom(context); }
 		public override void EnterRule(IParseTreeListener listener) {
 			ISParserListener typedListener = listener as ISParserListener;
-			if (typedListener != null) typedListener.EnterNativeCategoryMappingListItem(this);
+			if (typedListener != null) typedListener.EnterNativeCategoryBindingListItem(this);
 		}
 		public override void ExitRule(IParseTreeListener listener) {
 			ISParserListener typedListener = listener as ISParserListener;
-			if (typedListener != null) typedListener.ExitNativeCategoryMappingListItem(this);
+			if (typedListener != null) typedListener.ExitNativeCategoryBindingListItem(this);
 		}
 	}
 
 	[RuleVersion(0)]
-	public Native_category_mapping_listContext native_category_mapping_list() {
-		return native_category_mapping_list(0);
+	public Native_category_binding_listContext native_category_binding_list() {
+		return native_category_binding_list(0);
 	}
 
-	private Native_category_mapping_listContext native_category_mapping_list(int _p) {
+	private Native_category_binding_listContext native_category_binding_list(int _p) {
 		ParserRuleContext _parentctx = Context;
 		int _parentState = State;
-		Native_category_mapping_listContext _localctx = new Native_category_mapping_listContext(Context, _parentState);
-		Native_category_mapping_listContext _prevctx = _localctx;
+		Native_category_binding_listContext _localctx = new Native_category_binding_listContext(Context, _parentState);
+		Native_category_binding_listContext _prevctx = _localctx;
 		int _startState = 28;
-		EnterRecursionRule(_localctx, 28, RULE_native_category_mapping_list, _p);
+		EnterRecursionRule(_localctx, 28, RULE_native_category_binding_list, _p);
 		try {
 			int _alt;
 			EnterOuterAlt(_localctx, 1);
 			{
 			{
-			_localctx = new NativeCategoryMappingListContext(_localctx);
+			_localctx = new NativeCategoryBindingListContext(_localctx);
 			Context = _localctx;
 			_prevctx = _localctx;
 
-			State = 522; ((NativeCategoryMappingListContext)_localctx).item = native_category_mapping();
+			State = 522; ((NativeCategoryBindingListContext)_localctx).item = native_category_binding();
 			}
 			Context.Stop = TokenStream.Lt(-1);
 			State = 530;
@@ -1344,13 +1344,13 @@ public partial class SParser : AbstractParser {
 					_prevctx = _localctx;
 					{
 					{
-					_localctx = new NativeCategoryMappingListItemContext(new Native_category_mapping_listContext(_parentctx, _parentState));
-					((NativeCategoryMappingListItemContext)_localctx).items = _prevctx;
-					PushNewRecursionContext(_localctx, _startState, RULE_native_category_mapping_list);
+					_localctx = new NativeCategoryBindingListItemContext(new Native_category_binding_listContext(_parentctx, _parentState));
+					((NativeCategoryBindingListItemContext)_localctx).items = _prevctx;
+					PushNewRecursionContext(_localctx, _startState, RULE_native_category_binding_list);
 					State = 524;
 					if (!(Precpred(Context, 1))) throw new FailedPredicateException(this, "Precpred(Context, 1)");
 					State = 525; lfp();
-					State = 526; ((NativeCategoryMappingListItemContext)_localctx).item = native_category_mapping();
+					State = 526; ((NativeCategoryBindingListItemContext)_localctx).item = native_category_binding();
 					}
 					} 
 				}
@@ -2295,7 +2295,7 @@ public partial class SParser : AbstractParser {
 			State = 632; Match(LPAR);
 			State = 634;
 			_la = TokenStream.La(1);
-			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << LPAR) | (1L << LBRAK) | (1L << LCURL) | (1L << MINUS) | (1L << LT) | (1L << CODE) | (1L << DOCUMENT))) != 0) || ((((_la - 86)) & ~0x3f) == 0 && ((1L << (_la - 86)) & ((1L << (EXECUTE - 86)) | (1L << (FETCH - 86)) | (1L << (MUTABLE - 86)) | (1L << (NONE - 86)) | (1L << (NOT - 86)) | (1L << (READ - 86)) | (1L << (SELF - 86)) | (1L << (SORTED - 86)) | (1L << (THIS - 86)) | (1L << (BOOLEAN_LITERAL - 86)) | (1L << (CHAR_LITERAL - 86)) | (1L << (MIN_INTEGER - 86)) | (1L << (MAX_INTEGER - 86)) | (1L << (SYMBOL_IDENTIFIER - 86)) | (1L << (TYPE_IDENTIFIER - 86)) | (1L << (VARIABLE_IDENTIFIER - 86)) | (1L << (TEXT_LITERAL - 86)) | (1L << (INTEGER_LITERAL - 86)) | (1L << (HEXA_LITERAL - 86)) | (1L << (DECIMAL_LITERAL - 86)) | (1L << (DATETIME_LITERAL - 86)))) != 0) || ((((_la - 150)) & ~0x3f) == 0 && ((1L << (_la - 150)) & ((1L << (TIME_LITERAL - 150)) | (1L << (DATE_LITERAL - 150)) | (1L << (PERIOD_LITERAL - 150)))) != 0)) {
+			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << LPAR) | (1L << LBRAK) | (1L << LCURL) | (1L << MINUS) | (1L << LT) | (1L << CODE) | (1L << DOCUMENT))) != 0) || ((((_la - 87)) & ~0x3f) == 0 && ((1L << (_la - 87)) & ((1L << (EXECUTE - 87)) | (1L << (FETCH - 87)) | (1L << (MUTABLE - 87)) | (1L << (NONE - 87)) | (1L << (NOT - 87)) | (1L << (READ - 87)) | (1L << (SELF - 87)) | (1L << (SORTED - 87)) | (1L << (THIS - 87)) | (1L << (BOOLEAN_LITERAL - 87)) | (1L << (CHAR_LITERAL - 87)) | (1L << (MIN_INTEGER - 87)) | (1L << (MAX_INTEGER - 87)) | (1L << (SYMBOL_IDENTIFIER - 87)) | (1L << (TYPE_IDENTIFIER - 87)) | (1L << (VARIABLE_IDENTIFIER - 87)) | (1L << (TEXT_LITERAL - 87)) | (1L << (INTEGER_LITERAL - 87)) | (1L << (HEXA_LITERAL - 87)) | (1L << (DECIMAL_LITERAL - 87)) | (1L << (DATETIME_LITERAL - 87)) | (1L << (TIME_LITERAL - 87)))) != 0) || _la==DATE_LITERAL || _la==PERIOD_LITERAL) {
 				{
 				State = 633; _localctx.args = argument_assignment_list(0);
 				}
@@ -5305,7 +5305,7 @@ public partial class SParser : AbstractParser {
 			State = 1002; Match(LPAR);
 			State = 1004;
 			_la = TokenStream.La(1);
-			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << LPAR) | (1L << LBRAK) | (1L << LCURL) | (1L << MINUS) | (1L << LT) | (1L << CODE) | (1L << DOCUMENT))) != 0) || ((((_la - 86)) & ~0x3f) == 0 && ((1L << (_la - 86)) & ((1L << (EXECUTE - 86)) | (1L << (FETCH - 86)) | (1L << (MUTABLE - 86)) | (1L << (NONE - 86)) | (1L << (NOT - 86)) | (1L << (READ - 86)) | (1L << (SELF - 86)) | (1L << (SORTED - 86)) | (1L << (THIS - 86)) | (1L << (BOOLEAN_LITERAL - 86)) | (1L << (CHAR_LITERAL - 86)) | (1L << (MIN_INTEGER - 86)) | (1L << (MAX_INTEGER - 86)) | (1L << (SYMBOL_IDENTIFIER - 86)) | (1L << (TYPE_IDENTIFIER - 86)) | (1L << (VARIABLE_IDENTIFIER - 86)) | (1L << (TEXT_LITERAL - 86)) | (1L << (INTEGER_LITERAL - 86)) | (1L << (HEXA_LITERAL - 86)) | (1L << (DECIMAL_LITERAL - 86)) | (1L << (DATETIME_LITERAL - 86)))) != 0) || ((((_la - 150)) & ~0x3f) == 0 && ((1L << (_la - 150)) & ((1L << (TIME_LITERAL - 150)) | (1L << (DATE_LITERAL - 150)) | (1L << (PERIOD_LITERAL - 150)))) != 0)) {
+			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << LPAR) | (1L << LBRAK) | (1L << LCURL) | (1L << MINUS) | (1L << LT) | (1L << CODE) | (1L << DOCUMENT))) != 0) || ((((_la - 87)) & ~0x3f) == 0 && ((1L << (_la - 87)) & ((1L << (EXECUTE - 87)) | (1L << (FETCH - 87)) | (1L << (MUTABLE - 87)) | (1L << (NONE - 87)) | (1L << (NOT - 87)) | (1L << (READ - 87)) | (1L << (SELF - 87)) | (1L << (SORTED - 87)) | (1L << (THIS - 87)) | (1L << (BOOLEAN_LITERAL - 87)) | (1L << (CHAR_LITERAL - 87)) | (1L << (MIN_INTEGER - 87)) | (1L << (MAX_INTEGER - 87)) | (1L << (SYMBOL_IDENTIFIER - 87)) | (1L << (TYPE_IDENTIFIER - 87)) | (1L << (VARIABLE_IDENTIFIER - 87)) | (1L << (TEXT_LITERAL - 87)) | (1L << (INTEGER_LITERAL - 87)) | (1L << (HEXA_LITERAL - 87)) | (1L << (DECIMAL_LITERAL - 87)) | (1L << (DATETIME_LITERAL - 87)) | (1L << (TIME_LITERAL - 87)))) != 0) || _la==DATE_LITERAL || _la==PERIOD_LITERAL) {
 				{
 				State = 1003; _localctx.args = argument_assignment_list(0);
 				}
@@ -7132,7 +7132,7 @@ public partial class SParser : AbstractParser {
 			State = 1179; Match(LBRAK);
 			State = 1181;
 			_la = TokenStream.La(1);
-			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << LPAR) | (1L << LBRAK) | (1L << LCURL) | (1L << MINUS) | (1L << LT) | (1L << CODE) | (1L << DOCUMENT))) != 0) || ((((_la - 86)) & ~0x3f) == 0 && ((1L << (_la - 86)) & ((1L << (EXECUTE - 86)) | (1L << (FETCH - 86)) | (1L << (MUTABLE - 86)) | (1L << (NONE - 86)) | (1L << (NOT - 86)) | (1L << (READ - 86)) | (1L << (SELF - 86)) | (1L << (SORTED - 86)) | (1L << (THIS - 86)) | (1L << (BOOLEAN_LITERAL - 86)) | (1L << (CHAR_LITERAL - 86)) | (1L << (MIN_INTEGER - 86)) | (1L << (MAX_INTEGER - 86)) | (1L << (SYMBOL_IDENTIFIER - 86)) | (1L << (TYPE_IDENTIFIER - 86)) | (1L << (VARIABLE_IDENTIFIER - 86)) | (1L << (TEXT_LITERAL - 86)) | (1L << (INTEGER_LITERAL - 86)) | (1L << (HEXA_LITERAL - 86)) | (1L << (DECIMAL_LITERAL - 86)) | (1L << (DATETIME_LITERAL - 86)))) != 0) || ((((_la - 150)) & ~0x3f) == 0 && ((1L << (_la - 150)) & ((1L << (TIME_LITERAL - 150)) | (1L << (DATE_LITERAL - 150)) | (1L << (PERIOD_LITERAL - 150)))) != 0)) {
+			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << LPAR) | (1L << LBRAK) | (1L << LCURL) | (1L << MINUS) | (1L << LT) | (1L << CODE) | (1L << DOCUMENT))) != 0) || ((((_la - 87)) & ~0x3f) == 0 && ((1L << (_la - 87)) & ((1L << (EXECUTE - 87)) | (1L << (FETCH - 87)) | (1L << (MUTABLE - 87)) | (1L << (NONE - 87)) | (1L << (NOT - 87)) | (1L << (READ - 87)) | (1L << (SELF - 87)) | (1L << (SORTED - 87)) | (1L << (THIS - 87)) | (1L << (BOOLEAN_LITERAL - 87)) | (1L << (CHAR_LITERAL - 87)) | (1L << (MIN_INTEGER - 87)) | (1L << (MAX_INTEGER - 87)) | (1L << (SYMBOL_IDENTIFIER - 87)) | (1L << (TYPE_IDENTIFIER - 87)) | (1L << (VARIABLE_IDENTIFIER - 87)) | (1L << (TEXT_LITERAL - 87)) | (1L << (INTEGER_LITERAL - 87)) | (1L << (HEXA_LITERAL - 87)) | (1L << (DECIMAL_LITERAL - 87)) | (1L << (DATETIME_LITERAL - 87)) | (1L << (TIME_LITERAL - 87)))) != 0) || _la==DATE_LITERAL || _la==PERIOD_LITERAL) {
 				{
 				State = 1180; _localctx.items = expression_list(0);
 				}
@@ -7185,7 +7185,7 @@ public partial class SParser : AbstractParser {
 			State = 1185; Match(LT);
 			State = 1187;
 			_la = TokenStream.La(1);
-			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << LPAR) | (1L << LBRAK) | (1L << LCURL) | (1L << MINUS) | (1L << LT) | (1L << CODE) | (1L << DOCUMENT))) != 0) || ((((_la - 86)) & ~0x3f) == 0 && ((1L << (_la - 86)) & ((1L << (EXECUTE - 86)) | (1L << (FETCH - 86)) | (1L << (MUTABLE - 86)) | (1L << (NONE - 86)) | (1L << (NOT - 86)) | (1L << (READ - 86)) | (1L << (SELF - 86)) | (1L << (SORTED - 86)) | (1L << (THIS - 86)) | (1L << (BOOLEAN_LITERAL - 86)) | (1L << (CHAR_LITERAL - 86)) | (1L << (MIN_INTEGER - 86)) | (1L << (MAX_INTEGER - 86)) | (1L << (SYMBOL_IDENTIFIER - 86)) | (1L << (TYPE_IDENTIFIER - 86)) | (1L << (VARIABLE_IDENTIFIER - 86)) | (1L << (TEXT_LITERAL - 86)) | (1L << (INTEGER_LITERAL - 86)) | (1L << (HEXA_LITERAL - 86)) | (1L << (DECIMAL_LITERAL - 86)) | (1L << (DATETIME_LITERAL - 86)))) != 0) || ((((_la - 150)) & ~0x3f) == 0 && ((1L << (_la - 150)) & ((1L << (TIME_LITERAL - 150)) | (1L << (DATE_LITERAL - 150)) | (1L << (PERIOD_LITERAL - 150)))) != 0)) {
+			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << LPAR) | (1L << LBRAK) | (1L << LCURL) | (1L << MINUS) | (1L << LT) | (1L << CODE) | (1L << DOCUMENT))) != 0) || ((((_la - 87)) & ~0x3f) == 0 && ((1L << (_la - 87)) & ((1L << (EXECUTE - 87)) | (1L << (FETCH - 87)) | (1L << (MUTABLE - 87)) | (1L << (NONE - 87)) | (1L << (NOT - 87)) | (1L << (READ - 87)) | (1L << (SELF - 87)) | (1L << (SORTED - 87)) | (1L << (THIS - 87)) | (1L << (BOOLEAN_LITERAL - 87)) | (1L << (CHAR_LITERAL - 87)) | (1L << (MIN_INTEGER - 87)) | (1L << (MAX_INTEGER - 87)) | (1L << (SYMBOL_IDENTIFIER - 87)) | (1L << (TYPE_IDENTIFIER - 87)) | (1L << (VARIABLE_IDENTIFIER - 87)) | (1L << (TEXT_LITERAL - 87)) | (1L << (INTEGER_LITERAL - 87)) | (1L << (HEXA_LITERAL - 87)) | (1L << (DECIMAL_LITERAL - 87)) | (1L << (DATETIME_LITERAL - 87)) | (1L << (TIME_LITERAL - 87)))) != 0) || _la==DATE_LITERAL || _la==PERIOD_LITERAL) {
 				{
 				State = 1186; _localctx.items = expression_list(0);
 				}
@@ -9331,144 +9331,144 @@ public partial class SParser : AbstractParser {
 		return _localctx;
 	}
 
-	public partial class Native_category_mappingContext : ParserRuleContext {
-		public Native_category_mappingContext(ParserRuleContext parent, int invokingState)
+	public partial class Native_category_bindingContext : ParserRuleContext {
+		public Native_category_bindingContext(ParserRuleContext parent, int invokingState)
 			: base(parent, invokingState)
 		{
 		}
-		public override int RuleIndex { get { return RULE_native_category_mapping; } }
+		public override int RuleIndex { get { return RULE_native_category_binding; } }
 	 
-		public Native_category_mappingContext() { }
-		public virtual void CopyFrom(Native_category_mappingContext context) {
+		public Native_category_bindingContext() { }
+		public virtual void CopyFrom(Native_category_bindingContext context) {
 			base.CopyFrom(context);
 		}
 	}
-	public partial class CSharpCategoryMappingContext : Native_category_mappingContext {
-		public Csharp_identifier_expressionContext mapping;
+	public partial class Python2CategoryBindingContext : Native_category_bindingContext {
+		public Python_category_bindingContext binding;
+		public ITerminalNode PYTHON2() { return GetToken(SParser.PYTHON2, 0); }
+		public Python_category_bindingContext python_category_binding() {
+			return GetRuleContext<Python_category_bindingContext>(0);
+		}
+		public Python2CategoryBindingContext(Native_category_bindingContext context) { CopyFrom(context); }
+		public override void EnterRule(IParseTreeListener listener) {
+			ISParserListener typedListener = listener as ISParserListener;
+			if (typedListener != null) typedListener.EnterPython2CategoryBinding(this);
+		}
+		public override void ExitRule(IParseTreeListener listener) {
+			ISParserListener typedListener = listener as ISParserListener;
+			if (typedListener != null) typedListener.ExitPython2CategoryBinding(this);
+		}
+	}
+	public partial class CSharpCategoryBindingContext : Native_category_bindingContext {
+		public Csharp_identifier_expressionContext binding;
 		public ITerminalNode CSHARP() { return GetToken(SParser.CSHARP, 0); }
 		public Csharp_identifier_expressionContext csharp_identifier_expression() {
 			return GetRuleContext<Csharp_identifier_expressionContext>(0);
 		}
-		public CSharpCategoryMappingContext(Native_category_mappingContext context) { CopyFrom(context); }
+		public CSharpCategoryBindingContext(Native_category_bindingContext context) { CopyFrom(context); }
 		public override void EnterRule(IParseTreeListener listener) {
 			ISParserListener typedListener = listener as ISParserListener;
-			if (typedListener != null) typedListener.EnterCSharpCategoryMapping(this);
+			if (typedListener != null) typedListener.EnterCSharpCategoryBinding(this);
 		}
 		public override void ExitRule(IParseTreeListener listener) {
 			ISParserListener typedListener = listener as ISParserListener;
-			if (typedListener != null) typedListener.ExitCSharpCategoryMapping(this);
+			if (typedListener != null) typedListener.ExitCSharpCategoryBinding(this);
 		}
 	}
-	public partial class JavaCategoryMappingContext : Native_category_mappingContext {
-		public Java_class_identifier_expressionContext mapping;
+	public partial class JavaScriptCategoryBindingContext : Native_category_bindingContext {
+		public Javascript_category_bindingContext binding;
+		public ITerminalNode JAVASCRIPT() { return GetToken(SParser.JAVASCRIPT, 0); }
+		public Javascript_category_bindingContext javascript_category_binding() {
+			return GetRuleContext<Javascript_category_bindingContext>(0);
+		}
+		public JavaScriptCategoryBindingContext(Native_category_bindingContext context) { CopyFrom(context); }
+		public override void EnterRule(IParseTreeListener listener) {
+			ISParserListener typedListener = listener as ISParserListener;
+			if (typedListener != null) typedListener.EnterJavaScriptCategoryBinding(this);
+		}
+		public override void ExitRule(IParseTreeListener listener) {
+			ISParserListener typedListener = listener as ISParserListener;
+			if (typedListener != null) typedListener.ExitJavaScriptCategoryBinding(this);
+		}
+	}
+	public partial class JavaCategoryBindingContext : Native_category_bindingContext {
+		public Java_class_identifier_expressionContext binding;
 		public ITerminalNode JAVA() { return GetToken(SParser.JAVA, 0); }
 		public Java_class_identifier_expressionContext java_class_identifier_expression() {
 			return GetRuleContext<Java_class_identifier_expressionContext>(0);
 		}
-		public JavaCategoryMappingContext(Native_category_mappingContext context) { CopyFrom(context); }
+		public JavaCategoryBindingContext(Native_category_bindingContext context) { CopyFrom(context); }
 		public override void EnterRule(IParseTreeListener listener) {
 			ISParserListener typedListener = listener as ISParserListener;
-			if (typedListener != null) typedListener.EnterJavaCategoryMapping(this);
+			if (typedListener != null) typedListener.EnterJavaCategoryBinding(this);
 		}
 		public override void ExitRule(IParseTreeListener listener) {
 			ISParserListener typedListener = listener as ISParserListener;
-			if (typedListener != null) typedListener.ExitJavaCategoryMapping(this);
+			if (typedListener != null) typedListener.ExitJavaCategoryBinding(this);
 		}
 	}
-	public partial class JavaScriptCategoryMappingContext : Native_category_mappingContext {
-		public Javascript_category_mappingContext mapping;
-		public ITerminalNode JAVASCRIPT() { return GetToken(SParser.JAVASCRIPT, 0); }
-		public Javascript_category_mappingContext javascript_category_mapping() {
-			return GetRuleContext<Javascript_category_mappingContext>(0);
-		}
-		public JavaScriptCategoryMappingContext(Native_category_mappingContext context) { CopyFrom(context); }
-		public override void EnterRule(IParseTreeListener listener) {
-			ISParserListener typedListener = listener as ISParserListener;
-			if (typedListener != null) typedListener.EnterJavaScriptCategoryMapping(this);
-		}
-		public override void ExitRule(IParseTreeListener listener) {
-			ISParserListener typedListener = listener as ISParserListener;
-			if (typedListener != null) typedListener.ExitJavaScriptCategoryMapping(this);
-		}
-	}
-	public partial class Python3CategoryMappingContext : Native_category_mappingContext {
-		public Python_category_mappingContext mapping;
+	public partial class Python3CategoryBindingContext : Native_category_bindingContext {
+		public Python_category_bindingContext binding;
 		public ITerminalNode PYTHON3() { return GetToken(SParser.PYTHON3, 0); }
-		public Python_category_mappingContext python_category_mapping() {
-			return GetRuleContext<Python_category_mappingContext>(0);
+		public Python_category_bindingContext python_category_binding() {
+			return GetRuleContext<Python_category_bindingContext>(0);
 		}
-		public Python3CategoryMappingContext(Native_category_mappingContext context) { CopyFrom(context); }
+		public Python3CategoryBindingContext(Native_category_bindingContext context) { CopyFrom(context); }
 		public override void EnterRule(IParseTreeListener listener) {
 			ISParserListener typedListener = listener as ISParserListener;
-			if (typedListener != null) typedListener.EnterPython3CategoryMapping(this);
+			if (typedListener != null) typedListener.EnterPython3CategoryBinding(this);
 		}
 		public override void ExitRule(IParseTreeListener listener) {
 			ISParserListener typedListener = listener as ISParserListener;
-			if (typedListener != null) typedListener.ExitPython3CategoryMapping(this);
-		}
-	}
-	public partial class Python2CategoryMappingContext : Native_category_mappingContext {
-		public Python_category_mappingContext mapping;
-		public ITerminalNode PYTHON2() { return GetToken(SParser.PYTHON2, 0); }
-		public Python_category_mappingContext python_category_mapping() {
-			return GetRuleContext<Python_category_mappingContext>(0);
-		}
-		public Python2CategoryMappingContext(Native_category_mappingContext context) { CopyFrom(context); }
-		public override void EnterRule(IParseTreeListener listener) {
-			ISParserListener typedListener = listener as ISParserListener;
-			if (typedListener != null) typedListener.EnterPython2CategoryMapping(this);
-		}
-		public override void ExitRule(IParseTreeListener listener) {
-			ISParserListener typedListener = listener as ISParserListener;
-			if (typedListener != null) typedListener.ExitPython2CategoryMapping(this);
+			if (typedListener != null) typedListener.ExitPython3CategoryBinding(this);
 		}
 	}
 
 	[RuleVersion(0)]
-	public Native_category_mappingContext native_category_mapping() {
-		Native_category_mappingContext _localctx = new Native_category_mappingContext(Context, State);
-		EnterRule(_localctx, 192, RULE_native_category_mapping);
+	public Native_category_bindingContext native_category_binding() {
+		Native_category_bindingContext _localctx = new Native_category_bindingContext(Context, State);
+		EnterRule(_localctx, 192, RULE_native_category_binding);
 		try {
 			State = 1354;
 			switch (TokenStream.La(1)) {
 			case JAVA:
-				_localctx = new JavaCategoryMappingContext(_localctx);
+				_localctx = new JavaCategoryBindingContext(_localctx);
 				EnterOuterAlt(_localctx, 1);
 				{
 				State = 1344; Match(JAVA);
-				State = 1345; ((JavaCategoryMappingContext)_localctx).mapping = java_class_identifier_expression(0);
+				State = 1345; ((JavaCategoryBindingContext)_localctx).binding = java_class_identifier_expression(0);
 				}
 				break;
 			case CSHARP:
-				_localctx = new CSharpCategoryMappingContext(_localctx);
+				_localctx = new CSharpCategoryBindingContext(_localctx);
 				EnterOuterAlt(_localctx, 2);
 				{
 				State = 1346; Match(CSHARP);
-				State = 1347; ((CSharpCategoryMappingContext)_localctx).mapping = csharp_identifier_expression(0);
+				State = 1347; ((CSharpCategoryBindingContext)_localctx).binding = csharp_identifier_expression(0);
 				}
 				break;
 			case PYTHON2:
-				_localctx = new Python2CategoryMappingContext(_localctx);
+				_localctx = new Python2CategoryBindingContext(_localctx);
 				EnterOuterAlt(_localctx, 3);
 				{
 				State = 1348; Match(PYTHON2);
-				State = 1349; ((Python2CategoryMappingContext)_localctx).mapping = python_category_mapping();
+				State = 1349; ((Python2CategoryBindingContext)_localctx).binding = python_category_binding();
 				}
 				break;
 			case PYTHON3:
-				_localctx = new Python3CategoryMappingContext(_localctx);
+				_localctx = new Python3CategoryBindingContext(_localctx);
 				EnterOuterAlt(_localctx, 4);
 				{
 				State = 1350; Match(PYTHON3);
-				State = 1351; ((Python3CategoryMappingContext)_localctx).mapping = python_category_mapping();
+				State = 1351; ((Python3CategoryBindingContext)_localctx).binding = python_category_binding();
 				}
 				break;
 			case JAVASCRIPT:
-				_localctx = new JavaScriptCategoryMappingContext(_localctx);
+				_localctx = new JavaScriptCategoryBindingContext(_localctx);
 				EnterOuterAlt(_localctx, 5);
 				{
 				State = 1352; Match(JAVASCRIPT);
-				State = 1353; ((JavaScriptCategoryMappingContext)_localctx).mapping = javascript_category_mapping();
+				State = 1353; ((JavaScriptCategoryBindingContext)_localctx).binding = javascript_category_binding();
 				}
 				break;
 			default:
@@ -9486,7 +9486,7 @@ public partial class SParser : AbstractParser {
 		return _localctx;
 	}
 
-	public partial class Python_category_mappingContext : ParserRuleContext {
+	public partial class Python_category_bindingContext : ParserRuleContext {
 		public IdentifierContext id_;
 		public Python_moduleContext module;
 		public IdentifierContext identifier() {
@@ -9495,25 +9495,25 @@ public partial class SParser : AbstractParser {
 		public Python_moduleContext python_module() {
 			return GetRuleContext<Python_moduleContext>(0);
 		}
-		public Python_category_mappingContext(ParserRuleContext parent, int invokingState)
+		public Python_category_bindingContext(ParserRuleContext parent, int invokingState)
 			: base(parent, invokingState)
 		{
 		}
-		public override int RuleIndex { get { return RULE_python_category_mapping; } }
+		public override int RuleIndex { get { return RULE_python_category_binding; } }
 		public override void EnterRule(IParseTreeListener listener) {
 			ISParserListener typedListener = listener as ISParserListener;
-			if (typedListener != null) typedListener.EnterPython_category_mapping(this);
+			if (typedListener != null) typedListener.EnterPython_category_binding(this);
 		}
 		public override void ExitRule(IParseTreeListener listener) {
 			ISParserListener typedListener = listener as ISParserListener;
-			if (typedListener != null) typedListener.ExitPython_category_mapping(this);
+			if (typedListener != null) typedListener.ExitPython_category_binding(this);
 		}
 	}
 
 	[RuleVersion(0)]
-	public Python_category_mappingContext python_category_mapping() {
-		Python_category_mappingContext _localctx = new Python_category_mappingContext(Context, State);
-		EnterRule(_localctx, 194, RULE_python_category_mapping);
+	public Python_category_bindingContext python_category_binding() {
+		Python_category_bindingContext _localctx = new Python_category_bindingContext(Context, State);
+		EnterRule(_localctx, 194, RULE_python_category_binding);
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
@@ -9652,7 +9652,7 @@ public partial class SParser : AbstractParser {
 		return _localctx;
 	}
 
-	public partial class Javascript_category_mappingContext : ParserRuleContext {
+	public partial class Javascript_category_bindingContext : ParserRuleContext {
 		public IdentifierContext id_;
 		public Javascript_moduleContext module;
 		public IdentifierContext identifier() {
@@ -9661,25 +9661,25 @@ public partial class SParser : AbstractParser {
 		public Javascript_moduleContext javascript_module() {
 			return GetRuleContext<Javascript_moduleContext>(0);
 		}
-		public Javascript_category_mappingContext(ParserRuleContext parent, int invokingState)
+		public Javascript_category_bindingContext(ParserRuleContext parent, int invokingState)
 			: base(parent, invokingState)
 		{
 		}
-		public override int RuleIndex { get { return RULE_javascript_category_mapping; } }
+		public override int RuleIndex { get { return RULE_javascript_category_binding; } }
 		public override void EnterRule(IParseTreeListener listener) {
 			ISParserListener typedListener = listener as ISParserListener;
-			if (typedListener != null) typedListener.EnterJavascript_category_mapping(this);
+			if (typedListener != null) typedListener.EnterJavascript_category_binding(this);
 		}
 		public override void ExitRule(IParseTreeListener listener) {
 			ISParserListener typedListener = listener as ISParserListener;
-			if (typedListener != null) typedListener.ExitJavascript_category_mapping(this);
+			if (typedListener != null) typedListener.ExitJavascript_category_binding(this);
 		}
 	}
 
 	[RuleVersion(0)]
-	public Javascript_category_mappingContext javascript_category_mapping() {
-		Javascript_category_mappingContext _localctx = new Javascript_category_mappingContext(Context, State);
-		EnterRule(_localctx, 200, RULE_javascript_category_mapping);
+	public Javascript_category_bindingContext javascript_category_binding() {
+		Javascript_category_bindingContext _localctx = new Javascript_category_bindingContext(Context, State);
+		EnterRule(_localctx, 200, RULE_javascript_category_binding);
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
@@ -11865,7 +11865,7 @@ public partial class SParser : AbstractParser {
 			State = 1564; Match(LPAR);
 			State = 1566;
 			_la = TokenStream.La(1);
-			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << LPAR) | (1L << LBRAK) | (1L << LCURL) | (1L << MINUS) | (1L << LT) | (1L << CODE) | (1L << DOCUMENT))) != 0) || ((((_la - 86)) & ~0x3f) == 0 && ((1L << (_la - 86)) & ((1L << (EXECUTE - 86)) | (1L << (FETCH - 86)) | (1L << (MUTABLE - 86)) | (1L << (NONE - 86)) | (1L << (NOT - 86)) | (1L << (READ - 86)) | (1L << (SELF - 86)) | (1L << (SORTED - 86)) | (1L << (THIS - 86)) | (1L << (BOOLEAN_LITERAL - 86)) | (1L << (CHAR_LITERAL - 86)) | (1L << (MIN_INTEGER - 86)) | (1L << (MAX_INTEGER - 86)) | (1L << (SYMBOL_IDENTIFIER - 86)) | (1L << (TYPE_IDENTIFIER - 86)) | (1L << (VARIABLE_IDENTIFIER - 86)) | (1L << (TEXT_LITERAL - 86)) | (1L << (INTEGER_LITERAL - 86)) | (1L << (HEXA_LITERAL - 86)) | (1L << (DECIMAL_LITERAL - 86)) | (1L << (DATETIME_LITERAL - 86)))) != 0) || ((((_la - 150)) & ~0x3f) == 0 && ((1L << (_la - 150)) & ((1L << (TIME_LITERAL - 150)) | (1L << (DATE_LITERAL - 150)) | (1L << (PERIOD_LITERAL - 150)))) != 0)) {
+			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << LPAR) | (1L << LBRAK) | (1L << LCURL) | (1L << MINUS) | (1L << LT) | (1L << CODE) | (1L << DOCUMENT))) != 0) || ((((_la - 87)) & ~0x3f) == 0 && ((1L << (_la - 87)) & ((1L << (EXECUTE - 87)) | (1L << (FETCH - 87)) | (1L << (MUTABLE - 87)) | (1L << (NONE - 87)) | (1L << (NOT - 87)) | (1L << (READ - 87)) | (1L << (SELF - 87)) | (1L << (SORTED - 87)) | (1L << (THIS - 87)) | (1L << (BOOLEAN_LITERAL - 87)) | (1L << (CHAR_LITERAL - 87)) | (1L << (MIN_INTEGER - 87)) | (1L << (MAX_INTEGER - 87)) | (1L << (SYMBOL_IDENTIFIER - 87)) | (1L << (TYPE_IDENTIFIER - 87)) | (1L << (VARIABLE_IDENTIFIER - 87)) | (1L << (TEXT_LITERAL - 87)) | (1L << (INTEGER_LITERAL - 87)) | (1L << (HEXA_LITERAL - 87)) | (1L << (DECIMAL_LITERAL - 87)) | (1L << (DATETIME_LITERAL - 87)) | (1L << (TIME_LITERAL - 87)))) != 0) || _la==DATE_LITERAL || _la==PERIOD_LITERAL) {
 				{
 				State = 1565; _localctx.items = expression_tuple(0);
 				}
@@ -11918,7 +11918,7 @@ public partial class SParser : AbstractParser {
 			State = 1570; Match(LCURL);
 			State = 1572;
 			_la = TokenStream.La(1);
-			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << LPAR) | (1L << LBRAK) | (1L << LCURL) | (1L << MINUS) | (1L << LT) | (1L << CODE) | (1L << DOCUMENT))) != 0) || ((((_la - 86)) & ~0x3f) == 0 && ((1L << (_la - 86)) & ((1L << (EXECUTE - 86)) | (1L << (FETCH - 86)) | (1L << (MUTABLE - 86)) | (1L << (NONE - 86)) | (1L << (NOT - 86)) | (1L << (READ - 86)) | (1L << (SELF - 86)) | (1L << (SORTED - 86)) | (1L << (THIS - 86)) | (1L << (BOOLEAN_LITERAL - 86)) | (1L << (CHAR_LITERAL - 86)) | (1L << (MIN_INTEGER - 86)) | (1L << (MAX_INTEGER - 86)) | (1L << (SYMBOL_IDENTIFIER - 86)) | (1L << (TYPE_IDENTIFIER - 86)) | (1L << (VARIABLE_IDENTIFIER - 86)) | (1L << (TEXT_LITERAL - 86)) | (1L << (INTEGER_LITERAL - 86)) | (1L << (HEXA_LITERAL - 86)) | (1L << (DECIMAL_LITERAL - 86)) | (1L << (DATETIME_LITERAL - 86)))) != 0) || ((((_la - 150)) & ~0x3f) == 0 && ((1L << (_la - 150)) & ((1L << (TIME_LITERAL - 150)) | (1L << (DATE_LITERAL - 150)) | (1L << (PERIOD_LITERAL - 150)))) != 0)) {
+			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << LPAR) | (1L << LBRAK) | (1L << LCURL) | (1L << MINUS) | (1L << LT) | (1L << CODE) | (1L << DOCUMENT))) != 0) || ((((_la - 87)) & ~0x3f) == 0 && ((1L << (_la - 87)) & ((1L << (EXECUTE - 87)) | (1L << (FETCH - 87)) | (1L << (MUTABLE - 87)) | (1L << (NONE - 87)) | (1L << (NOT - 87)) | (1L << (READ - 87)) | (1L << (SELF - 87)) | (1L << (SORTED - 87)) | (1L << (THIS - 87)) | (1L << (BOOLEAN_LITERAL - 87)) | (1L << (CHAR_LITERAL - 87)) | (1L << (MIN_INTEGER - 87)) | (1L << (MAX_INTEGER - 87)) | (1L << (SYMBOL_IDENTIFIER - 87)) | (1L << (TYPE_IDENTIFIER - 87)) | (1L << (VARIABLE_IDENTIFIER - 87)) | (1L << (TEXT_LITERAL - 87)) | (1L << (INTEGER_LITERAL - 87)) | (1L << (HEXA_LITERAL - 87)) | (1L << (DECIMAL_LITERAL - 87)) | (1L << (DATETIME_LITERAL - 87)) | (1L << (TIME_LITERAL - 87)))) != 0) || _la==DATE_LITERAL || _la==PERIOD_LITERAL) {
 				{
 				State = 1571; _localctx.items = dict_entry_list(0);
 				}
@@ -17296,7 +17296,7 @@ public partial class SParser : AbstractParser {
 
 	public override bool Sempred(RuleContext _localctx, int ruleIndex, int predIndex) {
 		switch (ruleIndex) {
-		case 14: return native_category_mapping_list_sempred((Native_category_mapping_listContext)_localctx, predIndex);
+		case 14: return native_category_binding_list_sempred((Native_category_binding_listContext)_localctx, predIndex);
 		case 25: return callable_parent_sempred((Callable_parentContext)_localctx, predIndex);
 		case 35: return else_if_statement_list_sempred((Else_if_statement_listContext)_localctx, predIndex);
 		case 40: return expression_sempred((ExpressionContext)_localctx, predIndex);
@@ -17346,7 +17346,7 @@ public partial class SParser : AbstractParser {
 		}
 		return true;
 	}
-	private bool native_category_mapping_list_sempred(Native_category_mapping_listContext _localctx, int predIndex) {
+	private bool native_category_binding_list_sempred(Native_category_binding_listContext _localctx, int predIndex) {
 		switch (predIndex) {
 		case 0: return Precpred(Context, 1);
 		}
@@ -17840,7 +17840,7 @@ public partial class SParser : AbstractParser {
 		"\x120\x122\x124\x126\x128\x12A\x12C\x12E\x130\x132\x134\x136\x138\x13A"+
 		"\x13C\x13E\x140\x142\x144\x146\x148\x14A\x14C\x14E\x150\x152\x154\x156"+
 		"\x158\x15A\x15C\x15E\x160\x162\x164\x166\x168\x16A\x16C\x16E\x170\x2\t"+
-		"\x3\x2JK\x3\x2!\"\x4\x2{{\x81\x81\x4\x2&&hh\b\x2\x33;vv\x80\x80\x89\x89"+
+		"\x3\x2KL\x3\x2!\"\x4\x2{{\x81\x81\x4\x2&&hh\b\x2\x33;vv\x80\x80\x89\x89"+
 		"\x8E\x90\x92\x92\a\x2\x33;vv\x80\x80\x89\x89\x8E\x90\a\x2\x33;vv\x80\x80"+
 		"\x89\x89\x8E\x92\x81F\x2\x172\x3\x2\x2\x2\x4\x183\x3\x2\x2\x2\x6\x18D"+
 		"\x3\x2\x2\x2\b\x191\x3\x2\x2\x2\n\x198\x3\x2\x2\x2\f\x1A5\x3\x2\x2\x2"+
@@ -17896,13 +17896,13 @@ public partial class SParser : AbstractParser {
 		"\x2\x2\x2\x15C\x786\x3\x2\x2\x2\x15E\x788\x3\x2\x2\x2\x160\x795\x3\x2"+
 		"\x2\x2\x162\x79A\x3\x2\x2\x2\x164\x79C\x3\x2\x2\x2\x166\x7A3\x3\x2\x2"+
 		"\x2\x168\x7AE\x3\x2\x2\x2\x16A\x7B2\x3\x2\x2\x2\x16C\x7B9\x3\x2\x2\x2"+
-		"\x16E\x7C8\x3\x2\x2\x2\x170\x7CA\x3\x2\x2\x2\x172\x173\aU\x2\x2\x173\x174"+
+		"\x16E\x7C8\x3\x2\x2\x2\x170\x7CA\x3\x2\x2\x2\x172\x173\aV\x2\x2\x173\x174"+
 		"\x5\xACW\x2\x174\x17B\a\x15\x2\x2\x175\x178\x5\xACW\x2\x176\x177\a\x12"+
 		"\x2\x2\x177\x179\x5 \x11\x2\x178\x176\x3\x2\x2\x2\x178\x179\x3\x2\x2\x2"+
 		"\x179\x17C\x3\x2\x2\x2\x17A\x17C\x5 \x11\x2\x17B\x175\x3\x2\x2\x2\x17B"+
 		"\x17A\x3\x2\x2\x2\x17C\x17D\x3\x2\x2\x2\x17D\x17E\a\x16\x2\x2\x17E\x17F"+
 		"\a\x10\x2\x2\x17F\x180\x5v<\x2\x180\x181\x5\x88\x45\x2\x181\x182\x5x="+
-		"\x2\x182\x3\x3\x2\x2\x2\x183\x184\aU\x2\x2\x184\x185\x5\xACW\x2\x185\x186"+
+		"\x2\x182\x3\x3\x2\x2\x2\x183\x184\aV\x2\x2\x184\x185\x5\xACW\x2\x185\x186"+
 		"\a\x15\x2\x2\x186\x187\x5\x9AN\x2\x187\x188\a\x16\x2\x2\x188\x189\a\x10"+
 		"\x2\x2\x189\x18A\x5v<\x2\x18A\x18B\x5\x86\x44\x2\x18B\x18C\x5x=\x2\x18C"+
 		"\x5\x3\x2\x2\x2\x18D\x18E\x5\xAEX\x2\x18E\x18F\a,\x2\x2\x18F\x190\x5R"+
@@ -17924,15 +17924,15 @@ public partial class SParser : AbstractParser {
 		"\x1BE\a\x16\x2\x2\x1BE\x1BF\a\x10\x2\x2\x1BF\x1C2\x5v<\x2\x1C0\x1C3\x5"+
 		"\xBE`\x2\x1C1\x1C3\at\x2\x2\x1C2\x1C0\x3\x2\x2\x2\x1C2\x1C1\x3\x2\x2\x2"+
 		"\x1C3\x1C4\x3\x2\x2\x2\x1C4\x1C5\x5x=\x2\x1C5\xF\x3\x2\x2\x2\x1C6\x1C7"+
-		"\x5\xA4S\x2\x1C7\x11\x3\x2\x2\x2\x1C8\x1C9\aN\x2\x2\x1C9\x1CA\aq\x2\x2"+
+		"\x5\xA4S\x2\x1C7\x11\x3\x2\x2\x2\x1C8\x1C9\aO\x2\x2\x1C9\x1CA\aq\x2\x2"+
 		"\x1CA\x1CB\x5\x104\x83\x2\x1CB\x1CC\a\x15\x2\x2\x1CC\x1CD\x5\xB4[\x2\x1CD"+
 		"\x1D0\a\x16\x2\x2\x1CE\x1CF\a\x32\x2\x2\x1CF\x1D1\x5\x96L\x2\x1D0\x1CE"+
 		"\x3\x2\x2\x2\x1D0\x1D1\x3\x2\x2\x2\x1D1\x1D2\x3\x2\x2\x2\x1D2\x1D3\a\x10"+
 		"\x2\x2\x1D3\x1D4\x5v<\x2\x1D4\x1D5\x5\xDAn\x2\x1D5\x1D6\x5x=\x2\x1D6\x13"+
-		"\x3\x2\x2\x2\x1D7\x1D8\aN\x2\x2\x1D8\x1D9\x5\xAAV\x2\x1D9\x1DA\a|\x2\x2"+
+		"\x3\x2\x2\x2\x1D7\x1D8\aO\x2\x2\x1D8\x1D9\x5\xAAV\x2\x1D9\x1DA\a|\x2\x2"+
 		"\x1DA\x1DB\a\x15\x2\x2\x1DB\x1DC\a\x16\x2\x2\x1DC\x1DD\a\x10\x2\x2\x1DD"+
 		"\x1DE\x5v<\x2\x1DE\x1DF\x5\xDAn\x2\x1DF\x1E0\x5x=\x2\x1E0\x15\x3\x2\x2"+
-		"\x2\x1E1\x1E2\aN\x2\x2\x1E2\x1E3\x5\xAAV\x2\x1E3\x1E4\a_\x2\x2\x1E4\x1E5"+
+		"\x2\x1E1\x1E2\aO\x2\x2\x1E2\x1E3\x5\xAAV\x2\x1E3\x1E4\a`\x2\x2\x1E4\x1E5"+
 		"\a\x15\x2\x2\x1E5\x1E6\a\x16\x2\x2\x1E6\x1E7\a\x10\x2\x2\x1E7\x1E8\x5"+
 		"v<\x2\x1E8\x1E9\x5\xDAn\x2\x1E9\x1EA\x5x=\x2\x1EA\x17\x3\x2\x2\x2\x1EB"+
 		"\x1EC\aj\x2\x2\x1EC\x1ED\t\x2\x2\x2\x1ED\x1EE\x5\xACW\x2\x1EE\x1F0\a\x15"+
@@ -17943,31 +17943,31 @@ public partial class SParser : AbstractParser {
 		"\x1FD\a\x15\x2\x2\x1FC\x1FE\x5 \x11\x2\x1FD\x1FC\x3\x2\x2\x2\x1FD\x1FE"+
 		"\x3\x2\x2\x2\x1FE\x1FF\x3\x2\x2\x2\x1FF\x200\a\x16\x2\x2\x200\x201\a\x10"+
 		"\x2\x2\x201\x202\x5v<\x2\x202\x203\x5\x1C\xF\x2\x203\x204\x5x=\x2\x204"+
-		"\x1B\x3\x2\x2\x2\x205\x206\a\x64\x2\x2\x206\x207\a\x10\x2\x2\x207\x208"+
-		"\x5v<\x2\x208\x209\x5\x1E\x10\x2\x209\x20A\x5x=\x2\x20A\x1D\x3\x2\x2\x2"+
-		"\x20B\x20C\b\x10\x1\x2\x20C\x20D\x5\xC2\x62\x2\x20D\x214\x3\x2\x2\x2\x20E"+
-		"\x20F\f\x3\x2\x2\x20F\x210\x5t;\x2\x210\x211\x5\xC2\x62\x2\x211\x213\x3"+
-		"\x2\x2\x2\x212\x20E\x3\x2\x2\x2\x213\x216\x3\x2\x2\x2\x214\x212\x3\x2"+
-		"\x2\x2\x214\x215\x3\x2\x2\x2\x215\x1F\x3\x2\x2\x2\x216\x214\x3\x2\x2\x2"+
-		"\x217\x218\x5\xCEh\x2\x218!\x3\x2\x2\x2\x219\x21A\a?\x2\x2\x21A\x21B\a"+
-		"N\x2\x2\x21B\x21C\x5\xA6T\x2\x21C\x21E\a\x15\x2\x2\x21D\x21F\x5\xB0Y\x2"+
-		"\x21E\x21D\x3\x2\x2\x2\x21E\x21F\x3\x2\x2\x2\x21F\x220\x3\x2\x2\x2\x220"+
-		"\x223\a\x16\x2\x2\x221\x222\a\x32\x2\x2\x222\x224\x5\x96L\x2\x223\x221"+
-		"\x3\x2\x2\x2\x223\x224\x3\x2\x2\x2\x224#\x3\x2\x2\x2\x225\x226\aN\x2\x2"+
-		"\x226\x227\x5\xA6T\x2\x227\x229\a\x15\x2\x2\x228\x22A\x5\xB0Y\x2\x229"+
-		"\x228\x3\x2\x2\x2\x229\x22A\x3\x2\x2\x2\x22A\x22B\x3\x2\x2\x2\x22B\x22E"+
-		"\a\x16\x2\x2\x22C\x22D\a\x32\x2\x2\x22D\x22F\x5\x96L\x2\x22E\x22C\x3\x2"+
-		"\x2\x2\x22E\x22F\x3\x2\x2\x2\x22F\x230\x3\x2\x2\x2\x230\x231\a\x10\x2"+
-		"\x2\x231\x232\x5v<\x2\x232\x233\x5\xDAn\x2\x233\x234\x5x=\x2\x234%\x3"+
-		"\x2\x2\x2\x235\x236\aN\x2\x2\x236\x237\aj\x2\x2\x237\x238\x5\xA6T\x2\x238"+
-		"\x23A\a\x15\x2\x2\x239\x23B\x5\xB0Y\x2\x23A\x239\x3\x2\x2\x2\x23A\x23B"+
-		"\x3\x2\x2\x2\x23B\x23C\x3\x2\x2\x2\x23C\x23F\a\x16\x2\x2\x23D\x23E\a\x32"+
-		"\x2\x2\x23E\x240\x5\xBA^\x2\x23F\x23D\x3\x2\x2\x2\x23F\x240\x3\x2\x2\x2"+
-		"\x240\x241\x3\x2\x2\x2\x241\x242\a\x10\x2\x2\x242\x243\x5v<\x2\x243\x244"+
-		"\x5\xD2j\x2\x244\x245\x5x=\x2\x245\'\x3\x2\x2\x2\x246\x247\aN\x2\x2\x247"+
+		"\x1B\x3\x2\x2\x2\x205\x206\aH\x2\x2\x206\x207\a\x10\x2\x2\x207\x208\x5"+
+		"v<\x2\x208\x209\x5\x1E\x10\x2\x209\x20A\x5x=\x2\x20A\x1D\x3\x2\x2\x2\x20B"+
+		"\x20C\b\x10\x1\x2\x20C\x20D\x5\xC2\x62\x2\x20D\x214\x3\x2\x2\x2\x20E\x20F"+
+		"\f\x3\x2\x2\x20F\x210\x5t;\x2\x210\x211\x5\xC2\x62\x2\x211\x213\x3\x2"+
+		"\x2\x2\x212\x20E\x3\x2\x2\x2\x213\x216\x3\x2\x2\x2\x214\x212\x3\x2\x2"+
+		"\x2\x214\x215\x3\x2\x2\x2\x215\x1F\x3\x2\x2\x2\x216\x214\x3\x2\x2\x2\x217"+
+		"\x218\x5\xCEh\x2\x218!\x3\x2\x2\x2\x219\x21A\a?\x2\x2\x21A\x21B\aO\x2"+
+		"\x2\x21B\x21C\x5\xA6T\x2\x21C\x21E\a\x15\x2\x2\x21D\x21F\x5\xB0Y\x2\x21E"+
+		"\x21D\x3\x2\x2\x2\x21E\x21F\x3\x2\x2\x2\x21F\x220\x3\x2\x2\x2\x220\x223"+
+		"\a\x16\x2\x2\x221\x222\a\x32\x2\x2\x222\x224\x5\x96L\x2\x223\x221\x3\x2"+
+		"\x2\x2\x223\x224\x3\x2\x2\x2\x224#\x3\x2\x2\x2\x225\x226\aO\x2\x2\x226"+
+		"\x227\x5\xA6T\x2\x227\x229\a\x15\x2\x2\x228\x22A\x5\xB0Y\x2\x229\x228"+
+		"\x3\x2\x2\x2\x229\x22A\x3\x2\x2\x2\x22A\x22B\x3\x2\x2\x2\x22B\x22E\a\x16"+
+		"\x2\x2\x22C\x22D\a\x32\x2\x2\x22D\x22F\x5\x96L\x2\x22E\x22C\x3\x2\x2\x2"+
+		"\x22E\x22F\x3\x2\x2\x2\x22F\x230\x3\x2\x2\x2\x230\x231\a\x10\x2\x2\x231"+
+		"\x232\x5v<\x2\x232\x233\x5\xDAn\x2\x233\x234\x5x=\x2\x234%\x3\x2\x2\x2"+
+		"\x235\x236\aO\x2\x2\x236\x237\aj\x2\x2\x237\x238\x5\xA6T\x2\x238\x23A"+
+		"\a\x15\x2\x2\x239\x23B\x5\xB0Y\x2\x23A\x239\x3\x2\x2\x2\x23A\x23B\x3\x2"+
+		"\x2\x2\x23B\x23C\x3\x2\x2\x2\x23C\x23F\a\x16\x2\x2\x23D\x23E\a\x32\x2"+
+		"\x2\x23E\x240\x5\xBA^\x2\x23F\x23D\x3\x2\x2\x2\x23F\x240\x3\x2\x2\x2\x240"+
+		"\x241\x3\x2\x2\x2\x241\x242\a\x10\x2\x2\x242\x243\x5v<\x2\x243\x244\x5"+
+		"\xD2j\x2\x244\x245\x5x=\x2\x245\'\x3\x2\x2\x2\x246\x247\aO\x2\x2\x247"+
 		"\x248\a\x80\x2\x2\x248\x249\a\x93\x2\x2\x249\x24A\a\x15\x2\x2\x24A\x24B"+
 		"\a\x16\x2\x2\x24B\x24C\a\x10\x2\x2\x24C\x24D\x5v<\x2\x24D\x24E\x5\xDA"+
-		"n\x2\x24E\x24F\x5x=\x2\x24F\x250\x5t;\x2\x250\x251\aY\x2\x2\x251\x257"+
+		"n\x2\x24E\x24F\x5x=\x2\x24F\x250\x5t;\x2\x250\x251\aZ\x2\x2\x251\x257"+
 		"\a\x10\x2\x2\x252\x253\x5v<\x2\x253\x254\x5\xDCo\x2\x254\x255\x5x=\x2"+
 		"\x255\x258\x3\x2\x2\x2\x256\x258\x5\xAEX\x2\x257\x252\x3\x2\x2\x2\x257"+
 		"\x256\x3\x2\x2\x2\x258)\x3\x2\x2\x2\x259\x25A\x5R*\x2\x25A+\x3\x2\x2\x2"+
@@ -18007,54 +18007,54 @@ public partial class SParser : AbstractParser {
 		"\x2\x2\x2\x2B4\x2B5\x3\x2\x2\x2\x2B5\x2B6\x3\x2\x2\x2\x2B6\x2B7\x5x=\x2"+
 		"\x2B7=\x3\x2\x2\x2\x2B8\x2B9\a\x86\x2\x2\x2B9\x2BA\x5\xE4s\x2\x2BA\x2BB"+
 		"\a\x10\x2\x2\x2BB\x2BC\x5v<\x2\x2BC\x2BD\x5\xDAn\x2\x2BD\x2BE\x5x=\x2"+
-		"\x2BE\x2C8\x3\x2\x2\x2\x2BF\x2C0\a\x86\x2\x2\x2C0\x2C1\a\x61\x2\x2\x2C1"+
+		"\x2BE\x2C8\x3\x2\x2\x2\x2BF\x2C0\a\x86\x2\x2\x2C0\x2C1\a\x62\x2\x2\x2C1"+
 		"\x2C2\x5\xE2r\x2\x2C2\x2C3\a\x10\x2\x2\x2C3\x2C4\x5v<\x2\x2C4\x2C5\x5"+
 		"\xDAn\x2\x2C5\x2C6\x5x=\x2\x2C6\x2C8\x3\x2\x2\x2\x2C7\x2B8\x3\x2\x2\x2"+
-		"\x2C7\x2BF\x3\x2\x2\x2\x2C8?\x3\x2\x2\x2\x2C9\x2CA\a]\x2\x2\x2CA\x2CD"+
+		"\x2C7\x2BF\x3\x2\x2\x2\x2C8?\x3\x2\x2\x2\x2C9\x2CA\a^\x2\x2\x2CA\x2CD"+
 		"\x5\xAAV\x2\x2CB\x2CC\a\x12\x2\x2\x2CC\x2CE\x5\xAAV\x2\x2CD\x2CB\x3\x2"+
-		"\x2\x2\x2CD\x2CE\x3\x2\x2\x2\x2CE\x2CF\x3\x2\x2\x2\x2CF\x2D0\a\x61\x2"+
+		"\x2\x2\x2CD\x2CE\x3\x2\x2\x2\x2CE\x2CF\x3\x2\x2\x2\x2CF\x2D0\a\x62\x2"+
 		"\x2\x2D0\x2D1\x5R*\x2\x2D1\x2D2\a\x10\x2\x2\x2D2\x2D3\x5v<\x2\x2D3\x2D4"+
-		"\x5\xDAn\x2\x2D4\x2D5\x5x=\x2\x2D5\x41\x3\x2\x2\x2\x2D6\x2D7\aQ\x2\x2"+
+		"\x5\xDAn\x2\x2D4\x2D5\x5x=\x2\x2D5\x41\x3\x2\x2\x2\x2D6\x2D7\aR\x2\x2"+
 		"\x2D7\x2D8\a\x10\x2\x2\x2D8\x2D9\x5v<\x2\x2D9\x2DA\x5\xDAn\x2\x2DA\x2DB"+
 		"\x5x=\x2\x2DB\x2DC\x5t;\x2\x2DC\x2DD\a\x88\x2\x2\x2DD\x2DE\x5R*\x2\x2DE"+
 		"\x43\x3\x2\x2\x2\x2DF\x2E0\a\x88\x2\x2\x2E0\x2E1\x5R*\x2\x2E1\x2E2\a\x10"+
 		"\x2\x2\x2E2\x2E3\x5v<\x2\x2E3\x2E4\x5\xDAn\x2\x2E4\x2E5\x5x=\x2\x2E5\x45"+
-		"\x3\x2\x2\x2\x2E6\x2E7\a`\x2\x2\x2E7\x2E8\x5R*\x2\x2E8\x2E9\a\x10\x2\x2"+
-		"\x2E9\x2EA\x5v<\x2\x2EA\x2EB\x5\xDAn\x2\x2EB\x2EF\x5x=\x2\x2EC\x2ED\x5"+
-		"t;\x2\x2ED\x2EE\x5H%\x2\x2EE\x2F0\x3\x2\x2\x2\x2EF\x2EC\x3\x2\x2\x2\x2EF"+
-		"\x2F0\x3\x2\x2\x2\x2F0\x2F8\x3\x2\x2\x2\x2F1\x2F2\x5t;\x2\x2F2\x2F3\a"+
-		"T\x2\x2\x2F3\x2F4\a\x10\x2\x2\x2F4\x2F5\x5v<\x2\x2F5\x2F6\x5\xDAn\x2\x2F6"+
-		"\x2F7\x5x=\x2\x2F7\x2F9\x3\x2\x2\x2\x2F8\x2F1\x3\x2\x2\x2\x2F8\x2F9\x3"+
-		"\x2\x2\x2\x2F9G\x3\x2\x2\x2\x2FA\x2FB\b%\x1\x2\x2FB\x2FC\aT\x2\x2\x2FC"+
-		"\x2FD\a`\x2\x2\x2FD\x2FE\x5R*\x2\x2FE\x2FF\a\x10\x2\x2\x2FF\x300\x5v<"+
-		"\x2\x300\x301\x5\xDAn\x2\x301\x302\x5x=\x2\x302\x30F\x3\x2\x2\x2\x303"+
-		"\x304\f\x3\x2\x2\x304\x305\x5t;\x2\x305\x306\aT\x2\x2\x306\x307\a`\x2"+
-		"\x2\x307\x308\x5R*\x2\x308\x309\a\x10\x2\x2\x309\x30A\x5v<\x2\x30A\x30B"+
-		"\x5\xDAn\x2\x30B\x30C\x5x=\x2\x30C\x30E\x3\x2\x2\x2\x30D\x303\x3\x2\x2"+
-		"\x2\x30E\x311\x3\x2\x2\x2\x30F\x30D\x3\x2\x2\x2\x30F\x310\x3\x2\x2\x2"+
-		"\x310I\x3\x2\x2\x2\x311\x30F\x3\x2\x2\x2\x312\x313\au\x2\x2\x313\x314"+
-		"\x5R*\x2\x314K\x3\x2\x2\x2\x315\x316\a\x84\x2\x2\x316\x317\x5\xAAV\x2"+
-		"\x317\x318\a\x10\x2\x2\x318\x319\x5v<\x2\x319\x31A\x5\xDAn\x2\x31A\x31B"+
-		"\x5x=\x2\x31B\x31D\x5r:\x2\x31C\x31E\x5\xE0q\x2\x31D\x31C\x3\x2\x2\x2"+
-		"\x31D\x31E\x3\x2\x2\x2\x31E\x326\x3\x2\x2\x2\x31F\x320\aW\x2\x2\x320\x321"+
-		"\a\x10\x2\x2\x321\x322\x5v<\x2\x322\x323\x5\xDAn\x2\x323\x324\x5x=\x2"+
-		"\x324\x325\x5r:\x2\x325\x327\x3\x2\x2\x2\x326\x31F\x3\x2\x2\x2\x326\x327"+
-		"\x3\x2\x2\x2\x327\x32F\x3\x2\x2\x2\x328\x329\a\\\x2\x2\x329\x32A\a\x10"+
-		"\x2\x2\x32A\x32B\x5v<\x2\x32B\x32C\x5\xDAn\x2\x32C\x32D\x5x=\x2\x32D\x32E"+
-		"\x5r:\x2\x32E\x330\x3\x2\x2\x2\x32F\x328\x3\x2\x2\x2\x32F\x330\x3\x2\x2"+
-		"\x2\x330\x331\x3\x2\x2\x2\x331\x332\x5r:\x2\x332M\x3\x2\x2\x2\x333\x334"+
-		"\aW\x2\x2\x334\x335\x5\xAEX\x2\x335\x336\a\x10\x2\x2\x336\x337\x5v<\x2"+
-		"\x337\x338\x5\xDAn\x2\x338\x339\x5x=\x2\x339\x33A\x5r:\x2\x33A\x347\x3"+
-		"\x2\x2\x2\x33B\x33C\aW\x2\x2\x33C\x33D\a\x61\x2\x2\x33D\x33E\a\x17\x2"+
-		"\x2\x33E\x33F\x5\x8A\x46\x2\x33F\x340\a\x18\x2\x2\x340\x341\a\x10\x2\x2"+
-		"\x341\x342\x5v<\x2\x342\x343\x5\xDAn\x2\x343\x344\x5x=\x2\x344\x345\x5"+
-		"r:\x2\x345\x347\x3\x2\x2\x2\x346\x333\x3\x2\x2\x2\x346\x33B\x3\x2\x2\x2"+
-		"\x347O\x3\x2\x2\x2\x348\x34A\ay\x2\x2\x349\x34B\x5R*\x2\x34A\x349\x3\x2"+
-		"\x2\x2\x34A\x34B\x3\x2\x2\x2\x34BQ\x3\x2\x2\x2\x34C\x34D\b*\x1\x2\x34D"+
+		"\x3\x2\x2\x2\x2E6\x2E7\a\x61\x2\x2\x2E7\x2E8\x5R*\x2\x2E8\x2E9\a\x10\x2"+
+		"\x2\x2E9\x2EA\x5v<\x2\x2EA\x2EB\x5\xDAn\x2\x2EB\x2EF\x5x=\x2\x2EC\x2ED"+
+		"\x5t;\x2\x2ED\x2EE\x5H%\x2\x2EE\x2F0\x3\x2\x2\x2\x2EF\x2EC\x3\x2\x2\x2"+
+		"\x2EF\x2F0\x3\x2\x2\x2\x2F0\x2F8\x3\x2\x2\x2\x2F1\x2F2\x5t;\x2\x2F2\x2F3"+
+		"\aU\x2\x2\x2F3\x2F4\a\x10\x2\x2\x2F4\x2F5\x5v<\x2\x2F5\x2F6\x5\xDAn\x2"+
+		"\x2F6\x2F7\x5x=\x2\x2F7\x2F9\x3\x2\x2\x2\x2F8\x2F1\x3\x2\x2\x2\x2F8\x2F9"+
+		"\x3\x2\x2\x2\x2F9G\x3\x2\x2\x2\x2FA\x2FB\b%\x1\x2\x2FB\x2FC\aU\x2\x2\x2FC"+
+		"\x2FD\a\x61\x2\x2\x2FD\x2FE\x5R*\x2\x2FE\x2FF\a\x10\x2\x2\x2FF\x300\x5"+
+		"v<\x2\x300\x301\x5\xDAn\x2\x301\x302\x5x=\x2\x302\x30F\x3\x2\x2\x2\x303"+
+		"\x304\f\x3\x2\x2\x304\x305\x5t;\x2\x305\x306\aU\x2\x2\x306\x307\a\x61"+
+		"\x2\x2\x307\x308\x5R*\x2\x308\x309\a\x10\x2\x2\x309\x30A\x5v<\x2\x30A"+
+		"\x30B\x5\xDAn\x2\x30B\x30C\x5x=\x2\x30C\x30E\x3\x2\x2\x2\x30D\x303\x3"+
+		"\x2\x2\x2\x30E\x311\x3\x2\x2\x2\x30F\x30D\x3\x2\x2\x2\x30F\x310\x3\x2"+
+		"\x2\x2\x310I\x3\x2\x2\x2\x311\x30F\x3\x2\x2\x2\x312\x313\au\x2\x2\x313"+
+		"\x314\x5R*\x2\x314K\x3\x2\x2\x2\x315\x316\a\x84\x2\x2\x316\x317\x5\xAA"+
+		"V\x2\x317\x318\a\x10\x2\x2\x318\x319\x5v<\x2\x319\x31A\x5\xDAn\x2\x31A"+
+		"\x31B\x5x=\x2\x31B\x31D\x5r:\x2\x31C\x31E\x5\xE0q\x2\x31D\x31C\x3\x2\x2"+
+		"\x2\x31D\x31E\x3\x2\x2\x2\x31E\x326\x3\x2\x2\x2\x31F\x320\aX\x2\x2\x320"+
+		"\x321\a\x10\x2\x2\x321\x322\x5v<\x2\x322\x323\x5\xDAn\x2\x323\x324\x5"+
+		"x=\x2\x324\x325\x5r:\x2\x325\x327\x3\x2\x2\x2\x326\x31F\x3\x2\x2\x2\x326"+
+		"\x327\x3\x2\x2\x2\x327\x32F\x3\x2\x2\x2\x328\x329\a]\x2\x2\x329\x32A\a"+
+		"\x10\x2\x2\x32A\x32B\x5v<\x2\x32B\x32C\x5\xDAn\x2\x32C\x32D\x5x=\x2\x32D"+
+		"\x32E\x5r:\x2\x32E\x330\x3\x2\x2\x2\x32F\x328\x3\x2\x2\x2\x32F\x330\x3"+
+		"\x2\x2\x2\x330\x331\x3\x2\x2\x2\x331\x332\x5r:\x2\x332M\x3\x2\x2\x2\x333"+
+		"\x334\aX\x2\x2\x334\x335\x5\xAEX\x2\x335\x336\a\x10\x2\x2\x336\x337\x5"+
+		"v<\x2\x337\x338\x5\xDAn\x2\x338\x339\x5x=\x2\x339\x33A\x5r:\x2\x33A\x347"+
+		"\x3\x2\x2\x2\x33B\x33C\aX\x2\x2\x33C\x33D\a\x62\x2\x2\x33D\x33E\a\x17"+
+		"\x2\x2\x33E\x33F\x5\x8A\x46\x2\x33F\x340\a\x18\x2\x2\x340\x341\a\x10\x2"+
+		"\x2\x341\x342\x5v<\x2\x342\x343\x5\xDAn\x2\x343\x344\x5x=\x2\x344\x345"+
+		"\x5r:\x2\x345\x347\x3\x2\x2\x2\x346\x333\x3\x2\x2\x2\x346\x33B\x3\x2\x2"+
+		"\x2\x347O\x3\x2\x2\x2\x348\x34A\ay\x2\x2\x349\x34B\x5R*\x2\x34A\x349\x3"+
+		"\x2\x2\x2\x34A\x34B\x3\x2\x2\x2\x34BQ\x3\x2\x2\x2\x34C\x34D\b*\x1\x2\x34D"+
 		"\x34E\a\"\x2\x2\x34E\x35F\x5R*!\x34F\x350\al\x2\x2\x350\x35F\x5R* \x351"+
 		"\x35F\x5V,\x2\x352\x35F\x5X-\x2\x353\x354\a=\x2\x2\x354\x355\a\x15\x2"+
 		"\x2\x355\x356\x5R*\x2\x356\x357\a\x16\x2\x2\x357\x35F\x3\x2\x2\x2\x358"+
-		"\x359\aX\x2\x2\x359\x35A\a\x15\x2\x2\x35A\x35B\x5\xAAV\x2\x35B\x35C\a"+
+		"\x359\aY\x2\x2\x359\x35A\a\x15\x2\x2\x35A\x35B\x5\xAAV\x2\x35B\x35C\a"+
 		"\x16\x2\x2\x35C\x35F\x3\x2\x2\x2\x35D\x35F\x5T+\x2\x35E\x34C\x3\x2\x2"+
 		"\x2\x35E\x34F\x3\x2\x2\x2\x35E\x351\x3\x2\x2\x2\x35E\x352\x3\x2\x2\x2"+
 		"\x35E\x353\x3\x2\x2\x2\x35E\x358\x3\x2\x2\x2\x35E\x35D\x3\x2\x2\x2\x35F"+
@@ -18072,18 +18072,18 @@ public partial class SParser : AbstractParser {
 		"\x5R*\x14\x385\x386\f\x12\x2\x2\x386\x387\a/\x2\x2\x387\x3BF\x5R*\x13"+
 		"\x388\x389\f\x11\x2\x2\x389\x38A\ar\x2\x2\x38A\x3BF\x5R*\x12\x38B\x38C"+
 		"\f\x10\x2\x2\x38C\x38D\a\x42\x2\x2\x38D\x3BF\x5R*\x11\x38E\x38F\f\xF\x2"+
-		"\x2\x38F\x390\a`\x2\x2\x390\x391\x5R*\x2\x391\x392\aT\x2\x2\x392\x393"+
-		"\x5R*\x10\x393\x3BF\x3\x2\x2\x2\x394\x395\f\r\x2\x2\x395\x396\a\x61\x2"+
-		"\x2\x396\x3BF\x5R*\xE\x397\x398\f\f\x2\x2\x398\x399\aM\x2\x2\x399\x3BF"+
-		"\x5R*\r\x39A\x39B\f\v\x2\x2\x39B\x39C\aM\x2\x2\x39C\x39D\a@\x2\x2\x39D"+
-		"\x3BF\x5R*\f\x39E\x39F\f\n\x2\x2\x39F\x3A0\aM\x2\x2\x3A0\x3A1\a\x43\x2"+
+		"\x2\x38F\x390\a\x61\x2\x2\x390\x391\x5R*\x2\x391\x392\aU\x2\x2\x392\x393"+
+		"\x5R*\x10\x393\x3BF\x3\x2\x2\x2\x394\x395\f\r\x2\x2\x395\x396\a\x62\x2"+
+		"\x2\x396\x3BF\x5R*\xE\x397\x398\f\f\x2\x2\x398\x399\aN\x2\x2\x399\x3BF"+
+		"\x5R*\r\x39A\x39B\f\v\x2\x2\x39B\x39C\aN\x2\x2\x39C\x39D\a@\x2\x2\x39D"+
+		"\x3BF\x5R*\f\x39E\x39F\f\n\x2\x2\x39F\x3A0\aN\x2\x2\x3A0\x3A1\a\x43\x2"+
 		"\x2\x3A1\x3BF\x5R*\v\x3A2\x3A3\f\t\x2\x2\x3A3\x3A4\al\x2\x2\x3A4\x3A5"+
-		"\a\x61\x2\x2\x3A5\x3BF\x5R*\n\x3A6\x3A7\f\b\x2\x2\x3A7\x3A8\al\x2\x2\x3A8"+
-		"\x3A9\aM\x2\x2\x3A9\x3BF\x5R*\t\x3AA\x3AB\f\a\x2\x2\x3AB\x3AC\al\x2\x2"+
-		"\x3AC\x3AD\aM\x2\x2\x3AD\x3AE\a@\x2\x2\x3AE\x3BF\x5R*\b\x3AF\x3B0\f\x6"+
-		"\x2\x2\x3B0\x3B1\al\x2\x2\x3B1\x3B2\aM\x2\x2\x3B2\x3B3\a\x43\x2\x2\x3B3"+
-		"\x3BF\x5R*\a\x3B4\x3B5\f\x16\x2\x2\x3B5\x3B6\a\x63\x2\x2\x3B6\x3B7\al"+
-		"\x2\x2\x3B7\x3BF\x5\x102\x82\x2\x3B8\x3B9\f\x15\x2\x2\x3B9\x3BA\a\x63"+
+		"\a\x62\x2\x2\x3A5\x3BF\x5R*\n\x3A6\x3A7\f\b\x2\x2\x3A7\x3A8\al\x2\x2\x3A8"+
+		"\x3A9\aN\x2\x2\x3A9\x3BF\x5R*\t\x3AA\x3AB\f\a\x2\x2\x3AB\x3AC\al\x2\x2"+
+		"\x3AC\x3AD\aN\x2\x2\x3AD\x3AE\a@\x2\x2\x3AE\x3BF\x5R*\b\x3AF\x3B0\f\x6"+
+		"\x2\x2\x3B0\x3B1\al\x2\x2\x3B1\x3B2\aN\x2\x2\x3B2\x3B3\a\x43\x2\x2\x3B3"+
+		"\x3BF\x5R*\a\x3B4\x3B5\f\x16\x2\x2\x3B5\x3B6\a\x64\x2\x2\x3B6\x3B7\al"+
+		"\x2\x2\x3B7\x3BF\x5\x102\x82\x2\x3B8\x3B9\f\x15\x2\x2\x3B9\x3BA\a\x64"+
 		"\x2\x2\x3BA\x3BF\x5\x102\x82\x2\x3BB\x3BC\f\xE\x2\x2\x3BC\x3BD\a\x44\x2"+
 		"\x2\x3BD\x3BF\x5\xBA^\x2\x3BE\x360\x3\x2\x2\x2\x3BE\x364\x3\x2\x2\x2\x3BE"+
 		"\x368\x3\x2\x2\x2\x3BE\x36C\x3\x2\x2\x2\x3BE\x370\x3\x2\x2\x2\x3BE\x373"+
@@ -18118,10 +18118,10 @@ public partial class SParser : AbstractParser {
 		"\x3FB\x3FD\x5\x62\x32\x2\x3FC\x3F9\x3\x2\x2\x2\x3FD\x400\x3\x2\x2\x2\x3FE"+
 		"\x3FC\x3\x2\x2\x2\x3FE\x3FF\x3\x2\x2\x2\x3FF\x61\x3\x2\x2\x2\x400\x3FE"+
 		"\x3\x2\x2\x2\x401\x402\x5\xAAV\x2\x402\x403\x5\x10C\x87\x2\x403\x404\x5"+
-		"R*\x2\x404\x63\x3\x2\x2\x2\x405\x406\av\x2\x2\x406\x407\a^\x2\x2\x407"+
+		"R*\x2\x404\x63\x3\x2\x2\x2\x405\x406\av\x2\x2\x406\x407\a_\x2\x2\x407"+
 		"\x408\x5R*\x2\x408\x65\x3\x2\x2\x2\x409\x40A\a\x89\x2\x2\x40A\x40B\x5"+
 		"R*\x2\x40B\x40C\a\x83\x2\x2\x40C\x40D\x5R*\x2\x40Dg\x3\x2\x2\x2\x40E\x40F"+
-		"\a[\x2\x2\x40F\x410\x5\xAAV\x2\x410\x411\a^\x2\x2\x411\x412\x5R*\x2\x412"+
+		"\a\\\x2\x2\x40F\x410\x5\xAAV\x2\x410\x411\a_\x2\x2\x411\x412\x5R*\x2\x412"+
 		"\x413\a\x87\x2\x2\x413\x414\x5R*\x2\x414i\x3\x2\x2\x2\x415\x416\a~\x2"+
 		"\x2\x416\x417\a\x15\x2\x2\x417\x41D\x5V,\x2\x418\x419\a\x12\x2\x2\x419"+
 		"\x41A\x5\x106\x84\x2\x41A\x41B\a,\x2\x2\x41B\x41C\x5V,\x2\x41C\x41E\x3"+
@@ -18165,8 +18165,8 @@ public partial class SParser : AbstractParser {
 		"\x48E\x3\x2\x2\x2\x489\x48A\f\x3\x2\x2\x48A\x48B\a\x12\x2\x2\x48B\x48D"+
 		"\x5\xAEX\x2\x48C\x489\x3\x2\x2\x2\x48D\x490\x3\x2\x2\x2\x48E\x48C\x3\x2"+
 		"\x2\x2\x48E\x48F\x3\x2\x2\x2\x48F\x8B\x3\x2\x2\x2\x490\x48E\x3\x2\x2\x2"+
-		"\x491\x492\a\x61\x2\x2\x492\x49C\x5\x8EH\x2\x493\x494\a\x61\x2\x2\x494"+
-		"\x49C\x5\x90I\x2\x495\x496\a\x61\x2\x2\x496\x49C\x5\x94K\x2\x497\x498"+
+		"\x491\x492\a\x62\x2\x2\x492\x49C\x5\x8EH\x2\x493\x494\a\x62\x2\x2\x494"+
+		"\x49C\x5\x90I\x2\x495\x496\a\x62\x2\x2\x496\x49C\x5\x94K\x2\x497\x498"+
 		"\a\x65\x2\x2\x498\x49C\a\x93\x2\x2\x499\x49A\a\x65\x2\x2\x49A\x49C\x5"+
 		"R*\x2\x49B\x491\x3\x2\x2\x2\x49B\x493\x3\x2\x2\x2\x49B\x495\x3\x2\x2\x2"+
 		"\x49B\x497\x3\x2\x2\x2\x49B\x499\x3\x2\x2\x2\x49C\x8D\x3\x2\x2\x2\x49D"+
@@ -18237,13 +18237,13 @@ public partial class SParser : AbstractParser {
 		"\x3\x2\x2\x2\x54C\x544\x3\x2\x2\x2\x54C\x546\x3\x2\x2\x2\x54C\x548\x3"+
 		"\x2\x2\x2\x54C\x54A\x3\x2\x2\x2\x54D\xC3\x3\x2\x2\x2\x54E\x550\x5\xA8"+
 		"U\x2\x54F\x551\x5\xC6\x64\x2\x550\x54F\x3\x2\x2\x2\x550\x551\x3\x2\x2"+
-		"\x2\x551\xC5\x3\x2\x2\x2\x552\x553\a^\x2\x2\x553\x554\x5\xC8\x65\x2\x554"+
+		"\x2\x551\xC5\x3\x2\x2\x2\x552\x553\a_\x2\x2\x553\x554\x5\xC8\x65\x2\x554"+
 		"\x555\a\x10\x2\x2\x555\x55A\x5\xA8U\x2\x556\x557\a\x14\x2\x2\x557\x559"+
 		"\x5\xA8U\x2\x558\x556\x3\x2\x2\x2\x559\x55C\x3\x2\x2\x2\x55A\x558\x3\x2"+
 		"\x2\x2\x55A\x55B\x3\x2\x2\x2\x55B\xC7\x3\x2\x2\x2\x55C\x55A\x3\x2\x2\x2"+
 		"\x55D\x55E\a\x90\x2\x2\x55E\x55F\x6\x65\x34\x3\x55F\xC9\x3\x2\x2\x2\x560"+
 		"\x562\x5\xA8U\x2\x561\x563\x5\xCCg\x2\x562\x561\x3\x2\x2\x2\x562\x563"+
-		"\x3\x2\x2\x2\x563\xCB\x3\x2\x2\x2\x564\x565\a^\x2\x2\x565\x566\x5\xC8"+
+		"\x3\x2\x2\x2\x563\xCB\x3\x2\x2\x2\x564\x565\a_\x2\x2\x565\x566\x5\xC8"+
 		"\x65\x2\x566\x568\a\x10\x2\x2\x567\x569\a$\x2\x2\x568\x567\x3\x2\x2\x2"+
 		"\x568\x569\x3\x2\x2\x2\x569\x56A\x3\x2\x2\x2\x56A\x56F\x5\x12A\x96\x2"+
 		"\x56B\x56C\a$\x2\x2\x56C\x56E\x5\x12A\x96\x2\x56D\x56B\x3\x2\x2\x2\x56E"+

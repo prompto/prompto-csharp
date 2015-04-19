@@ -225,11 +225,8 @@
     <Compile Include="src\presto\expression\MultiplyExpression.cs" />
     <Compile Include="src\presto\grammar\INamed.cs" />
     <Compile Include="src\presto\grammar\INamedArgument.cs" />
-    <Compile Include="src\presto\grammar\NativeAttributeMappingListMap.cs" />
     <Compile Include="src\presto\grammar\NativeCall.cs" />
     <Compile Include="src\presto\declaration\NativeCategoryDeclaration.cs" />
-    <Compile Include="src\presto\grammar\NativeCategoryMapping.cs" />
-    <Compile Include="src\presto\grammar\NativeCategoryMappingList.cs" />
     <Compile Include="src\presto\declaration\NativeMethodDeclaration.cs" />
     <Compile Include="src\presto\declaration\NativeResourceDeclaration.cs" />
     <Compile Include="src\presto\grammar\NativeSymbol.cs" />
@@ -334,8 +331,6 @@
     <Compile Include="src\presto\expression\TypeExpression.cs" />
     <Compile Include="src\presto\value\TypeValue.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="src\presto\csharp\CSharpNativeCategoryMapping.cs" />
-    <Compile Include="src\presto\java\JavaNativeCategoryMapping.cs" />
     <Compile Include="src\presto\utils\ObjectList.cs" />
     <Compile Include="src\presto\python\Python2NativeCategoryMapping.cs" />
     <Compile Include="src\presto\python\Python3NativeCategoryMapping.cs" />
@@ -366,14 +361,12 @@
     <Compile Include="src\presto\javascript\JavaScriptMethodExpression.cs" />
     <Compile Include="src\presto\javascript\JavaScriptModule.cs" />
     <Compile Include="src\presto\javascript\JavaScriptNativeCall.cs" />
-    <Compile Include="src\presto\javascript\JavaScriptNativeCategoryMapping.cs" />
     <Compile Include="src\presto\javascript\JavaScriptParenthesisExpression.cs" />
     <Compile Include="src\presto\javascript\JavaScriptSelectorExpression.cs" />
     <Compile Include="src\presto\javascript\JavaScriptStatement.cs" />
     <Compile Include="src\presto\javascript\JavaScriptTextLiteral.cs" />
     <Compile Include="src\presto\utils\CodeWriter.cs" />
     <Compile Include="src\presto\statement\SimpleStatement.cs" />
-    <Compile Include="src\presto\python\PythonNativeCategoryMapping.cs" />
     <Compile Include="src\presto\python\PythonModule.cs" />
     <Compile Include="src\presto\python\PythonArgument.cs" />
     <Compile Include="src\presto\python\PythonOrdinalArgument.cs" />
@@ -419,6 +412,13 @@
     <Compile Include="src\presto\parser\SPrestoBuilder.cs" />
     <Compile Include="src\presto\error\NotMutableError.cs" />
     <Compile Include="src\presto\declaration\AnyNativeCategoryDeclaration.cs" />
+    <Compile Include="src\presto\grammar\NativeAttributeBindingListMap.cs" />
+    <Compile Include="src\presto\grammar\NativeCategoryBinding.cs" />
+    <Compile Include="src\presto\grammar\NativeCategoryBindingList.cs" />
+    <Compile Include="src\presto\csharp\CSharpNativeCategoryBinding.cs" />
+    <Compile Include="src\presto\java\JavaNativeCategoryBinding.cs" />
+    <Compile Include="src\presto\javascript\JavaScriptNativeCategoryBinding.cs" />
+    <Compile Include="src\presto\python\PythonNativeCategoryBinding.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Antlr4.Runtime">

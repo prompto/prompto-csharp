@@ -57,7 +57,7 @@ namespace presto.csharp
             typeToPrestoMap.TryGetValue(type, out result);
             if (result != null)
                 return result;
-			NativeCategoryDeclaration decl = context.getNativeMapping(type);
+			NativeCategoryDeclaration decl = context.getNativeBinding(type);
 			if(decl!=null)
 				return decl.GetType(context);
 			else if(returnType==AnyType.Instance)
@@ -75,7 +75,7 @@ namespace presto.csharp
             typeToPrestoMap.TryGetValue(type, out result);
             if (result != null)
 				return result.ConvertCSharpValueToPrestoValue(value);
-			NativeCategoryDeclaration decl = context.getNativeMapping(type);
+			NativeCategoryDeclaration decl = context.getNativeBinding(type);
 			if(decl!=null)
 				return new NativeInstance(decl, value);
 			else if(returnType==AnyType.Instance)

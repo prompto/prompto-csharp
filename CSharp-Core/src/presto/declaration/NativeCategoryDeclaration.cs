@@ -15,16 +15,16 @@ namespace presto.declaration
     public class NativeCategoryDeclaration : CategoryDeclaration
     {
 
-        NativeCategoryMappingList categoryMappings;
-        // NativeAttributeMappingListMap attributeMappings;
+        NativeCategoryBindingList categoryBindings;
+        // NativeAttributeBindingListMap attributeBindings;
         Type mappedClass = null;
 
         public NativeCategoryDeclaration(String name, IdentifierList attributes,
-                NativeCategoryMappingList categoryMappings, NativeAttributeMappingListMap attributeMappings)
+                NativeCategoryBindingList categoryBindings, NativeAttributeBindingListMap attributeBindings)
             : base(name, attributes)
         {
-            this.categoryMappings = categoryMappings;
-            // this.attributeMappings = attributeMappings;
+            this.categoryBindings = categoryBindings;
+            // this.attributeBindings = attributeBindings;
         }
 
  
@@ -33,21 +33,21 @@ namespace presto.declaration
 			base.register (context);
 			Type type = getMappedClass (false);
 			if(type!=null)
-				context.registerNativeMapping (type, this);
+				context.registerNativeBinding (type, this);
 		}
 
 		protected override void toEDialect(CodeWriter writer) {
 			protoToEDialect(writer, false, true);
-			mappingsToEDialect(writer);
+			bindingsToEDialect(writer);
 		}
 
 		protected override void categoryTypeToEDialect(CodeWriter writer) {
 			writer.append("native category");
 		}
 
-		protected void mappingsToEDialect(CodeWriter writer) {
+		protected void bindingsToEDialect(CodeWriter writer) {
 			writer.indent();
-			categoryMappings.ToDialect(writer);
+			categoryBindings.ToDialect(writer);
 			writer.dedent();
 			writer.newLine();
 		}
@@ -62,14 +62,14 @@ namespace presto.declaration
 		}
 
 		protected override void bodyToODialect(CodeWriter writer) {
-			categoryMappings.ToDialect(writer);
+			categoryBindings.ToDialect(writer);
 		}
 
 		protected override void toPDialect(CodeWriter writer) {
 			protoToPDialect(writer, null);
 			writer.indent();
 			writer.newLine();
-			categoryMappings.ToDialect(writer);
+			categoryBindings.ToDialect(writer);
 			writer.dedent();
 			writer.newLine();
 		}
@@ -89,26 +89,26 @@ namespace presto.declaration
         {
 			if (mappedClass == null)
             {
-                CSharpNativeCategoryMapping mapping = getMapping(fail); // TODO
-				if (mapping != null) 
+                CSharpNativeCategoryBinding binding = getBinding(fail); // TODO
+				if (binding != null) 
 				{
-					mappedClass = mapping.getExpression ().interpret_type ();
+					mappedClass = binding.getExpression ().interpret_type ();
 					if (mappedClass == null && fail)
-						throw new SyntaxError ("No CSharp class:" + mapping.getExpression ().ToString ());
+						throw new SyntaxError ("No CSharp class:" + binding.getExpression ().ToString ());
 				}
             }
             return mappedClass;
         }
 
-        private CSharpNativeCategoryMapping getMapping(bool fail)
+        private CSharpNativeCategoryBinding getBinding(bool fail)
         {
-            foreach (NativeCategoryMapping mapping in categoryMappings)
+            foreach (NativeCategoryBinding binding in categoryBindings)
             {
-                if (mapping is CSharpNativeCategoryMapping)
-                    return (CSharpNativeCategoryMapping)mapping;
+                if (binding is CSharpNativeCategoryBinding)
+                    return (CSharpNativeCategoryBinding)binding;
             }
 			if (fail)
-				throw new SyntaxError ("Missing CSharp mapping !");
+				throw new SyntaxError ("Missing CSharp binding !");
 			else
 				return null;
         }

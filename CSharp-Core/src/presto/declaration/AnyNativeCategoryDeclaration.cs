@@ -15,7 +15,7 @@ namespace presto.declaration
 		}
 
 		private AnyNativeCategoryDeclaration ()
-			: base ("Any", new IdentifierList (), new NativeCategoryMappingList (), new NativeAttributeMappingListMap ())
+			: base ("Any", new IdentifierList (), new NativeCategoryBindingList (), new NativeAttributeBindingListMap ())
 		{
 		}
 	}

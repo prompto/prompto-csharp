@@ -4,12 +4,12 @@ using presto.utils;
 
 namespace presto.javascript {
 
-public class JavaScriptNativeCategoryMapping : NativeCategoryMapping {
+public class JavaScriptNativeCategoryBinding : NativeCategoryBinding {
 
 	String identifier;
 	JavaScriptModule module;
 	
-	public JavaScriptNativeCategoryMapping(String identifier, JavaScriptModule module) {
+	public JavaScriptNativeCategoryBinding(String identifier, JavaScriptModule module) {
 		this.identifier = identifier;
 		this.module = module;
 	}

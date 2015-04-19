@@ -105,7 +105,7 @@ namespace presto.declaration
 
 		protected abstract void toEDialect (CodeWriter writer);
 
-		protected virtual void protoToEDialect (CodeWriter writer, bool hasMethods, bool hasMappings)
+		protected virtual void protoToEDialect (CodeWriter writer, bool hasMethods, bool hasBindings)
 		{
 			bool hasAttributes = attributes != null && attributes.Count > 0;
 			writer.append ("define ");
@@ -124,11 +124,11 @@ namespace presto.declaration
 					writer.append (", and methods:");
 				else
 					writer.append (" with methods:");
-			} else if (hasMappings) {
+			} else if (hasBindings) {
 				if (hasAttributes)
-					writer.append (", and mappings:");
+					writer.append (", and bindings:");
 				else
-					writer.append (" with mappings:");
+					writer.append (" with bindings:");
 			}
 			writer.newLine ();	
 		}

@@ -13,8 +13,8 @@ namespace presto.declaration
     {
 
         public NativeResourceDeclaration(String name, IdentifierList attributes,
-                NativeCategoryMappingList categoryMappings, NativeAttributeMappingListMap attributeMappings)
-            : base(name, attributes, categoryMappings, attributeMappings)
+                NativeCategoryBindingList categoryBindings, NativeAttributeBindingListMap attributeBindings)
+            : base(name, attributes, categoryBindings, attributeBindings)
         {
         }
 

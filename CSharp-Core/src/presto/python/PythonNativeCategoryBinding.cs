@@ -5,20 +5,20 @@ using System;
 namespace presto.python
 {
 
-	public class PythonNativeCategoryMapping : NativeCategoryMapping
+	public class PythonNativeCategoryBinding : NativeCategoryBinding
     {
 
 		String identifier;
 		PythonModule module;
 
-		public PythonNativeCategoryMapping(String identifier, PythonModule module) {
+		public PythonNativeCategoryBinding(String identifier, PythonModule module) {
 			this.identifier = identifier;
 			this.module = module;
 		}
 
-		public PythonNativeCategoryMapping(PythonNativeCategoryMapping mapping) {
-			this.identifier = mapping.identifier;
-			this.module = mapping.module;
+		public PythonNativeCategoryBinding(PythonNativeCategoryBinding binding) {
+			this.identifier = binding.identifier;
+			this.module = binding.module;
 		}
 
 		override

@@ -202,41 +202,41 @@ public partial class EParserBaseListener : IEParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitNative_resource_declaration([NotNull] EParser.Native_resource_declarationContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="EParser.native_category_mappings"/>.
+	/// Enter a parse tree produced by <see cref="EParser.native_category_bindings"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void EnterNative_category_mappings([NotNull] EParser.Native_category_mappingsContext context) { }
+	public virtual void EnterNative_category_bindings([NotNull] EParser.Native_category_bindingsContext context) { }
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="EParser.native_category_mappings"/>.
+	/// Exit a parse tree produced by <see cref="EParser.native_category_bindings"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void ExitNative_category_mappings([NotNull] EParser.Native_category_mappingsContext context) { }
+	public virtual void ExitNative_category_bindings([NotNull] EParser.Native_category_bindingsContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="EParser.NativeCategoryMappingList"/>.
+	/// Enter a parse tree produced by <see cref="EParser.NativeCategoryBindingListItem"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void EnterNativeCategoryMappingList([NotNull] EParser.NativeCategoryMappingListContext context) { }
+	public virtual void EnterNativeCategoryBindingListItem([NotNull] EParser.NativeCategoryBindingListItemContext context) { }
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="EParser.NativeCategoryMappingList"/>.
+	/// Exit a parse tree produced by <see cref="EParser.NativeCategoryBindingListItem"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void ExitNativeCategoryMappingList([NotNull] EParser.NativeCategoryMappingListContext context) { }
+	public virtual void ExitNativeCategoryBindingListItem([NotNull] EParser.NativeCategoryBindingListItemContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="EParser.NativeCategoryMappingListItem"/>.
+	/// Enter a parse tree produced by <see cref="EParser.NativeCategoryBindingList"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void EnterNativeCategoryMappingListItem([NotNull] EParser.NativeCategoryMappingListItemContext context) { }
+	public virtual void EnterNativeCategoryBindingList([NotNull] EParser.NativeCategoryBindingListContext context) { }
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="EParser.NativeCategoryMappingListItem"/>.
+	/// Exit a parse tree produced by <see cref="EParser.NativeCategoryBindingList"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void ExitNativeCategoryMappingListItem([NotNull] EParser.NativeCategoryMappingListItemContext context) { }
+	public virtual void ExitNativeCategoryBindingList([NotNull] EParser.NativeCategoryBindingListContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="EParser.AttributeList"/>.
 	/// <para>The default implementation does nothing.</para>
@@ -2566,77 +2566,77 @@ public partial class EParserBaseListener : IEParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitOperatorMemberMethod([NotNull] EParser.OperatorMemberMethodContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="EParser.JavaCategoryMapping"/>.
+	/// Enter a parse tree produced by <see cref="EParser.JavaCategoryBinding"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void EnterJavaCategoryMapping([NotNull] EParser.JavaCategoryMappingContext context) { }
+	public virtual void EnterJavaCategoryBinding([NotNull] EParser.JavaCategoryBindingContext context) { }
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="EParser.JavaCategoryMapping"/>.
+	/// Exit a parse tree produced by <see cref="EParser.JavaCategoryBinding"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void ExitJavaCategoryMapping([NotNull] EParser.JavaCategoryMappingContext context) { }
+	public virtual void ExitJavaCategoryBinding([NotNull] EParser.JavaCategoryBindingContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="EParser.CSharpCategoryMapping"/>.
+	/// Enter a parse tree produced by <see cref="EParser.CSharpCategoryBinding"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void EnterCSharpCategoryMapping([NotNull] EParser.CSharpCategoryMappingContext context) { }
+	public virtual void EnterCSharpCategoryBinding([NotNull] EParser.CSharpCategoryBindingContext context) { }
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="EParser.CSharpCategoryMapping"/>.
+	/// Exit a parse tree produced by <see cref="EParser.CSharpCategoryBinding"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void ExitCSharpCategoryMapping([NotNull] EParser.CSharpCategoryMappingContext context) { }
+	public virtual void ExitCSharpCategoryBinding([NotNull] EParser.CSharpCategoryBindingContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="EParser.Python2CategoryMapping"/>.
+	/// Enter a parse tree produced by <see cref="EParser.Python2CategoryBinding"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void EnterPython2CategoryMapping([NotNull] EParser.Python2CategoryMappingContext context) { }
+	public virtual void EnterPython2CategoryBinding([NotNull] EParser.Python2CategoryBindingContext context) { }
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="EParser.Python2CategoryMapping"/>.
+	/// Exit a parse tree produced by <see cref="EParser.Python2CategoryBinding"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void ExitPython2CategoryMapping([NotNull] EParser.Python2CategoryMappingContext context) { }
+	public virtual void ExitPython2CategoryBinding([NotNull] EParser.Python2CategoryBindingContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="EParser.Python3CategoryMapping"/>.
+	/// Enter a parse tree produced by <see cref="EParser.Python3CategoryBinding"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void EnterPython3CategoryMapping([NotNull] EParser.Python3CategoryMappingContext context) { }
+	public virtual void EnterPython3CategoryBinding([NotNull] EParser.Python3CategoryBindingContext context) { }
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="EParser.Python3CategoryMapping"/>.
+	/// Exit a parse tree produced by <see cref="EParser.Python3CategoryBinding"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void ExitPython3CategoryMapping([NotNull] EParser.Python3CategoryMappingContext context) { }
+	public virtual void ExitPython3CategoryBinding([NotNull] EParser.Python3CategoryBindingContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="EParser.JavaScriptCategoryMapping"/>.
+	/// Enter a parse tree produced by <see cref="EParser.JavaScriptCategoryBinding"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void EnterJavaScriptCategoryMapping([NotNull] EParser.JavaScriptCategoryMappingContext context) { }
+	public virtual void EnterJavaScriptCategoryBinding([NotNull] EParser.JavaScriptCategoryBindingContext context) { }
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="EParser.JavaScriptCategoryMapping"/>.
+	/// Exit a parse tree produced by <see cref="EParser.JavaScriptCategoryBinding"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void ExitJavaScriptCategoryMapping([NotNull] EParser.JavaScriptCategoryMappingContext context) { }
+	public virtual void ExitJavaScriptCategoryBinding([NotNull] EParser.JavaScriptCategoryBindingContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="EParser.python_category_mapping"/>.
+	/// Enter a parse tree produced by <see cref="EParser.python_category_binding"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void EnterPython_category_mapping([NotNull] EParser.Python_category_mappingContext context) { }
+	public virtual void EnterPython_category_binding([NotNull] EParser.Python_category_bindingContext context) { }
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="EParser.python_category_mapping"/>.
+	/// Exit a parse tree produced by <see cref="EParser.python_category_binding"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void ExitPython_category_mapping([NotNull] EParser.Python_category_mappingContext context) { }
+	public virtual void ExitPython_category_binding([NotNull] EParser.Python_category_bindingContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="EParser.python_module"/>.
 	/// <para>The default implementation does nothing.</para>
@@ -2662,17 +2662,17 @@ public partial class EParserBaseListener : IEParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitModule_token([NotNull] EParser.Module_tokenContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="EParser.javascript_category_mapping"/>.
+	/// Enter a parse tree produced by <see cref="EParser.javascript_category_binding"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void EnterJavascript_category_mapping([NotNull] EParser.Javascript_category_mappingContext context) { }
+	public virtual void EnterJavascript_category_binding([NotNull] EParser.Javascript_category_bindingContext context) { }
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="EParser.javascript_category_mapping"/>.
+	/// Exit a parse tree produced by <see cref="EParser.javascript_category_binding"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void ExitJavascript_category_mapping([NotNull] EParser.Javascript_category_mappingContext context) { }
+	public virtual void ExitJavascript_category_binding([NotNull] EParser.Javascript_category_bindingContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="EParser.javascript_module"/>.
 	/// <para>The default implementation does nothing.</para>

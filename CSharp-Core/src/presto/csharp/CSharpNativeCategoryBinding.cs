@@ -4,11 +4,11 @@ using presto.utils;
 namespace presto.csharp
 {
 
-	public class CSharpNativeCategoryMapping : NativeCategoryMapping
+	public class CSharpNativeCategoryBinding : NativeCategoryBinding
     {
         CSharpIdentifierExpression expression;
 
-        public CSharpNativeCategoryMapping(CSharpIdentifierExpression expression)
+        public CSharpNativeCategoryBinding(CSharpIdentifierExpression expression)
         {
             this.expression = expression;
         }

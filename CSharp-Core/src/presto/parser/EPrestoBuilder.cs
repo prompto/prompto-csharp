@@ -1526,17 +1526,17 @@ namespace presto.parser
 		}
 
 		
-		public override void ExitJavaCategoryMapping (EParser.JavaCategoryMappingContext ctx)
+		public override void ExitJavaCategoryBinding (EParser.JavaCategoryBindingContext ctx)
 		{
-			JavaIdentifierExpression map = this.GetNodeValue<JavaIdentifierExpression> (ctx.mapping);
-			SetNodeValue (ctx, new JavaNativeCategoryMapping (map));
+			JavaIdentifierExpression map = this.GetNodeValue<JavaIdentifierExpression> (ctx.binding);
+			SetNodeValue (ctx, new JavaNativeCategoryBinding (map));
 		}
 
 		
-		public override void ExitCSharpCategoryMapping (EParser.CSharpCategoryMappingContext ctx)
+		public override void ExitCSharpCategoryBinding (EParser.CSharpCategoryBindingContext ctx)
 		{
-			CSharpIdentifierExpression map = this.GetNodeValue<CSharpIdentifierExpression> (ctx.mapping);
-			SetNodeValue (ctx, new CSharpNativeCategoryMapping (map));
+			CSharpIdentifierExpression map = this.GetNodeValue<CSharpIdentifierExpression> (ctx.binding);
+			SetNodeValue (ctx, new CSharpNativeCategoryBinding (map));
 		}
 
 
@@ -1560,25 +1560,25 @@ namespace presto.parser
 		}
 
 		
-		public override void ExitPython2CategoryMapping (EParser.Python2CategoryMappingContext ctx)
+		public override void ExitPython2CategoryBinding (EParser.Python2CategoryBindingContext ctx)
 		{
-			PythonNativeCategoryMapping map = this.GetNodeValue<PythonNativeCategoryMapping> (ctx.mapping);
-			SetNodeValue (ctx, new Python2NativeCategoryMapping (map));
+			PythonNativeCategoryBinding map = this.GetNodeValue<PythonNativeCategoryBinding> (ctx.binding);
+			SetNodeValue (ctx, new Python2NativeCategoryBinding (map));
 		}
 
 		
-		public override void ExitPython3CategoryMapping (EParser.Python3CategoryMappingContext ctx)
+		public override void ExitPython3CategoryBinding (EParser.Python3CategoryBindingContext ctx)
 		{
-			PythonNativeCategoryMapping map = this.GetNodeValue<PythonNativeCategoryMapping> (ctx.mapping);
-			SetNodeValue (ctx, new Python3NativeCategoryMapping (map));
+			PythonNativeCategoryBinding map = this.GetNodeValue<PythonNativeCategoryBinding> (ctx.binding);
+			SetNodeValue (ctx, new Python3NativeCategoryBinding (map));
 		}
 
 		
-		public override void ExitPython_category_mapping (EParser.Python_category_mappingContext ctx)
+		public override void ExitPython_category_binding (EParser.Python_category_bindingContext ctx)
 		{
 			String identifier = ctx.identifier ().GetText ();
 			PythonModule module = this.GetNodeValue<PythonModule> (ctx.python_module ());
-			PythonNativeCategoryMapping map = new PythonNativeCategoryMapping (identifier, module);
+			PythonNativeCategoryBinding map = new PythonNativeCategoryBinding (identifier, module);
 			SetNodeValue (ctx, map);
 		}
 
@@ -1695,26 +1695,26 @@ namespace presto.parser
 		}
 
 		
-		public override void ExitNativeCategoryMappingList (EParser.NativeCategoryMappingListContext ctx)
+		public override void ExitNativeCategoryBindingList (EParser.NativeCategoryBindingListContext ctx)
 		{
-			NativeCategoryMapping item = this.GetNodeValue<NativeCategoryMapping> (ctx.item);
-			NativeCategoryMappingList items = new NativeCategoryMappingList (item);
+			NativeCategoryBinding item = this.GetNodeValue<NativeCategoryBinding> (ctx.item);
+			NativeCategoryBindingList items = new NativeCategoryBindingList (item);
 			SetNodeValue (ctx, items);
 		}
 
 		
-		public override void ExitNativeCategoryMappingListItem (EParser.NativeCategoryMappingListItemContext ctx)
+		public override void ExitNativeCategoryBindingListItem (EParser.NativeCategoryBindingListItemContext ctx)
 		{
-			NativeCategoryMapping item = this.GetNodeValue<NativeCategoryMapping> (ctx.item);
-			NativeCategoryMappingList items = this.GetNodeValue<NativeCategoryMappingList> (ctx.items);
+			NativeCategoryBinding item = this.GetNodeValue<NativeCategoryBinding> (ctx.item);
+			NativeCategoryBindingList items = this.GetNodeValue<NativeCategoryBindingList> (ctx.items);
 			items.Add (item);
 			SetNodeValue (ctx, items);
 		}
 
 		
-		public override void ExitNative_category_mappings (EParser.Native_category_mappingsContext ctx)
+		public override void ExitNative_category_bindings (EParser.Native_category_bindingsContext ctx)
 		{
-			NativeCategoryMappingList items = this.GetNodeValue<NativeCategoryMappingList> (ctx.items);
+			NativeCategoryBindingList items = this.GetNodeValue<NativeCategoryBindingList> (ctx.items);
 			SetNodeValue (ctx, items);
 		}
 
@@ -1723,8 +1723,8 @@ namespace presto.parser
 		{
 			String name = this.GetNodeValue<String> (ctx.name);
 			IdentifierList attrs = this.GetNodeValue<IdentifierList> (ctx.attrs);
-			NativeCategoryMappingList mappings = this.GetNodeValue<NativeCategoryMappingList> (ctx.mappings);
-			SetNodeValue (ctx, new NativeCategoryDeclaration (name, attrs, mappings, null));
+			NativeCategoryBindingList bindings = this.GetNodeValue<NativeCategoryBindingList> (ctx.bindings);
+			SetNodeValue (ctx, new NativeCategoryDeclaration (name, attrs, bindings, null));
 		}
 
 		
@@ -1739,8 +1739,8 @@ namespace presto.parser
 		{
 			String name = this.GetNodeValue<String> (ctx.name);
 			IdentifierList attrs = this.GetNodeValue<IdentifierList> (ctx.attrs);
-			NativeCategoryMappingList mappings = this.GetNodeValue<NativeCategoryMappingList> (ctx.mappings);
-			SetNodeValue (ctx, new NativeResourceDeclaration (name, attrs, mappings, null));
+			NativeCategoryBindingList bindings = this.GetNodeValue<NativeCategoryBindingList> (ctx.bindings);
+			SetNodeValue (ctx, new NativeResourceDeclaration (name, attrs, bindings, null));
 		}
 
 		
@@ -2679,11 +2679,11 @@ namespace presto.parser
 		}
 
 		
-		public override void ExitJavascript_category_mapping (EParser.Javascript_category_mappingContext ctx)
+		public override void ExitJavascript_category_binding (EParser.Javascript_category_bindingContext ctx)
 		{
 			String identifier = ctx.identifier ().GetText ();
 			JavaScriptModule module = this.GetNodeValue<JavaScriptModule> (ctx.javascript_module ());
-			JavaScriptNativeCategoryMapping map = new JavaScriptNativeCategoryMapping (identifier, module);
+			JavaScriptNativeCategoryBinding map = new JavaScriptNativeCategoryBinding (identifier, module);
 			SetNodeValue (ctx, map);
 		}
 
@@ -2741,9 +2741,9 @@ namespace presto.parser
 		}
 
 		
-		public override void ExitJavaScriptCategoryMapping (EParser.JavaScriptCategoryMappingContext ctx)
+		public override void ExitJavaScriptCategoryBinding (EParser.JavaScriptCategoryBindingContext ctx)
 		{
-			SetNodeValue (ctx, this.GetNodeValue<Object> (ctx.mapping));
+			SetNodeValue (ctx, this.GetNodeValue<Object> (ctx.binding));
 		}
 
 		public override void ExitJavascriptCharacterLiteral (EParser.JavascriptCharacterLiteralContext ctx)

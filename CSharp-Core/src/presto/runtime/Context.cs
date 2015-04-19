@@ -37,7 +37,7 @@ namespace presto.runtime
 		Dictionary<String,TestMethodDeclaration> tests = new Dictionary<String, TestMethodDeclaration>();
 		protected Dictionary<String, INamed> instances = new Dictionary<String, INamed>();
 		Dictionary<String, IValue> values = new Dictionary<String, IValue>();
-		Dictionary<Type, NativeCategoryDeclaration> nativeMappings = new Dictionary<Type, NativeCategoryDeclaration> ();
+		Dictionary<Type, NativeCategoryDeclaration> nativeBindings = new Dictionary<Type, NativeCategoryDeclaration> ();
 
         protected Context()
         {
@@ -363,24 +363,24 @@ namespace presto.runtime
 				return this.globals.loadSingleton(type);
 		}
 
-		public void registerNativeMapping(Type type, NativeCategoryDeclaration declaration) 
+		public void registerNativeBinding(Type type, NativeCategoryDeclaration declaration) 
 		{
 			if(this==globals)
-				nativeMappings[type] = declaration;
+				nativeBindings[type] = declaration;
 			else
-				globals.registerNativeMapping(type, declaration);
+				globals.registerNativeBinding(type, declaration);
 		}
 
-		public NativeCategoryDeclaration getNativeMapping(Type type) {
+		public NativeCategoryDeclaration getNativeBinding(Type type) {
 			if (this == globals) {
 				NativeCategoryDeclaration ncd;
-				if (nativeMappings.TryGetValue (type, out ncd))
+				if (nativeBindings.TryGetValue (type, out ncd))
 					return ncd;
 				else
 					return null;
 			}
 			else
-				return globals.getNativeMapping(type);
+				return globals.getNativeBinding(type);
 		}
 
 	}

@@ -4,12 +4,12 @@ using presto.utils;
 namespace presto.java
 {
 
-    public class JavaNativeCategoryMapping : NativeCategoryMapping
+    public class JavaNativeCategoryBinding : NativeCategoryBinding
     {
 
         JavaIdentifierExpression expression;
 
-        public JavaNativeCategoryMapping(JavaIdentifierExpression expression)
+        public JavaNativeCategoryBinding(JavaIdentifierExpression expression)
         {
             this.expression = expression;
         }

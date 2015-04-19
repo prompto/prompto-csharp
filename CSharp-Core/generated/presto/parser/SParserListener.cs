@@ -160,39 +160,39 @@ public interface ISParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitNative_resource_declaration([NotNull] SParser.Native_resource_declarationContext context);
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="SParser.native_category_mappings"/>.
+	/// Enter a parse tree produced by <see cref="SParser.native_category_bindings"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterNative_category_mappings([NotNull] SParser.Native_category_mappingsContext context);
+	void EnterNative_category_bindings([NotNull] SParser.Native_category_bindingsContext context);
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="SParser.native_category_mappings"/>.
+	/// Exit a parse tree produced by <see cref="SParser.native_category_bindings"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitNative_category_mappings([NotNull] SParser.Native_category_mappingsContext context);
+	void ExitNative_category_bindings([NotNull] SParser.Native_category_bindingsContext context);
 	/// <summary>
-	/// Enter a parse tree produced by the <c>NativeCategoryMappingList</c>
-	/// labeled alternative in <see cref="SParser.native_category_mapping_list"/>.
+	/// Enter a parse tree produced by the <c>NativeCategoryBindingListItem</c>
+	/// labeled alternative in <see cref="SParser.native_category_binding_list"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterNativeCategoryMappingList([NotNull] SParser.NativeCategoryMappingListContext context);
+	void EnterNativeCategoryBindingListItem([NotNull] SParser.NativeCategoryBindingListItemContext context);
 	/// <summary>
-	/// Exit a parse tree produced by the <c>NativeCategoryMappingList</c>
-	/// labeled alternative in <see cref="SParser.native_category_mapping_list"/>.
+	/// Exit a parse tree produced by the <c>NativeCategoryBindingListItem</c>
+	/// labeled alternative in <see cref="SParser.native_category_binding_list"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitNativeCategoryMappingList([NotNull] SParser.NativeCategoryMappingListContext context);
+	void ExitNativeCategoryBindingListItem([NotNull] SParser.NativeCategoryBindingListItemContext context);
 	/// <summary>
-	/// Enter a parse tree produced by the <c>NativeCategoryMappingListItem</c>
-	/// labeled alternative in <see cref="SParser.native_category_mapping_list"/>.
+	/// Enter a parse tree produced by the <c>NativeCategoryBindingList</c>
+	/// labeled alternative in <see cref="SParser.native_category_binding_list"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterNativeCategoryMappingListItem([NotNull] SParser.NativeCategoryMappingListItemContext context);
+	void EnterNativeCategoryBindingList([NotNull] SParser.NativeCategoryBindingListContext context);
 	/// <summary>
-	/// Exit a parse tree produced by the <c>NativeCategoryMappingListItem</c>
-	/// labeled alternative in <see cref="SParser.native_category_mapping_list"/>.
+	/// Exit a parse tree produced by the <c>NativeCategoryBindingList</c>
+	/// labeled alternative in <see cref="SParser.native_category_binding_list"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitNativeCategoryMappingListItem([NotNull] SParser.NativeCategoryMappingListItemContext context);
+	void ExitNativeCategoryBindingList([NotNull] SParser.NativeCategoryBindingListContext context);
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="SParser.attribute_list"/>.
 	/// </summary>
@@ -2360,75 +2360,75 @@ public interface ISParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitOperatorMemberMethod([NotNull] SParser.OperatorMemberMethodContext context);
 	/// <summary>
-	/// Enter a parse tree produced by the <c>JavaCategoryMapping</c>
-	/// labeled alternative in <see cref="SParser.native_category_mapping"/>.
+	/// Enter a parse tree produced by the <c>JavaCategoryBinding</c>
+	/// labeled alternative in <see cref="SParser.native_category_binding"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterJavaCategoryMapping([NotNull] SParser.JavaCategoryMappingContext context);
+	void EnterJavaCategoryBinding([NotNull] SParser.JavaCategoryBindingContext context);
 	/// <summary>
-	/// Exit a parse tree produced by the <c>JavaCategoryMapping</c>
-	/// labeled alternative in <see cref="SParser.native_category_mapping"/>.
+	/// Exit a parse tree produced by the <c>JavaCategoryBinding</c>
+	/// labeled alternative in <see cref="SParser.native_category_binding"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitJavaCategoryMapping([NotNull] SParser.JavaCategoryMappingContext context);
+	void ExitJavaCategoryBinding([NotNull] SParser.JavaCategoryBindingContext context);
 	/// <summary>
-	/// Enter a parse tree produced by the <c>CSharpCategoryMapping</c>
-	/// labeled alternative in <see cref="SParser.native_category_mapping"/>.
+	/// Enter a parse tree produced by the <c>CSharpCategoryBinding</c>
+	/// labeled alternative in <see cref="SParser.native_category_binding"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterCSharpCategoryMapping([NotNull] SParser.CSharpCategoryMappingContext context);
+	void EnterCSharpCategoryBinding([NotNull] SParser.CSharpCategoryBindingContext context);
 	/// <summary>
-	/// Exit a parse tree produced by the <c>CSharpCategoryMapping</c>
-	/// labeled alternative in <see cref="SParser.native_category_mapping"/>.
+	/// Exit a parse tree produced by the <c>CSharpCategoryBinding</c>
+	/// labeled alternative in <see cref="SParser.native_category_binding"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitCSharpCategoryMapping([NotNull] SParser.CSharpCategoryMappingContext context);
+	void ExitCSharpCategoryBinding([NotNull] SParser.CSharpCategoryBindingContext context);
 	/// <summary>
-	/// Enter a parse tree produced by the <c>Python2CategoryMapping</c>
-	/// labeled alternative in <see cref="SParser.native_category_mapping"/>.
+	/// Enter a parse tree produced by the <c>Python2CategoryBinding</c>
+	/// labeled alternative in <see cref="SParser.native_category_binding"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterPython2CategoryMapping([NotNull] SParser.Python2CategoryMappingContext context);
+	void EnterPython2CategoryBinding([NotNull] SParser.Python2CategoryBindingContext context);
 	/// <summary>
-	/// Exit a parse tree produced by the <c>Python2CategoryMapping</c>
-	/// labeled alternative in <see cref="SParser.native_category_mapping"/>.
+	/// Exit a parse tree produced by the <c>Python2CategoryBinding</c>
+	/// labeled alternative in <see cref="SParser.native_category_binding"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitPython2CategoryMapping([NotNull] SParser.Python2CategoryMappingContext context);
+	void ExitPython2CategoryBinding([NotNull] SParser.Python2CategoryBindingContext context);
 	/// <summary>
-	/// Enter a parse tree produced by the <c>Python3CategoryMapping</c>
-	/// labeled alternative in <see cref="SParser.native_category_mapping"/>.
+	/// Enter a parse tree produced by the <c>Python3CategoryBinding</c>
+	/// labeled alternative in <see cref="SParser.native_category_binding"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterPython3CategoryMapping([NotNull] SParser.Python3CategoryMappingContext context);
+	void EnterPython3CategoryBinding([NotNull] SParser.Python3CategoryBindingContext context);
 	/// <summary>
-	/// Exit a parse tree produced by the <c>Python3CategoryMapping</c>
-	/// labeled alternative in <see cref="SParser.native_category_mapping"/>.
+	/// Exit a parse tree produced by the <c>Python3CategoryBinding</c>
+	/// labeled alternative in <see cref="SParser.native_category_binding"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitPython3CategoryMapping([NotNull] SParser.Python3CategoryMappingContext context);
+	void ExitPython3CategoryBinding([NotNull] SParser.Python3CategoryBindingContext context);
 	/// <summary>
-	/// Enter a parse tree produced by the <c>JavaScriptCategoryMapping</c>
-	/// labeled alternative in <see cref="SParser.native_category_mapping"/>.
+	/// Enter a parse tree produced by the <c>JavaScriptCategoryBinding</c>
+	/// labeled alternative in <see cref="SParser.native_category_binding"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterJavaScriptCategoryMapping([NotNull] SParser.JavaScriptCategoryMappingContext context);
+	void EnterJavaScriptCategoryBinding([NotNull] SParser.JavaScriptCategoryBindingContext context);
 	/// <summary>
-	/// Exit a parse tree produced by the <c>JavaScriptCategoryMapping</c>
-	/// labeled alternative in <see cref="SParser.native_category_mapping"/>.
+	/// Exit a parse tree produced by the <c>JavaScriptCategoryBinding</c>
+	/// labeled alternative in <see cref="SParser.native_category_binding"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitJavaScriptCategoryMapping([NotNull] SParser.JavaScriptCategoryMappingContext context);
+	void ExitJavaScriptCategoryBinding([NotNull] SParser.JavaScriptCategoryBindingContext context);
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="SParser.python_category_mapping"/>.
+	/// Enter a parse tree produced by <see cref="SParser.python_category_binding"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterPython_category_mapping([NotNull] SParser.Python_category_mappingContext context);
+	void EnterPython_category_binding([NotNull] SParser.Python_category_bindingContext context);
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="SParser.python_category_mapping"/>.
+	/// Exit a parse tree produced by <see cref="SParser.python_category_binding"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitPython_category_mapping([NotNull] SParser.Python_category_mappingContext context);
+	void ExitPython_category_binding([NotNull] SParser.Python_category_bindingContext context);
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="SParser.python_module"/>.
 	/// </summary>
@@ -2450,15 +2450,15 @@ public interface ISParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitModule_token([NotNull] SParser.Module_tokenContext context);
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="SParser.javascript_category_mapping"/>.
+	/// Enter a parse tree produced by <see cref="SParser.javascript_category_binding"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterJavascript_category_mapping([NotNull] SParser.Javascript_category_mappingContext context);
+	void EnterJavascript_category_binding([NotNull] SParser.Javascript_category_bindingContext context);
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="SParser.javascript_category_mapping"/>.
+	/// Exit a parse tree produced by <see cref="SParser.javascript_category_binding"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitJavascript_category_mapping([NotNull] SParser.Javascript_category_mappingContext context);
+	void ExitJavascript_category_binding([NotNull] SParser.Javascript_category_bindingContext context);
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="SParser.javascript_module"/>.
 	/// </summary>

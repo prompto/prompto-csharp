@@ -54,7 +54,7 @@ namespace presto.declaration
 
 		protected override void toEDialect(CodeWriter writer) {
 			bool hasMethods = methods!=null && methods.Count>0;
-			protoToEDialect(writer, hasMethods, false); // no mappings
+			protoToEDialect(writer, hasMethods, false); // no bindings
 			if(hasMethods)
 				methodsToEDialect(writer, methods);
 		}

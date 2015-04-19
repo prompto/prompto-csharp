@@ -3,17 +3,17 @@ using presto.parser;
 
 namespace presto.grammar {
 
-    public class NativeCategoryMappingList : ObjectList<NativeCategoryMapping>
+    public class NativeCategoryBindingList : ObjectList<NativeCategoryBinding>
     {
 
-        public NativeCategoryMappingList()
+        public NativeCategoryBindingList()
         {
 
         }
 
-        public NativeCategoryMappingList(NativeCategoryMapping mapping)
+        public NativeCategoryBindingList(NativeCategoryBinding binding)
         {
-            this.Add(mapping);
+            this.Add(binding);
         }
 
 		public void ToDialect(CodeWriter writer) {
@@ -31,9 +31,9 @@ namespace presto.grammar {
 		}
 
 		private void toEDialect(CodeWriter writer) {
-			writer.append("define category mappings as:\n");
+			writer.append("define category bindings as:\n");
 			writer.indent();
-			foreach(NativeCategoryMapping m in this) {
+			foreach(NativeCategoryBinding m in this) {
 				m.ToDialect(writer);
 				writer.newLine();
 			}
@@ -41,9 +41,9 @@ namespace presto.grammar {
 		}
 
 		private void toPDialect(CodeWriter writer) {
-			writer.append("mappings:\n");
+			writer.append("bindings:\n");
 			writer.indent();
-			foreach(NativeCategoryMapping m in this) {
+			foreach(NativeCategoryBinding m in this) {
 				m.ToDialect(writer);
 				writer.newLine();
 			}
@@ -51,9 +51,9 @@ namespace presto.grammar {
 		}
 
 		private void toODialect(CodeWriter writer) {
-			writer.append("category mappings {\n");
+			writer.append("category bindings {\n");
 			writer.indent();
-			foreach(NativeCategoryMapping m in this) {
+			foreach(NativeCategoryBinding m in this) {
 				m.ToDialect(writer);
 				writer.append(';');
 				writer.newLine();

@@ -6,7 +6,7 @@ using presto.utils;
 namespace presto.grammar
 {
 
-    public abstract class NativeCategoryMapping : IDialectElement
+    public abstract class NativeCategoryBinding : IDialectElement
     {
 		public abstract void ToDialect (CodeWriter writer);
     }

@@ -4,11 +4,11 @@ using presto.utils;
 namespace presto.python
 {
 
-	public class Python2NativeCategoryMapping : PythonNativeCategoryMapping
+	public class Python2NativeCategoryBinding : PythonNativeCategoryBinding
     {
 
-		public Python2NativeCategoryMapping(PythonNativeCategoryMapping mapping)
-			: base(mapping)
+		public Python2NativeCategoryBinding(PythonNativeCategoryBinding binding)
+			: base(binding)
         {
         }
 
