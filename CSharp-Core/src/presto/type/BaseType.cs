@@ -18,7 +18,7 @@ namespace presto.type
             this.name = name;
         }
 
-        public String getName()
+        public String GetName()
         {
             return name;
         }
@@ -33,7 +33,7 @@ namespace presto.type
             if (!(obj is IType))
                 return false;
             IType type = (IType)obj;
-            return this.getName().Equals(type.getName());
+			return this.GetName().Equals(type.GetName());
         }
 
         override
@@ -51,12 +51,12 @@ namespace presto.type
 			if (tryReverse)
 				return other.checkAdd (context, this, false);
 			else
-				throw new SyntaxError("Cannot add " + this.getName() + " to " + other.getName());
+				throw new SyntaxError("Cannot add " + this.GetName() + " to " + other.GetName());
         }
 
         public virtual IType checkSubstract(Context context, IType other)
         {
-            throw new SyntaxError("Cannot substract " + this.getName() + " from " + other.getName());
+			throw new SyntaxError("Cannot substract " + this.GetName() + " from " + other.GetName());
         }
 
 		public virtual IType checkMultiply(Context context, IType other, bool tryReverse)
@@ -64,57 +64,57 @@ namespace presto.type
 			if (tryReverse)
 				return other.checkMultiply (context, this, false);
 			else
-	            throw new SyntaxError("Cannot multiply " + this.getName() + " with " + other.getName());
+				throw new SyntaxError("Cannot multiply " + this.GetName() + " with " + other.GetName());
         }
 
         public virtual IType checkDivide(Context context, IType other)
         {
-            throw new SyntaxError("Cannot divide " + this.getName() + " with " + other.getName());
+			throw new SyntaxError("Cannot divide " + this.GetName() + " with " + other.GetName());
         }
 
         public virtual IType checkIntDivide(Context context, IType other)
         {
-            throw new SyntaxError("Cannot int divide " + this.getName() + " with " + other.getName());
+			throw new SyntaxError("Cannot int divide " + this.GetName() + " with " + other.GetName());
         }
 
         public virtual IType CheckModulo(Context context, IType other)
         {
-            throw new SyntaxError("Cannot modulo " + this.getName() + " with " + other.getName());
+			throw new SyntaxError("Cannot modulo " + this.GetName() + " with " + other.GetName());
         }
 
         public virtual IType checkCompare(Context context, IType other)
         {
-            throw new SyntaxError("Cannot compare " + this.getName() + " to " + other.getName());
+			throw new SyntaxError("Cannot compare " + this.GetName() + " to " + other.GetName());
         }
 
         public virtual IType checkContains(Context context, IType other)
         {
-            throw new SyntaxError(this.getName() + " cannot contain " + other.getName());
+			throw new SyntaxError(this.GetName() + " cannot contain " + other.GetName());
         }
 
         public virtual IType checkContainsAllOrAny(Context context, IType other)
         {
-            throw new SyntaxError(this.getName() + " cannot contain " + other.getName());
+			throw new SyntaxError(this.GetName() + " cannot contain " + other.GetName());
         }
 
         public virtual IType checkItem(Context context, IType itemType)
         {
-            throw new SyntaxError("Cannot read item from " + this.getName());
+			throw new SyntaxError("Cannot read item from " + this.GetName());
         }
 
         public virtual IType checkSlice(Context context)
         {
-            throw new SyntaxError("Cannot slice " + this.getName());
+			throw new SyntaxError("Cannot slice " + this.GetName());
         }
 
         public virtual IType checkIterator(Context context)
         {
-            throw new SyntaxError("Cannot iterate over " + this.getName());
+			throw new SyntaxError("Cannot iterate over " + this.GetName());
         }
 
         public virtual IType CheckMember(Context context, String name)
         {
-            throw new SyntaxError(this.getName() + " has no member support for:" + name);
+			throw new SyntaxError(this.GetName() + " has no member support for:" + name);
         }
 
         public abstract void checkUnique(Context context);
@@ -128,17 +128,17 @@ namespace presto.type
         public void checkAssignableTo(Context context, IType other)
         {
             if (!isAssignableTo(context, other))
-                throw new SyntaxError("IType: " + this.getName() + " is not compatible with: " + other.getName());
+				throw new SyntaxError("IType: " + this.GetName() + " is not compatible with: " + other.GetName());
         }
 
         public virtual IType checkRange(Context context, IType other)
         {
-            throw new SyntaxError("Cannot create range of " + this.getName() + " and " + other.getName());
+			throw new SyntaxError("Cannot create range of " + this.GetName() + " and " + other.GetName());
         }
 
         public virtual IRange newRange(Object left, Object right)
         {
-            throw new SyntaxError("Cannot create range of " + this.getName());
+			throw new SyntaxError("Cannot create range of " + this.GetName());
         }
 
         public virtual String ToString(Object value)
@@ -159,16 +159,16 @@ namespace presto.type
             return result;
         }
 
-        public abstract Type ToSystemType();
+        public abstract Type ToCSharpType();
 
-        public virtual IValue convertSystemValueToPrestoValue(Object value)
+        public virtual IValue ConvertCSharpValueToPrestoValue(Object value)
         {
             return (IValue)value; // TODO for now
         }
 
         public virtual IValue getMember(Context context, String name)
         {
-		throw new SyntaxError("Cannot read member from " + this.getName());
+			throw new SyntaxError("Cannot read member from " + this.GetName());
 	}
     }
 

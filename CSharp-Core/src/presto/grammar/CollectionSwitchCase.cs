@@ -26,7 +26,7 @@ namespace presto.grammar
             if (thisType is CollectionType)
                 thisType = ((CollectionType)thisType).GetItemType();
             if (!thisType.isAssignableTo(context, type))
-                throw new SyntaxError("Cannot assign:" + thisType.getName() + " to:" + type.getName());
+				throw new SyntaxError("Cannot assign:" + thisType.GetName() + " to:" + type.GetName());
         }
 
         override

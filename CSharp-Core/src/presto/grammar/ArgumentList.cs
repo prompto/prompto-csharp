@@ -26,7 +26,7 @@ public class ArgumentList : ObjectList<IArgument> {
 
 	public IArgument find(String name) {
 		foreach(IArgument argument in this) {
-			if(name.Equals(argument.getName()))
+			if(name.Equals(argument.GetName()))
 					return argument;
 		}
 		return null;

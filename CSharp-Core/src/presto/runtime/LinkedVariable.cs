@@ -18,9 +18,9 @@ namespace presto.runtime
 			this.linked = linked;
 		}
 
-		public String getName ()
+		public String GetName ()
 		{
-			return linked.getName ();
+			return linked.GetName ();
 		}
 
 		public IType GetType (Context context)

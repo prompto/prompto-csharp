@@ -54,8 +54,8 @@ namespace presto.parser
             ETestParser parser = new ETestParser(statement, false);
             AttributeDeclaration ad = parser.parse_attribute_declaration();
             Assert.IsNotNull(ad);
-            Assert.AreEqual("id", ad.getName());
-            Assert.AreEqual("Integer", ad.getType().getName());
+            Assert.AreEqual("id", ad.GetName());
+            Assert.AreEqual("Integer", ad.getType().GetName());
         }
 
         [Test]
@@ -65,8 +65,8 @@ namespace presto.parser
             ETestParser parser = new ETestParser(statement, false);
             AttributeDeclaration ad = parser.parse_attribute_declaration();
             Assert.IsNotNull(ad);
-            Assert.AreEqual("id", ad.getName());
-            Assert.AreEqual("Integer[]", ad.getType().getName());
+			Assert.AreEqual("id", ad.GetName());
+			Assert.AreEqual("Integer[]", ad.getType().GetName());
         }
 
         [Test]
@@ -76,7 +76,7 @@ namespace presto.parser
             ETestParser parser = new ETestParser(statement, false);
             CategoryDeclaration cd = parser.parse_category_declaration();
             Assert.IsNotNull(cd);
-            Assert.AreEqual("Person", cd.getName());
+			Assert.AreEqual("Person", cd.GetName());
             Assert.IsNull(cd.getDerivedFrom());
             Assert.IsNotNull(cd.getAttributes());
             Assert.IsTrue(cd.getAttributes().Contains("id"));
@@ -89,7 +89,7 @@ namespace presto.parser
             ETestParser parser = new ETestParser(statement, false);
             CategoryDeclaration cd = parser.parse_category_declaration();
             Assert.IsNotNull(cd);
-            Assert.AreEqual("Person", cd.getName());
+			Assert.AreEqual("Person", cd.GetName());
             Assert.IsNull(cd.getDerivedFrom());
             Assert.IsNotNull(cd.getAttributes());
             Assert.IsTrue(cd.getAttributes().Contains("id"));
@@ -103,7 +103,7 @@ namespace presto.parser
             ETestParser parser = new ETestParser(statement, false);
             CategoryDeclaration cd = parser.parse_category_declaration();
             Assert.IsNotNull(cd);
-            Assert.AreEqual("Employee", cd.getName());
+			Assert.AreEqual("Employee", cd.GetName());
             Assert.IsNotNull(cd.getDerivedFrom());
             Assert.IsTrue(cd.getDerivedFrom().Contains("Person"));
             Assert.IsNotNull(cd.getAttributes());
@@ -117,7 +117,7 @@ namespace presto.parser
             ETestParser parser = new ETestParser(statement, false);
             CategoryDeclaration cd = parser.parse_category_declaration();
             Assert.IsNotNull(cd);
-            Assert.AreEqual("Entrepreneur", cd.getName());
+			Assert.AreEqual("Entrepreneur", cd.GetName());
             Assert.IsNotNull(cd.getDerivedFrom());
             Assert.IsTrue(cd.getDerivedFrom().Contains("Person"));
             Assert.IsTrue(cd.getDerivedFrom().Contains("Company"));
@@ -145,8 +145,8 @@ namespace presto.parser
             ETestParser parser = new ETestParser(statement, false);
             ITypedArgument a = parser.parse_typed_argument();
             Assert.IsNotNull(a);
-            Assert.AreEqual("Person", a.getType().getName());
-            Assert.AreEqual("p", a.getName());
+			Assert.AreEqual("Person", a.getType().GetName());
+            Assert.AreEqual("p", a.GetName());
         }
 
         [Test]
@@ -194,7 +194,7 @@ namespace presto.parser
             String statement = "p.name as value";
             ETestParser parser = new ETestParser(statement, false);
             ArgumentAssignment ars = parser.parse_argument_assignment();
-            Assert.AreEqual("value", ars.getName());
+			Assert.AreEqual("value", ars.GetName());
             IExpression exp = ars.getExpression();
             Assert.IsNotNull(exp);
 			Assert.AreEqual("p.name as value", generate(ars));
@@ -206,7 +206,7 @@ namespace presto.parser
             String statement = "\"person\" + p.name as value";
             ETestParser parser = new ETestParser(statement, false);
             ArgumentAssignment ars = parser.parse_argument_assignment();
-            Assert.AreEqual("value", ars.getName());
+			Assert.AreEqual("value", ars.GetName());
             IExpression exp = ars.getExpression();
             Assert.IsTrue(exp is AddExpression);
 			Assert.AreEqual("\"person\" + p.name as value", generate(ars));
@@ -219,7 +219,7 @@ namespace presto.parser
             ETestParser parser = new ETestParser(statement, false);
             ArgumentAssignmentList ls = parser.parse_argument_assignment_list();
             ArgumentAssignment ars = ls[0];
-            Assert.AreEqual("value", ars.getName());
+			Assert.AreEqual("value", ars.GetName());
             IExpression exp = ars.getExpression();
             Assert.IsTrue(exp is AddExpression);
 			Assert.AreEqual("\"person\" + p.name as value", generate(ars));
@@ -236,7 +236,7 @@ namespace presto.parser
             Assert.AreEqual("print", mc.getCaller().ToString());
             Assert.IsNotNull(mc.getAssignments());
             ArgumentAssignment ars = mc.getAssignments()[0];
-            Assert.AreEqual("value", ars.getName());
+			Assert.AreEqual("value", ars.GetName());
             IExpression exp = ars.getExpression();
             Assert.IsTrue(exp is AddExpression);
 			Assert.AreEqual("print with \"person\" + p.name as value", generate(mc));
@@ -251,7 +251,7 @@ namespace presto.parser
             ETestParser parser = new ETestParser(statement, false);
             ConcreteMethodDeclaration ad = parser.parse_concrete_method_declaration();
             Assert.IsNotNull(ad);
-            Assert.AreEqual("printName", ad.getName());
+			Assert.AreEqual("printName", ad.GetName());
             Assert.IsNotNull(ad.getArguments());
             Assert.IsTrue(ad.getArguments().Contains(new CategoryArgument(new CategoryType("Person"), "p", null)));
             Assert.IsNotNull(ad.getStatements());
@@ -267,7 +267,7 @@ namespace presto.parser
             ETestParser parser = new ETestParser(statement, false);
             ConcreteMethodDeclaration ad = parser.parse_concrete_method_declaration();
             Assert.IsNotNull(ad);
-            Assert.AreEqual("printName", ad.getName());
+			Assert.AreEqual("printName", ad.GetName());
             Assert.IsNotNull(ad.getArguments());
             IArgument expected = new CategoryArgument(new CategoryType("Object"), "o", new IdentifierList("name"));
             Assert.IsTrue(ad.getArguments().Contains(expected));
@@ -284,7 +284,7 @@ namespace presto.parser
             ETestParser parser = new ETestParser(statement, false);
             ConcreteMethodDeclaration ad = parser.parse_concrete_method_declaration();
             Assert.IsNotNull(ad);
-            Assert.AreEqual("printName", ad.getName());
+			Assert.AreEqual("printName", ad.GetName());
             Assert.IsNotNull(ad.getArguments());
             IArgument expected = new CategoryArgument(new ListType(new CategoryType("Option")), "options", null);
             Assert.IsTrue(ad.getArguments().Contains(expected));
@@ -323,13 +323,13 @@ namespace presto.parser
             Assert.AreEqual(2, l.Count);
             ArgumentAssignment a = l[0];
             Assert.IsNotNull(a);
-            Assert.AreEqual("id", a.getName());
+			Assert.AreEqual("id", a.GetName());
             IExpression e = a.getExpression();
             Assert.IsNotNull(e);
             Assert.IsTrue(e is IntegerLiteral);
             a = l[1];
             Assert.IsNotNull(a);
-            Assert.AreEqual("name", a.getName());
+			Assert.AreEqual("name", a.GetName());
             e = a.getExpression();
             Assert.IsNotNull(e);
             Assert.IsTrue(e is TextLiteral);
@@ -347,13 +347,13 @@ namespace presto.parser
             Assert.AreEqual(2, l.Count);
             ArgumentAssignment a = l[0];
             Assert.IsNotNull(a);
-            Assert.AreEqual("id", a.getName());
+			Assert.AreEqual("id", a.GetName());
             IExpression e = a.getExpression();
             Assert.IsNotNull(e);
             Assert.IsTrue(e is IntegerLiteral);
             a = l[1];
             Assert.IsNotNull(a);
-            Assert.AreEqual("name", a.getName());
+			Assert.AreEqual("name", a.GetName());
             e = a.getExpression();
             Assert.IsNotNull(e);
             Assert.IsTrue(e is TextLiteral);

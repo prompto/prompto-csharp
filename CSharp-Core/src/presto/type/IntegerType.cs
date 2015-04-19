@@ -26,7 +26,7 @@ namespace presto.type
         }
 
         override
-        public Type ToSystemType()
+        public Type ToCSharpType()
         {
             return typeof(Integer);
         }
@@ -134,7 +134,7 @@ namespace presto.type
         }
 
         override
-         public IValue convertSystemValueToPrestoValue(Object value)
+         public IValue ConvertCSharpValueToPrestoValue(Object value)
         {
             if (value is Int16)
                 return new Integer((Int16)value);

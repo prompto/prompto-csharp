@@ -56,7 +56,7 @@ namespace presto.grammar
             if (assignments != null)
                 sb.Append(assignments.ToString());
             if (sb.Length == 0)
-                sb.Append(type.getName());
+				sb.Append(type.GetName());
             return sb.ToString();
         }
 
@@ -70,16 +70,16 @@ namespace presto.grammar
         override
         public IType check(Context context)
         {
-            EnumeratedCategoryDeclaration cd = context.getRegisteredDeclaration<EnumeratedCategoryDeclaration>(type.getName());
+			EnumeratedCategoryDeclaration cd = context.getRegisteredDeclaration<EnumeratedCategoryDeclaration>(type.GetName());
             if (cd == null)
-                throw new SyntaxError("Unknown category " + type.getName());
+				throw new SyntaxError("Unknown category " + type.GetName());
             if (assignments != null)
             {
 				context = context.newLocalContext ();
                 foreach (ArgumentAssignment assignment in assignments)
                 {
-                    if (!cd.hasAttribute(context, assignment.getName()))
-                        throw new SyntaxError("\"" + assignment.getName() + "\" is not an attribute of " + type.getName());
+					if (!cd.hasAttribute(context, assignment.GetName()))
+						throw new SyntaxError("\"" + assignment.GetName() + "\" is not an attribute of " + type.GetName());
                     assignment.check(context);
                 }
             }
@@ -97,10 +97,10 @@ namespace presto.grammar
                 foreach (ArgumentAssignment assignment in assignments)
                 {
 					IValue value = assignment.getExpression().interpret(context);
-                    instance.SetMember(context, assignment.getName(), value);
+					instance.SetMember(context, assignment.GetName(), value);
                 }
             }
-			instance.SetMember(context, "name", new Text(this.getName()));
+			instance.SetMember(context, "name", new Text(this.GetName()));
 			instance.setMutable (false);
 			return instance;
         }

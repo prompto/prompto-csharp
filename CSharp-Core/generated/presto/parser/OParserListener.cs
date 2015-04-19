@@ -4506,6 +4506,18 @@ public interface IOParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitCsharp_parenthesis_expression([NotNull] OParser.Csharp_parenthesis_expressionContext context);
 	/// <summary>
+	/// Enter a parse tree produced by the <c>CSharpPrestoIdentifier</c>
+	/// labeled alternative in <see cref="OParser.csharp_identifier_expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterCSharpPrestoIdentifier([NotNull] OParser.CSharpPrestoIdentifierContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>CSharpPrestoIdentifier</c>
+	/// labeled alternative in <see cref="OParser.csharp_identifier_expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitCSharpPrestoIdentifier([NotNull] OParser.CSharpPrestoIdentifierContext context);
+	/// <summary>
 	/// Enter a parse tree produced by the <c>CSharpIdentifier</c>
 	/// labeled alternative in <see cref="OParser.csharp_identifier_expression"/>.
 	/// </summary>

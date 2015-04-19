@@ -23,7 +23,7 @@ namespace presto.declaration
         override
         public int GetHashCode()
         {
-            return getName().GetHashCode();
+			return GetName().GetHashCode();
         }
 
         override

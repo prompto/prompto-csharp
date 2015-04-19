@@ -22,7 +22,7 @@ namespace presto.type
             if (!(obj is ResourceType))
                 return false;
             ResourceType other = (ResourceType)obj;
-            return this.getName().Equals(other.getName());
+			return this.GetName().Equals(other.GetName());
         }
 
         override

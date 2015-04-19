@@ -7,7 +7,7 @@ namespace presto.type
     {
 
         public RangeType(IType itemType)
-            : base(itemType.getName() + "[..]", itemType)
+			: base(itemType.GetName() + "[..]", itemType)
         {
         }
 
@@ -18,7 +18,7 @@ namespace presto.type
         }
 
         override
-        public System.Type ToSystemType()
+        public System.Type ToCSharpType()
         {
             return null; // no equivalent
         }

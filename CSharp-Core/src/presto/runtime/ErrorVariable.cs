@@ -16,7 +16,7 @@ namespace presto.runtime
         override
         public String ToString()
         {
-            return getName();
+			return GetName();
         }
 
         override

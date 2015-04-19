@@ -81,7 +81,7 @@ namespace presto.statement
         {
             IType type = expression.check(context);
             if (type != TupleType.Instance)
-                throw new SyntaxError("Expecting a tuple expression, got " + type.getName());
+				throw new SyntaxError("Expecting a tuple expression, got " + type.GetName());
             foreach (String name in names)
             {
                 INamed actual = context.getRegistered(name);

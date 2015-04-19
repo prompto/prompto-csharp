@@ -133,7 +133,7 @@ namespace presto.statement
         {
             IType type = instructions.check(context);
             if (type != VoidType.Instance)
-                types[type.getName()] = type;
+				types[type.GetName()] = type;
             Context local = context.newLocalContext();
             local.registerValue(new ErrorVariable(errorName));
             base.collectReturnTypes(local, types);
@@ -141,7 +141,7 @@ namespace presto.statement
             {
                 type = alwaysInstructions.check(context);
                 if (type != VoidType.Instance)
-                    types[type.getName()] = type;
+					types[type.GetName()] = type;
             }
         }
 

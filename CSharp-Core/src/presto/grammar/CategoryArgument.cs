@@ -55,9 +55,9 @@ namespace presto.grammar
         String getProto()
         {
             if (attributes == null)
-                return type.getName();
+                return type.GetName();
             else
-                return type.getName() + '(' + attributes.ToString() + ')';
+				return type.GetName() + '(' + attributes.ToString() + ')';
         }
 
         override
@@ -83,7 +83,7 @@ namespace presto.grammar
 		}
 
 		private void toEDialect(CodeWriter writer) {
-			bool anonymous = "any"==type.getName();
+			bool anonymous = "any"==type.GetName();
 			type.ToDialect(writer);
 			if(anonymous) {
 				writer.append(' ');
@@ -151,8 +151,8 @@ namespace presto.grammar
                 return false;
             CategoryArgument other = (CategoryArgument)obj;
             return Utils.equal(this.getType(), other.getType())
-                    && Utils.equal(this.getName(), other.getName())
-                    && Utils.equal(this.getAttributes(), other.getAttributes());
+				&& Utils.equal(this.GetName(), other.GetName())
+                && Utils.equal(this.getAttributes(), other.getAttributes());
         }
 
         override
@@ -164,7 +164,7 @@ namespace presto.grammar
             if (attributes != null)
             {
                 ConcreteCategoryDeclaration declaration = new ConcreteCategoryDeclaration(name);
-                declaration.setDerivedFrom(new IdentifierList(type.getName()));
+				declaration.setDerivedFrom(new IdentifierList(type.GetName()));
                 declaration.setAttributes(attributes);
                 context.registerDeclaration(declaration);
             }

@@ -23,13 +23,13 @@ namespace presto.grammar
         override
         public String getSignature(Dialect dialect)
         {
-            return getName();
+            return GetName();
         }
 
         override
 		public void ToDialect(CodeWriter writer)
         {
-			writer.append(getName());
+			writer.append(GetName());
 			if(DefaultValue!=null) {
 				writer.append(" = ");
 				DefaultValue.ToDialect(writer);
@@ -39,7 +39,7 @@ namespace presto.grammar
         override
         public String getProto(Context context)
         {
-            return getName();
+            return GetName();
         }
 
         override
@@ -52,7 +52,7 @@ namespace presto.grammar
             if (!(obj is AttributeArgument))
                 return false;
             AttributeArgument other = (AttributeArgument)obj;
-            return Utils.equal(this.getName(), other.getName());
+			return Utils.equal(this.GetName(), other.GetName());
         }
 
         override

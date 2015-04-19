@@ -22,6 +22,12 @@ namespace presto.runtime.e
 		}
 
 		[Test]
+		public void testAttribute()
+		{
+			CheckOutput("native/attribute.pec");
+		}
+
+		[Test]
 		public void testCategory()
 		{
 			CheckOutput("native/category.pec");
@@ -31,6 +37,12 @@ namespace presto.runtime.e
 		public void testMethod()
 		{
 			CheckOutput("native/method.pec");
+		}
+
+		[Test]
+		public void testPrinter()
+		{
+			CheckOutput("native/printer.pec");
 		}
 
 	}

@@ -21,7 +21,7 @@ namespace presto.grammar
             this.name = name;
         }
 
-        public String getName()
+        public String GetName()
         {
             return name;
         }

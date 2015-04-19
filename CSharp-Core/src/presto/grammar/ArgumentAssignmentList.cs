@@ -64,7 +64,7 @@ namespace presto.grammar
         {
             foreach (ArgumentAssignment assignment in this)
             {
-                if (name.Equals(assignment.getName()))
+				if (name.Equals(assignment.GetName()))
                     return assignment;
             }
             return null;

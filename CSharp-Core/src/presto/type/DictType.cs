@@ -7,7 +7,7 @@ namespace presto.type
 public class DictType : CollectionType {
 	
 	public DictType(IType itemType) 
-    	: base(itemType.getName()+"{}",itemType)
+    	: base(itemType.GetName()+"{}",itemType)
 	{
 		this.itemType = itemType;
 	}
@@ -18,7 +18,7 @@ public class DictType : CollectionType {
 	}
 
 	override
-	public Type ToSystemType() {
+	public Type ToCSharpType() {
         return typeof(Dict);
 	}
 

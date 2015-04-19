@@ -4726,6 +4726,18 @@ public partial class EParserBaseListener : IEParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitCsharp_parenthesis_expression([NotNull] EParser.Csharp_parenthesis_expressionContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="EParser.CSharpPrestoIdentifier"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterCSharpPrestoIdentifier([NotNull] EParser.CSharpPrestoIdentifierContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="EParser.CSharpPrestoIdentifier"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitCSharpPrestoIdentifier([NotNull] EParser.CSharpPrestoIdentifierContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="EParser.CSharpIdentifier"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>

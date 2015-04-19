@@ -23,7 +23,7 @@ namespace presto.grammar
 
         public override String getSignature(Dialect dialect)
         {
-            return getName();
+			return GetName();
         }
 			
 		public override void ToDialect(CodeWriter writer)

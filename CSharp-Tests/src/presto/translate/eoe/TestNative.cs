@@ -9,6 +9,12 @@ namespace presto.translate.eoe
 	{
 
 		[Test]
+		public void testAttribute()
+		{
+			compareResourceEOE("native/attribute.pec");
+		}
+
+		[Test]
 		public void testCategory()
 		{
 			compareResourceEOE("native/category.pec");
@@ -21,9 +27,9 @@ namespace presto.translate.eoe
 		}
 
 		[Test]
-		public void testPrint()
+		public void testPrinter()
 		{
-			compareResourceEOE("native/print.pec");
+			compareResourceEOE("native/printer.pec");
 		}
 
 		[Test]

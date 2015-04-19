@@ -1072,7 +1072,13 @@ namespace presto.parser
 			SetNodeValue (ctx, ctx.GetText ());
 		}
 
-		
+		public override void ExitCSharpPrestoIdentifier (SParser.CSharpPrestoIdentifierContext ctx)
+		{
+			String name = ctx.DOLLAR_IDENTIFIER().GetText();
+			SetNodeValue (ctx, new CSharpIdentifierExpression (name));
+		}
+
+	
 		public override void ExitCSharpPrimaryExpression (SParser.CSharpPrimaryExpressionContext ctx)
 		{
 			CSharpExpression exp = this.GetNodeValue<CSharpExpression> (ctx.exp);

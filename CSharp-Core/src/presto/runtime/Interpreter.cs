@@ -54,7 +54,7 @@ namespace presto.runtime {
             ArgumentAssignmentList assignments = new ArgumentAssignmentList();
             if (method.getArguments().Count == 1)
             {
-                String name = method.getArguments()[0].getName();
+                String name = method.getArguments()[0].GetName();
                 IExpression value = parseCmdLineArgs(cmdLineArgs);
                 assignments.Add(new ArgumentAssignment(new UnresolvedArgument(name), value));
             }
@@ -108,7 +108,7 @@ namespace presto.runtime {
                if(method.getArguments().Count==0)
                    return method;
            }
-           throw new SyntaxError("Could not find a compatible \"" + map.getName() + "\" method.");
+			throw new SyntaxError("Could not find a compatible \"" + map.GetName() + "\" method.");
        } 
 
         private static bool isSingleTextDictArgument(ArgumentList arguments)

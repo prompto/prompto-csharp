@@ -37,6 +37,7 @@ namespace presto.runtime
 		Dictionary<String,TestMethodDeclaration> tests = new Dictionary<String, TestMethodDeclaration>();
 		protected Dictionary<String, INamed> instances = new Dictionary<String, INamed>();
 		Dictionary<String, IValue> values = new Dictionary<String, IValue>();
+		Dictionary<Type, NativeCategoryDeclaration> nativeMappings = new Dictionary<Type, NativeCategoryDeclaration> ();
 
         protected Context()
         {
@@ -152,6 +153,11 @@ namespace presto.runtime
             return context;
         }
 
+		public AttributeDeclaration findAttribute(String name)
+		{
+			return getRegisteredDeclaration<AttributeDeclaration> (name);
+		}
+
         public INamed getRegistered(String name)
         {
             // resolve upwards, since local names override global ones
@@ -187,29 +193,29 @@ namespace presto.runtime
 
         public void registerDeclaration(IDeclaration declaration)
         {
-            INamed actual = getRegistered(declaration.getName());
+            INamed actual = getRegistered(declaration.GetName());
             if (actual != null)
-                throw new SyntaxError("Duplicate name: \"" + declaration.getName() + "\"");
-            declarations[declaration.getName()] = declaration;
+                throw new SyntaxError("Duplicate name: \"" + declaration.GetName() + "\"");
+            declarations[declaration.GetName()] = declaration;
         }
 
         public void registerDeclaration(IMethodDeclaration declaration)
         {
-            INamed actual = getRegistered(declaration.getName());
+            INamed actual = getRegistered(declaration.GetName());
             if (actual != null && !(actual is MethodDeclarationMap))
-                throw new SyntaxError("Duplicate name: \"" + declaration.getName() + "\"");
+                throw new SyntaxError("Duplicate name: \"" + declaration.GetName() + "\"");
             if (actual == null)
             {
-                actual = new MethodDeclarationMap(declaration.getName());
-                declarations[declaration.getName()] = (MethodDeclarationMap)actual;
+                actual = new MethodDeclarationMap(declaration.GetName());
+                declarations[declaration.GetName()] = (MethodDeclarationMap)actual;
             }
             ((MethodDeclarationMap)actual).register(declaration, this);
         }
 
 		public void registerDeclaration(TestMethodDeclaration declaration) {
-			if(tests.ContainsKey(declaration.getName()))
-				throw new SyntaxError("Duplicate test: \"" + declaration.getName() + "\"");
-			tests[declaration.getName()] = declaration;
+			if(tests.ContainsKey(declaration.GetName()))
+				throw new SyntaxError("Duplicate test: \"" + declaration.GetName() + "\"");
+			tests[declaration.GetName()] = declaration;
 		}
 
 		public bool hasTests() {
@@ -247,10 +253,10 @@ namespace presto.runtime
 		public void registerValue(INamed named, bool checkDuplicate) {
 			if (checkDuplicate) {
 				// only explore current context
-				if(instances.ContainsKey(named.getName()))
-					throw new SyntaxError ("Duplicate name: \"" + named.getName () + "\"");
+				if(instances.ContainsKey(named.GetName()))
+					throw new SyntaxError ("Duplicate name: \"" + named.GetName () + "\"");
 			}
-			instances[named.getName()] = named;
+			instances[named.GetName()] = named;
         }
 
         public IValue getValue(String name)
@@ -340,14 +346,14 @@ namespace presto.runtime
 		public ConcreteInstance loadSingleton(CategoryType type) {
 			if(this==globals) {
 				IValue value = null;
-				values.TryGetValue(type.getName(), out value);
+				values.TryGetValue(type.GetName(), out value);
 				if(value==null) {
-					IDeclaration decl = declarations[type.getName()];
+					IDeclaration decl = declarations[type.GetName()];
 					if(!(decl is ConcreteCategoryDeclaration))
-						throw new InternalError("No such singleton:" + type.getName());
+						throw new InternalError("No such singleton:" + type.GetName());
 					value = new ConcreteInstance((ConcreteCategoryDeclaration)decl);
 					((IInstance)value).setMutable(true); // a singleton is protected by "with x do", so always mutable in that context
-					values[type.getName()] = value;
+					values[type.GetName()] = value;
 				}
 				if(value is ConcreteInstance)
 					return (ConcreteInstance)value;
@@ -357,7 +363,27 @@ namespace presto.runtime
 				return this.globals.loadSingleton(type);
 		}
 
-    }
+		public void registerNativeMapping(Type type, NativeCategoryDeclaration declaration) 
+		{
+			if(this==globals)
+				nativeMappings[type] = declaration;
+			else
+				globals.registerNativeMapping(type, declaration);
+		}
+
+		public NativeCategoryDeclaration getNativeMapping(Type type) {
+			if (this == globals) {
+				NativeCategoryDeclaration ncd;
+				if (nativeMappings.TryGetValue (type, out ncd))
+					return ncd;
+				else
+					return null;
+			}
+			else
+				return globals.getNativeMapping(type);
+		}
+
+	}
 
     class ResourceContext : Context
     {
@@ -422,7 +448,7 @@ namespace presto.runtime
 			if(instance!=null)
 				return instance.getDeclaration();
 			else
-				return getRegisteredDeclaration<ConcreteCategoryDeclaration>(type.getName());
+				return getRegisteredDeclaration<ConcreteCategoryDeclaration>(type.GetName());
 		}
 
 
@@ -455,7 +481,7 @@ namespace presto.runtime
             // should never get there
         }
 
-        public String getName()
+		public String GetName()
         {
             return name;
         }
@@ -474,7 +500,7 @@ namespace presto.runtime
         {
             String proto = declaration.getProto(context);
             if (this.ContainsKey(proto))
-                throw new SyntaxError("Duplicate prototype for name: \"" + declaration.getName() + "\"");
+                throw new SyntaxError("Duplicate prototype for name: \"" + declaration.GetName() + "\"");
             this[proto] = declaration;
         }
 

@@ -33,9 +33,9 @@ namespace presto.grammar {
             return argument;
         }
 
-        public String getName()
+		public String GetName()
         {
-            return argument.getName();
+            return argument.GetName();
         }
 
         public IExpression getExpression()
@@ -64,7 +64,7 @@ namespace presto.grammar {
 
 		private void toODialect(CodeWriter writer) {
 			if(argument!=null) {
-				writer.append(argument.getName());
+				writer.append(argument.GetName());
 				writer.append(" = ");
 			}
 			expression.ToDialect(writer);
@@ -72,7 +72,7 @@ namespace presto.grammar {
 
 		private void toPDialect(CodeWriter writer) {
 			if(argument!=null) {
-				writer.append(argument.getName());
+				writer.append(argument.GetName());
 				writer.append(" = ");
 			}
 			expression.ToDialect(writer);
@@ -82,7 +82,7 @@ namespace presto.grammar {
 			expression.ToDialect(writer);
 			if(argument!=null) {
 				writer.append(" as ");
-				writer.append(argument.getName());
+				writer.append(argument.GetName());
 			}
 		}
 
@@ -102,11 +102,11 @@ namespace presto.grammar {
 
         public IType check(Context context)
         {
-			INamed actual = context.getRegisteredValue<INamed>(argument.getName());
+			INamed actual = context.getRegisteredValue<INamed>(argument.GetName());
             if (actual == null)
             {
 				IType actualType = expression.check(context);
-				context.registerValue(new Variable(argument.getName(), actualType));
+				context.registerValue(new Variable(argument.GetName(), actualType));
             }
             else
             {
@@ -121,7 +121,7 @@ namespace presto.grammar {
         public IExpression resolve(Context context, IMethodDeclaration methodDeclaration, bool checkInstance)
         {
             // since we support implicit members, it's time to resolve them
-            String name = this.argument.getName();
+            String name = this.argument.GetName();
             IExpression expression = getExpression();
             IArgument argument = methodDeclaration.getArguments().find(name);
             IType required = argument.GetType(context);
@@ -148,9 +148,9 @@ namespace presto.grammar {
                 argument = declaration.getArguments()[0];
             }
             else
-                argument = declaration.getArguments().find(this.getName());
+				argument = declaration.getArguments().find(this.GetName());
             if (argument == null)
-                throw new SyntaxError("Method has no argument:" + this.getName());
+				throw new SyntaxError("Method has no argument:" + this.GetName());
             IExpression expression = new ContextualExpression(context, this.expression);
             return new ArgumentAssignment(argument, expression);
         }

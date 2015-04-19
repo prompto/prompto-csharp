@@ -22,7 +22,7 @@ public class CodeType : NativeType {
 	}
 	
 	override
-    public Type ToSystemType() {
+    public Type ToCSharpType() {
 		return null;
 	}
 }

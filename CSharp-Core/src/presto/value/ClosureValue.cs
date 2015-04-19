@@ -14,7 +14,7 @@ namespace presto.value
 		IMethodDeclaration method;
 
 		public ClosureValue (Context context, IMethodDeclaration method)
-			: base(new MethodType (context, method.getName ()))
+			: base(new MethodType (context, method.GetName ()))
 		{
 			this.method = method;
 		}
@@ -36,7 +36,7 @@ namespace presto.value
 
 		public String getName ()
 		{
-			return method.getName ();
+			return method.GetName ();
 		}
 
 		public ArgumentList getArguments ()

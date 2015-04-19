@@ -23,7 +23,7 @@ namespace presto.grammar
         {
             IType thisType = expression.check(context);
             if (!thisType.isAssignableTo(context, type))
-                throw new SyntaxError("Cannot assign:" + thisType.getName() + " to:" + type.getName());
+				throw new SyntaxError("Cannot assign:" + thisType.GetName() + " to:" + type.GetName());
 
         }
 

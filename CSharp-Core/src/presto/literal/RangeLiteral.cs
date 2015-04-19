@@ -56,7 +56,7 @@ namespace presto.literal
 		public IValue interpret(Context context)
         {
             IType type = first.check(context);
-            if ("IntegerLimits".Equals(type.getName()))
+			if ("IntegerLimits".Equals(type.GetName()))
                 type = IntegerType.Instance;
 			IValue of = first.interpret(context);
 			IValue ol = last.interpret(context);

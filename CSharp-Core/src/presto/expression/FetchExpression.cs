@@ -73,7 +73,7 @@ namespace presto.expression
                 throw new InternalError("Illegal fetch source: " + source);
             IType listType = source.check(context);
 			if (!(listType is CollectionType))
-                throw new InternalError("Illegal source type: " + listType.getName());
+				throw new InternalError("Illegal source type: " + listType.GetName());
 			IType itemType = ((CollectionType)listType).GetItemType();
 			ListValue result = new ListValue(itemType);
             Context local = context.newLocalContext();

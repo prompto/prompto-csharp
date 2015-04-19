@@ -20,6 +20,14 @@ namespace presto.csharp
             this.isReturn = isReturn;
         }
 
+		public IType check(Context context, IType returnType)
+		{
+			IType type = expression.check(context);
+			if (type is CSharpClassType)
+				type = ((CSharpClassType)type).ConvertCSharpTypeToPrestoType(context, returnType);
+			return isReturn ? type : VoidType.Instance;
+		}
+
 		public IValue interpret(Context context, IType returnType)
         {
             Object result = expression.interpret(context);
@@ -28,7 +36,7 @@ namespace presto.csharp
 			else {	
 				IType type = expression.check(context);
 				if (type is CSharpClassType)
-					return ((CSharpClassType)type).convertSystemValueToPrestoValue(result, returnType);
+					return ((CSharpClassType)type).ConvertCSharpValueToPrestoValue(context, result, returnType);
 				else
 					// TODO warning or exception?
 					return VoidResult.Instance;
@@ -39,14 +47,6 @@ namespace presto.csharp
         public String ToString()
         {
             return "" + (isReturn ? "return " : "") + expression.ToString() + ";";
-        }
-
-        public IType check(Context context)
-        {
-            IType type = expression.check(context);
-            if (type is CSharpClassType)
-                type = ((CSharpClassType)type).convertSystemTypeToPrestoType();
-            return isReturn ? type : VoidType.Instance;
         }
 
 		public void ToDialect(CodeWriter writer) 

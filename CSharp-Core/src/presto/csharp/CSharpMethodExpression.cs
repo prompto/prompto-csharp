@@ -119,13 +119,13 @@ namespace presto.csharp
 			IType type = parent.check (context);
 			Type klass = null;
 			if (type is CSharpClassType)
-				klass = ((CSharpClassType)type).klass;
+				klass = ((CSharpClassType)type).type;
 			else if (type is CategoryType) {
-				IDeclaration named = context.getRegisteredDeclaration<IDeclaration> (type.getName ());
+				IDeclaration named = context.getRegisteredDeclaration<IDeclaration> (type.GetName ());
 				if (named is NativeCategoryDeclaration)
-					klass = ((NativeCategoryDeclaration)named).getMappedClass ();
+					klass = ((NativeCategoryDeclaration)named).getMappedClass (true);
 			} else
-				klass = type.ToSystemType ();
+				klass = type.ToCSharpType ();
 			return findMethod (context, klass);
 		}
 
@@ -166,7 +166,7 @@ namespace presto.csharp
 		bool validArgument (Context context, Type klass, CSharpExpression argument)
 		{
 			IType type = argument.check (context);
-			return klass.IsAssignableFrom (type.ToSystemType ());
+			return klass.IsAssignableFrom (type.ToCSharpType ());
 		}
 
 	

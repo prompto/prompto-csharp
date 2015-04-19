@@ -21,14 +21,14 @@ namespace presto.value
 		bool mutable = false;
 
         public NativeInstance(NativeCategoryDeclaration declaration)
-			: base(new CategoryType(declaration.getName()))
+			: base(new CategoryType(declaration.GetName()))
 		{
             this.declaration = declaration;
             this.instance = makeInstance();
         }
 
 		public NativeInstance(NativeCategoryDeclaration declaration, Object instance)
-			: base(new CategoryType(declaration.getName()))
+			: base(new CategoryType(declaration.GetName()))
 		{
 			this.declaration = declaration;
 			this.instance = instance;
@@ -53,7 +53,7 @@ namespace presto.value
 
         private Object makeInstance()
         {
-            Type mapped = declaration.getMappedClass();
+            Type mapped = declaration.getMappedClass(true);
             return Activator.CreateInstance(mapped);
         }
 
@@ -73,7 +73,7 @@ namespace presto.value
         {
             Object value = getPropertyOrField(attrName);
             CSharpClassType ct = new CSharpClassType(value.GetType());
-            return ct.convertSystemValueToPrestoValue(value, null);
+            return ct.ConvertCSharpValueToPrestoValue(context, value, null);
         }
 
         private Object getPropertyOrField(String attrName)
@@ -88,7 +88,11 @@ namespace presto.value
 
         private bool TryGetField(string attrName, out object value)
         {
-            FieldInfo field = instance.GetType().GetField(attrName);
+			BindingFlags flags = BindingFlags.Public | BindingFlags.NonPublic 
+				| BindingFlags.Static | BindingFlags.Instance
+				| BindingFlags.IgnoreCase | BindingFlags.FlattenHierarchy;
+			Type type = instance.GetType ();
+			FieldInfo field = type.GetField(attrName, flags);
             if (field != null)
                 value = field.GetValue(instance);
             else
@@ -98,7 +102,11 @@ namespace presto.value
 
         private bool TryGetProperty(String attrName, out Object value)
         {
-            PropertyInfo property = instance.GetType().GetProperty(attrName);
+			BindingFlags flags = BindingFlags.Public | BindingFlags.NonPublic 
+				| BindingFlags.Static | BindingFlags.Instance
+				| BindingFlags.IgnoreCase | BindingFlags.FlattenHierarchy;
+			Type type = instance.GetType ();
+			PropertyInfo property = type.GetProperty(attrName, flags);
             if (property != null)
                 value = property.GetValue(instance, null);
             else

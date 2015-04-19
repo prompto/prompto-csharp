@@ -51,7 +51,7 @@ namespace presto.type
         }
 
         override
-        public System.Type ToSystemType()
+        public System.Type ToCSharpType()
         {
             // TODO Auto-generated method stub
             return null;

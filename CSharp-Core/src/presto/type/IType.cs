@@ -9,7 +9,7 @@ namespace presto.type
 	public interface IType
 	{
 	
-		String getName ();
+		String GetName ();
 
 		IType checkAdd (Context context, IType other, bool tryReverse);
 
@@ -59,9 +59,9 @@ namespace presto.type
 
 		void ToDialect (CodeWriter writer);
 
-		Type ToSystemType ();
+		Type ToCSharpType ();
 
-		IValue convertSystemValueToPrestoValue (Object value);
+		IValue ConvertCSharpValueToPrestoValue (Object value);
 
 
 	}

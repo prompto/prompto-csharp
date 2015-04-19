@@ -27,7 +27,7 @@ namespace presto.expression
         {
             IType type = condition.check(context);
             if (!(type is BooleanType))
-                throw new SyntaxError("Cannot test condition on " + type.getName());
+				throw new SyntaxError("Cannot test condition on " + type.GetName());
             IType trueType = ifTrue.check(context);
             // IType falseType = ifFalse.check(context);
             // TODO check compatibility

@@ -4642,6 +4642,18 @@ public partial class SParserBaseListener : ISParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitCsharp_parenthesis_expression([NotNull] SParser.Csharp_parenthesis_expressionContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="SParser.CSharpPrestoIdentifier"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterCSharpPrestoIdentifier([NotNull] SParser.CSharpPrestoIdentifierContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="SParser.CSharpPrestoIdentifier"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitCSharpPrestoIdentifier([NotNull] SParser.CSharpPrestoIdentifierContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="SParser.CSharpIdentifier"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>

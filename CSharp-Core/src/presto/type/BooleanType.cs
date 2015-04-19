@@ -27,7 +27,7 @@ namespace presto.type
         }
 
         override
-        public Type ToSystemType()
+        public Type ToCSharpType()
         {
             return typeof(System.Boolean);
         }
@@ -46,7 +46,7 @@ namespace presto.type
         }
 
         override
-        public IValue convertSystemValueToPrestoValue(Object value)
+        public IValue ConvertCSharpValueToPrestoValue(Object value)
         {
             if (value is bool)
                 return Boolean.ValueOf((bool)value);

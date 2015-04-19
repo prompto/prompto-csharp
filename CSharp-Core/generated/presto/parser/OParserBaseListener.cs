@@ -4690,6 +4690,18 @@ public partial class OParserBaseListener : IOParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitCsharp_parenthesis_expression([NotNull] OParser.Csharp_parenthesis_expressionContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="OParser.CSharpPrestoIdentifier"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterCSharpPrestoIdentifier([NotNull] OParser.CSharpPrestoIdentifierContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="OParser.CSharpPrestoIdentifier"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitCSharpPrestoIdentifier([NotNull] OParser.CSharpPrestoIdentifierContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="OParser.CSharpIdentifier"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>

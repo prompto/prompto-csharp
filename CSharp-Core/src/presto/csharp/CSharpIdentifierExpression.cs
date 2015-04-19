@@ -65,21 +65,33 @@ namespace presto.csharp
 		public Object interpret(Context context)
         {
             if (parent == null)
-                return evaluate_root(context);
+                return interpret_root(context);
             else
-                return evaluate_child(context);
+                return interpret_child(context);
         }
 
-        Object evaluate_root(Context context)
+        Object interpret_root(Context context)
         {
-            Object o = evaluate_instance(context);
+			Object o = interpret_presto (context);
+			if (o != null)
+				return o;
+            o = interpret_instance(context);
             if (o != null)
                 return o;
             else
-                return evaluate_class(); // as an instance for static field/method
+                return interpret_type(); // as an instance for static field/method
         }
 
-        Object evaluate_instance(Context context)
+		Object interpret_presto(Context context)
+		{
+			switch (identifier) {
+			case "$context":
+				return context;
+			}
+			return null;
+		}
+
+        Object interpret_instance(Context context)
         {
             try
             {
@@ -91,7 +103,7 @@ namespace presto.csharp
             }
         }
 
-        public Type evaluate_class()
+        public Type interpret_type()
         {
             String fullName = this.ToString();
             Type klass = Type.GetType(fullName, false);
@@ -112,16 +124,16 @@ namespace presto.csharp
             return null;
          }
 
-        Object evaluate_child(Context context)
+        Object interpret_child(Context context)
         {
             Object o = parent.interpret(context);
             if (o != null)
-                return evaluate_field_or_property(o);
+                return interpret_field_or_property(o);
             else
-                return evaluate_class();
+                return interpret_type();
         }
 
-        Object evaluate_field_or_property(Object o)
+        Object interpret_field_or_property(Object o)
         {
             Type klass = null;
             if (o is Type)
@@ -150,12 +162,24 @@ namespace presto.csharp
 
         IType check_root(Context context)
         {
-            IType t = check_instance(context);
+			IType t = check_presto (context);
+			if (t != null)
+				return t;
+			t = check_instance(context);
             if (t != null)
                 return t;
             else
                 return check_class(); // as an instance for accessing static field/method
         }
+
+		IType check_presto(Context context)
+		{
+			switch (identifier) {
+			case "$context":
+				return new CSharpClassType (context.GetType ());
+			}
+			return null;
+		}
 
         IType check_instance(Context context)
         {
@@ -174,7 +198,7 @@ namespace presto.csharp
 
         IType check_class()
         {
-            Type klass = evaluate_class();
+            Type klass = interpret_type();
             if(klass==null)
                 return null;
             else
@@ -194,7 +218,7 @@ namespace presto.csharp
         {
             if (!(t is CSharpClassType))
                 return null;
-            Type klass = ((CSharpClassType)t).klass;
+            Type klass = ((CSharpClassType)t).type;
             FieldInfo field = klass.GetField(identifier);
             if (field != null)
                  return new CSharpClassType(field.FieldType);

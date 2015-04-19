@@ -24,7 +24,7 @@ namespace presto.runtime
 			return name;
         }
 
-        public String getName()
+		public String GetName()
         {
             return name;
         }

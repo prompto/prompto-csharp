@@ -45,7 +45,7 @@ namespace presto.declaration
 			switch(writer.getDialect()) {
 			case Dialect.E:
 				writer.append("define ");
-				writer.append(getName());
+				writer.append(GetName());
 				writer.append(" as: ");
 				type.ToDialect(writer);
 				writer.append(" attribute");
@@ -54,7 +54,7 @@ namespace presto.declaration
 				break;
 			case Dialect.O:
 				writer.append("attribute ");
-				writer.append(getName());
+				writer.append(GetName());
 				writer.append(" : ");
 				type.ToDialect(writer);
 				if(constraint!=null)
@@ -63,7 +63,7 @@ namespace presto.declaration
 				break;
 			case Dialect.P:
 				writer.append("attr ");
-				writer.append(getName());
+				writer.append(GetName());
 				writer.append(" ( ");
 				type.ToDialect(writer);
 				writer.append(" ):\n");

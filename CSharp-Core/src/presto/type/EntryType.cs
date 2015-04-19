@@ -10,7 +10,7 @@ public class EntryType : BaseType {
 	IType itemType;
 	
 	public EntryType(IType itemType) 
- 		: base(itemType.getName()+"{}[]")
+			: base(itemType.GetName()+"{}[]")
    {
 		this.itemType = itemType;
 	}
@@ -33,7 +33,7 @@ public class EntryType : BaseType {
 
 
 	override
-	public Type ToSystemType() {
+	public Type ToCSharpType() {
 		return typeof(DictEntry);
 	}
 

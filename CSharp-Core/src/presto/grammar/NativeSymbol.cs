@@ -70,7 +70,7 @@ namespace presto.grammar
             if (!(obj is NativeSymbol))
                 return false;
             NativeSymbol other = (NativeSymbol)obj;
-            return this.getName().Equals(other.getName())
+			return this.GetName().Equals(other.GetName())
                     && this.getExpression().Equals(other.getExpression());
         }
 
@@ -79,7 +79,7 @@ namespace presto.grammar
         {
             IType actual = expression.check(context);
             if (!actual.isAssignableTo(context, type.getDerivedFrom()))
-                throw new SyntaxError("Cannot assign " + actual.getName() + " to " + type.getDerivedFrom().getName());
+				throw new SyntaxError("Cannot assign " + actual.GetName() + " to " + type.getDerivedFrom().GetName());
             return type;
         }
 

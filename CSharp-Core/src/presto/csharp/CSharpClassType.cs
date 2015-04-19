@@ -6,69 +6,78 @@ using Boolean = System.Boolean;
 using presto.error;
 using presto.type;
 using presto.declaration;
+using presto.runtime;
 
 namespace presto.csharp
 {
     public class CSharpClassType : CategoryType
     {
 
-        static Dictionary<Type, IType> csharpToTypeMap = new Dictionary<Type, IType>();
+		static Dictionary<Type, IType> typeToPrestoMap = new Dictionary<Type, IType>();
 
         static CSharpClassType()
         {
-            csharpToTypeMap[typeof(void)] = VoidType.Instance;
-            csharpToTypeMap[typeof(bool)] = BooleanType.Instance;
-            csharpToTypeMap[typeof(bool?)] = BooleanType.Instance;
-            csharpToTypeMap[typeof(char)] = CharacterType.Instance;
-            csharpToTypeMap[typeof(char?)] = CharacterType.Instance;
-            csharpToTypeMap[typeof(int)] = IntegerType.Instance;
-            csharpToTypeMap[typeof(int?)] = IntegerType.Instance;
-            csharpToTypeMap[typeof(long)] = IntegerType.Instance;
-            csharpToTypeMap[typeof(long?)] = IntegerType.Instance;
-            csharpToTypeMap[typeof(float)] = DecimalType.Instance;
-            csharpToTypeMap[typeof(float?)] = DecimalType.Instance;
-            csharpToTypeMap[typeof(double)] = DecimalType.Instance;
-            csharpToTypeMap[typeof(double?)] = DecimalType.Instance;
-            csharpToTypeMap[typeof(string)] = TextType.Instance;
-            csharpToTypeMap[typeof(Date)] = DateType.Instance;
-            csharpToTypeMap[typeof(Time)] = TimeType.Instance;
-            csharpToTypeMap[typeof(DateTime)] = DateTimeType.Instance;
-            csharpToTypeMap[typeof(Period)] = PeriodType.Instance;
-            csharpToTypeMap[typeof(object)] = AnyType.Instance;
+            typeToPrestoMap[typeof(void)] = VoidType.Instance;
+            typeToPrestoMap[typeof(bool)] = BooleanType.Instance;
+            typeToPrestoMap[typeof(bool?)] = BooleanType.Instance;
+            typeToPrestoMap[typeof(char)] = CharacterType.Instance;
+            typeToPrestoMap[typeof(char?)] = CharacterType.Instance;
+            typeToPrestoMap[typeof(int)] = IntegerType.Instance;
+            typeToPrestoMap[typeof(int?)] = IntegerType.Instance;
+            typeToPrestoMap[typeof(long)] = IntegerType.Instance;
+            typeToPrestoMap[typeof(long?)] = IntegerType.Instance;
+            typeToPrestoMap[typeof(float)] = DecimalType.Instance;
+            typeToPrestoMap[typeof(float?)] = DecimalType.Instance;
+            typeToPrestoMap[typeof(double)] = DecimalType.Instance;
+            typeToPrestoMap[typeof(double?)] = DecimalType.Instance;
+            typeToPrestoMap[typeof(string)] = TextType.Instance;
+            typeToPrestoMap[typeof(Date)] = DateType.Instance;
+            typeToPrestoMap[typeof(Time)] = TimeType.Instance;
+            typeToPrestoMap[typeof(DateTime)] = DateTimeType.Instance;
+            typeToPrestoMap[typeof(Period)] = PeriodType.Instance;
+            typeToPrestoMap[typeof(object)] = AnyType.Instance;
         }
 
-        internal Type klass;
+        internal Type type;
 
-        public CSharpClassType(Type klass)
-            : base(klass.Name)
+		public CSharpClassType(Type type)
+			: base(type.Name)
         {
-            this.klass = klass;
+			this.type = type;
         }
 
-		public override Type ToSystemType ()
+		public override Type ToCSharpType ()
 		{
-			return this.klass;
+			return this.type;
 		}
 
-        public IType convertSystemTypeToPrestoType()
+		public IType ConvertCSharpTypeToPrestoType(Context context, IType returnType )
         {
             IType result;
-            csharpToTypeMap.TryGetValue(klass, out result);
-            if (result == null)
-                return this;
-            else
+            typeToPrestoMap.TryGetValue(type, out result);
+            if (result != null)
                 return result;
+			NativeCategoryDeclaration decl = context.getNativeMapping(type);
+			if(decl!=null)
+				return decl.GetType(context);
+			else if(returnType==AnyType.Instance)
+				return returnType;
+            else
+                return null;
         }
 
     
-		public IValue convertSystemValueToPrestoValue(Object value, IType returnType)
+		public IValue ConvertCSharpValueToPrestoValue(Context context, Object value, IType returnType)
         {
             if(value is IValue)
                 return (IValue)value;
             IType result;
-            csharpToTypeMap.TryGetValue(klass, out result);
+            typeToPrestoMap.TryGetValue(type, out result);
             if (result != null)
-                return result.convertSystemValueToPrestoValue(value);
+				return result.ConvertCSharpValueToPrestoValue(value);
+			NativeCategoryDeclaration decl = context.getNativeMapping(type);
+			if(decl!=null)
+				return new NativeInstance(decl, value);
 			else if(returnType==AnyType.Instance)
 				return new NativeInstance(AnyNativeCategoryDeclaration.Instance, value);
             else

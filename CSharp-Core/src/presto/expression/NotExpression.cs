@@ -25,7 +25,7 @@ namespace presto.expression
         {
             IType type = expression.check(context);
             if (!(type is BooleanType))
-                throw new SyntaxError("Cannot negate " + type.getName());
+				throw new SyntaxError("Cannot negate " + type.GetName());
             return BooleanType.Instance;
         }
 

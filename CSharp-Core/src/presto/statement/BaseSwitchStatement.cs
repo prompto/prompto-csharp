@@ -70,13 +70,13 @@ namespace presto.statement
             {
                 IType type = sc.checkReturnType(context);
                 if (type != VoidType.Instance)
-                    types[type.getName()] = type;
+					types[type.GetName()] = type;
             }
             if (defaultCase != null)
             {
                 IType type = defaultCase.check(context);
                 if (type != VoidType.Instance)
-                    types[type.getName()] = type;
+					types[type.GetName()] = type;
             }
         }
 

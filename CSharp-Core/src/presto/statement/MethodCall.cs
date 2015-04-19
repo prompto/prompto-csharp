@@ -107,7 +107,7 @@ namespace presto.statement
                 {
                     IExpression expression = assignment.resolve(local, declaration, true);
 					IValue value = assignment.getArgument().checkValue(parent, expression);
-                    local.setValue(assignment.getName(), value);
+					local.setValue(assignment.GetName(), value);
                 }
                 return declaration.check(local);
             }
@@ -139,7 +139,7 @@ namespace presto.statement
                 IValue value = arg.checkValue(context, expression);
 				if (value != null && value.IsMutable () && !arg.isMutable ())
 					throw new NotMutableError ();
-                local.setValue(assignment.getName(), value);
+				local.setValue(assignment.GetName(), value);
             }
             return declaration.interpret(local);
         }

@@ -31,7 +31,7 @@ namespace presto.grammar
             return symbol;
         }
 
-        public String getName()
+		public String GetName()
         {
             return symbol;
         }

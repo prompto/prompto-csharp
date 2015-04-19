@@ -150,8 +150,8 @@ namespace presto.grammar
             else if (decl is EnumeratedNativeDeclaration)
                 return new TypeExpression(decl.GetType(context));
             else foreach (IType type in NativeType.getAll())
-                {
-                    if (name == type.getName())
+             {
+				if (name == type.GetName())
                         return new TypeExpression(type);
                 }
             return null;

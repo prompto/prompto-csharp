@@ -117,7 +117,7 @@ namespace presto.value
 			else if (value is SetValue)
 				return this.merge (((SetValue)value).GetItems (context));
 			else
-				throw new SyntaxError ("Illegal: " + this.type.getName () + " + " + value.GetType().Name);
+				throw new SyntaxError ("Illegal: " + this.type.GetName () + " + " + value.GetType().Name);
 		}
 
 		public SetValue merge (IEnumerable<IValue> items)

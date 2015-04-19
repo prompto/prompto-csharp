@@ -51,7 +51,7 @@ namespace presto.declaration
 					if (ad == null)
 						throw new SyntaxError ("Unknown attribute: \"" + attribute + "\"");
 				}
-			return new CategoryType (this.getName ());
+			return new CategoryType (this.GetName ());
 		}
 
 

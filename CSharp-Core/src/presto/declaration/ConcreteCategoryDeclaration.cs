@@ -167,22 +167,22 @@ namespace presto.declaration
             IDeclaration actual;
             if (method is SetterMethodDeclaration)
             {
-				if (methodsMap.TryGetValue("setter:" + method.getName(), out actual))
-                    throw new SyntaxError("Duplicate setter: \"" + method.getName() + "\"");
-				methodsMap["setter:" + method.getName()] = method;
+				if (methodsMap.TryGetValue("setter:" + method.GetName(), out actual))
+                    throw new SyntaxError("Duplicate setter: \"" + method.GetName() + "\"");
+				methodsMap["setter:" + method.GetName()] = method;
             }
             else if (method is GetterMethodDeclaration)
             {
-				if (methodsMap.TryGetValue("getter:" + method.getName(), out actual))
-                    throw new SyntaxError("Duplicate getter: \"" + method.getName() + "\"");
-				methodsMap["getter:" + method.getName()] = method;
+				if (methodsMap.TryGetValue("getter:" + method.GetName(), out actual))
+                    throw new SyntaxError("Duplicate getter: \"" + method.GetName() + "\"");
+				methodsMap["getter:" + method.GetName()] = method;
             }
             else
             {
-				if (!methodsMap.TryGetValue(method.getName(), out actual))
+				if (!methodsMap.TryGetValue(method.GetName(), out actual))
                 {
-                    actual = new MethodDeclarationMap(method.getName());
-					methodsMap[method.getName()] = (MethodDeclarationMap)actual;
+                    actual = new MethodDeclarationMap(method.GetName());
+					methodsMap[method.GetName()] = (MethodDeclarationMap)actual;
                 }
                 ((MethodDeclarationMap)actual).register(method, context);
             }
@@ -206,7 +206,7 @@ namespace presto.declaration
                 return false;
             foreach (String ancestor in derivedFrom)
             {
-                if (ancestor.Equals(categoryType.getName()))
+				if (ancestor.Equals(categoryType.GetName()))
                     return true;
                 if (isAncestorDerivedFrom(ancestor, context, categoryType))
                     return true;
@@ -323,7 +323,7 @@ namespace presto.declaration
 			if (methodsMap == null)
                 return;
             IDeclaration actual;
-			if (!methodsMap.TryGetValue(result.getName(), out actual))
+			if (!methodsMap.TryGetValue(result.GetName(), out actual))
                 return;
             if (!(actual is MethodDeclarationMap))
                 throw new SyntaxError("Not a member method!");

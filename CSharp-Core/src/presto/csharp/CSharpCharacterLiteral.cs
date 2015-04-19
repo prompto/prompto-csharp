@@ -20,7 +20,7 @@ namespace presto.csharp
 		override
         public IType check(Context context)
         {
-			return new CSharpClassType(typeof(Character));
+			return new CSharpClassType(typeof(char?));
         }
 
 		override

@@ -9,6 +9,12 @@ namespace presto.translate.ese
 	{
 
 		[Test]
+		public void testAttribute()
+		{
+			compareResourceESE("native/attribute.pec");
+		}
+
+		[Test]
 		public void testCategory()
 		{
 			compareResourceESE("native/category.pec");
@@ -21,9 +27,9 @@ namespace presto.translate.ese
 		}
 
 		[Test]
-		public void testPrint()
+		public void testPrinter()
 		{
-			compareResourceESE("native/print.pec");
+			compareResourceESE("native/printer.pec");
 		}
 
 		[Test]

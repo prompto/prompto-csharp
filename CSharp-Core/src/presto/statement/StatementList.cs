@@ -36,7 +36,7 @@ namespace presto.statement
 		foreach(IStatement statement in this) {
 			IType type = statement.check(context);
 			if(type!=VoidType.Instance)
-				types[type.getName()] = type;
+					types[type.GetName()] = type;
 		}
 		return types.inferType(context);
 	}

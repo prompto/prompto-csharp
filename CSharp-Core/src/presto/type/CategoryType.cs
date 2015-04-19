@@ -23,11 +23,11 @@ namespace presto.type
         override
         public IType CheckMember(Context context, String name)
         {
-            CategoryDeclaration cd = context.getRegisteredDeclaration<CategoryDeclaration>(getName());
+			CategoryDeclaration cd = context.getRegisteredDeclaration<CategoryDeclaration>(GetName());
             if (cd == null)
-                throw new SyntaxError("Unknown category:" + getName());
+				throw new SyntaxError("Unknown category:" + GetName());
             if (!cd.hasAttribute(context, name))
-                throw new SyntaxError("No attribute:" + name + " in category:" + getName());
+				throw new SyntaxError("No attribute:" + name + " in category:" + GetName());
             AttributeDeclaration ad = context.getRegisteredDeclaration<AttributeDeclaration>(name);
             if (ad == null)
                 throw new SyntaxError("Unknown atttribute:" + name);
@@ -35,7 +35,7 @@ namespace presto.type
         }
         
         override
-        public Type ToSystemType()
+        public Type ToCSharpType()
         {
             // TODO Auto-generated method stub
             return null;
@@ -51,7 +51,7 @@ namespace presto.type
             if (!(obj is CategoryType))
                 return false;
             CategoryType other = (CategoryType)obj;
-            return this.getName().Equals(other.getName());
+			return this.GetName().Equals(other.GetName());
         }
 
         override
@@ -134,7 +134,7 @@ namespace presto.type
 			if(tryReverse)
 				return null;
 			else
-				throw new SyntaxError("Unsupported operation: " + this.name + " " + Enums.OperatorToString(oper) + " " + other.getName());
+				throw new SyntaxError("Unsupported operation: " + this.name + " " + Enums.OperatorToString(oper) + " " + other.GetName());
 		}
 
 		override
@@ -146,7 +146,7 @@ namespace presto.type
         override
         public bool isAssignableTo(Context context, IType other)
         {
-            if (name.Equals(other.getName()))
+			if (name.Equals(other.GetName()))
                 return true;
             if (other is AnyType)
                 return true;
@@ -157,7 +157,7 @@ namespace presto.type
 
         bool isAssignableTo(Context context, CategoryType other)
         {
-            if (name.Equals(other.getName()))
+			if (name.Equals(other.GetName()))
                 return true;
             try
             {
@@ -227,7 +227,7 @@ namespace presto.type
             CategoryType otherCat = (CategoryType)other;
             if (otherCat.isAnonymous())
                 return true;
-            CategoryDeclaration thisDecl = context.getRegisteredDeclaration<CategoryDeclaration>(this.getName());
+			CategoryDeclaration thisDecl = context.getRegisteredDeclaration<CategoryDeclaration>(this.GetName());
             if (thisDecl.isDerivedFrom(context, otherCat))
                 return true;
             return false;
@@ -251,7 +251,7 @@ namespace presto.type
 
         public IInstance newInstance(Context context)
         {
-            CategoryDeclaration decl = context.getRegisteredDeclaration<CategoryDeclaration>(this.getName());
+			CategoryDeclaration decl = context.getRegisteredDeclaration<CategoryDeclaration>(this.GetName());
             return decl.newInstance();
         }
 

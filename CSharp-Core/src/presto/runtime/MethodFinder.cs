@@ -81,9 +81,9 @@ namespace presto.runtime
                 {
                     ArgumentAssignment as1 = it1.Current;
                     ArgumentAssignment as2 = it2.Current;
-                    IArgument ar1 = d1.getArguments().find(as1.getName());
-                    IArgument ar2 = d2.getArguments().find(as2.getName());
-                    if (as1.getName().Equals(as2.getName()))
+					IArgument ar1 = d1.getArguments().find(as1.GetName());
+					IArgument ar2 = d2.getArguments().find(as2.GetName());
+					if (as1.GetName().Equals(as2.GetName()))
                     {
                         // the general case with named arguments
                         IType t1 = ar1.GetType(s1);

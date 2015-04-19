@@ -21,7 +21,7 @@ public class VoidType : NativeType {
 	}
 	
 	override
-	public System.Type ToSystemType() {
+	public System.Type ToCSharpType() {
 		return typeof(void);
 	}
 

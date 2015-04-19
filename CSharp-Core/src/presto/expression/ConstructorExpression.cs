@@ -81,7 +81,7 @@ namespace presto.expression
 		private void toODialect(CodeWriter writer) {
 			if(this.mutable)
 				writer.append("mutable ");
-			writer.append(type.getName());
+			writer.append(type.GetName());
 			ArgumentAssignmentList assignments = new ArgumentAssignmentList();
 			if (copyFrom != null)
 				assignments.add(new ArgumentAssignment(null, copyFrom));
@@ -93,7 +93,7 @@ namespace presto.expression
 		private void toEDialect(CodeWriter writer) {
 			if(this.mutable)
 				writer.append("mutable ");
-			writer.append(type.getName());
+			writer.append(type.GetName());
 			if (copyFrom != null) {
 				writer.append(" from ");
 				writer.append(copyFrom.ToString());
@@ -106,24 +106,24 @@ namespace presto.expression
 
         public IType check(Context context)
         {
-            CategoryDeclaration cd = context.getRegisteredDeclaration<CategoryDeclaration>(type.getName());
+			CategoryDeclaration cd = context.getRegisteredDeclaration<CategoryDeclaration>(type.GetName());
             if (cd == null)
-                throw new SyntaxError("Unknown category " + type.getName());
+				throw new SyntaxError("Unknown category " + type.GetName());
             type = (CategoryType)cd.GetType(context);
             cd.checkConstructorContext(context);
             if (copyFrom != null)
             {
                 IType cft = copyFrom.check(context);
                 if (!(cft is CategoryType))
-                    throw new SyntaxError("Cannot copy from " + cft.getName());
+					throw new SyntaxError("Cannot copy from " + cft.GetName());
             }
             if (assignments != null)
             {
                 foreach (ArgumentAssignment assignment in assignments)
                 {
-                    if (!cd.hasAttribute(context, assignment.getName()))
-                        throw new SyntaxError("\"" + assignment.getName() +
-                            "\" is not an attribute of " + type.getName());
+					if (!cd.hasAttribute(context, assignment.GetName()))
+						throw new SyntaxError("\"" + assignment.GetName() +
+							"\" is not an attribute of " + type.GetName());
                     assignment.check(context);
                 }
             }
@@ -142,7 +142,7 @@ namespace presto.expression
 	                if (copyObj is IInstance)
 	                {
 	                    IInstance initFrom = (IInstance)copyObj;
-	                    CategoryDeclaration cd = context.getRegisteredDeclaration<CategoryDeclaration>(type.getName());
+						CategoryDeclaration cd = context.getRegisteredDeclaration<CategoryDeclaration>(type.GetName());
 	                    foreach (String name in initFrom.getMemberNames())
 	                    {
 	                        if (cd.hasAttribute(context, name))
@@ -162,7 +162,7 @@ namespace presto.expression
 	                    IValue value = assignment.getExpression().interpret(context);
 						if(value!=null && value.IsMutable() && !this.mutable)
 							throw new NotMutableError();
-	                    instance.SetMember(context, assignment.getName(), value);
+						instance.SetMember(context, assignment.GetName(), value);
 	                }
 	            }
 	            return instance;

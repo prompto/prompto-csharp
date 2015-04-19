@@ -15,7 +15,7 @@ public abstract class BaseDeclaration : Section, IDeclaration {
 		this.name = name;
 	}
 		
-	public String getName() {
+	public String GetName() {
 		return name;
 	}
 

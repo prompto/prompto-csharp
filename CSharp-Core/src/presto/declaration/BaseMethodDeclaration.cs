@@ -39,7 +39,7 @@ namespace presto.declaration
 
         public String getSignature(Dialect dialect)
         {
-            StringBuilder sb = new StringBuilder(getName());
+			StringBuilder sb = new StringBuilder(GetName());
             sb.Append('(');
             foreach (IArgument arg in arguments)
             {
@@ -55,7 +55,7 @@ namespace presto.declaration
         override
         public String ToString()
         {
-            return getName() + ":(" + arguments.ToString() + ')';
+			return GetName() + ":(" + arguments.ToString() + ')';
         }
 
         public String getProto(Context context)
@@ -109,7 +109,7 @@ namespace presto.declaration
                 ArgumentAssignmentList assignmentsList = new ArgumentAssignmentList(assignments);
                 foreach (IArgument argument in arguments)
                 {
-                    ArgumentAssignment assignment = assignmentsList.find(argument.getName());
+                    ArgumentAssignment assignment = assignmentsList.find(argument.GetName());
 					if (assignment == null)
 					{
 						if(argument.DefaultValue!=null)

@@ -28,6 +28,13 @@ namespace presto.declaration
         }
 
  
+		public override void register (Context context)
+		{
+			base.register (context);
+			Type type = getMappedClass (false);
+			if(type!=null)
+				context.registerNativeMapping (type, this);
+		}
 
 		protected override void toEDialect(CodeWriter writer) {
 			protoToEDialect(writer, false, true);
@@ -78,26 +85,32 @@ namespace presto.declaration
             return new NativeInstance(this);
         }
 
-        public System.Type getMappedClass()
+		public System.Type getMappedClass(bool fail)
         {
-            if (mappedClass == null)
+			if (mappedClass == null)
             {
-                CSharpNativeCategoryMapping mapping = getMapping(); // TODO
-                mappedClass = mapping.getExpression().evaluate_class();
-                if (mappedClass == null)
-                    throw new SyntaxError("No CSharp class:" + mapping.getExpression().ToString());
+                CSharpNativeCategoryMapping mapping = getMapping(fail); // TODO
+				if (mapping != null) 
+				{
+					mappedClass = mapping.getExpression ().interpret_type ();
+					if (mappedClass == null && fail)
+						throw new SyntaxError ("No CSharp class:" + mapping.getExpression ().ToString ());
+				}
             }
             return mappedClass;
         }
 
-        private CSharpNativeCategoryMapping getMapping()
+        private CSharpNativeCategoryMapping getMapping(bool fail)
         {
             foreach (NativeCategoryMapping mapping in categoryMappings)
             {
                 if (mapping is CSharpNativeCategoryMapping)
                     return (CSharpNativeCategoryMapping)mapping;
             }
-            throw new SyntaxError("Missing CSharp mapping !");
+			if (fail)
+				throw new SyntaxError ("Missing CSharp mapping !");
+			else
+				return null;
         }
 
     }

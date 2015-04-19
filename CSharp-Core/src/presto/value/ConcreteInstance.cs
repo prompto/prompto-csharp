@@ -22,7 +22,7 @@ namespace presto.value
 		bool mutable = false;
 
 		public ConcreteInstance(ConcreteCategoryDeclaration declaration)
-		: base(new CategoryType(declaration.getName()))
+			: base(new CategoryType(declaration.GetName()))
 		     {
             this.declaration = declaration;
         }
@@ -225,7 +225,7 @@ namespace presto.value
 			Context local = context.newChildContext();
 			decl.registerArguments(local);
 			IArgument arg = decl.getArguments()[0];
-			local.setValue(arg.getName(), value);
+			local.setValue(arg.GetName(), value);
 			return decl.interpret(local);
 		}
 

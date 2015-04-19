@@ -77,7 +77,7 @@ namespace presto.debug
         public void enterMethod(Context context, IDeclaration method)
         {
             terminateIfRequested();
-            stack.Push(new StackFrame(context, method.getName(), method));
+            stack.Push(new StackFrame(context, method.GetName(), method));
             if (stack.Count > 0 && stack.Count <= stepDepth)
                 suspend(SuspendReason.STEPPING, context, method);
             else if (method.Breakpoint)

@@ -25,13 +25,13 @@ namespace presto.type
                 else if (type.isAssignableTo(context, t))
                     type = t;
                 else
-                    throw new SyntaxError("Incompatible types: " + type.getName() + " and " + t.getName());
+					throw new SyntaxError("Incompatible types: " + type.GetName() + " and " + t.GetName());
             }
             // second pass: check compatible
             foreach (IType t in Values)
             {
                 if (!t.isAssignableTo(context, type))
-                    throw new SyntaxError("Incompatible types: " + type.getName() + " and " + t.getName());
+					throw new SyntaxError("Incompatible types: " + type.GetName() + " and " + t.GetName());
             }
             return type;
         }

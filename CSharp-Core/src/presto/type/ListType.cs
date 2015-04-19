@@ -12,12 +12,12 @@ namespace presto.type
     {
 
         public ListType(IType itemType)
-            : base(itemType.getName() + "[]", itemType)
+			: base(itemType.GetName() + "[]", itemType)
         {
         }
 
         override
-        public System.Type ToSystemType()
+        public System.Type ToCSharpType()
         {
             return typeof(ListValue);
         }

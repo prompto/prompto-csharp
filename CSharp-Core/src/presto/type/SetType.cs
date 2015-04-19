@@ -9,7 +9,7 @@ namespace presto.type
 	{
 
 		public SetType (IType itemType)
-			: base (itemType.getName () + "<>", itemType)
+			: base (itemType.GetName () + "<>", itemType)
 		{
 		}
 
@@ -42,7 +42,7 @@ namespace presto.type
 			return BooleanType.Instance;
 		}
 
-		public override System.Type ToSystemType ()
+		public override System.Type ToCSharpType ()
 		{
 			return typeof(SetValue);
 		}

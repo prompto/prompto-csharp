@@ -61,9 +61,9 @@ namespace presto.expression
 			IType parentType = checkParent(context);
 			if(!(parentType is CategoryType))
 				throw new SyntaxError(parent.ToString() + " is not a category");
-			ConcreteCategoryDeclaration cd = context.getRegisteredDeclaration<ConcreteCategoryDeclaration>(parentType.getName());
+			ConcreteCategoryDeclaration cd = context.getRegisteredDeclaration<ConcreteCategoryDeclaration>(parentType.GetName());
 			if(cd==null)
-				throw new SyntaxError("Unknown category:" + parentType.getName());
+				throw new SyntaxError("Unknown category:" + parentType.GetName());
 			return cd.findMemberMethods(context, name);
 		}
 

@@ -21,21 +21,24 @@ namespace presto.csharp
         }
 
  
-        override
-		public void ToDialect(CodeWriter writer)
+        
+		public override void ToDialect(CodeWriter writer)
         {
 			writer.append("C#: ");
 			statement.ToDialect(writer);
         }
 
-        override
-        public IType check(Context context)
+		public override IType check(Context context)
+		{
+			throw new Exception ("Should never get there!");
+		}
+        
+		public IType checkNative(Context context, IType returnType)
         {
-            return statement.check(context);
+			return statement.check(context, returnType);
          }
 
-        override
-		public IValue interpret(Context context)
+        public override IValue interpret(Context context)
 		{
 			throw new Exception ("Should never get there!");
 		}

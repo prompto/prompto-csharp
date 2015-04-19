@@ -20,7 +20,7 @@ namespace presto.type
 		{
 		}
 
-		public override Type ToSystemType ()
+		public override Type ToCSharpType ()
 		{
 			return null;
 		}

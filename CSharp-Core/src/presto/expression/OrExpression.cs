@@ -49,7 +49,7 @@ namespace presto.expression
 			IType lt = left.check (context);
 			IType rt = right.check (context);
 			if (!(lt is BooleanType) || !(rt is BooleanType))
-				throw new SyntaxError ("Cannot combine " + lt.getName () + " and " + rt.getName ());
+				throw new SyntaxError ("Cannot combine " + lt.GetName () + " and " + rt.GetName ());
 			return BooleanType.Instance;
 		}
 

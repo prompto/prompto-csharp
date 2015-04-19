@@ -42,7 +42,7 @@ namespace presto.grammar
                 if (!(declaration is ConcreteMethodDeclaration))
                     continue;
                 ConcreteMethodDeclaration method = (ConcreteMethodDeclaration)declaration;
-                if (!(method.getName().Equals("main")))
+				if (!(method.GetName().Equals("main")))
                     continue;
                 // TODO check proto
                 return method;

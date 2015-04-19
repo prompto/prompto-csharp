@@ -30,8 +30,8 @@ namespace presto.declaration
             }
             if (arguments != null)
                 arguments.check(context);
-            IStatement stmt = FindStatement();
-            return stmt.check(context);
+			CSharpNativeCall stmt = FindStatement();
+            return stmt.checkNative(context, returnType);
         }
 
         override

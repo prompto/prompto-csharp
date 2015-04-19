@@ -24,19 +24,19 @@ namespace presto.grammar
         override
         public String getSignature(Dialect dialect)
         {
-            return name + ':' + CodeType.Instance.getName();
+			return name + ':' + CodeType.Instance.GetName();
         }
 
         override
         public String getProto(Context context)
         {
-            return CodeType.Instance.getName();
+			return CodeType.Instance.GetName();
         }
 
         override
         public void ToDialect(CodeWriter writer)
         {
-			writer.append(CodeType.Instance.getName());
+			writer.append(CodeType.Instance.GetName());
 			writer.append(" ");
 			writer.append(name);
        }
@@ -51,7 +51,7 @@ namespace presto.grammar
             if (!(obj is CodeArgument))
                 return false;
             CodeArgument other = (CodeArgument)obj;
-            return Utils.equal(this.getName(), other.getName());
+			return Utils.equal(this.GetName(), other.GetName());
         }
 
         override

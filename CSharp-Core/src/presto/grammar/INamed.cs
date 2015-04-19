@@ -6,7 +6,7 @@ using presto.type;
 namespace presto.grammar {
 
 public interface INamed {
-	String getName();
+	String GetName();
 	IType GetType(Context context);
 }
 

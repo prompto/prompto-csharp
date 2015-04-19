@@ -25,7 +25,7 @@ namespace presto.type
         }
 
         override
-        public Type ToSystemType()
+        public Type ToCSharpType()
         {
             return typeof(TupleValue); 
         }

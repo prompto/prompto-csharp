@@ -37,7 +37,7 @@ namespace presto.expression
             if (type is IntegerType || type is DecimalType || type is PeriodType)
                 return type;
             else
-                throw new SyntaxError("Cannot negate " + type.getName());
+				throw new SyntaxError("Cannot negate " + type.GetName());
         }
 
         public IValue interpret(Context context)

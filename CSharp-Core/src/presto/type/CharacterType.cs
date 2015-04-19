@@ -25,7 +25,7 @@ namespace presto.type
         }
 
         override
-        public Type ToSystemType()
+        public Type ToCSharpType()
         {
             return typeof(Character);
         }
@@ -89,7 +89,7 @@ namespace presto.type
         }
 
         override
-        public IValue convertSystemValueToPrestoValue(Object value)
+        public IValue ConvertCSharpValueToPrestoValue(Object value)
         {
             if (value is char)
                 return new Character((char)value);

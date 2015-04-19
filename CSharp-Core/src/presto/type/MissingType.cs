@@ -23,7 +23,7 @@ namespace presto.type
         }
 
         override
-        public System.Type ToSystemType()
+        public System.Type ToCSharpType()
         {
             return typeof(Object);
         }

@@ -17,17 +17,17 @@ public class MethodArgument : BaseArgument, INamedArgument {
 	
 	override
 	public String getSignature(Dialect dialect) {
-		return getName();
+			return GetName();
 	}
 
 	override
 	public void ToDialect(CodeWriter writer) {
-			writer.append(getName());
+			writer.append(GetName());
 	}
 	
 	override
 	public String getProto(Context context) {
-		return getName();
+			return GetName();
 	}
 	
 	override
@@ -39,7 +39,7 @@ public class MethodArgument : BaseArgument, INamedArgument {
 		if(!(obj is MethodArgument))
 			return false;
 		MethodArgument other = (MethodArgument)obj;
-		return Utils.equal(this.getName(),other.getName());
+			return Utils.equal(this.GetName(),other.GetName());
 	}
 
 	override

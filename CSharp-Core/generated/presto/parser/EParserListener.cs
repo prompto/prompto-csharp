@@ -4534,6 +4534,18 @@ public interface IEParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitCsharp_parenthesis_expression([NotNull] EParser.Csharp_parenthesis_expressionContext context);
 	/// <summary>
+	/// Enter a parse tree produced by the <c>CSharpPrestoIdentifier</c>
+	/// labeled alternative in <see cref="EParser.csharp_identifier_expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterCSharpPrestoIdentifier([NotNull] EParser.CSharpPrestoIdentifierContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>CSharpPrestoIdentifier</c>
+	/// labeled alternative in <see cref="EParser.csharp_identifier_expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitCSharpPrestoIdentifier([NotNull] EParser.CSharpPrestoIdentifierContext context);
+	/// <summary>
 	/// Enter a parse tree produced by the <c>CSharpIdentifier</c>
 	/// labeled alternative in <see cref="EParser.csharp_identifier_expression"/>.
 	/// </summary>

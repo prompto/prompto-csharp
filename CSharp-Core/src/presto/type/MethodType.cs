@@ -26,7 +26,7 @@ namespace presto.type
 		}
 
         override
-        public Type ToSystemType()
+        public Type ToCSharpType()
         {
             return typeof(MethodInfo);
         }
@@ -41,7 +41,7 @@ namespace presto.type
             if (!(obj is MethodType))
                 return false;
             MethodType other = (MethodType)obj;
-            return this.getName().Equals(other.getName());
+			return this.GetName().Equals(other.GetName());
         }
 
         override
