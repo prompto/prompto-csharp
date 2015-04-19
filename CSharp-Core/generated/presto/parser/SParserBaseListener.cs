@@ -4114,6 +4114,18 @@ public partial class SParserBaseListener : ISParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitPythonIdentifier([NotNull] SParser.PythonIdentifierContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="SParser.PythonPrestoIdentifier"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterPythonPrestoIdentifier([NotNull] SParser.PythonPrestoIdentifierContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="SParser.PythonPrestoIdentifier"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitPythonPrestoIdentifier([NotNull] SParser.PythonPrestoIdentifierContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="SParser.PythonIntegerLiteral"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>

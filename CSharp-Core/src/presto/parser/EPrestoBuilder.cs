@@ -1682,6 +1682,12 @@ namespace presto.parser
 		}
 
 		
+		public override void ExitPythonPrestoIdentifier (EParser.PythonPrestoIdentifierContext ctx)
+		{
+			String name = ctx.DOLLAR_IDENTIFIER ().GetText ();
+			SetNodeValue (ctx, new PythonIdentifierExpression(name));
+		}
+
 		public override void ExitPythonPrimaryExpression (EParser.PythonPrimaryExpressionContext ctx)
 		{
 			PythonExpression exp = this.GetNodeValue<PythonExpression> (ctx.exp);

@@ -3994,6 +3994,18 @@ public interface IOParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitPythonIdentifier([NotNull] OParser.PythonIdentifierContext context);
 	/// <summary>
+	/// Enter a parse tree produced by the <c>PythonPrestoIdentifier</c>
+	/// labeled alternative in <see cref="OParser.python_identifier_expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterPythonPrestoIdentifier([NotNull] OParser.PythonPrestoIdentifierContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>PythonPrestoIdentifier</c>
+	/// labeled alternative in <see cref="OParser.python_identifier_expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitPythonPrestoIdentifier([NotNull] OParser.PythonPrestoIdentifierContext context);
+	/// <summary>
 	/// Enter a parse tree produced by the <c>PythonIntegerLiteral</c>
 	/// labeled alternative in <see cref="OParser.python_literal_expression"/>.
 	/// </summary>

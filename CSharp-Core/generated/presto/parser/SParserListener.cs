@@ -3938,6 +3938,18 @@ public interface ISParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitPythonIdentifier([NotNull] SParser.PythonIdentifierContext context);
 	/// <summary>
+	/// Enter a parse tree produced by the <c>PythonPrestoIdentifier</c>
+	/// labeled alternative in <see cref="SParser.python_identifier_expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterPythonPrestoIdentifier([NotNull] SParser.PythonPrestoIdentifierContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>PythonPrestoIdentifier</c>
+	/// labeled alternative in <see cref="SParser.python_identifier_expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitPythonPrestoIdentifier([NotNull] SParser.PythonPrestoIdentifierContext context);
+	/// <summary>
 	/// Enter a parse tree produced by the <c>PythonIntegerLiteral</c>
 	/// labeled alternative in <see cref="SParser.python_literal_expression"/>.
 	/// </summary>

@@ -4162,6 +4162,18 @@ public partial class OParserBaseListener : IOParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitPythonIdentifier([NotNull] OParser.PythonIdentifierContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="OParser.PythonPrestoIdentifier"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterPythonPrestoIdentifier([NotNull] OParser.PythonPrestoIdentifierContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="OParser.PythonPrestoIdentifier"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitPythonPrestoIdentifier([NotNull] OParser.PythonPrestoIdentifierContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="OParser.PythonIntegerLiteral"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>

@@ -4198,6 +4198,18 @@ public partial class EParserBaseListener : IEParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitPythonIdentifier([NotNull] EParser.PythonIdentifierContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="EParser.PythonPrestoIdentifier"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterPythonPrestoIdentifier([NotNull] EParser.PythonPrestoIdentifierContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="EParser.PythonPrestoIdentifier"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitPythonPrestoIdentifier([NotNull] EParser.PythonPrestoIdentifierContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="EParser.PythonIntegerLiteral"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
