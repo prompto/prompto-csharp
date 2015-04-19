@@ -314,7 +314,6 @@
     <Compile Include="src\presto\translate\ese\TestMutability.cs" />
     <Compile Include="src\presto\translate\oeo\TestMutability.cs" />
     <Compile Include="src\presto\translate\oso\TestMutability.cs" />
-    <Compile Include="src\presto\parser\e\TestNativePrint.cs" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
