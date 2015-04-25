@@ -2675,12 +2675,29 @@ namespace presto.parser
 			SetNodeValue (ctx, map);
 		}
 
-		public override void ExitJavascriptGlobalMethodExpression (EParser.JavascriptGlobalMethodExpressionContext ctx)
+		public override void ExitJavascript_member_expression (EParser.Javascript_member_expressionContext ctx)
 		{
-			JavaScriptMethodExpression method = this.GetNodeValue<JavaScriptMethodExpression>(ctx.exp);
-			SetNodeValue(ctx, method);
+			String name = ctx.name.GetText ();
+			SetNodeValue (ctx, new JavaScriptMemberExpression(name));
 		}
-		
+
+		public override void ExitJavascript_primary_expression (EParser.Javascript_primary_expressionContext ctx)
+		{
+			JavaScriptExpression exp = this.GetNodeValue<JavaScriptExpression> (ctx.GetChild(0));
+			SetNodeValue (ctx, exp);
+		}
+
+		public override void ExitJavascript_selector_expression (EParser.Javascript_selector_expressionContext ctx)
+		{
+			JavaScriptExpression exp = this.GetNodeValue<JavaScriptExpression> (ctx.GetChild(1));
+			SetNodeValue (ctx, exp);
+		}
+
+		public override void ExitJavascript_this_expression (EParser.Javascript_this_expressionContext ctx)
+		{
+			SetNodeValue (ctx, new JavaScriptThisExpression ());
+		}
+
 		public override void ExitJavascript_identifier (EParser.Javascript_identifierContext ctx)
 		{
 			String name = ctx.GetText ();
@@ -2766,12 +2783,6 @@ namespace presto.parser
 			SetNodeValue (ctx, new JavaScriptIdentifierExpression (name));
 		}
 
-		
-		public override void ExitJavascriptIdentifierExpression (EParser.JavascriptIdentifierExpressionContext ctx)
-		{
-			JavaScriptIdentifierExpression exp = this.GetNodeValue<JavaScriptIdentifierExpression> (ctx.exp);
-			SetNodeValue (ctx, exp);
-		}
 
 		public override void ExitJavascriptIntegerLiteral (EParser.JavascriptIntegerLiteralContext ctx)
 		{
@@ -2779,20 +2790,6 @@ namespace presto.parser
 			SetNodeValue (ctx, new JavaScriptIntegerLiteral (text));		
 		}
 
-		public override void ExitJavascriptLiteralExpression (EParser.JavascriptLiteralExpressionContext ctx)
-		{
-			JavaScriptExpression exp = this.GetNodeValue<JavaScriptExpression> (ctx.exp);
-			SetNodeValue (ctx, exp);
-		}
-
-		
-		public override void ExitJavascriptMethodExpression (EParser.JavascriptMethodExpressionContext ctx)
-		{
-			JavaScriptMethodExpression method = this.GetNodeValue<JavaScriptMethodExpression> (ctx.exp);
-			SetNodeValue (ctx, method);
-		}
-
-		
 		public override void ExitJavaScriptNativeStatement (EParser.JavaScriptNativeStatementContext ctx)
 		{
 			JavaScriptStatement stmt = this.GetNodeValue<JavaScriptStatement> (ctx.stmt);

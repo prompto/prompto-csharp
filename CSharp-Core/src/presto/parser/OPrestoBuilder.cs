@@ -2356,10 +2356,27 @@ namespace presto.parser
 			SetNodeValue (ctx, map);
 		}
 
-		public override void ExitJavascriptGlobalMethodExpression (OParser.JavascriptGlobalMethodExpressionContext ctx)
+		public override void ExitJavascript_member_expression (OParser.Javascript_member_expressionContext ctx)
 		{
-			JavaScriptMethodExpression method = this.GetNodeValue<JavaScriptMethodExpression>(ctx.exp);
-			SetNodeValue(ctx, method);
+			String name = ctx.name.GetText ();
+			SetNodeValue (ctx, new JavaScriptMemberExpression(name));
+		}
+
+		public override void ExitJavascript_primary_expression (OParser.Javascript_primary_expressionContext ctx)
+		{
+			JavaScriptExpression exp = this.GetNodeValue<JavaScriptExpression> (ctx.GetChild(0));
+			SetNodeValue (ctx, exp);
+		}
+
+		public override void ExitJavascript_selector_expression (OParser.Javascript_selector_expressionContext ctx)
+		{
+			JavaScriptExpression exp = this.GetNodeValue<JavaScriptExpression> (ctx.GetChild(1));
+			SetNodeValue (ctx, exp);
+		}
+
+		public override void ExitJavascript_this_expression (OParser.Javascript_this_expressionContext ctx)
+		{
+			SetNodeValue (ctx, new JavaScriptThisExpression ());
 		}
 
 
@@ -2464,24 +2481,6 @@ namespace presto.parser
 		{
 			String text = ctx.t.Text;
 			SetNodeValue (ctx, new JavaScriptIntegerLiteral (text));		
-		}
-
-		public override void ExitJavascriptIdentifierExpression (OParser.JavascriptIdentifierExpressionContext ctx)
-		{
-			JavaScriptIdentifierExpression exp = this.GetNodeValue<JavaScriptIdentifierExpression> (ctx.exp);
-			SetNodeValue (ctx, exp);
-		}
-
-		public override void ExitJavascriptLiteralExpression (OParser.JavascriptLiteralExpressionContext ctx)
-		{
-			JavaScriptExpression exp = this.GetNodeValue<JavaScriptExpression> (ctx.exp);
-			SetNodeValue (ctx, exp);
-		}
-
-		public override void ExitJavascriptMethodExpression (OParser.JavascriptMethodExpressionContext ctx)
-		{
-			JavaScriptMethodExpression method = this.GetNodeValue<JavaScriptMethodExpression> (ctx.exp);
-			SetNodeValue (ctx, method);
 		}
 
 		public override void ExitJavaScriptNativeStatement (OParser.JavaScriptNativeStatementContext ctx)

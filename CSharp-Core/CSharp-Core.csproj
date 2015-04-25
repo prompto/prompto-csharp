@@ -420,6 +420,8 @@
     <Compile Include="src\presto\value\Any.cs" />
     <Compile Include="src\presto\java\JavaThisExpression.cs" />
     <Compile Include="src\presto\csharp\CSharpThisExpression.cs" />
+    <Compile Include="src\presto\javascript\JavaScriptMemberExpression.cs" />
+    <Compile Include="src\presto\javascript\JavaScriptThisExpression.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Antlr4.Runtime">

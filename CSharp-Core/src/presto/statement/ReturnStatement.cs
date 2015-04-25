@@ -63,10 +63,8 @@ namespace presto.statement
         {
 			if(expression==null)
 				return VoidResult.Instance;
-			IValue result = expression.interpret(context);
-			if(result is IExpression)
-				result = ((IExpression)result).interpret(context);
-			return result;
+			else
+				return expression.interpret(context);
       }
 
     }
