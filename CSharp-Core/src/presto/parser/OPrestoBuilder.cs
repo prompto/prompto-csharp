@@ -2356,7 +2356,7 @@ namespace presto.parser
 			SetNodeValue (ctx, map);
 		}
 
-		public override void ExitJavascript_member_expression (OParser.Javascript_member_expressionContext ctx)
+		public override void ExitJavaScriptMemberExpression (OParser.JavaScriptMemberExpressionContext ctx)
 		{
 			String name = ctx.name.GetText ();
 			SetNodeValue (ctx, new JavaScriptMemberExpression(name));
@@ -2368,10 +2368,10 @@ namespace presto.parser
 			SetNodeValue (ctx, exp);
 		}
 
-		public override void ExitJavascript_selector_expression (OParser.Javascript_selector_expressionContext ctx)
+		public override void ExitJavaScriptMethodExpression (OParser.JavaScriptMethodExpressionContext ctx)
 		{
-			JavaScriptExpression exp = this.GetNodeValue<JavaScriptExpression> (ctx.GetChild(1));
-			SetNodeValue (ctx, exp);
+			JavaScriptExpression method = this.GetNodeValue<JavaScriptExpression> (ctx.method);
+			SetNodeValue (ctx, method);
 		}
 
 		public override void ExitJavascript_this_expression (OParser.Javascript_this_expressionContext ctx)
@@ -2456,22 +2456,13 @@ namespace presto.parser
 			SetNodeValue (ctx, new JavaScriptCharacterLiteral (text));		
 		}
 
-		public override void ExitJavascriptChildIdentifier (OParser.JavascriptChildIdentifierContext ctx)
-		{
-			JavaScriptIdentifierExpression parent = this.GetNodeValue<JavaScriptIdentifierExpression> (ctx.parent);
-			String name = this.GetNodeValue<String> (ctx.name);
-			JavaScriptIdentifierExpression exp = new JavaScriptIdentifierExpression (parent, name);
-			SetNodeValue (ctx, exp);
-		}
-
 		public override void ExitJavascriptDecimalLiteral (OParser.JavascriptDecimalLiteralContext ctx)
 		{
 			String text = ctx.t.Text;
 			SetNodeValue (ctx, new JavaScriptDecimalLiteral (text));		
 		}
 
-
-		public override void ExitJavascriptIdentifier (OParser.JavascriptIdentifierContext ctx)
+		public override void ExitJavascript_identifier_expression (OParser.Javascript_identifier_expressionContext ctx)
 		{
 			String name = this.GetNodeValue<String> (ctx.name);
 			SetNodeValue (ctx, new JavaScriptIdentifierExpression (name));

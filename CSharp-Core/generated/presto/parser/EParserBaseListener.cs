@@ -3742,29 +3742,41 @@ public partial class EParserBaseListener : IEParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitJavascript_this_expression([NotNull] EParser.Javascript_this_expressionContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="EParser.javascript_selector_expression"/>.
+	/// Enter a parse tree produced by <see cref="EParser.JavaScriptMethodExpression"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void EnterJavascript_selector_expression([NotNull] EParser.Javascript_selector_expressionContext context) { }
+	public virtual void EnterJavaScriptMethodExpression([NotNull] EParser.JavaScriptMethodExpressionContext context) { }
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="EParser.javascript_selector_expression"/>.
+	/// Exit a parse tree produced by <see cref="EParser.JavaScriptMethodExpression"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void ExitJavascript_selector_expression([NotNull] EParser.Javascript_selector_expressionContext context) { }
+	public virtual void ExitJavaScriptMethodExpression([NotNull] EParser.JavaScriptMethodExpressionContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="EParser.javascript_member_expression"/>.
+	/// Enter a parse tree produced by <see cref="EParser.JavaScriptMemberExpression"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void EnterJavascript_member_expression([NotNull] EParser.Javascript_member_expressionContext context) { }
+	public virtual void EnterJavaScriptMemberExpression([NotNull] EParser.JavaScriptMemberExpressionContext context) { }
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="EParser.javascript_member_expression"/>.
+	/// Exit a parse tree produced by <see cref="EParser.JavaScriptMemberExpression"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void ExitJavascript_member_expression([NotNull] EParser.Javascript_member_expressionContext context) { }
+	public virtual void ExitJavaScriptMemberExpression([NotNull] EParser.JavaScriptMemberExpressionContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="EParser.JavaScriptItemExpression"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterJavaScriptItemExpression([NotNull] EParser.JavaScriptItemExpressionContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="EParser.JavaScriptItemExpression"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitJavaScriptItemExpression([NotNull] EParser.JavaScriptItemExpressionContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="EParser.javascript_method_expression"/>.
 	/// <para>The default implementation does nothing.</para>
@@ -3826,29 +3838,17 @@ public partial class EParserBaseListener : IEParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitJavascript_parenthesis_expression([NotNull] EParser.Javascript_parenthesis_expressionContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="EParser.JavascriptChildIdentifier"/>.
+	/// Enter a parse tree produced by <see cref="EParser.javascript_identifier_expression"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void EnterJavascriptChildIdentifier([NotNull] EParser.JavascriptChildIdentifierContext context) { }
+	public virtual void EnterJavascript_identifier_expression([NotNull] EParser.Javascript_identifier_expressionContext context) { }
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="EParser.JavascriptChildIdentifier"/>.
+	/// Exit a parse tree produced by <see cref="EParser.javascript_identifier_expression"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void ExitJavascriptChildIdentifier([NotNull] EParser.JavascriptChildIdentifierContext context) { }
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="EParser.JavascriptIdentifier"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void EnterJavascriptIdentifier([NotNull] EParser.JavascriptIdentifierContext context) { }
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="EParser.JavascriptIdentifier"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void ExitJavascriptIdentifier([NotNull] EParser.JavascriptIdentifierContext context) { }
+	public virtual void ExitJavascript_identifier_expression([NotNull] EParser.Javascript_identifier_expressionContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="EParser.JavascriptIntegerLiteral"/>.
 	/// <para>The default implementation does nothing.</para>

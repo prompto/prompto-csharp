@@ -3570,25 +3570,41 @@ public interface IEParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitJavascript_this_expression([NotNull] EParser.Javascript_this_expressionContext context);
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="EParser.javascript_selector_expression"/>.
+	/// Enter a parse tree produced by the <c>JavaScriptMethodExpression</c>
+	/// labeled alternative in <see cref="EParser.javascript_selector_expression"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterJavascript_selector_expression([NotNull] EParser.Javascript_selector_expressionContext context);
+	void EnterJavaScriptMethodExpression([NotNull] EParser.JavaScriptMethodExpressionContext context);
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="EParser.javascript_selector_expression"/>.
+	/// Exit a parse tree produced by the <c>JavaScriptMethodExpression</c>
+	/// labeled alternative in <see cref="EParser.javascript_selector_expression"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitJavascript_selector_expression([NotNull] EParser.Javascript_selector_expressionContext context);
+	void ExitJavaScriptMethodExpression([NotNull] EParser.JavaScriptMethodExpressionContext context);
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="EParser.javascript_member_expression"/>.
+	/// Enter a parse tree produced by the <c>JavaScriptMemberExpression</c>
+	/// labeled alternative in <see cref="EParser.javascript_selector_expression"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterJavascript_member_expression([NotNull] EParser.Javascript_member_expressionContext context);
+	void EnterJavaScriptMemberExpression([NotNull] EParser.JavaScriptMemberExpressionContext context);
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="EParser.javascript_member_expression"/>.
+	/// Exit a parse tree produced by the <c>JavaScriptMemberExpression</c>
+	/// labeled alternative in <see cref="EParser.javascript_selector_expression"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitJavascript_member_expression([NotNull] EParser.Javascript_member_expressionContext context);
+	void ExitJavaScriptMemberExpression([NotNull] EParser.JavaScriptMemberExpressionContext context);
+	/// <summary>
+	/// Enter a parse tree produced by the <c>JavaScriptItemExpression</c>
+	/// labeled alternative in <see cref="EParser.javascript_selector_expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterJavaScriptItemExpression([NotNull] EParser.JavaScriptItemExpressionContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>JavaScriptItemExpression</c>
+	/// labeled alternative in <see cref="EParser.javascript_selector_expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitJavaScriptItemExpression([NotNull] EParser.JavaScriptItemExpressionContext context);
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="EParser.javascript_method_expression"/>.
 	/// </summary>
@@ -3644,29 +3660,15 @@ public interface IEParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitJavascript_parenthesis_expression([NotNull] EParser.Javascript_parenthesis_expressionContext context);
 	/// <summary>
-	/// Enter a parse tree produced by the <c>JavascriptChildIdentifier</c>
-	/// labeled alternative in <see cref="EParser.javascript_identifier_expression"/>.
+	/// Enter a parse tree produced by <see cref="EParser.javascript_identifier_expression"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterJavascriptChildIdentifier([NotNull] EParser.JavascriptChildIdentifierContext context);
+	void EnterJavascript_identifier_expression([NotNull] EParser.Javascript_identifier_expressionContext context);
 	/// <summary>
-	/// Exit a parse tree produced by the <c>JavascriptChildIdentifier</c>
-	/// labeled alternative in <see cref="EParser.javascript_identifier_expression"/>.
+	/// Exit a parse tree produced by <see cref="EParser.javascript_identifier_expression"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitJavascriptChildIdentifier([NotNull] EParser.JavascriptChildIdentifierContext context);
-	/// <summary>
-	/// Enter a parse tree produced by the <c>JavascriptIdentifier</c>
-	/// labeled alternative in <see cref="EParser.javascript_identifier_expression"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterJavascriptIdentifier([NotNull] EParser.JavascriptIdentifierContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>JavascriptIdentifier</c>
-	/// labeled alternative in <see cref="EParser.javascript_identifier_expression"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitJavascriptIdentifier([NotNull] EParser.JavascriptIdentifierContext context);
+	void ExitJavascript_identifier_expression([NotNull] EParser.Javascript_identifier_expressionContext context);
 	/// <summary>
 	/// Enter a parse tree produced by the <c>JavascriptIntegerLiteral</c>
 	/// labeled alternative in <see cref="EParser.javascript_literal_expression"/>.

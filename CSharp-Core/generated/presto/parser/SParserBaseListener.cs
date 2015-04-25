@@ -3658,29 +3658,41 @@ public partial class SParserBaseListener : ISParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitJavascript_this_expression([NotNull] SParser.Javascript_this_expressionContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="SParser.javascript_selector_expression"/>.
+	/// Enter a parse tree produced by <see cref="SParser.JavaScriptMethodExpression"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void EnterJavascript_selector_expression([NotNull] SParser.Javascript_selector_expressionContext context) { }
+	public virtual void EnterJavaScriptMethodExpression([NotNull] SParser.JavaScriptMethodExpressionContext context) { }
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="SParser.javascript_selector_expression"/>.
+	/// Exit a parse tree produced by <see cref="SParser.JavaScriptMethodExpression"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void ExitJavascript_selector_expression([NotNull] SParser.Javascript_selector_expressionContext context) { }
+	public virtual void ExitJavaScriptMethodExpression([NotNull] SParser.JavaScriptMethodExpressionContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="SParser.javascript_member_expression"/>.
+	/// Enter a parse tree produced by <see cref="SParser.JavaScriptMemberExpression"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void EnterJavascript_member_expression([NotNull] SParser.Javascript_member_expressionContext context) { }
+	public virtual void EnterJavaScriptMemberExpression([NotNull] SParser.JavaScriptMemberExpressionContext context) { }
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="SParser.javascript_member_expression"/>.
+	/// Exit a parse tree produced by <see cref="SParser.JavaScriptMemberExpression"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void ExitJavascript_member_expression([NotNull] SParser.Javascript_member_expressionContext context) { }
+	public virtual void ExitJavaScriptMemberExpression([NotNull] SParser.JavaScriptMemberExpressionContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="SParser.JavaScriptItemExpression"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterJavaScriptItemExpression([NotNull] SParser.JavaScriptItemExpressionContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="SParser.JavaScriptItemExpression"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitJavaScriptItemExpression([NotNull] SParser.JavaScriptItemExpressionContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="SParser.javascript_method_expression"/>.
 	/// <para>The default implementation does nothing.</para>
@@ -3742,29 +3754,17 @@ public partial class SParserBaseListener : ISParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitJavascript_parenthesis_expression([NotNull] SParser.Javascript_parenthesis_expressionContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="SParser.JavascriptChildIdentifier"/>.
+	/// Enter a parse tree produced by <see cref="SParser.javascript_identifier_expression"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void EnterJavascriptChildIdentifier([NotNull] SParser.JavascriptChildIdentifierContext context) { }
+	public virtual void EnterJavascript_identifier_expression([NotNull] SParser.Javascript_identifier_expressionContext context) { }
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="SParser.JavascriptChildIdentifier"/>.
+	/// Exit a parse tree produced by <see cref="SParser.javascript_identifier_expression"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void ExitJavascriptChildIdentifier([NotNull] SParser.JavascriptChildIdentifierContext context) { }
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="SParser.JavascriptIdentifier"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void EnterJavascriptIdentifier([NotNull] SParser.JavascriptIdentifierContext context) { }
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="SParser.JavascriptIdentifier"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void ExitJavascriptIdentifier([NotNull] SParser.JavascriptIdentifierContext context) { }
+	public virtual void ExitJavascript_identifier_expression([NotNull] SParser.Javascript_identifier_expressionContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="SParser.JavascriptIntegerLiteral"/>.
 	/// <para>The default implementation does nothing.</para>
