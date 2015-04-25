@@ -61,8 +61,13 @@ namespace presto.statement
         override
 		public IValue interpret(Context context)
         {
-			return expression==null ? VoidResult.Instance : expression.interpret(context);
-        }
+			if(expression==null)
+				return VoidResult.Instance;
+			IValue result = expression.interpret(context);
+			if(result is IExpression)
+				result = ((IExpression)result).interpret(context);
+			return result;
+      }
 
     }
 

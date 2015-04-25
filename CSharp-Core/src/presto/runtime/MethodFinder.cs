@@ -23,7 +23,7 @@ namespace presto.runtime
 
         public IMethodDeclaration findMethod(bool checkInstance)
         {
-            Dictionary<String, IMethodDeclaration>.ValueCollection candidates = methodCall.getMethod().getCandidates(context);
+            List<IMethodDeclaration> candidates = methodCall.getMethod().getCandidates(context);
             List<IMethodDeclaration> compatibles = filterCompatible(candidates, checkInstance);
             switch (compatibles.Count)
             {
@@ -123,7 +123,7 @@ namespace presto.runtime
             return Score.SIMILAR;
         }
 
-        List<IMethodDeclaration> filterCompatible(Dictionary<String, IMethodDeclaration>.ValueCollection candidates, bool checkInstance)
+        List<IMethodDeclaration> filterCompatible(List<IMethodDeclaration> candidates, bool checkInstance)
         {
             List<IMethodDeclaration> compatibles = new List<IMethodDeclaration>();
             foreach (IMethodDeclaration declaration in candidates)

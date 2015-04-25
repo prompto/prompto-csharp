@@ -7,7 +7,7 @@ namespace presto.declaration
 	public class SingletonCategoryDeclaration : ConcreteCategoryDeclaration
 	{
 
-		public SingletonCategoryDeclaration (String name, IdentifierList attributes, CategoryMethodDeclarationList methods)
+		public SingletonCategoryDeclaration (String name, IdentifierList attributes, MethodDeclarationList methods)
 			: base (name, attributes, null, methods)
 		{
 		}
@@ -22,7 +22,7 @@ namespace presto.declaration
 			writer.append ("singleton");
 		}
 
-		protected override void categoryTypeToPDialect (CodeWriter writer)
+		protected override void categoryTypeToSDialect (CodeWriter writer)
 		{
 			writer.append ("singleton");
 		}

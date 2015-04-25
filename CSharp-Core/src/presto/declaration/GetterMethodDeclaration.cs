@@ -12,18 +12,12 @@ using presto.value;
 namespace presto.declaration
 {
 
-    public class GetterMethodDeclaration : BaseCategoryMethodDeclaration, IExpression
+	public class GetterMethodDeclaration : ConcreteMethodDeclaration, IExpression
     {
 
-        public GetterMethodDeclaration(String name, StatementList instructions)
-            : base(name, null, instructions)
+		public GetterMethodDeclaration(String name, StatementList statements)
+			: base(name, null, null, statements)
         {
-        }
-
-        override
-        public int GetHashCode()
-        {
-			return GetName().GetHashCode();
         }
 
         override
@@ -33,26 +27,6 @@ namespace presto.declaration
 
         }
 
-		override
-		public IType getReturnType() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-
-
-        override
-        public IType GetType(Context context)
-        {
-            // TODO Auto-generated method stub
-            return null;
-        }
-
-        override
-		public IValue interpret(Context context)
-        {
-            return instructions.interpret(context);
-        }
-
         override
         public IType check(Context context)
         {
@@ -60,46 +34,31 @@ namespace presto.declaration
             return null;
         }
 
-		override
-		public void ToDialect(CodeWriter writer) {
-			switch(writer.getDialect()) {
-			case Dialect.E:
-				toEDialect(writer);
-				break;
-			case Dialect.O:
-				toODialect(writer);
-				break;
-			case Dialect.P:
-				toPDialect(writer);
-				break;
-			}
-		}
-
-		private void toODialect(CodeWriter writer) {
+		protected override void toODialect(CodeWriter writer) {
 			writer.append("getter ");
 			writer.append(name);
 			writer.append(" {\n");
 			writer.indent();
-			instructions.ToDialect(writer);
+			statements.ToDialect(writer);
 			writer.dedent();
 			writer.append("}\n");
 		}
 
-		private void toEDialect(CodeWriter writer) {
+		protected override void toEDialect(CodeWriter writer) {
 			writer.append("define ");
 			writer.append(name);
 			writer.append(" getter doing:\n");
 			writer.indent();
-			instructions.ToDialect(writer);
+			statements.ToDialect(writer);
 			writer.dedent();
 		}
 
-		private void toPDialect(CodeWriter writer) {
+		protected override void toSDialect(CodeWriter writer) {
 			writer.append("def ");
 			writer.append(name);
 			writer.append(" getter():\n");
 			writer.indent();
-			instructions.ToDialect(writer);
+			statements.ToDialect(writer);
 			writer.dedent();
 		}
     }

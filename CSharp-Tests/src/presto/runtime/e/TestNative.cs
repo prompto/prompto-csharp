@@ -22,6 +22,18 @@ namespace presto.runtime.e
 		}
 
 		[Test]
+		public void testAnyId()
+		{
+			CheckOutput("native/anyId.pec");
+		}
+
+		[Test]
+		public void testAnyText()
+		{
+			CheckOutput("native/anyText.pec");
+		}
+
+		[Test]
 		public void testAttribute()
 		{
 			CheckOutput("native/attribute.pec");

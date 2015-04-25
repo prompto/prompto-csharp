@@ -51,6 +51,12 @@ namespace presto.translate.eoe
 		}
 
 		[Test]
+		public void testMemberCall()
+		{
+			compareResourceEOE("methods/memberCall.pec");
+		}
+
+		[Test]
 		public void testPolymorphic_abstract()
 		{
 			compareResourceEOE("methods/polymorphic_abstract.pec");

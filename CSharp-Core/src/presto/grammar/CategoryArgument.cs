@@ -72,7 +72,7 @@ namespace presto.grammar
 			case Dialect.O:
 				toODialect(writer);
 				break;
-			case Dialect.P:
+			case Dialect.S:
 				toPDialect(writer);
 				break;
 			}

@@ -403,7 +403,12 @@ namespace presto.parser
 			SetNodeValue (ctx, ctx.GetText ());
 		}
 
-		
+		public override void ExitNative_member_method_declaration (EParser.Native_member_method_declarationContext ctx)
+		{
+			IMethodDeclaration decl = this.GetNodeValue<IMethodDeclaration> (ctx.GetChild (0));
+			SetNodeValue (ctx, decl);
+		}
+
 		public override void ExitNative_symbol (EParser.Native_symbolContext ctx)
 		{
 			String name = this.GetNodeValue<String> (ctx.name);
@@ -565,7 +570,7 @@ namespace presto.parser
 			String name = this.GetNodeValue<String> (ctx.name);
 			IdentifierList attrs = this.GetNodeValue<IdentifierList> (ctx.attrs);
 			IdentifierList derived = this.GetNodeValue<IdentifierList> (ctx.derived);
-			CategoryMethodDeclarationList methods = this.GetNodeValue<CategoryMethodDeclarationList> (ctx.methods);
+			MethodDeclarationList methods = this.GetNodeValue<MethodDeclarationList> (ctx.methods);
 			SetNodeValue (ctx, new ConcreteCategoryDeclaration (name, attrs, derived, methods));
 		}
 
@@ -825,16 +830,32 @@ namespace presto.parser
 		
 		public override void ExitCategoryMethodList (EParser.CategoryMethodListContext ctx)
 		{
-			ICategoryMethodDeclaration item = this.GetNodeValue<ICategoryMethodDeclaration> (ctx.item);
-			CategoryMethodDeclarationList items = new CategoryMethodDeclarationList (item);
+			IMethodDeclaration item = this.GetNodeValue<IMethodDeclaration> (ctx.item);
+			MethodDeclarationList items = new MethodDeclarationList (item);
 			SetNodeValue (ctx, items);
 		}
 
 		
 		public override void ExitCategoryMethodListItem (EParser.CategoryMethodListItemContext ctx)
 		{
-			ICategoryMethodDeclaration item = this.GetNodeValue<ICategoryMethodDeclaration> (ctx.item);
-			CategoryMethodDeclarationList items = this.GetNodeValue<CategoryMethodDeclarationList> (ctx.items);
+			IMethodDeclaration item = this.GetNodeValue<IMethodDeclaration> (ctx.item);
+			MethodDeclarationList items = this.GetNodeValue<MethodDeclarationList> (ctx.items);
+			items.add (item);
+			SetNodeValue (ctx, items);
+		}
+
+		public override void ExitNativeCategoryMethodList (EParser.NativeCategoryMethodListContext ctx)
+		{
+			IMethodDeclaration item = this.GetNodeValue<IMethodDeclaration> (ctx.item);
+			MethodDeclarationList items = new MethodDeclarationList (item);
+			SetNodeValue (ctx, items);
+		}
+
+
+		public override void ExitNativeCategoryMethodListItem (EParser.NativeCategoryMethodListItemContext ctx)
+		{
+			IMethodDeclaration item = this.GetNodeValue<IMethodDeclaration> (ctx.item);
+			MethodDeclarationList items = this.GetNodeValue<MethodDeclarationList> (ctx.items);
 			items.add (item);
 			SetNodeValue (ctx, items);
 		}
@@ -854,33 +875,12 @@ namespace presto.parser
 			SetNodeValue (ctx, new GetterMethodDeclaration (name, stmts));
 		}
 
-		public override void ExitAbstractMemberMethod (EParser.AbstractMemberMethodContext ctx)
+		public override void ExitMember_method_declaration (EParser.Member_method_declarationContext ctx)
 		{
-			IDeclaration decl = this.GetNodeValue<IDeclaration> (ctx.decl);
+			IDeclaration decl = this.GetNodeValue<IDeclaration> (ctx.GetChild(0));
 			SetNodeValue (ctx, decl);
 		}
-
-		public override void ExitConcreteMemberMethod (EParser.ConcreteMemberMethodContext ctx)
-		{
-			IDeclaration decl = this.GetNodeValue<IDeclaration> (ctx.decl);
-			SetNodeValue (ctx, decl);
-		}
-
-		
-		public override void ExitSetterMemberMethod (EParser.SetterMemberMethodContext ctx)
-		{
-			IDeclaration decl = this.GetNodeValue<IDeclaration> (ctx.decl);
-			SetNodeValue (ctx, decl);
-		}
-
-		
-		public override void ExitGetterMemberMethod (EParser.GetterMemberMethodContext ctx)
-		{
-			IDeclaration decl = this.GetNodeValue<IDeclaration> (ctx.decl);
-			SetNodeValue (ctx, decl);
-		}
-
-		
+			
 		public override void ExitStatementList (EParser.StatementListContext ctx)
 		{
 			IStatement item = this.GetNodeValue<IStatement> (ctx.item);
@@ -1112,14 +1112,11 @@ namespace presto.parser
 			SetNodeValue (ctx, new PythonIdentifierExpression (name));
 		}
 
-    
-		
-		public override void ExitJavaIdentifierExpression (EParser.JavaIdentifierExpressionContext ctx)
+		public override void ExitJava_primary_expression (EParser.Java_primary_expressionContext ctx)
 		{
-			JavaExpression exp = this.GetNodeValue<JavaIdentifierExpression> (ctx.exp);
+			JavaExpression exp = this.GetNodeValue<JavaExpression> (ctx.GetChild(0));
 			SetNodeValue (ctx, exp);
 		}
-
 		
 		public override void ExitJavaPrimaryExpression (EParser.JavaPrimaryExpressionContext ctx)
 		{
@@ -1127,6 +1124,10 @@ namespace presto.parser
 			SetNodeValue (ctx, exp);
 		}
 
+		public override void ExitJava_this_expression (EParser.Java_this_expressionContext ctx)
+		{
+			SetNodeValue (ctx, new JavaThisExpression());
+		}
 		
 		public override void ExitJavaChildIdentifier (EParser.JavaChildIdentifierContext ctx)
 		{
@@ -1202,17 +1203,22 @@ namespace presto.parser
 			SetNodeValue (ctx, new JavaItemExpression (exp));
 		}
 
-		public override void ExitCSharpIdentifierExpression (EParser.CSharpIdentifierExpressionContext ctx)
-		{
-			CSharpExpression exp = this.GetNodeValue<CSharpExpression> (ctx.exp);
-			SetNodeValue (ctx, exp);
-		}
-
 		public override void ExitCsharp_method_expression (EParser.Csharp_method_expressionContext ctx)
 		{
 			String name = this.GetNodeValue<String> (ctx.name);
 			CSharpExpressionList args = this.GetNodeValue<CSharpExpressionList> (ctx.args);
 			SetNodeValue (ctx, new CSharpMethodExpression (name, args));
+		}
+
+		public override void ExitCsharp_primary_expression (EParser.Csharp_primary_expressionContext ctx)
+		{
+			CSharpExpression exp = this.GetNodeValue<CSharpExpression> (ctx.GetChild(0));
+			SetNodeValue (ctx, exp);
+		}
+
+		public override void ExitCsharp_this_expression (EParser.Csharp_this_expressionContext ctx)
+		{
+			SetNodeValue (ctx, new CSharpThisExpression());
 		}
 
 		public override void ExitCSharpMethodExpression (EParser.CSharpMethodExpressionContext ctx)
@@ -1504,21 +1510,6 @@ namespace presto.parser
 		}
 
 		
-		public override void ExitJavaLiteralExpression (EParser.JavaLiteralExpressionContext ctx)
-		{
-			JavaExpression exp = this.GetNodeValue<JavaExpression> (ctx.exp);
-			SetNodeValue (ctx, exp);
-		}
-
-
-		
-		public override void ExitCSharpLiteralExpression (EParser.CSharpLiteralExpressionContext ctx)
-		{
-			CSharpExpression exp = this.GetNodeValue<CSharpExpression> (ctx.exp);
-			SetNodeValue (ctx, exp);
-		}
-
-		
 		public override void ExitPythonLiteralExpression (EParser.PythonLiteralExpressionContext ctx)
 		{
 			PythonExpression exp = this.GetNodeValue<PythonExpression> (ctx.exp);
@@ -1724,7 +1715,8 @@ namespace presto.parser
 			String name = this.GetNodeValue<String> (ctx.name);
 			IdentifierList attrs = this.GetNodeValue<IdentifierList> (ctx.attrs);
 			NativeCategoryBindingList bindings = this.GetNodeValue<NativeCategoryBindingList> (ctx.bindings);
-			SetNodeValue (ctx, new NativeCategoryDeclaration (name, attrs, bindings, null));
+			MethodDeclarationList methods = this.GetNodeValue<MethodDeclarationList> (ctx.methods);
+			SetNodeValue (ctx, new NativeCategoryDeclaration (name, attrs, bindings, null, methods));
 		}
 
 		
@@ -1740,7 +1732,8 @@ namespace presto.parser
 			String name = this.GetNodeValue<String> (ctx.name);
 			IdentifierList attrs = this.GetNodeValue<IdentifierList> (ctx.attrs);
 			NativeCategoryBindingList bindings = this.GetNodeValue<NativeCategoryBindingList> (ctx.bindings);
-			SetNodeValue (ctx, new NativeResourceDeclaration (name, attrs, bindings, null));
+			MethodDeclarationList methods = this.GetNodeValue<MethodDeclarationList> (ctx.methods);
+			SetNodeValue (ctx, new NativeResourceDeclaration (name, attrs, bindings, null, methods));
 		}
 
 		
@@ -2294,11 +2287,6 @@ namespace presto.parser
 			SetNodeValue(ctx, decl);
 		}
 
-		public override void ExitOperatorMemberMethod(EParser.OperatorMemberMethodContext ctx) {
-			OperatorMethodDeclaration decl = this.GetNodeValue<OperatorMethodDeclaration>(ctx.decl);
-			SetNodeValue(ctx, decl);
-		}
-		
 		public override void ExitOrExpression (EParser.OrExpressionContext ctx)
 		{
 			IExpression left = this.GetNodeValue<IExpression> (ctx.left);
@@ -2347,7 +2335,7 @@ namespace presto.parser
 		public override void ExitSingleton_category_declaration(EParser.Singleton_category_declarationContext ctx) {
 			String name = this.GetNodeValue<String>(ctx.name);
 			IdentifierList attrs = this.GetNodeValue<IdentifierList>(ctx.attrs);
-			CategoryMethodDeclarationList methods = this.GetNodeValue<CategoryMethodDeclarationList>(ctx.methods);
+			MethodDeclarationList methods = this.GetNodeValue<MethodDeclarationList>(ctx.methods);
 			SetNodeValue(ctx, new SingletonCategoryDeclaration(name, attrs, methods));
 		}
 
@@ -2687,6 +2675,11 @@ namespace presto.parser
 			SetNodeValue (ctx, map);
 		}
 
+		public override void ExitJavascriptGlobalMethodExpression (EParser.JavascriptGlobalMethodExpressionContext ctx)
+		{
+			JavaScriptMethodExpression method = this.GetNodeValue<JavaScriptMethodExpression>(ctx.exp);
+			SetNodeValue(ctx, method);
+		}
 		
 		public override void ExitJavascript_identifier (EParser.Javascript_identifierContext ctx)
 		{
@@ -2841,6 +2834,5 @@ namespace presto.parser
 			SetNodeValue (ctx, new JavaScriptStatement (exp, false));
 		}
 
-	
 	}
 }

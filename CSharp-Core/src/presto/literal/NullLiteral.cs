@@ -42,7 +42,7 @@ namespace presto.literal
 			case Dialect.O:
 				writer.append ("null");
 				break;
-			case Dialect.P:
+			case Dialect.S:
 				writer.append ("None");
 				break;
 			}

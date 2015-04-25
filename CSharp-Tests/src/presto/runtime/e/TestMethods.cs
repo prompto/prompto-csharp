@@ -64,6 +64,12 @@ namespace presto.runtime.e
 		}
 
 		[Test]
+		public void testMemberCall()
+		{
+			CheckOutput("methods/memberCall.pec");
+		}
+
+		[Test]
 		public void testPolymorphic_abstract()
 		{
 			CheckOutput("methods/polymorphic_abstract.pec");

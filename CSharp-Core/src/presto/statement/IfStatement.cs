@@ -41,7 +41,7 @@ namespace presto.statement
 			case Dialect.O:
 				toODialect(writer);
 				break;
-			case Dialect.P:
+			case Dialect.S:
 				toPDialect(writer);
 				break;
 			}
@@ -141,7 +141,7 @@ namespace presto.statement
 			case Dialect.O:
 				toODialect(writer);
 				break;
-			case Dialect.P:
+			case Dialect.S:
 				toPDialect(writer);
 				break;
 			}

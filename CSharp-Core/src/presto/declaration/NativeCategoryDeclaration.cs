@@ -12,107 +12,138 @@ using presto.utils;
 namespace presto.declaration
 {
 
-    public class NativeCategoryDeclaration : CategoryDeclaration
-    {
+	public class NativeCategoryDeclaration : ConcreteCategoryDeclaration
+	{
 
-        NativeCategoryBindingList categoryBindings;
-        // NativeAttributeBindingListMap attributeBindings;
-        Type mappedClass = null;
+		NativeCategoryBindingList categoryBindings;
+		// NativeAttributeBindingListMap attributeBindings;
+		Type boundClass = null;
 
-        public NativeCategoryDeclaration(String name, IdentifierList attributes,
-                NativeCategoryBindingList categoryBindings, NativeAttributeBindingListMap attributeBindings)
-            : base(name, attributes)
-        {
-            this.categoryBindings = categoryBindings;
-            // this.attributeBindings = attributeBindings;
-        }
+		public NativeCategoryDeclaration (String name, 
+		                                       IdentifierList attributes,
+		                                       NativeCategoryBindingList categoryBindings, 
+		                                       NativeAttributeBindingListMap attributeBindings,
+		                                       MethodDeclarationList methods)
+			: base (name, attributes, null, methods)
+		{
+			this.categoryBindings = categoryBindings;
+			// this.attributeBindings = attributeBindings;
+		}
 
  
 		public override void register (Context context)
 		{
 			base.register (context);
-			Type type = getMappedClass (false);
-			if(type!=null)
+			Type type = getBoundClass (false);
+			if (type != null)
 				context.registerNativeBinding (type, this);
 		}
 
-		protected override void toEDialect(CodeWriter writer) {
-			protoToEDialect(writer, false, true);
-			bindingsToEDialect(writer);
+		protected override void toEDialect (CodeWriter writer)
+		{
+			protoToEDialect (writer, false, true);
+			bindingsToEDialect (writer);
+			methodsToEDialect(writer);
 		}
 
-		protected override void categoryTypeToEDialect(CodeWriter writer) {
-			writer.append("native category");
+		private void methodsToEDialect(CodeWriter writer) {
+			if(methods!=null && methods.Count>0) {
+				writer.append("and methods:");
+				writer.newLine();
+				methodsToEDialect(writer, methods);
+			}
+
 		}
 
-		protected void bindingsToEDialect(CodeWriter writer) {
-			writer.indent();
-			categoryBindings.ToDialect(writer);
-			writer.dedent();
-			writer.newLine();
+		protected override void categoryTypeToEDialect (CodeWriter writer)
+		{
+			writer.append ("native category");
 		}
 
-		protected override void toODialect(CodeWriter writer) {
+		protected void bindingsToEDialect (CodeWriter writer)
+		{
+			writer.indent ();
+			categoryBindings.ToDialect (writer);
+			writer.dedent ();
+			writer.newLine ();
+		}
+
+		protected override void toODialect (CodeWriter writer)
+		{
 			bool hasBody = true; // always one
-			toODialect(writer, hasBody); 
+			toODialect (writer, hasBody); 
 		}
 
-		protected override void categoryTypeToODialect(CodeWriter writer) {
-			writer.append("native category");
+		protected override void categoryTypeToODialect (CodeWriter writer)
+		{
+			writer.append ("native category");
 		}
 
-		protected override void bodyToODialect(CodeWriter writer) {
-			categoryBindings.ToDialect(writer);
+		protected override void bodyToODialect (CodeWriter writer)
+		{
+			categoryBindings.ToDialect (writer);
+			if(methods!=null && methods.Count>0) {
+				writer.newLine();
+				writer.newLine();
+				methodsToODialect(writer, methods);
+			}
 		}
 
-		protected override void toPDialect(CodeWriter writer) {
-			protoToPDialect(writer, null);
-			writer.indent();
-			writer.newLine();
-			categoryBindings.ToDialect(writer);
-			writer.dedent();
-			writer.newLine();
+		protected override void toSDialect (CodeWriter writer)
+		{
+			protoToSDialect (writer, null);
+			writer.indent ();
+			writer.newLine ();
+			categoryBindings.ToDialect (writer);
+			if(methods!=null && methods.Count>0)
+			{
+				foreach(IDeclaration decl in methods) {
+					CodeWriter w = writer.newMemberWriter();
+					decl.ToDialect(w);
+					writer.newLine();
+				}
+			}
+			writer.dedent ();
+			writer.newLine ();
 		}
 
-		protected override void categoryTypeToPDialect(CodeWriter writer) {
-			writer.append("native category");
+		protected override void categoryTypeToSDialect (CodeWriter writer)
+		{
+			writer.append ("native category");
 		}
 
 
-        override
-        public IInstance newInstance()
-        {
-            return new NativeInstance(this);
-        }
+		override
+        public IInstance newInstance ()
+		{
+			return new NativeInstance (this);
+		}
 
-		public System.Type getMappedClass(bool fail)
-        {
-			if (mappedClass == null)
-            {
-                CSharpNativeCategoryBinding binding = getBinding(fail); // TODO
-				if (binding != null) 
-				{
-					mappedClass = binding.getExpression ().interpret_type ();
-					if (mappedClass == null && fail)
+		public System.Type getBoundClass (bool fail)
+		{
+			if (boundClass == null) {
+				CSharpNativeCategoryBinding binding = getBinding (fail); // TODO
+				if (binding != null) {
+					boundClass = binding.getExpression ().interpret_type ();
+					if (boundClass == null && fail)
 						throw new SyntaxError ("No CSharp class:" + binding.getExpression ().ToString ());
 				}
-            }
-            return mappedClass;
-        }
+			}
+			return boundClass;
+		}
 
-        private CSharpNativeCategoryBinding getBinding(bool fail)
-        {
-            foreach (NativeCategoryBinding binding in categoryBindings)
-            {
-                if (binding is CSharpNativeCategoryBinding)
-                    return (CSharpNativeCategoryBinding)binding;
-            }
+		private CSharpNativeCategoryBinding getBinding (bool fail)
+		{
+			foreach (NativeCategoryBinding binding in categoryBindings) {
+				if (binding is CSharpNativeCategoryBinding)
+					return (CSharpNativeCategoryBinding)binding;
+			}
 			if (fail)
 				throw new SyntaxError ("Missing CSharp binding !");
 			else
 				return null;
-        }
+		}
 
-    }
+	}
 
 }

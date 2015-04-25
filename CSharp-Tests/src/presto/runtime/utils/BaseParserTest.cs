@@ -195,7 +195,7 @@ namespace presto.parser
 			context = Context.newGlobalContext();
 			dle.register(context);
 			// rewrite as p
-			CodeWriter writer = new CodeWriter(Dialect.P, context);
+			CodeWriter writer = new CodeWriter(Dialect.S, context);
 			dle.ToDialect(writer);
 			String p = writer.ToString();
 			// Console.WriteLine(p);
@@ -245,7 +245,7 @@ namespace presto.parser
 			context = Context.newGlobalContext();
 			dlo.register(context);
 			// rewrite as p
-			CodeWriter writer = new CodeWriter(Dialect.P, context);
+			CodeWriter writer = new CodeWriter(Dialect.S, context);
 			dlo.ToDialect(writer);
 			String p = writer.ToString();
 			// Console.WriteLine(p);

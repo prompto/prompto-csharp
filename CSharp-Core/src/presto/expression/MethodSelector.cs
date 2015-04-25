@@ -40,7 +40,7 @@ namespace presto.expression
 				base.ToDialect (writer);
 		}
 
-		public Dictionary<String, IMethodDeclaration>.ValueCollection getCandidates (Context context)
+		public List<IMethodDeclaration> getCandidates (Context context)
 		{
 			if (parent == null)
 				return getGlobalCandidates (context);
@@ -48,39 +48,56 @@ namespace presto.expression
 				return getCategoryCandidates (context);
 		}
 
-		private Dictionary<String,IMethodDeclaration>.ValueCollection getGlobalCandidates (Context context)
+		private List<IMethodDeclaration> getGlobalCandidates (Context context)
 		{
-			MethodDeclarationMap actual = context.getRegisteredDeclaration<MethodDeclarationMap> (name);
-			if (actual == null)
-				throw new SyntaxError ("Unknown method: \"" + name + "\"");
-			return actual.Values;
+			List<IMethodDeclaration> methods = new List<IMethodDeclaration> ();
+			// if called from a member method, could be a member method called without this/self
+			if(context.getParentContext() is InstanceContext) {
+				IType type = ((InstanceContext)context.getParentContext()).getInstanceType();
+				ConcreteCategoryDeclaration cd = context.getRegisteredDeclaration<ConcreteCategoryDeclaration>(type.GetName());
+				if(cd!=null) {
+					MethodDeclarationMap members = cd.getMemberMethods(context, name);
+					if(members!=null)
+						methods.AddRange(members.Values);
+				}
+			}
+			MethodDeclarationMap globals = context.getRegisteredDeclaration<MethodDeclarationMap> (name);
+			if (globals != null)
+				methods.AddRange(globals.Values);
+			return methods;
 		}
 
-		private Dictionary<String, IMethodDeclaration>.ValueCollection getCategoryCandidates (Context context)
+		private List<IMethodDeclaration> getCategoryCandidates (Context context)
 		{
+			List<IMethodDeclaration> methods = new List<IMethodDeclaration> ();
 			IType parentType = checkParent(context);
 			if(!(parentType is CategoryType))
 				throw new SyntaxError(parent.ToString() + " is not a category");
 			ConcreteCategoryDeclaration cd = context.getRegisteredDeclaration<ConcreteCategoryDeclaration>(parentType.GetName());
-			if(cd==null)
-				throw new SyntaxError("Unknown category:" + parentType.GetName());
-			return cd.findMemberMethods(context, name);
+			MethodDeclarationMap map = cd == null ? null : cd.getMemberMethods (context, name);
+			if(map!=null)
+				methods.AddRange(map.Values);
+			return methods;
 		}
 
-		public Context newLocalContext (Context context)
+		public Context newLocalContext (Context context, IMethodDeclaration declaration)
 		{
-			if (parent == null)
-				return context.newLocalContext ();
-			else
+			if (parent != null)
 				return newInstanceContext (context);
+			else if(declaration.getMemberOf()!=null)
+				return newLocalInstanceContext(context);
+			else
+				return context.newLocalContext ();
 		}
 
-		public Context newLocalCheckContext (Context context)
+		public Context newLocalCheckContext (Context context, IMethodDeclaration declaration)
 		{
-			if (parent == null)
-				return context.newLocalContext ();
-			else
+			if (parent != null)
 				return newInstanceCheckContext (context);
+			else if(declaration.getMemberOf()!=null)
+				return newLocalInstanceContext(context);
+			else
+				return context.newLocalContext ();
 		}
 
 		private Context newInstanceCheckContext (Context context)
@@ -88,8 +105,17 @@ namespace presto.expression
 			IType type = parent.check (context);
 			if (!(type is CategoryType))
 				throw new SyntaxError ("Not an instance !");
-			context = context.newInstanceContext (type);
+			context = context.newInstanceContext ((CategoryType)type);
 			return context.newChildContext ();
+		}
+
+		private Context newLocalInstanceContext(Context context) {
+			Context parent = context.getParentContext();
+			if(!(parent is InstanceContext))
+				throw new SyntaxError("Not in instance context !");
+			context = context.newLocalContext();
+			context.setParentContext(parent); // make local context child of the existing instance
+			return context;
 		}
 
 		private Context newInstanceContext (Context context)

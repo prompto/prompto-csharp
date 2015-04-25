@@ -33,7 +33,7 @@ namespace presto.expression
 				writer.append(name);
 				break;
 			case Dialect.O:
-			case Dialect.P:
+			case Dialect.S:
 				writer.append("execute(");
 				writer.append(name);
 				writer.append(")");

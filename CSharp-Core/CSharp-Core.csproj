@@ -101,7 +101,6 @@
     <Compile Include="src\presto\grammar\IAttributeConstraint.cs" />
     <Compile Include="src\presto\declaration\AttributeDeclaration.cs" />
     <Compile Include="src\presto\grammar\BaseArgument.cs" />
-    <Compile Include="src\presto\declaration\BaseCategoryMethodDeclaration.cs" />
     <Compile Include="src\presto\declaration\BaseDeclaration.cs" />
     <Compile Include="src\presto\declaration\BaseMethodDeclaration.cs" />
     <Compile Include="src\presto\statement\BaseStatement.cs" />
@@ -114,8 +113,6 @@
     <Compile Include="src\presto\type\BooleanType.cs" />
     <Compile Include="src\presto\grammar\CategoryArgument.cs" />
     <Compile Include="src\presto\declaration\CategoryDeclaration.cs" />
-    <Compile Include="src\presto\declaration\ICategoryMethodDeclaration.cs" />
-    <Compile Include="src\presto\grammar\CategoryMethodDeclarationList.cs" />
     <Compile Include="src\presto\grammar\CategorySymbol.cs" />
     <Compile Include="src\presto\grammar\CategorySymbolList.cs" />
     <Compile Include="src\presto\type\CategoryType.cs" />
@@ -419,6 +416,10 @@
     <Compile Include="src\presto\java\JavaNativeCategoryBinding.cs" />
     <Compile Include="src\presto\javascript\JavaScriptNativeCategoryBinding.cs" />
     <Compile Include="src\presto\python\PythonNativeCategoryBinding.cs" />
+    <Compile Include="src\presto\grammar\MethodDeclarationList.cs" />
+    <Compile Include="src\presto\value\Any.cs" />
+    <Compile Include="src\presto\java\JavaThisExpression.cs" />
+    <Compile Include="src\presto\csharp\CSharpThisExpression.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Antlr4.Runtime">

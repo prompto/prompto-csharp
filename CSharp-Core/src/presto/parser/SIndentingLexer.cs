@@ -20,7 +20,7 @@ namespace presto.parser
 
         public bool AddLF { get; set; }
 
-        public Dialect Dialect { get { return Dialect.P; } }
+        public Dialect Dialect { get { return Dialect.S; } }
     
         public override IToken NextToken()
         {

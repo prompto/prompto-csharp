@@ -60,8 +60,8 @@ namespace presto.declaration
             throw new System.NotImplementedException(); // TODO
         }
 
-		override
-		protected void toPDialect(CodeWriter writer) {
+
+		protected override void toSDialect(CodeWriter writer) {
 			writer.append("def native ");
 			writer.append(name);
 			writer.append(" (");
@@ -77,8 +77,8 @@ namespace presto.declaration
 			writer.dedent();
 		}
 
-		override
-		protected void toODialect(CodeWriter writer) {
+
+		protected override void toODialect(CodeWriter writer) {
 			if(returnType!=null  && returnType!=VoidType.Instance) {
 				returnType.ToDialect(writer);
 				writer.append(" ");

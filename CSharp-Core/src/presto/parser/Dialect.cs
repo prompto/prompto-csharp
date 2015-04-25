@@ -5,7 +5,7 @@ namespace presto.parser
     {
         E, // (new EParserFactory()),
         O, // (new OParserFactory());
-		P // (new PParserFactory());
+		S // (new PParserFactory());
     }
     /*	IParserFactory parserFactory;
 	

@@ -118,8 +118,8 @@ namespace presto.declaration
 			writer.dedent();
 		}
 
-		override
-		protected void toPDialect(CodeWriter writer) {
+
+		protected override void toSDialect(CodeWriter writer) {
 			writer.append("enum ");
 			writer.append(name);
 			writer.append("(");

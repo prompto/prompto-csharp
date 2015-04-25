@@ -68,7 +68,7 @@ namespace presto.expression
 			case Dialect.O:
 				toODialect(writer);
 				break;
-			case Dialect.P:
+			case Dialect.S:
 				toPDialect(writer);
 				break;
 			}

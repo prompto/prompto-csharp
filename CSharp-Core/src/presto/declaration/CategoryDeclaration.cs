@@ -90,6 +90,8 @@ namespace presto.declaration
 
 		public override void ToDialect (CodeWriter writer)
 		{
+			CategoryType type = (CategoryType)GetType (writer.getContext ());
+			writer = writer.newInstanceWriter(type);
 			switch (writer.getDialect ()) {
 			case Dialect.E:
 				toEDialect (writer);
@@ -97,8 +99,8 @@ namespace presto.declaration
 			case Dialect.O:
 				toODialect (writer);
 				break;
-			case Dialect.P:
-				toPDialect (writer);
+			case Dialect.S:
+				toSDialect (writer);
 				break;
 			}
 		}
@@ -133,12 +135,13 @@ namespace presto.declaration
 			writer.newLine ();	
 		}
 
-		protected virtual void methodsToEDialect (CodeWriter writer, CategoryMethodDeclarationList methods)
+		protected virtual void methodsToEDialect (CodeWriter writer, MethodDeclarationList methods)
 		{
 			writer.indent ();
 			foreach (IDeclaration decl in methods) {
 				writer.newLine ();
-				decl.ToDialect (writer);
+				CodeWriter w = writer.newMemberWriter ();
+				decl.ToDialect (w);
 			}
 			writer.dedent ();
 		}
@@ -171,6 +174,14 @@ namespace presto.declaration
 				writer.append (';');
 		}
 
+		protected virtual void methodsToODialect(CodeWriter writer, MethodDeclarationList methods) {
+			foreach(IDeclaration decl in methods) {
+				CodeWriter w = writer.newMemberWriter();
+				decl.ToDialect(w);
+				w.newLine();
+			}
+		}
+
 		protected abstract void categoryTypeToODialect (CodeWriter writer);
 
 		protected virtual void categoryExtensionToODialect (CodeWriter writer)
@@ -180,11 +191,11 @@ namespace presto.declaration
 
 		protected abstract void bodyToODialect (CodeWriter writer);
 
-		protected abstract void toPDialect (CodeWriter writer);
+		protected abstract void toSDialect (CodeWriter writer);
 
-		protected void protoToPDialect (CodeWriter writer, IdentifierList derivedFrom)
+		protected void protoToSDialect (CodeWriter writer, IdentifierList derivedFrom)
 		{
-			categoryTypeToPDialect (writer);
+			categoryTypeToSDialect (writer);
 			writer.append (" ");
 			writer.append (name);
 			writer.append ("(");
@@ -199,7 +210,7 @@ namespace presto.declaration
 			writer.newLine ();
 		}
 
-		protected abstract void categoryTypeToPDialect (CodeWriter writer);
+		protected abstract void categoryTypeToSDialect (CodeWriter writer);
 
 
 	}

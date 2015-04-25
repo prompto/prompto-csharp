@@ -86,29 +86,45 @@ namespace presto.statement
 			if(resolved!=null)
 				return;
 			if(caller is UnresolvedIdentifier)
-				resolveUnresolvedIdentifier(context);
-			else
-				resolveMember(context);
+				resolved = resolveUnresolvedIdentifier(context);
+			else if(caller is MemberSelector)
+				resolved = resolveMember(context);
 		}
 
 
-		private void resolveUnresolvedIdentifier(Context context)
+		private IExpression resolveUnresolvedIdentifier(Context context)
         {
-            String name = ((UnresolvedIdentifier)caller).getName();
-            IDeclaration decl = context.getRegisteredDeclaration<IDeclaration>(name);
-            if (decl == null)
-                throw new SyntaxError("Unknown name:" + name);
-            if (decl is CategoryDeclaration)
-                resolved = new ConstructorExpression(new CategoryType(name), false, assignments);
-            else
-                resolved = new MethodCall(new MethodSelector(name), assignments);
-        }
+			String name = ((UnresolvedIdentifier)caller).getName();
+			IDeclaration decl = null;
+			// if this happens in the context of a member method, then we need to check for category members first
+			if(context.getParentContext() is InstanceContext) {
+				decl = resolveUnresolvedMember((InstanceContext)context.getParentContext(), name);
+				if(decl!=null)
+					return new MethodCall(new MethodSelector(name), assignments);
+			}
+			decl = context.getRegisteredDeclaration<IDeclaration>(name);
+			if(decl==null)
+				throw new SyntaxError("Unknown name:" + name);
+			if(decl is CategoryDeclaration)
+				return new ConstructorExpression(new CategoryType(name), false, assignments);
+			else
+				return new MethodCall(new MethodSelector(name), assignments);
+       }
 
-        private void resolveMember(Context context)
+		private IDeclaration resolveUnresolvedMember(InstanceContext context, String name) {
+			ConcreteCategoryDeclaration decl = context.getRegisteredDeclaration<ConcreteCategoryDeclaration>(context.getInstanceType().GetName());
+			MethodDeclarationMap methods = decl.getMemberMethods(context, name);
+			if(methods!=null && methods.Count>0)
+				return methods;
+			else
+				return null;
+		}
+
+		private IExpression resolveMember(Context context)
         {
             IExpression parent = ((MemberSelector)caller).getParent();
             String name = ((MemberSelector)caller).getName();
-            resolved = new MethodCall(new MethodSelector(parent, name), assignments);
+            return new MethodCall(new MethodSelector(parent, name), assignments);
         }
 
     }

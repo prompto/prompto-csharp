@@ -11,7 +11,7 @@ using presto.value;
 namespace presto.declaration
 {
 
-	public class ConcreteMethodDeclaration : BaseMethodDeclaration, ICategoryMethodDeclaration
+	public class ConcreteMethodDeclaration : BaseMethodDeclaration
     {
 
         protected StatementList statements;
@@ -34,13 +34,13 @@ namespace presto.declaration
 			case Dialect.O:
 				toODialect(writer);
 				break;
-			case Dialect.P:
-				toPDialect(writer);
+			case Dialect.S:
+				toSDialect(writer);
 				break;
 			}
 		}
 
-		protected virtual void toPDialect(CodeWriter writer) {
+		protected virtual void toSDialect(CodeWriter writer) {
 			writer.append("def ");
 			writer.append(name);
 			writer.append(" (");
@@ -93,7 +93,7 @@ namespace presto.declaration
             return statements;
         }
 
-		public void check(ConcreteCategoryDeclaration declaration, Context context)
+		public virtual void check(ConcreteCategoryDeclaration declaration, Context context)
 		{
 			// TODO Auto-generated method stub
 

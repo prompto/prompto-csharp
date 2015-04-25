@@ -774,18 +774,6 @@ public interface IOParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitCallableItemSelector([NotNull] OParser.CallableItemSelectorContext context);
 	/// <summary>
-	/// Enter a parse tree produced by the <c>ClosureExpression</c>
-	/// labeled alternative in <see cref="OParser.expression"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterClosureExpression([NotNull] OParser.ClosureExpressionContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>ClosureExpression</c>
-	/// labeled alternative in <see cref="OParser.expression"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitClosureExpression([NotNull] OParser.ClosureExpressionContext context);
-	/// <summary>
 	/// Enter a parse tree produced by the <c>TernaryExpression</c>
 	/// labeled alternative in <see cref="OParser.expression"/>.
 	/// </summary>
@@ -797,6 +785,18 @@ public interface IOParserListener : IParseTreeListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void ExitTernaryExpression([NotNull] OParser.TernaryExpressionContext context);
+	/// <summary>
+	/// Enter a parse tree produced by the <c>ClosureExpression</c>
+	/// labeled alternative in <see cref="OParser.expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterClosureExpression([NotNull] OParser.ClosureExpressionContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>ClosureExpression</c>
+	/// labeled alternative in <see cref="OParser.expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitClosureExpression([NotNull] OParser.ClosureExpressionContext context);
 	/// <summary>
 	/// Enter a parse tree produced by the <c>NotContainsAnyExpression</c>
 	/// labeled alternative in <see cref="OParser.expression"/>.
@@ -857,6 +857,18 @@ public interface IOParserListener : IParseTreeListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void ExitRoughlyEqualsExpression([NotNull] OParser.RoughlyEqualsExpressionContext context);
+	/// <summary>
+	/// Enter a parse tree produced by the <c>IsNotAnExpression</c>
+	/// labeled alternative in <see cref="OParser.expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterIsNotAnExpression([NotNull] OParser.IsNotAnExpressionContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>IsNotAnExpression</c>
+	/// labeled alternative in <see cref="OParser.expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitIsNotAnExpression([NotNull] OParser.IsNotAnExpressionContext context);
 	/// <summary>
 	/// Enter a parse tree produced by the <c>ContainsExpression</c>
 	/// labeled alternative in <see cref="OParser.expression"/>.
@@ -1026,6 +1038,18 @@ public interface IOParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitLessThanOrEqualExpression([NotNull] OParser.LessThanOrEqualExpressionContext context);
 	/// <summary>
+	/// Enter a parse tree produced by the <c>IsAnExpression</c>
+	/// labeled alternative in <see cref="OParser.expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterIsAnExpression([NotNull] OParser.IsAnExpressionContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>IsAnExpression</c>
+	/// labeled alternative in <see cref="OParser.expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitIsAnExpression([NotNull] OParser.IsAnExpressionContext context);
+	/// <summary>
 	/// Enter a parse tree produced by the <c>MultiplyExpression</c>
 	/// labeled alternative in <see cref="OParser.expression"/>.
 	/// </summary>
@@ -1169,6 +1193,16 @@ public interface IOParserListener : IParseTreeListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void ExitIsNotExpression([NotNull] OParser.IsNotExpressionContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="OParser.an_expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterAn_expression([NotNull] OParser.An_expressionContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="OParser.an_expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitAn_expression([NotNull] OParser.An_expressionContext context);
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="OParser.closure_expression"/>.
 	/// </summary>
@@ -2336,65 +2370,49 @@ public interface IOParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitCategoryMethodList([NotNull] OParser.CategoryMethodListContext context);
 	/// <summary>
-	/// Enter a parse tree produced by the <c>SetterMemberMethod</c>
-	/// labeled alternative in <see cref="OParser.member_method_declaration"/>.
+	/// Enter a parse tree produced by <see cref="OParser.member_method_declaration"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterSetterMemberMethod([NotNull] OParser.SetterMemberMethodContext context);
+	void EnterMember_method_declaration([NotNull] OParser.Member_method_declarationContext context);
 	/// <summary>
-	/// Exit a parse tree produced by the <c>SetterMemberMethod</c>
-	/// labeled alternative in <see cref="OParser.member_method_declaration"/>.
+	/// Exit a parse tree produced by <see cref="OParser.member_method_declaration"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitSetterMemberMethod([NotNull] OParser.SetterMemberMethodContext context);
+	void ExitMember_method_declaration([NotNull] OParser.Member_method_declarationContext context);
 	/// <summary>
-	/// Enter a parse tree produced by the <c>GetterMemberMethod</c>
-	/// labeled alternative in <see cref="OParser.member_method_declaration"/>.
+	/// Enter a parse tree produced by the <c>NativeCategoryMethodList</c>
+	/// labeled alternative in <see cref="OParser.native_member_method_declaration_list"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterGetterMemberMethod([NotNull] OParser.GetterMemberMethodContext context);
+	void EnterNativeCategoryMethodList([NotNull] OParser.NativeCategoryMethodListContext context);
 	/// <summary>
-	/// Exit a parse tree produced by the <c>GetterMemberMethod</c>
-	/// labeled alternative in <see cref="OParser.member_method_declaration"/>.
+	/// Exit a parse tree produced by the <c>NativeCategoryMethodList</c>
+	/// labeled alternative in <see cref="OParser.native_member_method_declaration_list"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitGetterMemberMethod([NotNull] OParser.GetterMemberMethodContext context);
+	void ExitNativeCategoryMethodList([NotNull] OParser.NativeCategoryMethodListContext context);
 	/// <summary>
-	/// Enter a parse tree produced by the <c>ConcreteMemberMethod</c>
-	/// labeled alternative in <see cref="OParser.member_method_declaration"/>.
+	/// Enter a parse tree produced by the <c>NativeCategoryMethodListItem</c>
+	/// labeled alternative in <see cref="OParser.native_member_method_declaration_list"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterConcreteMemberMethod([NotNull] OParser.ConcreteMemberMethodContext context);
+	void EnterNativeCategoryMethodListItem([NotNull] OParser.NativeCategoryMethodListItemContext context);
 	/// <summary>
-	/// Exit a parse tree produced by the <c>ConcreteMemberMethod</c>
-	/// labeled alternative in <see cref="OParser.member_method_declaration"/>.
+	/// Exit a parse tree produced by the <c>NativeCategoryMethodListItem</c>
+	/// labeled alternative in <see cref="OParser.native_member_method_declaration_list"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitConcreteMemberMethod([NotNull] OParser.ConcreteMemberMethodContext context);
+	void ExitNativeCategoryMethodListItem([NotNull] OParser.NativeCategoryMethodListItemContext context);
 	/// <summary>
-	/// Enter a parse tree produced by the <c>AbstractMemberMethod</c>
-	/// labeled alternative in <see cref="OParser.member_method_declaration"/>.
+	/// Enter a parse tree produced by <see cref="OParser.native_member_method_declaration"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterAbstractMemberMethod([NotNull] OParser.AbstractMemberMethodContext context);
+	void EnterNative_member_method_declaration([NotNull] OParser.Native_member_method_declarationContext context);
 	/// <summary>
-	/// Exit a parse tree produced by the <c>AbstractMemberMethod</c>
-	/// labeled alternative in <see cref="OParser.member_method_declaration"/>.
+	/// Exit a parse tree produced by <see cref="OParser.native_member_method_declaration"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitAbstractMemberMethod([NotNull] OParser.AbstractMemberMethodContext context);
-	/// <summary>
-	/// Enter a parse tree produced by the <c>OperatorMemberMethod</c>
-	/// labeled alternative in <see cref="OParser.member_method_declaration"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterOperatorMemberMethod([NotNull] OParser.OperatorMemberMethodContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>OperatorMemberMethod</c>
-	/// labeled alternative in <see cref="OParser.member_method_declaration"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitOperatorMemberMethod([NotNull] OParser.OperatorMemberMethodContext context);
+	void ExitNative_member_method_declaration([NotNull] OParser.Native_member_method_declarationContext context);
 	/// <summary>
 	/// Enter a parse tree produced by the <c>JavaCategoryBinding</c>
 	/// labeled alternative in <see cref="OParser.native_category_binding"/>.
@@ -3574,6 +3592,18 @@ public interface IOParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitJavascriptLiteralExpression([NotNull] OParser.JavascriptLiteralExpressionContext context);
 	/// <summary>
+	/// Enter a parse tree produced by the <c>JavascriptGlobalMethodExpression</c>
+	/// labeled alternative in <see cref="OParser.javascript_primary_expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterJavascriptGlobalMethodExpression([NotNull] OParser.JavascriptGlobalMethodExpressionContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>JavascriptGlobalMethodExpression</c>
+	/// labeled alternative in <see cref="OParser.javascript_primary_expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitJavascriptGlobalMethodExpression([NotNull] OParser.JavascriptGlobalMethodExpressionContext context);
+	/// <summary>
 	/// Enter a parse tree produced by the <c>JavascriptMethodExpression</c>
 	/// labeled alternative in <see cref="OParser.javascript_selector_expression"/>.
 	/// </summary>
@@ -4124,41 +4154,25 @@ public interface IOParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitJavaSelectorExpression([NotNull] OParser.JavaSelectorExpressionContext context);
 	/// <summary>
-	/// Enter a parse tree produced by the <c>JavaParenthesisExpression</c>
-	/// labeled alternative in <see cref="OParser.java_primary_expression"/>.
+	/// Enter a parse tree produced by <see cref="OParser.java_primary_expression"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterJavaParenthesisExpression([NotNull] OParser.JavaParenthesisExpressionContext context);
+	void EnterJava_primary_expression([NotNull] OParser.Java_primary_expressionContext context);
 	/// <summary>
-	/// Exit a parse tree produced by the <c>JavaParenthesisExpression</c>
-	/// labeled alternative in <see cref="OParser.java_primary_expression"/>.
+	/// Exit a parse tree produced by <see cref="OParser.java_primary_expression"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitJavaParenthesisExpression([NotNull] OParser.JavaParenthesisExpressionContext context);
+	void ExitJava_primary_expression([NotNull] OParser.Java_primary_expressionContext context);
 	/// <summary>
-	/// Enter a parse tree produced by the <c>JavaIdentifierExpression</c>
-	/// labeled alternative in <see cref="OParser.java_primary_expression"/>.
+	/// Enter a parse tree produced by <see cref="OParser.java_this_expression"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterJavaIdentifierExpression([NotNull] OParser.JavaIdentifierExpressionContext context);
+	void EnterJava_this_expression([NotNull] OParser.Java_this_expressionContext context);
 	/// <summary>
-	/// Exit a parse tree produced by the <c>JavaIdentifierExpression</c>
-	/// labeled alternative in <see cref="OParser.java_primary_expression"/>.
+	/// Exit a parse tree produced by <see cref="OParser.java_this_expression"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitJavaIdentifierExpression([NotNull] OParser.JavaIdentifierExpressionContext context);
-	/// <summary>
-	/// Enter a parse tree produced by the <c>JavaLiteralExpression</c>
-	/// labeled alternative in <see cref="OParser.java_primary_expression"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterJavaLiteralExpression([NotNull] OParser.JavaLiteralExpressionContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>JavaLiteralExpression</c>
-	/// labeled alternative in <see cref="OParser.java_primary_expression"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitJavaLiteralExpression([NotNull] OParser.JavaLiteralExpressionContext context);
+	void ExitJava_this_expression([NotNull] OParser.Java_this_expressionContext context);
 	/// <summary>
 	/// Enter a parse tree produced by the <c>JavaMethodExpression</c>
 	/// labeled alternative in <see cref="OParser.java_selector_expression"/>.
@@ -4404,41 +4418,25 @@ public interface IOParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitCSharpSelectorExpression([NotNull] OParser.CSharpSelectorExpressionContext context);
 	/// <summary>
-	/// Enter a parse tree produced by the <c>CSharpParenthesisExpression</c>
-	/// labeled alternative in <see cref="OParser.csharp_primary_expression"/>.
+	/// Enter a parse tree produced by <see cref="OParser.csharp_primary_expression"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterCSharpParenthesisExpression([NotNull] OParser.CSharpParenthesisExpressionContext context);
+	void EnterCsharp_primary_expression([NotNull] OParser.Csharp_primary_expressionContext context);
 	/// <summary>
-	/// Exit a parse tree produced by the <c>CSharpParenthesisExpression</c>
-	/// labeled alternative in <see cref="OParser.csharp_primary_expression"/>.
+	/// Exit a parse tree produced by <see cref="OParser.csharp_primary_expression"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitCSharpParenthesisExpression([NotNull] OParser.CSharpParenthesisExpressionContext context);
+	void ExitCsharp_primary_expression([NotNull] OParser.Csharp_primary_expressionContext context);
 	/// <summary>
-	/// Enter a parse tree produced by the <c>CSharpIdentifierExpression</c>
-	/// labeled alternative in <see cref="OParser.csharp_primary_expression"/>.
+	/// Enter a parse tree produced by <see cref="OParser.csharp_this_expression"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterCSharpIdentifierExpression([NotNull] OParser.CSharpIdentifierExpressionContext context);
+	void EnterCsharp_this_expression([NotNull] OParser.Csharp_this_expressionContext context);
 	/// <summary>
-	/// Exit a parse tree produced by the <c>CSharpIdentifierExpression</c>
-	/// labeled alternative in <see cref="OParser.csharp_primary_expression"/>.
+	/// Exit a parse tree produced by <see cref="OParser.csharp_this_expression"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitCSharpIdentifierExpression([NotNull] OParser.CSharpIdentifierExpressionContext context);
-	/// <summary>
-	/// Enter a parse tree produced by the <c>CSharpLiteralExpression</c>
-	/// labeled alternative in <see cref="OParser.csharp_primary_expression"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterCSharpLiteralExpression([NotNull] OParser.CSharpLiteralExpressionContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>CSharpLiteralExpression</c>
-	/// labeled alternative in <see cref="OParser.csharp_primary_expression"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitCSharpLiteralExpression([NotNull] OParser.CSharpLiteralExpressionContext context);
+	void ExitCsharp_this_expression([NotNull] OParser.Csharp_this_expressionContext context);
 	/// <summary>
 	/// Enter a parse tree produced by the <c>CSharpMethodExpression</c>
 	/// labeled alternative in <see cref="OParser.csharp_selector_expression"/>.

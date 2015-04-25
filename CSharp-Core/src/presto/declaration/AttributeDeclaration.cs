@@ -61,7 +61,7 @@ namespace presto.declaration
 					constraint.ToDialect(writer);
 				writer.append(';');
 				break;
-			case Dialect.P:
+			case Dialect.S:
 				writer.append("attr ");
 				writer.append(GetName());
 				writer.append(" ( ");

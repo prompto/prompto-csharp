@@ -51,6 +51,12 @@ namespace presto.translate.ese
 		}
 
 		[Test]
+		public void testMemberCall()
+		{
+			compareResourceESE("methods/memberCall.pec");
+		}
+
+		[Test]
 		public void testPolymorphic_abstract()
 		{
 			compareResourceESE("methods/polymorphic_abstract.pec");

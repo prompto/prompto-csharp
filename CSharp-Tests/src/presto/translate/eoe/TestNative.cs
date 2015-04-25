@@ -9,6 +9,18 @@ namespace presto.translate.eoe
 	{
 
 		[Test]
+		public void testAnyId()
+		{
+			compareResourceEOE("native/anyId.pec");
+		}
+
+		[Test]
+		public void testAnyText()
+		{
+			compareResourceEOE("native/anyText.pec");
+		}
+
+		[Test]
 		public void testAttribute()
 		{
 			compareResourceEOE("native/attribute.pec");

@@ -77,7 +77,7 @@ namespace presto.statement
         {
             MethodFinder finder = new MethodFinder(context, this);
             IMethodDeclaration declaration = finder.findMethod(false);
-			Context local = method.newLocalCheckContext(context);
+			Context local = method.newLocalCheckContext(context, declaration);
 			return check(declaration, context, local);
         }
 
@@ -129,7 +129,7 @@ namespace presto.statement
         public IValue interpret(Context context)
         {
             IMethodDeclaration declaration = findDeclaration(context);
-            Context local = method.newLocalContext(context);
+            Context local = method.newLocalContext(context, declaration);
             declaration.registerArguments(local);
             ArgumentAssignmentList assignments = makeAssignments(context, declaration);
             foreach (ArgumentAssignment assignment in assignments)

@@ -26,7 +26,7 @@ namespace presto.expression
 				expression.ToDialect (writer);
 				break;
 			case Dialect.O:
-			case Dialect.P:
+			case Dialect.S:
 				writer.append ("Code(");
 				expression.ToDialect (writer);
 				writer.append (")");

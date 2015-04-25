@@ -32,7 +32,7 @@ namespace presto.expression {
 		public void ToDialect(CodeWriter writer) {
 			switch(writer.getDialect()) {
 			case Dialect.E:
-			case Dialect.P:
+			case Dialect.S:
 				expression.ToDialect(writer);
 				writer.append(" as ");
 				type.ToDialect(writer);

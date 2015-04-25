@@ -20,9 +20,10 @@ namespace presto.declaration
         bool isAssignableTo(Context context, ArgumentAssignmentList assignments, bool checkInstance);
         void registerArguments(Context local);
         bool isEligibleAsMain();
-
-    }
-
+		void check(CategoryDeclaration decl, Context context);
+		void setMemberOf (ConcreteCategoryDeclaration declaration);
+		ConcreteCategoryDeclaration getMemberOf ();
+	}
 }
 
 

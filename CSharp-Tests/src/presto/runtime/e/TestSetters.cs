@@ -28,6 +28,12 @@ namespace presto.runtime.e
 		}
 
 		[Test]
+		public void testGetterCall()
+		{
+			CheckOutput("setters/getterCall.pec");
+		}
+
+		[Test]
 		public void testSetter()
 		{
 			CheckOutput("setters/setter.pec");

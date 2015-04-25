@@ -35,7 +35,7 @@ namespace presto.expression
 			switch(dialect) 
 			{
 			case Dialect.E:
-			case Dialect.P:
+			case Dialect.S:
 				return " or ";
 			case Dialect.O:
 				return " || ";

@@ -5,6 +5,7 @@ using presto.grammar;
 using presto.value;
 using presto.type;
 using presto.runtime;
+using presto.declaration;
 
 namespace presto.value
 {
@@ -15,7 +16,7 @@ namespace presto.value
         CategoryType getType();
         ICollection<String> getMemberNames();
 		bool setMutable(bool set);
-
+		ConcreteCategoryDeclaration getDeclaration();
     }
 
 }

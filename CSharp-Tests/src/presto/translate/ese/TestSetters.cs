@@ -15,6 +15,12 @@ namespace presto.translate.ese
 		}
 
 		[Test]
+		public void testGetterCall()
+		{
+			compareResourceESE("setters/getterCall.pec");
+		}
+
+		[Test]
 		public void testSetter()
 		{
 			compareResourceESE("setters/setter.pec");

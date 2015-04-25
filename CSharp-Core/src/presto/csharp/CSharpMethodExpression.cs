@@ -123,7 +123,7 @@ namespace presto.csharp
 			else if (type is CategoryType) {
 				IDeclaration named = context.getRegisteredDeclaration<IDeclaration> (type.GetName ());
 				if (named is NativeCategoryDeclaration)
-					klass = ((NativeCategoryDeclaration)named).getMappedClass (true);
+					klass = ((NativeCategoryDeclaration)named).getBoundClass (true);
 			} else
 				klass = type.ToCSharpType ();
 			return findMethod (context, klass);

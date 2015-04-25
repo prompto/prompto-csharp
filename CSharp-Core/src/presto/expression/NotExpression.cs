@@ -38,7 +38,7 @@ namespace presto.expression
 		private String operatorToDialect(Dialect dialect) {
 			switch(dialect) {
 				case Dialect.E:
-				case Dialect.P:
+				case Dialect.S:
 					return "not ";
 				case Dialect.O:
 					return "!";

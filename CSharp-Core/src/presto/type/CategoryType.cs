@@ -37,8 +37,7 @@ namespace presto.type
         override
         public Type ToCSharpType()
         {
-            // TODO Auto-generated method stub
-            return null;
+			return typeof(Object);
         }
 
         override
@@ -125,7 +124,7 @@ namespace presto.type
 				if(method==null)
 					return null;
 				context = context.newInstanceContext(this);
-				Context local = context.newChildContext();
+				Context local = context.newLocalContext();
 				method.registerArguments(local);
 				return method.check(local);
 			} catch(SyntaxError ) {

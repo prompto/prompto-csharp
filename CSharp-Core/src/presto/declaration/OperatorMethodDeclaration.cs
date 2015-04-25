@@ -8,7 +8,7 @@ using presto.utils;
 
 namespace presto.declaration
 {
-	public class OperatorMethodDeclaration : ConcreteMethodDeclaration, IExpression, ICategoryMethodDeclaration 
+	public class OperatorMethodDeclaration : ConcreteMethodDeclaration, IExpression 
 	{
 
 		Operator oper;
@@ -20,7 +20,7 @@ namespace presto.declaration
 		}
 
 
-		protected override void toPDialect(CodeWriter writer) {
+		protected override void toSDialect(CodeWriter writer) {
 			writer.append("def operator ");
 			writer.append(Enums.OperatorToString(oper));
 			writer.append(" (");

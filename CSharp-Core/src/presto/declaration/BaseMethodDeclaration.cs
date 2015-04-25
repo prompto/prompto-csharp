@@ -15,7 +15,8 @@ namespace presto.declaration
     public abstract class BaseMethodDeclaration : BaseDeclaration, IMethodDeclaration
     {
 
-        protected ArgumentList arguments;
+		ConcreteCategoryDeclaration memberOf;
+		protected ArgumentList arguments;
 		protected IType returnType;
 
         public BaseMethodDeclaration(String name, ArgumentList arguments)
@@ -31,6 +32,14 @@ namespace presto.declaration
             this.arguments = arguments != null ? arguments : new ArgumentList();
             this.returnType = returnType != null ? returnType : VoidType.Instance;
         }
+
+		public void setMemberOf(ConcreteCategoryDeclaration declaration) {
+			this.memberOf = declaration;
+		}
+
+		public ConcreteCategoryDeclaration getMemberOf() {
+			return memberOf;
+		}
 
         public IType getReturnType()
         {
@@ -160,6 +169,10 @@ namespace presto.declaration
             }
             return Specificity.INCOMPATIBLE;
         }
+
+		public void check(CategoryDeclaration declaration, Context context)
+		{
+		}
 
 		public virtual IValue interpret(Context context)
         {

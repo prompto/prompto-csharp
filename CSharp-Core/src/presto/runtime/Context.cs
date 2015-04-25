@@ -124,12 +124,12 @@ namespace presto.runtime
             return context;
         }
 
-		public Context newInstanceContext(IType type) 
+		public Context newInstanceContext(CategoryType type) 
 		{
 			return initInstanceContext(new InstanceContext(type));
 		}
 
-		public Context newInstanceContext(ConcreteInstance instance) 
+		public Context newInstanceContext(IInstance instance) 
 		{
 			return initInstanceContext(new InstanceContext(instance));
 		}
@@ -396,24 +396,24 @@ namespace presto.runtime
 
 	public class InstanceContext : Context
     {
-        ConcreteInstance instance;
-		IType type;
+        IInstance instance;
+		CategoryType type;
 
-        internal InstanceContext(ConcreteInstance instance)
+        internal InstanceContext(IInstance instance)
         {
             this.instance = instance;
 			this.type = instance.getType();
         }
 
-		internal InstanceContext(IType type) {
+		internal InstanceContext(CategoryType type) {
 			this.type = type;
 		}
 
-		public ConcreteInstance getInstance() {
+		public IInstance getInstance() {
 			return instance;
 		}
 
-		public IType getInstanceType() {
+		public CategoryType getInstanceType() {
 			return type;
 		}
 

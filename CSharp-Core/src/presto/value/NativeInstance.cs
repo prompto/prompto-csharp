@@ -9,6 +9,7 @@ using presto.declaration;
 using presto.type;
 using presto.runtime;
 using presto.expression;
+using System.Threading;
 
 namespace presto.value
 {
@@ -16,6 +17,10 @@ namespace presto.value
     public class NativeInstance : BaseValue, IInstance
     {
 
+		static BindingFlags bindingFlags = BindingFlags.Public | BindingFlags.NonPublic 
+			| BindingFlags.Static | BindingFlags.Instance
+			| BindingFlags.IgnoreCase | BindingFlags.FlattenHierarchy;
+		
         NativeCategoryDeclaration declaration;
         protected Object instance;
 		bool mutable = false;
@@ -34,6 +39,7 @@ namespace presto.value
 			this.instance = instance;
 		}
 
+
 		public bool setMutable(bool set)
 		{
 			bool result = mutable;
@@ -46,14 +52,19 @@ namespace presto.value
 			return mutable;
 		}
 
-       public Object getInstance()
+		public ConcreteCategoryDeclaration getDeclaration ()
+		{
+			return declaration;
+		}
+
+		public Object getInstance()
         {
             return instance;
         }
 
         private Object makeInstance()
         {
-            Type mapped = declaration.getMappedClass(true);
+            Type mapped = declaration.getBoundClass(true);
             return Activator.CreateInstance(mapped);
         }
 
@@ -68,12 +79,41 @@ namespace presto.value
             return null;
         }
 
-        override
-        public IValue GetMember(Context context, String attrName)
-        {
-            Object value = getPropertyOrField(attrName);
-            CSharpClassType ct = new CSharpClassType(value.GetType());
-            return ct.ConvertCSharpValueToPrestoValue(context, value, null);
+		static Dictionary<String, Context> Factory ()
+		{
+			return new Dictionary<String, Context> ();
+		}
+
+		// don't call getters from getters, so register them
+		ThreadLocal<Dictionary<String, Context>> activeGetters = new ThreadLocal<Dictionary<String, Context>> (Factory);
+
+
+		public override IValue GetMember (Context context, String attrName)
+		{
+			Context stacked;
+			activeGetters.Value.TryGetValue (attrName, out stacked);
+			bool first = stacked == null;
+			if (first)
+				activeGetters.Value [attrName] = context;
+			try {
+				return GetMember (context, attrName, stacked == null);
+			} finally {
+				if (first)
+					activeGetters.Value [attrName] = null;
+			}
+		}
+
+		protected IValue GetMember (Context context, String attrName, bool allowGetter)
+		{
+			GetterMethodDeclaration getter = allowGetter ? declaration.findGetter (context, attrName) : null;
+			if (getter != null) {
+				context = context.newInstanceContext (this).newChildContext(); // mimic method call
+				return getter.interpret(context);
+			} else {
+	            Object value = getPropertyOrField(attrName);
+	            CSharpClassType ct = new CSharpClassType(value.GetType());
+	            return ct.ConvertCSharpValueToPrestoValue(context, value, null);
+			}
         }
 
         private Object getPropertyOrField(String attrName)
@@ -88,11 +128,8 @@ namespace presto.value
 
         private bool TryGetField(string attrName, out object value)
         {
-			BindingFlags flags = BindingFlags.Public | BindingFlags.NonPublic 
-				| BindingFlags.Static | BindingFlags.Instance
-				| BindingFlags.IgnoreCase | BindingFlags.FlattenHierarchy;
 			Type type = instance.GetType ();
-			FieldInfo field = type.GetField(attrName, flags);
+			FieldInfo field = type.GetField(attrName, bindingFlags);
             if (field != null)
                 value = field.GetValue(instance);
             else
@@ -102,11 +139,8 @@ namespace presto.value
 
         private bool TryGetProperty(String attrName, out Object value)
         {
-			BindingFlags flags = BindingFlags.Public | BindingFlags.NonPublic 
-				| BindingFlags.Static | BindingFlags.Instance
-				| BindingFlags.IgnoreCase | BindingFlags.FlattenHierarchy;
 			Type type = instance.GetType ();
-			PropertyInfo property = type.GetProperty(attrName, flags);
+			PropertyInfo property = type.GetProperty(attrName, bindingFlags);
             if (property != null)
                 value = property.GetValue(instance, null);
             else
@@ -115,37 +149,59 @@ namespace presto.value
         }
 	
    
-        public override void SetMember(Context context, String attrName, IValue value)
-        {
-            Object o = value;
-            if (o is IExpression)
-                o = ((IExpression)value).interpret(context);
-            if(o is IValue)
-                setPropertyOrField(value, attrName);
-            else
-                throw new InternalError("Not a value:" + o.GetType().Name);
+		// don't call setters from setters, so register them
+		ThreadLocal<Dictionary<String, Context>> activeSetters = new ThreadLocal<Dictionary<String, Context>> (Factory);
+
+		public override void SetMember (Context context, String attrName, IValue value)
+		{
+			if (!mutable)
+				throw new NotMutableError ();
+			Context stacked;
+			bool first = !activeSetters.Value.TryGetValue (attrName, out stacked);
+			if (first)
+				activeSetters.Value [attrName] = context;
+			try {
+				SetMember (context, attrName, value, stacked == null);
+			} finally {
+				if (first)
+					activeSetters.Value [attrName] = null;
+			}
+		}
+
+		public void SetMember (Context context, String attrName, IValue value, bool allowSetter)
+		{
+			AttributeDeclaration decl = context.getRegisteredDeclaration<AttributeDeclaration> (attrName);
+			SetterMethodDeclaration setter = allowSetter ? declaration.findSetter (context, attrName) : null;
+			if (setter != null) {
+				// use attribute name as parameter name for incoming value
+				context = context.newInstanceContext (this).newChildContext();
+				context.registerValue (new Variable (attrName, decl.getType ()));
+				context.setValue (attrName, value);
+				value = setter.interpret (context);
+			}
+            setPropertyOrField(value, attrName);
         }
 
         private void setPropertyOrField(IValue value, String attrName)
         {
-            if (setProperty(value, attrName))
+            if (TrySetProperty(value, attrName))
                 return;
-            if (setField(value, attrName))
+            if (TrySetField(value, attrName))
                 return;
             throw new SyntaxError("Missing property or field:" + attrName);
         }
 
-        private bool setField(IValue value, String attrName)
+        private bool TrySetField(IValue value, String attrName)
         {
-            FieldInfo field = instance.GetType().GetField(attrName);
+			FieldInfo field = instance.GetType().GetField(attrName, bindingFlags);
             if (field != null)
                 field.SetValue(instance, value.ConvertTo(field.FieldType));
             return field != null;
         }
 
-        private bool setProperty(IValue value, String attrName)
+        private bool TrySetProperty(IValue value, String attrName)
         {
- 	        PropertyInfo property = instance.GetType().GetProperty(attrName);
+			PropertyInfo property = instance.GetType().GetProperty(attrName, bindingFlags);
             if(property!=null)
                 property.SetValue(instance, value.ConvertTo(property.PropertyType), null);
             return property!=null;

@@ -9,6 +9,18 @@ namespace presto.translate.ese
 	{
 
 		[Test]
+		public void testAnyId()
+		{
+			compareResourceESE("native/anyId.pec");
+		}
+
+		[Test]
+		public void testAnyText()
+		{
+			compareResourceESE("native/anyText.pec");
+		}
+
+		[Test]
 		public void testAttribute()
 		{
 			compareResourceESE("native/attribute.pec");

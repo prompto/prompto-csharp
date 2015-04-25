@@ -7,22 +7,33 @@ using presto.utils;
 namespace presto.declaration
 {
 
-public abstract class BaseDeclaration : Section, IDeclaration {
+	public abstract class BaseDeclaration : Section, IDeclaration
+	{
 
-	protected String name;
-	
-	protected BaseDeclaration(String name) {
-		this.name = name;
-	}
-		
-	public String GetName() {
-		return name;
-	}
+		protected String name;
 
-    public abstract IType check(Context context);
-    public abstract IType GetType(Context context);
-    public abstract void register(Context context);
-    public abstract void ToDialect(CodeWriter writer);
-}
+		protected BaseDeclaration (String name)
+		{
+			this.name = name;
+		}
+
+		public String GetName ()
+		{
+			return name;
+		}
+
+		public override int GetHashCode ()
+		{
+			return name.GetHashCode ();
+		}
+
+		public abstract IType check (Context context);
+
+		public abstract IType GetType (Context context);
+
+		public abstract void register (Context context);
+
+		public abstract void ToDialect (CodeWriter writer);
+	}
 
 }

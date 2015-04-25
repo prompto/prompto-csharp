@@ -52,7 +52,7 @@ namespace presto.expression
 				case Dialect.E:
 					return " = ";
 				case Dialect.O:
-				case Dialect.P:
+				case Dialect.S:
 					return " == ";
 				default:
 					throw new Exception ("Unimplemented!");
@@ -62,7 +62,7 @@ namespace presto.expression
 				case Dialect.E:
 					return " <> ";
 				case Dialect.O:
-				case Dialect.P:
+				case Dialect.S:
 					return " != ";
 				default:
 					throw new Exception ("Unimplemented!");
@@ -72,7 +72,7 @@ namespace presto.expression
 				case Dialect.E:
 					return " ~ ";
 				case Dialect.O:
-				case Dialect.P:
+				case Dialect.S:
 					return " ~= ";
 				default:
 					throw new Exception ("Unimplemented!");

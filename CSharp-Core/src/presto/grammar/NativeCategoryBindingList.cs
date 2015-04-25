@@ -24,7 +24,7 @@ namespace presto.grammar {
 			case Dialect.O:
 				toODialect(writer);
 				break;
-			case Dialect.P:
+			case Dialect.S:
 				toPDialect(writer);
 				break;
 			}
@@ -41,7 +41,7 @@ namespace presto.grammar {
 		}
 
 		private void toPDialect(CodeWriter writer) {
-			writer.append("bindings:\n");
+			writer.append("def category bindings:\n");
 			writer.indent();
 			foreach(NativeCategoryBinding m in this) {
 				m.ToDialect(writer);

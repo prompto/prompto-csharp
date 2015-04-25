@@ -53,7 +53,7 @@ namespace presto.grammar
 				writer.append(" = ");
 				expression.ToDialect(writer);
 				break;
-			case Dialect.P:
+			case Dialect.S:
 				writer.append(" = ");
 				expression.ToDialect(writer);
 				break;

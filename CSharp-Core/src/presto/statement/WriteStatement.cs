@@ -29,7 +29,7 @@ namespace presto.statement
 			writer.append("write ");
 			switch(writer.getDialect()) {
 			case Dialect.E:
-			case Dialect.P:
+			case Dialect.S:
 				content.ToDialect(writer);
 				break;
 			case Dialect.O:

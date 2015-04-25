@@ -10,7 +10,7 @@ using presto.value;
 namespace presto.declaration
 {
 
-	public class AbstractMethodDeclaration : BaseMethodDeclaration, ICategoryMethodDeclaration
+	public class AbstractMethodDeclaration : BaseMethodDeclaration
     {
 
    
@@ -51,7 +51,7 @@ namespace presto.declaration
 			case Dialect.O:
 				toODialect(writer);
 				break;
-			case Dialect.P:
+			case Dialect.S:
 				toPDialect(writer);
 				break;
 			}

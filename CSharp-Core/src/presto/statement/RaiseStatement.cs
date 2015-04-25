@@ -31,7 +31,7 @@ namespace presto.statement
         {
 			switch(writer.getDialect()) {
 			case Dialect.E:
-			case Dialect.P:
+			case Dialect.S:
 				writer.append("raise ");
 				break;
 			case Dialect.O:
