@@ -45,19 +45,11 @@ namespace presto.expression
 
         public IValue interpret(Context context)
         {
-			IValue lval = interpret(context, left);
-			IValue rval = interpret(context, right);
+			IValue lval = left.interpret(context);
+			IValue rval = right.interpret(context);
             return lval.Add(context, rval);
         }
 
-		public IValue interpret(Context context, IExpression expression)
-		{
-			IValue value = expression.interpret (context);
-			// need a fully evaluated value (could be contextual)
-			while (value is IExpression)
-				value = ((IExpression)value).interpret (context);
-			return value;	
-		}
     }
 
 }
