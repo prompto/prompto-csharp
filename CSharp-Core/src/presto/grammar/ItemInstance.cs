@@ -37,9 +37,9 @@ namespace presto.grammar {
             return item;
         }
 
-        public void ToDialect(CodeWriter writer)
+		public void ToDialect(CodeWriter writer, IExpression expression)
         {
-			parent.ToDialect (writer);
+			parent.ToDialect (writer, null);
 			writer.append ("[");
 			item.ToDialect (writer);
 			writer.append("]");

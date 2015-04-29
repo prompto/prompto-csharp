@@ -45,10 +45,12 @@ namespace presto.grammar
         {
 			try {
 				resolve(writer.getContext(), false);
-				resolved.ToDialect(writer);
 			} catch(SyntaxError /*e*/) {
-				writer.append(name);
 			}
+			if(resolved!=null)
+				resolved.ToDialect(writer);
+			else
+				writer.append(name);
         }
 
 

@@ -25,8 +25,16 @@ namespace presto.grammar
             return name;
         }
 
-        public void ToDialect(CodeWriter writer)
+		public void ToDialect(CodeWriter writer, IExpression expression)
         {
+			if(expression!=null) try {
+				IType type = expression.check(writer.getContext());
+				INamed actual = writer.getContext().getRegisteredValue<INamed>(name);
+				if(actual==null)
+					writer.getContext().registerValue(new Variable(name, type));
+			} catch(SyntaxError) {
+				// TODO warning
+			}
 			writer.append(name);
         }
 

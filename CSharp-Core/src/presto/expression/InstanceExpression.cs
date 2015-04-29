@@ -58,8 +58,6 @@ namespace presto.expression
             INamed named = context.getRegistered(name);
             if (named == null)
                 throw new SyntaxError("Unknown identifier:" + name);
-            else if (named is presto.runtime.Attribute) // instance member
-                return named.GetType(context);
             else if (named is Variable) // local variable
                 return named.GetType(context);
 			else if(named is LinkedVariable) // local variable

@@ -17,7 +17,7 @@ namespace presto.grammar
         void checkAssignElement(Context context);
         void assign(Context context, IExpression expression);
         IValue interpret(Context context);
-        void ToDialect(CodeWriter writer);
+		void ToDialect(CodeWriter writer, IExpression expression);
 
     }
 

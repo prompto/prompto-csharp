@@ -25,7 +25,7 @@ namespace presto.statement
         override
         public void ToDialect(CodeWriter writer)
         {
-			instance.ToDialect(writer);
+			instance.ToDialect(writer, expression);
 			writer.append(" = ");
 			expression.ToDialect(writer);
         }

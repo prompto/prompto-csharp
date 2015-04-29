@@ -36,8 +36,8 @@ namespace presto.grammar {
             return name;
         }
 
-		public void ToDialect(CodeWriter writer) {
-			parent.ToDialect(writer);
+		public void ToDialect(CodeWriter writer, IExpression expression) {
+			parent.ToDialect(writer, null);
 			writer.append(".");
 			writer.append(name);
 		}

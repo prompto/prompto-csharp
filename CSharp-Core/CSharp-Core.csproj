@@ -290,7 +290,6 @@
     <Compile Include="src\presto\parser\ISection.cs" />
     <Compile Include="src\presto\parser\Location.cs" />
     <Compile Include="src\presto\parser\Section.cs" />
-    <Compile Include="src\presto\runtime\Attribute.cs" />
     <Compile Include="src\presto\value\ConcreteInstance.cs" />
     <Compile Include="src\presto\runtime\Context.cs" />
     <Compile Include="src\presto\runtime\ExpressionComparer.cs" />
