@@ -1,0 +1,44 @@
+// generated: 2015-07-05T23:01:01.292
+using NUnit.Framework;
+using prompto.parser;
+
+namespace prompto.translate.oso
+{
+
+	[TestFixture]
+	public class TestItem : BaseOParserTest
+	{
+
+		[Test]
+		public void testItemDict()
+		{
+			compareResourceOSO("item/itemDict.poc");
+		}
+
+		[Test]
+		public void testItemList()
+		{
+			compareResourceOSO("item/itemList.poc");
+		}
+
+		[Test]
+		public void testItemRange()
+		{
+			compareResourceOSO("item/itemRange.poc");
+		}
+
+		[Test]
+		public void testItemSet()
+		{
+			compareResourceOSO("item/itemSet.poc");
+		}
+
+		[Test]
+		public void testItemText()
+		{
+			compareResourceOSO("item/itemText.poc");
+		}
+
+	}
+}
+

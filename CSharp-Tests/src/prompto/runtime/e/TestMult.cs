@@ -1,0 +1,63 @@
+// generated: 2015-07-05T23:01:01.341
+using NUnit.Framework;
+using prompto.parser;
+using prompto.utils;
+
+namespace prompto.runtime.e
+{
+
+	[TestFixture]
+	public class TestMult : BaseEParserTest
+	{
+
+		[SetUp]
+		public void before()
+		{
+			Out.init();
+		}
+
+		[TearDown]
+		public void after()
+		{
+			Out.restore();
+		}
+
+		[Test]
+		public void testMultCharacter()
+		{
+			CheckOutput("mult/multCharacter.pec");
+		}
+
+		[Test]
+		public void testMultDecimal()
+		{
+			CheckOutput("mult/multDecimal.pec");
+		}
+
+		[Test]
+		public void testMultInteger()
+		{
+			CheckOutput("mult/multInteger.pec");
+		}
+
+		[Test]
+		public void testMultList()
+		{
+			CheckOutput("mult/multList.pec");
+		}
+
+		[Test]
+		public void testMultPeriod()
+		{
+			CheckOutput("mult/multPeriod.pec");
+		}
+
+		[Test]
+		public void testMultText()
+		{
+			CheckOutput("mult/multText.pec");
+		}
+
+	}
+}
+

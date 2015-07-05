@@ -1,0 +1,39 @@
+// generated: 2015-07-05T23:01:01.387
+using NUnit.Framework;
+using prompto.parser;
+using prompto.utils;
+
+namespace prompto.runtime.e
+{
+
+	[TestFixture]
+	public class TestSelf : BaseEParserTest
+	{
+
+		[SetUp]
+		public void before()
+		{
+			Out.init();
+		}
+
+		[TearDown]
+		public void after()
+		{
+			Out.restore();
+		}
+
+		[Test]
+		public void testSelfAsParameter()
+		{
+			CheckOutput("self/selfAsParameter.pec");
+		}
+
+		[Test]
+		public void testSelfMember()
+		{
+			CheckOutput("self/selfMember.pec");
+		}
+
+	}
+}
+

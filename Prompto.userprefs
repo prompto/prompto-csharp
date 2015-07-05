@@ -1,0 +1,37 @@
+﻿<Properties StartupItem="CSharp-Tests/CSharp-Tests.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
+  <MonoDevelop.Ide.Workbench>
+    <Files>
+      <File FileName="CSharp-Core/src/prompto/utils/RuntimePatch.cs" Line="6" Column="7" />
+    </Files>
+    <Pads>
+      <Pad Id="MonoDevelop.NUnit.TestPad">
+        <State name="__root__">
+          <Node name="Prompto" expanded="True">
+            <Node name="CSharp-Tests" expanded="True">
+              <Node name="prompto" expanded="True">
+                <Node name="debug" expanded="True">
+                  <Node name="TestDebugger" expanded="True" />
+                </Node>
+                <Node name="e" expanded="True" />
+                <Node name="p" expanded="True">
+                  <Node name="runtime" expanded="True">
+                    <Node name="TestAdd" expanded="True">
+                      <Node name="testAddInteger" selected="True" />
+                    </Node>
+                  </Node>
+                </Node>
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="/Users/ericvergnaud/Development/prompto/prompto-csharp/CSharp-Tests/src/prompto/debug/TestDebugger.cs" line="195" column="1" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

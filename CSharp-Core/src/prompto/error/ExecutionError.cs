@@ -1,0 +1,39 @@
+using prompto.runtime;
+using System;
+using prompto.grammar;
+using prompto.expression;
+using prompto.value;
+using prompto.literal;
+using prompto.type;
+
+namespace prompto.error {
+
+public abstract class ExecutionError : PrestoError {
+
+	protected ExecutionError() {
+	}
+	
+	protected ExecutionError(String message) :
+		base(message) {
+	}
+
+	public abstract IExpression getExpression(Context context);
+
+	public IValue interpret(Context context, String errorName) {
+			IExpression exp = this.getExpression(context);
+			if(exp==null) {
+				ArgumentAssignmentList args = new ArgumentAssignmentList();
+				args.add(new ArgumentAssignment(new UnresolvedArgument("name"), new TextLiteral(this.GetType().Name)));
+				args.add(new ArgumentAssignment(new UnresolvedArgument("text"), new TextLiteral(this.Message)));
+				exp = new ConstructorExpression(new CategoryType("Error"), false, args);
+			}
+			if(context.getRegisteredValue<INamed>(errorName)==null)
+				context.registerValue(new ErrorVariable(errorName));
+			IValue error = exp.interpret(context);
+			context.setValue(errorName, error);
+			return error;
+		}
+
+}
+
+}
