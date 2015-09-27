@@ -157,7 +157,7 @@ namespace prompto.declaration
 		{
 			writer.append ("define ");
 			writer.append (name);
-			writer.append (" as: test method doing:\n");
+			writer.append (" as test method doing:\n");
 			writer.indent ();
 			statements.ToDialect (writer);
 			writer.dedent ();

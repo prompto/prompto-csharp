@@ -72,10 +72,10 @@ namespace prompto.declaration
 		protected void toEDialect(CodeWriter writer) {
 			writer.append("define ");
 			writer.append(name);
-			writer.append(" as: abstract method ");
+			writer.append(" as abstract method ");
 			arguments.ToDialect(writer);
 			if(returnType!=null && returnType!=VoidType.Instance) {
-				writer.append("returning: ");
+				writer.append("returning ");
 				returnType.ToDialect(writer);
 			}
 		}

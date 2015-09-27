@@ -17,7 +17,7 @@ namespace prompto.e.runtime
         {
 			context = Context.newGlobalContext();
             Assert.IsNull(context.getRegisteredDeclaration<IDeclaration>("id"));
-            DeclarationList stmts = parseString("define id as: Integer attribute");
+            DeclarationList stmts = parseString("define id as Integer attribute");
             Assert.IsNotNull(stmts);
             stmts.register(context);
             IDeclaration actual = context.getRegisteredDeclaration<IDeclaration>("id");
@@ -32,7 +32,7 @@ namespace prompto.e.runtime
         {
 			context = Context.newGlobalContext();
 			Assert.IsNull(context.getRegisteredDeclaration<IDeclaration>("Person"));
-            DeclarationList stmts = parseString("define Person as: category with attributes: id and name");
+            DeclarationList stmts = parseString("define Person as category with attributes id and name");
             Assert.IsNotNull(stmts);
             stmts.register(context);
             IDeclaration actual = context.getRegisteredDeclaration<IDeclaration>("Person");
@@ -46,15 +46,15 @@ namespace prompto.e.runtime
         {
 			context = Context.newGlobalContext();
             Assert.IsNull(context.getRegisteredDeclaration<IDeclaration>("printName"));
-            DeclarationList stmts = parseString("define name as: Text attribute\r\n"
-                    + "define printName as: method receiving: name doing:\r\n"
+            DeclarationList stmts = parseString("define name as Text attribute\r\n"
+                    + "define printName as method receiving name doing:\r\n"
                     + "\tprint with \"name\" + name as value");
             Assert.IsNotNull(stmts);
             stmts.register(context);
             IDeclaration actual = context.getRegisteredDeclaration<IDeclaration>("printName");
             Assert.IsNotNull(actual);
             Assert.IsTrue(actual is MethodDeclarationMap);
-            stmts = parseString("define printName as: method receiving: Person p doing:"
+            stmts = parseString("define printName as method receiving Person p doing:"
                     + "\r\n\tprint with \"person\" + p.name as value");
             Assert.IsNotNull(stmts);
             stmts.register(context);

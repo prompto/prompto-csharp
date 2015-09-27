@@ -94,11 +94,11 @@ namespace prompto.grammar
 				case 0:
 					break;
 				case 1:
-					writer.append(" with attribute: ");
+					writer.append(" with attribute ");
 					attributes.ToDialect(writer, true);
 					break;
 				default:
-					writer.append(" with attribute: ");
+					writer.append(" with attribute ");
 					attributes.ToDialect(writer, true);
 					break;
 				}

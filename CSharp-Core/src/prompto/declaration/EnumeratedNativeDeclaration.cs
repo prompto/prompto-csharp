@@ -105,7 +105,7 @@ namespace prompto.declaration
 		private void toEDialect(CodeWriter writer) {
 			writer.append("define ");
 			writer.append(name);
-			writer.append(" as: enumerated ");
+			writer.append(" as enumerated ");
 			type.getDerivedFrom().ToDialect(writer);
 			writer.append(" with symbols:\n");
 			writer.indent();

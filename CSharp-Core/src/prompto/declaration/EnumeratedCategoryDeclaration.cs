@@ -94,16 +94,16 @@ namespace prompto.declaration
 		protected void toEDialect(CodeWriter writer) {
 			writer.append("define ");
 			writer.append(name);
-			writer.append(" as: enumerated ");
+			writer.append(" as enumerated ");
 			if(derivedFrom!=null)
 				derivedFrom.ToDialect(writer, true);
 			else 
 				writer.append("category");
 			if(attributes!=null && attributes.Count>0) {
 				if(attributes.Count==1)
-					writer.append(" with attribute: ");
+					writer.append(" with attribute ");
 				else
-					writer.append(" with attributes: ");
+					writer.append(" with attributes ");
 				attributes.ToDialect(writer, true);
 				if(symbols!=null && symbols.Count>0)
 					writer.append(", and symbols:\n");

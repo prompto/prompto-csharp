@@ -112,13 +112,13 @@ namespace prompto.declaration
 			bool hasAttributes = attributes != null && attributes.Count > 0;
 			writer.append ("define ");
 			writer.append (name);
-			writer.append (" as: ");
+			writer.append (" as ");
 			categoryTypeToEDialect (writer);
 			if (hasAttributes) {
 				if (attributes.Count == 1)
-					writer.append (" with attribute: ");
+					writer.append (" with attribute ");
 				else
-					writer.append (" with attributes: ");
+					writer.append (" with attributes ");
 				attributes.ToDialect (writer, true);
 			}
 			if (hasMethods) {

@@ -49,7 +49,7 @@ public class ArgumentList : ObjectList<IArgument> {
 
 		private void toEDialect(CodeWriter writer) {
 			IArgument last = this.Count>0 ? this[this.Count-1] : null;
-			writer.append("receiving: ");
+			writer.append("receiving ");
 			foreach(IArgument argument in this) {
 				if(argument==last)
 					break;

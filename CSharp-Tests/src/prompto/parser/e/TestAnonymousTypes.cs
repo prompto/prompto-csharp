@@ -14,13 +14,13 @@ namespace prompto.e.runtime
         public void register()
         {
 			context = Context.newGlobalContext();
-            DeclarationList stmts = parseString("define id as: Integer attribute\r\n" +
-                    "define name as: String attribute\r\n" +
-                    "define other as: String attribute\r\n" +
-                    "define Simple as: category with attribute: name\r\n" +
-                    "define Root as: category with attribute: id\r\n" +
-                    "define DerivedWithOther as: Root with attribute: other\r\n" +
-                    "define DerivedWithName as: Root with attribute: name\r\n");
+            DeclarationList stmts = parseString("define id as Integer attribute\r\n" +
+                    "define name as String attribute\r\n" +
+                    "define other as String attribute\r\n" +
+                    "define Simple as category with attribute name\r\n" +
+                    "define Root as category with attribute id\r\n" +
+                    "define DerivedWithOther as Root with attribute other\r\n" +
+                    "define DerivedWithName as Root with attribute name\r\n");
             stmts.register(context);
         }
 
@@ -49,7 +49,7 @@ namespace prompto.e.runtime
         [Test]
         public void testAnonymousAnyTypeWithAttribute()
         {
-            // any x with attribute: name
+            // any x with attribute name
             IdentifierList list = new IdentifierList("name");
             IArgument argument = new CategoryArgument(AnyType.Instance, "x", list);
             argument.register(context);
@@ -94,7 +94,7 @@ namespace prompto.e.runtime
         [Test]
         public void testAnonymousCategoryTypeWithAttribute()
         {
-            // Root x with attribute: name
+            // Root x with attribute name
             IdentifierList list = new IdentifierList("name");
             IArgument argument = new CategoryArgument(new CategoryType("Root"), "test", list);
             argument.register(context);

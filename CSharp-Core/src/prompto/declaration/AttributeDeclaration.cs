@@ -46,7 +46,7 @@ namespace prompto.declaration
 			case Dialect.E:
 				writer.append("define ");
 				writer.append(GetName());
-				writer.append(" as: ");
+				writer.append(" as ");
 				type.ToDialect(writer);
 				writer.append(" attribute");
 				if(constraint!=null)

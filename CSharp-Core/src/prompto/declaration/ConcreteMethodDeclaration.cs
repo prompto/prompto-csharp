@@ -59,10 +59,10 @@ namespace prompto.declaration
 		protected virtual void toEDialect(CodeWriter writer) {
 			writer.append("define ");
 			writer.append(name);
-			writer.append(" as: method ");
+			writer.append(" as method ");
 			arguments.ToDialect(writer);
 			if(returnType!=null && returnType!=VoidType.Instance) {
-				writer.append("returning: ");
+				writer.append("returning ");
 				returnType.ToDialect(writer);
 				writer.append(" ");
 			}

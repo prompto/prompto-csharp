@@ -50,7 +50,7 @@ namespace prompto.parser
         [Test]
         public void testAttribute()
         {
-            String statement = "define id as : Integer attribute";
+            String statement = "define id as Integer attribute";
             ETestParser parser = new ETestParser(statement, false);
             AttributeDeclaration ad = parser.parse_attribute_declaration();
             Assert.IsNotNull(ad);
@@ -61,7 +61,7 @@ namespace prompto.parser
         [Test]
         public void testArrayAttribute()
         {
-            String statement = "define id as : Integer[] attribute";
+            String statement = "define id as Integer[] attribute";
             ETestParser parser = new ETestParser(statement, false);
             AttributeDeclaration ad = parser.parse_attribute_declaration();
             Assert.IsNotNull(ad);
@@ -72,7 +72,7 @@ namespace prompto.parser
         [Test]
         public void testCategory1Attribute()
         {
-            String statement = "define Person as: category with attribute: id ";
+            String statement = "define Person as category with attribute id ";
             ETestParser parser = new ETestParser(statement, false);
             CategoryDeclaration cd = parser.parse_category_declaration();
             Assert.IsNotNull(cd);
@@ -85,7 +85,7 @@ namespace prompto.parser
         [Test]
         public void testCategory2Attributes()
         {
-            String statement = "define Person as: category with attributes: id, name";
+            String statement = "define Person as category with attributes id, name";
             ETestParser parser = new ETestParser(statement, false);
             CategoryDeclaration cd = parser.parse_category_declaration();
             Assert.IsNotNull(cd);
@@ -99,7 +99,7 @@ namespace prompto.parser
         [Test]
         public void testCategory1Derived1Attribute()
         {
-            String statement = "define Employee as: Person with attribute: company";
+            String statement = "define Employee as Person with attribute company";
             ETestParser parser = new ETestParser(statement, false);
             CategoryDeclaration cd = parser.parse_category_declaration();
             Assert.IsNotNull(cd);
@@ -113,7 +113,7 @@ namespace prompto.parser
         [Test]
         public void testCategory2DerivedNoAttribute()
         {
-            String statement = "define Entrepreneur as: Person and Company";
+            String statement = "define Entrepreneur as Person and Company";
             ETestParser parser = new ETestParser(statement, false);
             CategoryDeclaration cd = parser.parse_category_declaration();
             Assert.IsNotNull(cd);
@@ -246,7 +246,7 @@ namespace prompto.parser
         [Test]
         public void testMethod1Parameter1Statement()
         {
-            String statement = "define printName as: method receiving: Person p doing:\r\n"
+            String statement = "define printName as method receiving Person p doing:\r\n"
                     + "\tprint with \"person\" + p.name as value";
             ETestParser parser = new ETestParser(statement, false);
             ConcreteMethodDeclaration ad = parser.parse_concrete_method_declaration();
@@ -262,7 +262,7 @@ namespace prompto.parser
         [Test]
         public void testMethod1Extended1Statement()
         {
-            String statement = "define printName as: method receiving: Object o with attribute: name doing:\r\n"
+            String statement = "define printName as method receiving Object o with attribute name doing:\r\n"
                     + "\tprint with \"object\" + o.name as value";
             ETestParser parser = new ETestParser(statement, false);
             ConcreteMethodDeclaration ad = parser.parse_concrete_method_declaration();
@@ -279,7 +279,7 @@ namespace prompto.parser
         [Test]
         public void testMethod1Array1Statement()
         {
-            String statement = "define printName as: method receiving: Option[] options doing:\r\n"
+            String statement = "define printName as method receiving Option[] options doing:\r\n"
                     + "\tprint with \"array\" + args as value";
             ETestParser parser = new ETestParser(statement, false);
             ConcreteMethodDeclaration ad = parser.parse_concrete_method_declaration();
@@ -392,7 +392,7 @@ namespace prompto.parser
         [Test]
         public void testNativeMethod()
         {
-            String statement = "define print as: native method receiving: String value doing:\r\n"
+            String statement = "define print as native method receiving String value doing:\r\n"
                     + "\tJava: System.str.println(value); \r\n"
                     + "\tC#: Console.println(value); ";
 

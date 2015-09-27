@@ -11,38 +11,37 @@ namespace prompto.parser {
         [Test]
         public void testIntegerAttribute()
         {
-            String actual = parseTokenNamesFromString("define id as: Integer attribute");
+            String actual = parseTokenNamesFromString("define id as Integer attribute");
             String expected = tokenNamesAsString(new int[] { ELexer.DEFINE, ELexer.VARIABLE_IDENTIFIER, 
-				ELexer.AS, ELexer.COLON, ELexer.INTEGER, ELexer.ATTRIBUTE, ELexer.LF });
+				ELexer.AS,  ELexer.INTEGER, ELexer.ATTRIBUTE, ELexer.LF });
             Assert.AreEqual(expected, actual);
         }
 
         [Test]
         public void testStringAttribute()
         {
-            String actual = parseTokenNamesFromString("define name as: Text attribute");
+            String actual = parseTokenNamesFromString("define name as Text attribute");
             String expected = tokenNamesAsString(new int[] { ELexer.DEFINE, ELexer.VARIABLE_IDENTIFIER, 
-				ELexer.AS, ELexer.COLON, ELexer.TEXT, ELexer.ATTRIBUTE, ELexer.LF });
+				ELexer.AS, ELexer.TEXT, ELexer.ATTRIBUTE, ELexer.LF });
             Assert.AreEqual(expected, actual);
         }
 
         [Test]
         public void testPersonCategory()
         {
-            String actual = parseTokenNamesFromString("define Person as: category with attributes: id, name");
+            String actual = parseTokenNamesFromString("define Person as category with attributes id, name");
             String expected = tokenNamesAsString(new int[] { ELexer.DEFINE, ELexer.TYPE_IDENTIFIER, 
-				ELexer.AS, ELexer.COLON, ELexer.CATEGORY, ELexer.WITH, ELexer.ATTRIBUTES,ELexer.COLON,
-				ELexer.VARIABLE_IDENTIFIER, ELexer.COMMA, ELexer.VARIABLE_IDENTIFIER, ELexer.LF });
+				ELexer.AS, ELexer.CATEGORY, ELexer.WITH, ELexer.ATTRIBUTES, ELexer.VARIABLE_IDENTIFIER, 
+				ELexer.COMMA, ELexer.VARIABLE_IDENTIFIER, ELexer.LF });
             Assert.AreEqual(expected, actual);
         }
 
         [Test]
         public void testEmployeeCategoryExtendsPerson()
         {
-            String actual = parseTokenNamesFromString("define Employee as: Person with attribute: company");
-            String expected = tokenNamesAsString(new int[] { ELexer.DEFINE, ELexer.TYPE_IDENTIFIER, 
-				ELexer.AS, ELexer.COLON, ELexer.TYPE_IDENTIFIER, ELexer.WITH, ELexer.ATTRIBUTE, 
-                ELexer.COLON, ELexer.VARIABLE_IDENTIFIER, ELexer.LF });
+            String actual = parseTokenNamesFromString("define Employee as Person with attribute company");
+            String expected = tokenNamesAsString(new int[] { ELexer.DEFINE, ELexer.TYPE_IDENTIFIER, ELexer.AS, 
+				ELexer.TYPE_IDENTIFIER, ELexer.WITH, ELexer.ATTRIBUTE, ELexer.VARIABLE_IDENTIFIER, ELexer.LF });
             Assert.AreEqual(expected, actual);
         }
 
