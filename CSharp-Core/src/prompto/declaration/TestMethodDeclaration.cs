@@ -161,13 +161,13 @@ namespace prompto.declaration
 			writer.indent ();
 			statements.ToDialect (writer);
 			writer.dedent ();
-			writer.append ("and expecting:");
+			writer.append ("and expecting");
 			if (error != null) {
 				writer.append (" ");
 				error.ToDialect (writer);
 				writer.append ("\n");
 			} else {
-				writer.append ("\n");
+				writer.append (":\n");
 				writer.indent ();
 				foreach (IExpression exp in assertions) {
 					exp.ToDialect (writer);
