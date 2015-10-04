@@ -219,11 +219,19 @@ namespace prompto.runtime
 		}
 
 		public bool hasTests() {
-			return tests.Count>0;
+			return tests.Count > 0;
 		}
 
 		public Dictionary<String,TestMethodDeclaration>.ValueCollection getTests() {
 			return tests.Values;
+		}
+
+		public TestMethodDeclaration getTest(String testName) 
+		{
+			TestMethodDeclaration test;
+			if (!tests.TryGetValue (testName, out test))
+				return null;
+			return test;
 		}
 
 		public T getRegisteredValue<T>(String name) where T : INamed

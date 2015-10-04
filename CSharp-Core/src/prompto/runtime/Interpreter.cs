@@ -21,7 +21,7 @@ namespace prompto.runtime {
         {
         }
 
-		public static void interpretTests(Context context) {
+		public static void InterpretTests(Context context) {
 			foreach(TestMethodDeclaration test in context.getTests()) {
 				Context local = context.newLocalContext();
 				test.interpret(local);
@@ -29,12 +29,18 @@ namespace prompto.runtime {
 
 		}
 
-        public static void interpretMainNoArgs(Context context)
+		public static void InterpretTest(Context context, String testName) {
+			TestMethodDeclaration test = context.getTest(testName);
+			Context local = context.newLocalContext();
+			test.interpret(local);
+		}
+
+        public static void InterpretMainNoArgs(Context context)
         {
-            interpret(context, "main", "");
+            Interpret(context, "main", "");
         }
 
-        public static void interpret(Context context, String methodName, String cmdLineArgs)
+        public static void Interpret(Context context, String methodName, String cmdLineArgs)
         {
             try
             {

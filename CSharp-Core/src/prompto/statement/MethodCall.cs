@@ -137,7 +137,7 @@ namespace prompto.statement
                 IExpression expression = assignment.resolve(local, declaration, true);
 				IArgument arg = assignment.getArgument ();
                 IValue value = arg.checkValue(context, expression);
-				if (value != null && value.IsMutable () && !arg.isMutable ())
+				if (value != null && arg.isMutable () && !value.IsMutable ())
 					throw new NotMutableError ();
 				local.setValue(assignment.GetName(), value);
             }

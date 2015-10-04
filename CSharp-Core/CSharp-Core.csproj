@@ -423,7 +423,7 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Antlr4.Runtime">
-      <HintPath>..\..\..\antlr4\antlr\antlr4-csharp\runtime\CSharp\Antlr4.Runtime\bin\net35\Release\Antlr4.Runtime.dll</HintPath>
+      <HintPath>..\..\..\antlr4\ericvergnaud\antlr4\runtime\CSharp\runtime\CSharp\Antlr4.Runtime\bin\net35\Release\Antlr4.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

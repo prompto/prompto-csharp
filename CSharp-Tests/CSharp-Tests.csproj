@@ -42,7 +42,7 @@
       <HintPath>..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="Antlr4.Runtime">
-      <HintPath>..\..\..\antlr4\antlr\antlr4-csharp\runtime\CSharp\Antlr4.Runtime\bin\net35\Release\Antlr4.Runtime.dll</HintPath>
+      <HintPath>..\..\..\antlr4\ericvergnaud\antlr4\runtime\CSharp\runtime\CSharp\Antlr4.Runtime\bin\net35\Release\Antlr4.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -119,7 +119,6 @@
     <Compile Include="src\prompto\runtime\o\TestSub.cs" />
     <Compile Include="src\prompto\runtime\o\TestTuples.cs" />
     <Compile Include="src\prompto\parser\p\BasePLexerTest.cs" />
-    <Compile Include="src\prompto\runtime\utils\BaseParserTest.cs" />
     <Compile Include="src\prompto\parser\e\TestRuntime.cs" />
     <Compile Include="src\prompto\parser\e\TestAnonymousTypes.cs" />
     <Compile Include="src\prompto\parser\e\TestDeclaredTypes.cs" />
@@ -314,6 +313,10 @@
     <Compile Include="src\prompto\translate\ese\TestMutability.cs" />
     <Compile Include="src\prompto\translate\oeo\TestMutability.cs" />
     <Compile Include="src\prompto\translate\oso\TestMutability.cs" />
+    <Compile Include="src\prompto\library\e\TestConsole.cs" />
+    <Compile Include="src\prompto\library\e\TestCore.cs" />
+    <Compile Include="src\prompto\library\e\TestInternet.cs" />
+    <Compile Include="src\prompto\parser\BaseParserTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
@@ -339,11 +342,16 @@
     <Folder Include="src\prompto\runtime\s\" />
     <Folder Include="src\prompto\translate\ese\" />
     <Folder Include="src\prompto\translate\oso\" />
+    <Folder Include="src\prompto\library\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CSharp-Core\CSharp-Core.csproj">
       <Project>{066EA73C-B3DD-41CA-9AD7-81A1D7D3A6DA}</Project>
       <Name>CSharp-Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CSharp-Runtime\CSharp-Runtime.csproj">
+      <Project>{63EE2F5C-DD86-4245-98ED-8BDE42236548}</Project>
+      <Name>CSharp-Runtime</Name>
     </ProjectReference>
   </ItemGroup>
 </Project>

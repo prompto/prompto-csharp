@@ -37,7 +37,7 @@ namespace prompto.debug
 
         void interpret()
         {
-            Interpreter.interpretMainNoArgs(debugged);
+            Interpreter.InterpretMainNoArgs(debugged);
         }
 
         protected void debugResource(String resourceName)

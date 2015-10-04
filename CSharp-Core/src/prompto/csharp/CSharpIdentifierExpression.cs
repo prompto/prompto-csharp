@@ -5,6 +5,7 @@ using System.Reflection;
 using prompto.type;
 using prompto.grammar;
 using prompto.utils;
+using System.Collections.Generic;
 
 namespace prompto.csharp
 {
@@ -103,26 +104,49 @@ namespace prompto.csharp
             }
         }
 
-        public Type interpret_type()
+		public Type interpret_type()
         {
             String fullName = this.ToString();
             Type klass = Type.GetType(fullName, false);
             if (klass != null)
                 return klass;
-            klass = Assembly.GetExecutingAssembly().GetType(fullName, false);
-            if (klass != null)
-                return klass;
-            klass = Assembly.GetCallingAssembly().GetType(fullName, false);
-            if (klass != null)
-                return klass;
-            foreach (Assembly asm in AppDomain.CurrentDomain.GetAssemblies())
-            {
-                klass = asm.GetType(fullName, false);
-                if (klass != null)
-                    return klass;
-            }
+			HashSet<Assembly> assemblies = GetAllAssemblies ();
+			foreach (Assembly asm in assemblies) {
+				klass = asm.GetType (fullName, false);
+				if (klass != null)
+					return klass;
+			}
             return null;
          }
+
+		static HashSet<Assembly> allAssemblies = null;
+
+		HashSet<Assembly> GetAllAssemblies() 
+		{
+			if (allAssemblies == null) {
+				allAssemblies = new HashSet<Assembly> ();
+				AddAll (Assembly.GetEntryAssembly ());
+				AddAll (Assembly.GetCallingAssembly ());
+				AddAll (Assembly.GetExecutingAssembly ());
+				foreach (Assembly asm in AppDomain.CurrentDomain.GetAssemblies())
+					AddAll (asm);
+			}
+			return allAssemblies;
+		}
+
+		void AddAll(Assembly asm) 
+		{
+			if(asm==null || allAssemblies.Contains(asm))
+				return;
+			allAssemblies.Add(asm);
+			foreach (AssemblyName name in asm.GetReferencedAssemblies()) {
+				try {
+					AddAll (Assembly.Load (name));
+				} catch (Exception) {
+					// ok
+				}
+			}
+		}
 
         Object interpret_child(Context context)
         {

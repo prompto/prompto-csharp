@@ -5,6 +5,7 @@ using System.IO;
 using NUnit.Framework;
 using prompto.utils;
 using System.Collections.Generic;
+using prompto.declaration;
 
 namespace prompto.parser
 {
@@ -14,7 +15,48 @@ namespace prompto.parser
 
 		static char SEP = System.IO.Path.DirectorySeparatorChar;
 
+		protected Context coreContext;
 		protected Context context;
+
+		public void LoadDependency(String libraryName)
+		{
+			if(coreContext==null)
+				coreContext = Context.newGlobalContext();
+			List<String> files = ListLibraryFiles(libraryName);
+			foreach(String file in files) {
+				String resourceName = libraryName + "/" + Path.GetFileName(file);
+				DeclarationList stmts = parseResource(resourceName);
+				stmts.register(coreContext);
+			}
+		}
+
+		public List<String> ListLibraryFiles(String libraryName) {
+			String resourceDir = Path.GetDirectoryName (
+									Path.GetDirectoryName (
+									Path.GetDirectoryName (
+									Path.GetDirectoryName (
+									Directory.GetCurrentDirectory ()))));
+			String libsPath = resourceDir + SEP + "prompto-libraries" + SEP;
+			List<String> files = new List<String> ();
+			foreach(String file in Directory.GetFiles(libsPath + libraryName)) {
+				if(file.EndsWith(".pec") || file.EndsWith(".poc") || file.EndsWith(".psc"))
+					files.Add(file);
+			}
+			return files;
+		}
+
+		protected void CheckTests(String resource) {
+			DeclarationList stmts = parseResource(resource);
+			foreach(IDeclaration decl in stmts) {
+				if(!(decl is TestMethodDeclaration))
+					continue;
+				Out.reset();
+				Interpreter.InterpretTest(coreContext, decl.GetName());
+				String expected = decl.GetName() + " test successful";
+				String read = Out.read();
+				Assert.AreEqual(expected, read);
+			}
+		}
 
 		public DeclarationList parseEString (String code)
 		{
@@ -77,9 +119,12 @@ namespace prompto.parser
 
 		private Stream OpenResource (String resourceName)
 		{
+			resourceName = resourceName.Replace ('/', SEP);
 			String resourceDir = Path.GetDirectoryName (Path.GetDirectoryName (
 				                     Path.GetDirectoryName (Path.GetDirectoryName (Directory.GetCurrentDirectory ()))));
 			String fullPath = resourceDir + SEP + "prompto-tests" + SEP + "Tests" + SEP + "resources" + SEP + resourceName;
+			if(!File.Exists (fullPath))
+				fullPath = resourceDir + SEP + "prompto-libraries" + SEP + resourceName;
 			Assert.IsTrue (File.Exists (fullPath), "resource not found:" + fullPath);
 			return new FileStream (fullPath, FileMode.Open, FileAccess.Read);
 		}
@@ -96,15 +141,15 @@ namespace prompto.parser
 		{
 			loadResource (resourceName);
 			if(context.hasTests())
-				Interpreter.interpretTests(context);
+				Interpreter.InterpretTests(context);
 			else
-				Interpreter.interpretMainNoArgs(context);
+				Interpreter.InterpretMainNoArgs(context);
 		}
 
 		protected void runResource (String resourceName, String methodName, String cmdLineArgs)
 		{
 			loadResource (resourceName);
-			Interpreter.interpret (context, methodName, cmdLineArgs);
+			Interpreter.Interpret (context, methodName, cmdLineArgs);
 		}
 
 		protected void CheckOutput (String resourceName)
