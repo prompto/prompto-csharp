@@ -158,6 +158,18 @@ namespace prompto.runtime
 			return getRegisteredDeclaration<AttributeDeclaration> (name);
 		}
 
+		public List<AttributeDeclaration> getAllAttributes()
+		{
+			if (globals != this)
+				return globals.getAllAttributes ();
+			List<AttributeDeclaration> list = new List<AttributeDeclaration> ();
+			foreach (IDeclaration decl in declarations.Values) {
+				if (decl is AttributeDeclaration)
+					list.Add ((AttributeDeclaration)decl);
+			}
+			return list;
+		}
+
         public INamed getRegistered(String name)
         {
             // resolve upwards, since local names override global ones

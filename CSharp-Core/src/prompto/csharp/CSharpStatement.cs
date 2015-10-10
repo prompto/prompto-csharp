@@ -24,7 +24,7 @@ namespace prompto.csharp
 		{
 			IType type = expression.check(context);
 			if (type is CSharpClassType)
-				type = ((CSharpClassType)type).ConvertCSharpTypeToPrestoType(context, returnType);
+				type = ((CSharpClassType)type).ConvertCSharpTypeToPromptoType(context, returnType);
 			return isReturn ? type : VoidType.Instance;
 		}
 
@@ -36,7 +36,7 @@ namespace prompto.csharp
 			else {	
 				IType type = expression.check(context);
 				if (type is CSharpClassType)
-					return ((CSharpClassType)type).ConvertCSharpValueToPrestoValue(context, result, returnType);
+					return ((CSharpClassType)type).ConvertCSharpValueToPromptoValue(context, result, returnType);
 				else
 					// TODO warning or exception?
 					return VoidResult.Instance;

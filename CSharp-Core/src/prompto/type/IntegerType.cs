@@ -116,7 +116,7 @@ namespace prompto.type
         {
             if (other is IntegerType)
                 return new RangeType(this);
-            return base.checkCompare(context, other);
+            return base.checkRange(context, other);
         }
 
         override
@@ -134,7 +134,7 @@ namespace prompto.type
         }
 
         override
-         public IValue ConvertCSharpValueToPrestoValue(Object value)
+         public IValue ConvertCSharpValueToPromptoValue(Object value)
         {
             if (value is Int16)
                 return new Integer((Int16)value);

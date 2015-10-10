@@ -16,26 +16,26 @@ namespace prompto.statement
     {
 
         String errorName;
-        StatementList instructions;
-        StatementList alwaysInstructions;
+		StatementList statements;
+		StatementList alwaysStatements;
 
-        public SwitchErrorStatement(String errorName, StatementList instructions)
+		public SwitchErrorStatement(String errorName, StatementList statements)
         {
             this.errorName = errorName;
-            this.instructions = instructions;
+			this.statements = statements;
         }
 
-        public SwitchErrorStatement(String errorName, StatementList instructions, SwitchCaseList handlers, StatementList anyStmts, StatementList finalStmts)
+		public SwitchErrorStatement(String errorName, StatementList statements, SwitchCaseList handlers, StatementList anyStmts, StatementList finalStmts)
             : base(handlers, anyStmts)
         {
             this.errorName = errorName;
-            this.instructions = instructions;
-            this.alwaysInstructions = finalStmts;
+			this.statements = statements;
+			this.alwaysStatements = finalStmts;
         }
 
         public void setAlwaysInstructions(StatementList list)
         {
-            alwaysInstructions = list;
+			alwaysStatements = list;
         }
 
 		override
@@ -44,7 +44,7 @@ namespace prompto.statement
 			writer.append(errorName);
 			writer.append(") {\n");
 			writer.indent();
-			instructions.ToDialect(writer);
+			statements.ToDialect(writer);
 			writer.dedent();
 			writer.append("} ");
 			foreach(SwitchCase sc in switchCases)
@@ -56,10 +56,10 @@ namespace prompto.statement
 				writer.dedent();
 				writer.append("}");
 			}
-			if(alwaysInstructions!=null) {
+			if(alwaysStatements!=null) {
 				writer.append("finally {\n");
 				writer.indent();
-				alwaysInstructions.ToDialect(writer);
+				alwaysStatements.ToDialect(writer);
 				writer.dedent();
 				writer.append("}");
 			}
@@ -72,7 +72,7 @@ namespace prompto.statement
 			writer.append(errorName);
 			writer.append(":\n");
 			writer.indent();
-			instructions.ToDialect(writer);
+			statements.ToDialect(writer);
 			writer.dedent();
 			foreach(SwitchCase sc in switchCases)
 				sc.catchToPDialect(writer);
@@ -82,10 +82,10 @@ namespace prompto.statement
 				defaultCase.ToDialect(writer);
 				writer.dedent();
 			}
-			if(alwaysInstructions!=null) {
+			if(alwaysStatements!=null) {
 				writer.append("finally:\n");
 				writer.indent();
-				alwaysInstructions.ToDialect(writer);
+				alwaysStatements.ToDialect(writer);
 				writer.dedent();
 			}
 			writer.newLine();
@@ -97,7 +97,7 @@ namespace prompto.statement
 			writer.append(errorName);
 			writer.append(" doing:\n");
 			writer.indent();
-			instructions.ToDialect(writer);
+			statements.ToDialect(writer);
 			writer.dedent();
 			foreach(SwitchCase sc in switchCases)
 				sc.catchToEDialect(writer);
@@ -107,10 +107,10 @@ namespace prompto.statement
 				defaultCase.ToDialect(writer);
 				writer.dedent();
 			}
-			if(alwaysInstructions!=null) {
+			if(alwaysStatements!=null) {
 				writer.append("always:\n");
 				writer.indent();
-				alwaysInstructions.ToDialect(writer);
+				alwaysStatements.ToDialect(writer);
 				writer.dedent();
 			}
 		}
@@ -131,15 +131,15 @@ namespace prompto.statement
         override
         protected void collectReturnTypes(Context context, TypeMap types)
         {
-            IType type = instructions.check(context);
+            IType type = statements.check(context, null);
             if (type != VoidType.Instance)
 				types[type.GetName()] = type;
             Context local = context.newLocalContext();
             local.registerValue(new ErrorVariable(errorName));
             base.collectReturnTypes(local, types);
-            if (alwaysInstructions != null)
+			if (alwaysStatements != null)
             {
-                type = alwaysInstructions.check(context);
+				type = alwaysStatements.check(context, null);
                 if (type != VoidType.Instance)
 					types[type.GetName()] = type;
             }
@@ -151,7 +151,7 @@ namespace prompto.statement
 			IValue result = null;
             try
             {
-                result = instructions.interpret(context);
+                result = statements.interpret(context);
             }
             catch (ExecutionError e)
             {
@@ -160,8 +160,8 @@ namespace prompto.statement
             }
             finally
             {
-                if (alwaysInstructions != null)
-                    alwaysInstructions.interpret(context);
+				if (alwaysStatements != null)
+					alwaysStatements.interpret(context);
             }
             return result;
         }

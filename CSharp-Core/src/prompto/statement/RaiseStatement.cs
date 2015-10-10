@@ -60,7 +60,7 @@ namespace prompto.statement
             IType type = expression.check(context);
             if (!type.isAssignableTo(context, new CategoryType("Error")))
 				throw new SyntaxError(type.GetName() + " does not extend Error");
-            return type;
+			return VoidType.Instance;
         }
 
         override

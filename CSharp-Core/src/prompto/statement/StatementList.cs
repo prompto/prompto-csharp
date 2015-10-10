@@ -30,16 +30,32 @@ namespace prompto.statement
             this.Add(statement);
         }
         
-        public IType check(Context context)
+		public IType check(Context context, IType returnType)
         {
-		TypeMap types = new TypeMap();
-		foreach(IStatement statement in this) {
-			IType type = statement.check(context);
-			if(type!=VoidType.Instance)
-					types[type.GetName()] = type;
+			IType type;
+			if(returnType==VoidType.Instance) {
+				foreach(IStatement statement in this) {
+					type = statement.check(context);
+					if (type != VoidType.Instance)
+						throw new SyntaxError ("Illegal return"); // context.getProblemListener().reportIllegalReturn(statement);
+				}
+				return returnType;
+			} else {
+				TypeMap types = new TypeMap();
+				if(returnType!=null)
+					types[returnType.GetName()] = returnType;
+				foreach(IStatement statement in this) {
+					type = statement.check(context);
+					if(type!=VoidType.Instance)
+						types[type.GetName()] = type;
+				}
+				type = types.inferType(context);
+				if(returnType!=null)
+					return returnType;
+				else
+					return type;
+			}
 		}
-		return types.inferType(context);
-	}
 
 		public IValue interpret(Context context)
         {

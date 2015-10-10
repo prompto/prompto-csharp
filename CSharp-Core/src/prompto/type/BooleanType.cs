@@ -46,7 +46,7 @@ namespace prompto.type
         }
 
         override
-        public IValue ConvertCSharpValueToPrestoValue(Object value)
+        public IValue ConvertCSharpValueToPromptoValue(Object value)
         {
             if (value is bool)
                 return Boolean.ValueOf((bool)value);

@@ -13,12 +13,12 @@ namespace prompto.statement
     {
 
         AssignVariableStatement resource;
-        StatementList instructions;
+		StatementList statements;
 
-        public WithResourceStatement(AssignVariableStatement resource, StatementList instructions)
+		public WithResourceStatement(AssignVariableStatement resource, StatementList statements)
         {
             this.resource = resource;
-            this.instructions = instructions;
+			this.statements = statements;
         }
 
         override
@@ -42,7 +42,7 @@ namespace prompto.statement
 			resource.ToDialect(writer);
 			writer.append(", do:\n");
 			writer.indent();
-			instructions.ToDialect(writer);
+			statements.ToDialect(writer);
 			writer.dedent();
 		}
 
@@ -50,12 +50,12 @@ namespace prompto.statement
 			writer.append("with (");
 			resource.ToDialect(writer);
 			writer.append(")");
-			bool oneLine = instructions.Count==1 && (instructions[0] is SimpleStatement);
+			bool oneLine = statements.Count==1 && (statements[0] is SimpleStatement);
 			if(!oneLine)
 				writer.append(" {");
 			writer.newLine();
 			writer.indent();
-			instructions.ToDialect(writer);
+			statements.ToDialect(writer);
 			writer.dedent();
 			if(!oneLine) {
 				writer.append("}");
@@ -68,7 +68,7 @@ namespace prompto.statement
 			resource.ToDialect(writer);
 			writer.append(":\n");
 			writer.indent();
-			instructions.ToDialect(writer);
+			statements.ToDialect(writer);
 			writer.dedent();
 		}
 
@@ -77,7 +77,7 @@ namespace prompto.statement
         {
             context = context.newResourceContext();
             resource.checkResource(context);
-            return instructions.check(context);
+            return statements.check(context, null);
         }
 
         override
@@ -87,7 +87,7 @@ namespace prompto.statement
             try
             {
                 resource.interpret(context);
-                return instructions.interpret(context);
+                return statements.interpret(context);
             }
             finally
             {

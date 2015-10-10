@@ -48,7 +48,7 @@ namespace prompto.statement
             context.registerValue(new Variable(itemName, elemType));
             if (v2 != null)
                 context.registerValue(new Variable(v1, IntegerType.Instance));
-            return instructions.check(child);
+			return instructions.check(child, null);
         }
 
         override

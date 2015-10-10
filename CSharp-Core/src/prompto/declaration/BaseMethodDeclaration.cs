@@ -30,7 +30,7 @@ namespace prompto.declaration
             : base(name)
         {
             this.arguments = arguments != null ? arguments : new ArgumentList();
-            this.returnType = returnType != null ? returnType : VoidType.Instance;
+            this.returnType = returnType;
         }
 
 		public void setMemberOf(ConcreteCategoryDeclaration declaration) {

@@ -161,7 +161,7 @@ namespace prompto.type
 
         public abstract Type ToCSharpType();
 
-        public virtual IValue ConvertCSharpValueToPrestoValue(Object value)
+        public virtual IValue ConvertCSharpValueToPromptoValue(Object value)
         {
             return (IValue)value; // TODO for now
         }

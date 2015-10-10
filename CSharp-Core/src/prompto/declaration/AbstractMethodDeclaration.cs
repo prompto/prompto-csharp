@@ -15,8 +15,9 @@ namespace prompto.declaration
 
    
         public AbstractMethodDeclaration(String name, ArgumentList arguments, IType returnType)
-			: base(name, arguments, returnType)
+			: base(name, arguments)
         {
+			this.returnType = returnType!=null ? returnType : VoidType.Instance;
         }
 
         

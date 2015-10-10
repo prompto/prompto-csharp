@@ -27,7 +27,7 @@ namespace prompto.grammar
 
         public IType checkReturnType(Context context)
         {
-			return statements.check(context);
+			return statements.check(context, null);
         }
 
         public abstract bool matches(Context context, Object value);

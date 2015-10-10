@@ -317,6 +317,7 @@
     <Compile Include="src\prompto\library\e\TestCore.cs" />
     <Compile Include="src\prompto\library\e\TestInternet.cs" />
     <Compile Include="src\prompto\parser\BaseParserTest.cs" />
+    <Compile Include="src\prompto\csharp\TestCSharpClassType.cs" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
@@ -343,6 +344,7 @@
     <Folder Include="src\prompto\translate\ese\" />
     <Folder Include="src\prompto\translate\oso\" />
     <Folder Include="src\prompto\library\" />
+    <Folder Include="src\prompto\csharp\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CSharp-Core\CSharp-Core.csproj">

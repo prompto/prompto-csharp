@@ -61,7 +61,7 @@ namespace prompto.type
 
 		Type ToCSharpType ();
 
-		IValue ConvertCSharpValueToPrestoValue (Object value);
+		IValue ConvertCSharpValueToPromptoValue (Object value);
 
 
 	}

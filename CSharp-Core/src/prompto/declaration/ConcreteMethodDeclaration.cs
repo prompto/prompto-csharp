@@ -138,7 +138,7 @@ namespace prompto.declaration
             }
             if (arguments != null)
                 arguments.check(context);
-            return statements.check(context);
+			return statements.check(context, returnType);
         }
 
         public IType checkChild(Context context)
@@ -147,7 +147,7 @@ namespace prompto.declaration
                 arguments.check(context);
             Context child = context.newChildContext();
             registerArguments(child);
-            return statements.check(child);
+			return statements.check(child, returnType);
         }
 
         override

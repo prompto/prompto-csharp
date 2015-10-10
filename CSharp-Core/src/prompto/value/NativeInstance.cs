@@ -112,7 +112,7 @@ namespace prompto.value
 			} else {
 	            Object value = getPropertyOrField(attrName);
 	            CSharpClassType ct = new CSharpClassType(value.GetType());
-	            return ct.ConvertCSharpValueToPrestoValue(context, value, null);
+	            return ct.ConvertCSharpValueToPromptoValue(context, value, null);
 			}
         }
 

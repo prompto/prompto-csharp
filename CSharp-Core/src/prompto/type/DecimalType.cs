@@ -110,7 +110,7 @@ namespace prompto.type
         }
 
         override
-        public IValue ConvertCSharpValueToPrestoValue(Object value)
+        public IValue ConvertCSharpValueToPromptoValue(Object value)
         {
             if (value is float)
                 return new Decimal((float)value);

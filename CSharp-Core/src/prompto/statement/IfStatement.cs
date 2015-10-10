@@ -197,7 +197,7 @@ namespace prompto.statement
             if (cond != BooleanType.Instance)
                 throw new SyntaxError("Expected a bool condition!");
 			context = downCast(context, false);
-			return instructions.check(context);
+			return instructions.check(context, null);
         }
 
         override

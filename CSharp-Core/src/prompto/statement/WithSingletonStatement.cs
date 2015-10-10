@@ -11,19 +11,19 @@ namespace prompto.statement
 	{
 
 		CategoryType type;
-		StatementList instructions;
+		StatementList statements;
 
-		public WithSingletonStatement (CategoryType type, StatementList instructions)
+		public WithSingletonStatement (CategoryType type, StatementList statements)
 		{
 			this.type = type;
-			this.instructions = instructions;
+			this.statements = statements;
 		}
 
 		public override IType check (Context context)
 		{
 			Context instanceContext = context.newInstanceContext (type);
 			Context childContext = instanceContext.newChildContext ();
-			return instructions.check (childContext);
+			return statements.check (childContext, null);
 		}
 
 		public override IValue interpret (Context context)
@@ -32,7 +32,7 @@ namespace prompto.statement
 			ConcreteInstance instance = context.loadSingleton (type);
 			Context instanceContext = context.newInstanceContext (instance);
 			Context childContext = instanceContext.newChildContext ();
-			return instructions.interpret (childContext);
+			return statements.interpret (childContext);
 		}
 
 		public override void ToDialect (CodeWriter writer)
@@ -56,7 +56,7 @@ namespace prompto.statement
 			type.ToDialect (writer);
 			writer.append (", do:\n");
 			writer.indent ();
-			instructions.ToDialect (writer);
+			statements.ToDialect (writer);
 			writer.dedent ();
 		}
 
@@ -65,12 +65,12 @@ namespace prompto.statement
 			writer.append ("with (");
 			type.ToDialect (writer);
 			writer.append (")");
-			bool oneLine = instructions.Count == 1 && (instructions[0] is SimpleStatement);
+			bool oneLine = statements.Count == 1 && (statements[0] is SimpleStatement);
 			if (!oneLine)
 				writer.append (" {");
 			writer.newLine ();
 			writer.indent ();
-			instructions.ToDialect (writer);
+			statements.ToDialect (writer);
 			writer.dedent ();
 			if (!oneLine) {
 				writer.append ("}");
@@ -84,7 +84,7 @@ namespace prompto.statement
 			type.ToDialect (writer);
 			writer.append (":\n");
 			writer.indent ();
-			instructions.ToDialect (writer);
+			statements.ToDialect (writer);
 			writer.dedent ();
 		}
 

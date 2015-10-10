@@ -15,12 +15,12 @@ namespace prompto.statement
     {
 
         IExpression condition;
-        StatementList instructions;
+		StatementList statements;
 
-        public DoWhileStatement(IExpression condition, StatementList instructions)
+		public DoWhileStatement(IExpression condition, StatementList statements)
         {
             this.condition = condition;
-            this.instructions = instructions;
+			this.statements = statements;
         }
 
 		override
@@ -45,7 +45,7 @@ namespace prompto.statement
 		private void toEDialect(CodeWriter writer) {
 			writer.append("do:\n");
 			writer.indent();
-			instructions.ToDialect(writer);
+			statements.ToDialect(writer);
 			writer.dedent();
 			writer.append("while ");
 			condition.ToDialect(writer);
@@ -55,7 +55,7 @@ namespace prompto.statement
 		private void toODialect(CodeWriter writer) {
 			writer.append("do {\n");
 			writer.indent();
-			instructions.ToDialect(writer);
+			statements.ToDialect(writer);
 			writer.dedent();
 			writer.append("} while (");
 			condition.ToDialect(writer);
@@ -68,7 +68,7 @@ namespace prompto.statement
 
         public StatementList getInstructions()
         {
-            return instructions;
+            return statements;
         }
 
         override
@@ -78,7 +78,7 @@ namespace prompto.statement
             if (cond != BooleanType.Instance)
                 throw new SyntaxError("Expected a Boolean condition!");
             Context child = context.newChildContext();
-            return instructions.check(child);
+            return statements.check(child, null);
         }
 
         override
@@ -86,7 +86,7 @@ namespace prompto.statement
         {
 			do {
 				Context child = context.newChildContext ();
-				IValue value = instructions.interpret (child);
+				IValue value = statements.interpret (child);
 				if (value != null)
 					return value;
 			} while(interpretCondition (context));

@@ -74,7 +74,7 @@ namespace prompto.statement
             }
             if (defaultCase != null)
             {
-                IType type = defaultCase.check(context);
+                IType type = defaultCase.check(context, null);
                 if (type != VoidType.Instance)
 					types[type.GetName()] = type;
             }

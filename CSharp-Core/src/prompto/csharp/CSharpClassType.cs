@@ -7,6 +7,7 @@ using prompto.error;
 using prompto.type;
 using prompto.declaration;
 using prompto.runtime;
+using System.Collections;
 
 namespace prompto.csharp
 {
@@ -51,12 +52,23 @@ namespace prompto.csharp
 			return this.type;
 		}
 
-		public IType ConvertCSharpTypeToPrestoType(Context context, IType returnType )
-        {
+		public IType ConvertCSharpTypeToPromptoType(Context context, IType returnType )
+		{
+			return ConvertCSharpTypeToPromptoType (context, type, returnType);
+		}
+
+
+		public IType ConvertCSharpTypeToPromptoType(Context context, Type type, IType returnType )
+		{
             IType result;
             typeToPrestoMap.TryGetValue(type, out result);
             if (result != null)
                 return result;
+			Type item = GetItemTypeFromListType (type);
+			if (item != null) {
+				IType itemType = ConvertCSharpTypeToPromptoType (context, item, null);
+				return new ListType (itemType);
+			}
 			NativeCategoryDeclaration decl = context.getNativeBinding(type);
 			if(decl!=null)
 				return decl.GetType(context);
@@ -66,15 +78,43 @@ namespace prompto.csharp
                 return null;
         }
 
+		public static Type GetItemTypeFromListType(Type type)
+		{
+			if (type.IsGenericType) {
+				if (type.GetGenericTypeDefinition () == typeof(List<>))
+					return type.GetGenericArguments () [0];
+			}
+			return null;
+		}
     
-		public IValue ConvertCSharpValueToPrestoValue(Context context, Object value, IType returnType)
-        {
-            if(value is IValue)
+		public IValue ConvertCSharpValueToPromptoValue(Context context, Object value, IType returnType)
+		{
+			return ConvertCSharpValueToPromptoValue (context, value, type, returnType);
+		}
+
+		public static IValue ConvertCSharpValueToPromptoValue(Context context, Object value, Type type, IType returnType)
+		{
+			// try IValue
+			if(value is IValue)
                 return (IValue)value;
+			// try native
             IType result;
             typeToPrestoMap.TryGetValue(type, out result);
             if (result != null)
-				return result.ConvertCSharpValueToPrestoValue(value);
+				return result.ConvertCSharpValueToPromptoValue(value);
+			// try List
+			if (value.GetType().IsGenericType && typeof(List<>).IsAssignableFrom(value.GetType().GetGenericTypeDefinition()) && returnType is ListType) {
+				Type elemType = GetItemTypeFromListType (type);
+				IType itemType = ((ListType)returnType).GetItemType();
+				List<IValue> list = new List<IValue>();
+				foreach(Object obj in (IEnumerable)value) {
+					IValue val = ConvertCSharpValueToPromptoValue(context, obj, elemType, itemType);
+					list.Add(val);
+				}
+				return new ListValue(itemType, list);
+
+			}
+			// try Category
 			NativeCategoryDeclaration decl = context.getNativeBinding(type);
 			if(decl!=null)
 				return new NativeInstance(decl, value);
