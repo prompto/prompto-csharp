@@ -165,7 +165,6 @@
     <Compile Include="src\prompto\literal\DecimalLiteral.cs" />
     <Compile Include="src\prompto\type\DecimalType.cs" />
     <Compile Include="src\prompto\declaration\IDeclaration.cs" />
-    <Compile Include="src\prompto\grammar\DeclarationList.cs" />
     <Compile Include="src\prompto\literal\DictEntry.cs" />
     <Compile Include="src\prompto\literal\DictEntryList.cs" />
     <Compile Include="src\prompto\value\Dict.cs" />
@@ -420,6 +419,7 @@
     <Compile Include="src\prompto\csharp\CSharpThisExpression.cs" />
     <Compile Include="src\prompto\javascript\JavaScriptMemberExpression.cs" />
     <Compile Include="src\prompto\javascript\JavaScriptThisExpression.cs" />
+    <Compile Include="src\prompto\declaration\DeclarationList.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Antlr4.Runtime">

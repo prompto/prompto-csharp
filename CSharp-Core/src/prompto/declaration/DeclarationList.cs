@@ -2,8 +2,10 @@ using prompto.runtime;
 using System.Collections.Generic;
 using prompto.declaration;
 using prompto.utils;
+using prompto.grammar;
+using System.Linq;
 
-namespace prompto.grammar
+namespace prompto.declaration
 {
 
 	public class DeclarationList : List<IDeclaration>, IDialectElement
@@ -21,13 +23,56 @@ namespace prompto.grammar
 
         public void register(Context context)
         {
-            foreach (IDeclaration declaration in this)
-            {
-                declaration.register(context);
-            }
-        }
+			// register attributes first
+			registerAttributes(context);
+			// ok now
+			registerCategories(context);
+			registerEnumerated(context);
+			registerMethods(context);
+			registerTests(context);
+       }
 
-        public void check(Context context)
+		public void registerAttributes(Context context)
+		{
+			foreach (IDeclaration d in this.Where(d => d is AttributeDeclaration))
+			{
+				d.register(context);
+			}
+		}
+
+		public void registerCategories(Context context)
+		{
+			foreach (IDeclaration d in this.Where(d => d is CategoryDeclaration))
+			{
+				d.register(context);
+			}
+		}
+
+		public void registerEnumerated(Context context)
+		{
+			foreach (IDeclaration d in this.Where(d => d is EnumeratedNativeDeclaration))
+			{
+				d.register(context);
+			}
+		}
+
+		public void registerMethods(Context context)
+		{
+			foreach (IDeclaration d in this.Where(d => d is IMethodDeclaration))
+			{
+				d.register(context);
+			}
+		}
+
+		public void registerTests(Context context)
+		{
+			foreach (IDeclaration d in this.Where(d => d is TestMethodDeclaration))
+			{
+				d.register(context);
+			}
+		}
+
+		public void check(Context context)
         {
             foreach (IDeclaration declaration in this)
             {

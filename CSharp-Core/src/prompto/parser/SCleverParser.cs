@@ -1,5 +1,5 @@
 using prompto.parser;
-using prompto.grammar;
+using prompto.declaration;
 using System;
 using Antlr4.Runtime;
 using System.IO;

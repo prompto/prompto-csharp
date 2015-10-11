@@ -2,6 +2,9 @@ using prompto.parser;
 using NUnit.Framework;
 using prompto.grammar;
 using prompto.error;
+using prompto.declaration;
+
+
 namespace prompto.o.runtime
 {
 

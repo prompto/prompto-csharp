@@ -1,5 +1,5 @@
 using NUnit.Framework;
-using prompto.grammar;
+using prompto.declaration;
 namespace prompto.parser {
 
     [TestFixture]

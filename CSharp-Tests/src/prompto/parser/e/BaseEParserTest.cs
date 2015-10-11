@@ -1,5 +1,5 @@
 using prompto.runtime;
-using prompto.grammar;
+using prompto.declaration;
 using System;
 using System.IO;
 using NUnit.Framework;

@@ -1,6 +1,6 @@
 using prompto.runtime;
 using NUnit.Framework;
-using prompto.grammar;
+using prompto.declaration;
 using System;
 using System.IO;
 using System.Collections.Generic;

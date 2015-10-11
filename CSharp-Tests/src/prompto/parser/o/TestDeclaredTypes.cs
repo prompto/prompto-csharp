@@ -1,6 +1,6 @@
 using prompto.parser;
 using NUnit.Framework;
-using prompto.grammar;
+using prompto.declaration;
 using prompto.type;
 namespace prompto.o.runtime
 {

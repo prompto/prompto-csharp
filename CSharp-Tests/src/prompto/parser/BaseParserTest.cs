@@ -22,12 +22,17 @@ namespace prompto.parser
 		{
 			if(coreContext==null)
 				coreContext = Context.newGlobalContext();
+			DeclarationList allStmts = null;
 			List<String> files = ListLibraryFiles(libraryName);
 			foreach(String file in files) {
 				String resourceName = libraryName + "/" + Path.GetFileName(file);
 				DeclarationList stmts = parseResource(resourceName);
-				stmts.register(coreContext);
+				if (allStmts == null)
+					allStmts = stmts;
+				else
+					allStmts.AddRange (stmts);
 			}
+			allStmts.register(coreContext);
 		}
 
 		public List<String> ListLibraryFiles(String libraryName) {

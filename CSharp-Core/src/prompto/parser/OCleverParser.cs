@@ -1,7 +1,7 @@
 using System;
 using Antlr4.Runtime;
 using System.IO;
-using prompto.grammar;
+using prompto.declaration;
 using Antlr4.Runtime.Tree;
 
 namespace prompto.parser
