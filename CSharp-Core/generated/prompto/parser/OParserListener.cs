@@ -376,6 +376,18 @@ public interface IOParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitAssignTupleStatement([NotNull] OParser.AssignTupleStatementContext context);
 	/// <summary>
+	/// Enter a parse tree produced by the <c>StoreStatement</c>
+	/// labeled alternative in <see cref="OParser.statement"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterStoreStatement([NotNull] OParser.StoreStatementContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>StoreStatement</c>
+	/// labeled alternative in <see cref="OParser.statement"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitStoreStatement([NotNull] OParser.StoreStatementContext context);
+	/// <summary>
 	/// Enter a parse tree produced by the <c>ReturnStatement</c>
 	/// labeled alternative in <see cref="OParser.statement"/>.
 	/// </summary>
@@ -519,6 +531,30 @@ public interface IOParserListener : IParseTreeListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void ExitClosureStatement([NotNull] OParser.ClosureStatementContext context);
+	/// <summary>
+	/// Enter a parse tree produced by the <c>StoreOne</c>
+	/// labeled alternative in <see cref="OParser.store_statement"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterStoreOne([NotNull] OParser.StoreOneContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>StoreOne</c>
+	/// labeled alternative in <see cref="OParser.store_statement"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitStoreOne([NotNull] OParser.StoreOneContext context);
+	/// <summary>
+	/// Enter a parse tree produced by the <c>StoreMany</c>
+	/// labeled alternative in <see cref="OParser.store_statement"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterStoreMany([NotNull] OParser.StoreManyContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>StoreMany</c>
+	/// labeled alternative in <see cref="OParser.store_statement"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitStoreMany([NotNull] OParser.StoreManyContext context);
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="OParser.with_resource_statement"/>.
 	/// </summary>
@@ -1340,15 +1376,41 @@ public interface IOParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitWrite_statement([NotNull] OParser.Write_statementContext context);
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="OParser.fetch_expression"/>.
+	/// Enter a parse tree produced by the <c>FetchList</c>
+	/// labeled alternative in <see cref="OParser.fetch_expression"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterFetch_expression([NotNull] OParser.Fetch_expressionContext context);
+	void EnterFetchList([NotNull] OParser.FetchListContext context);
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="OParser.fetch_expression"/>.
+	/// Exit a parse tree produced by the <c>FetchList</c>
+	/// labeled alternative in <see cref="OParser.fetch_expression"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitFetch_expression([NotNull] OParser.Fetch_expressionContext context);
+	void ExitFetchList([NotNull] OParser.FetchListContext context);
+	/// <summary>
+	/// Enter a parse tree produced by the <c>FetchOne</c>
+	/// labeled alternative in <see cref="OParser.fetch_expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterFetchOne([NotNull] OParser.FetchOneContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>FetchOne</c>
+	/// labeled alternative in <see cref="OParser.fetch_expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitFetchOne([NotNull] OParser.FetchOneContext context);
+	/// <summary>
+	/// Enter a parse tree produced by the <c>FetchAll</c>
+	/// labeled alternative in <see cref="OParser.fetch_expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterFetchAll([NotNull] OParser.FetchAllContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>FetchAll</c>
+	/// labeled alternative in <see cref="OParser.fetch_expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitFetchAll([NotNull] OParser.FetchAllContext context);
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="OParser.sorted_expression"/>.
 	/// </summary>
