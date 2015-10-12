@@ -1,4 +1,3 @@
-// generated: 2015-10-05T01:03:20.465
 using NUnit.Framework;
 using prompto.parser;
 using prompto.utils;
@@ -36,6 +35,12 @@ namespace prompto.library.e
 		public void testAttribute()
 		{
 			CheckTests("core/attribute.pec");
+		}
+
+		[Test]
+		public void testAttributes()
+		{
+			CheckTests("core/attributes.pec");
 		}
 
 		[Test]

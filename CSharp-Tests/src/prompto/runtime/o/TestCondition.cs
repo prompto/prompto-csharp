@@ -1,4 +1,3 @@
-// generated: 2015-07-05T23:01:01.207
 using NUnit.Framework;
 using prompto.parser;
 using prompto.utils;
