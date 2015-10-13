@@ -505,7 +505,9 @@ namespace prompto.parser
 			String name = this.GetNodeValue<String> (ctx.name);
 			IType type = this.GetNodeValue<IType> (ctx.typ);
 			IAttributeConstraint match = this.GetNodeValue<IAttributeConstraint> (ctx.match);
-			SetNodeValue (ctx, new AttributeDeclaration (name, type, match));
+			AttributeDeclaration decl = new AttributeDeclaration (name, type, match);
+			decl.Storable = ctx.STORABLE () != null;
+			SetNodeValue (ctx, decl);
 		}
 
 		
@@ -557,7 +559,9 @@ namespace prompto.parser
 			IdentifierList attrs = this.GetNodeValue<IdentifierList> (ctx.attrs);
 			IdentifierList derived = this.GetNodeValue<IdentifierList> (ctx.derived);
 			MethodDeclarationList methods = this.GetNodeValue<MethodDeclarationList> (ctx.methods);
-			SetNodeValue (ctx, new ConcreteCategoryDeclaration (name, attrs, derived, methods));
+			ConcreteCategoryDeclaration decl = new ConcreteCategoryDeclaration (name, attrs, derived, methods);
+			decl.Storable = ctx.STORABLE () != null;
+			SetNodeValue (ctx, decl);
 		}
 
 		
@@ -883,6 +887,18 @@ namespace prompto.parser
 			StatementList items = this.GetNodeValue<StatementList> (ctx.items);
 			items.add (item);
 			SetNodeValue (ctx, items);
+		}
+
+		public override void ExitStoreStatement (SParser.StoreStatementContext ctx)
+		{
+			SetNodeValue (ctx, this.GetNodeValue<Object> (ctx.stmt));
+		}
+
+		public override void ExitStore_statement (SParser.Store_statementContext ctx)
+		{
+			ExpressionList exps = this.GetNodeValue<ExpressionList>(ctx.exps);
+			StoreStatement stmt = new StoreStatement(exps);
+			SetNodeValue(ctx, stmt);
 		}
 
 		
@@ -1528,7 +1544,9 @@ namespace prompto.parser
 			IdentifierList attrs = this.GetNodeValue<IdentifierList> (ctx.attrs);
 			NativeCategoryBindingList bindings = this.GetNodeValue<NativeCategoryBindingList> (ctx.bindings);
 			MethodDeclarationList methods = this.GetNodeValue<MethodDeclarationList> (ctx.methods);
-			SetNodeValue (ctx, new NativeCategoryDeclaration (name, attrs, bindings, null, methods));
+			NativeCategoryDeclaration decl = new NativeCategoryDeclaration (name, attrs, bindings, null, methods);
+			decl.Storable = ctx.STORABLE () != null;
+			SetNodeValue (ctx, decl);
 		}
 
 		
@@ -2201,12 +2219,28 @@ namespace prompto.parser
 		}
 
 		
-		public override void ExitFetch_expression (SParser.Fetch_expressionContext ctx)
+		public override void ExitFetchList (SParser.FetchListContext ctx)
 		{
 			String itemName = this.GetNodeValue<String> (ctx.name);
 			IExpression source = this.GetNodeValue<IExpression> (ctx.source);
 			IExpression filter = this.GetNodeValue<IExpression> (ctx.xfilter);
 			SetNodeValue (ctx, new FetchExpression (itemName, source, filter));
+		}
+
+		public override void ExitFetchOne (SParser.FetchOneContext ctx)
+		{
+			CategoryType category = this.GetNodeValue<CategoryType>(ctx.typ);
+			IExpression filter = this.GetNodeValue<IExpression>(ctx.xfilter);
+			SetNodeValue(ctx, new FetchOneExpression(category, filter));
+		}
+
+		public override void ExitFetchAll (SParser.FetchAllContext ctx)
+		{
+			CategoryType category = this.GetNodeValue<CategoryType>(ctx.typ);
+			IExpression filter = this.GetNodeValue<IExpression>(ctx.xfilter);
+			IExpression start = this.GetNodeValue<IExpression>(ctx.start);
+			IExpression end = this.GetNodeValue<IExpression>(ctx.end);
+			SetNodeValue(ctx, new FetchAllExpression(category, filter, start, end));
 		}
 
 		

@@ -10,6 +10,7 @@ using prompto.type;
 using prompto.runtime;
 using prompto.expression;
 using System.Threading;
+using prompto.store;
 
 namespace prompto.value
 {
@@ -23,6 +24,7 @@ namespace prompto.value
 		
         NativeCategoryDeclaration declaration;
         protected Object instance;
+		StorableDocument storable = null;
 		bool mutable = false;
 
         public NativeInstance(NativeCategoryDeclaration declaration)
@@ -30,15 +32,22 @@ namespace prompto.value
 		{
             this.declaration = declaration;
             this.instance = makeInstance();
-        }
+			if(declaration.Storable)
+				storable = new StorableDocument();
+		}
 
 		public NativeInstance(NativeCategoryDeclaration declaration, Object instance)
 			: base(new CategoryType(declaration.GetName()))
 		{
 			this.declaration = declaration;
 			this.instance = instance;
+			if(declaration.Storable)
+				storable = new StorableDocument();
 		}
 
+		public IStorable getStorable() {
+			return storable;
+		}
 
 		public bool setMutable(bool set)
 		{
@@ -180,6 +189,10 @@ namespace prompto.value
 				value = setter.interpret (context);
 			}
             setPropertyOrField(value, attrName);
+			if(storable!=null && decl.Storable) {
+				// TODO convert object graph if(value instanceof IInstance)
+				storable.setMember(context, attrName, value);
+			}
         }
 
         private void setPropertyOrField(IValue value, String attrName)

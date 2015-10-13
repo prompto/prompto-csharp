@@ -10,6 +10,7 @@ using prompto.runtime;
 using prompto.declaration;
 using prompto.expression;
 using prompto.type;
+using prompto.store;
 
 namespace prompto.value
 {
@@ -20,11 +21,18 @@ namespace prompto.value
 		ConcreteCategoryDeclaration declaration;
 		Dictionary<String, IValue> values = new Dictionary<String, IValue> ();
 		bool mutable = false;
+		StorableDocument storable = null;
 
 		public ConcreteInstance (ConcreteCategoryDeclaration declaration)
 			: base (new CategoryType (declaration.GetName ()))
 		{
 			this.declaration = declaration;
+			if(declaration.Storable)
+				storable = new StorableDocument();
+		}
+
+		public IStorable getStorable() {
+			return storable;
 		}
 
 		public bool setMutable (bool set)
@@ -123,6 +131,10 @@ namespace prompto.value
 			}
 			value = autocast (decl, value);
 			values [attrName] = value;
+			if(storable!=null && decl.Storable) {
+				// TODO convert object graph if(value instanceof IInstance)
+				storable.setMember(context, attrName, value);
+			}
 		}
 
 		private IValue autocast (AttributeDeclaration decl, IValue value)

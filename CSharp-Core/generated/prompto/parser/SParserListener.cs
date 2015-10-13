@@ -456,29 +456,15 @@ public interface ISParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitClosureStatement([NotNull] SParser.ClosureStatementContext context);
 	/// <summary>
-	/// Enter a parse tree produced by the <c>StoreOne</c>
-	/// labeled alternative in <see cref="SParser.store_statement"/>.
+	/// Enter a parse tree produced by <see cref="SParser.store_statement"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterStoreOne([NotNull] SParser.StoreOneContext context);
+	void EnterStore_statement([NotNull] SParser.Store_statementContext context);
 	/// <summary>
-	/// Exit a parse tree produced by the <c>StoreOne</c>
-	/// labeled alternative in <see cref="SParser.store_statement"/>.
+	/// Exit a parse tree produced by <see cref="SParser.store_statement"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitStoreOne([NotNull] SParser.StoreOneContext context);
-	/// <summary>
-	/// Enter a parse tree produced by the <c>StoreMany</c>
-	/// labeled alternative in <see cref="SParser.store_statement"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterStoreMany([NotNull] SParser.StoreManyContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>StoreMany</c>
-	/// labeled alternative in <see cref="SParser.store_statement"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitStoreMany([NotNull] SParser.StoreManyContext context);
+	void ExitStore_statement([NotNull] SParser.Store_statementContext context);
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="SParser.method_call"/>.
 	/// </summary>

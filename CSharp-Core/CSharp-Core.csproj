@@ -343,11 +343,9 @@
     <Compile Include="src\prompto\parser\ECleverParser.cs" />
     <Compile Include="src\prompto\parser\EIndentingLexer.cs" />
     <Compile Include="src\prompto\parser\EParserFactory.cs" />
-    <Compile Include="src\prompto\parser\EPrestoBuilder.cs" />
     <Compile Include="src\prompto\parser\OCleverParser.cs" />
     <Compile Include="src\prompto\parser\ONamingLexer.cs" />
     <Compile Include="src\prompto\parser\OParserFactory.cs" />
-    <Compile Include="src\prompto\parser\OPrestoBuilder.cs" />
     <Compile Include="src\prompto\javascript\JavaScriptBooleanLiteral.cs" />
     <Compile Include="src\prompto\javascript\JavaScriptDecimalLiteral.cs" />
     <Compile Include="src\prompto\javascript\JavaScriptExpression.cs" />
@@ -403,7 +401,6 @@
     <Compile Include="src\prompto\statement\UnresolvedCall.cs" />
     <Compile Include="src\prompto\parser\SIndentingLexer.cs" />
     <Compile Include="src\prompto\parser\SCleverParser.cs" />
-    <Compile Include="src\prompto\parser\SPrestoBuilder.cs" />
     <Compile Include="src\prompto\error\NotMutableError.cs" />
     <Compile Include="src\prompto\declaration\AnyNativeCategoryDeclaration.cs" />
     <Compile Include="src\prompto\grammar\NativeAttributeBindingListMap.cs" />
@@ -420,6 +417,17 @@
     <Compile Include="src\prompto\javascript\JavaScriptMemberExpression.cs" />
     <Compile Include="src\prompto\javascript\JavaScriptThisExpression.cs" />
     <Compile Include="src\prompto\declaration\DeclarationList.cs" />
+    <Compile Include="src\prompto\expression\FetchOneExpression.cs" />
+    <Compile Include="src\prompto\expression\FetchAllExpression.cs" />
+    <Compile Include="src\prompto\store\IStore.cs" />
+    <Compile Include="src\prompto\store\MemStore.cs" />
+    <Compile Include="src\prompto\statement\StoreStatement.cs" />
+    <Compile Include="src\prompto\store\IStorable.cs" />
+    <Compile Include="src\prompto\error\NotStorableError.cs" />
+    <Compile Include="src\prompto\store\StorableDocument.cs" />
+    <Compile Include="src\prompto\parser\EPromptoBuilder.cs" />
+    <Compile Include="src\prompto\parser\OPromptoBuilder.cs" />
+    <Compile Include="src\prompto\parser\SPromptoBuilder.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Antlr4.Runtime">
@@ -438,5 +446,6 @@
   <ItemGroup>
     <Folder Include="generated\prompto\parser\" />
     <Folder Include="src\prompto\javascript\" />
+    <Folder Include="src\prompto\store\" />
   </ItemGroup>
 </Project>

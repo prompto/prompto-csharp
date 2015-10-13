@@ -532,29 +532,15 @@ public interface IOParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitClosureStatement([NotNull] OParser.ClosureStatementContext context);
 	/// <summary>
-	/// Enter a parse tree produced by the <c>StoreOne</c>
-	/// labeled alternative in <see cref="OParser.store_statement"/>.
+	/// Enter a parse tree produced by <see cref="OParser.store_statement"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterStoreOne([NotNull] OParser.StoreOneContext context);
+	void EnterStore_statement([NotNull] OParser.Store_statementContext context);
 	/// <summary>
-	/// Exit a parse tree produced by the <c>StoreOne</c>
-	/// labeled alternative in <see cref="OParser.store_statement"/>.
+	/// Exit a parse tree produced by <see cref="OParser.store_statement"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitStoreOne([NotNull] OParser.StoreOneContext context);
-	/// <summary>
-	/// Enter a parse tree produced by the <c>StoreMany</c>
-	/// labeled alternative in <see cref="OParser.store_statement"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterStoreMany([NotNull] OParser.StoreManyContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>StoreMany</c>
-	/// labeled alternative in <see cref="OParser.store_statement"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitStoreMany([NotNull] OParser.StoreManyContext context);
+	void ExitStore_statement([NotNull] OParser.Store_statementContext context);
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="OParser.with_resource_statement"/>.
 	/// </summary>

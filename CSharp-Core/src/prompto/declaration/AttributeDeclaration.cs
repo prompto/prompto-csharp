@@ -29,6 +29,8 @@ namespace prompto.declaration
             this.constraint = constraint;
         }
 
+		public bool Storable { get; set; }
+	
         public IType getType()
         {
             return type;
@@ -47,12 +49,16 @@ namespace prompto.declaration
 				writer.append("define ");
 				writer.append(GetName());
 				writer.append(" as ");
+				if(this.Storable)
+					writer.append("storable ");
 				type.ToDialect(writer);
 				writer.append(" attribute");
 				if(constraint!=null)
 					constraint.ToDialect(writer);
 				break;
 			case Dialect.O:
+				if(this.Storable)
+					writer.append("storable ");
 				writer.append("attribute ");
 				writer.append(GetName());
 				writer.append(" : ");
@@ -62,6 +68,8 @@ namespace prompto.declaration
 				writer.append(';');
 				break;
 			case Dialect.S:
+				if(this.Storable)
+					writer.append("storable ");
 				writer.append("attr ");
 				writer.append(GetName());
 				writer.append(" ( ");

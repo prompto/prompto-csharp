@@ -29,6 +29,7 @@ namespace prompto.runtime
             {
                 case 0:
                     // TODO refine
+					compatibles = filterCompatible(candidates, checkInstance);
                     throw new SyntaxError("No matching prototype for:" + methodCall.ToString());
                 case 1:
                     return compatibles[0];

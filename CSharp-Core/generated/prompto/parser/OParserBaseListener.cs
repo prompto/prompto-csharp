@@ -574,29 +574,17 @@ public partial class OParserBaseListener : IOParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitClosureStatement([NotNull] OParser.ClosureStatementContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="OParser.StoreOne"/>.
+	/// Enter a parse tree produced by <see cref="OParser.store_statement"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void EnterStoreOne([NotNull] OParser.StoreOneContext context) { }
+	public virtual void EnterStore_statement([NotNull] OParser.Store_statementContext context) { }
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="OParser.StoreOne"/>.
+	/// Exit a parse tree produced by <see cref="OParser.store_statement"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void ExitStoreOne([NotNull] OParser.StoreOneContext context) { }
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="OParser.StoreMany"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void EnterStoreMany([NotNull] OParser.StoreManyContext context) { }
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="OParser.StoreMany"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void ExitStoreMany([NotNull] OParser.StoreManyContext context) { }
+	public virtual void ExitStore_statement([NotNull] OParser.Store_statementContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="OParser.with_resource_statement"/>.
 	/// <para>The default implementation does nothing.</para>

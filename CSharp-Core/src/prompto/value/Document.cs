@@ -22,11 +22,21 @@ namespace prompto.value
 			return true;
 		}
 
-        
+		public bool HasMember(String name)
+		{
+			return members.ContainsKey (name);
+		}
+
 		public override IValue GetMember(Context context, String name)
+		{
+			return GetMember (context, name, true);
+		}
+
+		public IValue GetMember(Context context, String name, bool create)
         {
             IValue result;
-            if(!members.TryGetValue(name, out result))
+			bool exists = members.TryGetValue (name, out result);
+			if(create && !exists)
             {
                 result = new Document();
                 members[name] = result;

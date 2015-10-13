@@ -26,6 +26,8 @@ namespace prompto.declaration
 			this.attributes = attributes;
 		}
 
+		public bool Storable { get; set; }
+
 		public void setAttributes (IdentifierList attributes)
 		{
 			this.attributes = attributes;
@@ -82,6 +84,29 @@ namespace prompto.declaration
 
 		public abstract IInstance newInstance ();
 
+		public IInstance newInstance(Context context, Document document) {
+			IInstance instance = newInstance();
+			instance.setMutable(true);
+			try {
+				foreach(String name in this.getAttributes()) {
+					AttributeDeclaration decl = context.getRegisteredDeclaration<AttributeDeclaration>(name);
+					if(!decl.Storable)
+						continue;
+					IValue value = document.GetMember(context, name, false);
+					if(value is Document) {
+						IType type = decl.GetType(context);
+						if(!(type is CategoryType))
+							throw new InternalError("How did we get there?");
+						value = ((CategoryType)type).newInstance(context, (Document)value);
+					}
+					instance.SetMember(context, name, value);
+				}
+			} finally {
+				instance.setMutable(false);
+			}
+			return instance;
+		}
+
 		public virtual void checkConstructorContext (Context context)
 		{
 			// nothing to do
@@ -113,6 +138,8 @@ namespace prompto.declaration
 			writer.append ("define ");
 			writer.append (name);
 			writer.append (" as ");
+			if(this.Storable)
+				writer.append("storable ");
 			categoryTypeToEDialect (writer);
 			if (hasAttributes) {
 				if (attributes.Count == 1)
@@ -195,6 +222,8 @@ namespace prompto.declaration
 
 		protected void protoToSDialect (CodeWriter writer, IdentifierList derivedFrom)
 		{
+			if(this.Storable)
+				writer.append("storable ");
 			categoryTypeToSDialect (writer);
 			writer.append (" ");
 			writer.append (name);

@@ -538,29 +538,17 @@ public partial class EParserBaseListener : IEParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitClosureStatement([NotNull] EParser.ClosureStatementContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="EParser.StoreOne"/>.
+	/// Enter a parse tree produced by <see cref="EParser.store_statement"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void EnterStoreOne([NotNull] EParser.StoreOneContext context) { }
+	public virtual void EnterStore_statement([NotNull] EParser.Store_statementContext context) { }
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="EParser.StoreOne"/>.
+	/// Exit a parse tree produced by <see cref="EParser.store_statement"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void ExitStoreOne([NotNull] EParser.StoreOneContext context) { }
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="EParser.StoreMany"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void EnterStoreMany([NotNull] EParser.StoreManyContext context) { }
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="EParser.StoreMany"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void ExitStoreMany([NotNull] EParser.StoreManyContext context) { }
+	public virtual void ExitStore_statement([NotNull] EParser.Store_statementContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="EParser.UnresolvedWithArgsStatement"/>.
 	/// <para>The default implementation does nothing.</para>

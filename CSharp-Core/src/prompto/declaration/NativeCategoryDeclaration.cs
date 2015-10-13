@@ -76,6 +76,8 @@ namespace prompto.declaration
 
 		protected override void categoryTypeToODialect (CodeWriter writer)
 		{
+			if(this.Storable)
+				writer.append("storable ");
 			writer.append ("native category");
 		}
 

@@ -44,7 +44,7 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="Antlr4.Runtime">
-      <HintPath>..\..\..\antlr4\antlr\antlr4\runtime\CSharp\runtime\CSharp\Antlr4.Runtime\bin\net35\Release\Antlr4.Runtime.dll</HintPath>
+      <HintPath>..\..\..\antlr4\ericvergnaud\antlr4\runtime\CSharp\runtime\CSharp\Antlr4.Runtime\bin\net35\Release\Antlr4.Runtime.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -318,6 +318,9 @@
     <Compile Include="src\prompto\library\e\TestInternet.cs" />
     <Compile Include="src\prompto\parser\BaseParserTest.cs" />
     <Compile Include="src\prompto\csharp\TestCSharpClassType.cs" />
+    <Compile Include="src\prompto\runtime\e\TestStore.cs" />
+    <Compile Include="src\prompto\translate\eoe\TestStore.cs" />
+    <Compile Include="src\prompto\translate\ese\TestStore.cs" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />

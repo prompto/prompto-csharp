@@ -502,29 +502,17 @@ public partial class SParserBaseListener : ISParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitClosureStatement([NotNull] SParser.ClosureStatementContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="SParser.StoreOne"/>.
+	/// Enter a parse tree produced by <see cref="SParser.store_statement"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void EnterStoreOne([NotNull] SParser.StoreOneContext context) { }
+	public virtual void EnterStore_statement([NotNull] SParser.Store_statementContext context) { }
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="SParser.StoreOne"/>.
+	/// Exit a parse tree produced by <see cref="SParser.store_statement"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void ExitStoreOne([NotNull] SParser.StoreOneContext context) { }
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="SParser.StoreMany"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void EnterStoreMany([NotNull] SParser.StoreManyContext context) { }
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="SParser.StoreMany"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void ExitStoreMany([NotNull] SParser.StoreManyContext context) { }
+	public virtual void ExitStore_statement([NotNull] SParser.Store_statementContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="SParser.method_call"/>.
 	/// <para>The default implementation does nothing.</para>

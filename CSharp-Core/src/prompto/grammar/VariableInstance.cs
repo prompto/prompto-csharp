@@ -44,7 +44,7 @@ namespace prompto.grammar
             INamed actual = context.getRegisteredValue<INamed>(name);
             if (actual == null)
             {
-				IType actualType = expression.check(context);
+				IType actualType = type;
 				context.registerValue(new Variable(name, actualType));
             }
             else

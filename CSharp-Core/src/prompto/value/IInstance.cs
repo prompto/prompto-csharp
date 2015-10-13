@@ -6,6 +6,7 @@ using prompto.value;
 using prompto.type;
 using prompto.runtime;
 using prompto.declaration;
+using prompto.store;
 
 namespace prompto.value
 {
@@ -17,6 +18,7 @@ namespace prompto.value
         ICollection<String> getMemberNames();
 		bool setMutable(bool set);
 		ConcreteCategoryDeclaration getDeclaration();
+		IStorable getStorable();
     }
 
 }

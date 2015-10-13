@@ -134,7 +134,11 @@ namespace prompto.runtime
 			return initInstanceContext(new InstanceContext(instance));
 		}
 
-		private Context initInstanceContext(InstanceContext context)
+		public Context newDocumentContext(Document document) {
+			return initInstanceContext(new DocumentContext(document));
+		}
+
+		private Context initInstanceContext(Context context)
         {
             context.globals = this.globals;
             context.calling = this;
@@ -485,6 +489,36 @@ namespace prompto.runtime
             instance.SetMember(calling, name, (IValue)value);
         }
     }
+
+	public class DocumentContext : Context {
+
+		Document document;
+
+		internal DocumentContext(Document document) {
+			this.document = document;
+		}
+
+		protected override Context contextForValue(String name) {
+			// params and variables have precedence over members
+			// so first look in context values
+			Context context = base.contextForValue(name);
+			if(context!=null)
+				return context;
+			else if(document.HasMember(name))
+				return this;
+			else
+				return null;
+		}
+
+		protected override IValue readValue(String name) {
+			return document.GetMember(calling, name);
+		}
+
+		protected override void writeValue(String name, IValue value) {
+			document.SetMember(calling, name, value);
+		}
+
+	}
 
     public class MethodDeclarationMap : Dictionary<String, IMethodDeclaration>, IDeclaration
     {

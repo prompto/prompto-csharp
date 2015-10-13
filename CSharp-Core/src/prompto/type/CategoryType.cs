@@ -254,6 +254,12 @@ namespace prompto.type
             return decl.newInstance();
         }
 
+		public IInstance newInstance(Context context, Document document) {
+			CategoryDeclaration decl = context.getRegisteredDeclaration<CategoryDeclaration>(this.GetName());
+			return decl.newInstance(context, document);
+		}
+
+
         public ListValue sort(Context context, IContainer list, IExpression key)
         {
             if (key == null)
