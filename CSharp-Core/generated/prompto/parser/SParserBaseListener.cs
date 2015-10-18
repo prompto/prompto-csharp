@@ -2050,6 +2050,18 @@ public partial class SParserBaseListener : ISParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitDecimalType([NotNull] SParser.DecimalTypeContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="SParser.DocumentType"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterDocumentType([NotNull] SParser.DocumentTypeContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="SParser.DocumentType"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitDocumentType([NotNull] SParser.DocumentTypeContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="SParser.DateType"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
@@ -2133,18 +2145,6 @@ public partial class SParserBaseListener : ISParserListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitCode_type([NotNull] SParser.Code_typeContext context) { }
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="SParser.document_type"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void EnterDocument_type([NotNull] SParser.Document_typeContext context) { }
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="SParser.document_type"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void ExitDocument_type([NotNull] SParser.Document_typeContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="SParser.ConcreteCategoryDeclaration"/>.
 	/// <para>The default implementation does nothing.</para>

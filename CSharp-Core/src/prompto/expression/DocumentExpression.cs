@@ -25,7 +25,7 @@ namespace prompto.expression
         public void ToDialect(CodeWriter writer)
         {
 			writer.append("Document");
-			if(writer.getDialect()==Dialect.O)
+			if(writer.getDialect()!=Dialect.E)
 				writer.append("()");
         }
     }

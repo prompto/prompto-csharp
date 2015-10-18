@@ -2028,6 +2028,18 @@ public interface IEParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitDecimalType([NotNull] EParser.DecimalTypeContext context);
 	/// <summary>
+	/// Enter a parse tree produced by the <c>DocumentType</c>
+	/// labeled alternative in <see cref="EParser.native_type"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterDocumentType([NotNull] EParser.DocumentTypeContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>DocumentType</c>
+	/// labeled alternative in <see cref="EParser.native_type"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitDocumentType([NotNull] EParser.DocumentTypeContext context);
+	/// <summary>
 	/// Enter a parse tree produced by the <c>DateType</c>
 	/// labeled alternative in <see cref="EParser.native_type"/>.
 	/// </summary>
@@ -2107,16 +2119,6 @@ public interface IEParserListener : IParseTreeListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void ExitCode_type([NotNull] EParser.Code_typeContext context);
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="EParser.document_type"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterDocument_type([NotNull] EParser.Document_typeContext context);
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="EParser.document_type"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitDocument_type([NotNull] EParser.Document_typeContext context);
 	/// <summary>
 	/// Enter a parse tree produced by the <c>ConcreteCategoryDeclaration</c>
 	/// labeled alternative in <see cref="EParser.category_declaration"/>.

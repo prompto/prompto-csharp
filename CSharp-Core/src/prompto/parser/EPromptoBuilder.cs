@@ -2420,7 +2420,7 @@ namespace prompto.parser
 		}
 
 		
-		public override void ExitDocument_type (EParser.Document_typeContext ctx)
+		public override void ExitDocumentType (EParser.DocumentTypeContext ctx)
 		{
 			SetNodeValue (ctx, DocumentType.Instance);
 		}

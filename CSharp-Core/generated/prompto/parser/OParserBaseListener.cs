@@ -2110,6 +2110,18 @@ public partial class OParserBaseListener : IOParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitDecimalType([NotNull] OParser.DecimalTypeContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="OParser.DocumentType"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterDocumentType([NotNull] OParser.DocumentTypeContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="OParser.DocumentType"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitDocumentType([NotNull] OParser.DocumentTypeContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="OParser.DateType"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
@@ -2193,18 +2205,6 @@ public partial class OParserBaseListener : IOParserListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitCode_type([NotNull] OParser.Code_typeContext context) { }
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="OParser.document_type"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void EnterDocument_type([NotNull] OParser.Document_typeContext context) { }
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="OParser.document_type"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void ExitDocument_type([NotNull] OParser.Document_typeContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="OParser.ConcreteCategoryDeclaration"/>.
 	/// <para>The default implementation does nothing.</para>

@@ -2014,6 +2014,18 @@ public interface IOParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitDecimalType([NotNull] OParser.DecimalTypeContext context);
 	/// <summary>
+	/// Enter a parse tree produced by the <c>DocumentType</c>
+	/// labeled alternative in <see cref="OParser.native_type"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterDocumentType([NotNull] OParser.DocumentTypeContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>DocumentType</c>
+	/// labeled alternative in <see cref="OParser.native_type"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitDocumentType([NotNull] OParser.DocumentTypeContext context);
+	/// <summary>
 	/// Enter a parse tree produced by the <c>DateType</c>
 	/// labeled alternative in <see cref="OParser.native_type"/>.
 	/// </summary>
@@ -2093,16 +2105,6 @@ public interface IOParserListener : IParseTreeListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void ExitCode_type([NotNull] OParser.Code_typeContext context);
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="OParser.document_type"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterDocument_type([NotNull] OParser.Document_typeContext context);
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="OParser.document_type"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitDocument_type([NotNull] OParser.Document_typeContext context);
 	/// <summary>
 	/// Enter a parse tree produced by the <c>ConcreteCategoryDeclaration</c>
 	/// labeled alternative in <see cref="OParser.category_declaration"/>.
