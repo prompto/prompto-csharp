@@ -428,6 +428,7 @@
     <Compile Include="src\prompto\parser\EPromptoBuilder.cs" />
     <Compile Include="src\prompto\parser\OPromptoBuilder.cs" />
     <Compile Include="src\prompto\parser\SPromptoBuilder.cs" />
+    <Compile Include="src\prompto\statement\CommentStatement.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Antlr4.Runtime">

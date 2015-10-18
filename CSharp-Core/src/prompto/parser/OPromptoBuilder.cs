@@ -1841,6 +1841,15 @@ namespace prompto.parser
 			SetNodeValue (ctx, new AtomicSwitchCase (exp, stmts));
 		}
 
+		public override void ExitCommentStatement(OParser.CommentStatementContext ctx) {
+			SetNodeValue(ctx, this.GetNodeValue<Object>(ctx.comment_statement()));
+		}
+
+		public override void ExitComment_statement(OParser.Comment_statementContext ctx) {
+			SetNodeValue(ctx, new CommentStatement(ctx.GetText()));
+		}
+
+
 		public override void ExitCollectionSwitchCase (OParser.CollectionSwitchCaseContext ctx)
 		{
 			IExpression exp = this.GetNodeValue<IExpression> (ctx.exp);

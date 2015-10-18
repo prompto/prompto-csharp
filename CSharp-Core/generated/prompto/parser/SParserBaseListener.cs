@@ -502,6 +502,18 @@ public partial class SParserBaseListener : ISParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitClosureStatement([NotNull] SParser.ClosureStatementContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="SParser.CommentStatement"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterCommentStatement([NotNull] SParser.CommentStatementContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="SParser.CommentStatement"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitCommentStatement([NotNull] SParser.CommentStatementContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="SParser.store_statement"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
@@ -2709,6 +2721,18 @@ public partial class SParserBaseListener : ISParserListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitTestMethod([NotNull] SParser.TestMethodContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="SParser.comment_statement"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterComment_statement([NotNull] SParser.Comment_statementContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="SParser.comment_statement"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitComment_statement([NotNull] SParser.Comment_statementContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="SParser.NativeStatementListItem"/>.
 	/// <para>The default implementation does nothing.</para>

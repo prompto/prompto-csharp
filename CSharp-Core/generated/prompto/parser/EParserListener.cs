@@ -494,6 +494,18 @@ public interface IEParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitClosureStatement([NotNull] EParser.ClosureStatementContext context);
 	/// <summary>
+	/// Enter a parse tree produced by the <c>CommentStatement</c>
+	/// labeled alternative in <see cref="EParser.statement"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterCommentStatement([NotNull] EParser.CommentStatementContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>CommentStatement</c>
+	/// labeled alternative in <see cref="EParser.statement"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitCommentStatement([NotNull] EParser.CommentStatementContext context);
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="EParser.store_statement"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
@@ -2657,6 +2669,16 @@ public interface IEParserListener : IParseTreeListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void ExitTestMethod([NotNull] EParser.TestMethodContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="EParser.comment_statement"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterComment_statement([NotNull] EParser.Comment_statementContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="EParser.comment_statement"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitComment_statement([NotNull] EParser.Comment_statementContext context);
 	/// <summary>
 	/// Enter a parse tree produced by the <c>NativeStatementListItem</c>
 	/// labeled alternative in <see cref="EParser.native_statement_list"/>.

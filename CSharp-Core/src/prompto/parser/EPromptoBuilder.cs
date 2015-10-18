@@ -2071,6 +2071,15 @@ namespace prompto.parser
 			SetNodeValue (ctx, new CollectionSwitchCase (exp, stmts));
 		}
 
+		public override void ExitCommentStatement(EParser.CommentStatementContext ctx) {
+			SetNodeValue(ctx, this.GetNodeValue<Object>(ctx.comment_statement()));
+		}
+
+		public override void ExitComment_statement(EParser.Comment_statementContext ctx) {
+			SetNodeValue(ctx, new CommentStatement(ctx.GetText()));
+		}
+
+
 		
 		public override void ExitSwitchCaseStatementList (EParser.SwitchCaseStatementListContext ctx)
 		{
