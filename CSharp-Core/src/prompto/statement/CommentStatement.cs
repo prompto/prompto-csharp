@@ -21,7 +21,7 @@ namespace prompto.statement
 
 		public override IType check (Context context)
 		{
-			return null;
+			return VoidType.Instance;
 		}
 
 		public override IValue interpret (Context context)

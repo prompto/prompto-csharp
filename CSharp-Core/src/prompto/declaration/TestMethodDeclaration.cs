@@ -137,7 +137,7 @@ namespace prompto.declaration
 			writer.indent ();
 			statements.ToDialect (writer);
 			writer.dedent ();
-			writer.append ("expecting:");
+			writer.append ("verifying:");
 			if (error != null) {
 				writer.append (" ");
 				error.ToDialect (writer);
@@ -161,7 +161,7 @@ namespace prompto.declaration
 			writer.indent ();
 			statements.ToDialect (writer);
 			writer.dedent ();
-			writer.append ("and expecting");
+			writer.append ("and verifying");
 			if (error != null) {
 				writer.append (" ");
 				error.ToDialect (writer);
@@ -185,7 +185,7 @@ namespace prompto.declaration
 			writer.indent ();
 			statements.ToDialect (writer);
 			writer.dedent ();
-			writer.append ("} expecting ");
+			writer.append ("} verifying ");
 			if (error != null) {
 				error.ToDialect (writer);
 				writer.append (";\n");
