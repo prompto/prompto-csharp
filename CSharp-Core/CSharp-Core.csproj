@@ -74,7 +74,6 @@
     <Compile Include="src\prompto\error\InvalidDataError.cs" />
     <Compile Include="src\prompto\error\InvalidResourceError.cs" />
     <Compile Include="src\prompto\error\NullReferenceError.cs" />
-    <Compile Include="src\prompto\error\PrestoError.cs" />
     <Compile Include="src\prompto\error\SyntaxError.cs" />
     <Compile Include="src\prompto\error\TerminatedError.cs" />
     <Compile Include="src\prompto\error\UserError.cs" />
@@ -429,6 +428,13 @@
     <Compile Include="src\prompto\parser\OPromptoBuilder.cs" />
     <Compile Include="src\prompto\parser\SPromptoBuilder.cs" />
     <Compile Include="src\prompto\statement\CommentStatement.cs" />
+    <Compile Include="src\prompto\grammar\OrderByClause.cs" />
+    <Compile Include="src\prompto\grammar\OrderByClauseList.cs" />
+    <Compile Include="src\prompto\type\CursorType.cs" />
+    <Compile Include="src\prompto\value\Cursor.cs" />
+    <Compile Include="src\prompto\store\ICursor.cs" />
+    <Compile Include="src\prompto\store\IDocumentEnumerable.cs" />
+    <Compile Include="src\prompto\error\PromptoError.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Antlr4.Runtime">

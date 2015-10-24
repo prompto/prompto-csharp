@@ -7,6 +7,7 @@ using prompto.type;
 using prompto.expression;
 using prompto.grammar;
 using prompto.utils;
+using prompto.error;
 
 
 namespace prompto.statement
@@ -54,22 +55,33 @@ namespace prompto.statement
         override
 		public IValue interpret(Context context)
         {
-			IContainer src = (IContainer)source.interpret(context);
-			IType elemType = src.GetType(context).checkIterator(context);
-			IEnumerator<IValue> iter = src.GetItems(context).GetEnumerator();
-			return interpretItemIterator(context, elemType, iter);
+			IType srcType = source.check (context);
+			IType elemType = srcType.checkIterator(context);
+			return interpretItemIterator(context, elemType);
         }
 
-		private IValue interpretItemIterator(Context context, IType elemType, IEnumerator<IValue> iterator)
+		private IEnumerator<IValue> getEnumerator(Context context, Object src) {
+			if (src is IContainer) 
+				src = ((IContainer) src).GetItems(context);
+			if(src is IEnumerable<IValue>)
+				return ((IEnumerable<IValue>)src).GetEnumerator();
+			else
+				throw new InternalError("Should never get there!");
+		}
+
+
+		private IValue interpretItemIterator(Context context, IType elemType)
         {
             if (v2 == null)
-				return interpretItemIteratorNoIndex(context, elemType, iterator);
+				return interpretItemIteratorNoIndex(context, elemType);
             else
-				return interpretItemIteratorWithIndex(context, elemType, iterator);
+				return interpretItemIteratorWithIndex(context, elemType);
         }
 
-		private IValue interpretItemIteratorNoIndex(Context context, IType elemType, IEnumerator<IValue> iterator)
+		private IValue interpretItemIteratorNoIndex(Context context, IType elemType)
         {
+			IValue src = source.interpret(context);
+			IEnumerator<IValue> iterator = getEnumerator(context, src);
 			while (iterator.MoveNext())
             {
                 Context child = context.newChildContext();
@@ -82,9 +94,11 @@ namespace prompto.statement
             return null;
         }
 
-		private IValue interpretItemIteratorWithIndex(Context context, IType elemType, IEnumerator<IValue> iterator)
+		private IValue interpretItemIteratorWithIndex(Context context, IType elemType)
         {
             Int64 index = 0L;
+			IValue src = source.interpret(context);
+			IEnumerator<IValue> iterator = getEnumerator(context, src);
 			while (iterator.MoveNext())
             {
                 Context child = context.newChildContext();

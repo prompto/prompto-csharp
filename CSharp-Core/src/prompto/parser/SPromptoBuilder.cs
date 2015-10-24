@@ -2107,6 +2107,21 @@ namespace prompto.parser
 			SetNodeValue(ctx, decl);
 		}
 
+		public override void ExitOrder_by(SParser.Order_byContext ctx) {
+			IdentifierList names = new IdentifierList();
+			foreach(SParser.Variable_identifierContext ctx_ in ctx.variable_identifier())
+				names.add(this.GetNodeValue<string>(ctx_));
+			OrderByClause clause = new OrderByClause(names, ctx.DESC()!=null);
+			SetNodeValue(ctx, clause);
+		}
+
+		public override void ExitOrder_by_list(SParser.Order_by_listContext ctx) {
+			OrderByClauseList list = new OrderByClauseList();
+			foreach(SParser.Order_byContext ctx_ in ctx.order_by())
+				list.add(this.GetNodeValue<OrderByClause>(ctx_));
+			SetNodeValue(ctx, list);
+		}
+
 		public override void ExitOrExpression (SParser.OrExpressionContext ctx)
 		{
 			IExpression left = this.GetNodeValue<IExpression> (ctx.left);
@@ -2248,7 +2263,8 @@ namespace prompto.parser
 			IExpression filter = this.GetNodeValue<IExpression>(ctx.xfilter);
 			IExpression start = this.GetNodeValue<IExpression>(ctx.start);
 			IExpression end = this.GetNodeValue<IExpression>(ctx.end);
-			SetNodeValue(ctx, new FetchAllExpression(category, filter, start, end));
+			OrderByClauseList orderBy = this.GetNodeValue<OrderByClauseList>(ctx.xorder);
+			SetNodeValue(ctx, new FetchAllExpression(category, filter, start, end, orderBy));
 		}
 
 		

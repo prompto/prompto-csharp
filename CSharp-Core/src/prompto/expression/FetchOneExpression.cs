@@ -62,10 +62,7 @@ namespace prompto.expression
 
 		public IValue interpret (Context context)
 		{
-			IStore store = Store.Instance;
-			if (store == null)
-				store = MemStore.Instance;
-			Document doc = store.fetchOne (context, filter);
+			Document doc = Store.Instance.fetchOne (context, filter);
 			if (doc == null)
 				return NullValue.Instance;
 			else

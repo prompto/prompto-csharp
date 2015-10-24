@@ -8,7 +8,7 @@ using prompto.type;
 
 namespace prompto.error {
 
-public abstract class ExecutionError : PrestoError {
+public abstract class ExecutionError : PromptoError {
 
 	protected ExecutionError() {
 	}

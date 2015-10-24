@@ -51,7 +51,7 @@ namespace prompto.expression
 				else
 					throw new SyntaxError("Expected code, got:" + value.ToString());
             }
-            catch (PrestoError e)
+            catch (PromptoError e)
             {
                 throw new SyntaxError(e.Message);
             }

@@ -22,9 +22,33 @@ namespace prompto.runtime.e
 		}
 
 		[Test]
-		public void testRecord()
+		public void testManyRecords()
 		{
-			CheckOutput("store/record.pec");
+			CheckOutput("store/manyRecords.pec");
+		}
+
+		[Test]
+		public void testSimpleRecord()
+		{
+			CheckOutput("store/simpleRecord.pec");
+		}
+
+		[Test]
+		public void testSlicedRecords()
+		{
+			CheckOutput("store/slicedRecords.pec");
+		}
+
+		[Test]
+		public void testSortedRecords()
+		{
+			CheckOutput("store/sortedRecords.pec");
+		}
+
+		[Test]
+		public void testSubRecord()
+		{
+			CheckOutput("store/subRecord.pec");
 		}
 
 	}

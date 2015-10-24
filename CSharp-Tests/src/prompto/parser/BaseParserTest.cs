@@ -6,6 +6,7 @@ using NUnit.Framework;
 using prompto.utils;
 using System.Collections.Generic;
 using prompto.declaration;
+using prompto.store;
 
 namespace prompto.parser
 {
@@ -159,6 +160,7 @@ namespace prompto.parser
 
 		protected void CheckOutput (String resourceName)
 		{
+			Store.Instance = new MemStore ();
 			runResource (resourceName);
 			String read = Out.read ();
 			List<String> expected = ReadExpected (resourceName);

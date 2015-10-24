@@ -41,12 +41,6 @@ namespace prompto.value
         }
 
         override
-        public Int32 CompareTo(Context context, IValue value)
-        {
-            throw new NotSupportedException("Compare not supported by " + this.GetType().Name);
-        }
-			
-        override
         public String ToString()
         {
             String result = base.ToString();
@@ -74,6 +68,37 @@ namespace prompto.value
             return new TupleValue();
         }
 
-    }
+	 override
+	public Int32 CompareTo(Context context, IValue value)
+	{
+			if(!(value is TupleValue))
+				return base.CompareTo(context, value);
+			return CompareTo(context, (TupleValue)value, new List<bool>());
+		}
+
+		public Int32 CompareTo(Context context, TupleValue other, List<bool> directions) {
+			IEnumerator<bool> iterDirs = directions.GetEnumerator();
+			IEnumerator<IValue> iterThis = this.GetEnumerator();
+			IEnumerator<IValue> iterOther = other.GetEnumerator();
+			while(iterThis.MoveNext()) {
+				bool desc = iterDirs.MoveNext() ? iterDirs.Current : false;
+				if(iterOther.MoveNext()) {
+					// compare items
+					IValue thisVal = iterThis.Current;
+					IValue otherVal = iterOther.Current;
+					int cmp = thisVal.CompareTo(context, otherVal);
+					// if not equal, done
+					if(cmp!=0)
+						return desc ? -cmp : cmp;
+				} else
+					return desc ? -1 : 1;
+			}
+			bool desc2 = iterDirs.MoveNext() ? iterDirs.Current : false;
+			if(iterOther.MoveNext())
+				return desc2 ? 1 : -1;
+			else
+				return 0;
+		}	
+	}
 
 }

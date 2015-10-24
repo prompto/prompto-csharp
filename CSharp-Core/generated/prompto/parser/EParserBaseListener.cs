@@ -3574,6 +3574,30 @@ public partial class EParserBaseListener : IEParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitIsOtherExpression([NotNull] EParser.IsOtherExpressionContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="EParser.order_by_list"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterOrder_by_list([NotNull] EParser.Order_by_listContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="EParser.order_by_list"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitOrder_by_list([NotNull] EParser.Order_by_listContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="EParser.order_by"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterOrder_by([NotNull] EParser.Order_byContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="EParser.order_by"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitOrder_by([NotNull] EParser.Order_byContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="EParser.OperatorPlus"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>

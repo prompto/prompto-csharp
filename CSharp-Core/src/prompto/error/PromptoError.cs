@@ -3,19 +3,19 @@ using System;
 namespace prompto.error
 {
 
-    public class PrestoError : Exception
+    public class PromptoError : Exception
     {
 
-        protected PrestoError()
+        protected PromptoError()
         {
         }
 
-        protected PrestoError(String message)
+        protected PromptoError(String message)
             : base(message)
         {
         }
 
-        protected PrestoError(Exception e)
+        protected PromptoError(Exception e)
             : base(null, e)
         {
         }

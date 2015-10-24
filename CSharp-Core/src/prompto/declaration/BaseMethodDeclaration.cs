@@ -164,7 +164,7 @@ namespace prompto.declaration
                 if (actual.isAssignableTo(context, required))
                     return Specificity.RESOLVED;
             }
-            catch (PrestoError )
+            catch (PromptoError )
             {
             }
             return Specificity.INCOMPATIBLE;

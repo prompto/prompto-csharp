@@ -1,6 +1,6 @@
 namespace prompto.error {
 
-    public class TerminatedError : PrestoError
+    public class TerminatedError : PromptoError
     {
 
         public TerminatedError()

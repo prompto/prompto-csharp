@@ -117,7 +117,7 @@ namespace prompto.runtime
                     }
                 }
             }
-            catch (PrestoError)
+            catch (PromptoError)
             {
             }
             return Score.SIMILAR;

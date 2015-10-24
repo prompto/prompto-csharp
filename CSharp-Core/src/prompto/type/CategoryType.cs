@@ -351,7 +351,7 @@ namespace prompto.type
                 MethodFinder finder = new MethodFinder(context, proto);
                 return finder.findMethod(true) != null;
             }
-            catch (PrestoError)
+            catch (PromptoError)
             {
                 return false;
             }

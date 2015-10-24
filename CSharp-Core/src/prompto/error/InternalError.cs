@@ -1,7 +1,7 @@
 using System;
 namespace prompto.error {
 
-    public class InternalError : PrestoError
+    public class InternalError : PromptoError
     {
 
         public InternalError(String msg)

@@ -111,7 +111,7 @@ namespace prompto.statement
                 }
                 return declaration.check(local);
             }
-            catch (PrestoError e)
+            catch (PromptoError e)
             {
                 throw new SyntaxError(e.Message);
             }
@@ -163,7 +163,7 @@ namespace prompto.statement
 				if (o is ClosureValue)
 					return new ClosureDeclaration((ClosureValue)o);
             }
-            catch (PrestoError)
+            catch (PromptoError)
             {
             }
             MethodFinder finder = new MethodFinder(context, this);

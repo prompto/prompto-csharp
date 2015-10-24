@@ -3338,6 +3338,26 @@ public interface ISParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitIsOtherExpression([NotNull] SParser.IsOtherExpressionContext context);
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="SParser.order_by_list"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterOrder_by_list([NotNull] SParser.Order_by_listContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="SParser.order_by_list"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitOrder_by_list([NotNull] SParser.Order_by_listContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="SParser.order_by"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterOrder_by([NotNull] SParser.Order_byContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="SParser.order_by"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitOrder_by([NotNull] SParser.Order_byContext context);
+	/// <summary>
 	/// Enter a parse tree produced by the <c>OperatorPlus</c>
 	/// labeled alternative in <see cref="SParser.operator"/>.
 	/// </summary>

@@ -2,7 +2,7 @@ using System;
 
 namespace prompto.error {
 
-    public class SyntaxError : PrestoError
+    public class SyntaxError : PromptoError
     {
 
         public SyntaxError(String message)

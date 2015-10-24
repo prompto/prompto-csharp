@@ -3490,6 +3490,30 @@ public partial class SParserBaseListener : ISParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitIsOtherExpression([NotNull] SParser.IsOtherExpressionContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="SParser.order_by_list"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterOrder_by_list([NotNull] SParser.Order_by_listContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="SParser.order_by_list"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitOrder_by_list([NotNull] SParser.Order_by_listContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="SParser.order_by"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterOrder_by([NotNull] SParser.Order_byContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="SParser.order_by"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitOrder_by([NotNull] SParser.Order_byContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="SParser.OperatorPlus"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
