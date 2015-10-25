@@ -5843,8 +5843,8 @@ public partial class SParser : AbstractParser {
 		}
 	}
 	public partial class FetchAllContext : Fetch_expressionContext {
-		public ExpressionContext start;
-		public ExpressionContext end;
+		public ExpressionContext xstart;
+		public ExpressionContext xstop;
 		public Category_typeContext typ;
 		public ExpressionContext xfilter;
 		public Order_by_listContext xorder;
@@ -5925,9 +5925,9 @@ public partial class SParser : AbstractParser {
 				case ROWS:
 					{
 					State = 1097; Match(ROWS);
-					State = 1098; ((FetchAllContext)_localctx).start = expression(0);
+					State = 1098; ((FetchAllContext)_localctx).xstart = expression(0);
 					State = 1099; Match(TO);
-					State = 1100; ((FetchAllContext)_localctx).end = expression(0);
+					State = 1100; ((FetchAllContext)_localctx).xstop = expression(0);
 					}
 					break;
 				default:

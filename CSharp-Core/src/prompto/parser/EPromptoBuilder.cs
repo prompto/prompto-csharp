@@ -2466,10 +2466,10 @@ namespace prompto.parser
 		{
 			CategoryType category = this.GetNodeValue<CategoryType>(ctx.typ);
 			IExpression filter = this.GetNodeValue<IExpression>(ctx.xfilter);
-			IExpression start = this.GetNodeValue<IExpression>(ctx.start);
-			IExpression end = this.GetNodeValue<IExpression>(ctx.end);
+			IExpression start = this.GetNodeValue<IExpression>(ctx.xstart);
+			IExpression stop = this.GetNodeValue<IExpression>(ctx.xstop);
 			OrderByClauseList orderBy = this.GetNodeValue<OrderByClauseList>(ctx.xorder);
-			SetNodeValue(ctx, new FetchAllExpression(category, filter, start, end, orderBy));
+			SetNodeValue(ctx, new FetchAllExpression(category, filter, start, stop, orderBy));
 		}
 
 		public override void ExitCode_type (EParser.Code_typeContext ctx)

@@ -6058,8 +6058,8 @@ public partial class EParser : AbstractParser {
 	}
 	public partial class FetchAllContext : Fetch_expressionContext {
 		public Category_typeContext typ;
-		public ExpressionContext start;
-		public ExpressionContext end;
+		public ExpressionContext xstart;
+		public ExpressionContext xstop;
 		public ExpressionContext xfilter;
 		public Order_by_listContext xorder;
 		public ITerminalNode FETCH() { return GetToken(EParser.FETCH, 0); }
@@ -6141,9 +6141,9 @@ public partial class EParser : AbstractParser {
 					{
 					{
 					State = 1171; ((FetchAllContext)_localctx).typ = category_type();
-					State = 1172; ((FetchAllContext)_localctx).start = expression(0);
+					State = 1172; ((FetchAllContext)_localctx).xstart = expression(0);
 					State = 1173; Match(TO);
-					State = 1174; ((FetchAllContext)_localctx).end = expression(0);
+					State = 1174; ((FetchAllContext)_localctx).xstop = expression(0);
 					}
 					}
 					break;
