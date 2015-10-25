@@ -81,17 +81,23 @@ namespace prompto.value
 			IEnumerator<IValue> iterThis = this.GetEnumerator();
 			IEnumerator<IValue> iterOther = other.GetEnumerator();
 			while(iterThis.MoveNext()) {
-				bool desc = iterDirs.MoveNext() ? iterDirs.Current : false;
+				bool descending = iterDirs.MoveNext() ? iterDirs.Current : false;
 				if(iterOther.MoveNext()) {
 					// compare items
 					IValue thisVal = iterThis.Current;
 					IValue otherVal = iterOther.Current;
+					if(thisVal==null && otherVal==null)
+						continue;
+					else if(thisVal==null)
+						return descending ? 1 : -1;
+					else if(otherVal==null)
+						return descending ? -1 : 1;
 					int cmp = thisVal.CompareTo(context, otherVal);
 					// if not equal, done
 					if(cmp!=0)
-						return desc ? -cmp : cmp;
+						return descending ? -cmp : cmp;
 				} else
-					return desc ? -1 : 1;
+					return descending ? -1 : 1;
 			}
 			bool desc2 = iterDirs.MoveNext() ? iterDirs.Current : false;
 			if(iterOther.MoveNext())
