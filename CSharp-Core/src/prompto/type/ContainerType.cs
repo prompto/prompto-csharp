@@ -6,12 +6,12 @@ using prompto.runtime;
 namespace prompto.type
 {
 
-    public abstract class CollectionType : NativeType
+    public abstract class ContainerType : NativeType
     {
 
         protected IType itemType;
 
-        protected CollectionType(String name, IType itemType)
+        protected ContainerType(String name, IType itemType)
             : base(name)
         {
             this.itemType = itemType;

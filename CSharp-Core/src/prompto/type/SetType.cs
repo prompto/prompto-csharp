@@ -5,7 +5,7 @@ namespace prompto.type
 {
 
 
-	public class SetType : CollectionType
+	public class SetType : ContainerType
 	{
 
 		public SetType (IType itemType)
@@ -20,8 +20,8 @@ namespace prompto.type
 
 		public override IType checkAdd (Context context, IType other, bool tryReverse)
 		{
-			if (other is CollectionType) {
-				IType itemType = ((CollectionType)other).GetItemType ();
+			if (other is ContainerType) {
+				IType itemType = ((ContainerType)other).GetItemType ();
 				if ((other is ListType || other is SetType)
 					&& this.GetItemType ().Equals (itemType))
 					return this;

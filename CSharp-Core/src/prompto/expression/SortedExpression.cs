@@ -94,7 +94,7 @@ namespace prompto.expression
                 throw new NullReferenceError();
 			if (!(o is IContainer))
                 throw new InternalError("Unexpected type:" + o.GetType().Name);
-            IType itemType = ((CollectionType)type).GetItemType();
+            IType itemType = ((ContainerType)type).GetItemType();
             if (itemType is CategoryType)
 				return ((CategoryType)itemType).sort(context, (IContainer)o, key);
             else

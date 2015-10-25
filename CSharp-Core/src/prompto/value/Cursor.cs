@@ -70,7 +70,7 @@ namespace prompto.value
 		{
 			try {
 				Document doc = documents.Current;
-				CategoryType itemType = (CategoryType)((CollectionType)type).GetItemType ();
+				CategoryType itemType = (CategoryType)((ContainerType)type).GetItemType ();
 				return itemType.newInstance (context, doc);
 			} catch (PromptoError e) {
 				throw new Exception (e.Message);

@@ -135,7 +135,6 @@
     <Compile Include="src\prompto\expression\CodeExpression.cs" />
     <Compile Include="src\prompto\type\CodeType.cs" />
     <Compile Include="src\prompto\grammar\CollectionSwitchCase.cs" />
-    <Compile Include="src\prompto\type\CollectionType.cs" />
     <Compile Include="src\prompto\expression\CompareExpression.cs" />
     <Compile Include="src\prompto\declaration\ConcreteCategoryDeclaration.cs" />
     <Compile Include="src\prompto\declaration\ConcreteMethodDeclaration.cs" />
@@ -435,6 +434,7 @@
     <Compile Include="src\prompto\store\ICursor.cs" />
     <Compile Include="src\prompto\store\IDocumentEnumerable.cs" />
     <Compile Include="src\prompto\error\PromptoError.cs" />
+    <Compile Include="src\prompto\type\ContainerType.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Antlr4.Runtime">

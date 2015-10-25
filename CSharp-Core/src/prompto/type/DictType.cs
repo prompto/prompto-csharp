@@ -4,7 +4,7 @@ using prompto.value;
 namespace prompto.type
 {
 
-public class DictType : CollectionType {
+public class DictType : ContainerType {
 	
 	public DictType(IType itemType) 
     	: base(itemType.GetName()+"{}",itemType)

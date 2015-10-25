@@ -8,7 +8,7 @@ using prompto.value;
 namespace prompto.type
 {
 
-    public class ListType : CollectionType
+    public class ListType : ContainerType
     {
 
         public ListType(IType itemType)

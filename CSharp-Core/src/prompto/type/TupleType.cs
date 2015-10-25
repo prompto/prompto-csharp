@@ -6,7 +6,7 @@ using prompto.value;
 namespace prompto.type
 {
 
-	public class TupleType : CollectionType
+	public class TupleType : ContainerType
     {
 
         static TupleType instance = new TupleType();

@@ -14,7 +14,7 @@ namespace prompto.value
 
 	public class Dict : Dictionary<Text, IValue>, IContainer, IEnumerable<IValue>
     {
-		CollectionType type;
+		ContainerType type;
 
 		public Dict(IType itemType)
 	    {

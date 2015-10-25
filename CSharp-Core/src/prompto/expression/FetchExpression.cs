@@ -53,10 +53,10 @@ namespace prompto.expression
         public IType check(Context context)
         {
             IType listType = source.check(context);
-			if (!(listType is CollectionType))
+			if (!(listType is ContainerType))
                 throw new SyntaxError("Expecting a list type as data source !");
             Context local = context.newLocalContext();
-			IType itemType = ((CollectionType)listType).GetItemType ();
+			IType itemType = ((ContainerType)listType).GetItemType ();
 			local.registerValue(new Variable(itemName, itemType));
             IType filterType = filter.check(local);
             if (filterType != BooleanType.Instance)
@@ -72,9 +72,9 @@ namespace prompto.expression
 			if (!(list is IContainer))
                 throw new InternalError("Illegal fetch source: " + source);
             IType listType = source.check(context);
-			if (!(listType is CollectionType))
+			if (!(listType is ContainerType))
 				throw new InternalError("Illegal source type: " + listType.GetName());
-			IType itemType = ((CollectionType)listType).GetItemType();
+			IType itemType = ((ContainerType)listType).GetItemType();
 			ListValue result = new ListValue(itemType);
             Context local = context.newLocalContext();
             Variable item = new Variable(itemName, itemType);

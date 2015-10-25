@@ -23,8 +23,8 @@ namespace prompto.grammar
         public void checkSwitchType(Context context, IType type)
         {
             IType thisType = expression.check(context);
-            if (thisType is CollectionType)
-                thisType = ((CollectionType)thisType).GetItemType();
+            if (thisType is ContainerType)
+                thisType = ((ContainerType)thisType).GetItemType();
             if (!thisType.isAssignableTo(context, type))
 				throw new SyntaxError("Cannot assign:" + thisType.GetName() + " to:" + type.GetName());
         }

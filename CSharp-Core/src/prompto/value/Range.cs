@@ -84,7 +84,7 @@ namespace prompto.value
 	}
 
 	public IType ItemType {
-			get { return ((CollectionType)this.type).GetItemType (); }
+			get { return ((ContainerType)this.type).GetItemType (); }
 	}
 
     public bool HasItem(Context context, IValue lval)

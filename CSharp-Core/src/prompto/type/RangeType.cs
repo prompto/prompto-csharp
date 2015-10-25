@@ -3,7 +3,7 @@ using System;
 namespace prompto.type
 {
 
-    public class RangeType : CollectionType
+    public class RangeType : ContainerType
     {
 
         public RangeType(IType itemType)

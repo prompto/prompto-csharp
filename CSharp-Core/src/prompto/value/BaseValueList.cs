@@ -16,20 +16,20 @@ namespace prompto.value
     public abstract class BaseValueList<T> : List<IValue>, ISliceable where T : BaseValueList<T>
     {
 
-		CollectionType type;
+		ContainerType type;
 
-		protected BaseValueList(CollectionType type)
+		protected BaseValueList(ContainerType type)
 	    {
 			this.type = type;
         }
 
-		protected BaseValueList(CollectionType type, IValue item)
+		protected BaseValueList(ContainerType type, IValue item)
 	    {
 			this.type = type;
 			this.Add(item);
         }
 
-		protected BaseValueList(CollectionType type, List<IValue> items)
+		protected BaseValueList(ContainerType type, List<IValue> items)
 		{
 			this.type = type;
 			this.AddRange(items);
@@ -40,7 +40,7 @@ namespace prompto.value
 			return false;
 		}
 
-		public void SetType(CollectionType type)
+		public void SetType(ContainerType type)
 		{
 			this.type = type;
 		}
@@ -50,7 +50,7 @@ namespace prompto.value
 		}
 
 		public IType ItemType {
-			get { return ((CollectionType)type).GetItemType (); }
+			get { return ((ContainerType)type).GetItemType (); }
 		}
 
        /* for unified grammar */
