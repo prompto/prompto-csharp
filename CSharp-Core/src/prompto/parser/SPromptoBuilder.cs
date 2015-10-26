@@ -1325,6 +1325,34 @@ namespace prompto.parser
 		}
 
 		
+		public override void ExitDeclaration (SParser.DeclarationContext ctx)
+		{
+
+			List<CommentStatement> stmts = null;
+			foreach(SParser.Comment_statementContext csc in ctx.comment_statement()) {
+				if(csc==null)
+					continue;
+				if(stmts==null)
+					stmts = new List<CommentStatement>();
+				stmts.add((CommentStatement)this.GetNodeValue<CommentStatement>(csc));
+			}
+			ParserRuleContext ctx_ = ctx.attribute_declaration();
+			if(ctx_==null)
+				ctx_ = ctx.category_declaration();
+			if(ctx_==null)
+				ctx_ = ctx.enum_declaration();
+			if(ctx_==null)
+				ctx_ = ctx.method_declaration();
+			if(ctx_==null)
+				ctx_ = ctx.resource_declaration();
+			IDeclaration decl = this.GetNodeValue<IDeclaration>(ctx_);
+			if(decl!=null) {
+				decl.Comments = stmts;
+				SetNodeValue(ctx, decl);
+			}		
+		}
+
+
 		public override void ExitDeclarationList (SParser.DeclarationListContext ctx)
 		{
 			IDeclaration item = this.GetNodeValue<IDeclaration> (ctx.item);
@@ -1339,13 +1367,6 @@ namespace prompto.parser
 			DeclarationList items = this.GetNodeValue<DeclarationList> (ctx.items);
 			items.Add (item);
 			SetNodeValue (ctx, items);
-		}
-
-		
-		public override void ExitMethodDeclaration (SParser.MethodDeclarationContext ctx)
-		{
-			IDeclaration decl = this.GetNodeValue<IDeclaration> (ctx.decl);
-			SetNodeValue (ctx, decl);
 		}
 
 		
@@ -1574,27 +1595,6 @@ namespace prompto.parser
 		}
 
 		
-		public override void ExitResourceDeclaration (SParser.ResourceDeclarationContext ctx)
-		{
-			IDeclaration decl = this.GetNodeValue<IDeclaration> (ctx.decl);
-			SetNodeValue (ctx, decl);
-		}
-
-		
-		public override void ExitCategoryDeclaration (SParser.CategoryDeclarationContext ctx)
-		{
-			IDeclaration decl = this.GetNodeValue<IDeclaration> (ctx.decl);
-			SetNodeValue (ctx, decl);
-		}
-
-		
-		public override void ExitAttributeDeclaration (SParser.AttributeDeclarationContext ctx)
-		{
-			IDeclaration decl = this.GetNodeValue<IDeclaration> (ctx.decl);
-			SetNodeValue (ctx, decl);
-		}
-
-		
 		public override void ExitEnumCategoryDeclaration (SParser.EnumCategoryDeclarationContext ctx)
 		{
 			IDeclaration decl = this.GetNodeValue<IDeclaration> (ctx.decl);
@@ -1603,13 +1603,6 @@ namespace prompto.parser
 
 		
 		public override void ExitEnumNativeDeclaration (SParser.EnumNativeDeclarationContext ctx)
-		{
-			IDeclaration decl = this.GetNodeValue<IDeclaration> (ctx.decl);
-			SetNodeValue (ctx, decl);
-		}
-
-		
-		public override void ExitEnumDeclaration (SParser.EnumDeclarationContext ctx)
 		{
 			IDeclaration decl = this.GetNodeValue<IDeclaration> (ctx.decl);
 			SetNodeValue (ctx, decl);

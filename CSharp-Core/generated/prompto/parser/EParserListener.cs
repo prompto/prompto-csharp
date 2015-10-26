@@ -1616,65 +1616,15 @@ public interface IEParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitDeclarationList([NotNull] EParser.DeclarationListContext context);
 	/// <summary>
-	/// Enter a parse tree produced by the <c>AttributeDeclaration</c>
-	/// labeled alternative in <see cref="EParser.declaration"/>.
+	/// Enter a parse tree produced by <see cref="EParser.declaration"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterAttributeDeclaration([NotNull] EParser.AttributeDeclarationContext context);
+	void EnterDeclaration([NotNull] EParser.DeclarationContext context);
 	/// <summary>
-	/// Exit a parse tree produced by the <c>AttributeDeclaration</c>
-	/// labeled alternative in <see cref="EParser.declaration"/>.
+	/// Exit a parse tree produced by <see cref="EParser.declaration"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitAttributeDeclaration([NotNull] EParser.AttributeDeclarationContext context);
-	/// <summary>
-	/// Enter a parse tree produced by the <c>CategoryDeclaration</c>
-	/// labeled alternative in <see cref="EParser.declaration"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterCategoryDeclaration([NotNull] EParser.CategoryDeclarationContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>CategoryDeclaration</c>
-	/// labeled alternative in <see cref="EParser.declaration"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitCategoryDeclaration([NotNull] EParser.CategoryDeclarationContext context);
-	/// <summary>
-	/// Enter a parse tree produced by the <c>ResourceDeclaration</c>
-	/// labeled alternative in <see cref="EParser.declaration"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterResourceDeclaration([NotNull] EParser.ResourceDeclarationContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>ResourceDeclaration</c>
-	/// labeled alternative in <see cref="EParser.declaration"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitResourceDeclaration([NotNull] EParser.ResourceDeclarationContext context);
-	/// <summary>
-	/// Enter a parse tree produced by the <c>EnumDeclaration</c>
-	/// labeled alternative in <see cref="EParser.declaration"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterEnumDeclaration([NotNull] EParser.EnumDeclarationContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>EnumDeclaration</c>
-	/// labeled alternative in <see cref="EParser.declaration"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitEnumDeclaration([NotNull] EParser.EnumDeclarationContext context);
-	/// <summary>
-	/// Enter a parse tree produced by the <c>MethodDeclaration</c>
-	/// labeled alternative in <see cref="EParser.declaration"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterMethodDeclaration([NotNull] EParser.MethodDeclarationContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>MethodDeclaration</c>
-	/// labeled alternative in <see cref="EParser.declaration"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitMethodDeclaration([NotNull] EParser.MethodDeclarationContext context);
+	void ExitDeclaration([NotNull] EParser.DeclarationContext context);
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="EParser.resource_declaration"/>.
 	/// </summary>

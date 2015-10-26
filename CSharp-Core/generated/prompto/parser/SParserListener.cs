@@ -1532,65 +1532,15 @@ public interface ISParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitDeclarationList([NotNull] SParser.DeclarationListContext context);
 	/// <summary>
-	/// Enter a parse tree produced by the <c>AttributeDeclaration</c>
-	/// labeled alternative in <see cref="SParser.declaration"/>.
+	/// Enter a parse tree produced by <see cref="SParser.declaration"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterAttributeDeclaration([NotNull] SParser.AttributeDeclarationContext context);
+	void EnterDeclaration([NotNull] SParser.DeclarationContext context);
 	/// <summary>
-	/// Exit a parse tree produced by the <c>AttributeDeclaration</c>
-	/// labeled alternative in <see cref="SParser.declaration"/>.
+	/// Exit a parse tree produced by <see cref="SParser.declaration"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitAttributeDeclaration([NotNull] SParser.AttributeDeclarationContext context);
-	/// <summary>
-	/// Enter a parse tree produced by the <c>CategoryDeclaration</c>
-	/// labeled alternative in <see cref="SParser.declaration"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterCategoryDeclaration([NotNull] SParser.CategoryDeclarationContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>CategoryDeclaration</c>
-	/// labeled alternative in <see cref="SParser.declaration"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitCategoryDeclaration([NotNull] SParser.CategoryDeclarationContext context);
-	/// <summary>
-	/// Enter a parse tree produced by the <c>ResourceDeclaration</c>
-	/// labeled alternative in <see cref="SParser.declaration"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterResourceDeclaration([NotNull] SParser.ResourceDeclarationContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>ResourceDeclaration</c>
-	/// labeled alternative in <see cref="SParser.declaration"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitResourceDeclaration([NotNull] SParser.ResourceDeclarationContext context);
-	/// <summary>
-	/// Enter a parse tree produced by the <c>EnumDeclaration</c>
-	/// labeled alternative in <see cref="SParser.declaration"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterEnumDeclaration([NotNull] SParser.EnumDeclarationContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>EnumDeclaration</c>
-	/// labeled alternative in <see cref="SParser.declaration"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitEnumDeclaration([NotNull] SParser.EnumDeclarationContext context);
-	/// <summary>
-	/// Enter a parse tree produced by the <c>MethodDeclaration</c>
-	/// labeled alternative in <see cref="SParser.declaration"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterMethodDeclaration([NotNull] SParser.MethodDeclarationContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>MethodDeclaration</c>
-	/// labeled alternative in <see cref="SParser.declaration"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitMethodDeclaration([NotNull] SParser.MethodDeclarationContext context);
+	void ExitDeclaration([NotNull] SParser.DeclarationContext context);
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="SParser.resource_declaration"/>.
 	/// </summary>

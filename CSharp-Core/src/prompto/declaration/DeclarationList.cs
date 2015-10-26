@@ -4,6 +4,7 @@ using prompto.declaration;
 using prompto.utils;
 using prompto.grammar;
 using System.Linq;
+using prompto.statement;
 
 namespace prompto.declaration
 {
@@ -97,6 +98,10 @@ namespace prompto.declaration
 
 		public void ToDialect(CodeWriter writer) {
 			foreach(IDeclaration declaration in this) {
+				if(declaration.Comments!=null) {
+					foreach(CommentStatement comment in declaration.Comments)
+						comment.ToDialect(writer);
+				}
 				declaration.ToDialect(writer);
 				writer.append("\n");
 			}

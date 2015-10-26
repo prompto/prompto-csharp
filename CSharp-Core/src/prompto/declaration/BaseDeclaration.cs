@@ -3,18 +3,30 @@ using prompto.parser;
 using prompto.runtime;
 using prompto.type;
 using prompto.utils;
+using System.Collections.Generic;
+using prompto.statement;
 
 namespace prompto.declaration
 {
 
 	public abstract class BaseDeclaration : Section, IDeclaration
 	{
+		List<CommentStatement> comments = null;
 
-		protected String name;
+ 		protected String name;
 
 		protected BaseDeclaration (String name)
 		{
 			this.name = name;
+		}
+
+		public List<CommentStatement> Comments {
+			get {
+				return comments;
+			}
+			set {
+				comments = value;
+			}
 		}
 
 		public String GetName ()

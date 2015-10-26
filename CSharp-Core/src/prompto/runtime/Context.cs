@@ -530,9 +530,18 @@ namespace prompto.runtime
             this.name = name;
         }
 
+		public List<CommentStatement> Comments {
+			get {
+				throw new Exception("Should never get there!");
+			}
+			set {
+				throw new Exception("Should never get there!");
+			}
+		}
+
         public void ToDialect(CodeWriter writer)
         {
-            // should never get there
+			throw new Exception("Should never get there!");
         }
 
 		public String GetName()
