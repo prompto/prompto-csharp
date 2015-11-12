@@ -131,8 +131,7 @@ namespace prompto.expression
 		{
 			if (filter == null)
 				return;
-			Context local = context.newLocalContext ();
-			IType filterType = filter.check (local);
+			IType filterType = filter.check (context);
 			if (filterType != BooleanType.Instance)
 				throw new SyntaxError ("Filtering expresion must return a boolean !");
 		}

@@ -53,8 +53,7 @@ namespace prompto.expression
 			CategoryDeclaration decl = context.getRegisteredDeclaration<CategoryDeclaration> (type.GetName ());
 			if (decl == null)
 				throw new SyntaxError ("Unknown category: " + type.GetName ().ToString ());
-			Context local = context.newLocalContext ();
-			IType filterType = filter.check (local);
+			IType filterType = filter.check (context);
 			if (filterType != BooleanType.Instance)
 				throw new SyntaxError ("Filtering expresion must return a boolean !");
 			return type;
