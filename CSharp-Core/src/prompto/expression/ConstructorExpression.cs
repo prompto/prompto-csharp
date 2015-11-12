@@ -147,7 +147,7 @@ namespace prompto.expression
 	                    {
 	                        if (cd.hasAttribute(context, name))
 							{
-								IValue value = initFrom.GetMember(context, name);
+								IValue value = initFrom.GetMember(context, name, false);
 								if(value!=null && value.IsMutable() && !this.mutable)
 									throw new NotMutableError();
 								instance.SetMember(context, name, value);

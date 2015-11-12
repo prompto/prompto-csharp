@@ -87,7 +87,7 @@ namespace prompto.value
   
 
         override
-        public IValue GetMember(Context context, String name)
+		public IValue GetMember(Context context, String name, bool autoCreate)
         {
             if ("length" == name)
                 return new Integer(value.Length);

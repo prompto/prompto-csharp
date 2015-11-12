@@ -106,7 +106,7 @@ namespace prompto.declaration
 			if (expectedError!=null && expectedError.Equals (actual))
 				printSuccess (context);
 			else {
-				String actualName = ((IInstance)actual).GetMember (context, "name").ToString ();
+				String actualName = ((IInstance)actual).GetMember (context, "name", false).ToString ();
 				String expectedName = error == null ? "SUCCESS" : error.getName ();
 				printFailure (context, expectedName, actualName);
 			}

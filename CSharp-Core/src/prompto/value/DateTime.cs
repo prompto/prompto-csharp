@@ -105,7 +105,7 @@ namespace prompto.value
         }
 
         override
-        public IValue GetMember(Context context, String name)
+		public IValue GetMember(Context context, String name, bool autoCreate)
         {
             if ("year" == name)
                 return new Integer(this.Year);

@@ -98,7 +98,7 @@ namespace prompto.value
                 throw new SyntaxError("Only Text key is supported by " + this.GetType().Name);
         }
 
-        public virtual IValue GetMember(Context context, String name)
+		public virtual IValue GetMember(Context context, String name, bool autoCreate)
         {
             if ("length" == name)
                 return new Integer(this.Count);
@@ -210,7 +210,7 @@ namespace prompto.value
         }
 
         override
-        public IValue GetMember(Context context, String name)
+		public IValue GetMember(Context context, String name, bool autoCreate)
         {
             if ("key" == name)
                 return kvp.Key;

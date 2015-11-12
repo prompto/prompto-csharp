@@ -73,7 +73,7 @@ namespace prompto.value
         }
 
         override
-        public IValue GetMember(Context context, String name)
+		public IValue GetMember(Context context, String name, bool autoCreate)
         {
             if ("hour" == name)
                 return new Integer(this.HourOfDay);

@@ -17,7 +17,7 @@ namespace prompto.value
         IValue Divide(Context context, IValue iValue);
         IValue IntDivide(Context context, IValue iValue);
         IValue Modulo(Context context, IValue iValue);
-		IValue GetMember(Context context, String attrName);
+		IValue GetMember(Context context, String attrName, bool autoCreate);
 		void SetMember(Context context, String attrName, IValue value);
         Int32 CompareTo(Context context, IValue value);
         Object ConvertTo(Type type);

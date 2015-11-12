@@ -323,8 +323,8 @@ namespace prompto.type
             override
             protected int DoCompare(IInstance o1, IInstance o2)
             {
-                Object key1 = o1.GetMember(context, name);
-                Object key2 = o2.GetMember(context, name);
+                Object key1 = o1.GetMember(context, name, false);
+                Object key2 = o2.GetMember(context, name, false);
                 return type.compareKeys(key1, key2);
             }
 

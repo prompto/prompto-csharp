@@ -27,16 +27,11 @@ namespace prompto.value
 			return members.ContainsKey (name);
 		}
 
-		public override IValue GetMember(Context context, String name)
+		public override IValue GetMember(Context context, String name, bool autoCreate)
 		{
-			return GetMember (context, name, true);
-		}
-
-		public IValue GetMember(Context context, String name, bool create)
-        {
             IValue result;
 			bool exists = members.TryGetValue (name, out result);
-			if(create && !exists)
+			if(autoCreate && !exists)
             {
                 result = new Document();
                 members[name] = result;

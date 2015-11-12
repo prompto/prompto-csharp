@@ -97,7 +97,7 @@ namespace prompto.value
 		ThreadLocal<Dictionary<String, Context>> activeGetters = new ThreadLocal<Dictionary<String, Context>> (Factory);
 
 
-		public override IValue GetMember (Context context, String attrName)
+		public override IValue GetMember (Context context, String attrName, bool autoCreate)
 		{
 			Context stacked;
 			activeGetters.Value.TryGetValue (attrName, out stacked);
@@ -105,14 +105,14 @@ namespace prompto.value
 			if (first)
 				activeGetters.Value [attrName] = context;
 			try {
-				return GetMember (context, attrName, stacked == null);
+				return GetMemberAllowGetter (context, attrName, stacked == null);
 			} finally {
 				if (first)
 					activeGetters.Value [attrName] = null;
 			}
 		}
 
-		protected IValue GetMember (Context context, String attrName, bool allowGetter)
+		protected IValue GetMemberAllowGetter (Context context, String attrName, bool allowGetter)
 		{
 			GetterMethodDeclaration getter = allowGetter ? declaration.findGetter (context, attrName) : null;
 			if (getter != null) {

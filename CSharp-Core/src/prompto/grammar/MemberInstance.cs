@@ -71,7 +71,7 @@ namespace prompto.grammar {
 		public IValue interpret(Context context)
         {
 			IValue root = parent.interpret(context);
-            return root.GetMember(context, name);
+            return root.GetMember(context, name, true);
         }
 
     }

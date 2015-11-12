@@ -104,7 +104,7 @@ namespace prompto.value
             return this; 
         }
 
-        public virtual IValue GetMember(Context context, String name)
+		public virtual IValue GetMember(Context context, String name, bool autoCreate)
         {
             if ("length" == name)
                 return new Integer(this.Count);

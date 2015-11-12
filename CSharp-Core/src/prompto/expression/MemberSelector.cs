@@ -83,7 +83,7 @@ namespace prompto.expression
 			if (instance == null || instance == NullValue.Instance)
 				throw new NullReferenceError();
 			else
-				return instance.GetMember(context, name);
+				return instance.GetMember(context, name, true);
 		}
 
 		private IValue interpretTypeMember(Context context, IExpression parent) {
@@ -97,7 +97,7 @@ namespace prompto.expression
 			if(parent is TypeExpression && ((TypeExpression)parent).getType() is CategoryType) {
 				ConcreteInstance instance = context.loadSingleton((CategoryType)((TypeExpression)parent).getType());
 				if(instance!=null)
-					return instance.GetMember(context, name); 
+					return instance.GetMember(context, name, false); 
 			}
 			return null;
 		}

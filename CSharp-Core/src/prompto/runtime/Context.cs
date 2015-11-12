@@ -478,7 +478,7 @@ namespace prompto.runtime
 
 		protected override IValue readValue(String name)
         {
-            return instance.GetMember(calling, name);
+            return instance.GetMember(calling, name, false);
         }
 
         
@@ -504,14 +504,14 @@ namespace prompto.runtime
 			Context context = base.contextForValue(name);
 			if(context!=null)
 				return context;
-			else if(document.HasMember(name))
-				return this;
+			// since any name is valid in the context of a document
+			// simply return this document context
 			else
-				return null;
+				return this;
 		}
 
 		protected override IValue readValue(String name) {
-			return document.GetMember(calling, name);
+			return document.GetMember(calling, name, false);
 		}
 
 		protected override void writeValue(String name, IValue value) {

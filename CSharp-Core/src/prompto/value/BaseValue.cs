@@ -59,7 +59,7 @@ namespace prompto.value
             throw new NotSupportedException("Compare not supported by " + this.GetType().Name);
         }
 
-        public virtual IValue GetMember(Context context, String name)
+		public virtual IValue GetMember(Context context, String name, bool autoCreate)
         {
             throw new NotSupportedException("No member support for " + this.GetType().Name);
         }

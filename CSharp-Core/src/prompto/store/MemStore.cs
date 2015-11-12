@@ -187,7 +187,7 @@ namespace prompto.store
 			foreach(String name in clause.getNames()) {
 				if(!(source is Document))
 					return null;
-				value = source.GetMember(context, name);
+				value = source.GetMember(context, name, false);
 				source = value;
 			}
 			return value;

@@ -85,7 +85,7 @@ namespace prompto.grammar
 		}
 
 		
-		public IValue GetMember(Context context, String name) {
+		public IValue GetMember(Context context, String name, bool autoCreate) {
 			throw new NotSupportedException("No member support for " + this.GetType().Name);
 		}
 
