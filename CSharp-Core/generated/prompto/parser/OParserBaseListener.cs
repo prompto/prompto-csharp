@@ -2038,6 +2038,18 @@ public partial class OParserBaseListener : IOParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitTextType([NotNull] OParser.TextTypeContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="OParser.ImageType"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterImageType([NotNull] OParser.ImageTypeContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="OParser.ImageType"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitImageType([NotNull] OParser.ImageTypeContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="OParser.IntegerType"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
@@ -2133,6 +2145,18 @@ public partial class OParserBaseListener : IOParserListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitCodeType([NotNull] OParser.CodeTypeContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="OParser.BlobType"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterBlobType([NotNull] OParser.BlobTypeContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="OParser.BlobType"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitBlobType([NotNull] OParser.BlobTypeContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="OParser.category_type"/>.
 	/// <para>The default implementation does nothing.</para>

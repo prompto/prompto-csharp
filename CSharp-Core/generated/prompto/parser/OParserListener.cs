@@ -1940,6 +1940,18 @@ public interface IOParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitTextType([NotNull] OParser.TextTypeContext context);
 	/// <summary>
+	/// Enter a parse tree produced by the <c>ImageType</c>
+	/// labeled alternative in <see cref="OParser.native_type"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterImageType([NotNull] OParser.ImageTypeContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>ImageType</c>
+	/// labeled alternative in <see cref="OParser.native_type"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitImageType([NotNull] OParser.ImageTypeContext context);
+	/// <summary>
 	/// Enter a parse tree produced by the <c>IntegerType</c>
 	/// labeled alternative in <see cref="OParser.native_type"/>.
 	/// </summary>
@@ -2035,6 +2047,18 @@ public interface IOParserListener : IParseTreeListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void ExitCodeType([NotNull] OParser.CodeTypeContext context);
+	/// <summary>
+	/// Enter a parse tree produced by the <c>BlobType</c>
+	/// labeled alternative in <see cref="OParser.native_type"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterBlobType([NotNull] OParser.BlobTypeContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>BlobType</c>
+	/// labeled alternative in <see cref="OParser.native_type"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitBlobType([NotNull] OParser.BlobTypeContext context);
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="OParser.category_type"/>.
 	/// </summary>

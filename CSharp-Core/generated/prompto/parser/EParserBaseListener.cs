@@ -2062,6 +2062,18 @@ public partial class EParserBaseListener : IEParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitTextType([NotNull] EParser.TextTypeContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="EParser.ImageType"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterImageType([NotNull] EParser.ImageTypeContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="EParser.ImageType"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitImageType([NotNull] EParser.ImageTypeContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="EParser.IntegerType"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
@@ -2157,6 +2169,18 @@ public partial class EParserBaseListener : IEParserListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitCodeType([NotNull] EParser.CodeTypeContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="EParser.BlobType"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterBlobType([NotNull] EParser.BlobTypeContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="EParser.BlobType"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitBlobType([NotNull] EParser.BlobTypeContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="EParser.category_type"/>.
 	/// <para>The default implementation does nothing.</para>
