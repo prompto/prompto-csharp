@@ -18,6 +18,16 @@ namespace prompto.grammar
 			this.Add (symbol);
 		}
 
+		public bool Empty()
+		{
+			return Length () == 0;
+		}
+
+		public long Length()
+		{
+			return this.Count;
+		}
+
 		public bool IsMutable()
 		{
 			return false;
@@ -43,7 +53,7 @@ namespace prompto.grammar
 			return null; // TODO
 		}
 
-		public IEnumerable<IValue> GetItems(Context context)
+		public IEnumerable<IValue> GetEnumerable(Context context)
 		{
 			return new IValueEnumerable (context, this);
 		}

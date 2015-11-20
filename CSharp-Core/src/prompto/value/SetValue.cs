@@ -30,14 +30,19 @@ namespace prompto.value
 			return new HashSet<IValue> ();
 		}
 
-		public bool isEmpty ()
+		public bool Empty ()
 		{
 			return items.Count==0;
 		}
 
-		public long length ()
+		public long Length ()
 		{
 			return items.Count;
+		}
+
+		public IEnumerable<IValue> GetEnumerable(Context context)
+		{
+			return items;
 		}
 
 		public ICollection<IValue> getItems ()
@@ -113,7 +118,7 @@ namespace prompto.value
 		public override IValue Add (Context context, IValue value)
 		{
 			if (value is IContainer)
-				return this.merge (((IContainer)value).GetItems (context));
+				return this.merge (((IContainer)value).GetEnumerable (context));
 			else if (value is SetValue)
 				return this.merge (((SetValue)value).GetItems (context));
 			else

@@ -1048,6 +1048,18 @@ public interface IEParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitNotInExpression([NotNull] EParser.NotInExpressionContext context);
 	/// <summary>
+	/// Enter a parse tree produced by the <c>IteratorExpression</c>
+	/// labeled alternative in <see cref="EParser.expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterIteratorExpression([NotNull] EParser.IteratorExpressionContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>IteratorExpression</c>
+	/// labeled alternative in <see cref="EParser.expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitIteratorExpression([NotNull] EParser.IteratorExpressionContext context);
+	/// <summary>
 	/// Enter a parse tree produced by the <c>UnresolvedExpression</c>
 	/// labeled alternative in <see cref="EParser.expression"/>.
 	/// </summary>

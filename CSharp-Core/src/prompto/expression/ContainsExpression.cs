@@ -109,7 +109,7 @@ namespace prompto.expression
 
         public bool ContainsAll(Context context, IContainer container, IContainer items)
         {
-            foreach (Object it in items.GetItems(context))
+            foreach (Object it in items.GetEnumerable(context))
             {
                 Object item = it;
                 if (item is IExpression)
@@ -126,7 +126,7 @@ namespace prompto.expression
         }
         public bool ContainsAny(Context context, IContainer container, IContainer items)
         {
-            foreach (Object it in items.GetItems(context))
+			foreach (Object it in items.GetEnumerable(context))
             {
                 Object item = it;
                 if (item is IExpression)

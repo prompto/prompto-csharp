@@ -15,10 +15,10 @@ namespace prompto.value
         }
 
         override
-        public Integer size()
+        public long Length()
         {
             TimeSpan interval = high.Value.Subtract(low.Value);
-            return new Integer(1L + (long)interval.TotalSeconds);
+            return 1L + (long)interval.TotalSeconds;
         }
 
         override

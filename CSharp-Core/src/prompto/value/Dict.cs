@@ -27,6 +27,16 @@ namespace prompto.value
 			this.type = new DictType (itemType);
         }
 
+		public bool Empty()
+		{
+			return Length () == 0;
+		}
+
+		public long Length()
+		{
+			return this.Count;
+		}
+
 		public bool IsMutable()
 		{
 			return false;
@@ -75,7 +85,7 @@ namespace prompto.value
             throw new NotSupportedException("Modulo not supported by " + this.GetType().Name);
         }
 
-		public IEnumerable<IValue> GetItems(Context context)
+		public IEnumerable<IValue> GetEnumerable(Context context)
         { 
 			return this; 
         }

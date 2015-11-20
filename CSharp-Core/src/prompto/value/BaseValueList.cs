@@ -35,6 +35,17 @@ namespace prompto.value
 			this.AddRange(items);
 		}
 
+		public bool Empty()
+		{
+			return Length() == 0;
+		}
+
+		public long Length ()
+		{
+			return this.Count;
+		}
+
+
 		public virtual bool IsMutable()
 		{
 			return false;
@@ -99,7 +110,7 @@ namespace prompto.value
             return this.Contains(value);
         }
 
-        public IEnumerable<IValue> GetItems(Context context)
+        public IEnumerable<IValue> GetEnumerable(Context context)
         { 
             return this; 
         }

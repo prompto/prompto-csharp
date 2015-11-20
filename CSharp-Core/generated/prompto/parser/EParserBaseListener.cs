@@ -1114,6 +1114,18 @@ public partial class EParserBaseListener : IEParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitNotInExpression([NotNull] EParser.NotInExpressionContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="EParser.IteratorExpression"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterIteratorExpression([NotNull] EParser.IteratorExpressionContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="EParser.IteratorExpression"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitIteratorExpression([NotNull] EParser.IteratorExpressionContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="EParser.UnresolvedExpression"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>

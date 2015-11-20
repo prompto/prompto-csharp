@@ -7,11 +7,9 @@ using prompto.type;
 
 namespace prompto.value
 {
-    public interface IContainer : IValue
+	public interface IContainer : IIterable
     {
-		IType ItemType { get; }
         bool HasItem(Context context, IValue iValue);
         IValue GetItem(Context context, IValue item);
-		IEnumerable<IValue> GetItems(Context context);
     }
 }

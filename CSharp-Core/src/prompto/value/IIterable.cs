@@ -3,14 +3,14 @@
 using prompto.runtime;
 using prompto.value;
 
-namespace prompto.store
+namespace prompto.value
 {
 
-	public interface ICursor<T> : IValue where T : IValue
+	public interface IIterable : IValue
 	{
 		bool Empty ();
 		long Length ();
-		IEnumerable<T> GetItems (Context context);
+		IEnumerable<IValue> GetEnumerable (Context context);
 	}
 
 }

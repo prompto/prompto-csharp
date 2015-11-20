@@ -984,6 +984,18 @@ public interface ISParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitNotInExpression([NotNull] SParser.NotInExpressionContext context);
 	/// <summary>
+	/// Enter a parse tree produced by the <c>IteratorExpression</c>
+	/// labeled alternative in <see cref="SParser.expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterIteratorExpression([NotNull] SParser.IteratorExpressionContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>IteratorExpression</c>
+	/// labeled alternative in <see cref="SParser.expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitIteratorExpression([NotNull] SParser.IteratorExpressionContext context);
+	/// <summary>
 	/// Enter a parse tree produced by the <c>IsNotExpression</c>
 	/// labeled alternative in <see cref="SParser.expression"/>.
 	/// </summary>

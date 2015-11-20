@@ -79,12 +79,21 @@ namespace prompto.value
         }
 
   
-        public IEnumerable<IValue> GetItems(Context context)
+        public IEnumerable<IValue> GetEnumerable(Context context)
         {
 			return (IEnumerable<IValue>)this; 
         }
 
-  
+		public bool Empty()
+		{
+			return Length() == 0;
+		}
+
+		public long Length()
+		{
+			return value.Length;
+		}
+
 
         override
 		public IValue GetMember(Context context, String name, bool autoCreate)

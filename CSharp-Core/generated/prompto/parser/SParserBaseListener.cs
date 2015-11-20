@@ -1054,6 +1054,18 @@ public partial class SParserBaseListener : ISParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitNotInExpression([NotNull] SParser.NotInExpressionContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="SParser.IteratorExpression"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterIteratorExpression([NotNull] SParser.IteratorExpressionContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="SParser.IteratorExpression"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitIteratorExpression([NotNull] SParser.IteratorExpressionContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="SParser.IsNotExpression"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>

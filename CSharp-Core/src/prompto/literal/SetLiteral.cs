@@ -29,7 +29,7 @@ public class SetLiteral : Literal<SetValue> {
 			if(expressions!=null)
 				itemType = Utils.InferElementType(context, expressions);
 			else
-				itemType = Utils.InferElementType(context, value.getItems());
+					itemType = Utils.InferElementType(context, value.getItems());
 		}
 		return new SetType(itemType); 
 	}

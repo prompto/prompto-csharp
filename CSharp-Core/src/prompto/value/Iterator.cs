@@ -5,22 +5,32 @@ using prompto.type;
 using prompto.error;
 using System;
 using System.Collections;
+using prompto.expression;
 
 
 namespace prompto.value
 {
 
-	public class Cursor : BaseValue, IIterable, IEnumerable<IValue>, IEnumerator<IValue>
+	public class Iterator : BaseValue, IIterable, IEnumerable<IValue>, IEnumerator<IValue>
 	{
 
+		IType itemType;
 		Context context;
-		IDocumentEnumerator documents;
+		Integer length;
+		String name;
+		IEnumerator<IValue> source;
+		IExpression expression;
 
-		public Cursor (Context context, IType itemType, IDocumentEnumerator documents)
-			: base (new CursorType (itemType))
+		public Iterator (IType itemType, Context context, Integer length, String name, 
+			IEnumerator<IValue> source, IExpression expression)
+			: base (new IteratorType (itemType))
 		{
+			this.itemType = itemType;
 			this.context = context;
-			this.documents = documents;
+			this.length = length;
+			this.name = name;
+			this.source = source;
+			this.expression = expression;
 		}
 
 		public bool Empty ()
@@ -30,7 +40,7 @@ namespace prompto.value
 
 		public long Length ()
 		{
-			return documents.Length;
+			return length.IntegerValue;
 		}
 
 		public IEnumerable<IValue> GetEnumerable (Context context)
@@ -50,7 +60,7 @@ namespace prompto.value
 
 		public bool MoveNext ()
 		{
-			return documents.MoveNext ();
+			return source.MoveNext ();
 		}
 
 		object IEnumerator.Current {
@@ -69,9 +79,10 @@ namespace prompto.value
 		IValue getCurrent() 
 		{
 			try {
-				Document doc = documents.Current;
-				CategoryType itemType = (CategoryType)((ContainerType)type).GetItemType ();
-				return itemType.newInstance (context, doc);
+				Context child = context.newChildContext();
+				child.registerValue(new Variable(name, itemType));
+				child.setValue(name, source.Current);
+				return expression.interpret(child);
 			} catch (PromptoError e) {
 				throw new Exception (e.Message);
 			}
@@ -89,7 +100,7 @@ namespace prompto.value
 
 		public override IValue GetMember (Context context, string name, bool autoCreate)
 		{
-			if ("length".Equals (name))
+			if ("length" == name)
 				return new Integer (Length ());
 			else
 				throw new InvalidDataError ("No such member:" + name);

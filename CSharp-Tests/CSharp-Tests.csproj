@@ -323,6 +323,12 @@
     <Compile Include="src\prompto\translate\ese\TestStore.cs" />
     <Compile Include="src\prompto\translate\eoe\TestComment.cs" />
     <Compile Include="src\prompto\translate\ese\TestComment.cs" />
+    <Compile Include="src\prompto\runtime\e\TestIterate.cs" />
+    <Compile Include="src\prompto\runtime\o\TestIterate.cs" />
+    <Compile Include="src\prompto\translate\eoe\TestIterate.cs" />
+    <Compile Include="src\prompto\translate\ese\TestIterate.cs" />
+    <Compile Include="src\prompto\translate\oeo\TestIterate.cs" />
+    <Compile Include="src\prompto\translate\oso\TestIterate.cs" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />

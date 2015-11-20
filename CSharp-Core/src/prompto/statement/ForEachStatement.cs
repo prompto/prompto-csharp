@@ -62,7 +62,7 @@ namespace prompto.statement
 
 		private IEnumerator<IValue> getEnumerator(Context context, Object src) {
 			if (src is IContainer) 
-				src = ((IContainer) src).GetItems(context);
+				src = ((IContainer) src).GetEnumerable(context);
 			if(src is IEnumerable<IValue>)
 				return ((IEnumerable<IValue>)src).GetEnumerator();
 			else

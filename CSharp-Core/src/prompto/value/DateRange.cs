@@ -16,11 +16,11 @@ namespace prompto.value
         }
 
         override
-        public Integer size()
+        public long Length()
         {
             long h = high.getMillis();
             long l = low.getMillis();
-            return new Integer(1 + ((h - l) / (24 * 60 * 60 * 1000)));
+            return 1 + ((h - l) / (24 * 60 * 60 * 1000));
         }
 
         override

@@ -431,10 +431,14 @@
     <Compile Include="src\prompto\grammar\OrderByClauseList.cs" />
     <Compile Include="src\prompto\type\CursorType.cs" />
     <Compile Include="src\prompto\value\Cursor.cs" />
-    <Compile Include="src\prompto\store\ICursor.cs" />
     <Compile Include="src\prompto\store\IDocumentEnumerable.cs" />
     <Compile Include="src\prompto\error\PromptoError.cs" />
     <Compile Include="src\prompto\type\ContainerType.cs" />
+    <Compile Include="src\prompto\expression\IteratorExpression.cs" />
+    <Compile Include="src\prompto\type\IteratorType.cs" />
+    <Compile Include="src\prompto\type\IterableType.cs" />
+    <Compile Include="src\prompto\value\Iterator.cs" />
+    <Compile Include="src\prompto\value\IIterable.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Antlr4.Runtime">

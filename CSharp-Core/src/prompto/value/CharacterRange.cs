@@ -14,9 +14,9 @@ namespace prompto.value
         {
         }
 
-        override public Integer size()
+        override public long Length()
         {
-            return new Integer(1 + high.Value - low.Value);
+            return 1 + high.Value - low.Value;
         }
 
         override public int compare(Character o1, Character o2)

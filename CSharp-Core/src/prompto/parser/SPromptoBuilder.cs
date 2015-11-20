@@ -1077,6 +1077,15 @@ namespace prompto.parser
 		}
 
 		
+		public override void ExitIteratorExpression(SParser.IteratorExpressionContext ctx) 
+		{
+			IExpression exp = this.GetNodeValue<IExpression>(ctx.exp);
+			string name = this.GetNodeValue<string>(ctx.name);
+			IExpression source = this.GetNodeValue<IExpression>(ctx.source);
+			SetNodeValue(ctx, new IteratorExpression(name, source, exp));
+		}
+
+
 		public override void ExitJava_identifier (SParser.Java_identifierContext ctx)
 		{
 			SetNodeValue (ctx, ctx.GetText ());

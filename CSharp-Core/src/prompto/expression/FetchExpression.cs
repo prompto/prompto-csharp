@@ -79,7 +79,7 @@ namespace prompto.expression
             Context local = context.newLocalContext();
             Variable item = new Variable(itemName, itemType);
             local.registerValue(item);
-			foreach (IValue o in ((IContainer)list).GetItems(context))
+			foreach (IValue o in ((IContainer)list).GetEnumerable(context))
             {
                 local.setValue(itemName, o);
                 Object test = filter.interpret(local);

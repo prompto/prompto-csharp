@@ -56,7 +56,7 @@ namespace prompto.value
             throw new NotSupportedException("No such item:" + index.ToString());
     }
 
-    public IEnumerable<IValue> GetItems(Context context)
+    public IEnumerable<IValue> GetEnumerable(Context context)
     {
         return this;
     }
@@ -117,8 +117,19 @@ namespace prompto.value
         return new RangeIterator<T>(this);
     }
 
+		public bool Empty() 
+		{
+			return Length () == 0;
+		}
+
+		public abstract long Length ();
+
+		public Integer size()
+		{
+			return new Integer(Length());
+		}
+
     public abstract IValue Item(Integer index);
-    public abstract Integer size();
 	public abstract int compare(T o1,T o2);
 	public abstract Range<T> newInstance(T left,T right);
 

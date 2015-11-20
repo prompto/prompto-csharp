@@ -6,30 +6,16 @@ using prompto.runtime;
 namespace prompto.type
 {
 
-    public abstract class ContainerType : NativeType
+	public abstract class ContainerType : IterableType
     {
 
-        protected IType itemType;
-
         protected ContainerType(String name, IType itemType)
-            : base(name)
+			: base(name, itemType)
         {
-            this.itemType = itemType;
         }
 
-		public IType GetItemType()
-        {
-            return itemType;
-        }
-
-        override
-        public void checkExists(Context context)
-        {
-            itemType.checkExists(context);
-        }
-
-        override
-        public IType checkContains(Context context, IType other)
+        
+		public override IType checkContains(Context context, IType other)
         {
             if (itemType.isAssignableTo(context, other))
                 return BooleanType.Instance;
