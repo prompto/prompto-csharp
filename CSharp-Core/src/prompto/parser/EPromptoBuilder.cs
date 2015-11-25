@@ -466,7 +466,7 @@ namespace prompto.parser
 		
 		public override void ExitDateTimeType (EParser.DateTimeTypeContext ctx)
 		{
-			SetNodeValue (ctx, TextType.Instance);
+			SetNodeValue (ctx, DateTimeType.Instance);
 		}
 
 		
