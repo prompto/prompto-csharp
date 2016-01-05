@@ -31,7 +31,18 @@ namespace prompto.type
             return typeof(DateTime);
         }
 
-        override
+		override
+		public IValue ConvertCSharpValueToPromptoValue(Object value)
+		{
+			if (value is System.DateTimeOffset)
+				return new DateTime((System.DateTimeOffset)value);
+			else if (value is System.DateTime?)
+				return new DateTime(((System.DateTimeOffset?)value).Value);
+			else
+				return base.ConvertCSharpValueToPromptoValue(value);
+		}
+
+		override
         public IType CheckMember(Context context, String name)
         {
             if ("year" == name)

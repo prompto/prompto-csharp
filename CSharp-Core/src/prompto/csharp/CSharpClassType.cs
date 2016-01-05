@@ -32,12 +32,10 @@ namespace prompto.csharp
             typeToPrestoMap[typeof(double)] = DecimalType.Instance;
             typeToPrestoMap[typeof(double?)] = DecimalType.Instance;
             typeToPrestoMap[typeof(string)] = TextType.Instance;
-            typeToPrestoMap[typeof(Date)] = DateType.Instance;
-            typeToPrestoMap[typeof(Time)] = TimeType.Instance;
-            typeToPrestoMap[typeof(DateTime)] = DateTimeType.Instance;
-            typeToPrestoMap[typeof(Period)] = PeriodType.Instance;
-            typeToPrestoMap[typeof(object)] = AnyType.Instance;
-        }
+			typeToPrestoMap[typeof(DateTimeOffset)] = DateTimeType.Instance;
+			typeToPrestoMap[typeof(DateTimeOffset?)] = DateTimeType.Instance;
+			typeToPrestoMap[typeof(object)] = AnyType.Instance;
+      }
 
         internal Type type;
 

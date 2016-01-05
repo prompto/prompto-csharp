@@ -45,7 +45,7 @@ namespace prompto.value
 
         DateTimeOffset value;
 
-        private DateTime(DateTimeOffset value)
+		public DateTime(DateTimeOffset value)
 			: base(DateTimeType.Instance)
         {
             this.value = value;
