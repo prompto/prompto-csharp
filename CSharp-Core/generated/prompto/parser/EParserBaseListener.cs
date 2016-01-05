@@ -3658,6 +3658,18 @@ public partial class EParserBaseListener : IEParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitOperatorModulo([NotNull] EParser.OperatorModuloContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="EParser.new_token"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterNew_token([NotNull] EParser.New_tokenContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="EParser.new_token"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitNew_token([NotNull] EParser.New_tokenContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="EParser.key_token"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
@@ -3825,6 +3837,18 @@ public partial class EParserBaseListener : IEParserListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitJavascript_this_expression([NotNull] EParser.Javascript_this_expressionContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="EParser.javascript_new_expression"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterJavascript_new_expression([NotNull] EParser.Javascript_new_expressionContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="EParser.javascript_new_expression"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitJavascript_new_expression([NotNull] EParser.Javascript_new_expressionContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="EParser.JavaScriptMethodExpression"/>.
 	/// <para>The default implementation does nothing.</para>
@@ -4414,6 +4438,18 @@ public partial class EParserBaseListener : IEParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitJava_this_expression([NotNull] EParser.Java_this_expressionContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="EParser.java_new_expression"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterJava_new_expression([NotNull] EParser.Java_new_expressionContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="EParser.java_new_expression"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitJava_new_expression([NotNull] EParser.Java_new_expressionContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="EParser.JavaMethodExpression"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
@@ -4689,6 +4725,18 @@ public partial class EParserBaseListener : IEParserListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitCsharp_this_expression([NotNull] EParser.Csharp_this_expressionContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="EParser.csharp_new_expression"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterCsharp_new_expression([NotNull] EParser.Csharp_new_expressionContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="EParser.csharp_new_expression"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitCsharp_new_expression([NotNull] EParser.Csharp_new_expressionContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="EParser.CSharpMethodExpression"/>.
 	/// <para>The default implementation does nothing.</para>

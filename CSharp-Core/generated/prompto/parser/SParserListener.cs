@@ -3416,6 +3416,16 @@ public interface ISParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitOperatorModulo([NotNull] SParser.OperatorModuloContext context);
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="SParser.new_token"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterNew_token([NotNull] SParser.New_tokenContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="SParser.new_token"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitNew_token([NotNull] SParser.New_tokenContext context);
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="SParser.key_token"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
@@ -3563,6 +3573,16 @@ public interface ISParserListener : IParseTreeListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void ExitJavascript_this_expression([NotNull] SParser.Javascript_this_expressionContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="SParser.javascript_new_expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterJavascript_new_expression([NotNull] SParser.Javascript_new_expressionContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="SParser.javascript_new_expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitJavascript_new_expression([NotNull] SParser.Javascript_new_expressionContext context);
 	/// <summary>
 	/// Enter a parse tree produced by the <c>JavaScriptMethodExpression</c>
 	/// labeled alternative in <see cref="SParser.javascript_selector_expression"/>.
@@ -4132,6 +4152,16 @@ public interface ISParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitJava_this_expression([NotNull] SParser.Java_this_expressionContext context);
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="SParser.java_new_expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterJava_new_expression([NotNull] SParser.Java_new_expressionContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="SParser.java_new_expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitJava_new_expression([NotNull] SParser.Java_new_expressionContext context);
+	/// <summary>
 	/// Enter a parse tree produced by the <c>JavaMethodExpression</c>
 	/// labeled alternative in <see cref="SParser.java_selector_expression"/>.
 	/// </summary>
@@ -4395,6 +4425,16 @@ public interface ISParserListener : IParseTreeListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void ExitCsharp_this_expression([NotNull] SParser.Csharp_this_expressionContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="SParser.csharp_new_expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterCsharp_new_expression([NotNull] SParser.Csharp_new_expressionContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="SParser.csharp_new_expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitCsharp_new_expression([NotNull] SParser.Csharp_new_expressionContext context);
 	/// <summary>
 	/// Enter a parse tree produced by the <c>CSharpMethodExpression</c>
 	/// labeled alternative in <see cref="SParser.csharp_selector_expression"/>.
