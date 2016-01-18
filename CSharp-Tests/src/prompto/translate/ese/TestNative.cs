@@ -39,6 +39,12 @@ namespace prompto.translate.ese
 		}
 
 		[Test]
+		public void testNow()
+		{
+			compareResourceESE("native/now.pec");
+		}
+
+		[Test]
 		public void testPrinter()
 		{
 			compareResourceESE("native/printer.pec");

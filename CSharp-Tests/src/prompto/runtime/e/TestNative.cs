@@ -52,6 +52,12 @@ namespace prompto.runtime.e
 		}
 
 		[Test]
+		public void testNow()
+		{
+			CheckOutput("native/now.pec");
+		}
+
+		[Test]
 		public void testPrinter()
 		{
 			CheckOutput("native/printer.pec");

@@ -2170,6 +2170,18 @@ public partial class OParserBaseListener : IOParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitBlobType([NotNull] OParser.BlobTypeContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="OParser.UUIDType"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterUUIDType([NotNull] OParser.UUIDTypeContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="OParser.UUIDType"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitUUIDType([NotNull] OParser.UUIDTypeContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="OParser.category_type"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>

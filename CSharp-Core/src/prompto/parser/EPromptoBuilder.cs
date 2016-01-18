@@ -2788,6 +2788,11 @@ namespace prompto.parser
 			SetNodeValue (ctx, stmt);
 		}
 
+		public override void ExitJavascript_new_expression (EParser.Javascript_new_expressionContext ctx)
+		{
+			JavaScriptMethodExpression method = this.GetNodeValue<JavaScriptMethodExpression> (ctx.javascript_method_expression());
+			SetNodeValue (ctx, new JavaScriptNewExpression(method));
+		}
 		
 		public override void ExitJavascriptArgumentList (EParser.JavascriptArgumentListContext ctx)
 		{

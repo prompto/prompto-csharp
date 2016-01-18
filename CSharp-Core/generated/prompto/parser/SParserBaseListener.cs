@@ -2110,6 +2110,18 @@ public partial class SParserBaseListener : ISParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitBlobType([NotNull] SParser.BlobTypeContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="SParser.UUIDType"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterUUIDType([NotNull] SParser.UUIDTypeContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="SParser.UUIDType"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitUUIDType([NotNull] SParser.UUIDTypeContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="SParser.category_type"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>

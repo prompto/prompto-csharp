@@ -2086,6 +2086,18 @@ public interface IEParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitBlobType([NotNull] EParser.BlobTypeContext context);
 	/// <summary>
+	/// Enter a parse tree produced by the <c>UUIDType</c>
+	/// labeled alternative in <see cref="EParser.native_type"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterUUIDType([NotNull] EParser.UUIDTypeContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>UUIDType</c>
+	/// labeled alternative in <see cref="EParser.native_type"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitUUIDType([NotNull] EParser.UUIDTypeContext context);
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="EParser.category_type"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>

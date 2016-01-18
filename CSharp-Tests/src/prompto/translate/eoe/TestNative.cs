@@ -39,6 +39,12 @@ namespace prompto.translate.eoe
 		}
 
 		[Test]
+		public void testNow()
+		{
+			compareResourceEOE("native/now.pec");
+		}
+
+		[Test]
 		public void testPrinter()
 		{
 			compareResourceEOE("native/printer.pec");

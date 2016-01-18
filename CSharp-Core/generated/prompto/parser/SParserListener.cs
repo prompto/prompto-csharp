@@ -2002,6 +2002,18 @@ public interface ISParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitBlobType([NotNull] SParser.BlobTypeContext context);
 	/// <summary>
+	/// Enter a parse tree produced by the <c>UUIDType</c>
+	/// labeled alternative in <see cref="SParser.native_type"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterUUIDType([NotNull] SParser.UUIDTypeContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>UUIDType</c>
+	/// labeled alternative in <see cref="SParser.native_type"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitUUIDType([NotNull] SParser.UUIDTypeContext context);
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="SParser.category_type"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>

@@ -2072,6 +2072,18 @@ public interface IOParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitBlobType([NotNull] OParser.BlobTypeContext context);
 	/// <summary>
+	/// Enter a parse tree produced by the <c>UUIDType</c>
+	/// labeled alternative in <see cref="OParser.native_type"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterUUIDType([NotNull] OParser.UUIDTypeContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>UUIDType</c>
+	/// labeled alternative in <see cref="OParser.native_type"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitUUIDType([NotNull] OParser.UUIDTypeContext context);
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="OParser.category_type"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>

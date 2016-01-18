@@ -439,6 +439,7 @@
     <Compile Include="src\prompto\type\IterableType.cs" />
     <Compile Include="src\prompto\value\Iterator.cs" />
     <Compile Include="src\prompto\value\IIterable.cs" />
+    <Compile Include="src\prompto\javascript\JavaScriptNewExpression.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Antlr4.Runtime">

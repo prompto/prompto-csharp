@@ -2194,6 +2194,18 @@ public partial class EParserBaseListener : IEParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitBlobType([NotNull] EParser.BlobTypeContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="EParser.UUIDType"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterUUIDType([NotNull] EParser.UUIDTypeContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="EParser.UUIDType"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitUUIDType([NotNull] EParser.UUIDTypeContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="EParser.category_type"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
