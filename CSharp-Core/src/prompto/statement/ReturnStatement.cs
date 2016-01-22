@@ -61,10 +61,12 @@ namespace prompto.statement
         override
 		public IValue interpret(Context context)
         {
-			if(expression==null)
+			if (expression == null)
 				return VoidResult.Instance;
-			else
-				return expression.interpret(context);
+			else {
+				IValue value = expression.interpret (context);
+				return value == null ? NullValue.Instance : value;
+			}
       }
 
     }
