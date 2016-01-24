@@ -171,7 +171,7 @@ namespace prompto.statement
             IExpression exp = e.getExpression(context);
 			if (exp == null)
             {
-                ConstructorExpression ctor = new ConstructorExpression(new CategoryType("Error"), false, null);
+                ConstructorExpression ctor = new ConstructorExpression(new CategoryType("Error"), null);
                 ArgumentAssignmentList args = new ArgumentAssignmentList();
                 args.Add(new ArgumentAssignment(new UnresolvedArgument("name"), new TextLiteral(e.GetType().Name)));
                 args.Add(new ArgumentAssignment(new UnresolvedArgument("text"), new TextLiteral(e.Message)));

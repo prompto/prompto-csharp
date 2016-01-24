@@ -134,7 +134,7 @@ namespace prompto.grammar
         {
             try
             {
-                IExpression method = new ConstructorExpression(new CategoryType(name), false, null);
+                IExpression method = new ConstructorExpression(new CategoryType(name), null);
                 method.check(context);
                 return method;
             }

@@ -42,7 +42,7 @@ namespace prompto.type
             return name;
         }
 
-		public void ToDialect(CodeWriter writer) {
+		public virtual void ToDialect(CodeWriter writer) {
 			writer.append(name);
 		}
 

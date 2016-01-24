@@ -48,7 +48,7 @@ public class ECleverParser : EParser, IParser {
     
     public DeclarationList parse_declaration_list() {
 		IParseTree tree = this.declaration_list();
-		EPrestoBuilder builder = new EPrestoBuilder(this);
+		EPromptoBuilder builder = new EPromptoBuilder(this);
 		ParseTreeWalker walker = new ParseTreeWalker();
 		walker.Walk(builder, tree);
 		return builder.GetNodeValue<DeclarationList>(tree);

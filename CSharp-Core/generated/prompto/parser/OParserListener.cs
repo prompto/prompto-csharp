@@ -2094,6 +2094,16 @@ public interface IOParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitCategory_type([NotNull] OParser.Category_typeContext context);
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="OParser.mutable_category_type"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterMutable_category_type([NotNull] OParser.Mutable_category_typeContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="OParser.mutable_category_type"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitMutable_category_type([NotNull] OParser.Mutable_category_typeContext context);
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="OParser.code_type"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>

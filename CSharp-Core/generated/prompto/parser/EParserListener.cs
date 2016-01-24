@@ -2108,6 +2108,16 @@ public interface IEParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitCategory_type([NotNull] EParser.Category_typeContext context);
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="EParser.mutable_category_type"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterMutable_category_type([NotNull] EParser.Mutable_category_typeContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="EParser.mutable_category_type"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitMutable_category_type([NotNull] EParser.Mutable_category_typeContext context);
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="EParser.code_type"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>

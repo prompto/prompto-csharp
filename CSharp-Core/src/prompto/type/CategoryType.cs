@@ -20,6 +20,15 @@ namespace prompto.type
         {
         }
 
+		public bool Mutable { get; set; } 
+
+		public override void ToDialect(CodeWriter writer)
+		{
+			if (Mutable)
+				writer.append ("mutable ");
+			writer.append (name);
+		}
+
         override
         public IType CheckMember(Context context, String name)
         {

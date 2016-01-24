@@ -2194,6 +2194,18 @@ public partial class OParserBaseListener : IOParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitCategory_type([NotNull] OParser.Category_typeContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="OParser.mutable_category_type"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterMutable_category_type([NotNull] OParser.Mutable_category_typeContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="OParser.mutable_category_type"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitMutable_category_type([NotNull] OParser.Mutable_category_typeContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="OParser.code_type"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>

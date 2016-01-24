@@ -17,14 +17,12 @@ namespace prompto.expression
     {
 
         CategoryType type;
-		bool mutable;
         IExpression copyFrom;
         ArgumentAssignmentList assignments;
 
-        public ConstructorExpression(CategoryType type, bool mutable, ArgumentAssignmentList assignments)
+        public ConstructorExpression(CategoryType type, ArgumentAssignmentList assignments)
         {
             this.type = type;
-			this.mutable = mutable;
             setAssignments(assignments);
         }
 
@@ -79,9 +77,7 @@ namespace prompto.expression
 		}
 
 		private void toODialect(CodeWriter writer) {
-			if(this.mutable)
-				writer.append("mutable ");
-			writer.append(type.GetName());
+			type.ToDialect (writer);
 			ArgumentAssignmentList assignments = new ArgumentAssignmentList();
 			if (copyFrom != null)
 				assignments.add(new ArgumentAssignment(null, copyFrom));
@@ -91,9 +87,7 @@ namespace prompto.expression
 		}
 
 		private void toEDialect(CodeWriter writer) {
-			if(this.mutable)
-				writer.append("mutable ");
-			writer.append(type.GetName());
+			type.ToDialect (writer);
 			if (copyFrom != null) {
 				writer.append(" from ");
 				writer.append(copyFrom.ToString());
@@ -106,10 +100,10 @@ namespace prompto.expression
 
         public IType check(Context context)
         {
-			CategoryDeclaration cd = context.getRegisteredDeclaration<CategoryDeclaration>(type.GetName());
+			CategoryDeclaration cd = context.getRegisteredDeclaration<CategoryDeclaration>(this.type.GetName());
             if (cd == null)
-				throw new SyntaxError("Unknown category " + type.GetName());
-            type = (CategoryType)cd.GetType(context);
+				throw new SyntaxError("Unknown category " + this.type.GetName());
+            IType type = (CategoryType)cd.GetType(context);
             cd.checkConstructorContext(context);
             if (copyFrom != null)
             {
@@ -148,7 +142,7 @@ namespace prompto.expression
 	                        if (cd.hasAttribute(context, name))
 							{
 								IValue value = initFrom.GetMember(context, name, false);
-								if(value!=null && value.IsMutable() && !this.mutable)
+								if(value!=null && value.IsMutable() && !this.type.Mutable)
 									throw new NotMutableError();
 								instance.SetMember(context, name, value);
 							}
@@ -160,15 +154,15 @@ namespace prompto.expression
 	                foreach (ArgumentAssignment assignment in assignments)
 	                {
 	                    IValue value = assignment.getExpression().interpret(context);
-						if(value!=null && value.IsMutable() && !this.mutable)
+						if(value!=null && value.IsMutable() && !this.type.Mutable)
 							throw new NotMutableError();
 						instance.SetMember(context, assignment.GetName(), value);
 	                }
 	            }
-	            return instance;
 			} finally {
-				instance.setMutable (this.mutable);
+				instance.setMutable (this.type.Mutable);
 			}
+			return instance;
         }
 
     }

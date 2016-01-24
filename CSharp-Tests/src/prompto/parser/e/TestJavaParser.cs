@@ -51,7 +51,7 @@ namespace prompto.parser {
             EIndentingLexer lexer = (EIndentingLexer)stream.TokenSource;
  		    lexer.AddLF = false;
 		IParseTree tree = parser.java_statement();
-		EPrestoBuilder builder = new EPrestoBuilder(parser);
+		EPromptoBuilder builder = new EPromptoBuilder(parser);
 		ParseTreeWalker walker = new ParseTreeWalker();
 		walker.Walk(builder, tree);
 		return builder.GetNodeValue<JavaStatement>(tree);

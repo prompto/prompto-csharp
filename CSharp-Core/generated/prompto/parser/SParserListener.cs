@@ -2024,6 +2024,16 @@ public interface ISParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitCategory_type([NotNull] SParser.Category_typeContext context);
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="SParser.mutable_category_type"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterMutable_category_type([NotNull] SParser.Mutable_category_typeContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="SParser.mutable_category_type"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitMutable_category_type([NotNull] SParser.Mutable_category_typeContext context);
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="SParser.code_type"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>

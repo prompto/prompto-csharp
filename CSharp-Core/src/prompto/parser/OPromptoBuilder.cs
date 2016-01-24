@@ -901,10 +901,9 @@ namespace prompto.parser
 
 		public override void ExitConstructor_expression (OParser.Constructor_expressionContext ctx)
 		{
-			bool mutable = ctx.MUTABLE() != null;
 			CategoryType type = this.GetNodeValue<CategoryType> (ctx.typ);
 			ArgumentAssignmentList args = this.GetNodeValue<ArgumentAssignmentList> (ctx.args);
-			SetNodeValue (ctx, new ConstructorExpression (type, mutable, args));
+			SetNodeValue (ctx, new ConstructorExpression (type, args));
 		}
 
 		public override void ExitAn_expression (OParser.An_expressionContext ctx)
@@ -2076,6 +2075,13 @@ namespace prompto.parser
 			IExpression left = this.GetNodeValue<IExpression> (ctx.left);
 			IExpression right = this.GetNodeValue<IExpression> (ctx.right);
 			SetNodeValue (ctx, new MultiplyExpression (left, right));
+		}
+
+		public override void ExitMutable_category_type (OParser.Mutable_category_typeContext ctx)
+		{
+			CategoryType typ = this.GetNodeValue<CategoryType> (ctx.category_type ());
+			typ.Mutable = ctx.MUTABLE() != null;
+			SetNodeValue (ctx, typ);
 		}
 
 		public override void ExitMinusExpression (OParser.MinusExpressionContext ctx)

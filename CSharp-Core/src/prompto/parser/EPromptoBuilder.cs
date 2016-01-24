@@ -19,14 +19,14 @@ using prompto.utils;
 namespace prompto.parser
 {
 
-	public class EPrestoBuilder : EParserBaseListener
+	public class EPromptoBuilder : EParserBaseListener
 	{
 
 		ParseTreeProperty<object> nodeValues = new ParseTreeProperty<object> ();
 		ITokenStream input;
 		string path = "";
 
-		public EPrestoBuilder (ECleverParser parser)
+		public EPromptoBuilder (ECleverParser parser)
 		{
 			this.input = (ITokenStream)parser.InputStream;
 			this.path = parser.Path;
@@ -940,7 +940,6 @@ namespace prompto.parser
 		
 		public override void ExitConstructorFrom (EParser.ConstructorFromContext ctx)
 		{
-			bool mutable = ctx.MUTABLE() != null;
 			CategoryType type = this.GetNodeValue<CategoryType> (ctx.typ);
 			ArgumentAssignmentList args = this.GetNodeValue<ArgumentAssignmentList> (ctx.args);
 			if (args == null)
@@ -950,13 +949,12 @@ namespace prompto.parser
 			ArgumentAssignment arg = this.GetNodeValue<ArgumentAssignment> (ctx.arg);
 			if (arg != null)
 				args.add (arg);
-			SetNodeValue (ctx, new ConstructorExpression (type, mutable, args));
+			SetNodeValue (ctx, new ConstructorExpression (type, args));
 		}
 
 		
 		public override void ExitConstructorNoFrom (EParser.ConstructorNoFromContext ctx)
 		{
-			bool mutable = ctx.MUTABLE() != null;
 			CategoryType type = this.GetNodeValue<CategoryType> (ctx.typ);
 			ArgumentAssignmentList args = this.GetNodeValue<ArgumentAssignmentList> (ctx.args);
 			if (args == null)
@@ -964,7 +962,7 @@ namespace prompto.parser
 			ArgumentAssignment arg = this.GetNodeValue<ArgumentAssignment> (ctx.arg);
 			if (arg != null)
 				args.add (arg);
-			SetNodeValue (ctx, new ConstructorExpression (type, mutable, args));
+			SetNodeValue (ctx, new ConstructorExpression (type, args));
 		}
 
 		public override void ExitAssertion(EParser.AssertionContext ctx) {
@@ -2342,6 +2340,13 @@ namespace prompto.parser
 			SetNodeValue (ctx, new MultiplyExpression (left, right));
 		}
 
+
+		public override void ExitMutable_category_type (EParser.Mutable_category_typeContext ctx)
+		{
+			CategoryType typ = this.GetNodeValue<CategoryType> (ctx.category_type ());
+			typ.Mutable = ctx.MUTABLE() != null;
+			SetNodeValue (ctx, typ);
+		}
 		
 		public override void ExitMinusExpression (EParser.MinusExpressionContext ctx)
 		{
