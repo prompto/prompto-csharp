@@ -2386,8 +2386,8 @@ public partial class SParser : AbstractParser {
 	}
 
 	public partial class Store_statementContext : ParserRuleContext {
-		public Expression_listContext del;
-		public Expression_listContext add;
+		public Expression_listContext to_del;
+		public Expression_listContext to_add;
 		public ITerminalNode DELETE() { return GetToken(SParser.DELETE, 0); }
 		public ITerminalNode[] LPAR() { return GetTokens(SParser.LPAR); }
 		public ITerminalNode LPAR(int i) {
@@ -2432,7 +2432,7 @@ public partial class SParser : AbstractParser {
 				{
 				State = 680; Match(DELETE);
 				State = 681; Match(LPAR);
-				State = 682; _localctx.del = expression_list(0);
+				State = 682; _localctx.to_del = expression_list(0);
 				State = 683; Match(RPAR);
 				}
 				break;
@@ -2441,7 +2441,7 @@ public partial class SParser : AbstractParser {
 				{
 				State = 685; Match(STORE);
 				State = 686; Match(LPAR);
-				State = 687; _localctx.add = expression_list(0);
+				State = 687; _localctx.to_add = expression_list(0);
 				State = 688; Match(RPAR);
 				}
 				break;
@@ -2450,12 +2450,12 @@ public partial class SParser : AbstractParser {
 				{
 				State = 690; Match(DELETE);
 				State = 691; Match(LPAR);
-				State = 692; _localctx.del = expression_list(0);
+				State = 692; _localctx.to_del = expression_list(0);
 				State = 693; Match(RPAR);
 				State = 694; Match(AND);
 				State = 695; Match(STORE);
 				State = 696; Match(LPAR);
-				State = 697; _localctx.add = expression_list(0);
+				State = 697; _localctx.to_add = expression_list(0);
 				State = 698; Match(RPAR);
 				}
 				break;

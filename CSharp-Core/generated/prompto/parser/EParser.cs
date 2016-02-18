@@ -2666,8 +2666,8 @@ public partial class EParser : AbstractParser {
 	}
 
 	public partial class Store_statementContext : ParserRuleContext {
-		public Expression_listContext del;
-		public Expression_listContext add;
+		public Expression_listContext to_del;
+		public Expression_listContext to_add;
 		public ITerminalNode DELETE() { return GetToken(EParser.DELETE, 0); }
 		public Expression_listContext[] expression_list() {
 			return GetRuleContexts<Expression_listContext>();
@@ -2703,24 +2703,24 @@ public partial class EParser : AbstractParser {
 				EnterOuterAlt(_localctx, 1);
 				{
 				State = 757; Match(DELETE);
-				State = 758; _localctx.del = expression_list(0);
+				State = 758; _localctx.to_del = expression_list(0);
 				}
 				break;
 			case 2:
 				EnterOuterAlt(_localctx, 2);
 				{
 				State = 759; Match(STORE);
-				State = 760; _localctx.add = expression_list(0);
+				State = 760; _localctx.to_add = expression_list(0);
 				}
 				break;
 			case 3:
 				EnterOuterAlt(_localctx, 3);
 				{
 				State = 761; Match(DELETE);
-				State = 762; _localctx.del = expression_list(0);
+				State = 762; _localctx.to_del = expression_list(0);
 				State = 763; Match(AND);
 				State = 764; Match(STORE);
-				State = 765; _localctx.add = expression_list(0);
+				State = 765; _localctx.to_add = expression_list(0);
 				}
 				break;
 			}
