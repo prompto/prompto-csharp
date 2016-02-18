@@ -15,33 +15,28 @@ namespace prompto.statement
 	public class StoreStatement : SimpleStatement
 	{
 
-		ExpressionList expressions;
+		ExpressionList add;
 
-		public StoreStatement (IExpression expression)
+		public StoreStatement (ExpressionList del, ExpressionList add)
 		{
-			this.expressions = new ExpressionList (expression);
-		}
-
-		public StoreStatement (ExpressionList expressions)
-		{
-			this.expressions = expressions;
+			this.add = add;
 		}
 
 		public override void ToDialect (CodeWriter writer)
 		{
 			writer.append ("store ");
 			if (writer.getDialect () == Dialect.E)
-				expressions.toDialect (writer);
+				add.toDialect (writer);
 			else {
 				writer.append ('(');
-				expressions.toDialect (writer);
+				add.toDialect (writer);
 				writer.append (')');
 			}
 		}
 
 		public override String ToString ()
 		{
-			return "store " + expressions.ToString ();
+			return "store " + add.ToString ();
 		}
 
 		public override bool Equals (Object obj)
@@ -53,7 +48,7 @@ namespace prompto.statement
 			if (!(obj is StoreStatement))
 				return false;
 			StoreStatement other = (StoreStatement)obj;
-			return this.expressions.Equals (other.expressions);
+			return this.add.Equals (other.add);
 		}
 
 		public override IType check (Context context)
@@ -67,7 +62,7 @@ namespace prompto.statement
 			IStore store = Store.Instance;
 			if (store == null)
 				store = MemStore.Instance;
-			foreach (IExpression exp in expressions) {
+			foreach (IExpression exp in add) {
 				IValue value = exp.interpret (context);
 				IStorable storable = null;
 				if (value is IInstance)

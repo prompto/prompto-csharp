@@ -896,8 +896,9 @@ namespace prompto.parser
 
 		public override void ExitStore_statement (SParser.Store_statementContext ctx)
 		{
-			ExpressionList exps = this.GetNodeValue<ExpressionList>(ctx.exps);
-			StoreStatement stmt = new StoreStatement(exps);
+			ExpressionList del = this.GetNodeValue<ExpressionList>(ctx.del);
+			ExpressionList add = this.GetNodeValue<ExpressionList>(ctx.add);
+			StoreStatement stmt = new StoreStatement(del, add);
 			SetNodeValue(ctx, stmt);
 		}
 
