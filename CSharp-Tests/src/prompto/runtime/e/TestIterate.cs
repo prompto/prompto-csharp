@@ -22,6 +22,12 @@ namespace prompto.runtime.e
 		}
 
 		[Test]
+		public void testForEachCategoryList()
+		{
+			CheckOutput("iterate/forEachCategoryList.pec");
+		}
+
+		[Test]
 		public void testForEachIntegerList()
 		{
 			CheckOutput("iterate/forEachIntegerList.pec");

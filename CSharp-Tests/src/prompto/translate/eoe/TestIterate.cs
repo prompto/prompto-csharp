@@ -9,6 +9,12 @@ namespace prompto.translate.eoe
 	{
 
 		[Test]
+		public void testForEachCategoryList()
+		{
+			compareResourceEOE("iterate/forEachCategoryList.pec");
+		}
+
+		[Test]
 		public void testForEachIntegerList()
 		{
 			compareResourceEOE("iterate/forEachIntegerList.pec");

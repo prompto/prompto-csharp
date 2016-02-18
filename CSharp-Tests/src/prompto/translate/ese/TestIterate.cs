@@ -9,6 +9,12 @@ namespace prompto.translate.ese
 	{
 
 		[Test]
+		public void testForEachCategoryList()
+		{
+			compareResourceESE("iterate/forEachCategoryList.pec");
+		}
+
+		[Test]
 		public void testForEachIntegerList()
 		{
 			compareResourceESE("iterate/forEachIntegerList.pec");
