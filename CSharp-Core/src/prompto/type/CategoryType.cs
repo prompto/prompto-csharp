@@ -70,9 +70,11 @@ namespace prompto.type
                 throw new SyntaxError("Duplicate name: \"" + name + "\"");
         }
 
-        CategoryDeclaration getDeclaration(Context context)
+        IDeclaration getDeclaration(Context context)
         {
-            CategoryDeclaration actual = context.getRegisteredDeclaration<CategoryDeclaration>(name);
+            IDeclaration actual = context.getRegisteredDeclaration<CategoryDeclaration>(name);
+			if (actual == null)
+				actual = context.getRegisteredDeclaration<EnumeratedNativeDeclaration> (name);
             if (actual == null)
                 throw new SyntaxError("Unknown category: \"" + name + "\"");
             return actual;
@@ -127,7 +129,7 @@ namespace prompto.type
 		}
 
 		private IType checkOperator(Context context, IType other, bool tryReverse, Operator oper) {
-			CategoryDeclaration actual = getDeclaration(context);
+			IDeclaration actual = getDeclaration(context);
 			if(actual is ConcreteCategoryDeclaration) try {
 				IMethodDeclaration method = ((ConcreteCategoryDeclaration)actual).findOperator(context, oper, other);
 				if(method==null)
@@ -169,9 +171,15 @@ namespace prompto.type
                 return true;
             try
             {
-                CategoryDeclaration cd = getDeclaration(context);
-                return isDerivedFromCompatibleCategory(context, cd, other)
-                    || isAssignableToAnonymousCategory(context, cd, other);
+                IDeclaration d = getDeclaration(context);
+				if(d is CategoryDeclaration)
+				{
+					CategoryDeclaration cd = (CategoryDeclaration)d;
+					return isDerivedFromCompatibleCategory(context, cd, other)
+                    	|| isAssignableToAnonymousCategory(context, cd, other);
+				}
+				else
+					return false;
             }
             catch (SyntaxError)
             {
@@ -198,8 +206,14 @@ namespace prompto.type
                 return false;
             try
             {
-                CategoryDeclaration cd = other.getDeclaration(context);
-                return isAssignableToAnonymousCategory(context, decl, cd);
+				IDeclaration d = other.getDeclaration(context);
+				if(d is CategoryDeclaration) 
+				{
+					CategoryDeclaration cd = (CategoryDeclaration)d;
+	                return isAssignableToAnonymousCategory(context, decl, cd);
+				}
+				else
+					return false;
             }
             catch (SyntaxError)
             {
@@ -273,15 +287,19 @@ namespace prompto.type
         {
             if (key == null)
                 key = new UnresolvedIdentifier("key");
-            CategoryDeclaration decl = getDeclaration(context);
-            if (decl.hasAttribute(context, key.ToString()))
-                return sortByAttribute(context, list, key.ToString());
-            else if (decl.hasMethod(context, key.ToString(), null))
-                return sortByClassMethod(context, list, key.ToString());
-            else if (globalMethodExists(context, list, key.ToString()))
-                return sortByGlobalMethod(context, list, key.ToString());
-            else
-                return sortByExpression(context, list, key);
+            IDeclaration d = getDeclaration(context);
+			if (d is CategoryDeclaration) {
+				CategoryDeclaration decl = (CategoryDeclaration)d;
+				if (decl.hasAttribute (context, key.ToString ()))
+					return sortByAttribute (context, list, key.ToString ());
+				else if (decl.hasMethod (context, key.ToString (), null))
+					return sortByClassMethod (context, list, key.ToString ());
+				else if (globalMethodExists (context, list, key.ToString ()))
+					return sortByGlobalMethod (context, list, key.ToString ());
+				else
+					return sortByExpression (context, list, key);
+			} else
+				throw new Exception ("Unsupported!");
         }
 
 
