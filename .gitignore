@@ -8,3 +8,9 @@ Presto.vsmdi
 Local.testsettings
 
 Csharp-Test/TestResult.xml
+CSharp-Core/generated/prompto/parser/ELexer.tokens
+CSharp-Core/generated/prompto/parser/EParser.tokens
+CSharp-Core/generated/prompto/parser/OLexer.tokens
+CSharp-Core/generated/prompto/parser/OParser.tokens
+CSharp-Core/generated/prompto/parser/SLexer.tokens
+CSharp-Core/generated/prompto/parser/SParser.tokens
