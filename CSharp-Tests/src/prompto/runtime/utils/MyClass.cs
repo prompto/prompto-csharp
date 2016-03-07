@@ -37,12 +37,12 @@ namespace prompto.runtime.utils
 
         static public long longValue()
         {
-            return 123;
+            return 9876543210;
         }
 
         static public long? longObject()
         {
-            return 123;
+			return 9876543210;
         }
 
         static public float floatValue()
