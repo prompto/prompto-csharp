@@ -87,6 +87,12 @@ namespace prompto.translate.oso
 		}
 
 		[Test]
+		public void testReturnLongLiteral()
+		{
+			compareResourceOSO("native/returnLongLiteral.poc");
+		}
+
+		[Test]
 		public void testReturnLongObject()
 		{
 			compareResourceOSO("native/returnLongObject.poc");

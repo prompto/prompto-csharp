@@ -87,6 +87,12 @@ namespace prompto.translate.oeo
 		}
 
 		[Test]
+		public void testReturnLongLiteral()
+		{
+			compareResourceOEO("native/returnLongLiteral.poc");
+		}
+
+		[Test]
 		public void testReturnLongObject()
 		{
 			compareResourceOEO("native/returnLongObject.poc");

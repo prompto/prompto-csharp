@@ -94,6 +94,12 @@ namespace prompto.runtime.o
 		}
 
 		[Test]
+		public void testReturnLongLiteral()
+		{
+			CheckOutput("native/returnLongLiteral.poc");
+		}
+
+		[Test]
 		public void testReturnLongObject()
 		{
 			CheckOutput("native/returnLongObject.poc");
