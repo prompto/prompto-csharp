@@ -76,9 +76,21 @@ namespace prompto.runtime.o
 		}
 
 		[Test]
-		public void testAddText()
+		public void testAddTextDecimal()
 		{
-			CheckOutput("add/addText.poc");
+			CheckOutput("add/addTextDecimal.poc");
+		}
+
+		[Test]
+		public void testAddTextInteger()
+		{
+			CheckOutput("add/addTextInteger.poc");
+		}
+
+		[Test]
+		public void testAddTextText()
+		{
+			CheckOutput("add/addTextText.poc");
 		}
 
 		[Test]
