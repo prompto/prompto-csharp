@@ -63,6 +63,12 @@ namespace prompto.translate.ese
 		}
 
 		[Test]
+		public void testAddTextCharacter()
+		{
+			compareResourceESE("add/addTextCharacter.pec");
+		}
+
+		[Test]
 		public void testAddTextDecimal()
 		{
 			compareResourceESE("add/addTextDecimal.pec");

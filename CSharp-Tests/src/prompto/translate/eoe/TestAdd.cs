@@ -63,6 +63,12 @@ namespace prompto.translate.eoe
 		}
 
 		[Test]
+		public void testAddTextCharacter()
+		{
+			compareResourceEOE("add/addTextCharacter.pec");
+		}
+
+		[Test]
 		public void testAddTextDecimal()
 		{
 			compareResourceEOE("add/addTextDecimal.pec");
