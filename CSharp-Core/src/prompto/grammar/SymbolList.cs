@@ -4,6 +4,7 @@ using prompto.type;
 using prompto.utils;
 using prompto.runtime;
 using System;
+using prompto.expression;
 
 namespace prompto.grammar
 {

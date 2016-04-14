@@ -4,6 +4,7 @@ using prompto.type;
 using prompto.runtime;
 using System;
 using prompto.value;
+using prompto.statement;
 
 namespace prompto.javascript
 {

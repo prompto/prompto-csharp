@@ -1,20 +1,19 @@
 using prompto.runtime;
-using prompto.error;
 using System;
+using prompto.error;
 using Boolean = prompto.value.Boolean;
-using prompto.value;
 using prompto.statement;
 using prompto.expression;
 using prompto.type;
 using prompto.utils;
 
-namespace prompto.grammar
+namespace prompto.statement
 {
 
-    public class CollectionSwitchCase : SwitchCase
+    public class AtomicSwitchCase : SwitchCase
     {
 
-        public CollectionSwitchCase(IExpression expression, StatementList list)
+        public AtomicSwitchCase(IExpression expression, StatementList list)
             : base(expression, list)
         {
         }
@@ -23,22 +22,16 @@ namespace prompto.grammar
         public void checkSwitchType(Context context, IType type)
         {
             IType thisType = expression.check(context);
-            if (thisType is ContainerType)
-                thisType = ((ContainerType)thisType).GetItemType();
             if (!thisType.isAssignableTo(context, type))
 				throw new SyntaxError("Cannot assign:" + thisType.GetName() + " to:" + type.GetName());
+
         }
 
         override
         public bool matches(Context context, Object value)
         {
             Object thisValue = expression.interpret(context);
-            if (value is IExpression)
-                value = ((IExpression)value).interpret(context);
-            if (thisValue is IContainer)
-                return ((IContainer)thisValue).HasItem(context, (IValue)value);
-            else 
-                return false;
+            return value.Equals(thisValue);
         }
 
 		override
@@ -48,17 +41,7 @@ namespace prompto.grammar
 
 		override
 		public void caseToODialect(CodeWriter writer) {
-			writer.append("case in ");
-			expression.ToDialect(writer);
-			writer.append(":\n");
-			writer.indent();
-			statements.ToDialect(writer);
-			writer.dedent();
-		}
-
-		override
-		public void caseToEDialect(CodeWriter writer) {
-			writer.append("when in ");
+			writer.append("case ");
 			expression.ToDialect(writer);
 			writer.append(":\n");
 			writer.indent();
@@ -78,8 +61,18 @@ namespace prompto.grammar
 		}
 
 		override
+		public void caseToEDialect(CodeWriter writer) {
+			writer.append("when ");
+			expression.ToDialect(writer);
+			writer.append(":\n");
+			writer.indent();
+			statements.ToDialect(writer);
+			writer.dedent();
+		}
+
+		override
 		public void catchToPDialect(CodeWriter writer) {
-			writer.append("except in ");
+			writer.append("except ");
 			expression.ToDialect(writer);
 			writer.append(":\n");
 			writer.indent();

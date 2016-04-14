@@ -8,7 +8,7 @@ using prompto.type;
 using prompto.utils;
 
 
-namespace prompto.grammar {
+namespace prompto.instance {
 
     public class ItemInstance : IAssignableSelector
     {

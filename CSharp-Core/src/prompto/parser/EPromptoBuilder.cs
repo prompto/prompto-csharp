@@ -16,6 +16,8 @@ using System.Collections.Generic;
 using prompto.javascript;
 using prompto.utils;
 using prompto.argument;
+using prompto.constraint;
+using prompto.instance;
 
 namespace prompto.parser
 {

@@ -1,5 +1,4 @@
-using prompto.statement;
-namespace prompto.grammar {
+namespace prompto.statement {
 
 	public abstract class NativeCall : SimpleStatement
     {

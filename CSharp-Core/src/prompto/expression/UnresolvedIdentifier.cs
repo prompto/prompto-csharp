@@ -11,7 +11,7 @@ using prompto.declaration;
 using prompto.utils;
 using prompto.value;
 
-namespace prompto.grammar
+namespace prompto.expression
 {
 
     public class UnresolvedIdentifier : IExpression

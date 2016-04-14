@@ -6,7 +6,7 @@ using prompto.utils;
 using prompto.value;
 
 
-namespace prompto.grammar
+namespace prompto.instance
 {
 
     public interface IAssignableInstance

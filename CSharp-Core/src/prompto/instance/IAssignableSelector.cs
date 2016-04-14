@@ -1,4 +1,4 @@
-namespace prompto.grammar
+namespace prompto.instance
 {
 
     public interface IAssignableSelector : IAssignableInstance

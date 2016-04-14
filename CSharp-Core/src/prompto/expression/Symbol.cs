@@ -6,9 +6,10 @@ using prompto.type;
 using prompto.utils;
 using prompto.value;
 using prompto.expression;
+using prompto.grammar;
 
 
-namespace prompto.grammar
+namespace prompto.expression
 {
 
     public abstract class Symbol : Section, INamed, IValue, IExpression, ISection

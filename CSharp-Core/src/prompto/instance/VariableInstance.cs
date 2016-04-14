@@ -6,8 +6,9 @@ using prompto.expression;
 using prompto.type;
 using prompto.utils;
 using prompto.value;
+using prompto.grammar;
 
-namespace prompto.grammar
+namespace prompto.instance
 {
 
     public class VariableInstance : IAssignableInstance

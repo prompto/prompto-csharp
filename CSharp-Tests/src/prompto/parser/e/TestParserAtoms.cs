@@ -14,6 +14,7 @@ using Antlr4.Runtime.Tree;
 using prompto.utils;
 using prompto.runtime;
 using prompto.argument;
+using prompto.instance;
 
 namespace prompto.parser
 {

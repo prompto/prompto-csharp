@@ -8,7 +8,7 @@ using prompto.utils;
 using prompto.value;
 
 
-namespace prompto.grammar
+namespace prompto.expression
 {
 
     public class NativeSymbol : Symbol, IExpression

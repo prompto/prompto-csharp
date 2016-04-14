@@ -7,8 +7,9 @@ using prompto.type;
 using prompto.expression;
 using prompto.declaration;
 using prompto.utils;
+using prompto.grammar;
 
-namespace prompto.grammar
+namespace prompto.expression
 {
 
     public class CategorySymbol : Symbol, IExpression

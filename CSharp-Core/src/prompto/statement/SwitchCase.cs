@@ -2,13 +2,12 @@ using prompto.parser;
 using prompto.runtime;
 using System;
 using prompto.expression;
-using prompto.statement;
 using prompto.type;
 using System.Collections.Generic;
 using prompto.utils;
 using prompto.value;
 
-namespace prompto.grammar
+namespace prompto.statement
 {
 
     public abstract class SwitchCase : Section, ISection

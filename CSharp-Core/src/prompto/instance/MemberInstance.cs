@@ -7,7 +7,7 @@ using prompto.expression;
 using prompto.utils;
 
 
-namespace prompto.grammar {
+namespace prompto.instance {
 
     public class MemberInstance : IAssignableSelector
     {

@@ -5,7 +5,7 @@ using prompto.value;
 using prompto.expression;
 using prompto.utils;
 
-namespace prompto.grammar
+namespace prompto.constraint
 {
 
 	public class MatchingCollectionConstraint : IAttributeConstraint

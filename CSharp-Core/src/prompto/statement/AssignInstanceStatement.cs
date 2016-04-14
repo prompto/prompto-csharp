@@ -6,6 +6,7 @@ using prompto.expression;
 using prompto.grammar;
 using prompto.utils;
 using prompto.value;
+using prompto.instance;
 
 namespace prompto.statement
 {

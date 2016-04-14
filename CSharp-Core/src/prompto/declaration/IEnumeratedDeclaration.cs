@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using prompto.grammar;
+using prompto.expression;
 
 namespace prompto.declaration
 {

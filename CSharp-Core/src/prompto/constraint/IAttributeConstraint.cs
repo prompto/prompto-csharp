@@ -4,7 +4,7 @@ using System;
 using prompto.utils;
 using prompto.value;
 
-namespace prompto.grammar
+namespace prompto.constraint
 {
 
     public interface IAttributeConstraint
