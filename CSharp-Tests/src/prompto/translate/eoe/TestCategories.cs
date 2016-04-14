@@ -9,6 +9,12 @@ namespace prompto.translate.eoe
 	{
 
 		[Test]
+		public void testComposed()
+		{
+			compareResourceEOE("categories/composed.pec");
+		}
+
+		[Test]
 		public void testCopyFromAscendant()
 		{
 			compareResourceEOE("categories/copyFromAscendant.pec");

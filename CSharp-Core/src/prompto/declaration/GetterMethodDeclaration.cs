@@ -47,7 +47,7 @@ namespace prompto.declaration
 		protected override void toEDialect(CodeWriter writer) {
 			writer.append("define ");
 			writer.append(name);
-			writer.append(" getter doing:\n");
+			writer.append(" as getter doing:\n");
 			writer.indent();
 			statements.ToDialect(writer);
 			writer.dedent();

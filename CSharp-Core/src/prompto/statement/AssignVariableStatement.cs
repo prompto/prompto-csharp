@@ -8,6 +8,7 @@ using prompto.type;
 using prompto.declaration;
 using prompto.value;
 using prompto.utils;
+using prompto.argument;
 
 
 namespace prompto.statement
@@ -59,7 +60,7 @@ namespace prompto.statement
             else
             {
                 // need to check type compatibility
-                IType actualType = actual.GetType(context);
+                IType actualType = actual.GetIType(context);
                 type.checkAssignableTo(context, actualType);
             }
             return VoidType.Instance;
@@ -91,7 +92,7 @@ namespace prompto.statement
             else
             {
                 // need to check type compatibility
-                IType actualType = actual.GetType(context);
+                IType actualType = actual.GetIType(context);
                 IType newType = expression.check(context);
                 newType.checkAssignableTo(context, actualType);
             }
@@ -115,7 +116,7 @@ namespace prompto.statement
             // since we support implicit members, it's time to resolve them
             IExpression expression = getExpression();
             IArgument argument = methodDeclaration.getArguments().find(name);
-            IType required = argument.GetType(context);
+            IType required = argument.GetIType(context);
             IType actual = expression.check((Context)context.getCallingContext());
             if (checkInstance && actual is CategoryType)
             {

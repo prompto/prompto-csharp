@@ -5,6 +5,7 @@ using prompto.expression;
 using prompto.statement;
 using prompto.runtime;
 using prompto.utils;
+using prompto.argument;
 
 namespace prompto.declaration
 {

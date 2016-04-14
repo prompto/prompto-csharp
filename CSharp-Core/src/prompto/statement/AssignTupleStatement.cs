@@ -93,7 +93,7 @@ namespace prompto.statement
                 else
                 {
                     // need to check type compatibility
-                    IType actualType = actual.GetType(context);
+					IType actualType = actual.GetIType(context);
                     IType newType = expression.check(context);
                     newType.checkAssignableTo(context, actualType);
                 }
@@ -114,7 +114,7 @@ namespace prompto.statement
                 String name = names[i];
                 IValue value = tuple[i];
 				if (context.getRegisteredValue<INamed>(name) == null)
-					context.registerValue(new Variable(name, value.GetType(context)));
+					context.registerValue(new Variable(name, value.GetIType()));
                 context.setValue(name, value);
             }
             return null;

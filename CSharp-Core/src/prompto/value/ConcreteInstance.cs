@@ -11,6 +11,7 @@ using prompto.declaration;
 using prompto.expression;
 using prompto.type;
 using prompto.store;
+using prompto.argument;
 
 namespace prompto.value
 {
@@ -233,7 +234,7 @@ namespace prompto.value
 
 		private IValue interpretOperator (Context context, IValue value, Operator oper)
 		{
-			IMethodDeclaration decl = declaration.findOperator (context, oper, value.GetType (context));
+			IMethodDeclaration decl = declaration.findOperator (context, oper, value.GetIType ());
 			context = context.newInstanceContext (this).newChildContext ();
 			decl.registerArguments (context);
 			IArgument arg = decl.getArguments () [0];

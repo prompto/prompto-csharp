@@ -41,11 +41,19 @@ namespace prompto.declaration
 
 		public abstract IType check (Context context);
 
-		public abstract IType GetType (Context context);
+		public abstract IType GetIType (Context context);
 
 		public abstract void register (Context context);
 
 		public abstract void ToDialect (CodeWriter writer);
+
+		public void SetClosureOf(IMethodDeclaration declaration) {
+			throw new NotImplementedException();
+		}
+
+		public IMethodDeclaration GetClosureOf() {
+			throw new NotImplementedException();
+		}
 	}
 
 }

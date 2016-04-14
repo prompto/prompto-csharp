@@ -4,8 +4,9 @@ using prompto.parser;
 using prompto.utils;
 using prompto.error;
 using prompto.type;
+using prompto.grammar;
 
-namespace prompto.grammar
+namespace prompto.argument
 {
 
     public class CodeArgument : BaseArgument, ITypedArgument
@@ -69,7 +70,7 @@ namespace prompto.grammar
         }
 
         override
-        public IType GetType(Context context)
+        public IType GetIType(Context context)
         {
             return CodeType.Instance;
         }

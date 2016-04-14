@@ -103,7 +103,7 @@ namespace prompto.expression
 			CategoryDeclaration cd = context.getRegisteredDeclaration<CategoryDeclaration>(this.type.GetName());
             if (cd == null)
 				throw new SyntaxError("Unknown category " + this.type.GetName());
-            IType type = (CategoryType)cd.GetType(context);
+            IType type = (CategoryType)cd.GetIType(context);
             cd.checkConstructorContext(context);
             if (copyFrom != null)
             {

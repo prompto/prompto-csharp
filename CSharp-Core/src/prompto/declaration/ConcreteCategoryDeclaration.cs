@@ -364,13 +364,13 @@ namespace prompto.declaration
 			// find best candidate
 			IMethodDeclaration candidate = null;
 			foreach (IMethodDeclaration method in methods.Values) {
-				IType potential = method.getArguments () [0].GetType (context);
+				IType potential = method.getArguments () [0].GetIType (context);
 				if (!type.isAssignableTo (context, potential))
 					continue;
 				if (candidate == null)
 					candidate = method;
 				else {
-					IType currentBest = candidate.getArguments () [0].GetType (context);
+					IType currentBest = candidate.getArguments () [0].GetIType (context);
 					if (currentBest.isAssignableTo (context, potential))
 						candidate = method;
 				}

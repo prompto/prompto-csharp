@@ -13,6 +13,7 @@ using prompto.python;
 using prompto.javascript;
 using System.Collections.Generic;
 using prompto.utils;
+using prompto.argument;
 
 namespace prompto.parser
 {
@@ -654,7 +655,9 @@ namespace prompto.parser
 			IType type = this.GetNodeValue<IType> (ctx.typ);
 			String name = this.GetNodeValue<String> (ctx.name);
 			IdentifierList attrs = this.GetNodeValue<IdentifierList> (ctx.attrs);
-			CategoryArgument arg = new CategoryArgument (type, name, attrs);
+			CategoryArgument arg = attrs == null ?
+				new CategoryArgument (type, name) :
+				new ExtendedArgument (type, name, attrs);
 			IExpression exp = this.GetNodeValue<IExpression>(ctx.value);
 			arg.DefaultValue = exp;
 			SetNodeValue(ctx, arg);
@@ -866,6 +869,23 @@ namespace prompto.parser
 			StatementList stmts = this.GetNodeValue<StatementList> (ctx.stmts);
 			SetNodeValue (ctx, new GetterMethodDeclaration (name, stmts));
 		}
+
+		public override void ExitNative_setter_declaration (SParser.Native_setter_declarationContext ctx)
+		{
+			String name = this.GetNodeValue<String> (ctx.name);
+			StatementList stmts = this.GetNodeValue<StatementList> (ctx.stmts);
+			SetNodeValue (ctx, new NativeSetterMethodDeclaration (name, stmts));
+		}
+
+
+		public override void ExitNative_getter_declaration (SParser.Native_getter_declarationContext ctx)
+		{
+			String name = this.GetNodeValue<String> (ctx.name);
+			StatementList stmts = this.GetNodeValue<StatementList> (ctx.stmts);
+			SetNodeValue (ctx, new NativeGetterMethodDeclaration (name, stmts));
+		}
+
+
 
 		public override void ExitMember_method_declaration (SParser.Member_method_declarationContext ctx)
 		{
@@ -1699,7 +1719,7 @@ namespace prompto.parser
 		public override void ExitClosureStatement (SParser.ClosureStatementContext ctx)
 		{
 			ConcreteMethodDeclaration decl = this.GetNodeValue<ConcreteMethodDeclaration> (ctx.decl);
-			SetNodeValue (ctx, new DeclarationInstruction<ConcreteMethodDeclaration> (decl));
+			SetNodeValue (ctx, new DeclarationStatement<ConcreteMethodDeclaration> (decl));
 		}
 
 		

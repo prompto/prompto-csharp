@@ -29,7 +29,7 @@ namespace prompto.runtime
             return name;
         }
 
-		public virtual IType GetType(Context context)
+		public virtual IType GetIType(Context context)
         {
             return type;
         }

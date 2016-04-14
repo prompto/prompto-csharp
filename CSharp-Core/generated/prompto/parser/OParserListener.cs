@@ -168,6 +168,16 @@ public interface IOParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitSetter_method_declaration([NotNull] OParser.Setter_method_declarationContext context);
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="OParser.native_setter_declaration"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterNative_setter_declaration([NotNull] OParser.Native_setter_declarationContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="OParser.native_setter_declaration"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitNative_setter_declaration([NotNull] OParser.Native_setter_declarationContext context);
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="OParser.getter_method_declaration"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
@@ -177,6 +187,16 @@ public interface IOParserListener : IParseTreeListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void ExitGetter_method_declaration([NotNull] OParser.Getter_method_declarationContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="OParser.native_getter_declaration"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterNative_getter_declaration([NotNull] OParser.Native_getter_declarationContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="OParser.native_getter_declaration"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitNative_getter_declaration([NotNull] OParser.Native_getter_declarationContext context);
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="OParser.native_resource_declaration"/>.
 	/// </summary>

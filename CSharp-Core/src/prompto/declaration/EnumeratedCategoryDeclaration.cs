@@ -58,11 +58,11 @@ namespace prompto.declaration
             {
                 s.check(context); // TODO
             }
-            return GetType(context);
+            return GetIType(context);
         }
 
         override
-        public IType GetType(Context context)
+        public IType GetIType(Context context)
         {
             return new EnumeratedCategoryType(name);
         }

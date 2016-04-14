@@ -7,8 +7,9 @@ using prompto.declaration;
 using prompto.utils;
 using prompto.expression;
 using prompto.value;
+using prompto.grammar;
 
-namespace prompto.grammar
+namespace prompto.argument
 {
 
     public class UnresolvedArgument : BaseArgument, INamedArgument, IDialectElement
@@ -46,10 +47,10 @@ namespace prompto.grammar
             return resolved.getProto(context);
         }
 
-		public override IType GetType(Context context)
+		public override IType GetIType(Context context)
         {
             resolveAndCheck(context);
-            return resolved.GetType(context);
+            return resolved.GetIType(context);
         }
 
 		public override void register(Context context)

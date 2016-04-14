@@ -7,6 +7,7 @@ using prompto.grammar;
 using prompto.type;
 using prompto.value;
 using prompto.utils;
+using prompto.argument;
 
 
 namespace prompto.declaration
@@ -15,7 +16,8 @@ namespace prompto.declaration
     public abstract class BaseMethodDeclaration : BaseDeclaration, IMethodDeclaration
     {
 
-		ConcreteCategoryDeclaration memberOf;
+		CategoryDeclaration memberOf;
+		IMethodDeclaration closureOf;
 		protected ArgumentList arguments;
 		protected IType returnType;
 
@@ -33,15 +35,23 @@ namespace prompto.declaration
             this.returnType = returnType;
         }
 
-		public void setMemberOf(ConcreteCategoryDeclaration declaration) {
+		public void setMemberOf(CategoryDeclaration declaration) {
 			this.memberOf = declaration;
 		}
 
-		public ConcreteCategoryDeclaration getMemberOf() {
+		public CategoryDeclaration getMemberOf() {
 			return memberOf;
 		}
 
-        public IType getReturnType()
+		public void setClosureOf(IMethodDeclaration declaration) {
+			this.closureOf = declaration;
+		}
+
+		public IMethodDeclaration getClosureOf() {
+			return closureOf;
+		}
+    
+		public IType getReturnType()
         {
             return this.returnType;
         }
@@ -97,7 +107,7 @@ namespace prompto.declaration
         }
 
         override
-        public IType GetType(Context context)
+        public IType GetIType(Context context)
         {
             try
             {
@@ -109,7 +119,7 @@ namespace prompto.declaration
             }
         }
 
-        public bool isAssignableTo(Context context, ArgumentAssignmentList assignments, bool checkInstance)
+        public bool isAssignableTo(Context context, ArgumentAssignmentList assignments, bool useInstance)
         {
             try
             {
@@ -127,7 +137,7 @@ namespace prompto.declaration
                     if (assignment == null) // missing argument
                         return false;
                     assignmentsList.Remove(assignment);
-                    if (!isAssignableTo(local, argument, assignment, checkInstance))
+					if (!isAssignableTo(local, argument, assignment, useInstance))
                         return false;
                 }
                 return assignmentsList.Count == 0;
@@ -138,19 +148,19 @@ namespace prompto.declaration
             }
         }
 
-        bool isAssignableTo(Context context, IArgument argument, ArgumentAssignment assignment, bool checkInstance)
+		bool isAssignableTo(Context context, IArgument argument, ArgumentAssignment assignment, bool useInstance)
         {
-            return computeSpecificity(context, argument, assignment, checkInstance) != Specificity.INCOMPATIBLE;
+			return computeSpecificity(context, argument, assignment, useInstance) != Specificity.INCOMPATIBLE;
         }
 
-        public Specificity? computeSpecificity(Context context, IArgument argument, ArgumentAssignment assignment, bool checkIntance)
+		public Specificity? computeSpecificity(Context context, IArgument argument, ArgumentAssignment assignment, bool useInstance)
         {
             try
             {
-                IType required = argument.GetType(context);
+                IType required = argument.GetIType(context);
                 IType actual = assignment.getExpression().check(context);
                 // retrieve actual runtime type
-                if (checkIntance && actual is CategoryType)
+				if (useInstance && actual is CategoryType)
                 {
                     Object value = assignment.getExpression().interpret((Context)context.getCallingContext());
                     if (value is IInstance)
@@ -160,7 +170,7 @@ namespace prompto.declaration
                     return Specificity.EXACT;
                 if (actual.isAssignableTo(context, required))
                     return Specificity.INHERITED;
-                actual = assignment.resolve(context, this, checkIntance).check(context);
+				actual = assignment.resolve(context, this, useInstance).check(context);
                 if (actual.isAssignableTo(context, required))
                     return Specificity.RESOLVED;
             }
@@ -179,10 +189,20 @@ namespace prompto.declaration
             throw new InternalError("Should never get there!");
         }
 
-        public virtual bool isEligibleAsMain()
+        public virtual bool isAbstract()
         {
             return false;
         }
+
+		public virtual bool isTemplate()
+		{
+			return false;
+		}
+
+		public virtual bool isEligibleAsMain()
+		{
+			return false;
+		}
     }
 }
 

@@ -154,6 +154,18 @@ public partial class SParserBaseListener : ISParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitSetter_method_declaration([NotNull] SParser.Setter_method_declarationContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="SParser.native_setter_declaration"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterNative_setter_declaration([NotNull] SParser.Native_setter_declarationContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="SParser.native_setter_declaration"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitNative_setter_declaration([NotNull] SParser.Native_setter_declarationContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="SParser.getter_method_declaration"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
@@ -165,6 +177,18 @@ public partial class SParserBaseListener : ISParserListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitGetter_method_declaration([NotNull] SParser.Getter_method_declarationContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="SParser.native_getter_declaration"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterNative_getter_declaration([NotNull] SParser.Native_getter_declarationContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="SParser.native_getter_declaration"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitNative_getter_declaration([NotNull] SParser.Native_getter_declarationContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="SParser.native_category_declaration"/>.
 	/// <para>The default implementation does nothing.</para>

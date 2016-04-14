@@ -4,11 +4,12 @@ using prompto.runtime;
 using prompto.error;
 using System;
 using System.Text;
+using prompto.expression;
 
 namespace prompto.value
 {
 
-	public class SetValue : BaseValue, IContainer
+	public class SetValue : BaseValue, IFilterable
 	{
 
 		HashSet<IValue> items = null;
@@ -135,5 +136,27 @@ namespace prompto.value
 			return newInstance (result);
 		}
 
+		public virtual IFilterable Filter(Context context, String itemName, IExpression filter)
+		{
+			HashSet<IValue> result = new HashSet<IValue>  ();
+			foreach (IValue o in this.items)
+			{
+				context.setValue(itemName, o);
+				Object test = filter.interpret(context);
+				if (!(test is Boolean))
+					throw new InternalError("Illegal test result: " + test);
+				if (((Boolean)test).Value)
+					result.Add(o);
+			}
+			return newInstance (result);
+		}
+
+		public override IValue GetMember(Context context, String name, bool autoCreate)
+		{
+			if ("length" == name)
+				return new Integer(this.Length());
+			else
+				throw new NotSupportedException("No such member:" + name);
+		}
 	}
 }

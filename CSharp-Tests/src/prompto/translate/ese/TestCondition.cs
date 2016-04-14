@@ -15,12 +15,6 @@ namespace prompto.translate.ese
 		}
 
 		[Test]
-		public void testElseIf()
-		{
-			compareResourceESE("condition/elseIf.pec");
-		}
-
-		[Test]
 		public void testReturnIf()
 		{
 			compareResourceESE("condition/returnIf.pec");

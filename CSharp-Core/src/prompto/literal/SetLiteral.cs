@@ -34,18 +34,30 @@ public class SetLiteral : Literal<SetValue> {
 		return new SetType(itemType); 
 	}
 
-		public override IValue interpret(Context context) {
+	public override IValue interpret(Context context) {
 		if(expressions!=null) {
 			check(context); // force computation of itemType
 			HashSet<IValue> set = new HashSet<IValue>();
-			foreach(IExpression exp in expressions)
-				set.Add(exp.interpret(context));
-			if(itemType==null)
-				itemType = Utils.InferElementType(context, set); 
+			foreach (IExpression exp in expressions) {
+				IValue item = exp.interpret (context);
+				item = interpretPromotion (item);
+				set.Add (item);
+			}; 
 			value = new SetValue(itemType, set);
-			expressions = null;
+			// don't dispose of expressions, they are required by translation 
 		}
 		return value;
+	}
+
+	private IValue interpretPromotion(IValue item) {
+		if(item==null)
+			return item;
+		if(DecimalType.Instance==itemType && item.GetIType()==IntegerType.Instance)
+			return new prompto.value.Decimal(((prompto.value.Integer)item).DecimalValue);
+		else if(TextType.Instance==itemType && item.GetIType()==CharacterType.Instance)
+			return ((Character)item).AsText();
+		else
+			return item;
 	}
 
 	public void toDialect(CodeWriter writer) {

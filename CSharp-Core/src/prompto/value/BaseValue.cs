@@ -20,7 +20,7 @@ namespace prompto.value
 			return false;
 		}
 
-		public virtual IType GetType(Context context) {
+		public virtual IType GetIType() {
 			return this.type;
 		}
 

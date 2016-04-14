@@ -150,7 +150,7 @@ namespace prompto.grammar
             if (decl is CategoryDeclaration)
                 return new TypeExpression(new CategoryType(name));
             else if (decl is EnumeratedNativeDeclaration)
-                return new TypeExpression(decl.GetType(context));
+                return new TypeExpression(decl.GetIType(context));
             else foreach (IType type in NativeType.getAll())
              {
 				if (name == type.GetName())

@@ -28,13 +28,13 @@ namespace prompto.grammar
             this.type = type;
         }
 
-        override
-        public IType GetType(Context context)
-        {
-            return type;
-        }
+        
+		public override IType GetIType()
+		{
+			return type;
+		}
 
-        public EnumeratedCategoryType getType()
+		public override IType GetIType(Context context)
         {
             return type;
         }

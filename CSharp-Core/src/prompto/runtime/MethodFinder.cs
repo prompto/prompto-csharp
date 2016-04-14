@@ -6,6 +6,9 @@ using prompto.statement;
 using prompto.declaration;
 using prompto.type;
 using prompto.value;
+using prompto.argument;
+
+
 namespace prompto.runtime
 {
 
@@ -21,10 +24,10 @@ namespace prompto.runtime
             this.methodCall = methodCall;
         }
 
-        public IMethodDeclaration findMethod(bool checkInstance)
+        public IMethodDeclaration findMethod(bool useInstance)
         {
             List<IMethodDeclaration> candidates = methodCall.getMethod().getCandidates(context);
-            List<IMethodDeclaration> compatibles = filterCompatible(candidates, checkInstance);
+			List<IMethodDeclaration> compatibles = filterCompatible(candidates, useInstance);
             switch (compatibles.Count)
             {
                 case 0:
@@ -33,11 +36,11 @@ namespace prompto.runtime
                 case 1:
                     return compatibles[0];
                 default:
-                    return findMostSpecific(compatibles, checkInstance);
+				return findMostSpecific(compatibles, useInstance);
             }
         }
 
-        IMethodDeclaration findMostSpecific(List<IMethodDeclaration> candidates, bool checkInstance)
+		IMethodDeclaration findMostSpecific(List<IMethodDeclaration> candidates, bool useInstance)
         {
             IMethodDeclaration candidate = null;
             List<IMethodDeclaration> ambiguous = new List<IMethodDeclaration>();
@@ -47,7 +50,7 @@ namespace prompto.runtime
                     candidate = declaration;
                 else
                 {
-                    Score score = scoreMostSpecific(candidate, declaration, checkInstance);
+					Score score = scoreMostSpecific(candidate, declaration, useInstance);
                     switch (score)
                     {
                         case Score.WORSE:
@@ -67,7 +70,7 @@ namespace prompto.runtime
             return candidate;
         }
 
-        Score scoreMostSpecific(IMethodDeclaration d1, IMethodDeclaration d2, bool checkInstance)
+		Score scoreMostSpecific(IMethodDeclaration d1, IMethodDeclaration d2, bool useInstance)
         {
             try
             {
@@ -86,10 +89,10 @@ namespace prompto.runtime
 					if (as1.GetName().Equals(as2.GetName()))
                     {
                         // the general case with named arguments
-                        IType t1 = ar1.GetType(s1);
-                        IType t2 = ar2.GetType(s2);
+                        IType t1 = ar1.GetIType(s1);
+                        IType t2 = ar2.GetIType(s2);
                         // try resolving runtime type
-                        if (checkInstance && t1 is CategoryType && t2 is CategoryType)
+						if (useInstance && t1 is CategoryType && t2 is CategoryType)
                         {
                             Object value = as1.getExpression().interpret(context); // in the named case as1==as2, so only interpret 1
                             if (value is IInstance)
@@ -108,8 +111,8 @@ namespace prompto.runtime
                     else
                     {
                         // specific case for single anonymous argument
-                        Specificity? sp1 = d1.computeSpecificity(s1, ar1, as1, checkInstance);
-                        Specificity? sp2 = d2.computeSpecificity(s2, ar2, as2, checkInstance);
+						Specificity? sp1 = d1.computeSpecificity(s1, ar1, as1, useInstance);
+						Specificity? sp2 = d2.computeSpecificity(s2, ar2, as2, useInstance);
                         if (sp1 > sp2)
                             return Score.BETTER;
                         if (sp2 > sp1)
@@ -123,7 +126,7 @@ namespace prompto.runtime
             return Score.SIMILAR;
         }
 
-        List<IMethodDeclaration> filterCompatible(List<IMethodDeclaration> candidates, bool checkInstance)
+		List<IMethodDeclaration> filterCompatible(List<IMethodDeclaration> candidates, bool useInstance)
         {
             List<IMethodDeclaration> compatibles = new List<IMethodDeclaration>();
             foreach (IMethodDeclaration declaration in candidates)
@@ -131,7 +134,7 @@ namespace prompto.runtime
                 try
                 {
                     ArgumentAssignmentList args = methodCall.makeAssignments(context, declaration);
-                    if (declaration.isAssignableTo(context, args, checkInstance))
+					if (declaration.isAssignableTo(context, args, useInstance))
                         compatibles.Add(declaration);
                 }
                 catch (SyntaxError)

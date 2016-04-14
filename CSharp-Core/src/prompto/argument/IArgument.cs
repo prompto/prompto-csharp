@@ -3,9 +3,10 @@ using System;
 using prompto.runtime;
 using prompto.expression;
 using prompto.value;
+using prompto.grammar;
 
 
-namespace prompto.grammar
+namespace prompto.argument
 {
 
     public interface IArgument : INamed, IDialectElement

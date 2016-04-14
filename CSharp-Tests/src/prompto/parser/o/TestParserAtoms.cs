@@ -12,6 +12,7 @@ using prompto.type;
 using Antlr4.Runtime.Tree;
 using prompto.runtime;
 using prompto.utils;
+using prompto.argument;
 
 namespace prompto.parser
 {
@@ -204,7 +205,7 @@ namespace prompto.parser
             Assert.IsNotNull(ad);
 			Assert.AreEqual("printName", ad.GetName());
             Assert.IsNotNull(ad.getArguments());
-            Assert.IsTrue(ad.getArguments().Contains(new CategoryArgument(new CategoryType("Person"), "p", null)));
+            Assert.IsTrue(ad.getArguments().Contains(new CategoryArgument(new CategoryType("Person"), "p")));
             Assert.IsNotNull(ad.getStatements());
 			Assert.AreEqual("print(value = \"person\" + p.name)", generate(ad.getStatements()[0]));
 
@@ -219,7 +220,7 @@ namespace prompto.parser
             Assert.IsNotNull(ad);
 			Assert.AreEqual("printName", ad.GetName());
             Assert.IsNotNull(ad.getArguments());
-            IArgument expected = new CategoryArgument(new CategoryType("Object"), "o", new IdentifierList("name"));
+			IArgument expected = new ExtendedArgument(new CategoryType("Object"), "o", new IdentifierList("name"));
             Assert.IsTrue(ad.getArguments().Contains(expected));
             Assert.IsNotNull(ad.getStatements());
 			Assert.AreEqual("print(value = \"object\" + o.name)", generate(ad.getStatements()[0]));
@@ -235,7 +236,7 @@ namespace prompto.parser
             Assert.IsNotNull(ad);
 			Assert.AreEqual("printName", ad.GetName());
             Assert.IsNotNull(ad.getArguments());
-            IArgument expected = new CategoryArgument(new ListType(new CategoryType("Option")), "options", null);
+            IArgument expected = new CategoryArgument(new ListType(new CategoryType("Option")), "options");
             Assert.IsTrue(ad.getArguments().Contains(expected));
             Assert.IsNotNull(ad.getStatements());
 			Assert.AreEqual("print(value = \"array\" + options)", generate(ad.getStatements()[0]));

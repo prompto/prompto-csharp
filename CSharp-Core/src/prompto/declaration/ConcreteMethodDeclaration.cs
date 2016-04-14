@@ -6,6 +6,7 @@ using prompto.grammar;
 using prompto.type;
 using prompto.utils;
 using prompto.value;
+using prompto.argument;
 
 
 namespace prompto.declaration
@@ -20,6 +21,11 @@ namespace prompto.declaration
             : base(name, arguments, returnType)
         {
             this.statements = statements;
+			foreach (IStatement s in statements) {
+
+				if (s is DeclarationStatement<IDeclaration>)
+					((DeclarationStatement<IDeclaration>)s).getDeclaration ().SetClosureOf (this);
+			}
         }
 
         override
@@ -111,11 +117,11 @@ namespace prompto.declaration
         private bool canBeChecked(Context context)
         {
             if (context.isGlobalContext())
-                return !mustBeBeCheckedInCallContext(context);
+                return !isTemplate();
             else
                 return true;
         }
-        public bool mustBeBeCheckedInCallContext(Context context)
+		public override bool isTemplate()
         {
             // if at least one argument is 'Code'
             if (arguments == null)

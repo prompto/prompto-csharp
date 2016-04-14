@@ -47,17 +47,30 @@ namespace prompto.literal
 		public override IValue interpret (Context context)
 		{
 			if (expressions != null) {
+				check(context); // force computation of itemType
 				List<IValue> list = new List<IValue> ();
-				foreach (IExpression exp in expressions)
-					list.add (exp.interpret (context));
-				if (itemType == null)
-					itemType = Utils.InferElementType (context, list); 
+				foreach (IExpression exp in expressions) 
+				{
+					IValue item = exp.interpret (context);
+					item = interpretPromotion (item);
+					list.add (item);
+				}
 				value = new ListValue (itemType, list);
 				// don't dispose of expressions, they are required by translation 
 			}
 			return value;
 		}
 
+		private IValue interpretPromotion(IValue item) {
+			if(item==null)
+				return item;
+			if(DecimalType.Instance==itemType && item.GetIType()==IntegerType.Instance)
+				return new prompto.value.Decimal(((prompto.value.Integer)item).DecimalValue);
+			else if(TextType.Instance==itemType && item.GetIType()==CharacterType.Instance)
+				return ((Character)item).AsText();
+			else
+				return item;
+		}
 
 		public override void ToDialect (CodeWriter writer)
 		{

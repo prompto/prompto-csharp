@@ -99,7 +99,6 @@
     <Compile Include="src\prompto\python\PythonStatement.cs" />
     <Compile Include="src\prompto\python\PythonTextLiteral.cs" />
     <Compile Include="src\prompto\type\AnyType.cs" />
-    <Compile Include="src\prompto\grammar\IArgument.cs" />
     <Compile Include="src\prompto\grammar\ArgumentAssignment.cs" />
     <Compile Include="src\prompto\grammar\ArgumentAssignmentList.cs" />
     <Compile Include="src\prompto\grammar\ArgumentList.cs" />
@@ -108,10 +107,8 @@
     <Compile Include="src\prompto\statement\AssignTupleStatement.cs" />
     <Compile Include="src\prompto\statement\AssignVariableStatement.cs" />
     <Compile Include="src\prompto\grammar\AtomicSwitchCase.cs" />
-    <Compile Include="src\prompto\grammar\AttributeArgument.cs" />
     <Compile Include="src\prompto\grammar\IAttributeConstraint.cs" />
     <Compile Include="src\prompto\declaration\AttributeDeclaration.cs" />
-    <Compile Include="src\prompto\grammar\BaseArgument.cs" />
     <Compile Include="src\prompto\declaration\BaseDeclaration.cs" />
     <Compile Include="src\prompto\declaration\BaseMethodDeclaration.cs" />
     <Compile Include="src\prompto\statement\BaseStatement.cs" />
@@ -122,7 +119,6 @@
     <Compile Include="src\prompto\value\BaseValueList.cs" />
     <Compile Include="src\prompto\literal\BooleanLiteral.cs" />
     <Compile Include="src\prompto\type\BooleanType.cs" />
-    <Compile Include="src\prompto\grammar\CategoryArgument.cs" />
     <Compile Include="src\prompto\declaration\CategoryDeclaration.cs" />
     <Compile Include="src\prompto\grammar\CategorySymbol.cs" />
     <Compile Include="src\prompto\grammar\CategorySymbolList.cs" />
@@ -131,7 +127,6 @@
     <Compile Include="src\prompto\value\CharacterRange.cs" />
     <Compile Include="src\prompto\type\CharacterType.cs" />
     <Compile Include="src\prompto\grammar\CmpOp.cs" />
-    <Compile Include="src\prompto\grammar\CodeArgument.cs" />
     <Compile Include="src\prompto\expression\CodeExpression.cs" />
     <Compile Include="src\prompto\type\CodeType.cs" />
     <Compile Include="src\prompto\grammar\CollectionSwitchCase.cs" />
@@ -219,7 +214,6 @@
     <Compile Include="src\prompto\grammar\MatchingPatternConstraint.cs" />
     <Compile Include="src\prompto\grammar\MemberInstance.cs" />
     <Compile Include="src\prompto\expression\MemberSelector.cs" />
-    <Compile Include="src\prompto\grammar\MethodArgument.cs" />
     <Compile Include="src\prompto\statement\MethodCall.cs" />
     <Compile Include="src\prompto\declaration\IMethodDeclaration.cs" />
     <Compile Include="src\prompto\expression\MethodExpression.cs" />
@@ -230,7 +224,6 @@
     <Compile Include="src\prompto\expression\ModuloExpression.cs" />
     <Compile Include="src\prompto\expression\MultiplyExpression.cs" />
     <Compile Include="src\prompto\grammar\INamed.cs" />
-    <Compile Include="src\prompto\grammar\INamedArgument.cs" />
     <Compile Include="src\prompto\grammar\NativeCall.cs" />
     <Compile Include="src\prompto\declaration\NativeCategoryDeclaration.cs" />
     <Compile Include="src\prompto\declaration\NativeMethodDeclaration.cs" />
@@ -273,10 +266,8 @@
     <Compile Include="src\prompto\literal\TupleLiteral.cs" />
     <Compile Include="src\prompto\type\TupleType.cs" />
     <Compile Include="src\prompto\type\IType.cs" />
-    <Compile Include="src\prompto\grammar\ITypedArgument.cs" />
     <Compile Include="src\prompto\grammar\TypeList.cs" />
     <Compile Include="src\prompto\expression\IUnaryExpression.cs" />
-    <Compile Include="src\prompto\grammar\UnresolvedArgument.cs" />
     <Compile Include="src\prompto\grammar\UnresolvedIdentifier.cs" />
     <Compile Include="src\prompto\grammar\VariableInstance.cs" />
     <Compile Include="src\prompto\type\VoidType.cs" />
@@ -385,7 +376,6 @@
     <Compile Include="src\prompto\value\SetValue.cs" />
     <Compile Include="src\prompto\type\SetType.cs" />
     <Compile Include="src\prompto\utils\IValueEnumerable.cs" />
-    <Compile Include="src\prompto\statement\DeclarationInstruction.cs" />
     <Compile Include="src\prompto\declaration\ClosureDeclaration.cs" />
     <Compile Include="src\prompto\value\ExpressionValue.cs" />
     <Compile Include="src\prompto\expression\ThisExpression.cs" />
@@ -440,6 +430,20 @@
     <Compile Include="src\prompto\value\Iterator.cs" />
     <Compile Include="src\prompto\value\IIterable.cs" />
     <Compile Include="src\prompto\javascript\JavaScriptNewExpression.cs" />
+    <Compile Include="src\prompto\argument\AttributeArgument.cs" />
+    <Compile Include="src\prompto\argument\BaseArgument.cs" />
+    <Compile Include="src\prompto\argument\CategoryArgument.cs" />
+    <Compile Include="src\prompto\argument\CodeArgument.cs" />
+    <Compile Include="src\prompto\argument\IArgument.cs" />
+    <Compile Include="src\prompto\argument\INamedArgument.cs" />
+    <Compile Include="src\prompto\argument\MethodArgument.cs" />
+    <Compile Include="src\prompto\argument\UnresolvedArgument.cs" />
+    <Compile Include="src\prompto\argument\ITypedArgument.cs" />
+    <Compile Include="src\prompto\argument\ExtendedArgument.cs" />
+    <Compile Include="src\prompto\statement\DeclarationStatement.cs" />
+    <Compile Include="src\prompto\declaration\NativeGetterMethodDeclaration.cs" />
+    <Compile Include="src\prompto\declaration\NativeSetterMethodDeclaration.cs" />
+    <Compile Include="src\prompto\value\IFilterable.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Antlr4.Runtime">
@@ -459,5 +463,6 @@
     <Folder Include="generated\prompto\parser\" />
     <Folder Include="src\prompto\javascript\" />
     <Folder Include="src\prompto\store\" />
+    <Folder Include="src\prompto\argument\" />
   </ItemGroup>
 </Project>

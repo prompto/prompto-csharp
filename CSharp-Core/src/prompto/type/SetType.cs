@@ -1,5 +1,6 @@
 ﻿using prompto.runtime;
 using prompto.value;
+using System;
 
 namespace prompto.type
 {
@@ -27,6 +28,15 @@ namespace prompto.type
 					return this;
 			} 
 			return base.checkAdd (context, other, tryReverse);
+		}
+
+
+		public override IType CheckMember(Context context, String name)
+		{
+			if ("length" == name)
+				return IntegerType.Instance;
+			else
+				return base.CheckMember(context, name);
 		}
 
 		public override IType checkItem (Context context, IType other)

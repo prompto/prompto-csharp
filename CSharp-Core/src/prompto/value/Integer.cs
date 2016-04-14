@@ -14,9 +14,9 @@ namespace prompto.value
             return new Integer(Int64.Parse(text));
         }
 
-        Int64 value;
+        long value;
 
-        public Integer(Int64 value)
+		public Integer(long value)
 			: base(IntegerType.Instance)
         {
             this.value = value;

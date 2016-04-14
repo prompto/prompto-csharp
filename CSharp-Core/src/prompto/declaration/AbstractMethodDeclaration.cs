@@ -93,6 +93,11 @@ namespace prompto.declaration
 			arguments.ToDialect(writer);
 			writer.append(");");
 		}
+
+		public override bool isAbstract ()
+		{
+			return true;
+		}
     }
 
 }

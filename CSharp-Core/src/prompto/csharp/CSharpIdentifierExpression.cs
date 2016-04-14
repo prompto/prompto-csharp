@@ -212,7 +212,7 @@ namespace prompto.csharp
                 return null;
             try
             {
-                return named.GetType(context);
+                return named.GetIType(context);
             }
             catch (SyntaxError)
             {

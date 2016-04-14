@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using prompto.runtime;
 using prompto.type;
+using prompto.expression;
 
 namespace prompto.value
 {
@@ -11,5 +12,5 @@ namespace prompto.value
     {
         bool HasItem(Context context, IValue iValue);
         IValue GetItem(Context context, IValue item);
-    }
+   }
 }

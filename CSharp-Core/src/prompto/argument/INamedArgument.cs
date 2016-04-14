@@ -1,4 +1,4 @@
-namespace prompto.grammar
+namespace prompto.argument
 {
 
     public interface INamedArgument : IArgument

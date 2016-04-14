@@ -50,7 +50,7 @@ namespace prompto.grammar
             else
             {
                 // need to check type compatibility
-                IType actualType = actual.GetType(context);
+                IType actualType = actual.GetIType(context);
                 type.checkAssignableTo(context, actualType);
             }
         }
@@ -72,7 +72,7 @@ namespace prompto.grammar
         {
             IValue value = expression.interpret(context);
             if (context.getRegisteredValue<INamed>(name) == null)
-				context.registerValue(new Variable(name, value.GetType(context)));
+				context.registerValue(new Variable(name, value.GetIType()));
             context.setValue(name, value);
         }
 

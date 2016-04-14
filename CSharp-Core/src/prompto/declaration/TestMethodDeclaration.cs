@@ -37,7 +37,7 @@ namespace prompto.declaration
 			context.registerDeclaration (this);
 		}
 
-		public override IType GetType (Context context)
+		public override IType GetIType (Context context)
 		{
 			return VoidType.Instance;
 		}

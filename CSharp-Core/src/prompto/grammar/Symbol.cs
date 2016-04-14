@@ -43,7 +43,9 @@ namespace prompto.grammar
             context.registerValue(this);
         }
 
-        public abstract IType GetType(Context context);
+		public abstract IType GetIType();
+
+		public abstract IType GetIType(Context context);
 
         public abstract IType check(Context context);
 

@@ -7,7 +7,7 @@ using prompto.utils;
 using prompto.expression;
 using prompto.value;
 
-namespace prompto.grammar
+namespace prompto.argument
 {
 
     public abstract class BaseArgument : IArgument
@@ -50,7 +50,7 @@ namespace prompto.grammar
         abstract public String getProto(Context context);
         abstract public void register(Context context);
         abstract public void check(Context context);
-        abstract public IType GetType(Context context);
+        abstract public IType GetIType(Context context);
   
     }
 

@@ -153,7 +153,7 @@ namespace prompto.type
 
 		protected virtual ListValue doSort<T>(Context context, IContainer list, ExpressionComparer<T> cmp)
         {
-			IType itemType = ((IterableType)list.GetType(context)).GetItemType();
+			IType itemType = ((IterableType)list.GetIType()).GetItemType();
 			ListValue result = new ListValue(itemType);
 			result.AddRange(list.GetEnumerable(context));
             result.Sort(cmp);

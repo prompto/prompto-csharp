@@ -28,8 +28,14 @@ namespace prompto.grammar
             return expression;
         }
 
-        override
-        public IType GetType(Context context)
+		override
+		public IType GetIType()
+		{
+			return type;
+		}
+
+		override
+		public IType GetIType(Context context)
         {
             return type;
         }

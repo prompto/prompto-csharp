@@ -3,6 +3,9 @@ using NUnit.Framework;
 using prompto.grammar;
 using prompto.declaration;
 using prompto.type;
+using prompto.argument;
+
+
 namespace prompto.o.runtime
 {
 
@@ -27,9 +30,9 @@ namespace prompto.o.runtime
         public void testAnonymousAnyType()
         {
             // any x
-            IArgument argument = new CategoryArgument(AnyType.Instance, "x", null);
+            IArgument argument = new CategoryArgument(AnyType.Instance, "x");
             argument.register(context);
-            IType st = argument.GetType(context);
+            IType st = argument.GetIType(context);
             Assert.IsTrue(st is AnyType);
             Assert.IsTrue(BooleanType.Instance.isAssignableTo(context, st));
             Assert.IsTrue(IntegerType.Instance.isAssignableTo(context, st));
@@ -50,9 +53,9 @@ namespace prompto.o.runtime
         {
             // any x with attribute: name
             IdentifierList list = new IdentifierList("name");
-            IArgument argument = new CategoryArgument(AnyType.Instance, "x", list);
+			IArgument argument = new ExtendedArgument(AnyType.Instance, "x", list);
             argument.register(context);
-            IType st = argument.GetType(context);
+            IType st = argument.GetIType(context);
             Assert.IsTrue(st is CategoryType);
             Assert.IsFalse(BooleanType.Instance.isAssignableTo(context, st));
             Assert.IsFalse(IntegerType.Instance.isAssignableTo(context, st));
@@ -72,9 +75,9 @@ namespace prompto.o.runtime
         public void testAnonymousCategoryType()
         {
             // Root x
-            IArgument argument = new CategoryArgument(new CategoryType("Root"), "x", null);
+            IArgument argument = new CategoryArgument(new CategoryType("Root"), "x");
             argument.register(context);
-            IType st = argument.GetType(context);
+            IType st = argument.GetIType(context);
             Assert.IsTrue(st is CategoryType);
             Assert.IsFalse(BooleanType.Instance.isAssignableTo(context, st));
             Assert.IsFalse(IntegerType.Instance.isAssignableTo(context, st));
@@ -95,9 +98,9 @@ namespace prompto.o.runtime
         {
             // Root x with attribute: name
             IdentifierList list = new IdentifierList("name");
-            IArgument argument = new CategoryArgument(new CategoryType("Root"), "test", list);
+			IArgument argument = new ExtendedArgument(new CategoryType("Root"), "test", list);
             argument.register(context);
-            IType st = argument.GetType(context);
+            IType st = argument.GetIType(context);
             Assert.IsTrue(st is CategoryType);
             Assert.IsFalse(BooleanType.Instance.isAssignableTo(context, st));
             Assert.IsFalse(IntegerType.Instance.isAssignableTo(context, st));

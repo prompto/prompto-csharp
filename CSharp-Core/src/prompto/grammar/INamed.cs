@@ -7,7 +7,7 @@ namespace prompto.grammar {
 
 public interface INamed {
 	String GetName();
-	IType GetType(Context context);
+	IType GetIType(Context context);
 }
 
 }

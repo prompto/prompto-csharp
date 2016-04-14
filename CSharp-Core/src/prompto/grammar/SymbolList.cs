@@ -58,7 +58,11 @@ namespace prompto.grammar
 			return new IValueEnumerable (context, this);
 		}
 
-		public virtual IType GetType(Context context) {
+		public virtual IType GetIType() {
+			return this.type;
+		}
+
+		public virtual IType GetIType(Context context) {
 			return this.type;
 		}
 

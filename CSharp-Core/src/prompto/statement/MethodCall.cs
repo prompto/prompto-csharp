@@ -8,6 +8,7 @@ using prompto.declaration;
 using prompto.type;
 using prompto.utils;
 using prompto.value;
+using prompto.argument;
 
 
 namespace prompto.statement
@@ -84,8 +85,7 @@ namespace prompto.statement
 
 		private IType check(IMethodDeclaration declaration, Context parent, Context local)
         {
-            if (declaration is ConcreteMethodDeclaration
-				&& ((ConcreteMethodDeclaration)declaration).mustBeBeCheckedInCallContext(parent))
+            if (declaration.isTemplate())
 				return fullCheck((ConcreteMethodDeclaration)declaration, parent, local);
             else
 				return lightCheck(declaration, parent, local);

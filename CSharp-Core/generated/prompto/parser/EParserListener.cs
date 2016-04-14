@@ -144,6 +144,16 @@ public interface IEParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitSetter_method_declaration([NotNull] EParser.Setter_method_declarationContext context);
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="EParser.native_setter_declaration"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterNative_setter_declaration([NotNull] EParser.Native_setter_declarationContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="EParser.native_setter_declaration"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitNative_setter_declaration([NotNull] EParser.Native_setter_declarationContext context);
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="EParser.getter_method_declaration"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
@@ -153,6 +163,16 @@ public interface IEParserListener : IParseTreeListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void ExitGetter_method_declaration([NotNull] EParser.Getter_method_declarationContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="EParser.native_getter_declaration"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterNative_getter_declaration([NotNull] EParser.Native_getter_declarationContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="EParser.native_getter_declaration"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitNative_getter_declaration([NotNull] EParser.Native_getter_declarationContext context);
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="EParser.native_category_declaration"/>.
 	/// </summary>

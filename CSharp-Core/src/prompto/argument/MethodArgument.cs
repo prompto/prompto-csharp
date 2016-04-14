@@ -5,8 +5,9 @@ using prompto.runtime;
 using System;
 using prompto.type;
 using prompto.declaration;
+using prompto.grammar;
 
-namespace prompto.grammar {
+namespace prompto.argument {
 
 public class MethodArgument : BaseArgument, INamedArgument {
 	
@@ -58,7 +59,7 @@ public class MethodArgument : BaseArgument, INamedArgument {
 	}
 	
 	override
-	public IType GetType(Context context) {
+	public IType GetIType(Context context) {
 		return new MethodType(context,name);
 	}
 	

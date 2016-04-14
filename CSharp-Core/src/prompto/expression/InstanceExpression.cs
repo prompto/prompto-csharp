@@ -7,6 +7,7 @@ using prompto.grammar;
 using prompto.declaration;
 using prompto.utils;
 using prompto.value;
+using prompto.argument;
 
 namespace prompto.expression
 {
@@ -48,7 +49,7 @@ namespace prompto.expression
 			if(writer.getDialect()!=Dialect.E)
 				return false;
 			Object o = writer.getContext().getRegistered(name);
-			if(o is MethodDeclarationMap)
+			if(o is IMethodDeclaration)
 				return true;
 			return false;
 		}
@@ -59,15 +60,15 @@ namespace prompto.expression
             if (named == null)
                 throw new SyntaxError("Unknown identifier:" + name);
             else if (named is Variable) // local variable
-                return named.GetType(context);
+                return named.GetIType(context);
 			else if(named is LinkedVariable) // local variable
-				return named.GetType(context);
+				return named.GetIType(context);
            else if (named is IArgument) // named argument
-                return named.GetType(context);
+                return named.GetIType(context);
             else if (named is CategoryDeclaration) // any p with x
-                return named.GetType(context);
+                return named.GetIType(context);
             else if (named is AttributeDeclaration) // in category method
-                return named.GetType(context);
+                return named.GetIType(context);
             else if (named is MethodDeclarationMap) // global method or closure
                 return new MethodType(context, name);
             else

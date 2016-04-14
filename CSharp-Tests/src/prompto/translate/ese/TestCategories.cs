@@ -9,6 +9,12 @@ namespace prompto.translate.ese
 	{
 
 		[Test]
+		public void testComposed()
+		{
+			compareResourceESE("categories/composed.pec");
+		}
+
+		[Test]
 		public void testCopyFromAscendant()
 		{
 			compareResourceESE("categories/copyFromAscendant.pec");

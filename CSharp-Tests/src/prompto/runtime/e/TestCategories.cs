@@ -22,6 +22,12 @@ namespace prompto.runtime.e
 		}
 
 		[Test]
+		public void testComposed()
+		{
+			CheckOutput("categories/composed.pec");
+		}
+
+		[Test]
 		public void testCopyFromAscendant()
 		{
 			CheckOutput("categories/copyFromAscendant.pec");

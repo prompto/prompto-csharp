@@ -66,29 +66,20 @@ namespace prompto.expression
 
         public IValue interpret(Context context)
         {
-			IValue list = source.interpret(context);
-            if (list == null)
+			IValue value = source.interpret(context);
+			if (value == null)
                 throw new NullReferenceError();
-			if (!(list is IContainer))
+			if (!(value is IFilterable))
                 throw new InternalError("Illegal fetch source: " + source);
+			IFilterable list = (IFilterable)value;
             IType listType = source.check(context);
 			if (!(listType is ContainerType))
 				throw new InternalError("Illegal source type: " + listType.GetName());
 			IType itemType = ((ContainerType)listType).GetItemType();
-			ListValue result = new ListValue(itemType);
-            Context local = context.newLocalContext();
-            Variable item = new Variable(itemName, itemType);
-            local.registerValue(item);
-			foreach (IValue o in ((IContainer)list).GetEnumerable(context))
-            {
-                local.setValue(itemName, o);
-                Object test = filter.interpret(local);
-                if (!(test is Boolean))
-                    throw new InternalError("Illegal test result: " + test);
-                if (((Boolean)test).Value)
-                    result.Add(o);
-            }
-            return result;
+			Context local = context.newLocalContext();
+			Variable item = new Variable(itemName, itemType);
+			local.registerValue(item);
+			return list.Filter (local, itemName, filter);
         }
     }
 }

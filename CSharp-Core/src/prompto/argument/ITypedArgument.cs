@@ -1,5 +1,8 @@
 using prompto.type;
-namespace prompto.grammar
+using prompto.argument;
+
+
+namespace prompto.argument
 {
 
     public interface ITypedArgument : IArgument

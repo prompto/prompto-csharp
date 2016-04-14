@@ -190,6 +190,18 @@ public partial class OParserBaseListener : IOParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitSetter_method_declaration([NotNull] OParser.Setter_method_declarationContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="OParser.native_setter_declaration"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterNative_setter_declaration([NotNull] OParser.Native_setter_declarationContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="OParser.native_setter_declaration"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitNative_setter_declaration([NotNull] OParser.Native_setter_declarationContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="OParser.getter_method_declaration"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
@@ -201,6 +213,18 @@ public partial class OParserBaseListener : IOParserListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitGetter_method_declaration([NotNull] OParser.Getter_method_declarationContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="OParser.native_getter_declaration"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterNative_getter_declaration([NotNull] OParser.Native_getter_declarationContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="OParser.native_getter_declaration"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitNative_getter_declaration([NotNull] OParser.Native_getter_declarationContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="OParser.native_resource_declaration"/>.
 	/// <para>The default implementation does nothing.</para>

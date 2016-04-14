@@ -7,6 +7,7 @@ using prompto.expression;
 using prompto.type;
 using prompto.value;
 using prompto.utils;
+using prompto.argument;
 
 
 namespace prompto.grammar {
@@ -111,22 +112,22 @@ namespace prompto.grammar {
             else
             {
                 // need to check type compatibility
-                IType actualType = actual.GetType(context);
+                IType actualType = actual.GetIType(context);
                 IType newType = expression.check(context);
                 newType.checkAssignableTo(context, actualType);
             }
             return VoidType.Instance;
         }
 
-        public IExpression resolve(Context context, IMethodDeclaration methodDeclaration, bool checkInstance)
+		public IExpression resolve(Context context, IMethodDeclaration methodDeclaration, bool useInstance)
         {
             // since we support implicit members, it's time to resolve them
             String name = this.argument.GetName();
             IExpression expression = getExpression();
             IArgument argument = methodDeclaration.getArguments().find(name);
-            IType required = argument.GetType(context);
+			IType required = argument.GetIType(context);
             IType actual = expression.check((Context)context.getCallingContext());
-            if (checkInstance && actual is CategoryType)
+			if (useInstance && actual is CategoryType)
             {
                 Object value = expression.interpret((Context)context.getCallingContext());
                 if (value is IInstance)

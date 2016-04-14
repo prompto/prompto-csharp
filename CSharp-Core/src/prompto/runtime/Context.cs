@@ -530,6 +530,16 @@ namespace prompto.runtime
             this.name = name;
         }
 
+		public void SetClosureOf(IMethodDeclaration d)
+		{
+			throw new NotImplementedException ();
+		}
+
+		public IMethodDeclaration GetClosureOf()
+		{
+			throw new NotImplementedException ();
+		}
+
 		public List<CommentStatement> Comments {
 			get {
 				throw new Exception("Should never get there!");
@@ -574,7 +584,7 @@ namespace prompto.runtime
                 this[proto] = declaration;
         }
 
-        public IType GetType(Context context)
+        public IType GetIType(Context context)
         {
             throw new SyntaxError("Should never get there!");
         }

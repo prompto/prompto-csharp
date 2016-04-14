@@ -23,7 +23,7 @@ namespace prompto.runtime
 			return linked.GetName ();
 		}
 
-		public IType GetType (Context context)
+		public IType GetIType (Context context)
 		{
 			return type;
 		}

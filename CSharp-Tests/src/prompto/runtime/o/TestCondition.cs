@@ -28,12 +28,6 @@ namespace prompto.runtime.o
 		}
 
 		[Test]
-		public void testElseIf()
-		{
-			CheckOutput("condition/elseIf.poc");
-		}
-
-		[Test]
 		public void testReturnIf()
 		{
 			CheckOutput("condition/returnIf.poc");

@@ -135,7 +135,7 @@ namespace prompto.store
 				if(value==null)
 					throw new NullReferenceError();
 				else if(!(value is Integer))
-					throw new SyntaxError("Expecting an integer, got " + value.GetType(context).GetName());
+					throw new SyntaxError("Expecting an integer, got " + value.GetIType().GetName());
 				startValue = ((Integer)value).IntegerValue;
 			}
 			if(end!=null) {
@@ -143,7 +143,7 @@ namespace prompto.store
 				if(value==null)
 					throw new NullReferenceError();
 				else if(!(value is Integer))
-					throw new SyntaxError("Expecting an integer, got " + value.GetType(context).GetName());
+					throw new SyntaxError("Expecting an integer, got " + value.GetIType().GetName());
 				endValue = ((Integer)value).IntegerValue;
 			}
 			if(startValue==null || startValue<1)

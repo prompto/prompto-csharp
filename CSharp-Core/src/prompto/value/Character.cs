@@ -21,6 +21,11 @@ namespace prompto.value
 
         public char Value { get { return value; } }
 
+		public Text AsText()
+		{
+			return new Text (value.ToString ());
+		}
+
         override
         public IValue Add(Context context, IValue value)
         {

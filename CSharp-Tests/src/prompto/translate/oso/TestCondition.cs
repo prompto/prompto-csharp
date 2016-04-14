@@ -15,12 +15,6 @@ namespace prompto.translate.oso
 		}
 
 		[Test]
-		public void testElseIf()
-		{
-			compareResourceOSO("condition/elseIf.poc");
-		}
-
-		[Test]
 		public void testReturnIf()
 		{
 			compareResourceOSO("condition/returnIf.poc");

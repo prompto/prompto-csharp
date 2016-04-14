@@ -11,6 +11,7 @@ using prompto.literal;
 using prompto.type;
 using Antlr4.Runtime;
 using Antlr4.Runtime.Tree;
+using prompto.argument;
 
 namespace prompto.parser.e {
 

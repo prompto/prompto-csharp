@@ -5,6 +5,7 @@ using prompto.expression;
 using prompto.value;
 using prompto.literal;
 using prompto.type;
+using prompto.argument;
 
 namespace prompto.error {
 

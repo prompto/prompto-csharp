@@ -28,12 +28,6 @@ namespace prompto.runtime.e
 		}
 
 		[Test]
-		public void testElseIf()
-		{
-			CheckOutput("condition/elseIf.pec");
-		}
-
-		[Test]
 		public void testReturnIf()
 		{
 			CheckOutput("condition/returnIf.pec");

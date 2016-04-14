@@ -13,7 +13,7 @@ using prompto.type;
 namespace prompto.value
 {
 
-    public abstract class BaseValueList<T> : List<IValue>, ISliceable where T : BaseValueList<T>
+    public abstract class BaseValueList<T> : List<IValue>, ISliceable, IFilterable where T : BaseValueList<T>
     {
 
 		ContainerType type;
@@ -56,7 +56,7 @@ namespace prompto.value
 			this.type = type;
 		}
 
-		public IType GetType(Context context) {
+		public IType GetIType() {
 			return type;
 		}
 
@@ -105,11 +105,6 @@ namespace prompto.value
             throw new NotSupportedException("Compare not supported by " + this.GetType().Name);
         }
 
-        public bool HasItem(Context context, IValue value)
-        {
-            return this.Contains(value);
-        }
-
         public IEnumerable<IValue> GetEnumerable(Context context)
         { 
             return this; 
@@ -126,6 +121,15 @@ namespace prompto.value
 		public virtual void SetMember(Context context, String name, IValue value)
 		{
 			throw new NotSupportedException("No such member:" + name);
+		}
+
+		public bool HasItem(Context context, IValue value)
+		{
+			return this.Contains(value);
+		}
+
+		public virtual void AddItem(Context context, IValue item)
+		{
 		}
 
 		public virtual IValue GetItem(Context context, IValue index)
@@ -169,6 +173,21 @@ namespace prompto.value
             }
             return result;
         }
+
+		public virtual IFilterable Filter(Context context, String itemName, IExpression filter)
+		{
+			T result = newInstance();
+			foreach (IValue o in this)
+			{
+				context.setValue(itemName, o);
+				Object test = filter.interpret(context);
+				if (!(test is Boolean))
+					throw new InternalError("Illegal test result: " + test);
+				if (((Boolean)test).Value)
+					result.Add(o);
+			}
+			return result;
+		}
 
         public virtual Object ConvertTo(Type type)
         {

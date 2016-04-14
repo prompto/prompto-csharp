@@ -40,7 +40,7 @@ namespace prompto.type
             AttributeDeclaration ad = context.getRegisteredDeclaration<AttributeDeclaration>(name);
             if (ad == null)
                 throw new SyntaxError("Unknown atttribute:" + name);
-            return ad.GetType(context);
+            return ad.GetIType(context);
         }
         
         override

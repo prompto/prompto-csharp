@@ -9,7 +9,7 @@ using prompto.value;
 using prompto.expression;
 
 
-namespace prompto.grammar
+namespace prompto.argument
 {
 
     public class AttributeArgument : BaseArgument, INamedArgument
@@ -74,10 +74,10 @@ namespace prompto.grammar
         }
 
         override
-        public IType GetType(Context context)
+        public IType GetIType(Context context)
         {
             IDeclaration named = context.getRegisteredDeclaration<IDeclaration>(name);
-            return named.GetType(context);
+            return named.GetIType(context);
         }
 
         override

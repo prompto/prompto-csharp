@@ -10,12 +10,12 @@ using prompto.utils;
 
 namespace prompto.statement {
 
-    public class DeclarationInstruction<T> : BaseStatement where T : IMethodDeclaration
+    public class DeclarationStatement<T> : BaseStatement where T : IDeclaration
     {
 
 	T declaration;
 	
-	public DeclarationInstruction(T declaration) {
+	public DeclarationStatement(T declaration) {
 		this.declaration = declaration;
 	}
 

@@ -69,7 +69,7 @@ namespace prompto.csharp
 			}
 			NativeCategoryDeclaration decl = context.getNativeBinding(type);
 			if(decl!=null)
-				return decl.GetType(context);
+				return decl.GetIType(context);
 			else if(returnType==AnyType.Instance)
 				return returnType;
             else

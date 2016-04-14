@@ -71,7 +71,7 @@ namespace prompto.utils
 		{
 			List<IType> types = new List<IType> ();
 			foreach (IValue value in values)
-				types.Add (value.GetType(context));
+				types.Add (value.GetIType());
 			return InferElementType (context, types);
 		}
 

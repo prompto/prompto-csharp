@@ -20,7 +20,7 @@ namespace prompto.runtime
         }
 
         override
-		public IType GetType(Context context)
+		public IType GetIType(Context context)
         {
             return new EnumeratedCategoryType("Error");
         }

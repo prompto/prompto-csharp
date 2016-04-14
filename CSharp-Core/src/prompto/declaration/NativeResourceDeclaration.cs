@@ -22,7 +22,7 @@ namespace prompto.declaration
 		}
 
 		override
-        public IType GetType (Context context)
+        public IType GetIType (Context context)
 		{
 			return new ResourceType (name);
 		}

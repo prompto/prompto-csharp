@@ -47,7 +47,7 @@ namespace prompto.value
 			get { return this.type.GetItemType (); }
 		}
 
-		public IType GetType(Context context)
+		public IType GetIType()
 		{
 			return type;
 		}

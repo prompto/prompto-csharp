@@ -57,7 +57,7 @@ namespace prompto.declaration
 		}
 
 
-		public override IType GetType (Context context)
+		public override IType GetIType (Context context)
 		{
 			return new CategoryType (name);
 		}
@@ -94,7 +94,7 @@ namespace prompto.declaration
 						continue;
 					IValue value = document.GetMember(context, name, false);
 					if(value is Document) {
-						IType type = decl.GetType(context);
+						IType type = decl.GetIType(context);
 						if(!(type is CategoryType))
 							throw new InternalError("How did we get there?");
 						value = ((CategoryType)type).newInstance(context, (Document)value);
@@ -115,7 +115,7 @@ namespace prompto.declaration
 
 		public override void ToDialect (CodeWriter writer)
 		{
-			CategoryType type = (CategoryType)GetType (writer.getContext ());
+			CategoryType type = (CategoryType)GetIType (writer.getContext ());
 			writer = writer.newInstanceWriter(type);
 			switch (writer.getDialect ()) {
 			case Dialect.E:
