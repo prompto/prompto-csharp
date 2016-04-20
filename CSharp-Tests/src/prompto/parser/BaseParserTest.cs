@@ -7,6 +7,7 @@ using prompto.utils;
 using System.Collections.Generic;
 using prompto.declaration;
 using prompto.store;
+using Antlr4.Runtime;
 
 namespace prompto.parser
 {
@@ -64,10 +65,20 @@ namespace prompto.parser
 			}
 		}
 
+		class FatalErrorStrategy : DefaultErrorStrategy {
+			
+			protected override void ReportUnwantedToken (Parser recognizer)
+			{
+				base.ReportUnwantedToken (recognizer);
+				// throw new Exception();
+			}
+		}
+
 		public DeclarationList parseEString (String code)
 		{
 			context = Context.newGlobalContext ();
 			ECleverParser parser = new ECleverParser (code);
+			parser.ErrorHandler = new FatalErrorStrategy ();
 			return parser.parse_declaration_list ();
 		}
 
@@ -75,6 +86,7 @@ namespace prompto.parser
 		{
 			context = Context.newGlobalContext ();
 			SCleverParser parser = new SCleverParser (code);
+			parser.ErrorHandler = new FatalErrorStrategy ();
 			return parser.parse_declaration_list ();
 		}
 
@@ -82,6 +94,7 @@ namespace prompto.parser
 		{
 			context = Context.newGlobalContext ();
 			OCleverParser parser = new OCleverParser (code);
+			parser.ErrorHandler = new FatalErrorStrategy ();
 			return parser.parse_declaration_list ();
 		}
 
