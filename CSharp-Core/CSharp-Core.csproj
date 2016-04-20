@@ -455,9 +455,6 @@
     <Compile Include="src\prompto\utils\IOUtils.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Antlr4.Runtime">
-      <HintPath>..\..\..\antlr4\ericvergnaud\antlr4\runtime\CSharp\runtime\CSharp\Antlr4.Runtime\bin\net35\Release\Antlr4.Runtime.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="Microsoft.CSharp" />
@@ -465,6 +462,9 @@
       <HintPath>..\packages\Newtonsoft.Json.8.0.3\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="ICSharpCode.SharpZipLib" />
+    <Reference Include="Antlr4.Runtime">
+      <HintPath>..\assemblies\Antlr4.Runtime.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
