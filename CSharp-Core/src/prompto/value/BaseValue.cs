@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using prompto.runtime;
 using prompto.type;
+using Newtonsoft.Json;
 
 namespace prompto.value
 {
@@ -83,5 +84,12 @@ namespace prompto.value
 		{
 			return this.Equals (context, rval);
 		}
+
+		public virtual void ToJson (Context context, JsonWriter generator, Object instanceId, String fieldName, Dictionary<String, byte[]> binaries)
+		{
+			throw new NotSupportedException("No ToJson support for " + this.GetType().Name);
+		}
+
+
     }
 }

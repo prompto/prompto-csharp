@@ -1378,6 +1378,18 @@ public partial class OParserBaseListener : IOParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitSelectableExpression([NotNull] OParser.SelectableExpressionContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="OParser.BlobExpression"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterBlobExpression([NotNull] OParser.BlobExpressionContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="OParser.BlobExpression"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitBlobExpression([NotNull] OParser.BlobExpressionContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="OParser.DocumentExpression"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
@@ -1449,6 +1461,18 @@ public partial class OParserBaseListener : IOParserListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitConstructorExpression([NotNull] OParser.ConstructorExpressionContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="OParser.blob_expression"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterBlob_expression([NotNull] OParser.Blob_expressionContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="OParser.blob_expression"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitBlob_expression([NotNull] OParser.Blob_expressionContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="OParser.document_expression"/>.
 	/// <para>The default implementation does nothing.</para>

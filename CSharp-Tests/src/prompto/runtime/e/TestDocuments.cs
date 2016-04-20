@@ -22,6 +22,12 @@ namespace prompto.runtime.e
 		}
 
 		[Test]
+		public void testBlob()
+		{
+			CheckOutput("documents/blob.pec");
+		}
+
+		[Test]
 		public void testDeepItem()
 		{
 			CheckOutput("documents/deepItem.pec");

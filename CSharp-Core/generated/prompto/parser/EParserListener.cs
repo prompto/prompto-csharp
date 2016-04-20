@@ -960,6 +960,18 @@ public interface IEParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitSortedExpression([NotNull] EParser.SortedExpressionContext context);
 	/// <summary>
+	/// Enter a parse tree produced by the <c>BlobExpression</c>
+	/// labeled alternative in <see cref="EParser.expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterBlobExpression([NotNull] EParser.BlobExpressionContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>BlobExpression</c>
+	/// labeled alternative in <see cref="EParser.expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitBlobExpression([NotNull] EParser.BlobExpressionContext context);
+	/// <summary>
 	/// Enter a parse tree produced by the <c>NotContainsAnyExpression</c>
 	/// labeled alternative in <see cref="EParser.expression"/>.
 	/// </summary>
@@ -1359,6 +1371,16 @@ public interface IEParserListener : IParseTreeListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void ExitDocument_expression([NotNull] EParser.Document_expressionContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="EParser.blob_expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterBlob_expression([NotNull] EParser.Blob_expressionContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="EParser.blob_expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitBlob_expression([NotNull] EParser.Blob_expressionContext context);
 	/// <summary>
 	/// Enter a parse tree produced by the <c>ConstructorFrom</c>
 	/// labeled alternative in <see cref="EParser.constructor_expression"/>.

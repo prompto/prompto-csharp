@@ -1270,6 +1270,18 @@ public partial class SParserBaseListener : ISParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitSelectableExpression([NotNull] SParser.SelectableExpressionContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="SParser.BlobExpression"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterBlobExpression([NotNull] SParser.BlobExpressionContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="SParser.BlobExpression"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitBlobExpression([NotNull] SParser.BlobExpressionContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="SParser.DocumentExpression"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
@@ -1377,6 +1389,18 @@ public partial class SParserBaseListener : ISParserListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitItemSelector([NotNull] SParser.ItemSelectorContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="SParser.blob_expression"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterBlob_expression([NotNull] SParser.Blob_expressionContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="SParser.blob_expression"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitBlob_expression([NotNull] SParser.Blob_expressionContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="SParser.document_expression"/>.
 	/// <para>The default implementation does nothing.</para>

@@ -444,6 +444,15 @@
     <Compile Include="src\prompto\statement\SwitchCase.cs" />
     <Compile Include="src\prompto\statement\NativeCall.cs" />
     <Compile Include="src\prompto\grammar\IDialectElement.cs" />
+    <Compile Include="src\prompto\type\BinaryType.cs" />
+    <Compile Include="src\prompto\type\BlobType.cs" />
+    <Compile Include="src\prompto\type\ImageType.cs" />
+    <Compile Include="src\prompto\value\BinaryValue.cs" />
+    <Compile Include="src\prompto\value\Blob.cs" />
+    <Compile Include="src\prompto\value\Image.cs" />
+    <Compile Include="src\prompto\error\ReadWriteError.cs" />
+    <Compile Include="src\prompto\expression\BlobExpression.cs" />
+    <Compile Include="src\prompto\utils\IOUtils.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Antlr4.Runtime">
@@ -451,6 +460,11 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.8.0.3\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib" />
   </ItemGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
@@ -466,5 +480,8 @@
     <Folder Include="src\prompto\argument\" />
     <Folder Include="src\prompto\instance\" />
     <Folder Include="src\prompto\constraint\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
 </Project>

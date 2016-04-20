@@ -7,6 +7,7 @@ using prompto.runtime;
 using prompto.grammar;
 using System.Collections;
 using prompto.type;
+using Newtonsoft.Json;
 
 namespace prompto.value
 {
@@ -193,6 +194,11 @@ namespace prompto.value
         {
             return value.GetHashCode();
         }
+
+		public override void ToJson (Context context, JsonWriter generator, object instanceId, String fieldName, Dictionary<string, byte[]> binaries)
+		{
+			generator.WriteValue (value);
+		}
     }
 
     class CharacterEnumerator : IEnumerator<Character>

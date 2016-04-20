@@ -46,6 +46,9 @@
     <Reference Include="Antlr4.Runtime">
       <HintPath>..\..\..\antlr4\ericvergnaud\antlr4\runtime\CSharp\runtime\CSharp\Antlr4.Runtime\bin\net35\Release\Antlr4.Runtime.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.8.0.3\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />

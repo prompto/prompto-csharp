@@ -9,6 +9,12 @@ namespace prompto.translate.ese
 	{
 
 		[Test]
+		public void testBlob()
+		{
+			compareResourceESE("documents/blob.pec");
+		}
+
+		[Test]
 		public void testDeepItem()
 		{
 			compareResourceESE("documents/deepItem.pec");

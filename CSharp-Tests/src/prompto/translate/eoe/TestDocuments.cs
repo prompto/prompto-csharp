@@ -9,6 +9,12 @@ namespace prompto.translate.eoe
 	{
 
 		[Test]
+		public void testBlob()
+		{
+			compareResourceEOE("documents/blob.pec");
+		}
+
+		[Test]
 		public void testDeepItem()
 		{
 			compareResourceEOE("documents/deepItem.pec");

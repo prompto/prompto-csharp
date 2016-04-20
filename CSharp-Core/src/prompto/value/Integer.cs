@@ -3,6 +3,8 @@ using prompto.error;
 using prompto.runtime;
 using prompto.grammar;
 using prompto.type;
+using Newtonsoft.Json;
+using System.Collections.Generic;
 
 
 namespace prompto.value
@@ -152,5 +154,11 @@ namespace prompto.value
         {
             return value.GetHashCode();
         }
+
+		public override void ToJson (Context context, JsonWriter generator, object instanceId, String fieldName, Dictionary<string, byte[]> binaries)
+		{
+			generator.WriteValue (value);
+		}
+
     }
 }

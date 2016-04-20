@@ -1304,6 +1304,18 @@ public interface IOParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitSelectableExpression([NotNull] OParser.SelectableExpressionContext context);
 	/// <summary>
+	/// Enter a parse tree produced by the <c>BlobExpression</c>
+	/// labeled alternative in <see cref="OParser.method_expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterBlobExpression([NotNull] OParser.BlobExpressionContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>BlobExpression</c>
+	/// labeled alternative in <see cref="OParser.method_expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitBlobExpression([NotNull] OParser.BlobExpressionContext context);
+	/// <summary>
 	/// Enter a parse tree produced by the <c>DocumentExpression</c>
 	/// labeled alternative in <see cref="OParser.method_expression"/>.
 	/// </summary>
@@ -1375,6 +1387,16 @@ public interface IOParserListener : IParseTreeListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void ExitConstructorExpression([NotNull] OParser.ConstructorExpressionContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="OParser.blob_expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterBlob_expression([NotNull] OParser.Blob_expressionContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="OParser.blob_expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitBlob_expression([NotNull] OParser.Blob_expressionContext context);
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="OParser.document_expression"/>.
 	/// </summary>

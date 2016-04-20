@@ -7,6 +7,8 @@ using prompto.utils;
 using prompto.value;
 using prompto.expression;
 using prompto.grammar;
+using Newtonsoft.Json;
+using System.Collections.Generic;
 
 
 namespace prompto.expression
@@ -94,6 +96,11 @@ namespace prompto.expression
 
 		public void SetMember(Context context, String name, IValue value) {
 			throw new NotSupportedException("No member support for " + this.GetType().Name);
+		}
+
+		public virtual void ToJson (Context context, JsonWriter generator, Object instanceId, String fieldName, Dictionary<String, byte[]> binaries)
+		{
+			throw new NotSupportedException("No ToJson support for " + this.GetType().Name);
 		}
 
 		public virtual Object ConvertTo(Type type)

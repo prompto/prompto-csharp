@@ -5,6 +5,7 @@ using prompto.utils;
 using prompto.runtime;
 using System;
 using prompto.expression;
+using Newtonsoft.Json;
 
 namespace prompto.grammar
 {
@@ -126,6 +127,12 @@ namespace prompto.grammar
 		{
 			return this.Equals (context, rval);
 		}
+
+		public virtual void ToJson (Context context, JsonWriter generator, Object instanceId, String fieldName, Dictionary<String, byte[]> binaries)
+		{
+			throw new NotSupportedException("No ToJson support for " + this.GetType().Name);
+		}
+
 
 	}
 

@@ -161,7 +161,21 @@ namespace prompto.parser
 			SetNodeValue (ctx, exp);
 		}
 
-		
+		public override void ExitBlobExpression(SParser.BlobExpressionContext ctx) {
+			IExpression exp = this.GetNodeValue<IExpression>(ctx.exp);
+			SetNodeValue(ctx, exp);
+		}
+
+		public override void ExitBlob_expression(SParser.Blob_expressionContext ctx) {
+			IExpression exp = this.GetNodeValue<IExpression>(ctx.expression());
+			SetNodeValue(ctx, new BlobExpression(exp));
+		}
+
+
+		public override void ExitBlobType(SParser.BlobTypeContext ctx) {
+			SetNodeValue(ctx, BlobType.Instance);
+		}
+
 		public override void ExitBooleanLiteral (SParser.BooleanLiteralContext ctx)
 		{
 			SetNodeValue (ctx, new BooleanLiteral (ctx.t.Text));
@@ -2257,7 +2271,8 @@ namespace prompto.parser
 		
 		public override void ExitDocument_expression (SParser.Document_expressionContext ctx)
 		{
-			SetNodeValue (ctx, new DocumentExpression ());
+			IExpression exp = this.GetNodeValue<IExpression>(ctx.expression());
+			SetNodeValue (ctx, new DocumentExpression (exp));
 		}
 
 		

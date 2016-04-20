@@ -1194,6 +1194,18 @@ public interface ISParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitSelectableExpression([NotNull] SParser.SelectableExpressionContext context);
 	/// <summary>
+	/// Enter a parse tree produced by the <c>BlobExpression</c>
+	/// labeled alternative in <see cref="SParser.method_expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterBlobExpression([NotNull] SParser.BlobExpressionContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>BlobExpression</c>
+	/// labeled alternative in <see cref="SParser.method_expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitBlobExpression([NotNull] SParser.BlobExpressionContext context);
+	/// <summary>
 	/// Enter a parse tree produced by the <c>DocumentExpression</c>
 	/// labeled alternative in <see cref="SParser.method_expression"/>.
 	/// </summary>
@@ -1301,6 +1313,16 @@ public interface ISParserListener : IParseTreeListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void ExitItemSelector([NotNull] SParser.ItemSelectorContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="SParser.blob_expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterBlob_expression([NotNull] SParser.Blob_expressionContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="SParser.blob_expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitBlob_expression([NotNull] SParser.Blob_expressionContext context);
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="SParser.document_expression"/>.
 	/// </summary>

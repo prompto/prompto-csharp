@@ -2,6 +2,8 @@ using prompto.runtime;
 using System;
 using prompto.value;
 using prompto.utils;
+using Newtonsoft.Json.Linq;
+using System.Collections.Generic;
 
 namespace prompto.type
 {
@@ -63,6 +65,7 @@ namespace prompto.type
 
 		IValue ConvertCSharpValueToPromptoValue (Object value);
 
+		IValue ReadJSONValue (Context context, JToken json, Dictionary<String, byte[]> parts);
 
 	}
  

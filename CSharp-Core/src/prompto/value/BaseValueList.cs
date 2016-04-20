@@ -9,6 +9,7 @@ using Boolean = prompto.value.Boolean;
 using prompto.grammar;
 using prompto.expression;
 using prompto.type;
+using Newtonsoft.Json;
 
 namespace prompto.value
 {
@@ -245,6 +246,11 @@ namespace prompto.value
                 sb.Length = sb.Length - 2;
             return sb.ToString();
         }
+
+		public virtual void ToJson (Context context, JsonWriter generator, Object instanceId, String fieldName, Dictionary<String, byte[]> binaries)
+		{
+			throw new NotSupportedException("No ToJson support for " + this.GetType().Name);
+		}
 
     }
 

@@ -1030,6 +1030,18 @@ public partial class EParserBaseListener : IEParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitSortedExpression([NotNull] EParser.SortedExpressionContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="EParser.BlobExpression"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterBlobExpression([NotNull] EParser.BlobExpressionContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="EParser.BlobExpression"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitBlobExpression([NotNull] EParser.BlobExpressionContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="EParser.NotContainsAnyExpression"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
@@ -1437,6 +1449,18 @@ public partial class EParserBaseListener : IEParserListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitDocument_expression([NotNull] EParser.Document_expressionContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="EParser.blob_expression"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterBlob_expression([NotNull] EParser.Blob_expressionContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="EParser.blob_expression"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitBlob_expression([NotNull] EParser.Blob_expressionContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="EParser.ConstructorFrom"/>.
 	/// <para>The default implementation does nothing.</para>
