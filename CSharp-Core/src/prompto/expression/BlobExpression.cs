@@ -32,16 +32,13 @@ namespace prompto.expression
 			writer.append("Blob");
 			switch(writer.getDialect()) {
 			case Dialect.E:
-				if(source!=null) {
-					writer.append(" from ");
-					source.ToDialect(writer);
-				}
+				writer.append(" from ");
+				source.ToDialect(writer);
 				break;
 			case Dialect.O:
 			case Dialect.S:
 				writer.append('(');
-				if(source!=null)
-					source.ToDialect(writer);
+				source.ToDialect(writer);
 				writer.append(')');
 				break;
 			}
