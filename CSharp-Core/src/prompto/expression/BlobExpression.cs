@@ -65,7 +65,7 @@ namespace prompto.expression
 						value.ToJson (context, writer, null, null, binaries);
 					}
 				}
-				binaries ["value"] = stream.ToArray();
+				binaries ["value.json"] = stream.ToArray();
 				return binaries;
 			}
 		}

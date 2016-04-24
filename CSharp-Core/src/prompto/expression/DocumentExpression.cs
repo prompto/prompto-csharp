@@ -90,8 +90,8 @@ namespace prompto.expression
 		public static JObject ReadValue(Dictionary<String, byte[]> parts)
 		{
 			byte[] data;
-			if(!parts.TryGetValue("value", out data))
-				throw new InvalidDataException("Expecting a 'value' field!");
+			if(!parts.TryGetValue("value.json", out data))
+				throw new InvalidDataException("Expecting a 'value.json' part!");
 			String json = System.Text.Encoding.UTF8.GetString (data);
 			dynamic obj = JsonConvert.DeserializeObject(json);
 			if (obj is JObject)
