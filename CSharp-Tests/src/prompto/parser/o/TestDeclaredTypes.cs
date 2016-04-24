@@ -157,7 +157,7 @@ namespace prompto.o.runtime
             Assert.IsFalse(st.isAssignableTo(context, TextType.Instance));
             Assert.IsFalse(st.isAssignableTo(context, DateType.Instance));
             Assert.IsFalse(st.isAssignableTo(context, DateTimeType.Instance));
-            Assert.IsFalse(st.isAssignableTo(context, MissingType.Instance));
+			Assert.IsTrue(st.isAssignableTo(context, MissingType.Instance));
             Assert.IsTrue(st.isAssignableTo(context, AnyType.Instance));
             Assert.IsTrue(st.isAssignableTo(context, new CategoryType("Root")));
             Assert.IsFalse(st.isAssignableTo(context, new CategoryType("Derived")));
@@ -175,7 +175,7 @@ namespace prompto.o.runtime
             Assert.IsFalse(st.isAssignableTo(context, TextType.Instance));
             Assert.IsFalse(st.isAssignableTo(context, DateType.Instance));
             Assert.IsFalse(st.isAssignableTo(context, DateTimeType.Instance));
-            Assert.IsFalse(st.isAssignableTo(context, MissingType.Instance));
+			Assert.IsTrue(st.isAssignableTo(context, MissingType.Instance));
             Assert.IsTrue(st.isAssignableTo(context, AnyType.Instance));
             Assert.IsTrue(st.isAssignableTo(context, new CategoryType("Root")));
             Assert.IsTrue(st.isAssignableTo(context, new CategoryType("Derived")));
@@ -193,7 +193,7 @@ namespace prompto.o.runtime
             Assert.IsFalse(st.isAssignableTo(context, TextType.Instance));
             Assert.IsFalse(st.isAssignableTo(context, DateType.Instance));
             Assert.IsFalse(st.isAssignableTo(context, DateTimeType.Instance));
-            Assert.IsFalse(st.isAssignableTo(context, MissingType.Instance));
+			Assert.IsTrue(st.isAssignableTo(context, MissingType.Instance));
             Assert.IsTrue(st.isAssignableTo(context, AnyType.Instance));
             Assert.IsFalse(st.isAssignableTo(context, new CategoryType("Root")));
             Assert.IsFalse(st.isAssignableTo(context, new CategoryType("Derived")));
