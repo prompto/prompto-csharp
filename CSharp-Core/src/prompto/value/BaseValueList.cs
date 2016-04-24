@@ -52,9 +52,9 @@ namespace prompto.value
 			return false;
 		}
 
-		public void SetType(ContainerType type)
+		public void SetIType(IType type)
 		{
-			this.type = type;
+			this.type = (ContainerType)type;
 		}
 
 		public IType GetIType() {

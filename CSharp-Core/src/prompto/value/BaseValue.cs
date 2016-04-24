@@ -25,6 +25,10 @@ namespace prompto.value
 			return this.type;
 		}
 
+		public virtual void SetIType(IType type) {
+			this.type = type;
+		}
+
 		public virtual IValue Add(Context context, IValue value)
         {
             throw new NotSupportedException("Add not supported by " + this.GetType().Name);

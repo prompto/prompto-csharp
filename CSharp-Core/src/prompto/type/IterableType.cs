@@ -27,11 +27,16 @@ namespace prompto.type
 			this.itemType = itemType;
 		}
 
-        override
-        public void checkExists(Context context)
+        
+		public override void checkExists(Context context)
         {
             itemType.checkExists(context);
         }
+
+		public override bool isMoreSpecificThan(Context context, IType other) {
+			return other is IterableType
+				&& itemType.isMoreSpecificThan(context, ((IterableType)other).itemType);
+		}
 
     }
 

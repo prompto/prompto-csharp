@@ -27,6 +27,12 @@ namespace prompto.translate.oso
 		}
 
 		[Test]
+		public void testCastNull()
+		{
+			compareResourceOSO("cast/castNull.poc");
+		}
+
+		[Test]
 		public void testIsAChild()
 		{
 			compareResourceOSO("cast/isAChild.poc");

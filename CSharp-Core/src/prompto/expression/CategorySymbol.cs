@@ -24,9 +24,9 @@ namespace prompto.expression
             this.assignments = assignments;
         }
 
-        public void setType(EnumeratedCategoryType type)
+		public override void SetIType(IType type)
         {
-            this.type = type;
+			this.type = (EnumeratedCategoryType)type;
         }
 
         

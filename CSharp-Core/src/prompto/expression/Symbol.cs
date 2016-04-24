@@ -46,6 +46,8 @@ namespace prompto.expression
             context.registerValue(this);
         }
 
+		public abstract void SetIType(IType type);
+
 		public abstract IType GetIType();
 
 		public abstract IType GetIType(Context context);

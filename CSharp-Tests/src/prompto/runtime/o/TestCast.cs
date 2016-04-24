@@ -40,6 +40,12 @@ namespace prompto.runtime.o
 		}
 
 		[Test]
+		public void testCastNull()
+		{
+			CheckOutput("cast/castNull.poc");
+		}
+
+		[Test]
 		public void testIsAChild()
 		{
 			CheckOutput("cast/isAChild.poc");

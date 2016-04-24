@@ -35,11 +35,6 @@ namespace prompto.grammar
 			return false;
 		}
 
-		public IType Type {
-			get { return type; }
-			set { this.type = value; }
-		}
-
 		public IType ItemType 
 		{
 			get { return type; } // TODO ?
@@ -58,6 +53,10 @@ namespace prompto.grammar
 		public IEnumerable<IValue> GetEnumerable(Context context)
 		{
 			return new IValueEnumerable (context, this);
+		}
+
+		public virtual void SetIType(IType type) {
+			this.type = type;
 		}
 
 		public virtual IType GetIType() {

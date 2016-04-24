@@ -12,6 +12,7 @@ namespace prompto.value
     {
 		bool IsMutable();
 		IType GetIType();
+		void SetIType (IType type);
 		IValue Add(Context context, IValue value);
         IValue Subtract(Context context, IValue iValue);
         IValue Multiply(Context context, IValue iValue);

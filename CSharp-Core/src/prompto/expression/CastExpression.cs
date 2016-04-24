@@ -27,9 +27,8 @@ namespace prompto.expression {
 
 		public IValue interpret(Context context) {
 			IValue value = expression.interpret(context);
-			if(value!=null && type is ContainerType && value.GetIType() is ContainerType) {
-				((ContainerType)value.GetIType()).SetItemType(((ContainerType)type).GetItemType());
-			}
+			if(value!=null && type.isMoreSpecificThan(context, value.GetIType()))
+				value.SetIType(type);
 			return value;
 		}
 

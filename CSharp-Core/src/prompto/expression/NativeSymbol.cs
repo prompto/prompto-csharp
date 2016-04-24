@@ -28,21 +28,20 @@ namespace prompto.expression
             return expression;
         }
 
-		override
-		public IType GetIType()
+
+		public override IType GetIType()
 		{
 			return type;
 		}
 
-		override
-		public IType GetIType(Context context)
+		public override IType GetIType(Context context)
         {
             return type;
         }
 
-        public void setType(EnumeratedNativeType type)
+		public override void SetIType(IType type)
         {
-            this.type = type;
+			this.type = (EnumeratedNativeType)type;
         }
 
         override

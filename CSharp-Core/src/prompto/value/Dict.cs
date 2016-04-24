@@ -48,6 +48,11 @@ namespace prompto.value
 			get { return this.type.GetItemType (); }
 		}
 
+		public void SetIType(IType type)
+		{
+			this.type = (ContainerType)type;
+		}
+
 		public IType GetIType()
 		{
 			return type;

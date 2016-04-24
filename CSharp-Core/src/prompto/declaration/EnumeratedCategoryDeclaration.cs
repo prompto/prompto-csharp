@@ -39,8 +39,8 @@ namespace prompto.declaration
         {
             this.symbols = symbols;
             foreach (CategorySymbol s in symbols)
-                s.setType(type);
-			this.symbols.Type = new ListType (type);
+                s.SetIType(type);
+			this.symbols.SetIType(new ListType (type));
         }
 
         override

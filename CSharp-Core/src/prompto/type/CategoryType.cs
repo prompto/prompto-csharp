@@ -153,12 +153,12 @@ namespace prompto.type
             getDeclaration(context);
         }
 
-        override
-        public bool isAssignableTo(Context context, IType other)
+        
+		public override bool isAssignableTo(Context context, IType other)
         {
 			if (name.Equals(other.GetName()))
                 return true;
-			if (other is AnyType || other is MissingType)
+			if (other is NullType || other is AnyType || other is MissingType)
                 return true;
             if (!(other is CategoryType))
                 return false;
@@ -244,7 +244,9 @@ namespace prompto.type
         override
         public bool isMoreSpecificThan(Context context, IType other)
         {
-            if (!(other is CategoryType))
+			if(other is NullType || other is AnyType || other is MissingType)
+				return true;
+			if (!(other is CategoryType))
                 return false;
             CategoryType otherCat = (CategoryType)other;
             if (otherCat.isAnonymous())
