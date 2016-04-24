@@ -22,6 +22,11 @@ namespace prompto.type
             return itemType;
         }
 
+		public void SetItemType(IType itemType)
+		{
+			this.itemType = itemType;
+		}
+
         override
         public void checkExists(Context context)
         {

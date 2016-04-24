@@ -26,7 +26,11 @@ namespace prompto.expression {
 		}
 
 		public IValue interpret(Context context) {
-			return expression.interpret(context);
+			IValue value = expression.interpret(context);
+			if(value!=null && type is ContainerType && value.GetIType() is ContainerType) {
+				((ContainerType)value.GetIType()).SetItemType(((ContainerType)type).GetItemType());
+			}
+			return value;
 		}
 
 		public void ToDialect(CodeWriter writer) {

@@ -158,7 +158,7 @@ namespace prompto.type
         {
 			if (name.Equals(other.GetName()))
                 return true;
-            if (other is AnyType)
+			if (other is AnyType || other is MissingType)
                 return true;
             if (!(other is CategoryType))
                 return false;
