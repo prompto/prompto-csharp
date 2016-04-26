@@ -2422,6 +2422,18 @@ public partial class EParserBaseListener : IEParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitVariable_identifier([NotNull] EParser.Variable_identifierContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="EParser.attribute_identifier"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterAttribute_identifier([NotNull] EParser.Attribute_identifierContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="EParser.attribute_identifier"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitAttribute_identifier([NotNull] EParser.Attribute_identifierContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="EParser.type_identifier"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
@@ -2794,29 +2806,29 @@ public partial class EParserBaseListener : IEParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitJavascript_module([NotNull] EParser.Javascript_moduleContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="EParser.VariableList"/>.
+	/// Enter a parse tree produced by <see cref="EParser.variable_identifier_list"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void EnterVariableList([NotNull] EParser.VariableListContext context) { }
+	public virtual void EnterVariable_identifier_list([NotNull] EParser.Variable_identifier_listContext context) { }
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="EParser.VariableList"/>.
+	/// Exit a parse tree produced by <see cref="EParser.variable_identifier_list"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void ExitVariableList([NotNull] EParser.VariableListContext context) { }
+	public virtual void ExitVariable_identifier_list([NotNull] EParser.Variable_identifier_listContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="EParser.VariableListItem"/>.
+	/// Enter a parse tree produced by <see cref="EParser.attribute_identifier_list"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void EnterVariableListItem([NotNull] EParser.VariableListItemContext context) { }
+	public virtual void EnterAttribute_identifier_list([NotNull] EParser.Attribute_identifier_listContext context) { }
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="EParser.VariableListItem"/>.
+	/// Exit a parse tree produced by <see cref="EParser.attribute_identifier_list"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void ExitVariableListItem([NotNull] EParser.VariableListItemContext context) { }
+	public virtual void ExitAttribute_identifier_list([NotNull] EParser.Attribute_identifier_listContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="EParser.AbstractMethod"/>.
 	/// <para>The default implementation does nothing.</para>

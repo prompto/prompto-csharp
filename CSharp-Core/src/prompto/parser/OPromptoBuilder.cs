@@ -252,6 +252,12 @@ namespace prompto.parser
 			SetNodeValue (ctx, new PeriodLiteral (ctx.t.Text));
 		}
 
+		public override void ExitAttribute_identifier (OParser.Attribute_identifierContext ctx)
+		{
+			SetNodeValue (ctx, ctx.GetText ());
+		}
+
+
 		public override void ExitVariable_identifier (OParser.Variable_identifierContext ctx)
 		{
 			SetNodeValue (ctx, ctx.GetText ());
@@ -506,18 +512,26 @@ namespace prompto.parser
 			SetNodeValue (ctx, new DictType (type));
 		}
 
-		public override void ExitAttributeList (OParser.AttributeListContext ctx)
+		public override void ExitAttribute_identifier_list (OParser.Attribute_identifier_listContext ctx)
 		{
-			String item = this.GetNodeValue<String> (ctx.item);
-			SetNodeValue (ctx, new IdentifierList (item));
+			IdentifierList list = new IdentifierList ();
+			foreach(OParser.Attribute_identifierContext c in ctx.attribute_identifier())
+			{
+				String item = this.GetNodeValue<String> (c);
+				list.Add (item);
+			}
+			SetNodeValue (ctx, list);
 		}
 
-		public override void ExitAttributeListItem (OParser.AttributeListItemContext ctx)
+		public override void ExitVariable_identifier_list (OParser.Variable_identifier_listContext ctx)
 		{
-			IdentifierList items = this.GetNodeValue<IdentifierList> (ctx.items);
-			String item = this.GetNodeValue<String> (ctx.item);
-			items.Add (item);
-			SetNodeValue (ctx, items);
+			IdentifierList list = new IdentifierList ();
+			foreach(OParser.Variable_identifierContext c in ctx.variable_identifier())
+			{
+				String item = this.GetNodeValue<String> (c);
+				list.Add (item);
+			}
+			SetNodeValue (ctx, list);
 		}
 
 		public override void ExitConcrete_category_declaration (OParser.Concrete_category_declarationContext ctx)
@@ -995,20 +1009,6 @@ namespace prompto.parser
 			IdentifierList items = this.GetNodeValue<IdentifierList> (ctx.items);
 			IExpression exp = this.GetNodeValue<IExpression> (ctx.exp);
 			SetNodeValue (ctx, new AssignTupleStatement (items, exp));
-		}
-
-		public override void ExitVariableList (OParser.VariableListContext ctx)
-		{
-			String item = this.GetNodeValue<String> (ctx.item);
-			SetNodeValue (ctx, new IdentifierList (item));
-		}
-
-		public override void ExitVariableListItem (OParser.VariableListItemContext ctx)
-		{
-			String item = this.GetNodeValue<String> (ctx.item);
-			IdentifierList items = this.GetNodeValue<IdentifierList> (ctx.items);
-			items.Add (item);
-			SetNodeValue (ctx, items);
 		}
 
 		public override void ExitRootInstance (OParser.RootInstanceContext ctx)

@@ -271,6 +271,12 @@ namespace prompto.parser
 		}
 
 		
+		public override void ExitAttribute_identifier (SParser.Attribute_identifierContext ctx)
+		{
+			SetNodeValue (ctx, ctx.GetText ());
+		}
+
+
 		public override void ExitVariable_identifier (SParser.Variable_identifierContext ctx)
 		{
 			SetNodeValue (ctx, ctx.GetText ());
@@ -560,13 +566,6 @@ namespace prompto.parser
 		{
 			IType type = this.GetNodeValue<IType> (ctx.d);
 			SetNodeValue (ctx, new DictType (type));
-		}
-
-		
-		public override void ExitAttribute_list (SParser.Attribute_listContext ctx)
-		{
-			IdentifierList items = this.GetNodeValue<IdentifierList> (ctx.items);
-			SetNodeValue (ctx, items);
 		}
 
 		
@@ -1029,20 +1028,28 @@ namespace prompto.parser
 		}
 
 		
-		public override void ExitVariableList (SParser.VariableListContext ctx)
+		public override void ExitAttribute_identifier_list (SParser.Attribute_identifier_listContext ctx)
 		{
-			String item = this.GetNodeValue<String> (ctx.item);
-			SetNodeValue (ctx, new IdentifierList (item));
+			IdentifierList list = new IdentifierList ();
+			foreach(SParser.Attribute_identifierContext c in ctx.attribute_identifier())
+			{
+				String item = this.GetNodeValue<String> (c);
+				list.Add (item);
+			}
+			SetNodeValue (ctx, list);
 		}
 
-		
-		public override void ExitVariableListItem (SParser.VariableListItemContext ctx)
+		public override void ExitVariable_identifier_list (SParser.Variable_identifier_listContext ctx)
 		{
-			String item = this.GetNodeValue<String> (ctx.item);
-			IdentifierList items = this.GetNodeValue<IdentifierList> (ctx.items);
-			items.Add (item);
-			SetNodeValue (ctx, items);
+			IdentifierList list = new IdentifierList ();
+			foreach(SParser.Variable_identifierContext c in ctx.variable_identifier())
+			{
+				String item = this.GetNodeValue<String> (c);
+				list.Add (item);
+			}
+			SetNodeValue (ctx, list);
 		}
+
 
 		
 		public override void ExitRootInstance (SParser.RootInstanceContext ctx)

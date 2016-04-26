@@ -286,30 +286,6 @@ public partial class OParserBaseListener : IOParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitNativeCategoryBindingList([NotNull] OParser.NativeCategoryBindingListContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="OParser.AttributeList"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void EnterAttributeList([NotNull] OParser.AttributeListContext context) { }
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="OParser.AttributeList"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void ExitAttributeList([NotNull] OParser.AttributeListContext context) { }
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="OParser.AttributeListItem"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void EnterAttributeListItem([NotNull] OParser.AttributeListItemContext context) { }
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="OParser.AttributeListItem"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void ExitAttributeListItem([NotNull] OParser.AttributeListItemContext context) { }
-	/// <summary>
 	/// Enter a parse tree produced by <see cref="OParser.abstract_method_declaration"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
@@ -2398,6 +2374,18 @@ public partial class OParserBaseListener : IOParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitVariable_identifier([NotNull] OParser.Variable_identifierContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="OParser.attribute_identifier"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterAttribute_identifier([NotNull] OParser.Attribute_identifierContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="OParser.attribute_identifier"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitAttribute_identifier([NotNull] OParser.Attribute_identifierContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="OParser.type_identifier"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
@@ -2770,29 +2758,29 @@ public partial class OParserBaseListener : IOParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitJavascript_module([NotNull] OParser.Javascript_moduleContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="OParser.VariableList"/>.
+	/// Enter a parse tree produced by <see cref="OParser.variable_identifier_list"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void EnterVariableList([NotNull] OParser.VariableListContext context) { }
+	public virtual void EnterVariable_identifier_list([NotNull] OParser.Variable_identifier_listContext context) { }
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="OParser.VariableList"/>.
+	/// Exit a parse tree produced by <see cref="OParser.variable_identifier_list"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void ExitVariableList([NotNull] OParser.VariableListContext context) { }
+	public virtual void ExitVariable_identifier_list([NotNull] OParser.Variable_identifier_listContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="OParser.VariableListItem"/>.
+	/// Enter a parse tree produced by <see cref="OParser.attribute_identifier_list"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void EnterVariableListItem([NotNull] OParser.VariableListItemContext context) { }
+	public virtual void EnterAttribute_identifier_list([NotNull] OParser.Attribute_identifier_listContext context) { }
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="OParser.VariableListItem"/>.
+	/// Exit a parse tree produced by <see cref="OParser.attribute_identifier_list"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void ExitVariableListItem([NotNull] OParser.VariableListItemContext context) { }
+	public virtual void ExitAttribute_identifier_list([NotNull] OParser.Attribute_identifier_listContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="OParser.AbstractMethod"/>.
 	/// <para>The default implementation does nothing.</para>

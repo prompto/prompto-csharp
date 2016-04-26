@@ -285,7 +285,13 @@ namespace prompto.parser
 			SetNodeValue (ctx, new PeriodLiteral (ctx.t.Text));
 		}
 
-		
+
+		public override void ExitAttribute_identifier (EParser.Attribute_identifierContext ctx)
+		{
+			SetNodeValue (ctx, ctx.GetText ());
+		}
+
+
 		public override void ExitVariable_identifier (EParser.Variable_identifierContext ctx)
 		{
 			SetNodeValue (ctx, ctx.GetText ());
@@ -569,20 +575,27 @@ namespace prompto.parser
 			SetNodeValue (ctx, items);
 		}
 
-		
-		public override void ExitVariableList (EParser.VariableListContext ctx)
-		{
-			String item = this.GetNodeValue<String> (ctx.item);
-			SetNodeValue (ctx, new IdentifierList (item));
-		}
 
-		
-		public override void ExitVariableListItem (EParser.VariableListItemContext ctx)
+		public override void ExitAttribute_identifier_list (EParser.Attribute_identifier_listContext ctx)
 		{
-			IdentifierList items = this.GetNodeValue<IdentifierList> (ctx.items);
-			String item = this.GetNodeValue<String> (ctx.item);
-			items.Add (item);
-			SetNodeValue (ctx, items);
+			IdentifierList list = new IdentifierList ();
+			foreach(EParser.Attribute_identifierContext c in ctx.attribute_identifier())
+			{
+				String item = this.GetNodeValue<String> (c);
+				list.Add (item);
+			}
+			SetNodeValue (ctx, list);
+		}
+			
+		public override void ExitVariable_identifier_list (EParser.Variable_identifier_listContext ctx)
+		{
+			IdentifierList list = new IdentifierList ();
+			foreach(EParser.Variable_identifierContext c in ctx.variable_identifier())
+			{
+				String item = this.GetNodeValue<String> (c);
+				list.Add (item);
+			}
+			SetNodeValue (ctx, list);
 		}
 
 		

@@ -214,16 +214,6 @@ public interface ISParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitNativeCategoryBindingList([NotNull] SParser.NativeCategoryBindingListContext context);
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="SParser.attribute_list"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterAttribute_list([NotNull] SParser.Attribute_listContext context);
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="SParser.attribute_list"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitAttribute_list([NotNull] SParser.Attribute_listContext context);
-	/// <summary>
 	/// Enter a parse tree produced by <see cref="SParser.abstract_method_declaration"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
@@ -2216,6 +2206,16 @@ public interface ISParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitVariable_identifier([NotNull] SParser.Variable_identifierContext context);
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="SParser.attribute_identifier"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterAttribute_identifier([NotNull] SParser.Attribute_identifierContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="SParser.attribute_identifier"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitAttribute_identifier([NotNull] SParser.Attribute_identifierContext context);
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="SParser.type_identifier"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
@@ -2566,29 +2566,25 @@ public interface ISParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitJavascript_module([NotNull] SParser.Javascript_moduleContext context);
 	/// <summary>
-	/// Enter a parse tree produced by the <c>VariableList</c>
-	/// labeled alternative in <see cref="SParser.variable_identifier_list"/>.
+	/// Enter a parse tree produced by <see cref="SParser.variable_identifier_list"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterVariableList([NotNull] SParser.VariableListContext context);
+	void EnterVariable_identifier_list([NotNull] SParser.Variable_identifier_listContext context);
 	/// <summary>
-	/// Exit a parse tree produced by the <c>VariableList</c>
-	/// labeled alternative in <see cref="SParser.variable_identifier_list"/>.
+	/// Exit a parse tree produced by <see cref="SParser.variable_identifier_list"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitVariableList([NotNull] SParser.VariableListContext context);
+	void ExitVariable_identifier_list([NotNull] SParser.Variable_identifier_listContext context);
 	/// <summary>
-	/// Enter a parse tree produced by the <c>VariableListItem</c>
-	/// labeled alternative in <see cref="SParser.variable_identifier_list"/>.
+	/// Enter a parse tree produced by <see cref="SParser.attribute_identifier_list"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterVariableListItem([NotNull] SParser.VariableListItemContext context);
+	void EnterAttribute_identifier_list([NotNull] SParser.Attribute_identifier_listContext context);
 	/// <summary>
-	/// Exit a parse tree produced by the <c>VariableListItem</c>
-	/// labeled alternative in <see cref="SParser.variable_identifier_list"/>.
+	/// Exit a parse tree produced by <see cref="SParser.attribute_identifier_list"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitVariableListItem([NotNull] SParser.VariableListItemContext context);
+	void ExitAttribute_identifier_list([NotNull] SParser.Attribute_identifier_listContext context);
 	/// <summary>
 	/// Enter a parse tree produced by the <c>AbstractMethod</c>
 	/// labeled alternative in <see cref="SParser.method_declaration"/>.
