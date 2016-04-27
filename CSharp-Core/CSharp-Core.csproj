@@ -452,8 +452,8 @@
     <Compile Include="src\prompto\error\ReadWriteError.cs" />
     <Compile Include="src\prompto\expression\BlobExpression.cs" />
     <Compile Include="src\prompto\utils\IOUtils.cs" />
-    <Compile Include="src\prompto\value\IteratableValue.cs" />
     <Compile Include="src\prompto\value\IteratorValue.cs" />
+    <Compile Include="src\prompto\value\IterableValue.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
