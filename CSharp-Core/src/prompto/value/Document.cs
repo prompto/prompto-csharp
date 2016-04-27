@@ -31,9 +31,22 @@ namespace prompto.value
 
 		public override IValue GetMember(Context context, String name, bool autoCreate)
 		{
+			return GetMember (name, autoCreate);
+		}
+
+		public IValue GetMember(String name)
+		{
+			return GetMember (name, false);
+		}
+
+		public IValue GetMember(String name, bool autoCreate)
+		{
             IValue result;
-			bool exists = values.TryGetValue (name, out result);
-			if(autoCreate && !exists)
+			if (values.TryGetValue (name, out result))
+				return result;
+			else
+				result = null;
+			if(autoCreate)
             {
                 result = new Document();
                 values[name] = result;
@@ -41,6 +54,11 @@ namespace prompto.value
             return result;
         }
 
+
+		public void SetMember(String name, IValue value)
+		{
+			values[name] = value;
+		}
 
 		public override void SetMember(Context context, String name, IValue value)
         {

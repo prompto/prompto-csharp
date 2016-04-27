@@ -11,7 +11,7 @@ using prompto.expression;
 namespace prompto.value
 {
 
-	public class Iterator : BaseValue, IIterable, IEnumerable<IValue>, IEnumerator<IValue>
+	public class IteratableValue : BaseValue, IIterable, IEnumerable<IValue>, IEnumerator<IValue>
 	{
 
 		IType itemType;
@@ -21,7 +21,7 @@ namespace prompto.value
 		IEnumerator<IValue> source;
 		IExpression expression;
 
-		public Iterator (IType itemType, Context context, Integer length, String name, 
+		public IteratableValue (IType itemType, Context context, Integer length, String name, 
 			IEnumerator<IValue> source, IExpression expression)
 			: base (new IteratorType (itemType))
 		{

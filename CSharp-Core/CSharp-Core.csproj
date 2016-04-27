@@ -409,7 +409,6 @@
     <Compile Include="src\prompto\expression\IteratorExpression.cs" />
     <Compile Include="src\prompto\type\IteratorType.cs" />
     <Compile Include="src\prompto\type\IterableType.cs" />
-    <Compile Include="src\prompto\value\Iterator.cs" />
     <Compile Include="src\prompto\value\IIterable.cs" />
     <Compile Include="src\prompto\javascript\JavaScriptNewExpression.cs" />
     <Compile Include="src\prompto\argument\AttributeArgument.cs" />
@@ -453,6 +452,8 @@
     <Compile Include="src\prompto\error\ReadWriteError.cs" />
     <Compile Include="src\prompto\expression\BlobExpression.cs" />
     <Compile Include="src\prompto\utils\IOUtils.cs" />
+    <Compile Include="src\prompto\value\IteratableValue.cs" />
+    <Compile Include="src\prompto\value\IteratorValue.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />

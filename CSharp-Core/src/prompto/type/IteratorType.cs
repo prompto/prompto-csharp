@@ -14,7 +14,7 @@ public class IteratorType : IterableType {
 
 		public override System.Type ToCSharpType ()
 		{
-			return typeof(Iterator);
+			return typeof(IteratableValue);
 		}
 
 		public override bool isAssignableTo(Context context, IType other) {

@@ -43,8 +43,7 @@ namespace prompto.argument
 
 		public override String getProto(Context context)
         {
-            resolveAndCheck(context);
-            return resolved.getProto(context);
+            return name;
         }
 
 		public override IType GetIType(Context context)

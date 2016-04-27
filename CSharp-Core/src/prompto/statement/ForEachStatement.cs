@@ -61,10 +61,13 @@ namespace prompto.statement
         }
 
 		private IEnumerator<IValue> getEnumerator(Context context, Object src) {
+			// start with the most specialized implementation
 			if (src is IContainer) 
-				src = ((IContainer) src).GetEnumerable(context);
-			if(src is IEnumerable<IValue>)
+				return ((IContainer) src).GetEnumerable(context).GetEnumerator();
+			else if(src is IEnumerable<IValue>)
 				return ((IEnumerable<IValue>)src).GetEnumerator();
+			else if (src is IEnumerator<IValue>)
+				return (IEnumerator<IValue>)src;
 			else
 				throw new InternalError("Should never get there!");
 		}

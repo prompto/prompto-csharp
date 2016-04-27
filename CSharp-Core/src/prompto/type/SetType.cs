@@ -1,6 +1,7 @@
 ﻿using prompto.runtime;
 using prompto.value;
 using System;
+using System.Collections.Generic;
 
 namespace prompto.type
 {
@@ -54,7 +55,7 @@ namespace prompto.type
 
 		public override System.Type ToCSharpType ()
 		{
-			return typeof(SetValue);
+			return typeof(HashSet<Object>);
 		}
 
 	}

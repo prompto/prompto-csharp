@@ -38,7 +38,7 @@ public class IteratorExpression : IExpression {
 		IValue items = source.interpret(context);
 		Integer length = (Integer)items.GetMember(context, "length", false);
 		IEnumerator<IValue> iterator = getEnumerator(context, items);
-		return new Iterator(itemType, context, length, name, iterator, expression);
+		return new IteratableValue(itemType, context, length, name, iterator, expression);
 	}
 
 	private IEnumerator<IValue> getEnumerator(Context context, Object src) {
