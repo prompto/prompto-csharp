@@ -1918,6 +1918,18 @@ public partial class SParserBaseListener : ISParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitRange_literal([NotNull] SParser.Range_literalContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="SParser.IteratorType"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterIteratorType([NotNull] SParser.IteratorTypeContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="SParser.IteratorType"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitIteratorType([NotNull] SParser.IteratorTypeContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="SParser.SetType"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
@@ -1953,6 +1965,18 @@ public partial class SParserBaseListener : ISParserListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitDictType([NotNull] SParser.DictTypeContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="SParser.CursorType"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterCursorType([NotNull] SParser.CursorTypeContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="SParser.CursorType"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitCursorType([NotNull] SParser.CursorTypeContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="SParser.PrimaryType"/>.
 	/// <para>The default implementation does nothing.</para>

@@ -1071,6 +1071,12 @@ namespace prompto.parser
 			SetNodeValue(ctx, new IteratorExpression(name, source, exp));
 		}
 
+		public override void ExitIteratorType (OParser.IteratorTypeContext ctx)
+		{
+			IType type = this.GetNodeValue<IType>(ctx.i);
+			SetNodeValue(ctx, new IteratorType(type));
+		}
+
 
 		public override void ExitNativeStatementListItem (OParser.NativeStatementListItemContext ctx)
 		{

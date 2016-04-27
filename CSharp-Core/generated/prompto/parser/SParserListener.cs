@@ -1806,6 +1806,18 @@ public interface ISParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitRange_literal([NotNull] SParser.Range_literalContext context);
 	/// <summary>
+	/// Enter a parse tree produced by the <c>IteratorType</c>
+	/// labeled alternative in <see cref="SParser.typedef"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterIteratorType([NotNull] SParser.IteratorTypeContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>IteratorType</c>
+	/// labeled alternative in <see cref="SParser.typedef"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitIteratorType([NotNull] SParser.IteratorTypeContext context);
+	/// <summary>
 	/// Enter a parse tree produced by the <c>SetType</c>
 	/// labeled alternative in <see cref="SParser.typedef"/>.
 	/// </summary>
@@ -1841,6 +1853,18 @@ public interface ISParserListener : IParseTreeListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void ExitDictType([NotNull] SParser.DictTypeContext context);
+	/// <summary>
+	/// Enter a parse tree produced by the <c>CursorType</c>
+	/// labeled alternative in <see cref="SParser.typedef"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterCursorType([NotNull] SParser.CursorTypeContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>CursorType</c>
+	/// labeled alternative in <see cref="SParser.typedef"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitCursorType([NotNull] SParser.CursorTypeContext context);
 	/// <summary>
 	/// Enter a parse tree produced by the <c>PrimaryType</c>
 	/// labeled alternative in <see cref="SParser.typedef"/>.
