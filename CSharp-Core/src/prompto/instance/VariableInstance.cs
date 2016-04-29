@@ -39,23 +39,21 @@ namespace prompto.instance
 			writer.append(name);
         }
 
-		public IType checkAssignValue(Context context, IExpression expression)
+		public IType checkAssignValue(Context context, IType valueType)
         {
-            IType type = expression.check(context);
             INamed actual = context.getRegisteredValue<INamed>(name);
             if (actual == null)
             {
-				IType actualType = type;
-				context.registerValue(new Variable(name, actualType));
+				context.registerValue(new Variable(name, valueType));
             }
             else
             {
                 // need to check type compatibility
                 IType actualType = actual.GetIType(context);
-                type.checkAssignableTo(context, actualType);
-				type = actualType;
+				valueType.checkAssignableTo(context, actualType);
+				valueType = actualType;
             }
-			return type;
+			return valueType;
         }
 
 		public IType checkAssignMember(Context context, String memberName)
@@ -67,7 +65,9 @@ namespace prompto.instance
 			return parentType.checkMember(context, memberName);
 		}
 
-		public IType checkAssignItem(Context context, IType itemType)
+
+
+		public IType checkAssignItem(Context context, IType itemType, IType valueType)
         {
 			INamed actual = context.getRegisteredValue<INamed>(name);
 			if(actual==null) 

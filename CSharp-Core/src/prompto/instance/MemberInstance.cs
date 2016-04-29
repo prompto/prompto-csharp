@@ -43,11 +43,10 @@ namespace prompto.instance {
 			writer.append(name);
 		}
 
-		public IType checkAssignValue(Context context, IExpression expression)
+		public IType checkAssignValue(Context context, IType valueType)
         {
 			IType type = parent.checkAssignMember(context, name);
-			IType actualType = expression.check(context);
-			actualType.checkAssignableTo(context, type);
+			valueType.checkAssignableTo(context, type);
 			return type;
 		}
 
@@ -56,7 +55,7 @@ namespace prompto.instance {
             return parent.checkAssignMember(context, name);
         }
 
-		public IType checkAssignItem(Context context, IType itemType)
+		public IType checkAssignItem(Context context, IType itemType, IType valueType)
         {
 			return AnyType.Instance; // TODO
 		}

@@ -39,7 +39,8 @@ namespace prompto.statement
         override
         public IType check(Context context)
         {
-            instance.checkAssignValue(context, expression);
+			IType valueType = expression.check (context);
+			instance.checkAssignValue(context, valueType);
             return VoidType.Instance;
         }
 
