@@ -45,14 +45,14 @@ namespace prompto.instance {
 
 		public IType checkAssignValue(Context context, IType valueType)
         {
-			IType type = parent.checkAssignMember(context, name);
+			IType type = parent.checkAssignMember(context, name, valueType);
 			valueType.checkAssignableTo(context, type);
 			return type;
 		}
 
-		public IType checkAssignMember(Context context, String memberName)
+		public IType checkAssignMember(Context context, String memberName, IType valueType)
         {
-            return parent.checkAssignMember(context, name);
+			return parent.checkAssignMember(context, name, valueType);
         }
 
 		public IType checkAssignItem(Context context, IType itemType, IType valueType)

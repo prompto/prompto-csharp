@@ -52,7 +52,7 @@ namespace prompto.instance {
 			return parent.checkAssignItem(context, itemType, valueType);
         }
 
-		public IType checkAssignMember(Context context, String memberName)
+		public IType checkAssignMember(Context context, String memberName, IType valueType)
         {
 			// called when a[3].member = value
 			return AnyType.Instance; // TODO 

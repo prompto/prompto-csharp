@@ -14,7 +14,7 @@ namespace prompto.instance
     {
 
 		IType checkAssignValue(Context context, IType valueType);
-		IType checkAssignMember(Context context, String name);
+		IType checkAssignMember(Context context, String name, IType valueType);
 		IType checkAssignItem(Context context, IType itemType, IType valueType);
         void assign(Context context, IExpression expression);
         IValue interpret(Context context);

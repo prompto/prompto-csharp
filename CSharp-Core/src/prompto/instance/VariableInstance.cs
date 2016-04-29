@@ -56,7 +56,7 @@ namespace prompto.instance
 			return valueType;
         }
 
-		public IType checkAssignMember(Context context, String memberName)
+		public IType checkAssignMember(Context context, String memberName, IType valueType)
         {
 			INamed actual = context.getRegisteredValue<INamed>(name);
 			if(actual==null) 
