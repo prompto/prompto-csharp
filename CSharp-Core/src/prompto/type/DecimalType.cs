@@ -85,12 +85,12 @@ namespace prompto.type
 			return base.checkIntDivide(context, other);
 		}
 
-		public override IType CheckModulo(Context context, IType other) {
+		public override IType checkModulo(Context context, IType other) {
 			if(other is IntegerType)
 				return this;
 			if(other is DecimalType)
 				return this;
-			return base.CheckModulo(context, other);
+			return base.checkModulo(context, other);
 		}
 
         override

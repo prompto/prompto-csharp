@@ -42,8 +42,8 @@ namespace prompto.type
 				return base.ConvertCSharpValueToPromptoValue(value);
 		}
 
-		override
-        public IType CheckMember(Context context, String name)
+
+		public override IType checkMember(Context context, String name)
         {
             if ("year" == name)
                 return IntegerType.Instance;
@@ -66,7 +66,7 @@ namespace prompto.type
             else if ("tzName" == name)
                 return TextType.Instance;
             else
-                return base.CheckMember(context, name);
+                return base.checkMember(context, name);
         }
 
         override

@@ -26,8 +26,15 @@ namespace prompto.type
         {
         }
 
-        override
-        public IType CheckMember(Context context, String name)
+		public override IType checkItem (Context context, IType itemType)
+		{
+			if (itemType == TextType.Instance)
+				return AnyType.Instance;
+			else
+				return base.checkItem (context, itemType);
+		}
+
+		public override IType checkMember(Context context, String name)
         {
             return AnyType.Instance;
         }

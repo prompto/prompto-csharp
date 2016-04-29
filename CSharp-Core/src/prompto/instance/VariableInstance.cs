@@ -39,7 +39,7 @@ namespace prompto.instance
 			writer.append(name);
         }
 
-        public void checkAssignValue(Context context, IExpression expression)
+		public IType checkAssignValue(Context context, IExpression expression)
         {
             IType type = expression.check(context);
             INamed actual = context.getRegisteredValue<INamed>(name);
@@ -53,20 +53,27 @@ namespace prompto.instance
                 // need to check type compatibility
                 IType actualType = actual.GetIType(context);
                 type.checkAssignableTo(context, actualType);
+				type = actualType;
             }
+			return type;
         }
 
-        public void checkAssignMember(Context context, String memberName)
+		public IType checkAssignMember(Context context, String memberName)
         {
 			INamed actual = context.getRegisteredValue<INamed>(name);
-            if (actual == null)
-                throw new SyntaxError("Unknown variable:" + this.name);
-        }
+			if(actual==null) 
+				throw new SyntaxError("Unknown variable:" + this.name);
+			IType parentType = actual.GetIType(context);
+			return parentType.checkMember(context, memberName);
+		}
 
-        public void checkAssignElement(Context context)
+		public IType checkAssignItem(Context context, IType itemType)
         {
-            // TODO Auto-generated method stub
-
+			INamed actual = context.getRegisteredValue<INamed>(name);
+			if(actual==null) 
+				throw new SyntaxError("Unknown variable:" + this.name);
+			IType parentType = actual.GetIType(context);
+			return parentType.checkItem(context, itemType);
         }
 
         public void assign(Context context, IExpression expression)

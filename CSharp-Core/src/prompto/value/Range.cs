@@ -32,7 +32,7 @@ namespace prompto.value
 		}
 	}
 
-    public IValue GetItem(Context context, IValue index)
+    public override IValue GetItem(Context context, IValue index)
     {
         if (index is Integer)
         {

@@ -29,8 +29,8 @@ namespace prompto.type
 			writer.append (name);
 		}
 
-        override
-        public IType CheckMember(Context context, String name)
+        
+		public override IType checkMember(Context context, String name)
         {
 			CategoryDeclaration cd = context.getRegisteredDeclaration<CategoryDeclaration>(GetName());
             if (cd == null)
@@ -104,12 +104,12 @@ namespace prompto.type
 				return base.checkIntDivide(context, other);
 		}
 
-		public override IType CheckModulo(Context context, IType other) {
+		public override IType checkModulo(Context context, IType other) {
 			IType type = checkOperator(context, other, false, Operator.MODULO);
 			if(type!=null)
 				return type;
 			else
-				return base.CheckModulo(context, other);
+				return base.checkModulo(context, other);
 		}
 
 		public override IType checkAdd(Context context, IType other, bool tryReverse) {

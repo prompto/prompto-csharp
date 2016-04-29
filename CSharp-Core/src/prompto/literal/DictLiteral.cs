@@ -68,7 +68,7 @@ namespace prompto.literal
         override
         public IValue interpret(Context context)
         {
-            if (value.Count == 0 && entries.Count > 0)
+            if (entries.Count > 0)
 			{
 				check(context); // to compute itemType
 				Dictionary<Text, IValue> dict = new Dictionary<Text, IValue> ();
@@ -78,9 +78,9 @@ namespace prompto.literal
 					IValue val = e.getValue().interpret(context);
 					dict[key] = val;
 	            }
-				value = new Dict (itemType, dict);
-			}
-            return value;
+				return new Dict (itemType, dict);
+			} else
+            	return value;
         }
 
     }

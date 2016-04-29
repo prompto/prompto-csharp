@@ -22,8 +22,8 @@ public class DictType : ContainerType {
         return typeof(Dict);
 	}
 
-    override
-    public IType CheckMember(Context context, String name)
+    
+		public override IType checkMember(Context context, String name)
     {
         if ("length" == name)
             return IntegerType.Instance;
@@ -32,7 +32,7 @@ public class DictType : ContainerType {
         else if ("values" == name)
             return new ListType(GetItemType());
         else
-            return base.CheckMember(context, name);
+            return base.checkMember(context, name);
     }
     
     override

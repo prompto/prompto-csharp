@@ -6,7 +6,11 @@ namespace prompto.grammar
     public class CategorySymbolList : SymbolList<CategorySymbol>
     {
 
-        public CategorySymbolList(CategorySymbol symbol)
+		public CategorySymbolList()
+		{
+		}
+
+		public CategorySymbolList(CategorySymbol symbol)
             : base(symbol)
         {
         }

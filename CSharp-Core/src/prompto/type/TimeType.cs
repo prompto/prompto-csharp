@@ -32,8 +32,8 @@ namespace prompto.type
         }
 
 
-        override
-        public IType CheckMember(Context context, String name)
+        
+		public override IType checkMember(Context context, String name)
         {
             if ("hour" == name)
                 return IntegerType.Instance;
@@ -44,7 +44,7 @@ namespace prompto.type
             else if ("millis" == name)
                 return IntegerType.Instance;
             else
-                return base.CheckMember(context, name);
+                return base.checkMember(context, name);
         }
         
         override 

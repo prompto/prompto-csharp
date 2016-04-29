@@ -23,7 +23,7 @@ namespace prompto.type
 
 		IType checkIntDivide (Context context, IType rt);
 
-		IType CheckModulo (Context context, IType rt);
+		IType checkModulo (Context context, IType rt);
 
 		IType checkCompare (Context context, IType other);
 
@@ -39,7 +39,7 @@ namespace prompto.type
 
 		IType checkSlice (Context context);
 
-		IType CheckMember (Context context, String name);
+		IType checkMember (Context context, String name);
 
 		IRange newRange (Object left, Object right);
 

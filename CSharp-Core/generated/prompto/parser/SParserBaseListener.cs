@@ -1654,29 +1654,17 @@ public partial class SParserBaseListener : ISParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitFullDeclarationList([NotNull] SParser.FullDeclarationListContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="SParser.DeclarationListItem"/>.
+	/// Enter a parse tree produced by <see cref="SParser.declarations"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void EnterDeclarationListItem([NotNull] SParser.DeclarationListItemContext context) { }
+	public virtual void EnterDeclarations([NotNull] SParser.DeclarationsContext context) { }
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="SParser.DeclarationListItem"/>.
+	/// Exit a parse tree produced by <see cref="SParser.declarations"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void ExitDeclarationListItem([NotNull] SParser.DeclarationListItemContext context) { }
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="SParser.DeclarationList"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void EnterDeclarationList([NotNull] SParser.DeclarationListContext context) { }
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="SParser.DeclarationList"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void ExitDeclarationList([NotNull] SParser.DeclarationListContext context) { }
+	public virtual void ExitDeclarations([NotNull] SParser.DeclarationsContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="SParser.declaration"/>.
 	/// <para>The default implementation does nothing.</para>
@@ -1702,101 +1690,53 @@ public partial class SParserBaseListener : ISParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitResource_declaration([NotNull] SParser.Resource_declarationContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="SParser.EnumCategoryDeclaration"/>.
+	/// Enter a parse tree produced by <see cref="SParser.enum_declaration"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void EnterEnumCategoryDeclaration([NotNull] SParser.EnumCategoryDeclarationContext context) { }
+	public virtual void EnterEnum_declaration([NotNull] SParser.Enum_declarationContext context) { }
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="SParser.EnumCategoryDeclaration"/>.
+	/// Exit a parse tree produced by <see cref="SParser.enum_declaration"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void ExitEnumCategoryDeclaration([NotNull] SParser.EnumCategoryDeclarationContext context) { }
+	public virtual void ExitEnum_declaration([NotNull] SParser.Enum_declarationContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="SParser.EnumNativeDeclaration"/>.
+	/// Enter a parse tree produced by <see cref="SParser.native_symbol_list"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void EnterEnumNativeDeclaration([NotNull] SParser.EnumNativeDeclarationContext context) { }
+	public virtual void EnterNative_symbol_list([NotNull] SParser.Native_symbol_listContext context) { }
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="SParser.EnumNativeDeclaration"/>.
+	/// Exit a parse tree produced by <see cref="SParser.native_symbol_list"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void ExitEnumNativeDeclaration([NotNull] SParser.EnumNativeDeclarationContext context) { }
+	public virtual void ExitNative_symbol_list([NotNull] SParser.Native_symbol_listContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="SParser.NativeSymbolList"/>.
+	/// Enter a parse tree produced by <see cref="SParser.category_symbol_list"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void EnterNativeSymbolList([NotNull] SParser.NativeSymbolListContext context) { }
+	public virtual void EnterCategory_symbol_list([NotNull] SParser.Category_symbol_listContext context) { }
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="SParser.NativeSymbolList"/>.
+	/// Exit a parse tree produced by <see cref="SParser.category_symbol_list"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void ExitNativeSymbolList([NotNull] SParser.NativeSymbolListContext context) { }
+	public virtual void ExitCategory_symbol_list([NotNull] SParser.Category_symbol_listContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="SParser.NativeSymbolListItem"/>.
+	/// Enter a parse tree produced by <see cref="SParser.symbol_list"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void EnterNativeSymbolListItem([NotNull] SParser.NativeSymbolListItemContext context) { }
+	public virtual void EnterSymbol_list([NotNull] SParser.Symbol_listContext context) { }
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="SParser.NativeSymbolListItem"/>.
+	/// Exit a parse tree produced by <see cref="SParser.symbol_list"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void ExitNativeSymbolListItem([NotNull] SParser.NativeSymbolListItemContext context) { }
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="SParser.CategorySymbolListItem"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void EnterCategorySymbolListItem([NotNull] SParser.CategorySymbolListItemContext context) { }
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="SParser.CategorySymbolListItem"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void ExitCategorySymbolListItem([NotNull] SParser.CategorySymbolListItemContext context) { }
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="SParser.CategorySymbolList"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void EnterCategorySymbolList([NotNull] SParser.CategorySymbolListContext context) { }
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="SParser.CategorySymbolList"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void ExitCategorySymbolList([NotNull] SParser.CategorySymbolListContext context) { }
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="SParser.SymbolList"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void EnterSymbolList([NotNull] SParser.SymbolListContext context) { }
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="SParser.SymbolList"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void ExitSymbolList([NotNull] SParser.SymbolListContext context) { }
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="SParser.SymbolListItem"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void EnterSymbolListItem([NotNull] SParser.SymbolListItemContext context) { }
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="SParser.SymbolListItem"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void ExitSymbolListItem([NotNull] SParser.SymbolListItemContext context) { }
+	public virtual void ExitSymbol_list([NotNull] SParser.Symbol_listContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="SParser.MatchingList"/>.
 	/// <para>The default implementation does nothing.</para>
@@ -1882,29 +1822,17 @@ public partial class SParserBaseListener : ISParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitSet_literal([NotNull] SParser.Set_literalContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="SParser.ValueList"/>.
+	/// Enter a parse tree produced by <see cref="SParser.expression_list"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void EnterValueList([NotNull] SParser.ValueListContext context) { }
+	public virtual void EnterExpression_list([NotNull] SParser.Expression_listContext context) { }
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="SParser.ValueList"/>.
+	/// Exit a parse tree produced by <see cref="SParser.expression_list"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void ExitValueList([NotNull] SParser.ValueListContext context) { }
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="SParser.ValueListItem"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void EnterValueListItem([NotNull] SParser.ValueListItemContext context) { }
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="SParser.ValueListItem"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void ExitValueListItem([NotNull] SParser.ValueListItemContext context) { }
+	public virtual void ExitExpression_list([NotNull] SParser.Expression_listContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="SParser.range_literal"/>.
 	/// <para>The default implementation does nothing.</para>
@@ -2254,53 +2182,29 @@ public partial class SParserBaseListener : ISParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitSingletonCategoryDeclaration([NotNull] SParser.SingletonCategoryDeclarationContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="SParser.TypeIdentifierList"/>.
+	/// Enter a parse tree produced by <see cref="SParser.type_identifier_list"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void EnterTypeIdentifierList([NotNull] SParser.TypeIdentifierListContext context) { }
+	public virtual void EnterType_identifier_list([NotNull] SParser.Type_identifier_listContext context) { }
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="SParser.TypeIdentifierList"/>.
+	/// Exit a parse tree produced by <see cref="SParser.type_identifier_list"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void ExitTypeIdentifierList([NotNull] SParser.TypeIdentifierListContext context) { }
+	public virtual void ExitType_identifier_list([NotNull] SParser.Type_identifier_listContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="SParser.TypeIdentifierListItem"/>.
+	/// Enter a parse tree produced by <see cref="SParser.method_identifier"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void EnterTypeIdentifierListItem([NotNull] SParser.TypeIdentifierListItemContext context) { }
+	public virtual void EnterMethod_identifier([NotNull] SParser.Method_identifierContext context) { }
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="SParser.TypeIdentifierListItem"/>.
+	/// Exit a parse tree produced by <see cref="SParser.method_identifier"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void ExitTypeIdentifierListItem([NotNull] SParser.TypeIdentifierListItemContext context) { }
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="SParser.MethodVariableIdentifier"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void EnterMethodVariableIdentifier([NotNull] SParser.MethodVariableIdentifierContext context) { }
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="SParser.MethodVariableIdentifier"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void ExitMethodVariableIdentifier([NotNull] SParser.MethodVariableIdentifierContext context) { }
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="SParser.MethodTypeIdentifier"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void EnterMethodTypeIdentifier([NotNull] SParser.MethodTypeIdentifierContext context) { }
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="SParser.MethodTypeIdentifier"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void ExitMethodTypeIdentifier([NotNull] SParser.MethodTypeIdentifierContext context) { }
+	public virtual void ExitMethod_identifier([NotNull] SParser.Method_identifierContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="SParser.VariableIdentifier"/>.
 	/// <para>The default implementation does nothing.</para>
@@ -2386,29 +2290,17 @@ public partial class SParserBaseListener : ISParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitSymbol_identifier([NotNull] SParser.Symbol_identifierContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="SParser.ArgumentListItem"/>.
+	/// Enter a parse tree produced by <see cref="SParser.argument_list"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void EnterArgumentListItem([NotNull] SParser.ArgumentListItemContext context) { }
+	public virtual void EnterArgument_list([NotNull] SParser.Argument_listContext context) { }
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="SParser.ArgumentListItem"/>.
+	/// Exit a parse tree produced by <see cref="SParser.argument_list"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void ExitArgumentListItem([NotNull] SParser.ArgumentListItemContext context) { }
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="SParser.ArgumentList"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void EnterArgumentList([NotNull] SParser.ArgumentListContext context) { }
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="SParser.ArgumentList"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void ExitArgumentList([NotNull] SParser.ArgumentListContext context) { }
+	public virtual void ExitArgument_list([NotNull] SParser.Argument_listContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="SParser.CodeArgument"/>.
 	/// <para>The default implementation does nothing.</para>
@@ -2434,29 +2326,17 @@ public partial class SParserBaseListener : ISParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitOperatorArgument([NotNull] SParser.OperatorArgumentContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="SParser.NamedArgument"/>.
+	/// Enter a parse tree produced by <see cref="SParser.operator_argument"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void EnterNamedArgument([NotNull] SParser.NamedArgumentContext context) { }
+	public virtual void EnterOperator_argument([NotNull] SParser.Operator_argumentContext context) { }
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="SParser.NamedArgument"/>.
+	/// Exit a parse tree produced by <see cref="SParser.operator_argument"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void ExitNamedArgument([NotNull] SParser.NamedArgumentContext context) { }
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="SParser.TypedArgument"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void EnterTypedArgument([NotNull] SParser.TypedArgumentContext context) { }
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="SParser.TypedArgument"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void ExitTypedArgument([NotNull] SParser.TypedArgumentContext context) { }
+	public virtual void ExitOperator_argument([NotNull] SParser.Operator_argumentContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="SParser.named_argument"/>.
 	/// <para>The default implementation does nothing.</para>
@@ -2482,29 +2362,17 @@ public partial class SParserBaseListener : ISParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitCode_argument([NotNull] SParser.Code_argumentContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="SParser.CategoryArgumentType"/>.
+	/// Enter a parse tree produced by <see cref="SParser.category_or_any_type"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void EnterCategoryArgumentType([NotNull] SParser.CategoryArgumentTypeContext context) { }
+	public virtual void EnterCategory_or_any_type([NotNull] SParser.Category_or_any_typeContext context) { }
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="SParser.CategoryArgumentType"/>.
+	/// Exit a parse tree produced by <see cref="SParser.category_or_any_type"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void ExitCategoryArgumentType([NotNull] SParser.CategoryArgumentTypeContext context) { }
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="SParser.AnyArgumentType"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void EnterAnyArgumentType([NotNull] SParser.AnyArgumentTypeContext context) { }
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="SParser.AnyArgumentType"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void ExitAnyArgumentType([NotNull] SParser.AnyArgumentTypeContext context) { }
+	public virtual void ExitCategory_or_any_type([NotNull] SParser.Category_or_any_typeContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="SParser.AnyListType"/>.
 	/// <para>The default implementation does nothing.</para>
@@ -2542,29 +2410,17 @@ public partial class SParserBaseListener : ISParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitAnyDictType([NotNull] SParser.AnyDictTypeContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="SParser.CategoryMethodListItem"/>.
+	/// Enter a parse tree produced by <see cref="SParser.member_method_declaration_list"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void EnterCategoryMethodListItem([NotNull] SParser.CategoryMethodListItemContext context) { }
+	public virtual void EnterMember_method_declaration_list([NotNull] SParser.Member_method_declaration_listContext context) { }
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="SParser.CategoryMethodListItem"/>.
+	/// Exit a parse tree produced by <see cref="SParser.member_method_declaration_list"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void ExitCategoryMethodListItem([NotNull] SParser.CategoryMethodListItemContext context) { }
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="SParser.CategoryMethodList"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void EnterCategoryMethodList([NotNull] SParser.CategoryMethodListContext context) { }
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="SParser.CategoryMethodList"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void ExitCategoryMethodList([NotNull] SParser.CategoryMethodListContext context) { }
+	public virtual void ExitMember_method_declaration_list([NotNull] SParser.Member_method_declaration_listContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="SParser.member_method_declaration"/>.
 	/// <para>The default implementation does nothing.</para>
@@ -2578,29 +2434,17 @@ public partial class SParserBaseListener : ISParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitMember_method_declaration([NotNull] SParser.Member_method_declarationContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="SParser.NativeCategoryMethodList"/>.
+	/// Enter a parse tree produced by <see cref="SParser.native_member_method_declaration_list"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void EnterNativeCategoryMethodList([NotNull] SParser.NativeCategoryMethodListContext context) { }
+	public virtual void EnterNative_member_method_declaration_list([NotNull] SParser.Native_member_method_declaration_listContext context) { }
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="SParser.NativeCategoryMethodList"/>.
+	/// Exit a parse tree produced by <see cref="SParser.native_member_method_declaration_list"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void ExitNativeCategoryMethodList([NotNull] SParser.NativeCategoryMethodListContext context) { }
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="SParser.NativeCategoryMethodListItem"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void EnterNativeCategoryMethodListItem([NotNull] SParser.NativeCategoryMethodListItemContext context) { }
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="SParser.NativeCategoryMethodListItem"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void ExitNativeCategoryMethodListItem([NotNull] SParser.NativeCategoryMethodListItemContext context) { }
+	public virtual void ExitNative_member_method_declaration_list([NotNull] SParser.Native_member_method_declaration_listContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="SParser.native_member_method_declaration"/>.
 	/// <para>The default implementation does nothing.</para>
@@ -2698,18 +2542,6 @@ public partial class SParserBaseListener : ISParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitPython_module([NotNull] SParser.Python_moduleContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="SParser.module_token"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void EnterModule_token([NotNull] SParser.Module_tokenContext context) { }
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="SParser.module_token"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void ExitModule_token([NotNull] SParser.Module_tokenContext context) { }
-	/// <summary>
 	/// Enter a parse tree produced by <see cref="SParser.javascript_category_binding"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
@@ -2758,53 +2590,17 @@ public partial class SParserBaseListener : ISParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitAttribute_identifier_list([NotNull] SParser.Attribute_identifier_listContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="SParser.AbstractMethod"/>.
+	/// Enter a parse tree produced by <see cref="SParser.method_declaration"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void EnterAbstractMethod([NotNull] SParser.AbstractMethodContext context) { }
+	public virtual void EnterMethod_declaration([NotNull] SParser.Method_declarationContext context) { }
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="SParser.AbstractMethod"/>.
+	/// Exit a parse tree produced by <see cref="SParser.method_declaration"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void ExitAbstractMethod([NotNull] SParser.AbstractMethodContext context) { }
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="SParser.ConcreteMethod"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void EnterConcreteMethod([NotNull] SParser.ConcreteMethodContext context) { }
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="SParser.ConcreteMethod"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void ExitConcreteMethod([NotNull] SParser.ConcreteMethodContext context) { }
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="SParser.NativeMethod"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void EnterNativeMethod([NotNull] SParser.NativeMethodContext context) { }
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="SParser.NativeMethod"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void ExitNativeMethod([NotNull] SParser.NativeMethodContext context) { }
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="SParser.TestMethod"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void EnterTestMethod([NotNull] SParser.TestMethodContext context) { }
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="SParser.TestMethod"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void ExitTestMethod([NotNull] SParser.TestMethodContext context) { }
+	public virtual void ExitMethod_declaration([NotNull] SParser.Method_declarationContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="SParser.comment_statement"/>.
 	/// <para>The default implementation does nothing.</para>
@@ -2818,29 +2614,17 @@ public partial class SParserBaseListener : ISParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitComment_statement([NotNull] SParser.Comment_statementContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="SParser.NativeStatementListItem"/>.
+	/// Enter a parse tree produced by <see cref="SParser.native_statement_list"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void EnterNativeStatementListItem([NotNull] SParser.NativeStatementListItemContext context) { }
+	public virtual void EnterNative_statement_list([NotNull] SParser.Native_statement_listContext context) { }
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="SParser.NativeStatementListItem"/>.
+	/// Exit a parse tree produced by <see cref="SParser.native_statement_list"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void ExitNativeStatementListItem([NotNull] SParser.NativeStatementListItemContext context) { }
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="SParser.NativeStatementList"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void EnterNativeStatementList([NotNull] SParser.NativeStatementListContext context) { }
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="SParser.NativeStatementList"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void ExitNativeStatementList([NotNull] SParser.NativeStatementListContext context) { }
+	public virtual void ExitNative_statement_list([NotNull] SParser.Native_statement_listContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="SParser.JavaNativeStatement"/>.
 	/// <para>The default implementation does nothing.</para>
@@ -2926,101 +2710,53 @@ public partial class SParserBaseListener : ISParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitJavascript_native_statement([NotNull] SParser.Javascript_native_statementContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="SParser.StatementList"/>.
+	/// Enter a parse tree produced by <see cref="SParser.statement_list"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void EnterStatementList([NotNull] SParser.StatementListContext context) { }
+	public virtual void EnterStatement_list([NotNull] SParser.Statement_listContext context) { }
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="SParser.StatementList"/>.
+	/// Exit a parse tree produced by <see cref="SParser.statement_list"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void ExitStatementList([NotNull] SParser.StatementListContext context) { }
+	public virtual void ExitStatement_list([NotNull] SParser.Statement_listContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="SParser.StatementListItem"/>.
+	/// Enter a parse tree produced by <see cref="SParser.assertion_list"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void EnterStatementListItem([NotNull] SParser.StatementListItemContext context) { }
+	public virtual void EnterAssertion_list([NotNull] SParser.Assertion_listContext context) { }
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="SParser.StatementListItem"/>.
+	/// Exit a parse tree produced by <see cref="SParser.assertion_list"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void ExitStatementListItem([NotNull] SParser.StatementListItemContext context) { }
+	public virtual void ExitAssertion_list([NotNull] SParser.Assertion_listContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="SParser.AssertionList"/>.
+	/// Enter a parse tree produced by <see cref="SParser.switch_case_statement_list"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void EnterAssertionList([NotNull] SParser.AssertionListContext context) { }
+	public virtual void EnterSwitch_case_statement_list([NotNull] SParser.Switch_case_statement_listContext context) { }
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="SParser.AssertionList"/>.
+	/// Exit a parse tree produced by <see cref="SParser.switch_case_statement_list"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void ExitAssertionList([NotNull] SParser.AssertionListContext context) { }
+	public virtual void ExitSwitch_case_statement_list([NotNull] SParser.Switch_case_statement_listContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="SParser.AssertionListItem"/>.
+	/// Enter a parse tree produced by <see cref="SParser.catch_statement_list"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void EnterAssertionListItem([NotNull] SParser.AssertionListItemContext context) { }
+	public virtual void EnterCatch_statement_list([NotNull] SParser.Catch_statement_listContext context) { }
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="SParser.AssertionListItem"/>.
+	/// Exit a parse tree produced by <see cref="SParser.catch_statement_list"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void ExitAssertionListItem([NotNull] SParser.AssertionListItemContext context) { }
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="SParser.SwitchCaseStatementList"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void EnterSwitchCaseStatementList([NotNull] SParser.SwitchCaseStatementListContext context) { }
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="SParser.SwitchCaseStatementList"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void ExitSwitchCaseStatementList([NotNull] SParser.SwitchCaseStatementListContext context) { }
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="SParser.SwitchCaseStatementListItem"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void EnterSwitchCaseStatementListItem([NotNull] SParser.SwitchCaseStatementListItemContext context) { }
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="SParser.SwitchCaseStatementListItem"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void ExitSwitchCaseStatementListItem([NotNull] SParser.SwitchCaseStatementListItemContext context) { }
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="SParser.CatchStatementList"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void EnterCatchStatementList([NotNull] SParser.CatchStatementListContext context) { }
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="SParser.CatchStatementList"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void ExitCatchStatementList([NotNull] SParser.CatchStatementListContext context) { }
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="SParser.CatchStatementListItem"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void EnterCatchStatementListItem([NotNull] SParser.CatchStatementListItemContext context) { }
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="SParser.CatchStatementListItem"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void ExitCatchStatementListItem([NotNull] SParser.CatchStatementListItemContext context) { }
+	public virtual void ExitCatch_statement_list([NotNull] SParser.Catch_statement_listContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="SParser.LiteralRangeLiteral"/>.
 	/// <para>The default implementation does nothing.</para>
@@ -3214,29 +2950,17 @@ public partial class SParserBaseListener : ISParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitNullLiteral([NotNull] SParser.NullLiteralContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="SParser.LiteralList"/>.
+	/// Enter a parse tree produced by <see cref="SParser.literal_list_literal"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void EnterLiteralList([NotNull] SParser.LiteralListContext context) { }
+	public virtual void EnterLiteral_list_literal([NotNull] SParser.Literal_list_literalContext context) { }
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="SParser.LiteralList"/>.
+	/// Exit a parse tree produced by <see cref="SParser.literal_list_literal"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void ExitLiteralList([NotNull] SParser.LiteralListContext context) { }
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="SParser.LiteralListItem"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void EnterLiteralListItem([NotNull] SParser.LiteralListItemContext context) { }
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="SParser.LiteralListItem"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void ExitLiteralListItem([NotNull] SParser.LiteralListItemContext context) { }
+	public virtual void ExitLiteral_list_literal([NotNull] SParser.Literal_list_literalContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="SParser.ParenthesisExpression"/>.
 	/// <para>The default implementation does nothing.</para>
@@ -3310,89 +3034,29 @@ public partial class SParserBaseListener : ISParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitParenthesis_expression([NotNull] SParser.Parenthesis_expressionContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="SParser.AtomicLiteral"/>.
+	/// Enter a parse tree produced by <see cref="SParser.literal_expression"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void EnterAtomicLiteral([NotNull] SParser.AtomicLiteralContext context) { }
+	public virtual void EnterLiteral_expression([NotNull] SParser.Literal_expressionContext context) { }
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="SParser.AtomicLiteral"/>.
+	/// Exit a parse tree produced by <see cref="SParser.literal_expression"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void ExitAtomicLiteral([NotNull] SParser.AtomicLiteralContext context) { }
+	public virtual void ExitLiteral_expression([NotNull] SParser.Literal_expressionContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="SParser.CollectionLiteral"/>.
+	/// Enter a parse tree produced by <see cref="SParser.collection_literal"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void EnterCollectionLiteral([NotNull] SParser.CollectionLiteralContext context) { }
+	public virtual void EnterCollection_literal([NotNull] SParser.Collection_literalContext context) { }
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="SParser.CollectionLiteral"/>.
+	/// Exit a parse tree produced by <see cref="SParser.collection_literal"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void ExitCollectionLiteral([NotNull] SParser.CollectionLiteralContext context) { }
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="SParser.RangeLiteral"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void EnterRangeLiteral([NotNull] SParser.RangeLiteralContext context) { }
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="SParser.RangeLiteral"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void ExitRangeLiteral([NotNull] SParser.RangeLiteralContext context) { }
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="SParser.ListLiteral"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void EnterListLiteral([NotNull] SParser.ListLiteralContext context) { }
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="SParser.ListLiteral"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void ExitListLiteral([NotNull] SParser.ListLiteralContext context) { }
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="SParser.SetLiteral"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void EnterSetLiteral([NotNull] SParser.SetLiteralContext context) { }
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="SParser.SetLiteral"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void ExitSetLiteral([NotNull] SParser.SetLiteralContext context) { }
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="SParser.DictLiteral"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void EnterDictLiteral([NotNull] SParser.DictLiteralContext context) { }
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="SParser.DictLiteral"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void ExitDictLiteral([NotNull] SParser.DictLiteralContext context) { }
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="SParser.TupleLiteral"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void EnterTupleLiteral([NotNull] SParser.TupleLiteralContext context) { }
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="SParser.TupleLiteral"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void ExitTupleLiteral([NotNull] SParser.TupleLiteralContext context) { }
+	public virtual void ExitCollection_literal([NotNull] SParser.Collection_literalContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="SParser.tuple_literal"/>.
 	/// <para>The default implementation does nothing.</para>
@@ -3418,53 +3082,29 @@ public partial class SParserBaseListener : ISParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitDict_literal([NotNull] SParser.Dict_literalContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="SParser.ValueTuple"/>.
+	/// Enter a parse tree produced by <see cref="SParser.expression_tuple"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void EnterValueTuple([NotNull] SParser.ValueTupleContext context) { }
+	public virtual void EnterExpression_tuple([NotNull] SParser.Expression_tupleContext context) { }
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="SParser.ValueTuple"/>.
+	/// Exit a parse tree produced by <see cref="SParser.expression_tuple"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void ExitValueTuple([NotNull] SParser.ValueTupleContext context) { }
+	public virtual void ExitExpression_tuple([NotNull] SParser.Expression_tupleContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="SParser.ValueTupleItem"/>.
+	/// Enter a parse tree produced by <see cref="SParser.dict_entry_list"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void EnterValueTupleItem([NotNull] SParser.ValueTupleItemContext context) { }
+	public virtual void EnterDict_entry_list([NotNull] SParser.Dict_entry_listContext context) { }
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="SParser.ValueTupleItem"/>.
+	/// Exit a parse tree produced by <see cref="SParser.dict_entry_list"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void ExitValueTupleItem([NotNull] SParser.ValueTupleItemContext context) { }
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="SParser.DictEntryList"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void EnterDictEntryList([NotNull] SParser.DictEntryListContext context) { }
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="SParser.DictEntryList"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void ExitDictEntryList([NotNull] SParser.DictEntryListContext context) { }
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="SParser.DictEntryListItem"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void EnterDictEntryListItem([NotNull] SParser.DictEntryListItemContext context) { }
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="SParser.DictEntryListItem"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void ExitDictEntryListItem([NotNull] SParser.DictEntryListItemContext context) { }
+	public virtual void ExitDict_entry_list([NotNull] SParser.Dict_entry_listContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="SParser.dict_entry"/>.
 	/// <para>The default implementation does nothing.</para>
@@ -3693,6 +3333,18 @@ public partial class SParserBaseListener : ISParserListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitKey_token([NotNull] SParser.Key_tokenContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="SParser.module_token"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterModule_token([NotNull] SParser.Module_tokenContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="SParser.module_token"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitModule_token([NotNull] SParser.Module_tokenContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="SParser.value_token"/>.
 	/// <para>The default implementation does nothing.</para>

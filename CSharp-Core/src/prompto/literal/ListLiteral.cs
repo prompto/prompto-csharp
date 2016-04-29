@@ -12,19 +12,21 @@ namespace prompto.literal
 
 	public class ListLiteral : Literal<ListValue>
 	{
-
+		bool mutable = false;
 		IType itemType = null;
 		ExpressionList expressions = null;
 
-		public ListLiteral ()
+		public ListLiteral (bool mutable)
 			: base ("[]", new ListValue (MissingType.Instance))
 		{
+			this.mutable = mutable;
 		}
 
-		public ListLiteral (ExpressionList expressions)
+		public ListLiteral (ExpressionList expressions, bool mutable)
 			: base ("[" + expressions.ToString () + "]", new ListValue (MissingType.Instance))
 		{
 			this.expressions = expressions;
+			this.mutable = mutable;
 		}
 
 		public ExpressionList Expressions {
@@ -55,10 +57,9 @@ namespace prompto.literal
 					item = interpretPromotion (item);
 					list.add (item);
 				}
-				value = new ListValue (itemType, list);
-				// don't dispose of expressions, they are required by translation 
-			}
-			return value;
+				return new ListValue (itemType, list, mutable);
+			} else
+				return value;
 		}
 
 		private IValue interpretPromotion(IValue item) {
@@ -74,6 +75,8 @@ namespace prompto.literal
 
 		public override void ToDialect (CodeWriter writer)
 		{
+			if(mutable)
+				writer.append ("mutable ");
 			if (expressions != null) {
 				writer.append ('[');
 				expressions.toDialect (writer);

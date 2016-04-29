@@ -54,10 +54,9 @@ namespace prompto.literal
 				List<IValue> list = new List<IValue>();
 				foreach(IExpression exp in expressions) 
 					list.Add(exp.interpret(context));
-				value = new TupleValue(list);
-				// don't dispose of expressions, they are required by translation 
-			}
-            return value;
+				return new TupleValue(list);
+			} else 
+            	return value;
         }
     }
 }

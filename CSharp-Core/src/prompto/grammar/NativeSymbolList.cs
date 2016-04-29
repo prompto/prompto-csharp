@@ -6,7 +6,12 @@ namespace prompto.grammar
     public class NativeSymbolList : SymbolList<NativeSymbol>
     {
 
-        public NativeSymbolList(NativeSymbol symbol)
+		public NativeSymbolList()
+		{
+		}
+
+
+		public NativeSymbolList(NativeSymbol symbol)
             : base(symbol)
         {
         }

@@ -65,6 +65,26 @@ namespace prompto.value
             values[name] = value;
         }
 
+
+		public override IValue GetItem (Context context, IValue index)
+		{
+			if (index is Text) {
+				IValue result;
+				if (values.TryGetValue (index.ToString(), out result))
+					return result;
+				else
+					return null;
+			} else
+				throw new InvalidDataError ("No such item:" + index.ToString ());
+		}
+
+		public override void SetItem (Context context, IValue item, IValue value)
+		{
+			if (!(item is Text))
+				throw new InvalidDataError ("No such item:" + item.ToString ());
+			values[item.ToString ()] = value;
+		}
+
 		public override void ToJson (Context context, JsonWriter generator, object instanceId, String fieldName, Dictionary<string, byte[]> binaries)
 		{
 			try {

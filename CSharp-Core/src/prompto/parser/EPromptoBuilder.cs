@@ -110,7 +110,7 @@ namespace prompto.parser
 		
 		public override void ExitTypeIdentifier (EParser.TypeIdentifierContext ctx)
 		{
-			String name = this.GetNodeValue<String> (ctx.name);
+			String name = this.GetNodeValue<String> (ctx.type_identifier());
 			SetNodeValue (ctx, name);
 		}
 
@@ -154,25 +154,6 @@ namespace prompto.parser
 		}
 
 		
-		public override void ExitAtomicLiteral (EParser.AtomicLiteralContext ctx)
-		{
-			IExpression exp = this.GetNodeValue<IExpression> (ctx.exp);
-			SetNodeValue (ctx, exp);
-		}
-
-		
-		public override void ExitCollectionLiteral (EParser.CollectionLiteralContext ctx)
-		{
-			IExpression exp = this.GetNodeValue<IExpression> (ctx.exp);
-			SetNodeValue (ctx, exp);
-		}
-
-		
-		public override void ExitListLiteral (EParser.ListLiteralContext ctx)
-		{
-			IExpression exp = this.GetNodeValue<IExpression> (ctx.exp);
-			SetNodeValue (ctx, exp);
-		}
 
 		public override void ExitBlobExpression (EParser.BlobExpressionContext ctx)
 		{
@@ -263,11 +244,6 @@ namespace prompto.parser
 			SetNodeValue(ctx, new TestMethodDeclaration(name, stmts, exps, error));
 		}
 
-		public override void ExitTestMethod(EParser.TestMethodContext ctx) {
-			IDeclaration decl = this.GetNodeValue<IDeclaration>(ctx.decl);
-			SetNodeValue(ctx, decl);
-		}
-
 		public override void ExitTextLiteral (EParser.TextLiteralContext ctx)
 		{
 			SetNodeValue (ctx, new TextLiteral (ctx.t.Text));
@@ -300,15 +276,16 @@ namespace prompto.parser
 		
 		public override void ExitList_literal (EParser.List_literalContext ctx)
 		{
-			ExpressionList items = this.GetNodeValue<ExpressionList> (ctx.items);
-			IExpression value = items == null ? new ListLiteral () : new ListLiteral (items);
+			bool mutable = ctx.MUTABLE () != null;
+			ExpressionList items = this.GetNodeValue<ExpressionList> (ctx.expression_list());
+			IExpression value = items == null ? new ListLiteral (mutable) : new ListLiteral (items, mutable);
 			SetNodeValue (ctx, value);
 		}
 
 		
 		public override void ExitDict_literal (EParser.Dict_literalContext ctx)
 		{
-			DictEntryList items = this.GetNodeValue<DictEntryList> (ctx.items);
+			DictEntryList items = this.GetNodeValue<DictEntryList> (ctx.dict_entry_list());
 			IExpression value = items == null ? new DictLiteral () : new DictLiteral (items);
 			SetNodeValue (ctx, value);
 		}
@@ -316,18 +293,10 @@ namespace prompto.parser
 		
 		public override void ExitTuple_literal (EParser.Tuple_literalContext ctx)
 		{
-			ExpressionList items = this.GetNodeValue<ExpressionList> (ctx.items);
+			ExpressionList items = this.GetNodeValue<ExpressionList> (ctx.expression_tuple());
 			IExpression value = items == null ? new TupleLiteral () : new TupleLiteral (items);
 			SetNodeValue (ctx, value);
 		}
-
-		
-		public override void ExitTupleLiteral (EParser.TupleLiteralContext ctx)
-		{
-			IExpression exp = this.GetNodeValue<IExpression> (ctx.exp);
-			SetNodeValue (ctx, exp);
-		}
-
 
 		
 		public override void ExitRange_literal (EParser.Range_literalContext ctx)
@@ -337,33 +306,13 @@ namespace prompto.parser
 			SetNodeValue (ctx, new RangeLiteral (low, high));
 		}
 
-		
-		public override void ExitRangeLiteral (EParser.RangeLiteralContext ctx)
+		public override void ExitDict_entry_list (EParser.Dict_entry_listContext ctx)
 		{
-			IExpression exp = this.GetNodeValue<IExpression> (ctx.exp);
-			SetNodeValue (ctx, exp);
-		}
-
-		
-		public override void ExitDictLiteral (EParser.DictLiteralContext ctx)
-		{
-			IExpression exp = this.GetNodeValue<IExpression> (ctx.exp);
-			SetNodeValue (ctx, exp);
-		}
-
-		
-		public override void ExitDictEntryList (EParser.DictEntryListContext ctx)
-		{
-			DictEntry item = this.GetNodeValue<DictEntry> (ctx.item);
-			SetNodeValue (ctx, new DictEntryList (item));
-		}
-
-		
-		public override void ExitDictEntryListItem (EParser.DictEntryListItemContext ctx)
-		{
-			DictEntryList items = this.GetNodeValue<DictEntryList> (ctx.items);
-			DictEntry item = this.GetNodeValue<DictEntry> (ctx.item);
-			items.add (item);
+			DictEntryList items = new DictEntryList ();
+			foreach (ParserRuleContext entry in ctx.dict_entry()) {
+				DictEntry item = this.GetNodeValue<DictEntry> (entry);
+				items.add (item);
+			}
 			SetNodeValue (ctx, items);
 		}
 
@@ -386,39 +335,29 @@ namespace prompto.parser
 		
 		public override void ExitVariableIdentifier (EParser.VariableIdentifierContext ctx)
 		{
-			String name = this.GetNodeValue<String> (ctx.name);
+			String name = this.GetNodeValue<String> (ctx.variable_identifier());
 			SetNodeValue (ctx, name);
 		}
 
-		
-		public override void ExitValueList (EParser.ValueListContext ctx)
-		{
-			IExpression item = this.GetNodeValue<IExpression> (ctx.item);
-			SetNodeValue (ctx, new ExpressionList (item));
-		}
 
-		
-		public override void ExitValueListItem (EParser.ValueListItemContext ctx)
+		public override void ExitExpression_list (EParser.Expression_listContext ctx)
 		{
-			ExpressionList items = this.GetNodeValue<ExpressionList> (ctx.items);
-			IExpression item = this.GetNodeValue<IExpression> (ctx.item);
-			items.add (item);
+			ExpressionList items = new ExpressionList ();
+			foreach (ParserRuleContext rule in ctx.expression()) {
+				IExpression item = this.GetNodeValue<IExpression> (rule);
+				items.add (item);
+			}
 			SetNodeValue (ctx, items);
 		}
 
-		
-		public override void ExitValueTuple (EParser.ValueTupleContext ctx)
-		{
-			IExpression item = this.GetNodeValue<IExpression> (ctx.item);
-			SetNodeValue (ctx, new ExpressionList (item));
-		}
 
-		
-		public override void ExitValueTupleItem (EParser.ValueTupleItemContext ctx)
+		public override void ExitExpression_tuple (EParser.Expression_tupleContext ctx)
 		{
-			ExpressionList items = this.GetNodeValue<ExpressionList> (ctx.items);
-			IExpression item = this.GetNodeValue<IExpression> (ctx.item);
-			items.add (item);
+			ExpressionList items = new ExpressionList ();
+			foreach (ParserRuleContext rule in ctx.expression()) {
+				IExpression item = this.GetNodeValue<IExpression> (rule);
+				items.add (item);
+			}
 			SetNodeValue (ctx, items);
 		}
 
@@ -444,7 +383,7 @@ namespace prompto.parser
 		
 		public override void ExitSymbolIdentifier (EParser.SymbolIdentifierContext ctx)
 		{
-			String name = this.GetNodeValue<String> (ctx.name);
+			String name = this.GetNodeValue<String> (ctx.symbol_identifier());
 			SetNodeValue (ctx, name);
 		}
 
@@ -640,19 +579,14 @@ namespace prompto.parser
 			SetNodeValue (ctx, items);
 		}
 
-		
-		public override void ExitTypeIdentifierList (EParser.TypeIdentifierListContext ctx)
-		{
-			String item = this.GetNodeValue<String> (ctx.item);
-			SetNodeValue (ctx, new IdentifierList (item));
-		}
 
-		
-		public override void ExitTypeIdentifierListItem (EParser.TypeIdentifierListItemContext ctx)
+		public override void ExitType_identifier_list (EParser.Type_identifier_listContext ctx)
 		{
-			IdentifierList items = this.GetNodeValue<IdentifierList> (ctx.items);
-			String item = this.GetNodeValue<String> (ctx.item);
-			items.Add (item);
+			IdentifierList items = new IdentifierList ();
+			foreach (ParserRuleContext rule in ctx.type_identifier()) {
+				String item = this.GetNodeValue<String> (rule);
+				items.Add (item);
+			}
 			SetNodeValue (ctx, items);
 		}
 
@@ -681,18 +615,11 @@ namespace prompto.parser
 
 		public override void ExitSet_literal (EParser.Set_literalContext ctx)
 		{
-			ExpressionList items = this.GetNodeValue<ExpressionList>(ctx.items);
+			ExpressionList items = this.GetNodeValue<ExpressionList>(ctx.expression_list());
 			SetLiteral set = items==null ? new SetLiteral() : new SetLiteral(items);
 			SetNodeValue(ctx, set);
 		}
 
-		public override void ExitSetLiteral (EParser.SetLiteralContext ctx)
-		{
-			IExpression exp = this.GetNodeValue<IExpression>(ctx.exp);
-			SetNodeValue(ctx, exp);
-		}
-
-		
 		public override void ExitMemberSelector (EParser.MemberSelectorContext ctx)
 		{
 			String name = this.GetNodeValue<String> (ctx.name);
@@ -728,46 +655,19 @@ namespace prompto.parser
 		}
 
 		
-		public override void ExitTypedArgument (EParser.TypedArgumentContext ctx)
-		{
-			IArgument arg = this.GetNodeValue<IArgument> (ctx.arg); 
-			SetNodeValue (ctx, arg);
-		}
-
-		
-		public override void ExitNamedArgument (EParser.NamedArgumentContext ctx)
-		{
-			IArgument arg = this.GetNodeValue<IArgument> (ctx.arg);
-			SetNodeValue (ctx, arg);
-		}
-
-		
 		public override void ExitCodeArgument (EParser.CodeArgumentContext ctx)
 		{
 			IArgument arg = this.GetNodeValue<IArgument> (ctx.arg);
 			SetNodeValue (ctx, arg);
 		}
 
-		
-		public override void ExitCategoryArgumentType (EParser.CategoryArgumentTypeContext ctx)
+		public override void ExitArgument_list (EParser.Argument_listContext ctx)
 		{
-			IType type = this.GetNodeValue<IType> (ctx.typ);
-			SetNodeValue (ctx, type);
-		}
-
-		
-		public override void ExitArgumentList (EParser.ArgumentListContext ctx)
-		{
-			IArgument item = this.GetNodeValue<IArgument> (ctx.item); 
-			SetNodeValue (ctx, new ArgumentList (item));
-		}
-
-		
-		public override void ExitArgumentListItem (EParser.ArgumentListItemContext ctx)
-		{
-			ArgumentList items = this.GetNodeValue<ArgumentList> (ctx.items); 
-			IArgument item = this.GetNodeValue<IArgument> (ctx.item); 
-			items.Add (item);
+			ArgumentList items = new ArgumentList ();
+			foreach (ParserRuleContext rule in ctx.argument()) {
+				IArgument item = this.GetNodeValue<IArgument> (rule); 
+				items.Add (item);
+			}
 			SetNodeValue (ctx, items);
 		}
 
@@ -779,20 +679,6 @@ namespace prompto.parser
 			if (item != null)
 				items.Add (item);
 			SetNodeValue (ctx, items);
-		}
-
-		
-		public override void ExitMethodTypeIdentifier (EParser.MethodTypeIdentifierContext ctx)
-		{
-			String name = this.GetNodeValue<String> (ctx.name);
-			SetNodeValue (ctx, name);
-		}
-
-		
-		public override void ExitMethodVariableIdentifier (EParser.MethodVariableIdentifierContext ctx)
-		{
-			String name = this.GetNodeValue<String> (ctx.name);
-			SetNodeValue (ctx, name);
 		}
 
 		
@@ -865,38 +751,26 @@ namespace prompto.parser
 			SetNodeValue (ctx, exp);
 		}
 
-		
-		public override void ExitCategoryMethodList (EParser.CategoryMethodListContext ctx)
+		public override void ExitMember_method_declaration_list (EParser.Member_method_declaration_listContext ctx)
 		{
-			IMethodDeclaration item = this.GetNodeValue<IMethodDeclaration> (ctx.item);
-			MethodDeclarationList items = new MethodDeclarationList (item);
+			MethodDeclarationList items = new MethodDeclarationList ();
+			foreach(ParserRuleContext rule in ctx.member_method_declaration()) {
+				IMethodDeclaration item = this.GetNodeValue<IMethodDeclaration> (rule);
+				items.add (item);
+			}
 			SetNodeValue (ctx, items);
 		}
 
-		
-		public override void ExitCategoryMethodListItem (EParser.CategoryMethodListItemContext ctx)
+		public override void ExitNative_member_method_declaration_list (EParser.Native_member_method_declaration_listContext ctx)
 		{
-			IMethodDeclaration item = this.GetNodeValue<IMethodDeclaration> (ctx.item);
-			MethodDeclarationList items = this.GetNodeValue<MethodDeclarationList> (ctx.items);
-			items.add (item);
+			MethodDeclarationList items = new MethodDeclarationList ();
+			foreach(ParserRuleContext rule in ctx.native_member_method_declaration()) {
+				IMethodDeclaration item = this.GetNodeValue<IMethodDeclaration> (rule);
+				items.add (item);
+			}
 			SetNodeValue (ctx, items);
 		}
 
-		public override void ExitNativeCategoryMethodList (EParser.NativeCategoryMethodListContext ctx)
-		{
-			IMethodDeclaration item = this.GetNodeValue<IMethodDeclaration> (ctx.item);
-			MethodDeclarationList items = new MethodDeclarationList (item);
-			SetNodeValue (ctx, items);
-		}
-
-
-		public override void ExitNativeCategoryMethodListItem (EParser.NativeCategoryMethodListItemContext ctx)
-		{
-			IMethodDeclaration item = this.GetNodeValue<IMethodDeclaration> (ctx.item);
-			MethodDeclarationList items = this.GetNodeValue<MethodDeclarationList> (ctx.items);
-			items.add (item);
-			SetNodeValue (ctx, items);
-		}
 
 		public override void ExitSetter_method_declaration (EParser.Setter_method_declarationContext ctx)
 		{
@@ -935,18 +809,14 @@ namespace prompto.parser
 			SetNodeValue (ctx, decl);
 		}
 			
-		public override void ExitStatementList (EParser.StatementListContext ctx)
-		{
-			IStatement item = this.GetNodeValue<IStatement> (ctx.item);
-			SetNodeValue (ctx, new StatementList (item));
-		}
 
-		
-		public override void ExitStatementListItem (EParser.StatementListItemContext ctx)
+		public override void ExitStatement_list (EParser.Statement_listContext ctx)
 		{
-			IStatement item = this.GetNodeValue<IStatement> (ctx.item);
-			StatementList items = this.GetNodeValue<StatementList> (ctx.items);
-			items.add (item);
+			StatementList items = new StatementList ();
+			foreach(ParserRuleContext rule in ctx.statement()) {
+				IStatement item = this.GetNodeValue<IStatement> (rule);
+				items.add (item);
+			}
 			SetNodeValue (ctx, items);
 		}
 
@@ -1021,16 +891,14 @@ namespace prompto.parser
 			SetNodeValue(ctx, exp);
 		}
 
-		public override void ExitAssertionList(EParser.AssertionListContext ctx) {
-			IExpression item = this.GetNodeValue<IExpression>(ctx.item);
-			ExpressionList items = new ExpressionList(item);
-			SetNodeValue(ctx, items);
-		}
 
-		public override void ExitAssertionListItem(EParser.AssertionListItemContext ctx) {
-			IExpression item = this.GetNodeValue<IExpression>(ctx.item);
-			ExpressionList items = this.GetNodeValue<ExpressionList>(ctx.items);
-			items.add(item);
+		public override void ExitAssertion_list (EParser.Assertion_listContext ctx)
+		{
+			ExpressionList items = new ExpressionList();
+			foreach(ParserRuleContext rule in ctx.assertion()) {
+				IExpression item = this.GetNodeValue<IExpression>(rule);
+				items.add(item);
+			}
 			SetNodeValue(ctx, items);
 		}
 			
@@ -1051,8 +919,8 @@ namespace prompto.parser
 		
 		public override void ExitAssign_variable_statement (EParser.Assign_variable_statementContext ctx)
 		{
-			String name = this.GetNodeValue<String> (ctx.name);
-			IExpression exp = this.GetNodeValue<IExpression> (ctx.exp);
+			String name = this.GetNodeValue<String> (ctx.variable_identifier());
+			IExpression exp = this.GetNodeValue<IExpression> (ctx.expression());
 			SetNodeValue (ctx, new AssignVariableStatement (name, exp));
 		}
 
@@ -1067,7 +935,7 @@ namespace prompto.parser
 		
 		public override void ExitRootInstance (EParser.RootInstanceContext ctx)
 		{
-			String name = this.GetNodeValue<String> (ctx.name);
+			String name = this.GetNodeValue<String> (ctx.variable_identifier());
 			SetNodeValue (ctx, new VariableInstance (name));
 		}
 
@@ -1081,8 +949,8 @@ namespace prompto.parser
 		
 		public override void ExitChildInstance (EParser.ChildInstanceContext ctx)
 		{
-			IAssignableInstance parent = this.GetNodeValue<IAssignableInstance> (ctx.parent);
-			IAssignableSelector child = this.GetNodeValue<IAssignableSelector> (ctx.child);
+			IAssignableInstance parent = this.GetNodeValue<IAssignableInstance> (ctx.assignable_instance());
+			IAssignableSelector child = this.GetNodeValue<IAssignableSelector> (ctx.child_instance());
 			child.SetParent (parent);
 			SetNodeValue (ctx, child);
 		}
@@ -1108,20 +976,14 @@ namespace prompto.parser
 			SetNodeValue (ctx, exp);
 		}
 
-		
-		public override void ExitNativeStatementList (EParser.NativeStatementListContext ctx)
-		{
-			IStatement item = this.GetNodeValue<IStatement> (ctx.item);
-			StatementList items = new StatementList (item);
-			SetNodeValue (ctx, items);
-		}
 
-		
-		public override void ExitNativeStatementListItem (EParser.NativeStatementListItemContext ctx)
+		public override void ExitNative_statement_list (EParser.Native_statement_listContext ctx)
 		{
-			IStatement item = this.GetNodeValue<IStatement> (ctx.item);
-			StatementList items = this.GetNodeValue<StatementList> (ctx.items);
-			items.add (item);
+			StatementList items = new StatementList ();
+			foreach(ParserRuleContext rule in ctx.native_statement()) {
+				IStatement item = this.GetNodeValue<IStatement> (rule);
+				items.add (item);
+			}
 			SetNodeValue (ctx, items);
 		}
 
@@ -1350,28 +1212,28 @@ namespace prompto.parser
 		
 		public override void ExitJavaNativeStatement (EParser.JavaNativeStatementContext ctx)
 		{
-			JavaStatement stmt = this.GetNodeValue<JavaStatement> (ctx.stmt);
+			JavaStatement stmt = this.GetNodeValue<JavaStatement> (ctx.java_statement());
 			SetNodeValue (ctx, new JavaNativeCall (stmt));
 		}
 
 		
 		public override void ExitCSharpNativeStatement (EParser.CSharpNativeStatementContext ctx)
 		{
-			CSharpStatement stmt = this.GetNodeValue<CSharpStatement> (ctx.stmt);
+			CSharpStatement stmt = this.GetNodeValue<CSharpStatement> (ctx.csharp_statement());
 			SetNodeValue (ctx, new CSharpNativeCall (stmt));
 		}
 
 		
 		public override void ExitPython2NativeStatement (EParser.Python2NativeStatementContext ctx)
 		{
-			PythonStatement stmt = this.GetNodeValue<PythonStatement> (ctx.stmt);
+			PythonStatement stmt = this.GetNodeValue<PythonStatement> (ctx.python_native_statement());
 			SetNodeValue (ctx, new Python2NativeCall (stmt));
 		}
 
 		
 		public override void ExitPython3NativeStatement (EParser.Python3NativeStatementContext ctx)
 		{
-			PythonStatement stmt = this.GetNodeValue<PythonStatement> (ctx.stmt);
+			PythonStatement stmt = this.GetNodeValue<PythonStatement> (ctx.python_native_statement());
 			SetNodeValue (ctx, new Python3NativeCall (stmt));
 		}
 
@@ -1433,7 +1295,7 @@ namespace prompto.parser
 		
 		public override void ExitFullDeclarationList (EParser.FullDeclarationListContext ctx)
 		{
-			DeclarationList items = this.GetNodeValue<DeclarationList> (ctx.items);
+			DeclarationList items = this.GetNodeValue<DeclarationList> (ctx.declarations());
 			if (items == null)
 				items = new DeclarationList ();
 			SetNodeValue (ctx, items);
@@ -1466,43 +1328,16 @@ namespace prompto.parser
 			}
 		}
 
-
-		public override void ExitDeclarationList (EParser.DeclarationListContext ctx)
+		public override void ExitDeclarations (EParser.DeclarationsContext ctx)
 		{
-			IDeclaration item = this.GetNodeValue<IDeclaration> (ctx.item);
-			DeclarationList items = new DeclarationList (item);
+			DeclarationList items = new DeclarationList ();
+			foreach(ParserRuleContext rule in ctx.declaration()) {
+				IDeclaration item = this.GetNodeValue<IDeclaration> (rule);
+				items.Add (item);
+			}
 			SetNodeValue (ctx, items);
 		}
-
-		
-		public override void ExitDeclarationListItem (EParser.DeclarationListItemContext ctx)
-		{
-			IDeclaration item = this.GetNodeValue<IDeclaration> (ctx.item);
-			DeclarationList items = this.GetNodeValue<DeclarationList> (ctx.items);
-			items.Add (item);
-			SetNodeValue (ctx, items);
-		}
-
-		
-		public override void ExitNativeMethod (EParser.NativeMethodContext ctx)
-		{
-			IDeclaration decl = this.GetNodeValue<IDeclaration> (ctx.decl);
-			SetNodeValue (ctx, decl);
-		}
-
-		
-		public override void ExitConcreteMethod (EParser.ConcreteMethodContext ctx)
-		{
-			IDeclaration decl = this.GetNodeValue<IDeclaration> (ctx.decl);
-			SetNodeValue (ctx, decl);
-		}
-
-		
-		public override void ExitAbstractMethod (EParser.AbstractMethodContext ctx)
-		{
-			IDeclaration decl = this.GetNodeValue<IDeclaration> (ctx.decl);
-			SetNodeValue (ctx, decl);
-		}
+			
 
 		public override void ExitIteratorExpression(EParser.IteratorExpressionContext ctx) 
 		{
@@ -1641,8 +1476,8 @@ namespace prompto.parser
 		
 		public override void ExitPython_native_statement (EParser.Python_native_statementContext ctx)
 		{
-			PythonStatement stmt = this.GetNodeValue<PythonStatement> (ctx.stmt);
-			PythonModule module = this.GetNodeValue<PythonModule> (ctx.module);
+			PythonStatement stmt = this.GetNodeValue<PythonStatement> (ctx.python_statement());
+			PythonModule module = this.GetNodeValue<PythonModule> (ctx.python_module());
 			stmt.setModule (module);
 			SetNodeValue (ctx, stmt);
 		}
@@ -1838,28 +1673,14 @@ namespace prompto.parser
 		
 		public override void ExitResource_declaration (EParser.Resource_declarationContext ctx)
 		{
-			IDeclaration decl = this.GetNodeValue<IDeclaration> (ctx.decl);
+			IDeclaration decl = this.GetNodeValue<IDeclaration> (ctx.native_resource_declaration());
 			SetNodeValue (ctx, decl);
 		}
 
-		
-		public override void ExitEnumCategoryDeclaration (EParser.EnumCategoryDeclarationContext ctx)
-		{
-			IDeclaration decl = this.GetNodeValue<IDeclaration> (ctx.decl);
-			SetNodeValue (ctx, decl);
-		}
 
-		
-		public override void ExitEnumNativeDeclaration (EParser.EnumNativeDeclarationContext ctx)
-		{
-			IDeclaration decl = this.GetNodeValue<IDeclaration> (ctx.decl);
-			SetNodeValue (ctx, decl);
-		}
-
-		
 		public override void ExitParenthesis_expression (EParser.Parenthesis_expressionContext ctx)
 		{
-			IExpression exp = this.GetNodeValue<IExpression> (ctx.exp);
+			IExpression exp = this.GetNodeValue<IExpression> (ctx.expression());
 			SetNodeValue (ctx, new ParenthesisExpression (exp));
 		}
 
@@ -1870,19 +1691,14 @@ namespace prompto.parser
 			SetNodeValue (ctx, exp);
 		}
 
-		
-		public override void ExitNativeSymbolList (EParser.NativeSymbolListContext ctx)
-		{
-			NativeSymbol item = this.GetNodeValue<NativeSymbol> (ctx.item);
-			SetNodeValue (ctx, new NativeSymbolList (item));
-		}
 
-		
-		public override void ExitNativeSymbolListItem (EParser.NativeSymbolListItemContext ctx)
+		public override void ExitNative_symbol_list (EParser.Native_symbol_listContext ctx)
 		{
-			NativeSymbol item = this.GetNodeValue<NativeSymbol> (ctx.item);
-			NativeSymbolList items = this.GetNodeValue<NativeSymbolList> (ctx.items);
-			items.add (item);
+			NativeSymbolList items = new NativeSymbolList ();
+			foreach(ParserRuleContext rule in ctx.native_symbol()) {
+				NativeSymbol item = this.GetNodeValue<NativeSymbol> (rule);
+				items.add (item);
+			}
 			SetNodeValue (ctx, items);
 		}
 
@@ -1933,9 +1749,9 @@ namespace prompto.parser
 		
 		public override void ExitNamed_argument (EParser.Named_argumentContext ctx)
 		{
-			String name = this.GetNodeValue<String> (ctx.name);
+			String name = this.GetNodeValue<String> (ctx.variable_identifier());
 			UnresolvedArgument arg = new UnresolvedArgument (name);
-			IExpression exp = this.GetNodeValue<IExpression> (ctx.value);
+			IExpression exp = this.GetNodeValue<IExpression> (ctx.literal_expression());
 			arg.DefaultValue = exp;
 			SetNodeValue (ctx, arg);
 		}
@@ -2133,20 +1949,13 @@ namespace prompto.parser
 			SetNodeValue(ctx, new CommentStatement(ctx.GetText()));
 		}
 
-
-		
-		public override void ExitSwitchCaseStatementList (EParser.SwitchCaseStatementListContext ctx)
+		public override void ExitSwitch_case_statement_list (EParser.Switch_case_statement_listContext ctx)
 		{
-			SwitchCase item = this.GetNodeValue<SwitchCase> (ctx.item);
-			SetNodeValue (ctx, new SwitchCaseList (item));
-		}
-
-		
-		public override void ExitSwitchCaseStatementListItem (EParser.SwitchCaseStatementListItemContext ctx)
-		{
-			SwitchCase item = this.GetNodeValue<SwitchCase> (ctx.item);
-			SwitchCaseList items = this.GetNodeValue<SwitchCaseList> (ctx.items);
-			items.Add (item);
+			SwitchCaseList items = new SwitchCaseList ();
+			foreach(ParserRuleContext rule in ctx.switch_case_statement()) {
+				SwitchCase item = this.GetNodeValue<SwitchCase> (rule);
+				items.Add (item);
+			}
 			SetNodeValue (ctx, items);
 		}
 
@@ -2171,29 +1980,24 @@ namespace prompto.parser
 		
 		public override void ExitLiteralSetLiteral (EParser.LiteralSetLiteralContext ctx)
 		{
-			ExpressionList items = this.GetNodeValue<ExpressionList>(ctx.exp);
+			ExpressionList items = this.GetNodeValue<ExpressionList>(ctx.literal_list_literal());
 			SetNodeValue(ctx, new SetLiteral(items));
 		}
 
 		public override void ExitLiteralListLiteral (EParser.LiteralListLiteralContext ctx)
 		{
-			ExpressionList exp = this.GetNodeValue<ExpressionList> (ctx.exp);
-			SetNodeValue (ctx, new ListLiteral (exp));
+			ExpressionList exp = this.GetNodeValue<ExpressionList> (ctx.literal_list_literal());
+			SetNodeValue (ctx, new ListLiteral (exp, false));
 		}
 
-		
-		public override void ExitLiteralList (EParser.LiteralListContext ctx)
-		{
-			IExpression item = this.GetNodeValue<IExpression> (ctx.item);
-			SetNodeValue (ctx, new ExpressionList (item));
-		}
 
-		
-		public override void ExitLiteralListItem (EParser.LiteralListItemContext ctx)
+		public override void ExitLiteral_list_literal (EParser.Literal_list_literalContext ctx)
 		{
-			ExpressionList items = this.GetNodeValue<ExpressionList> (ctx.items);
-			IExpression item = this.GetNodeValue<IExpression> (ctx.item);
-			items.add (item);
+			ExpressionList items = new ExpressionList ();
+			foreach(ParserRuleContext rule in ctx.atomic_literal()) {
+				IExpression item = this.GetNodeValue<IExpression> (rule);
+				items.add (item);
+			}
 			SetNodeValue (ctx, items);
 		}
 
@@ -2215,14 +2019,14 @@ namespace prompto.parser
 
 		public override void ExitIsATypeExpression (EParser.IsATypeExpressionContext ctx)
 		{
-			IType type = this.GetNodeValue<IType> (ctx.typ);
+			IType type = this.GetNodeValue<IType> (ctx.category_or_any_type());
 			IExpression exp = new TypeExpression (type);
 			SetNodeValue (ctx, exp);
 		}
 
 		public override void ExitIsOtherExpression (EParser.IsOtherExpressionContext ctx)
 		{
-			IExpression exp = this.GetNodeValue<IExpression> (ctx.exp);
+			IExpression exp = this.GetNodeValue<IExpression> (ctx.expression());
 			SetNodeValue (ctx, exp);
 		}
 
@@ -2571,19 +2375,14 @@ namespace prompto.parser
 			SetNodeValue (ctx, new CategorySymbol (name, args));
 		}
 
-		
-		public override void ExitCategorySymbolList (EParser.CategorySymbolListContext ctx)
-		{
-			CategorySymbol item = this.GetNodeValue<CategorySymbol> (ctx.item);
-			SetNodeValue (ctx, new CategorySymbolList (item));
-		}
 
-		
-		public override void ExitCategorySymbolListItem (EParser.CategorySymbolListItemContext ctx)
+		public override void ExitCategory_symbol_list (EParser.Category_symbol_listContext ctx)
 		{
-			CategorySymbol item = this.GetNodeValue<CategorySymbol> (ctx.item);
-			CategorySymbolList items = this.GetNodeValue<CategorySymbolList> (ctx.items);
-			items.add (item);
+			CategorySymbolList items = new CategorySymbolList ();
+			foreach(ParserRuleContext rule in ctx.category_symbol()) {
+				CategorySymbol item = this.GetNodeValue<CategorySymbol> (rule);
+				items.add (item);
+			}
 			SetNodeValue (ctx, items);
 		}
 
@@ -2649,24 +2448,18 @@ namespace prompto.parser
 		
 		public override void ExitAnyListType (EParser.AnyListTypeContext ctx)
 		{
-			IType type = this.GetNodeValue<IType> (ctx.typ);
+			IType type = this.GetNodeValue<IType> (ctx.any_type());
 			SetNodeValue (ctx, new ListType (type));
 		}
 
 		
 		public override void ExitAnyDictType (EParser.AnyDictTypeContext ctx)
 		{
-			IType type = this.GetNodeValue<IType> (ctx.typ);
+			IType type = this.GetNodeValue<IType> (ctx.any_type());
 			SetNodeValue (ctx, new DictType (type));
 		}
 
 		
-		public override void ExitAnyArgumentType (EParser.AnyArgumentTypeContext ctx)
-		{
-			IType type = this.GetNodeValue<IType> (ctx.typ);
-			SetNodeValue (ctx, type);
-		}
-
 		public override void ExitCastExpression (EParser.CastExpressionContext ctx)
 		{
 			IExpression left = this.GetNodeValue<IExpression> (ctx.left);
@@ -2689,19 +2482,13 @@ namespace prompto.parser
 			SetNodeValue (ctx, new CollectionSwitchCase (exp, stmts));
 		}
 
-		
-		public override void ExitCatchStatementList (EParser.CatchStatementListContext ctx)
+		public override void ExitCatch_statement_list (EParser.Catch_statement_listContext ctx)
 		{
-			SwitchCase item = this.GetNodeValue<SwitchCase> (ctx.item);
-			SetNodeValue (ctx, new SwitchCaseList (item));
-		}
-
-		
-		public override void ExitCatchStatementListItem (EParser.CatchStatementListItemContext ctx)
-		{
-			SwitchCase item = this.GetNodeValue<SwitchCase> (ctx.item);
-			SwitchCaseList items = this.GetNodeValue<SwitchCaseList> (ctx.items);
-			items.Add (item);
+			SwitchCaseList items = new SwitchCaseList ();
+			foreach(ParserRuleContext rule in ctx.catch_statement()) {
+				SwitchCase item = this.GetNodeValue<SwitchCase> (rule);
+			 	items.Add (item);
+			}
 			SetNodeValue (ctx, items);
 		}
 
@@ -2845,8 +2632,8 @@ namespace prompto.parser
 		
 		public override void ExitJavascript_native_statement (EParser.Javascript_native_statementContext ctx)
 		{
-			JavaScriptStatement stmt = this.GetNodeValue<JavaScriptStatement> (ctx.stmt);
-			JavaScriptModule module = this.GetNodeValue<JavaScriptModule> (ctx.module);
+			JavaScriptStatement stmt = this.GetNodeValue<JavaScriptStatement> (ctx.javascript_statement());
+			JavaScriptModule module = this.GetNodeValue<JavaScriptModule> (ctx.javascript_module());
 			stmt.setModule (module);
 			SetNodeValue (ctx, stmt);
 		}
@@ -2907,7 +2694,7 @@ namespace prompto.parser
 
 		public override void ExitJavaScriptNativeStatement (EParser.JavaScriptNativeStatementContext ctx)
 		{
-			JavaScriptStatement stmt = this.GetNodeValue<JavaScriptStatement> (ctx.stmt);
+			JavaScriptStatement stmt = this.GetNodeValue<JavaScriptStatement> (ctx.javascript_native_statement());
 			SetNodeValue (ctx, new JavaScriptNativeCall (stmt));
 		}
 
@@ -2946,5 +2733,56 @@ namespace prompto.parser
 			SetNodeValue (ctx, new JavaScriptStatement (exp, false));
 		}
 
+		public override void ExitLiteral_expression (EParser.Literal_expressionContext ctx)
+		{
+			IExpression exp = this.GetNodeValue<IExpression>(ctx.GetChild(0));
+			SetNodeValue (ctx, exp); 	
+		}
+
+		public override void ExitMethod_declaration (EParser.Method_declarationContext ctx)
+		{
+			IDeclaration exp = this.GetNodeValue<IDeclaration>(ctx.GetChild(0));
+			SetNodeValue (ctx, exp); 	
+		}
+
+		public override void ExitMethod_identifier (EParser.Method_identifierContext ctx)
+		{
+			Object exp = this.GetNodeValue<Object>(ctx.GetChild(0));
+			SetNodeValue (ctx, exp); 	
+		}
+
+		public override void ExitOperator_argument (EParser.Operator_argumentContext ctx)
+		{
+			IArgument exp = this.GetNodeValue<IArgument>(ctx.GetChild(0));
+			SetNodeValue (ctx, exp); 	
+		}
+
+		public override void ExitCategory_or_any_type (EParser.Category_or_any_typeContext ctx)
+		{
+			IType exp = this.GetNodeValue<IType>(ctx.GetChild(0));
+			SetNodeValue (ctx, exp); 	
+		}
+
+		public override void ExitCollection_literal (EParser.Collection_literalContext ctx)
+		{
+			IExpression exp = this.GetNodeValue<IExpression>(ctx.GetChild(0));
+			SetNodeValue (ctx, exp); 	
+		}
+
+		public override void ExitCursorType (EParser.CursorTypeContext context)
+		{
+			throw new NotImplementedException();
+		}
+
+		public override void ExitEnum_declaration (EParser.Enum_declarationContext ctx)
+		{
+			IDeclaration exp = this.GetNodeValue<IDeclaration>(ctx.GetChild(0));
+			SetNodeValue (ctx, exp); 	
+		}
+
+		public override void ExitSymbol_list (EParser.Symbol_listContext context)
+		{
+			throw new NotImplementedException();
+		}
 	}
 }

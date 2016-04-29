@@ -10,7 +10,6 @@ namespace prompto.value
 {
 	public interface IContainer : IIterable
     {
-        bool HasItem(Context context, IValue iValue);
-        IValue GetItem(Context context, IValue item);
+		bool HasItem(Context context, IValue item);
    }
 }

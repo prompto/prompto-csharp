@@ -55,7 +55,7 @@ namespace prompto.expression
         public IType check (Context context)
 		{
 			IType parentType = checkParent(context);
-			return parentType.CheckMember (context, name);
+			return parentType.checkMember (context, name);
 		}
 
 		override

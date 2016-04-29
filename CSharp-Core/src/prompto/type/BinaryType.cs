@@ -14,14 +14,14 @@ namespace prompto.type
 		}
 
 	
-		public override IType CheckMember (Context context, String name)
+		public override IType checkMember (Context context, String name)
 		{
 			if ("name" == name)
 				return TextType.Instance;
 			else if ("format" == name)
 				return TextType.Instance;
 			else
-				return base.CheckMember (context, name);
+				return base.checkMember (context, name);
 		}
 
 		public override Type ToCSharpType ()

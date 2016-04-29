@@ -24,8 +24,8 @@ namespace prompto.type
         {
         }
 
-        override
-        public IType CheckMember(Context context, String name)
+        
+		public override IType checkMember(Context context, String name)
         {
             return AnyType.Instance;
         }

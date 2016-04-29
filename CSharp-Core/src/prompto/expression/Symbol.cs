@@ -100,6 +100,14 @@ namespace prompto.expression
 			throw new NotSupportedException("No member support for " + this.GetType().Name);
 		}
 
+		public IValue GetItem(Context context, IValue item) {
+			throw new NotSupportedException("No item support for " + this.GetType().Name);
+		}
+
+		public void SetItem(Context context, IValue item, IValue value) {
+			throw new NotSupportedException("No item support for " + this.GetType().Name);
+		}
+
 		public virtual void ToJson (Context context, JsonWriter generator, Object instanceId, String fieldName, Dictionary<String, byte[]> binaries)
 		{
 			throw new NotSupportedException("No ToJson support for " + this.GetType().Name);

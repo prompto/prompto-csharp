@@ -46,6 +46,12 @@ namespace prompto.runtime.e
 		}
 
 		[Test]
+		public void testNamedItem()
+		{
+			CheckOutput("documents/namedItem.pec");
+		}
+
+		[Test]
 		public void testVariable()
 		{
 			CheckOutput("documents/variable.pec");

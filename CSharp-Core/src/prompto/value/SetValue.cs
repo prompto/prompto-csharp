@@ -56,7 +56,7 @@ namespace prompto.value
 			return items.Contains (value);
 		}
 
-		public IValue GetItem (Context context, IValue index)
+		public override IValue GetItem (Context context, IValue index)
 		{
 			if (index is Integer) {
 				int idx = (int)((Integer)index).IntegerValue - 1;

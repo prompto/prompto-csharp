@@ -93,8 +93,8 @@ namespace prompto.type
             return base.checkDivide(context, other);
         }
 
-        override
-        public IType CheckModulo(Context context, IType other)
+        
+		public override IType checkModulo(Context context, IType other)
         {
             if (other is IntegerType)
                 return IntegerType.Instance;
@@ -152,15 +152,15 @@ namespace prompto.type
                 return (IValue)value; // TODO for now
         }
 
-        override
-    public IType CheckMember(Context context, String name)
+        
+		public override IType checkMember(Context context, String name)
         {
 		if(name == "min")
 			return this;
 		else if(name=="max")
 			return this;
 		else
-            return base.CheckMember(context, name);
+            return base.checkMember(context, name);
 	}
 
 	override

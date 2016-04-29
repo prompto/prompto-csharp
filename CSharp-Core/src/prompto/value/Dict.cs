@@ -148,8 +148,15 @@ namespace prompto.value
 				return value;
             }
             else
-                throw new NotSupportedException("No such item:" + index.ToString());
+				throw new InvalidDataError("No such item:" + index.ToString());
         }
+
+		public virtual void SetItem (Context context, IValue item, IValue value)
+		{
+			if (!(item is Text))
+				throw new InvalidDataError ("No such item:" + item.ToString ());
+			this [(Text)item] = value;
+		}
 
         public virtual Object ConvertTo(Type type)
         {

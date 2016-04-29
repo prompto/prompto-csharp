@@ -4,6 +4,7 @@ using prompto.parser;
 using prompto.expression;
 using prompto.utils;
 using prompto.value;
+using prompto.type;
 
 
 namespace prompto.instance
@@ -12,9 +13,9 @@ namespace prompto.instance
     public interface IAssignableInstance
     {
 
-        void checkAssignValue(Context context, IExpression expression);
-        void checkAssignMember(Context context, String name);
-        void checkAssignElement(Context context);
+        IType checkAssignValue(Context context, IExpression expression);
+		IType checkAssignMember(Context context, String name);
+		IType checkAssignItem(Context context, IType itemType);
         void assign(Context context, IExpression expression);
         IValue interpret(Context context);
 		void ToDialect(CodeWriter writer, IExpression expression);

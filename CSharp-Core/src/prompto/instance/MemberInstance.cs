@@ -5,6 +5,7 @@ using prompto.parser;
 using prompto.value;
 using prompto.expression;
 using prompto.utils;
+using prompto.type;
 
 
 namespace prompto.instance {
@@ -42,22 +43,23 @@ namespace prompto.instance {
 			writer.append(name);
 		}
 
-        public void checkAssignValue(Context context, IExpression expression)
+		public IType checkAssignValue(Context context, IExpression expression)
         {
-            parent.checkAssignMember(context, name);
-            expression.check(context);
+			IType type = parent.checkAssignMember(context, name);
+			IType actualType = expression.check(context);
+			actualType.checkAssignableTo(context, type);
+			return type;
+		}
+
+		public IType checkAssignMember(Context context, String memberName)
+        {
+            return parent.checkAssignMember(context, name);
         }
 
-        public void checkAssignMember(Context context, String memberName)
+		public IType checkAssignItem(Context context, IType itemType)
         {
-            parent.checkAssignMember(context, name);
-        }
-
-        public void checkAssignElement(Context context)
-        {
-            // TODO Auto-generated method stub
-
-        }
+			return AnyType.Instance; // TODO
+		}
 
         public void assign(Context context, IExpression expression)
         {

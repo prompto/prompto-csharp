@@ -79,7 +79,7 @@ namespace prompto.type
 			throw new SyntaxError ("Cannot int divide " + this.GetName () + " with " + other.GetName ());
 		}
 
-		public virtual IType CheckModulo (Context context, IType other)
+		public virtual IType checkModulo (Context context, IType other)
 		{
 			throw new SyntaxError ("Cannot modulo " + this.GetName () + " with " + other.GetName ());
 		}
@@ -114,7 +114,7 @@ namespace prompto.type
 			throw new SyntaxError ("Cannot iterate over " + this.GetName ());
 		}
 
-		public virtual IType CheckMember (Context context, String name)
+		public virtual IType checkMember (Context context, String name)
 		{
 			throw new SyntaxError (this.GetName () + " has no member support for:" + name);
 		}

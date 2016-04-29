@@ -32,7 +32,7 @@ namespace prompto.expression
         {
             IType lt = left.check(context);
             IType rt = right.check(context);
-            return lt.CheckModulo(context, rt);
+            return lt.checkModulo(context, rt);
         }
 
 		public IValue interpret(Context context)

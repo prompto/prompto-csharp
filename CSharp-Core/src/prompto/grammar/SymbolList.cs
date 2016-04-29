@@ -15,6 +15,10 @@ namespace prompto.grammar
 
 		IType type = MissingType.Instance;
 
+		public SymbolList ()
+		{
+		}
+
 		public SymbolList (T symbol)
 		{
 			this.Add (symbol);
@@ -42,12 +46,17 @@ namespace prompto.grammar
 
 		public bool HasItem(Context context, IValue iValue)
 		{
-			return false; // TODO
+			throw new NotImplementedException ();
 		}
 
 		public IValue GetItem(Context context, IValue item)
 		{
-			return null; // TODO
+			throw new NotImplementedException ();
+		}
+
+		public void SetItem(Context context, IValue item, IValue value)
+		{
+			throw new NotImplementedException ();
 		}
 
 		public IEnumerable<IValue> GetEnumerable(Context context)

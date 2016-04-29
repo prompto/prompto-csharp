@@ -43,10 +43,9 @@ public class SetLiteral : Literal<SetValue> {
 				item = interpretPromotion (item);
 				set.Add (item);
 			}; 
-			value = new SetValue(itemType, set);
-			// don't dispose of expressions, they are required by translation 
-		}
-		return value;
+			return new SetValue(itemType, set);
+		} else
+			return value;
 	}
 
 	private IValue interpretPromotion(IValue item) {

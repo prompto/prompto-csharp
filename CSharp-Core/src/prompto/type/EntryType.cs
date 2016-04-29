@@ -15,15 +15,15 @@ public class EntryType : BaseType {
 		this.itemType = itemType;
 	}
 
-    override
-    public IType CheckMember(Context context, String name)
+    
+		public override IType checkMember(Context context, String name)
     {
         if ("key" == name)
             return TextType.Instance;
         else if ("value" == name)
             return itemType;
         else
-            return base.CheckMember(context, name);
+            return base.checkMember(context, name);
     }
     
     public IType getItemType()

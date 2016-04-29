@@ -57,10 +57,7 @@ namespace prompto.expression
 			IValue i = item.interpret(context);
 			if (i == null || i == NullValue.Instance)
                 throw new NullReferenceError();
-            if (o is IContainer && i is IValue)
-                return ((IContainer)o).GetItem(context, i);
-            else
-                throw new SyntaxError("Illegal: " + parent.GetType().Name + "[" + item.GetType().Name + "]");
+            return o.GetItem(context, i);
          }
     }
 }

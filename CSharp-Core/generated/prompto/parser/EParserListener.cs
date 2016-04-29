@@ -1646,29 +1646,15 @@ public interface IEParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitFullDeclarationList([NotNull] EParser.FullDeclarationListContext context);
 	/// <summary>
-	/// Enter a parse tree produced by the <c>DeclarationListItem</c>
-	/// labeled alternative in <see cref="EParser.declarations"/>.
+	/// Enter a parse tree produced by <see cref="EParser.declarations"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterDeclarationListItem([NotNull] EParser.DeclarationListItemContext context);
+	void EnterDeclarations([NotNull] EParser.DeclarationsContext context);
 	/// <summary>
-	/// Exit a parse tree produced by the <c>DeclarationListItem</c>
-	/// labeled alternative in <see cref="EParser.declarations"/>.
+	/// Exit a parse tree produced by <see cref="EParser.declarations"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitDeclarationListItem([NotNull] EParser.DeclarationListItemContext context);
-	/// <summary>
-	/// Enter a parse tree produced by the <c>DeclarationList</c>
-	/// labeled alternative in <see cref="EParser.declarations"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterDeclarationList([NotNull] EParser.DeclarationListContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>DeclarationList</c>
-	/// labeled alternative in <see cref="EParser.declarations"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitDeclarationList([NotNull] EParser.DeclarationListContext context);
+	void ExitDeclarations([NotNull] EParser.DeclarationsContext context);
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="EParser.declaration"/>.
 	/// </summary>
@@ -1690,101 +1676,45 @@ public interface IEParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitResource_declaration([NotNull] EParser.Resource_declarationContext context);
 	/// <summary>
-	/// Enter a parse tree produced by the <c>EnumCategoryDeclaration</c>
-	/// labeled alternative in <see cref="EParser.enum_declaration"/>.
+	/// Enter a parse tree produced by <see cref="EParser.enum_declaration"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterEnumCategoryDeclaration([NotNull] EParser.EnumCategoryDeclarationContext context);
+	void EnterEnum_declaration([NotNull] EParser.Enum_declarationContext context);
 	/// <summary>
-	/// Exit a parse tree produced by the <c>EnumCategoryDeclaration</c>
-	/// labeled alternative in <see cref="EParser.enum_declaration"/>.
+	/// Exit a parse tree produced by <see cref="EParser.enum_declaration"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitEnumCategoryDeclaration([NotNull] EParser.EnumCategoryDeclarationContext context);
+	void ExitEnum_declaration([NotNull] EParser.Enum_declarationContext context);
 	/// <summary>
-	/// Enter a parse tree produced by the <c>EnumNativeDeclaration</c>
-	/// labeled alternative in <see cref="EParser.enum_declaration"/>.
+	/// Enter a parse tree produced by <see cref="EParser.native_symbol_list"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterEnumNativeDeclaration([NotNull] EParser.EnumNativeDeclarationContext context);
+	void EnterNative_symbol_list([NotNull] EParser.Native_symbol_listContext context);
 	/// <summary>
-	/// Exit a parse tree produced by the <c>EnumNativeDeclaration</c>
-	/// labeled alternative in <see cref="EParser.enum_declaration"/>.
+	/// Exit a parse tree produced by <see cref="EParser.native_symbol_list"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitEnumNativeDeclaration([NotNull] EParser.EnumNativeDeclarationContext context);
+	void ExitNative_symbol_list([NotNull] EParser.Native_symbol_listContext context);
 	/// <summary>
-	/// Enter a parse tree produced by the <c>NativeSymbolList</c>
-	/// labeled alternative in <see cref="EParser.native_symbol_list"/>.
+	/// Enter a parse tree produced by <see cref="EParser.category_symbol_list"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterNativeSymbolList([NotNull] EParser.NativeSymbolListContext context);
+	void EnterCategory_symbol_list([NotNull] EParser.Category_symbol_listContext context);
 	/// <summary>
-	/// Exit a parse tree produced by the <c>NativeSymbolList</c>
-	/// labeled alternative in <see cref="EParser.native_symbol_list"/>.
+	/// Exit a parse tree produced by <see cref="EParser.category_symbol_list"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitNativeSymbolList([NotNull] EParser.NativeSymbolListContext context);
+	void ExitCategory_symbol_list([NotNull] EParser.Category_symbol_listContext context);
 	/// <summary>
-	/// Enter a parse tree produced by the <c>NativeSymbolListItem</c>
-	/// labeled alternative in <see cref="EParser.native_symbol_list"/>.
+	/// Enter a parse tree produced by <see cref="EParser.symbol_list"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterNativeSymbolListItem([NotNull] EParser.NativeSymbolListItemContext context);
+	void EnterSymbol_list([NotNull] EParser.Symbol_listContext context);
 	/// <summary>
-	/// Exit a parse tree produced by the <c>NativeSymbolListItem</c>
-	/// labeled alternative in <see cref="EParser.native_symbol_list"/>.
+	/// Exit a parse tree produced by <see cref="EParser.symbol_list"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitNativeSymbolListItem([NotNull] EParser.NativeSymbolListItemContext context);
-	/// <summary>
-	/// Enter a parse tree produced by the <c>CategorySymbolListItem</c>
-	/// labeled alternative in <see cref="EParser.category_symbol_list"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterCategorySymbolListItem([NotNull] EParser.CategorySymbolListItemContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>CategorySymbolListItem</c>
-	/// labeled alternative in <see cref="EParser.category_symbol_list"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitCategorySymbolListItem([NotNull] EParser.CategorySymbolListItemContext context);
-	/// <summary>
-	/// Enter a parse tree produced by the <c>CategorySymbolList</c>
-	/// labeled alternative in <see cref="EParser.category_symbol_list"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterCategorySymbolList([NotNull] EParser.CategorySymbolListContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>CategorySymbolList</c>
-	/// labeled alternative in <see cref="EParser.category_symbol_list"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitCategorySymbolList([NotNull] EParser.CategorySymbolListContext context);
-	/// <summary>
-	/// Enter a parse tree produced by the <c>SymbolList</c>
-	/// labeled alternative in <see cref="EParser.symbol_list"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterSymbolList([NotNull] EParser.SymbolListContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>SymbolList</c>
-	/// labeled alternative in <see cref="EParser.symbol_list"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitSymbolList([NotNull] EParser.SymbolListContext context);
-	/// <summary>
-	/// Enter a parse tree produced by the <c>SymbolListItem</c>
-	/// labeled alternative in <see cref="EParser.symbol_list"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterSymbolListItem([NotNull] EParser.SymbolListItemContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>SymbolListItem</c>
-	/// labeled alternative in <see cref="EParser.symbol_list"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitSymbolListItem([NotNull] EParser.SymbolListItemContext context);
+	void ExitSymbol_list([NotNull] EParser.Symbol_listContext context);
 	/// <summary>
 	/// Enter a parse tree produced by the <c>MatchingList</c>
 	/// labeled alternative in <see cref="EParser.attribute_constraint"/>.
@@ -1866,29 +1796,15 @@ public interface IEParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitSet_literal([NotNull] EParser.Set_literalContext context);
 	/// <summary>
-	/// Enter a parse tree produced by the <c>ValueList</c>
-	/// labeled alternative in <see cref="EParser.expression_list"/>.
+	/// Enter a parse tree produced by <see cref="EParser.expression_list"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterValueList([NotNull] EParser.ValueListContext context);
+	void EnterExpression_list([NotNull] EParser.Expression_listContext context);
 	/// <summary>
-	/// Exit a parse tree produced by the <c>ValueList</c>
-	/// labeled alternative in <see cref="EParser.expression_list"/>.
+	/// Exit a parse tree produced by <see cref="EParser.expression_list"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitValueList([NotNull] EParser.ValueListContext context);
-	/// <summary>
-	/// Enter a parse tree produced by the <c>ValueListItem</c>
-	/// labeled alternative in <see cref="EParser.expression_list"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterValueListItem([NotNull] EParser.ValueListItemContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>ValueListItem</c>
-	/// labeled alternative in <see cref="EParser.expression_list"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitValueListItem([NotNull] EParser.ValueListItemContext context);
+	void ExitExpression_list([NotNull] EParser.Expression_listContext context);
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="EParser.range_literal"/>.
 	/// </summary>
@@ -2230,53 +2146,25 @@ public interface IEParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitSingletonCategoryDeclaration([NotNull] EParser.SingletonCategoryDeclarationContext context);
 	/// <summary>
-	/// Enter a parse tree produced by the <c>TypeIdentifierList</c>
-	/// labeled alternative in <see cref="EParser.type_identifier_list"/>.
+	/// Enter a parse tree produced by <see cref="EParser.type_identifier_list"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterTypeIdentifierList([NotNull] EParser.TypeIdentifierListContext context);
+	void EnterType_identifier_list([NotNull] EParser.Type_identifier_listContext context);
 	/// <summary>
-	/// Exit a parse tree produced by the <c>TypeIdentifierList</c>
-	/// labeled alternative in <see cref="EParser.type_identifier_list"/>.
+	/// Exit a parse tree produced by <see cref="EParser.type_identifier_list"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitTypeIdentifierList([NotNull] EParser.TypeIdentifierListContext context);
+	void ExitType_identifier_list([NotNull] EParser.Type_identifier_listContext context);
 	/// <summary>
-	/// Enter a parse tree produced by the <c>TypeIdentifierListItem</c>
-	/// labeled alternative in <see cref="EParser.type_identifier_list"/>.
+	/// Enter a parse tree produced by <see cref="EParser.method_identifier"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterTypeIdentifierListItem([NotNull] EParser.TypeIdentifierListItemContext context);
+	void EnterMethod_identifier([NotNull] EParser.Method_identifierContext context);
 	/// <summary>
-	/// Exit a parse tree produced by the <c>TypeIdentifierListItem</c>
-	/// labeled alternative in <see cref="EParser.type_identifier_list"/>.
+	/// Exit a parse tree produced by <see cref="EParser.method_identifier"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitTypeIdentifierListItem([NotNull] EParser.TypeIdentifierListItemContext context);
-	/// <summary>
-	/// Enter a parse tree produced by the <c>MethodVariableIdentifier</c>
-	/// labeled alternative in <see cref="EParser.method_identifier"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterMethodVariableIdentifier([NotNull] EParser.MethodVariableIdentifierContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>MethodVariableIdentifier</c>
-	/// labeled alternative in <see cref="EParser.method_identifier"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitMethodVariableIdentifier([NotNull] EParser.MethodVariableIdentifierContext context);
-	/// <summary>
-	/// Enter a parse tree produced by the <c>MethodTypeIdentifier</c>
-	/// labeled alternative in <see cref="EParser.method_identifier"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterMethodTypeIdentifier([NotNull] EParser.MethodTypeIdentifierContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>MethodTypeIdentifier</c>
-	/// labeled alternative in <see cref="EParser.method_identifier"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitMethodTypeIdentifier([NotNull] EParser.MethodTypeIdentifierContext context);
+	void ExitMethod_identifier([NotNull] EParser.Method_identifierContext context);
 	/// <summary>
 	/// Enter a parse tree produced by the <c>VariableIdentifier</c>
 	/// labeled alternative in <see cref="EParser.identifier"/>.
@@ -2354,29 +2242,15 @@ public interface IEParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitSymbol_identifier([NotNull] EParser.Symbol_identifierContext context);
 	/// <summary>
-	/// Enter a parse tree produced by the <c>ArgumentListItem</c>
-	/// labeled alternative in <see cref="EParser.argument_list"/>.
+	/// Enter a parse tree produced by <see cref="EParser.argument_list"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterArgumentListItem([NotNull] EParser.ArgumentListItemContext context);
+	void EnterArgument_list([NotNull] EParser.Argument_listContext context);
 	/// <summary>
-	/// Exit a parse tree produced by the <c>ArgumentListItem</c>
-	/// labeled alternative in <see cref="EParser.argument_list"/>.
+	/// Exit a parse tree produced by <see cref="EParser.argument_list"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitArgumentListItem([NotNull] EParser.ArgumentListItemContext context);
-	/// <summary>
-	/// Enter a parse tree produced by the <c>ArgumentList</c>
-	/// labeled alternative in <see cref="EParser.argument_list"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterArgumentList([NotNull] EParser.ArgumentListContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>ArgumentList</c>
-	/// labeled alternative in <see cref="EParser.argument_list"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitArgumentList([NotNull] EParser.ArgumentListContext context);
+	void ExitArgument_list([NotNull] EParser.Argument_listContext context);
 	/// <summary>
 	/// Enter a parse tree produced by the <c>CodeArgument</c>
 	/// labeled alternative in <see cref="EParser.argument"/>.
@@ -2402,29 +2276,15 @@ public interface IEParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitOperatorArgument([NotNull] EParser.OperatorArgumentContext context);
 	/// <summary>
-	/// Enter a parse tree produced by the <c>NamedArgument</c>
-	/// labeled alternative in <see cref="EParser.operator_argument"/>.
+	/// Enter a parse tree produced by <see cref="EParser.operator_argument"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterNamedArgument([NotNull] EParser.NamedArgumentContext context);
+	void EnterOperator_argument([NotNull] EParser.Operator_argumentContext context);
 	/// <summary>
-	/// Exit a parse tree produced by the <c>NamedArgument</c>
-	/// labeled alternative in <see cref="EParser.operator_argument"/>.
+	/// Exit a parse tree produced by <see cref="EParser.operator_argument"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitNamedArgument([NotNull] EParser.NamedArgumentContext context);
-	/// <summary>
-	/// Enter a parse tree produced by the <c>TypedArgument</c>
-	/// labeled alternative in <see cref="EParser.operator_argument"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterTypedArgument([NotNull] EParser.TypedArgumentContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>TypedArgument</c>
-	/// labeled alternative in <see cref="EParser.operator_argument"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitTypedArgument([NotNull] EParser.TypedArgumentContext context);
+	void ExitOperator_argument([NotNull] EParser.Operator_argumentContext context);
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="EParser.named_argument"/>.
 	/// </summary>
@@ -2446,29 +2306,15 @@ public interface IEParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitCode_argument([NotNull] EParser.Code_argumentContext context);
 	/// <summary>
-	/// Enter a parse tree produced by the <c>CategoryArgumentType</c>
-	/// labeled alternative in <see cref="EParser.category_or_any_type"/>.
+	/// Enter a parse tree produced by <see cref="EParser.category_or_any_type"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterCategoryArgumentType([NotNull] EParser.CategoryArgumentTypeContext context);
+	void EnterCategory_or_any_type([NotNull] EParser.Category_or_any_typeContext context);
 	/// <summary>
-	/// Exit a parse tree produced by the <c>CategoryArgumentType</c>
-	/// labeled alternative in <see cref="EParser.category_or_any_type"/>.
+	/// Exit a parse tree produced by <see cref="EParser.category_or_any_type"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitCategoryArgumentType([NotNull] EParser.CategoryArgumentTypeContext context);
-	/// <summary>
-	/// Enter a parse tree produced by the <c>AnyArgumentType</c>
-	/// labeled alternative in <see cref="EParser.category_or_any_type"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterAnyArgumentType([NotNull] EParser.AnyArgumentTypeContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>AnyArgumentType</c>
-	/// labeled alternative in <see cref="EParser.category_or_any_type"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitAnyArgumentType([NotNull] EParser.AnyArgumentTypeContext context);
+	void ExitCategory_or_any_type([NotNull] EParser.Category_or_any_typeContext context);
 	/// <summary>
 	/// Enter a parse tree produced by the <c>AnyListType</c>
 	/// labeled alternative in <see cref="EParser.any_type"/>.
@@ -2506,29 +2352,15 @@ public interface IEParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitAnyDictType([NotNull] EParser.AnyDictTypeContext context);
 	/// <summary>
-	/// Enter a parse tree produced by the <c>CategoryMethodListItem</c>
-	/// labeled alternative in <see cref="EParser.member_method_declaration_list"/>.
+	/// Enter a parse tree produced by <see cref="EParser.member_method_declaration_list"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterCategoryMethodListItem([NotNull] EParser.CategoryMethodListItemContext context);
+	void EnterMember_method_declaration_list([NotNull] EParser.Member_method_declaration_listContext context);
 	/// <summary>
-	/// Exit a parse tree produced by the <c>CategoryMethodListItem</c>
-	/// labeled alternative in <see cref="EParser.member_method_declaration_list"/>.
+	/// Exit a parse tree produced by <see cref="EParser.member_method_declaration_list"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitCategoryMethodListItem([NotNull] EParser.CategoryMethodListItemContext context);
-	/// <summary>
-	/// Enter a parse tree produced by the <c>CategoryMethodList</c>
-	/// labeled alternative in <see cref="EParser.member_method_declaration_list"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterCategoryMethodList([NotNull] EParser.CategoryMethodListContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>CategoryMethodList</c>
-	/// labeled alternative in <see cref="EParser.member_method_declaration_list"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitCategoryMethodList([NotNull] EParser.CategoryMethodListContext context);
+	void ExitMember_method_declaration_list([NotNull] EParser.Member_method_declaration_listContext context);
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="EParser.member_method_declaration"/>.
 	/// </summary>
@@ -2540,29 +2372,15 @@ public interface IEParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitMember_method_declaration([NotNull] EParser.Member_method_declarationContext context);
 	/// <summary>
-	/// Enter a parse tree produced by the <c>NativeCategoryMethodList</c>
-	/// labeled alternative in <see cref="EParser.native_member_method_declaration_list"/>.
+	/// Enter a parse tree produced by <see cref="EParser.native_member_method_declaration_list"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterNativeCategoryMethodList([NotNull] EParser.NativeCategoryMethodListContext context);
+	void EnterNative_member_method_declaration_list([NotNull] EParser.Native_member_method_declaration_listContext context);
 	/// <summary>
-	/// Exit a parse tree produced by the <c>NativeCategoryMethodList</c>
-	/// labeled alternative in <see cref="EParser.native_member_method_declaration_list"/>.
+	/// Exit a parse tree produced by <see cref="EParser.native_member_method_declaration_list"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitNativeCategoryMethodList([NotNull] EParser.NativeCategoryMethodListContext context);
-	/// <summary>
-	/// Enter a parse tree produced by the <c>NativeCategoryMethodListItem</c>
-	/// labeled alternative in <see cref="EParser.native_member_method_declaration_list"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterNativeCategoryMethodListItem([NotNull] EParser.NativeCategoryMethodListItemContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>NativeCategoryMethodListItem</c>
-	/// labeled alternative in <see cref="EParser.native_member_method_declaration_list"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitNativeCategoryMethodListItem([NotNull] EParser.NativeCategoryMethodListItemContext context);
+	void ExitNative_member_method_declaration_list([NotNull] EParser.Native_member_method_declaration_listContext context);
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="EParser.native_member_method_declaration"/>.
 	/// </summary>
@@ -2654,16 +2472,6 @@ public interface IEParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitPython_module([NotNull] EParser.Python_moduleContext context);
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="EParser.module_token"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterModule_token([NotNull] EParser.Module_tokenContext context);
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="EParser.module_token"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitModule_token([NotNull] EParser.Module_tokenContext context);
-	/// <summary>
 	/// Enter a parse tree produced by <see cref="EParser.javascript_category_binding"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
@@ -2704,53 +2512,15 @@ public interface IEParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitAttribute_identifier_list([NotNull] EParser.Attribute_identifier_listContext context);
 	/// <summary>
-	/// Enter a parse tree produced by the <c>AbstractMethod</c>
-	/// labeled alternative in <see cref="EParser.method_declaration"/>.
+	/// Enter a parse tree produced by <see cref="EParser.method_declaration"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterAbstractMethod([NotNull] EParser.AbstractMethodContext context);
+	void EnterMethod_declaration([NotNull] EParser.Method_declarationContext context);
 	/// <summary>
-	/// Exit a parse tree produced by the <c>AbstractMethod</c>
-	/// labeled alternative in <see cref="EParser.method_declaration"/>.
+	/// Exit a parse tree produced by <see cref="EParser.method_declaration"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitAbstractMethod([NotNull] EParser.AbstractMethodContext context);
-	/// <summary>
-	/// Enter a parse tree produced by the <c>ConcreteMethod</c>
-	/// labeled alternative in <see cref="EParser.method_declaration"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterConcreteMethod([NotNull] EParser.ConcreteMethodContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>ConcreteMethod</c>
-	/// labeled alternative in <see cref="EParser.method_declaration"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitConcreteMethod([NotNull] EParser.ConcreteMethodContext context);
-	/// <summary>
-	/// Enter a parse tree produced by the <c>NativeMethod</c>
-	/// labeled alternative in <see cref="EParser.method_declaration"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterNativeMethod([NotNull] EParser.NativeMethodContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>NativeMethod</c>
-	/// labeled alternative in <see cref="EParser.method_declaration"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitNativeMethod([NotNull] EParser.NativeMethodContext context);
-	/// <summary>
-	/// Enter a parse tree produced by the <c>TestMethod</c>
-	/// labeled alternative in <see cref="EParser.method_declaration"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterTestMethod([NotNull] EParser.TestMethodContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>TestMethod</c>
-	/// labeled alternative in <see cref="EParser.method_declaration"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitTestMethod([NotNull] EParser.TestMethodContext context);
+	void ExitMethod_declaration([NotNull] EParser.Method_declarationContext context);
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="EParser.comment_statement"/>.
 	/// </summary>
@@ -2762,29 +2532,15 @@ public interface IEParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitComment_statement([NotNull] EParser.Comment_statementContext context);
 	/// <summary>
-	/// Enter a parse tree produced by the <c>NativeStatementListItem</c>
-	/// labeled alternative in <see cref="EParser.native_statement_list"/>.
+	/// Enter a parse tree produced by <see cref="EParser.native_statement_list"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterNativeStatementListItem([NotNull] EParser.NativeStatementListItemContext context);
+	void EnterNative_statement_list([NotNull] EParser.Native_statement_listContext context);
 	/// <summary>
-	/// Exit a parse tree produced by the <c>NativeStatementListItem</c>
-	/// labeled alternative in <see cref="EParser.native_statement_list"/>.
+	/// Exit a parse tree produced by <see cref="EParser.native_statement_list"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitNativeStatementListItem([NotNull] EParser.NativeStatementListItemContext context);
-	/// <summary>
-	/// Enter a parse tree produced by the <c>NativeStatementList</c>
-	/// labeled alternative in <see cref="EParser.native_statement_list"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterNativeStatementList([NotNull] EParser.NativeStatementListContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>NativeStatementList</c>
-	/// labeled alternative in <see cref="EParser.native_statement_list"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitNativeStatementList([NotNull] EParser.NativeStatementListContext context);
+	void ExitNative_statement_list([NotNull] EParser.Native_statement_listContext context);
 	/// <summary>
 	/// Enter a parse tree produced by the <c>JavaNativeStatement</c>
 	/// labeled alternative in <see cref="EParser.native_statement"/>.
@@ -2866,101 +2622,45 @@ public interface IEParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitJavascript_native_statement([NotNull] EParser.Javascript_native_statementContext context);
 	/// <summary>
-	/// Enter a parse tree produced by the <c>StatementList</c>
-	/// labeled alternative in <see cref="EParser.statement_list"/>.
+	/// Enter a parse tree produced by <see cref="EParser.statement_list"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterStatementList([NotNull] EParser.StatementListContext context);
+	void EnterStatement_list([NotNull] EParser.Statement_listContext context);
 	/// <summary>
-	/// Exit a parse tree produced by the <c>StatementList</c>
-	/// labeled alternative in <see cref="EParser.statement_list"/>.
+	/// Exit a parse tree produced by <see cref="EParser.statement_list"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitStatementList([NotNull] EParser.StatementListContext context);
+	void ExitStatement_list([NotNull] EParser.Statement_listContext context);
 	/// <summary>
-	/// Enter a parse tree produced by the <c>StatementListItem</c>
-	/// labeled alternative in <see cref="EParser.statement_list"/>.
+	/// Enter a parse tree produced by <see cref="EParser.assertion_list"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterStatementListItem([NotNull] EParser.StatementListItemContext context);
+	void EnterAssertion_list([NotNull] EParser.Assertion_listContext context);
 	/// <summary>
-	/// Exit a parse tree produced by the <c>StatementListItem</c>
-	/// labeled alternative in <see cref="EParser.statement_list"/>.
+	/// Exit a parse tree produced by <see cref="EParser.assertion_list"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitStatementListItem([NotNull] EParser.StatementListItemContext context);
+	void ExitAssertion_list([NotNull] EParser.Assertion_listContext context);
 	/// <summary>
-	/// Enter a parse tree produced by the <c>AssertionList</c>
-	/// labeled alternative in <see cref="EParser.assertion_list"/>.
+	/// Enter a parse tree produced by <see cref="EParser.switch_case_statement_list"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterAssertionList([NotNull] EParser.AssertionListContext context);
+	void EnterSwitch_case_statement_list([NotNull] EParser.Switch_case_statement_listContext context);
 	/// <summary>
-	/// Exit a parse tree produced by the <c>AssertionList</c>
-	/// labeled alternative in <see cref="EParser.assertion_list"/>.
+	/// Exit a parse tree produced by <see cref="EParser.switch_case_statement_list"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitAssertionList([NotNull] EParser.AssertionListContext context);
+	void ExitSwitch_case_statement_list([NotNull] EParser.Switch_case_statement_listContext context);
 	/// <summary>
-	/// Enter a parse tree produced by the <c>AssertionListItem</c>
-	/// labeled alternative in <see cref="EParser.assertion_list"/>.
+	/// Enter a parse tree produced by <see cref="EParser.catch_statement_list"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterAssertionListItem([NotNull] EParser.AssertionListItemContext context);
+	void EnterCatch_statement_list([NotNull] EParser.Catch_statement_listContext context);
 	/// <summary>
-	/// Exit a parse tree produced by the <c>AssertionListItem</c>
-	/// labeled alternative in <see cref="EParser.assertion_list"/>.
+	/// Exit a parse tree produced by <see cref="EParser.catch_statement_list"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitAssertionListItem([NotNull] EParser.AssertionListItemContext context);
-	/// <summary>
-	/// Enter a parse tree produced by the <c>SwitchCaseStatementList</c>
-	/// labeled alternative in <see cref="EParser.switch_case_statement_list"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterSwitchCaseStatementList([NotNull] EParser.SwitchCaseStatementListContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>SwitchCaseStatementList</c>
-	/// labeled alternative in <see cref="EParser.switch_case_statement_list"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitSwitchCaseStatementList([NotNull] EParser.SwitchCaseStatementListContext context);
-	/// <summary>
-	/// Enter a parse tree produced by the <c>SwitchCaseStatementListItem</c>
-	/// labeled alternative in <see cref="EParser.switch_case_statement_list"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterSwitchCaseStatementListItem([NotNull] EParser.SwitchCaseStatementListItemContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>SwitchCaseStatementListItem</c>
-	/// labeled alternative in <see cref="EParser.switch_case_statement_list"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitSwitchCaseStatementListItem([NotNull] EParser.SwitchCaseStatementListItemContext context);
-	/// <summary>
-	/// Enter a parse tree produced by the <c>CatchStatementList</c>
-	/// labeled alternative in <see cref="EParser.catch_statement_list"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterCatchStatementList([NotNull] EParser.CatchStatementListContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>CatchStatementList</c>
-	/// labeled alternative in <see cref="EParser.catch_statement_list"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitCatchStatementList([NotNull] EParser.CatchStatementListContext context);
-	/// <summary>
-	/// Enter a parse tree produced by the <c>CatchStatementListItem</c>
-	/// labeled alternative in <see cref="EParser.catch_statement_list"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterCatchStatementListItem([NotNull] EParser.CatchStatementListItemContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>CatchStatementListItem</c>
-	/// labeled alternative in <see cref="EParser.catch_statement_list"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitCatchStatementListItem([NotNull] EParser.CatchStatementListItemContext context);
+	void ExitCatch_statement_list([NotNull] EParser.Catch_statement_listContext context);
 	/// <summary>
 	/// Enter a parse tree produced by the <c>LiteralRangeLiteral</c>
 	/// labeled alternative in <see cref="EParser.literal_collection"/>.
@@ -3154,29 +2854,15 @@ public interface IEParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitNullLiteral([NotNull] EParser.NullLiteralContext context);
 	/// <summary>
-	/// Enter a parse tree produced by the <c>LiteralList</c>
-	/// labeled alternative in <see cref="EParser.literal_list_literal"/>.
+	/// Enter a parse tree produced by <see cref="EParser.literal_list_literal"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterLiteralList([NotNull] EParser.LiteralListContext context);
+	void EnterLiteral_list_literal([NotNull] EParser.Literal_list_literalContext context);
 	/// <summary>
-	/// Exit a parse tree produced by the <c>LiteralList</c>
-	/// labeled alternative in <see cref="EParser.literal_list_literal"/>.
+	/// Exit a parse tree produced by <see cref="EParser.literal_list_literal"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitLiteralList([NotNull] EParser.LiteralListContext context);
-	/// <summary>
-	/// Enter a parse tree produced by the <c>LiteralListItem</c>
-	/// labeled alternative in <see cref="EParser.literal_list_literal"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterLiteralListItem([NotNull] EParser.LiteralListItemContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>LiteralListItem</c>
-	/// labeled alternative in <see cref="EParser.literal_list_literal"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitLiteralListItem([NotNull] EParser.LiteralListItemContext context);
+	void ExitLiteral_list_literal([NotNull] EParser.Literal_list_literalContext context);
 	/// <summary>
 	/// Enter a parse tree produced by the <c>ParenthesisExpression</c>
 	/// labeled alternative in <see cref="EParser.selectable_expression"/>.
@@ -3246,89 +2932,25 @@ public interface IEParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitParenthesis_expression([NotNull] EParser.Parenthesis_expressionContext context);
 	/// <summary>
-	/// Enter a parse tree produced by the <c>AtomicLiteral</c>
-	/// labeled alternative in <see cref="EParser.literal_expression"/>.
+	/// Enter a parse tree produced by <see cref="EParser.literal_expression"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterAtomicLiteral([NotNull] EParser.AtomicLiteralContext context);
+	void EnterLiteral_expression([NotNull] EParser.Literal_expressionContext context);
 	/// <summary>
-	/// Exit a parse tree produced by the <c>AtomicLiteral</c>
-	/// labeled alternative in <see cref="EParser.literal_expression"/>.
+	/// Exit a parse tree produced by <see cref="EParser.literal_expression"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitAtomicLiteral([NotNull] EParser.AtomicLiteralContext context);
+	void ExitLiteral_expression([NotNull] EParser.Literal_expressionContext context);
 	/// <summary>
-	/// Enter a parse tree produced by the <c>CollectionLiteral</c>
-	/// labeled alternative in <see cref="EParser.literal_expression"/>.
+	/// Enter a parse tree produced by <see cref="EParser.collection_literal"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterCollectionLiteral([NotNull] EParser.CollectionLiteralContext context);
+	void EnterCollection_literal([NotNull] EParser.Collection_literalContext context);
 	/// <summary>
-	/// Exit a parse tree produced by the <c>CollectionLiteral</c>
-	/// labeled alternative in <see cref="EParser.literal_expression"/>.
+	/// Exit a parse tree produced by <see cref="EParser.collection_literal"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitCollectionLiteral([NotNull] EParser.CollectionLiteralContext context);
-	/// <summary>
-	/// Enter a parse tree produced by the <c>RangeLiteral</c>
-	/// labeled alternative in <see cref="EParser.collection_literal"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterRangeLiteral([NotNull] EParser.RangeLiteralContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>RangeLiteral</c>
-	/// labeled alternative in <see cref="EParser.collection_literal"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitRangeLiteral([NotNull] EParser.RangeLiteralContext context);
-	/// <summary>
-	/// Enter a parse tree produced by the <c>ListLiteral</c>
-	/// labeled alternative in <see cref="EParser.collection_literal"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterListLiteral([NotNull] EParser.ListLiteralContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>ListLiteral</c>
-	/// labeled alternative in <see cref="EParser.collection_literal"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitListLiteral([NotNull] EParser.ListLiteralContext context);
-	/// <summary>
-	/// Enter a parse tree produced by the <c>SetLiteral</c>
-	/// labeled alternative in <see cref="EParser.collection_literal"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterSetLiteral([NotNull] EParser.SetLiteralContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>SetLiteral</c>
-	/// labeled alternative in <see cref="EParser.collection_literal"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitSetLiteral([NotNull] EParser.SetLiteralContext context);
-	/// <summary>
-	/// Enter a parse tree produced by the <c>DictLiteral</c>
-	/// labeled alternative in <see cref="EParser.collection_literal"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterDictLiteral([NotNull] EParser.DictLiteralContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>DictLiteral</c>
-	/// labeled alternative in <see cref="EParser.collection_literal"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitDictLiteral([NotNull] EParser.DictLiteralContext context);
-	/// <summary>
-	/// Enter a parse tree produced by the <c>TupleLiteral</c>
-	/// labeled alternative in <see cref="EParser.collection_literal"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterTupleLiteral([NotNull] EParser.TupleLiteralContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>TupleLiteral</c>
-	/// labeled alternative in <see cref="EParser.collection_literal"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitTupleLiteral([NotNull] EParser.TupleLiteralContext context);
+	void ExitCollection_literal([NotNull] EParser.Collection_literalContext context);
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="EParser.tuple_literal"/>.
 	/// </summary>
@@ -3350,53 +2972,25 @@ public interface IEParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitDict_literal([NotNull] EParser.Dict_literalContext context);
 	/// <summary>
-	/// Enter a parse tree produced by the <c>ValueTuple</c>
-	/// labeled alternative in <see cref="EParser.expression_tuple"/>.
+	/// Enter a parse tree produced by <see cref="EParser.expression_tuple"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterValueTuple([NotNull] EParser.ValueTupleContext context);
+	void EnterExpression_tuple([NotNull] EParser.Expression_tupleContext context);
 	/// <summary>
-	/// Exit a parse tree produced by the <c>ValueTuple</c>
-	/// labeled alternative in <see cref="EParser.expression_tuple"/>.
+	/// Exit a parse tree produced by <see cref="EParser.expression_tuple"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitValueTuple([NotNull] EParser.ValueTupleContext context);
+	void ExitExpression_tuple([NotNull] EParser.Expression_tupleContext context);
 	/// <summary>
-	/// Enter a parse tree produced by the <c>ValueTupleItem</c>
-	/// labeled alternative in <see cref="EParser.expression_tuple"/>.
+	/// Enter a parse tree produced by <see cref="EParser.dict_entry_list"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterValueTupleItem([NotNull] EParser.ValueTupleItemContext context);
+	void EnterDict_entry_list([NotNull] EParser.Dict_entry_listContext context);
 	/// <summary>
-	/// Exit a parse tree produced by the <c>ValueTupleItem</c>
-	/// labeled alternative in <see cref="EParser.expression_tuple"/>.
+	/// Exit a parse tree produced by <see cref="EParser.dict_entry_list"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitValueTupleItem([NotNull] EParser.ValueTupleItemContext context);
-	/// <summary>
-	/// Enter a parse tree produced by the <c>DictEntryList</c>
-	/// labeled alternative in <see cref="EParser.dict_entry_list"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterDictEntryList([NotNull] EParser.DictEntryListContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>DictEntryList</c>
-	/// labeled alternative in <see cref="EParser.dict_entry_list"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitDictEntryList([NotNull] EParser.DictEntryListContext context);
-	/// <summary>
-	/// Enter a parse tree produced by the <c>DictEntryListItem</c>
-	/// labeled alternative in <see cref="EParser.dict_entry_list"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterDictEntryListItem([NotNull] EParser.DictEntryListItemContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>DictEntryListItem</c>
-	/// labeled alternative in <see cref="EParser.dict_entry_list"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitDictEntryListItem([NotNull] EParser.DictEntryListItemContext context);
+	void ExitDict_entry_list([NotNull] EParser.Dict_entry_listContext context);
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="EParser.dict_entry"/>.
 	/// </summary>
@@ -3613,6 +3207,16 @@ public interface IEParserListener : IParseTreeListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void ExitKey_token([NotNull] EParser.Key_tokenContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="EParser.module_token"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterModule_token([NotNull] EParser.Module_tokenContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="EParser.module_token"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitModule_token([NotNull] EParser.Module_tokenContext context);
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="EParser.value_token"/>.
 	/// </summary>

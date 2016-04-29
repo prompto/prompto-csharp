@@ -77,8 +77,8 @@ namespace prompto.type
             return base.checkRange(context, other);
         }
 
-        override
-        public IType CheckMember(Context context, String name)
+
+		public  override IType checkMember(Context context, String name)
         {
             if ("year" == name)
                 return IntegerType.Instance;
@@ -89,7 +89,7 @@ namespace prompto.type
             else if ("dayOfYear" == name)
                 return IntegerType.Instance;
             else
-                return base.CheckMember(context, name);
+                return base.checkMember(context, name);
         }
 
         override

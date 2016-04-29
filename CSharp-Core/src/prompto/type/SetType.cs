@@ -32,12 +32,12 @@ namespace prompto.type
 		}
 
 
-		public override IType CheckMember(Context context, String name)
+		public override IType checkMember(Context context, String name)
 		{
 			if ("length" == name)
 				return IntegerType.Instance;
 			else
-				return base.CheckMember(context, name);
+				return base.checkMember(context, name);
 		}
 
 		public override IType checkItem (Context context, IType other)

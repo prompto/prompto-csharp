@@ -19,8 +19,8 @@ namespace prompto.type
            this.derivedFrom = derivedFrom;
         }
 
-        override
-        public IType CheckMember(Context context, String name)
+        
+		public override IType checkMember(Context context, String name)
         {
             if ("symbols" == name)
 			    return new ListType(derivedFrom);
@@ -29,7 +29,7 @@ namespace prompto.type
             else if ("name" == name)
                 return TextType.Instance;
             else
-                return base.CheckMember(context, name);
+                return base.checkMember(context, name);
         }
 
         override

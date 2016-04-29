@@ -74,6 +74,16 @@ namespace prompto.value
 			throw new NotSupportedException("No member support for " + this.GetType().Name);
 		}
 
+		public virtual IValue GetItem(Context context, IValue item)
+		{
+			throw new NotSupportedException("No item support for " + this.GetType().Name);
+		}
+
+		public virtual void SetItem(Context context, IValue item, IValue value)
+		{
+			throw new NotSupportedException("No item support for " + this.GetType().Name);
+		}
+
 		public virtual Object ConvertTo(Type type)
         {
             return this;

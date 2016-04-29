@@ -21,6 +21,8 @@ namespace prompto.value
         IValue Modulo(Context context, IValue iValue);
 		IValue GetMember(Context context, String attrName, bool autoCreate);
 		void SetMember(Context context, String attrName, IValue value);
+		IValue GetItem(Context context, IValue item);
+		void SetItem(Context context, IValue item, IValue value);
         Int32 CompareTo(Context context, IValue value);
         Object ConvertTo(Type type);
 		bool Equals(Context context, IValue value);

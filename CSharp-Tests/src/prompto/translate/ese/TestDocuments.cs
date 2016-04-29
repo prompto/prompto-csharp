@@ -33,6 +33,12 @@ namespace prompto.translate.ese
 		}
 
 		[Test]
+		public void testNamedItem()
+		{
+			compareResourceESE("documents/namedItem.pec");
+		}
+
+		[Test]
 		public void testVariable()
 		{
 			compareResourceESE("documents/variable.pec");

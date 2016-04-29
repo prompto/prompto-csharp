@@ -45,39 +45,35 @@ namespace prompto.instance {
 			writer.append("]");
         }
 
-        public void checkAssignValue(Context context, IExpression expression)
+		public IType checkAssignValue(Context context, IExpression expression)
         {
-            parent.checkAssignElement(context);
+			// called when a[3] = value
             IType itemType = item.check(context);
-            if (itemType != IntegerType.Instance)
-                throw new SyntaxError("Expecting an Integer, got:" + itemType.ToString());
+			return parent.checkAssignItem(context, itemType);
         }
 
-        public void checkAssignMember(Context context, String memberName)
+		public IType checkAssignMember(Context context, String memberName)
         {
-            // TODO Auto-generated method stub
+			// called when a[3].member = value
+			return AnyType.Instance; // TODO 
+       }
 
-        }
-
-        public void checkAssignElement(Context context)
+		public IType checkAssignItem(Context context, IType itemType)
         {
-            // TODO Auto-generated method stub
-
-        }
+			// called when a[3][x] = value
+			IType thisItemType = item.check(context);
+			IType parentType = parent.checkAssignItem(context, thisItemType);
+			return parentType.checkItem(context, itemType); 
+		}
 
         public void assign(Context context, IExpression expression)
         {
-            Object obj = parent.interpret(context);
-            if (!(obj is ListValue))
-                throw new InvalidDataError("Expected a List, got:" + obj.GetType().Name);
-            ListValue list = (ListValue)obj;
-            Object idx = item.interpret(context);
-            if (!(idx is Integer))
-                throw new InvalidDataError("Expected an Integer, got:" + idx.GetType().Name);
-            int index = (int)((Integer)idx).IntegerValue;
-            if (index < 1 || index > list.Count)
-                throw new IndexOutOfRangeError();
-            list[index - 1] = expression.interpret(context);
+			IValue root = parent.interpret(context);
+			if(!root.IsMutable())
+				throw new NotMutableError();
+			IValue elem = item.interpret(context);
+			IValue value = expression.interpret(context);
+			root.SetItem(context, elem, value);
         }
 
         public IValue interpret(Context context)

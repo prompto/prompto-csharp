@@ -33,13 +33,13 @@ namespace prompto.type
             return typeof(String);
         }
 
-        override
-        public IType CheckMember(Context context, String name)
+        
+		public override IType checkMember(Context context, String name)
         {
             if ("length" == name)
                 return IntegerType.Instance;
             else
-                return base.CheckMember(context, name);
+                return base.checkMember(context, name);
         }
 
         override

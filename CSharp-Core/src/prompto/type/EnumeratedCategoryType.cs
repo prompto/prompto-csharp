@@ -12,15 +12,15 @@ namespace prompto.type
         {
         }
 
-        override
-        public IType CheckMember(Context context, String name)
+        
+		public override IType checkMember(Context context, String name)
         {
             if ("value" == name)
                 return this;
             else if ("symbol" == name)
                 return TextType.Instance;
             else
-                return base.CheckMember(context, name);
+                return base.checkMember(context, name);
         }
 
     }

@@ -20,18 +20,23 @@ namespace prompto.value
         {
         }
 
-		public ListValue(IType itemType, List<IValue> values)
-			: base(new ListType(itemType), values)
-		{
-		}
-
 		public ListValue(IType itemType, IValue value)
 			: base(new ListType(itemType), value)
         {
         }
 
-        override
-        public IValue Add(Context context, IValue value)
+		public ListValue(IType itemType, List<IValue> values)
+			: base(new ListType(itemType), values)
+		{
+		}
+
+		public ListValue(IType itemType, List<IValue> values, bool mutable)
+			: base(new ListType(itemType), values, mutable)
+		{
+		}
+
+		      
+		public override IValue Add(Context context, IValue value)
         {
             if (value is ListValue)
                 return this.merge((ListValue)value);
