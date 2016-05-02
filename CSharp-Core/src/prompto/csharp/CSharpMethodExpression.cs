@@ -165,10 +165,33 @@ namespace prompto.csharp
 
 		bool validArgument (Context context, Type klass, CSharpExpression argument)
 		{
-			IType type = argument.check (context);
-			return klass.IsAssignableFrom (type.ToCSharpType ());
+			Type type = argument.check (context).ToCSharpType ();
+			return validArgument (klass, type);
 		}
 
+		bool validArgument (Type wanted, Type actual) {
+			if (wanted.IsAssignableFrom (actual))
+				return true;
+			// work around IsAssignableFrom nightmare, where IList<Object> is not assignable from IList<String>
+			// in our case, since values are immutable, it is safe to cast it to a broader type
+			if (!wanted.IsGenericType)
+				return false;
+			Type wantedParent = wanted.GetGenericTypeDefinition ();
+			if (!actual.IsGenericType)
+				return false;
+			Type actualParent = actual.GetGenericTypeDefinition ();
+			if (!validArgument (wantedParent, actualParent))
+				return false;
+			Type[] wantedArgs = wanted.GetGenericArguments ();
+			Type[] actualArgs = actual.GetGenericArguments ();
+			if (wantedArgs.Length != actualArgs.Length)
+				return false;
+			for (int i = 0; i < wantedArgs.Length; i++) {
+				if (!validArgument (wantedArgs [i], actualArgs [i]))
+					return false;
+			}
+			return true;
+		}		
 	
 	}
 

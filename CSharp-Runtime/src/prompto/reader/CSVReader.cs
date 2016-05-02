@@ -9,18 +9,33 @@ namespace prompto.reader
 	
 	public abstract class CSVReader {
 
-		public static IEnumerator<Document> iterator(String data, char? separator, char? encloser)
+		public static List<Document> read(String data, IDictionary<String, Object> columns, char? separator, char? encloser)
 		{
 			StringReader reader = data==null ? null : new StringReader(data);
-			return iterator(reader, separator, encloser);
+			return read(reader, columns, separator, encloser);
 		}
 
-		public static IEnumerator<Document> iterator (StringReader reader, char? separator, char? encloser)
+		public static List<Document> read(StringReader reader, IDictionary<String, Object> columns, char? separator, char? encloser)
+		{
+			List<Document> list = new List<Document> ();
+			IEnumerator<Document> iter = iterator(reader, columns, separator, encloser);
+			while (iter.MoveNext ())
+				list.Add (iter.Current);
+			return list;
+		}
+
+		public static IEnumerator<Document> iterator(String data, IDictionary<String, Object> columns, char? separator, char? encloser)
+		{
+			StringReader reader = data==null ? null : new StringReader(data);
+			return iterator(reader, columns, separator, encloser);
+		}
+
+		public static IEnumerator<Document> iterator (StringReader reader, IDictionary<String, Object> columns, char? separator, char? encloser)
 		{
 			char sep = separator.GetValueOrDefault (',');
 			char quote = encloser.GetValueOrDefault ('"');
 
-			return new CsvDocumentIterator (reader, sep, quote);
+			return new CsvDocumentIterator (reader, columns, sep, quote);
 		}
 	
 	}
@@ -28,6 +43,7 @@ namespace prompto.reader
 	class CsvDocumentIterator : IEnumerator<Document> {
 
 		StringReader reader;
+		IDictionary<String, Object> columns;
 		char sep;
 		char quote;
 		List<String> headers = null;
@@ -35,9 +51,10 @@ namespace prompto.reader
 		Document current;
 
 
-		public CsvDocumentIterator(StringReader reader, char sep, char quote)
+		public CsvDocumentIterator(StringReader reader, IDictionary<String, Object> columns, char sep, char quote)
 		{
 			this.reader = reader;
+			this.columns = columns;
 			this.sep = sep;
 			this.quote = quote;
 		}
@@ -90,6 +107,13 @@ namespace prompto.reader
 			String line = NextLine();
 			if(line!=null)
 				headers = ParseLine(line);
+			if (columns != null) {
+				for (int i = 0; i < headers.Count; i++) {
+					Object column;
+					if (columns.TryGetValue (headers [i], out column))
+						headers [i] = column.ToString();
+				}
+			}
 		}
 
 		private List<String> ParseLine(String line) {

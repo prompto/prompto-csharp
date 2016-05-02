@@ -34,6 +34,7 @@ namespace prompto.csharp
             typeToPrestoMap[typeof(string)] = TextType.Instance;
 			typeToPrestoMap[typeof(DateTimeOffset)] = DateTimeType.Instance;
 			typeToPrestoMap[typeof(DateTimeOffset?)] = DateTimeType.Instance;
+			typeToPrestoMap[typeof(Document)] = DocumentType.Instance; // TODO until we have a compiler
 			typeToPrestoMap[typeof(object)] = AnyType.Instance;
       }
 

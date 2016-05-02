@@ -18,6 +18,11 @@ namespace prompto.value
 			: base(NullType.Instance)
 		{
 		}
+
+		public override object ConvertTo (System.Type type)
+		{
+			return null;
+		}
 	}
 }
 

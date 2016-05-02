@@ -160,7 +160,13 @@ namespace prompto.value
 
         public virtual Object ConvertTo(Type type)
         {
-            return this;
+			Dictionary<String, Object> dict = new Dictionary<string, object> ();
+			foreach (KeyValuePair<Text, IValue> kvp in ((Dictionary<Text, IValue>)this)) {
+				string key = (string)kvp.Key.ConvertTo (typeof(String));
+				object value = kvp.Value.ConvertTo (typeof(Object));
+				dict [key] = value;
+			}
+			return dict;
         }
  
         public static Dict merge(Dict dict1, Dict dict2)

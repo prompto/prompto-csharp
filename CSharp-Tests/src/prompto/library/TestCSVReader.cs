@@ -13,14 +13,14 @@ namespace prompto.reader
 		[Test]
 		public void testNullRetursnEmptyDocument ()
 		{
-			IEnumerator<prompto.value.Document> iter = CSVReader.iterator ((String)null, ',', '"');
+			IEnumerator<prompto.value.Document> iter = CSVReader.iterator ((String)null, null, ',', '"');
 			Assert.IsFalse (iter.MoveNext ());
 		}
 
 		[Test]
 		public void testEmptyRetursnEmptyDocument ()
 		{
-			IEnumerator<Document> iter = CSVReader.iterator ("", ',', '"');
+			IEnumerator<Document> iter = CSVReader.iterator ("", null, ',', '"');
 			Assert.IsFalse (iter.MoveNext ());
 		}
 
@@ -29,7 +29,7 @@ namespace prompto.reader
 		public void testSimpleNoQuotes ()
 		{
 			String csv = "id,name\n1,John\n2,Sylvie\n";
-			IEnumerator<Document> iter = CSVReader.iterator (csv, ',', '"');
+			IEnumerator<Document> iter = CSVReader.iterator (csv, null, ',', '"');
 			Assert.IsTrue (iter.MoveNext ());
 			Document doc = iter.Current;
 			Assert.IsNotNull (doc);
@@ -46,7 +46,7 @@ namespace prompto.reader
 		public void testEscapeNoQuotes ()
 		{
 			String csv = "id,name\n1,John\n2,Riou\\, Sylvie\n";
-			IEnumerator<Document> iter = CSVReader.iterator (csv, ',', '"');
+			IEnumerator<Document> iter = CSVReader.iterator (csv, null, ',', '"');
 			Assert.IsTrue (iter.MoveNext ());
 			Document doc = iter.Current;
 			Assert.IsNotNull (doc);
@@ -63,7 +63,7 @@ namespace prompto.reader
 		public void testSimpleQuotes ()
 		{
 			String csv = "\"id\",\"name\"\n1,\"John\"\n2,\"Sylvie\"\n";
-			IEnumerator<Document> iter = CSVReader.iterator (csv, ',', '"');
+			IEnumerator<Document> iter = CSVReader.iterator (csv, null, ',', '"');
 			Assert.IsTrue (iter.MoveNext ());
 			Document doc = iter.Current;
 			Assert.IsNotNull (doc);
@@ -83,7 +83,7 @@ namespace prompto.reader
 		public void testEmptyValue ()
 		{
 			String csv = "\"id\",\"name\"\n,\"John\"\n2,\n";
-			IEnumerator<Document> iter = CSVReader.iterator (csv, ',', '"');
+			IEnumerator<Document> iter = CSVReader.iterator (csv, null, ',', '"');
 			Assert.IsTrue (iter.MoveNext ());
 			Document doc = iter.Current;
 			Assert.IsNotNull (doc);
@@ -100,7 +100,7 @@ namespace prompto.reader
 		public void testMissingValue ()
 		{
 			String csv = "\"id\",\"name\"\n1\n2,\"Sylvie\"\n";
-			IEnumerator<Document> iter = CSVReader.iterator (csv, ',', '"');
+			IEnumerator<Document> iter = CSVReader.iterator (csv, null, ',', '"');
 			Assert.IsTrue (iter.MoveNext ());
 			Document doc = iter.Current;
 			Assert.IsNotNull (doc);
@@ -117,7 +117,7 @@ namespace prompto.reader
 		public void testExtraValue ()
 		{
 			String csv = "\"id\",\"name\"\n1,\"John\",Doe\n2,\"Sylvie\"\n";
-			IEnumerator<Document> iter = CSVReader.iterator (csv, ',', '"');
+			IEnumerator<Document> iter = CSVReader.iterator (csv, null, ',', '"');
 			Assert.IsTrue (iter.MoveNext ());
 			Document doc = iter.Current;
 			Assert.IsNotNull (doc);
