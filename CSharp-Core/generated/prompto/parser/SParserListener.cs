@@ -80,6 +80,16 @@ public interface ISParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitAttribute_declaration([NotNull] SParser.Attribute_declarationContext context);
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="SParser.index_clause"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterIndex_clause([NotNull] SParser.Index_clauseContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="SParser.index_clause"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitIndex_clause([NotNull] SParser.Index_clauseContext context);
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="SParser.concrete_category_declaration"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>

@@ -16,6 +16,7 @@ namespace prompto.declaration
 
         IType type;
         IAttributeConstraint constraint;
+		IdentifierList indexTypes;
 
         public AttributeDeclaration(String name, IType type)
             : base(name)
@@ -23,11 +24,12 @@ namespace prompto.declaration
             this.type = type;
         }
 
-        public AttributeDeclaration(String name, IType type, IAttributeConstraint constraint)
+		public AttributeDeclaration(String name, IType type, IAttributeConstraint constraint, IdentifierList indexTypes)
             : base(name)
         {
             this.type = type;
             this.constraint = constraint;
+			this.indexTypes = indexTypes;
         }
 
 		public bool Storable { get; set; }
@@ -56,6 +58,11 @@ namespace prompto.declaration
 				writer.append(" attribute");
 				if(constraint!=null)
 					constraint.ToDialect(writer);
+				if(indexTypes!=null) {
+					writer.append(" with ");
+					indexTypes.ToDialect(writer, true);
+					writer.append(" index");
+				}
 				break;
 			case Dialect.O:
 				if(this.Storable)
@@ -66,6 +73,14 @@ namespace prompto.declaration
 				type.ToDialect(writer);
 				if(constraint!=null)
 					constraint.ToDialect(writer);
+				if(indexTypes!=null) {
+					writer.append(" with index");
+					if(indexTypes.Count>0) {
+						writer.append(" (");
+						indexTypes.ToDialect(writer, false);
+						writer.append(')');
+					}
+				}
 				writer.append(';');
 				break;
 			case Dialect.S:
@@ -79,7 +94,14 @@ namespace prompto.declaration
 				writer.indent();
 				if(constraint!=null)
 					constraint.ToDialect(writer);
-				else
+				if(indexTypes!=null) {
+					if(constraint!=null)
+						writer.newLine();
+					writer.append("index (");
+					indexTypes.ToDialect(writer, false);
+					writer.append(')');
+				}
+				if(constraint==null && indexTypes==null)
 					writer.append("pass");
 				writer.dedent();
 				break;

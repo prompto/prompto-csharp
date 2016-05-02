@@ -461,12 +461,21 @@ namespace prompto.parser
 			String name = this.GetNodeValue<String> (ctx.name);
 			IType type = this.GetNodeValue<IType> (ctx.typ);
 			IAttributeConstraint match = this.GetNodeValue<IAttributeConstraint> (ctx.match);
-			AttributeDeclaration decl = new AttributeDeclaration (name, type, match);
+			IdentifierList indices = ctx.index_clause()!=null ? 
+				this.GetNodeValue<IdentifierList>(ctx.index_clause()) : null;
+			AttributeDeclaration decl = new AttributeDeclaration (name, type, match, indices);
 			decl.Storable = ctx.STORABLE () != null;
 			SetNodeValue (ctx, decl);
 		}
 
-		
+
+		public override void ExitIndex_clause(SParser.Index_clauseContext ctx) {
+			IdentifierList indices = ctx.indices!=null ? 
+				this.GetNodeValue<IdentifierList>(ctx.indices) :
+				new IdentifierList();
+			SetNodeValue(ctx, indices);
+		}
+
 		public override void ExitNativeType (SParser.NativeTypeContext ctx)
 		{
 			IType type = this.GetNodeValue<IType> (ctx.n);

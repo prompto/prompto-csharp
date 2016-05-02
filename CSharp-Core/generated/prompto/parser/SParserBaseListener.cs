@@ -94,6 +94,18 @@ public partial class SParserBaseListener : ISParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitAttribute_declaration([NotNull] SParser.Attribute_declarationContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="SParser.index_clause"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterIndex_clause([NotNull] SParser.Index_clauseContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="SParser.index_clause"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitIndex_clause([NotNull] SParser.Index_clauseContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="SParser.concrete_category_declaration"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
