@@ -9,6 +9,12 @@ namespace prompto.translate.eoe
 	{
 
 		[Test]
+		public void testListRecords()
+		{
+			compareResourceEOE("store/listRecords.pec");
+		}
+
+		[Test]
 		public void testManyRecords()
 		{
 			compareResourceEOE("store/manyRecords.pec");

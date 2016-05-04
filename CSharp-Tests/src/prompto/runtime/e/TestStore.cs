@@ -22,6 +22,12 @@ namespace prompto.runtime.e
 		}
 
 		[Test]
+		public void testListRecords()
+		{
+			CheckOutput("store/listRecords.pec");
+		}
+
+		[Test]
 		public void testManyRecords()
 		{
 			CheckOutput("store/manyRecords.pec");
