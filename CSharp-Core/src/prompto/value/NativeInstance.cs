@@ -82,10 +82,9 @@ namespace prompto.value
 			return (CategoryType)this.type;
         }
 
-        public ICollection<String> getMemberNames()
+        public ICollection<String> GetMemberNames()
         {
-            // TODO Auto-generated method stub
-            return null;
+			throw new NotSupportedException();
         }
 
 		static Dictionary<String, Context> Factory ()

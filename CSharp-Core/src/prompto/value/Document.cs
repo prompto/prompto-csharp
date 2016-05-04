@@ -24,6 +24,11 @@ namespace prompto.value
 			return true;
 		}
 
+		public ICollection<String> GetMemberNames()
+		{
+			return values.Keys;
+		}
+
 		public bool HasMember(String name)
 		{
 			return values.ContainsKey (name);
@@ -45,7 +50,7 @@ namespace prompto.value
 			if (values.TryGetValue (name, out result))
 				return result;
 			else
-				result = null;
+				result = NullValue.Instance;
 			if(autoCreate)
             {
                 result = new Document();

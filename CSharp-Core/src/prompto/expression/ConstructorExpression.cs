@@ -108,7 +108,7 @@ namespace prompto.expression
             if (copyFrom != null)
             {
                 IType cft = copyFrom.check(context);
-                if (!(cft is CategoryType))
+				if (!(cft is CategoryType) && (cft!=DocumentType.Instance))
 					throw new SyntaxError("Cannot copy from " + cft.GetName());
             }
             if (assignments != null)
@@ -135,19 +135,35 @@ namespace prompto.expression
 	                Object copyObj = copyFrom.interpret(context);
 	                if (copyObj is IInstance)
 	                {
-	                    IInstance initFrom = (IInstance)copyObj;
+						IInstance copyFrom = (IInstance)copyObj;
 						CategoryDeclaration cd = context.getRegisteredDeclaration<CategoryDeclaration>(type.GetName());
-	                    foreach (String name in initFrom.getMemberNames())
+	                    foreach (String name in copyFrom.GetMemberNames())
 	                    {
 	                        if (cd.hasAttribute(context, name))
 							{
-								IValue value = initFrom.GetMember(context, name, false);
+								IValue value = copyFrom.GetMember(context, name, false);
 								if(value!=null && value.IsMutable() && !this.type.Mutable)
 									throw new NotMutableError();
 								instance.SetMember(context, name, value);
 							}
 	                    }
 	                }
+					else if (copyObj is Document) 
+					{
+						Document copyFrom = (Document)copyObj;
+						CategoryDeclaration cd = context.getRegisteredDeclaration<CategoryDeclaration>(type.GetName());
+						foreach (String name in copyFrom.GetMemberNames())
+						{
+							if (cd.hasAttribute(context, name))
+							{
+								IValue value = copyFrom.GetMember(context, name, false);
+								if(value!=null && value.IsMutable() && !this.type.Mutable)
+									throw new NotMutableError();
+								// TODO convert to attribute type, see Java version
+								instance.SetMember(context, name, value);
+							}
+						}
+					}
 	            }
 	            if (assignments != null)
 	            {

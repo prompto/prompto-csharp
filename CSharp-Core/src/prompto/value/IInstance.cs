@@ -15,7 +15,7 @@ namespace prompto.value
     {
 
         CategoryType getType();
-        ICollection<String> getMemberNames();
+        ICollection<String> GetMemberNames();
 		bool setMutable(bool set);
 		ConcreteCategoryDeclaration getDeclaration();
 		IStorable getStorable();

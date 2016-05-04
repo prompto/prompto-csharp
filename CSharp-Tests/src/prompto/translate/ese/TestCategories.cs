@@ -38,6 +38,12 @@ namespace prompto.translate.ese
 			compareResourceESE("categories/copyFromDescendantWithOverride.pec");
 		}
 
+		[Test]
+		public void testCopyFromDocument()
+		{
+			compareResourceESE("categories/copyFromDocument.pec");
+		}
+
 	}
 }
 

@@ -59,7 +59,7 @@ namespace prompto.value
 			return (CategoryType)type;
 		}
 
-		public ICollection<String> getMemberNames ()
+		public ICollection<String> GetMemberNames ()
 		{
 			return values.Keys;
 		}

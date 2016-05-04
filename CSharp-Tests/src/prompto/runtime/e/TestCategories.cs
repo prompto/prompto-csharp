@@ -51,6 +51,12 @@ namespace prompto.runtime.e
 			CheckOutput("categories/copyFromDescendantWithOverride.pec");
 		}
 
+		[Test]
+		public void testCopyFromDocument()
+		{
+			CheckOutput("categories/copyFromDocument.pec");
+		}
+
 	}
 }
 

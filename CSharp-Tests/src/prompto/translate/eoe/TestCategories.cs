@@ -38,6 +38,12 @@ namespace prompto.translate.eoe
 			compareResourceEOE("categories/copyFromDescendantWithOverride.pec");
 		}
 
+		[Test]
+		public void testCopyFromDocument()
+		{
+			compareResourceEOE("categories/copyFromDocument.pec");
+		}
+
 	}
 }
 
