@@ -9,6 +9,12 @@ namespace prompto.translate.ese
 	{
 
 		[Test]
+		public void testDeleteRecords()
+		{
+			compareResourceESE("store/deleteRecords.pec");
+		}
+
+		[Test]
 		public void testListRecords()
 		{
 			compareResourceESE("store/listRecords.pec");

@@ -15,28 +15,44 @@ namespace prompto.statement
 	public class StoreStatement : SimpleStatement
 	{
 
-		ExpressionList add;
+		ExpressionList deletables;
+		ExpressionList storables;
 
-		public StoreStatement (ExpressionList del, ExpressionList add)
+		public StoreStatement (ExpressionList deletables, ExpressionList storables)
 		{
-			this.add = add;
+			this.deletables = deletables;
+			this.storables = storables;
 		}
 
 		public override void ToDialect (CodeWriter writer)
 		{
-			writer.append ("store ");
-			if (writer.getDialect () == Dialect.E)
-				add.toDialect (writer);
-			else {
-				writer.append ('(');
-				add.toDialect (writer);
-				writer.append (')');
+			if (deletables != null) {
+				writer.append ("delete ");
+				if (writer.getDialect () == Dialect.E)
+					deletables.toDialect (writer);
+				else {
+					writer.append ('(');
+					deletables.toDialect (writer);
+					writer.append (')');
+				}
+				if (storables != null)
+					writer.append (" and ");
+			}
+			if (storables != null) {
+				writer.append ("store ");
+				if (writer.getDialect () == Dialect.E)
+					storables.toDialect (writer);
+				else {
+					writer.append ('(');
+					storables.toDialect (writer);
+					writer.append (')');
+				}
 			}
 		}
 
 		public override String ToString ()
 		{
-			return "store " + add.ToString ();
+			return "store " + storables.ToString ();
 		}
 
 		public override bool Equals (Object obj)
@@ -48,7 +64,7 @@ namespace prompto.statement
 			if (!(obj is StoreStatement))
 				return false;
 			StoreStatement other = (StoreStatement)obj;
-			return this.add.Equals (other.add);
+			return this.storables.Equals (other.storables);
 		}
 
 		public override IType check (Context context)
@@ -62,7 +78,7 @@ namespace prompto.statement
 			IStore store = Store.Instance;
 			if (store == null)
 				store = MemStore.Instance;
-			foreach (IExpression exp in add) {
+			foreach (IExpression exp in storables) {
 				IValue value = exp.interpret (context);
 				IStorable storable = null;
 				if (value is IInstance)
