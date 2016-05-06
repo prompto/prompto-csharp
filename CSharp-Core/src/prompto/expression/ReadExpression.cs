@@ -29,8 +29,8 @@ namespace prompto.expression
 
         public IType check(Context context)
         {
-            context = context.newResourceContext();
-            IType sourceType = resource.check(context);
+			context = context is ResourceContext ? context : context.newResourceContext();
+			IType sourceType = resource.check(context);
             if (!(sourceType is ResourceType))
                 throw new SyntaxError("Not a readable resource!");
             return TextType.Instance;
@@ -38,8 +38,8 @@ namespace prompto.expression
 
 		public IValue interpret(Context context)
         {
-            context = context.newResourceContext();
-			IValue o = resource.interpret(context);
+			Context resContext = context is ResourceContext ? context : context.newResourceContext();
+			IValue o = resource.interpret(resContext);
             if (o == null)
                 throw new NullReferenceError();
             if (!(o is IResource))
@@ -47,8 +47,13 @@ namespace prompto.expression
             IResource res = (IResource)o;
             if (!res.isReadable())
                 throw new InvalidResourceError("Not readable");
-			String str = res.readFully();
-			return new Text (str);
+			try {
+				String str = res.readFully();
+				return new Text (str);
+			} finally {
+				if (resContext != context)
+					res.close ();
+			}
         }
     }
 

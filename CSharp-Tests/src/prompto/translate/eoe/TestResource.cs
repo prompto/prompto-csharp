@@ -9,24 +9,6 @@ namespace prompto.translate.eoe
 	{
 
 		[Test]
-		public void testBadRead()
-		{
-			compareResourceEOE("resource/badRead.pec");
-		}
-
-		[Test]
-		public void testBadResource()
-		{
-			compareResourceEOE("resource/badResource.pec");
-		}
-
-		[Test]
-		public void testBadWrite()
-		{
-			compareResourceEOE("resource/badWrite.pec");
-		}
-
-		[Test]
 		public void testReadResource()
 		{
 			compareResourceEOE("resource/readResource.pec");

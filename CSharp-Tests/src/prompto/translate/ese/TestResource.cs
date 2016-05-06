@@ -9,24 +9,6 @@ namespace prompto.translate.ese
 	{
 
 		[Test]
-		public void testBadRead()
-		{
-			compareResourceESE("resource/badRead.pec");
-		}
-
-		[Test]
-		public void testBadResource()
-		{
-			compareResourceESE("resource/badResource.pec");
-		}
-
-		[Test]
-		public void testBadWrite()
-		{
-			compareResourceESE("resource/badWrite.pec");
-		}
-
-		[Test]
 		public void testReadResource()
 		{
 			compareResourceESE("resource/readResource.pec");

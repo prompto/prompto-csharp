@@ -126,7 +126,6 @@
     <Compile Include="src\prompto\parser\e\TestAnonymousTypes.cs" />
     <Compile Include="src\prompto\parser\e\TestDeclaredTypes.cs" />
     <Compile Include="src\prompto\parser\e\TestPrecedence.cs" />
-    <Compile Include="src\prompto\parser\e\TestResource.cs" />
     <Compile Include="src\prompto\parser\e\TestScope.cs" />
     <Compile Include="src\prompto\translate\eoe\TestAdd.cs" />
     <Compile Include="src\prompto\translate\eoe\TestBuiltins.cs" />
@@ -195,7 +194,6 @@
     <Compile Include="src\prompto\parser\o\TestAnonymousTypes.cs" />
     <Compile Include="src\prompto\parser\o\TestDeclaredTypes.cs" />
     <Compile Include="src\prompto\parser\o\TestPrecedence.cs" />
-    <Compile Include="src\prompto\parser\o\TestResource.cs" />
     <Compile Include="src\prompto\parser\o\TestScope.cs" />
     <Compile Include="src\prompto\runtime\o\TestCondition.cs" />
     <Compile Include="src\prompto\parser\e\TestCheck.cs" />
@@ -334,6 +332,13 @@
     <Compile Include="src\prompto\translate\oso\TestIterate.cs" />
     <Compile Include="src\prompto\library\e\TestReader.cs" />
     <Compile Include="src\prompto\library\TestCSVReader.cs" />
+    <Compile Include="src\prompto\runtime\e\TestResource.cs" />
+    <Compile Include="src\prompto\translate\eoe\TestResourceError.cs" />
+    <Compile Include="src\prompto\translate\ese\TestResourceError.cs" />
+    <Compile Include="src\prompto\translate\oeo\TestResourceError.cs" />
+    <Compile Include="src\prompto\translate\oso\TestResourceError.cs" />
+    <Compile Include="src\prompto\parser\e\TestResourceError.cs" />
+    <Compile Include="src\prompto\parser\o\TestResourceError.cs" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />

@@ -45,7 +45,7 @@ namespace prompto.statement
 		override 
 		public IType check (Context context)
 		{
-			context = context.newResourceContext ();
+			context = context is ResourceContext ? context : context.newResourceContext();
 			IType resourceType = resource.check (context);
 			if (!(resourceType is ResourceType))
 				throw new SyntaxError ("Not a resource!");
@@ -55,8 +55,8 @@ namespace prompto.statement
 		override 
 		public IValue interpret (Context context)
 		{
-			context = context.newResourceContext ();
-			IValue o = resource.interpret (context);
+			Context resContext = context is ResourceContext ? context : context.newResourceContext();
+			IValue o = resource.interpret (resContext);
 			if (o == null)
 				throw new NullReferenceError ();
 			if (!(o is IResource))
@@ -64,8 +64,13 @@ namespace prompto.statement
 			IResource res = (IResource)o;
 			if (!res.isWritable ())
 				throw new InvalidResourceError ("Not writable");
-			res.writeFully (content.interpret (context).ToString ());
-			return null;
+			try {
+				res.writeFully (content.interpret (context).ToString ());
+				return null;
+			} finally {
+				if (resContext != context)
+					res.close ();
+			}
 		}
 	}
 

@@ -9,24 +9,6 @@ namespace prompto.translate.oso
 	{
 
 		[Test]
-		public void testBadRead()
-		{
-			compareResourceOSO("resource/badRead.poc");
-		}
-
-		[Test]
-		public void testBadResource()
-		{
-			compareResourceOSO("resource/badResource.poc");
-		}
-
-		[Test]
-		public void testBadWrite()
-		{
-			compareResourceOSO("resource/badWrite.poc");
-		}
-
-		[Test]
 		public void testReadResource()
 		{
 			compareResourceOSO("resource/readResource.poc");
