@@ -18,19 +18,19 @@ namespace prompto.statement
 
         String v1, v2;
         IExpression source;
-        StatementList instructions;
+		StatementList statements;
 
         public ForEachStatement(String i1, String i2, IExpression source, StatementList instructions)
         {
             this.v1 = i1;
             this.v2 = i2 == null ? null : i2;
             this.source = source;
-            this.instructions = instructions;
+            this.statements = instructions;
         }
 
         public StatementList getInstructions()
         {
-            return instructions;
+            return statements;
         }
 
         override
@@ -49,7 +49,7 @@ namespace prompto.statement
             context.registerValue(new Variable(itemName, elemType));
             if (v2 != null)
                 context.registerValue(new Variable(v1, IntegerType.Instance));
-			return instructions.check(child, null);
+			return statements.check(child, null);
         }
 
         override
@@ -90,7 +90,7 @@ namespace prompto.statement
                 Context child = context.newChildContext();
                 child.registerValue(new Variable(v1, elemType));
 				child.setValue(v1, iterator.Current);
-				IValue value = instructions.interpret(child);
+				IValue value = statements.interpret(child);
                 if (value != null)
                     return value;
             }
@@ -109,7 +109,7 @@ namespace prompto.statement
 				child.setValue(v2, iterator.Current);
                 child.registerValue(new Variable(v1, IntegerType.Instance));
                 child.setValue(v1, new Integer(++index));
-				IValue value = instructions.interpret(child);
+				IValue value = statements.interpret(child);
                 if (value != null)
                     return value;
             }
@@ -141,12 +141,12 @@ namespace prompto.statement
 			writer.append(" in ");
 			source.ToDialect(writer);
 			writer.append(")");
-			bool oneLine = instructions.Count==1 && (instructions[0] is SimpleStatement);
+			bool oneLine = statements.Count==1 && (statements[0] is SimpleStatement);
 			if(!oneLine)
 				writer.append(" {");
 			writer.newLine();
 			writer.indent();
-			instructions.ToDialect(writer);
+			statements.ToDialect(writer);
 			writer.dedent();
 			if(!oneLine) {
 				writer.append("}");
@@ -166,7 +166,7 @@ namespace prompto.statement
 			writer.append(":");
 			writer.newLine();
 			writer.indent();
-			instructions.ToDialect(writer);
+			statements.ToDialect(writer);
 			writer.dedent();
 		}
 
@@ -182,7 +182,7 @@ namespace prompto.statement
 			writer.append(":");
 			writer.newLine();
 			writer.indent();
-			instructions.ToDialect(writer);
+			statements.ToDialect(writer);
 			writer.dedent();
 		}
     }

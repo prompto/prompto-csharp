@@ -17,14 +17,14 @@ namespace prompto.statement
 
         IfElementList elements = new IfElementList();
  
-        public IfStatement(IExpression condition, StatementList instructions)
+		public IfStatement(IExpression condition, StatementList statements)
         {
-            elements.Add(new IfElement(condition, instructions));
+			elements.Add(new IfElement(condition, statements));
         }
 
-        public IfStatement(IExpression condition, StatementList instructions, IfElementList elseIfs, StatementList elseStmts)
+		public IfStatement(IExpression condition, StatementList statements, IfElementList elseIfs, StatementList elseStmts)
         {
-            elements.Add(new IfElement(condition, instructions));
+			elements.Add(new IfElement(condition, statements));
             if (elseIfs != null)
                 elements.AddRange(elseIfs);
             if (elseStmts != null)
@@ -69,7 +69,7 @@ namespace prompto.statement
 						writer.append(" ");
 					writer.append("else ");
 				}
-				curly = elem.instructions.Count>1;
+				curly = elem.statements.Count>1;
 				elem.ToDialect(writer);
 				first = false;
 			}
@@ -123,12 +123,12 @@ namespace prompto.statement
     {
 
         IExpression condition;
-        public StatementList instructions;
+        public StatementList statements;
 
-        public IfElement(IExpression condition, StatementList instructions)
+		public IfElement(IExpression condition, StatementList statements)
         {
             this.condition = condition;
-            this.instructions = instructions;
+			this.statements = statements;
         }
 
         override
@@ -158,7 +158,7 @@ namespace prompto.statement
 			}
 			writer.append(":\n");
 			writer.indent();
-			instructions.ToDialect(writer);
+			statements.ToDialect(writer);
 			writer.dedent();	
 		}
 
@@ -169,13 +169,13 @@ namespace prompto.statement
 				condition.ToDialect(writer);
 				writer.append(") ");
 			}
-			bool curly = instructions!=null && instructions.Count>1;
+			bool curly = statements!=null && statements.Count>1;
 			if(curly) 
 				writer.append("{\n");
 			else 
 				writer.newLine();
 			writer.indent();
-			instructions.ToDialect(writer);
+			statements.ToDialect(writer);
 			writer.dedent();
 			if(curly) 
 				writer.append("}");
@@ -187,7 +187,7 @@ namespace prompto.statement
 
         public StatementList getInstructions()
         {
-            return instructions;
+            return statements;
         }
 
         override
@@ -197,14 +197,14 @@ namespace prompto.statement
             if (cond != BooleanType.Instance)
                 throw new SyntaxError("Expected a bool condition!");
 			context = downCast(context, false);
-			return instructions.check(context, null);
+			return statements.check(context, null);
         }
 
         override
         public IValue interpret(Context context)
         {
 			context = downCast(context, true);
-			return instructions.interpret(context);
+			return statements.interpret(context);
 		}
 
 		private Context downCast(Context context, bool setValue) {
