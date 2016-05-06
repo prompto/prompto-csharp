@@ -14,7 +14,6 @@ namespace prompto.o.runtime {
         public void before()
         {
             Out.init();
-            MyResource.content = "readFullyOk";
         }
 
         [TearDown]

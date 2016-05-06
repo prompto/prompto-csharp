@@ -8,14 +8,13 @@ namespace prompto.e.runtime
 {
 
     [TestFixture]
-    public class TestResource : BaseEParserTest
+    public class TestResourceError : BaseEParserTest
     {
 
         [SetUp]
         public void before()
         {
             Out.init();
-            MyResource.content = "readFullyOk";
         }
 
         [TearDown]
