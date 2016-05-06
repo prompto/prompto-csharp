@@ -388,7 +388,6 @@
     <Compile Include="src\prompto\javascript\JavaScriptThisExpression.cs" />
     <Compile Include="src\prompto\declaration\DeclarationList.cs" />
     <Compile Include="src\prompto\expression\FetchOneExpression.cs" />
-    <Compile Include="src\prompto\expression\FetchAllExpression.cs" />
     <Compile Include="src\prompto\store\IStore.cs" />
     <Compile Include="src\prompto\store\MemStore.cs" />
     <Compile Include="src\prompto\statement\StoreStatement.cs" />
@@ -454,6 +453,7 @@
     <Compile Include="src\prompto\utils\IOUtils.cs" />
     <Compile Include="src\prompto\value\IteratorValue.cs" />
     <Compile Include="src\prompto\value\IterableValue.cs" />
+    <Compile Include="src\prompto\expression\FetchManyExpression.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />

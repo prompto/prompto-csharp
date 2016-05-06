@@ -11,7 +11,7 @@ using prompto.grammar;
 namespace prompto.expression
 {
 
-	public class FetchAllExpression : Section, IExpression
+	public class FetchManyExpression : Section, IExpression
 	{
 
 		CategoryType type;
@@ -20,7 +20,7 @@ namespace prompto.expression
 		IExpression end;
 		OrderByClauseList orderBy;
 
-		public FetchAllExpression (CategoryType type, IExpression filter, IExpression start, IExpression end, OrderByClauseList orderBy)
+		public FetchManyExpression (CategoryType type, IExpression filter, IExpression start, IExpression end, OrderByClauseList orderBy)
 		{
 			this.type = type;
 			this.filter = filter;
