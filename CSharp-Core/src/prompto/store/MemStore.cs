@@ -31,20 +31,20 @@ namespace prompto.store
 			documents.Add (document);
 		}
 
-		public Document fetchOne (Context context, IExpression filter)
+		public Document fetchOne (Context context, IExpression predicate)
 		{
 			foreach (Document doc in documents) {
-				if (matches (context, doc, filter))
+				if (matches (context, doc, predicate))
 					return doc;
 			}
 			return null;
 		}
 
-		private bool matches(Context context, Document doc, IExpression filter) {
-			if(filter==null)
+		private bool matches(Context context, Document doc, IExpression predicate) {
+			if(predicate==null)
 				return true;
-			Context local = context.newDocumentContext (doc);
-			IValue test = filter.interpret (local);
+			Context local = context.newDocumentContext (doc, true);
+			IValue test = predicate.interpret (local);
 			if (!(test is prompto.value.Boolean))
 				throw new InternalError ("Illegal test result: " + test);
 			return ((prompto.value.Boolean)test).Value;
@@ -96,15 +96,15 @@ namespace prompto.store
 		}
 
 		public IDocumentEnumerator fetchMany(Context context, IExpression start, IExpression end, 
-			IExpression filter, OrderByClauseList orderBy) {
-			List<Document> docs = fetchManyDocs(context, start, end, filter, orderBy);
+				IExpression predicate, OrderByClauseList orderBy) {
+			List<Document> docs = fetchManyDocs(context, start, end, predicate, orderBy);
 			return new DocumentEnumerator(docs);
 		}
 
 
 		private List<Document> fetchManyDocs(Context context, IExpression start, IExpression end, 
-			IExpression filter, OrderByClauseList orderBy) {
-			List<Document> docs = filterDocs(context, filter);
+				IExpression predicate, OrderByClauseList orderBy) {
+			List<Document> docs = filterDocs(context, predicate);
 			// sort it if required
 			docs = sort(context, docs, orderBy);
 			// slice it if required
@@ -113,11 +113,11 @@ namespace prompto.store
 			return docs;
 		}
 
-		private List<Document> filterDocs(Context context, IExpression filter) {
+		private List<Document> filterDocs(Context context, IExpression predicate) {
 			// create list of filtered docs
 			List<Document> docs = new List<Document>();
 			foreach(Document doc in documents) {
-				if(matches(context, doc, filter))
+				if(matches(context, doc, predicate))
 					docs.Add(doc);
 			}
 			return docs;

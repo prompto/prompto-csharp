@@ -126,23 +126,23 @@ namespace prompto.runtime
 
 		public Context newInstanceContext(CategoryType type) 
 		{
-			return initInstanceContext(new InstanceContext(type));
+			return initInstanceContext(new InstanceContext(type), false);
 		}
 
 		public Context newInstanceContext(IInstance instance) 
 		{
-			return initInstanceContext(new InstanceContext(instance));
+			return initInstanceContext(new InstanceContext(instance), false);
 		}
 
-		public Context newDocumentContext(Document document) {
-			return initInstanceContext(new DocumentContext(document));
+		public Context newDocumentContext(Document document, bool isChild) {
+			return initInstanceContext(new DocumentContext(document), isChild);
 		}
 
-		private Context initInstanceContext(Context context)
+		private Context initInstanceContext(Context context, bool isChild)
         {
             context.globals = this.globals;
-            context.calling = this;
-            context.parent = null;
+			context.calling = isChild ? this.calling : this;
+			context.parent = isChild ? this : null;
             context.debugger = this.debugger;
             return context;
         }
