@@ -153,8 +153,13 @@ namespace prompto.reader
 			int endIdx = startIdx;
 			while(endIdx<chars.Length) {
 				if(chars[endIdx]==endChar) {
-					found = true;
-					break;
+					if (endIdx < chars.Length - 1 && chars [endIdx + 1] == endChar) {
+						escape = true;
+						endIdx++;
+					} else {
+						found = true;
+						break;
+					}
 				}
 				if(chars[endIdx]=='\\') {
 					escape = true;
@@ -164,17 +169,19 @@ namespace prompto.reader
 					endIdx++;
 			}
 			String value = escape ? 
-				Unescape(chars, startIdx, endIdx) :
+				Unescape(chars, startIdx, endIdx, endChar) :
 				new String(chars, startIdx, endIdx - startIdx);
 			list.Add(value);
 			return endIdx + (found ? 1 : 0); 
 		}
 
 
-		private String Unescape(char[] chars, int startIdx, int endIdx) {
+		private String Unescape(char[] chars, int startIdx, int endIdx, char endChar) {
 			StringBuilder sb = new StringBuilder();
 			while(startIdx<endIdx) {
 				if(chars[startIdx]=='\\')
+					startIdx++;
+				else if(chars[startIdx]==endChar && startIdx<endIdx-1 && chars[startIdx+1]==endChar)
 					startIdx++;
 				if(startIdx<endIdx)
 					sb.Append(chars[startIdx++]);
