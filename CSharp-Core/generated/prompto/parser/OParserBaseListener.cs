@@ -1354,89 +1354,17 @@ public partial class OParserBaseListener : IOParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitSelectableExpression([NotNull] OParser.SelectableExpressionContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="OParser.BlobExpression"/>.
+	/// Enter a parse tree produced by <see cref="OParser.method_expression"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void EnterBlobExpression([NotNull] OParser.BlobExpressionContext context) { }
+	public virtual void EnterMethod_expression([NotNull] OParser.Method_expressionContext context) { }
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="OParser.BlobExpression"/>.
+	/// Exit a parse tree produced by <see cref="OParser.method_expression"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void ExitBlobExpression([NotNull] OParser.BlobExpressionContext context) { }
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="OParser.DocumentExpression"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void EnterDocumentExpression([NotNull] OParser.DocumentExpressionContext context) { }
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="OParser.DocumentExpression"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void ExitDocumentExpression([NotNull] OParser.DocumentExpressionContext context) { }
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="OParser.FetchExpression"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void EnterFetchExpression([NotNull] OParser.FetchExpressionContext context) { }
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="OParser.FetchExpression"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void ExitFetchExpression([NotNull] OParser.FetchExpressionContext context) { }
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="OParser.ReadExpression"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void EnterReadExpression([NotNull] OParser.ReadExpressionContext context) { }
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="OParser.ReadExpression"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void ExitReadExpression([NotNull] OParser.ReadExpressionContext context) { }
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="OParser.SortedExpression"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void EnterSortedExpression([NotNull] OParser.SortedExpressionContext context) { }
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="OParser.SortedExpression"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void ExitSortedExpression([NotNull] OParser.SortedExpressionContext context) { }
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="OParser.MethodCallExpression"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void EnterMethodCallExpression([NotNull] OParser.MethodCallExpressionContext context) { }
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="OParser.MethodCallExpression"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void ExitMethodCallExpression([NotNull] OParser.MethodCallExpressionContext context) { }
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="OParser.ConstructorExpression"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void EnterConstructorExpression([NotNull] OParser.ConstructorExpressionContext context) { }
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="OParser.ConstructorExpression"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void ExitConstructorExpression([NotNull] OParser.ConstructorExpressionContext context) { }
+	public virtual void ExitMethod_expression([NotNull] OParser.Method_expressionContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="OParser.blob_expression"/>.
 	/// <para>The default implementation does nothing.</para>
@@ -1486,17 +1414,17 @@ public partial class OParserBaseListener : IOParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitWrite_statement([NotNull] OParser.Write_statementContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="OParser.FetchList"/>.
+	/// Enter a parse tree produced by <see cref="OParser.fetch_list_expression"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void EnterFetchList([NotNull] OParser.FetchListContext context) { }
+	public virtual void EnterFetch_list_expression([NotNull] OParser.Fetch_list_expressionContext context) { }
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="OParser.FetchList"/>.
+	/// Exit a parse tree produced by <see cref="OParser.fetch_list_expression"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void ExitFetchList([NotNull] OParser.FetchListContext context) { }
+	public virtual void ExitFetch_list_expression([NotNull] OParser.Fetch_list_expressionContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="OParser.FetchOne"/>.
 	/// <para>The default implementation does nothing.</para>
@@ -1510,17 +1438,17 @@ public partial class OParserBaseListener : IOParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitFetchOne([NotNull] OParser.FetchOneContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="OParser.FetchAll"/>.
+	/// Enter a parse tree produced by <see cref="OParser.FetchMany"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void EnterFetchAll([NotNull] OParser.FetchAllContext context) { }
+	public virtual void EnterFetchMany([NotNull] OParser.FetchManyContext context) { }
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="OParser.FetchAll"/>.
+	/// Exit a parse tree produced by <see cref="OParser.FetchMany"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void ExitFetchAll([NotNull] OParser.FetchAllContext context) { }
+	public virtual void ExitFetchMany([NotNull] OParser.FetchManyContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="OParser.sorted_expression"/>.
 	/// <para>The default implementation does nothing.</para>

@@ -2311,36 +2311,44 @@ namespace prompto.parser
 			SetNodeValue (ctx, DocumentType.Instance);
 		}
 
-		
-		public override void ExitFetchExpression (EParser.FetchExpressionContext ctx)
-		{
-			IExpression exp = this.GetNodeValue<IExpression> (ctx.exp);
-			SetNodeValue (ctx, exp);
-		}
 
-		public override void ExitFetchList (EParser.FetchListContext ctx)
+		public override void ExitFetch_list_expression (EParser.Fetch_list_expressionContext ctx)
 		{
 			String itemName = this.GetNodeValue<String> (ctx.name);
 			IExpression source = this.GetNodeValue<IExpression> (ctx.source);
-			IExpression filter = this.GetNodeValue<IExpression> (ctx.xfilter);
+			IExpression filter = this.GetNodeValue<IExpression> (ctx.predicate);
 			SetNodeValue (ctx, new FetchExpression (itemName, source, filter));
 		}
+
 
 		public override void ExitFetchOne (EParser.FetchOneContext ctx)
 		{
 			CategoryType category = this.GetNodeValue<CategoryType>(ctx.typ);
-			IExpression filter = this.GetNodeValue<IExpression>(ctx.xfilter);
+			IExpression filter = this.GetNodeValue<IExpression>(ctx.predicate);
 			SetNodeValue(ctx, new FetchOneExpression(category, filter));
 		}
 
-		public override void ExitFetchAll (EParser.FetchAllContext ctx)
+		public override void ExitFetchListExpression (EParser.FetchListExpressionContext ctx)
+		{
+			IExpression exp = this.GetNodeValue<IExpression> (ctx.GetChild(0));
+			SetNodeValue (ctx, exp);
+		}
+
+		public override void ExitFetchMany (EParser.FetchManyContext ctx)
 		{
 			CategoryType category = this.GetNodeValue<CategoryType>(ctx.typ);
-			IExpression filter = this.GetNodeValue<IExpression>(ctx.xfilter);
+			IExpression filter = this.GetNodeValue<IExpression>(ctx.predicate);
 			IExpression start = this.GetNodeValue<IExpression>(ctx.xstart);
 			IExpression stop = this.GetNodeValue<IExpression>(ctx.xstop);
-			OrderByClauseList orderBy = this.GetNodeValue<OrderByClauseList>(ctx.xorder);
+			OrderByClauseList orderBy = this.GetNodeValue<OrderByClauseList>(ctx.orderby);
 			SetNodeValue(ctx, new FetchManyExpression(category, filter, start, stop, orderBy));
+		}
+
+
+		public override void ExitFetchStoreExpression (EParser.FetchStoreExpressionContext ctx)
+		{
+			IExpression exp = this.GetNodeValue<IExpression> (ctx.GetChild(0));
+			SetNodeValue (ctx, exp);
 		}
 
 		public override void ExitCode_type (EParser.Code_typeContext ctx)

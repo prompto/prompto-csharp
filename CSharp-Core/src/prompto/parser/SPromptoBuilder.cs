@@ -136,11 +136,6 @@ namespace prompto.parser
 		}
 
 
-		public override void ExitBlobExpression(SParser.BlobExpressionContext ctx) {
-			IExpression exp = this.GetNodeValue<IExpression>(ctx.exp);
-			SetNodeValue(ctx, exp);
-		}
-
 		public override void ExitBlob_expression(SParser.Blob_expressionContext ctx) {
 			IExpression exp = this.GetNodeValue<IExpression>(ctx.expression());
 			SetNodeValue(ctx, new BlobExpression(exp));
@@ -838,18 +833,18 @@ namespace prompto.parser
 			SetNodeValue (ctx, new ConcreteMethodDeclaration (name, args, type, stmts));
 		}
 
-		
+
+		public override void ExitMethod_expression (SParser.Method_expressionContext ctx)
+		{
+			IExpression exp = this.GetNodeValue<IExpression> (ctx.GetChild(0));
+			SetNodeValue (ctx, exp);
+		}
+
+
 		public override void ExitMethodCallStatement (SParser.MethodCallStatementContext ctx)
 		{
 			IStatement stmt = this.GetNodeValue<IStatement> (ctx.stmt);
 			SetNodeValue (ctx, stmt);
-		}
-
-		
-		public override void ExitMethodCallExpression (SParser.MethodCallExpressionContext ctx)
-		{
-			IExpression exp = this.GetNodeValue<IExpression> (ctx.exp);
-			SetNodeValue (ctx, exp);
 		}
 
 		
@@ -970,13 +965,6 @@ namespace prompto.parser
 
 		
 		public override void ExitMethodExpression (SParser.MethodExpressionContext ctx)
-		{
-			IExpression exp = this.GetNodeValue<IExpression> (ctx.exp);
-			SetNodeValue (ctx, exp);
-		}
-
-		
-		public override void ExitConstructorExpression (SParser.ConstructorExpressionContext ctx)
 		{
 			IExpression exp = this.GetNodeValue<IExpression> (ctx.exp);
 			SetNodeValue (ctx, exp);
@@ -2092,20 +2080,7 @@ namespace prompto.parser
 		}
 
 		
-		public override void ExitSortedExpression (SParser.SortedExpressionContext ctx)
-		{
-			IExpression exp = this.GetNodeValue<IExpression> (ctx.exp);
-			SetNodeValue (ctx, exp);
-		}
 
-		
-		public override void ExitDocumentExpression (SParser.DocumentExpressionContext ctx)
-		{
-			IExpression exp = this.GetNodeValue<IExpression> (ctx.exp);
-			SetNodeValue (ctx, exp);
-		}
-
-		
 		public override void ExitDocument_expression (SParser.Document_expressionContext ctx)
 		{
 			IExpression exp = this.GetNodeValue<IExpression>(ctx.expression());
@@ -2118,36 +2093,28 @@ namespace prompto.parser
 			SetNodeValue (ctx, DocumentType.Instance);
 		}
 
-		
-		public override void ExitFetchExpression (SParser.FetchExpressionContext ctx)
-		{
-			IExpression exp = this.GetNodeValue<IExpression> (ctx.exp);
-			SetNodeValue (ctx, exp);
-		}
-
-		
-		public override void ExitFetchList (SParser.FetchListContext ctx)
+		public override void ExitFetch_list_expression (SParser.Fetch_list_expressionContext ctx)
 		{
 			String itemName = this.GetNodeValue<String> (ctx.name);
 			IExpression source = this.GetNodeValue<IExpression> (ctx.source);
-			IExpression filter = this.GetNodeValue<IExpression> (ctx.xfilter);
+			IExpression filter = this.GetNodeValue<IExpression> (ctx.predicate);
 			SetNodeValue (ctx, new FetchExpression (itemName, source, filter));
 		}
 
 		public override void ExitFetchOne (SParser.FetchOneContext ctx)
 		{
 			CategoryType category = this.GetNodeValue<CategoryType>(ctx.typ);
-			IExpression filter = this.GetNodeValue<IExpression>(ctx.xfilter);
+			IExpression filter = this.GetNodeValue<IExpression>(ctx.predicate);
 			SetNodeValue(ctx, new FetchOneExpression(category, filter));
 		}
 
-		public override void ExitFetchAll (SParser.FetchAllContext ctx)
+		public override void ExitFetchMany (SParser.FetchManyContext ctx)
 		{
 			CategoryType category = this.GetNodeValue<CategoryType>(ctx.typ);
-			IExpression filter = this.GetNodeValue<IExpression>(ctx.xfilter);
+			IExpression filter = this.GetNodeValue<IExpression>(ctx.predicate);
 			IExpression start = this.GetNodeValue<IExpression>(ctx.xstart);
 			IExpression stop = this.GetNodeValue<IExpression>(ctx.xstop);
-			OrderByClauseList orderBy = this.GetNodeValue<OrderByClauseList>(ctx.xorder);
+			OrderByClauseList orderBy = this.GetNodeValue<OrderByClauseList>(ctx.orderby);
 			SetNodeValue(ctx, new FetchManyExpression(category, filter, start, stop, orderBy));
 		}
 
@@ -2218,13 +2185,7 @@ namespace prompto.parser
 		}
 
 		
-		public override void ExitReadExpression (SParser.ReadExpressionContext ctx)
-		{
-			IExpression exp = this.GetNodeValue<IExpression> (ctx.exp);
-			SetNodeValue (ctx, exp);
-		}
 
-		
 		public override void ExitWrite_statement (SParser.Write_statementContext ctx)
 		{
 			IExpression what = this.GetNodeValue<IExpression> (ctx.what);

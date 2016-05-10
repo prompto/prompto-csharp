@@ -1270,89 +1270,17 @@ public partial class SParserBaseListener : ISParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitSelectableExpression([NotNull] SParser.SelectableExpressionContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="SParser.BlobExpression"/>.
+	/// Enter a parse tree produced by <see cref="SParser.method_expression"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void EnterBlobExpression([NotNull] SParser.BlobExpressionContext context) { }
+	public virtual void EnterMethod_expression([NotNull] SParser.Method_expressionContext context) { }
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="SParser.BlobExpression"/>.
+	/// Exit a parse tree produced by <see cref="SParser.method_expression"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void ExitBlobExpression([NotNull] SParser.BlobExpressionContext context) { }
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="SParser.DocumentExpression"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void EnterDocumentExpression([NotNull] SParser.DocumentExpressionContext context) { }
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="SParser.DocumentExpression"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void ExitDocumentExpression([NotNull] SParser.DocumentExpressionContext context) { }
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="SParser.FetchExpression"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void EnterFetchExpression([NotNull] SParser.FetchExpressionContext context) { }
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="SParser.FetchExpression"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void ExitFetchExpression([NotNull] SParser.FetchExpressionContext context) { }
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="SParser.ReadExpression"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void EnterReadExpression([NotNull] SParser.ReadExpressionContext context) { }
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="SParser.ReadExpression"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void ExitReadExpression([NotNull] SParser.ReadExpressionContext context) { }
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="SParser.SortedExpression"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void EnterSortedExpression([NotNull] SParser.SortedExpressionContext context) { }
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="SParser.SortedExpression"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void ExitSortedExpression([NotNull] SParser.SortedExpressionContext context) { }
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="SParser.MethodCallExpression"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void EnterMethodCallExpression([NotNull] SParser.MethodCallExpressionContext context) { }
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="SParser.MethodCallExpression"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void ExitMethodCallExpression([NotNull] SParser.MethodCallExpressionContext context) { }
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="SParser.ConstructorExpression"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void EnterConstructorExpression([NotNull] SParser.ConstructorExpressionContext context) { }
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="SParser.ConstructorExpression"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void ExitConstructorExpression([NotNull] SParser.ConstructorExpressionContext context) { }
+	public virtual void ExitMethod_expression([NotNull] SParser.Method_expressionContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="SParser.MemberSelector"/>.
 	/// <para>The default implementation does nothing.</para>
@@ -1498,17 +1426,17 @@ public partial class SParserBaseListener : ISParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitWrite_statement([NotNull] SParser.Write_statementContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="SParser.FetchList"/>.
+	/// Enter a parse tree produced by <see cref="SParser.fetch_list_expression"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void EnterFetchList([NotNull] SParser.FetchListContext context) { }
+	public virtual void EnterFetch_list_expression([NotNull] SParser.Fetch_list_expressionContext context) { }
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="SParser.FetchList"/>.
+	/// Exit a parse tree produced by <see cref="SParser.fetch_list_expression"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void ExitFetchList([NotNull] SParser.FetchListContext context) { }
+	public virtual void ExitFetch_list_expression([NotNull] SParser.Fetch_list_expressionContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="SParser.FetchOne"/>.
 	/// <para>The default implementation does nothing.</para>
@@ -1522,17 +1450,17 @@ public partial class SParserBaseListener : ISParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitFetchOne([NotNull] SParser.FetchOneContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="SParser.FetchAll"/>.
+	/// Enter a parse tree produced by <see cref="SParser.FetchMany"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void EnterFetchAll([NotNull] SParser.FetchAllContext context) { }
+	public virtual void EnterFetchMany([NotNull] SParser.FetchManyContext context) { }
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="SParser.FetchAll"/>.
+	/// Exit a parse tree produced by <see cref="SParser.FetchMany"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void ExitFetchAll([NotNull] SParser.FetchAllContext context) { }
+	public virtual void ExitFetchMany([NotNull] SParser.FetchManyContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="SParser.sorted_expression"/>.
 	/// <para>The default implementation does nothing.</para>

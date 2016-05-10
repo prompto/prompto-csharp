@@ -1194,89 +1194,15 @@ public interface ISParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitSelectableExpression([NotNull] SParser.SelectableExpressionContext context);
 	/// <summary>
-	/// Enter a parse tree produced by the <c>BlobExpression</c>
-	/// labeled alternative in <see cref="SParser.method_expression"/>.
+	/// Enter a parse tree produced by <see cref="SParser.method_expression"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterBlobExpression([NotNull] SParser.BlobExpressionContext context);
+	void EnterMethod_expression([NotNull] SParser.Method_expressionContext context);
 	/// <summary>
-	/// Exit a parse tree produced by the <c>BlobExpression</c>
-	/// labeled alternative in <see cref="SParser.method_expression"/>.
+	/// Exit a parse tree produced by <see cref="SParser.method_expression"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitBlobExpression([NotNull] SParser.BlobExpressionContext context);
-	/// <summary>
-	/// Enter a parse tree produced by the <c>DocumentExpression</c>
-	/// labeled alternative in <see cref="SParser.method_expression"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterDocumentExpression([NotNull] SParser.DocumentExpressionContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>DocumentExpression</c>
-	/// labeled alternative in <see cref="SParser.method_expression"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitDocumentExpression([NotNull] SParser.DocumentExpressionContext context);
-	/// <summary>
-	/// Enter a parse tree produced by the <c>FetchExpression</c>
-	/// labeled alternative in <see cref="SParser.method_expression"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterFetchExpression([NotNull] SParser.FetchExpressionContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>FetchExpression</c>
-	/// labeled alternative in <see cref="SParser.method_expression"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitFetchExpression([NotNull] SParser.FetchExpressionContext context);
-	/// <summary>
-	/// Enter a parse tree produced by the <c>ReadExpression</c>
-	/// labeled alternative in <see cref="SParser.method_expression"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterReadExpression([NotNull] SParser.ReadExpressionContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>ReadExpression</c>
-	/// labeled alternative in <see cref="SParser.method_expression"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitReadExpression([NotNull] SParser.ReadExpressionContext context);
-	/// <summary>
-	/// Enter a parse tree produced by the <c>SortedExpression</c>
-	/// labeled alternative in <see cref="SParser.method_expression"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterSortedExpression([NotNull] SParser.SortedExpressionContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>SortedExpression</c>
-	/// labeled alternative in <see cref="SParser.method_expression"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitSortedExpression([NotNull] SParser.SortedExpressionContext context);
-	/// <summary>
-	/// Enter a parse tree produced by the <c>MethodCallExpression</c>
-	/// labeled alternative in <see cref="SParser.method_expression"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterMethodCallExpression([NotNull] SParser.MethodCallExpressionContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>MethodCallExpression</c>
-	/// labeled alternative in <see cref="SParser.method_expression"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitMethodCallExpression([NotNull] SParser.MethodCallExpressionContext context);
-	/// <summary>
-	/// Enter a parse tree produced by the <c>ConstructorExpression</c>
-	/// labeled alternative in <see cref="SParser.method_expression"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterConstructorExpression([NotNull] SParser.ConstructorExpressionContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>ConstructorExpression</c>
-	/// labeled alternative in <see cref="SParser.method_expression"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitConstructorExpression([NotNull] SParser.ConstructorExpressionContext context);
+	void ExitMethod_expression([NotNull] SParser.Method_expressionContext context);
 	/// <summary>
 	/// Enter a parse tree produced by the <c>MemberSelector</c>
 	/// labeled alternative in <see cref="SParser.instance_selector"/>.
@@ -1410,41 +1336,39 @@ public interface ISParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitWrite_statement([NotNull] SParser.Write_statementContext context);
 	/// <summary>
-	/// Enter a parse tree produced by the <c>FetchList</c>
-	/// labeled alternative in <see cref="SParser.fetch_expression"/>.
+	/// Enter a parse tree produced by <see cref="SParser.fetch_list_expression"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterFetchList([NotNull] SParser.FetchListContext context);
+	void EnterFetch_list_expression([NotNull] SParser.Fetch_list_expressionContext context);
 	/// <summary>
-	/// Exit a parse tree produced by the <c>FetchList</c>
-	/// labeled alternative in <see cref="SParser.fetch_expression"/>.
+	/// Exit a parse tree produced by <see cref="SParser.fetch_list_expression"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitFetchList([NotNull] SParser.FetchListContext context);
+	void ExitFetch_list_expression([NotNull] SParser.Fetch_list_expressionContext context);
 	/// <summary>
 	/// Enter a parse tree produced by the <c>FetchOne</c>
-	/// labeled alternative in <see cref="SParser.fetch_expression"/>.
+	/// labeled alternative in <see cref="SParser.fetch_store_expression"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void EnterFetchOne([NotNull] SParser.FetchOneContext context);
 	/// <summary>
 	/// Exit a parse tree produced by the <c>FetchOne</c>
-	/// labeled alternative in <see cref="SParser.fetch_expression"/>.
+	/// labeled alternative in <see cref="SParser.fetch_store_expression"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void ExitFetchOne([NotNull] SParser.FetchOneContext context);
 	/// <summary>
-	/// Enter a parse tree produced by the <c>FetchAll</c>
-	/// labeled alternative in <see cref="SParser.fetch_expression"/>.
+	/// Enter a parse tree produced by the <c>FetchMany</c>
+	/// labeled alternative in <see cref="SParser.fetch_store_expression"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterFetchAll([NotNull] SParser.FetchAllContext context);
+	void EnterFetchMany([NotNull] SParser.FetchManyContext context);
 	/// <summary>
-	/// Exit a parse tree produced by the <c>FetchAll</c>
-	/// labeled alternative in <see cref="SParser.fetch_expression"/>.
+	/// Exit a parse tree produced by the <c>FetchMany</c>
+	/// labeled alternative in <see cref="SParser.fetch_store_expression"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitFetchAll([NotNull] SParser.FetchAllContext context);
+	void ExitFetchMany([NotNull] SParser.FetchManyContext context);
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="SParser.sorted_expression"/>.
 	/// </summary>
