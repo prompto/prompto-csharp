@@ -162,5 +162,22 @@ namespace prompto.reader
 			Assert.AreEqual(doc.GetMember("name"), "Sylvie");
 		}
 
+
+		[Test]
+		public void testQuotedInnerNewLine() {
+			String csv = "id,name\n1,\"Jo\nhn\"\n2,Sylvie\n";
+			IEnumerator<Document> iter = CSVReader.iterator(csv, null, ',', '"');
+			Assert.IsTrue (iter.MoveNext ());
+			Document doc = iter.Current;
+			Assert.IsNotNull (doc);
+			Assert.AreEqual(doc.GetMember("id"), "1");
+			Assert.AreEqual(doc.GetMember("name"), "Jo\nhn");
+			Assert.IsTrue (iter.MoveNext ());
+			doc = iter.Current;
+			Assert.IsNotNull (doc);
+			Assert.AreEqual(doc.GetMember("id"), "2");
+			Assert.AreEqual(doc.GetMember("name"), "Sylvie");
+		}
+
 	}
 }
