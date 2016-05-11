@@ -1,7 +1,7 @@
 using prompto.parser;
 using NUnit.Framework;
 using prompto.utils;
-namespace prompto.e.runtime {
+namespace prompto.parser.e {
 
     [TestFixture]
     public class TestIssues : BaseEParserTest
@@ -22,7 +22,7 @@ namespace prompto.e.runtime {
         [Test]
         public void testMinimal()
         {
-            runResource("issues/minimal.pec", "mainNoCmdLine", null);
+            runResource("issues/minimal.pec", "main", null);
         }
     }
 
