@@ -52,7 +52,7 @@ namespace prompto.debug
         void waitBlocked()
         {
 			do {
-				Thread.Sleep (1);
+				Thread.Sleep (10);
 			} while (thread.ThreadState != ThreadState.WaitSleepJoin);
         }
 
