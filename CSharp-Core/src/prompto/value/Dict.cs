@@ -16,6 +16,7 @@ namespace prompto.value
 	public class Dict : Dictionary<Text, IValue>, IContainer, IEnumerable<IValue>
     {
 		ContainerType type;
+		bool mutable = false;
 
 		public Dict(IType itemType)
 	    {
@@ -28,6 +29,18 @@ namespace prompto.value
 			this.type = new DictType (itemType);
         }
 
+		public Dict(IType itemType, IDictionary<Text, IValue> from, bool mutable)
+			: base(from)
+		{
+			this.type = new DictType (itemType);
+			this.mutable = mutable;
+		}
+
+		public bool IsMutable()
+		{
+			return this.mutable;
+		}
+
 		public bool Empty()
 		{
 			return Length () == 0;
@@ -36,11 +49,6 @@ namespace prompto.value
 		public long Length()
 		{
 			return this.Count;
-		}
-
-		public bool IsMutable()
-		{
-			return false;
 		}
 
 		public IType ItemType

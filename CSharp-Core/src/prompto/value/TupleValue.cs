@@ -29,6 +29,11 @@ namespace prompto.value
 		{
 		}
 
+		public TupleValue(List<IValue> items, bool mutable)
+			: base(TupleType.Instance, items, mutable)
+		{
+		}
+
 		override
         public IValue Add(Context context, IValue value)
         {

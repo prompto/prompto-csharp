@@ -238,15 +238,17 @@ namespace prompto.parser
 
 		public override void ExitDict_literal (OParser.Dict_literalContext ctx)
 		{
+			bool mutable = ctx.MUTABLE () != null;
 			DictEntryList items = this.GetNodeValue<DictEntryList> (ctx.dict_entry_list());
-			IExpression value = items == null ? new DictLiteral () : new DictLiteral (items);
+			IExpression value = items == null ? new DictLiteral (mutable) : new DictLiteral (items, mutable);
 			SetNodeValue (ctx, value);
 		}
 
 		public override void ExitTuple_literal (OParser.Tuple_literalContext ctx)
 		{
+			bool mutable = ctx.MUTABLE() != null;
 			ExpressionList items = this.GetNodeValue<ExpressionList> (ctx.expression_tuple());
-			IExpression value = items == null ? new TupleLiteral () : new TupleLiteral (items);
+			IExpression value = items == null ? new TupleLiteral (mutable) : new TupleLiteral (items, mutable);
 			SetNodeValue (ctx, value);
 		}
 

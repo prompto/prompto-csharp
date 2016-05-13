@@ -13,18 +13,25 @@ namespace prompto.literal
     public class TupleLiteral : Literal<TupleValue>
     {
 
+		bool mutable = false;
 		ExpressionList expressions = null;
 
-		public TupleLiteral()
+		public TupleLiteral(bool mutable)
             : base("()", new TupleValue())
         {
+			this.mutable = mutable;
         }
 
-		public TupleLiteral(ExpressionList expressions)
-			: base("(" + expressions.ToString() + ")", new TupleValue())
+		public TupleLiteral(ExpressionList expressions, bool mutable)
+			: base(ToTupleString(expressions), new TupleValue())
         {
 			this.expressions = expressions;
+			this.mutable = mutable;
         }
+
+		private static String ToTupleString(ExpressionList expressions) {
+			return "(" + expressions.ToString() + (expressions.Count==1 ? "," : "") + ")";
+		}
  
 		public ExpressionList Expressions {
 			get { return expressions; }
@@ -32,9 +39,13 @@ namespace prompto.literal
 
 
 		public override void ToDialect(CodeWriter writer) {
+			if(mutable)
+				writer.append ("mutable ");
 			if (expressions != null) {
 				writer.append ('(');
 				expressions.toDialect (writer);
+				if(expressions.Count==1)
+					writer.append (',');
 				writer.append (')');
 			} else
 				value.ToDialect (writer);
@@ -54,7 +65,7 @@ namespace prompto.literal
 				List<IValue> list = new List<IValue>();
 				foreach(IExpression exp in expressions) 
 					list.Add(exp.interpret(context));
-				return new TupleValue(list);
+				return new TupleValue(list, mutable);
 			} else 
             	return value;
         }

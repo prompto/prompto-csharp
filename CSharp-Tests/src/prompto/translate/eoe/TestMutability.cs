@@ -21,9 +21,27 @@ namespace prompto.translate.eoe
 		}
 
 		[Test]
+		public void testImmutableDict()
+		{
+			compareResourceEOE("mutability/immutableDict.pec");
+		}
+
+		[Test]
+		public void testImmutableList()
+		{
+			compareResourceEOE("mutability/immutableList.pec");
+		}
+
+		[Test]
 		public void testImmutableMember()
 		{
 			compareResourceEOE("mutability/immutableMember.pec");
+		}
+
+		[Test]
+		public void testImmutableTuple()
+		{
+			compareResourceEOE("mutability/immutableTuple.pec");
 		}
 
 		[Test]
@@ -39,9 +57,27 @@ namespace prompto.translate.eoe
 		}
 
 		[Test]
+		public void testMutableDict()
+		{
+			compareResourceEOE("mutability/mutableDict.pec");
+		}
+
+		[Test]
+		public void testMutableList()
+		{
+			compareResourceEOE("mutability/mutableList.pec");
+		}
+
+		[Test]
 		public void testMutableMember()
 		{
 			compareResourceEOE("mutability/mutableMember.pec");
+		}
+
+		[Test]
+		public void testMutableTuple()
+		{
+			compareResourceEOE("mutability/mutableTuple.pec");
 		}
 
 	}

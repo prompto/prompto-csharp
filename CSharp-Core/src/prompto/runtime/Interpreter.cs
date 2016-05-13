@@ -75,13 +75,13 @@ namespace prompto.runtime {
             try
             {
                 Dictionary<Text, IValue> args = null; // CmdLineParser.parse(cmdLineArgs);
-                Dict dict = new Dict(TextType.Instance, args);
+                Dict dict = new Dict(TextType.Instance, args, false);
 				return new ExpressionValue(argsType, dict);
             }
             catch (Exception )
             {
                 // TODO
-                return new DictLiteral();
+                return new DictLiteral(false);
             }
         }
 

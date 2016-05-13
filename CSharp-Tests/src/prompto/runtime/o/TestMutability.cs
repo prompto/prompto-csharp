@@ -34,9 +34,27 @@ namespace prompto.runtime.o
 		}
 
 		[Test]
+		public void testImmutableDict()
+		{
+			CheckOutput("mutability/immutableDict.poc");
+		}
+
+		[Test]
+		public void testImmutableList()
+		{
+			CheckOutput("mutability/immutableList.poc");
+		}
+
+		[Test]
 		public void testImmutableMember()
 		{
 			CheckOutput("mutability/immutableMember.poc");
+		}
+
+		[Test]
+		public void testImmutableTuple()
+		{
+			CheckOutput("mutability/immutableTuple.poc");
 		}
 
 		[Test]
@@ -52,9 +70,27 @@ namespace prompto.runtime.o
 		}
 
 		[Test]
+		public void testMutableDict()
+		{
+			CheckOutput("mutability/mutableDict.poc");
+		}
+
+		[Test]
+		public void testMutableList()
+		{
+			CheckOutput("mutability/mutableList.poc");
+		}
+
+		[Test]
 		public void testMutableMember()
 		{
 			CheckOutput("mutability/mutableMember.poc");
+		}
+
+		[Test]
+		public void testMutableTuple()
+		{
+			CheckOutput("mutability/mutableTuple.poc");
 		}
 
 	}

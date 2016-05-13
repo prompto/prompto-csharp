@@ -21,9 +21,27 @@ namespace prompto.translate.ese
 		}
 
 		[Test]
+		public void testImmutableDict()
+		{
+			compareResourceESE("mutability/immutableDict.pec");
+		}
+
+		[Test]
+		public void testImmutableList()
+		{
+			compareResourceESE("mutability/immutableList.pec");
+		}
+
+		[Test]
 		public void testImmutableMember()
 		{
 			compareResourceESE("mutability/immutableMember.pec");
+		}
+
+		[Test]
+		public void testImmutableTuple()
+		{
+			compareResourceESE("mutability/immutableTuple.pec");
 		}
 
 		[Test]
@@ -39,9 +57,27 @@ namespace prompto.translate.ese
 		}
 
 		[Test]
+		public void testMutableDict()
+		{
+			compareResourceESE("mutability/mutableDict.pec");
+		}
+
+		[Test]
+		public void testMutableList()
+		{
+			compareResourceESE("mutability/mutableList.pec");
+		}
+
+		[Test]
 		public void testMutableMember()
 		{
 			compareResourceESE("mutability/mutableMember.pec");
+		}
+
+		[Test]
+		public void testMutableTuple()
+		{
+			compareResourceESE("mutability/mutableTuple.pec");
 		}
 
 	}
