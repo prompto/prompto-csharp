@@ -159,7 +159,7 @@ namespace prompto.csharp
 					IValue ival = ConvertCSharpValueToPromptoValue(context, val, elemType, itemType);
 					dict [key] = ival;
 				}
-				return new Dict(itemType, dict);
+				return new Dict(itemType, false, dict);
 			} else
 				return null; 
 		}

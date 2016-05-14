@@ -18,18 +18,13 @@ namespace prompto.value
 		ContainerType type;
 		bool mutable = false;
 
-		public Dict(IType itemType)
+		public Dict(IType itemType, bool mutable)
 	    {
 			this.type = new DictType (itemType);
+			this.mutable = mutable;
 	    }
 
-		public Dict(IType itemType, IDictionary<Text, IValue> from)
-            : base(from)
-        {
-			this.type = new DictType (itemType);
-        }
-
-		public Dict(IType itemType, IDictionary<Text, IValue> from, bool mutable)
+		public Dict(IType itemType, bool mutable, IDictionary<Text, IValue> from)
 			: base(from)
 		{
 			this.type = new DictType (itemType);
@@ -181,7 +176,7 @@ namespace prompto.value
  
         public static Dict merge(Dict dict1, Dict dict2)
         {
-			Dict dict = new Dict(dict1.type.GetItemType(), dict1); // TODO check type fungibility
+			Dict dict = new Dict(dict1.type.GetItemType(), false, dict1); // TODO check type fungibility
 			foreach (KeyValuePair<Text, IValue> kvp in ((Dictionary<Text, IValue>)dict2))
                 dict[kvp.Key] = kvp.Value;
 			return dict;

@@ -20,14 +20,14 @@ namespace prompto.literal
 		IType itemType = null;
 
 		public DictLiteral (bool mutable)
-			: base ("{}", new Dict (MissingType.Instance))
+			: base ("{}", new Dict (MissingType.Instance, mutable))
 		{
 			this.entries = new DictEntryList ();
 			this.mutable = mutable;
 		}
 
 		public DictLiteral (DictEntryList entries, bool mutable)
-			: base (entries.ToString (), new Dict (MissingType.Instance))
+			: base (entries.ToString (), new Dict (MissingType.Instance, mutable))
 		{
 			this.entries = entries;
 			this.mutable = mutable;
@@ -76,7 +76,7 @@ namespace prompto.literal
 					IValue val = e.getValue ().interpret (context);
 					dict [key] = val;
 				}
-				return new Dict (itemType, dict, mutable);
+				return new Dict (itemType, mutable, dict);
 			} else
 				return value;
 		}

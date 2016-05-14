@@ -75,7 +75,7 @@ namespace prompto.runtime {
             try
             {
                 Dictionary<Text, IValue> args = null; // CmdLineParser.parse(cmdLineArgs);
-                Dict dict = new Dict(TextType.Instance, args, false);
+				Dict dict = new Dict(TextType.Instance, false, args);
 				return new ExpressionValue(argsType, dict);
             }
             catch (Exception )
