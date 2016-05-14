@@ -15,6 +15,12 @@ namespace prompto.translate.oso
 		}
 
 		[Test]
+		public void testEmbeddedForEach()
+		{
+			compareResourceOSO("loops/embeddedForEach.poc");
+		}
+
+		[Test]
 		public void testForEachCharacterRange()
 		{
 			compareResourceOSO("loops/forEachCharacterRange.poc");

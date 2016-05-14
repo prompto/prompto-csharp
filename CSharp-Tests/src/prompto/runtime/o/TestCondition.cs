@@ -28,6 +28,12 @@ namespace prompto.runtime.o
 		}
 
 		[Test]
+		public void testEmbeddedIf()
+		{
+			CheckOutput("condition/embeddedIf.poc");
+		}
+
+		[Test]
 		public void testReturnIf()
 		{
 			CheckOutput("condition/returnIf.poc");

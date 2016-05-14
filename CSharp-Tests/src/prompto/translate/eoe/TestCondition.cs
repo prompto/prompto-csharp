@@ -15,6 +15,12 @@ namespace prompto.translate.eoe
 		}
 
 		[Test]
+		public void testEmbeddedIf()
+		{
+			compareResourceEOE("condition/embeddedIf.pec");
+		}
+
+		[Test]
 		public void testReturnIf()
 		{
 			compareResourceEOE("condition/returnIf.pec");

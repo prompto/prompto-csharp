@@ -15,6 +15,12 @@ namespace prompto.translate.ese
 		}
 
 		[Test]
+		public void testEmbeddedIf()
+		{
+			compareResourceESE("condition/embeddedIf.pec");
+		}
+
+		[Test]
 		public void testReturnIf()
 		{
 			compareResourceESE("condition/returnIf.pec");

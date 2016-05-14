@@ -15,6 +15,12 @@ namespace prompto.translate.eoe
 		}
 
 		[Test]
+		public void testEmbeddedForEach()
+		{
+			compareResourceEOE("loops/embeddedForEach.pec");
+		}
+
+		[Test]
 		public void testForEachCharacterRange()
 		{
 			compareResourceEOE("loops/forEachCharacterRange.pec");

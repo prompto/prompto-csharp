@@ -15,6 +15,12 @@ namespace prompto.translate.ese
 		}
 
 		[Test]
+		public void testEmbeddedForEach()
+		{
+			compareResourceESE("loops/embeddedForEach.pec");
+		}
+
+		[Test]
 		public void testForEachCharacterRange()
 		{
 			compareResourceESE("loops/forEachCharacterRange.pec");

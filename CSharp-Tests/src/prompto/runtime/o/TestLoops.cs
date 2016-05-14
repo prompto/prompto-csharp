@@ -28,6 +28,12 @@ namespace prompto.runtime.o
 		}
 
 		[Test]
+		public void testEmbeddedForEach()
+		{
+			CheckOutput("loops/embeddedForEach.poc");
+		}
+
+		[Test]
 		public void testForEachCharacterRange()
 		{
 			CheckOutput("loops/forEachCharacterRange.poc");
