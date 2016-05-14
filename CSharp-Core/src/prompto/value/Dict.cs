@@ -152,8 +152,10 @@ namespace prompto.value
             if (index is Text)
             {
 				IValue value;
-				TryGetValue ((Text)index, out value);
-				return value;
+				if (TryGetValue ((Text)index, out value))
+					return value;
+				else
+					return NullValue.Instance;
             }
             else
 				throw new InvalidDataError("No such item:" + index.ToString());
