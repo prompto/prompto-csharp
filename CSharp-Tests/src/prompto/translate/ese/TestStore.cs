@@ -15,6 +15,12 @@ namespace prompto.translate.ese
 		}
 
 		[Test]
+		public void testFlush()
+		{
+			compareResourceESE("store/flush.pec");
+		}
+
+		[Test]
 		public void testListRecords()
 		{
 			compareResourceESE("store/listRecords.pec");

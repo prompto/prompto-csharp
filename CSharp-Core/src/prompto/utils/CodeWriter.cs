@@ -85,8 +85,8 @@ namespace prompto.utils
 			sb.Append (c);
 		}
 
-		override
-	public String ToString ()
+
+		public override String ToString ()
 		{
 			return sb.ToString ();
 		}

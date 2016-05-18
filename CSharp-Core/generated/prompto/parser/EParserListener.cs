@@ -370,6 +370,18 @@ public interface IEParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitStoreStatement([NotNull] EParser.StoreStatementContext context);
 	/// <summary>
+	/// Enter a parse tree produced by the <c>FlushStatement</c>
+	/// labeled alternative in <see cref="EParser.statement"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterFlushStatement([NotNull] EParser.FlushStatementContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>FlushStatement</c>
+	/// labeled alternative in <see cref="EParser.statement"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitFlushStatement([NotNull] EParser.FlushStatementContext context);
+	/// <summary>
 	/// Enter a parse tree produced by the <c>ReturnStatement</c>
 	/// labeled alternative in <see cref="EParser.statement"/>.
 	/// </summary>
@@ -525,6 +537,16 @@ public interface IEParserListener : IParseTreeListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void ExitCommentStatement([NotNull] EParser.CommentStatementContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="EParser.flush_statement"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterFlush_statement([NotNull] EParser.Flush_statementContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="EParser.flush_statement"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitFlush_statement([NotNull] EParser.Flush_statementContext context);
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="EParser.store_statement"/>.
 	/// </summary>

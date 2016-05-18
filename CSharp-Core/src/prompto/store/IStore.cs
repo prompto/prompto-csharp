@@ -14,6 +14,7 @@ namespace prompto.store
 		Document fetchOne (Context context, IExpression filter) ;
 		IDocumentEnumerator fetchMany(Context context, IExpression start, IExpression end, 
 			IExpression filter, OrderByClauseList orderBy);
+		void flush();
 	}
 
 	public abstract class Store

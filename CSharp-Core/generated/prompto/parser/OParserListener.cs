@@ -384,6 +384,18 @@ public interface IOParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitStoreStatement([NotNull] OParser.StoreStatementContext context);
 	/// <summary>
+	/// Enter a parse tree produced by the <c>FlushStatement</c>
+	/// labeled alternative in <see cref="OParser.statement"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterFlushStatement([NotNull] OParser.FlushStatementContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>FlushStatement</c>
+	/// labeled alternative in <see cref="OParser.statement"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitFlushStatement([NotNull] OParser.FlushStatementContext context);
+	/// <summary>
 	/// Enter a parse tree produced by the <c>ReturnStatement</c>
 	/// labeled alternative in <see cref="OParser.statement"/>.
 	/// </summary>
@@ -539,6 +551,16 @@ public interface IOParserListener : IParseTreeListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void ExitCommentStatement([NotNull] OParser.CommentStatementContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="OParser.flush_statement"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterFlush_statement([NotNull] OParser.Flush_statementContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="OParser.flush_statement"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitFlush_statement([NotNull] OParser.Flush_statementContext context);
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="OParser.store_statement"/>.
 	/// </summary>

@@ -430,6 +430,18 @@ public partial class OParserBaseListener : IOParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitStoreStatement([NotNull] OParser.StoreStatementContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="OParser.FlushStatement"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterFlushStatement([NotNull] OParser.FlushStatementContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="OParser.FlushStatement"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitFlushStatement([NotNull] OParser.FlushStatementContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="OParser.ReturnStatement"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
@@ -585,6 +597,18 @@ public partial class OParserBaseListener : IOParserListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitCommentStatement([NotNull] OParser.CommentStatementContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="OParser.flush_statement"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterFlush_statement([NotNull] OParser.Flush_statementContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="OParser.flush_statement"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitFlush_statement([NotNull] OParser.Flush_statementContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="OParser.store_statement"/>.
 	/// <para>The default implementation does nothing.</para>

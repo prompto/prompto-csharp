@@ -99,6 +99,19 @@ namespace prompto.parser
 				return null;
 		}
 
+
+		public override void ExitFlush_statement (OParser.Flush_statementContext ctx)
+		{
+			SetNodeValue (ctx, new FlushStatement());
+		}
+
+
+		public override void ExitFlushStatement (OParser.FlushStatementContext ctx)
+		{
+			SetNodeValue (ctx, GetNodeValue<IStatement> (ctx.stmt));
+		}
+
+
 		public override void ExitFullDeclarationList (OParser.FullDeclarationListContext ctx)
 		{
 			DeclarationList items = this.GetNodeValue<DeclarationList> (ctx.declarations());

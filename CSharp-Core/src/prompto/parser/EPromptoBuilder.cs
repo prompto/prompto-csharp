@@ -678,7 +678,18 @@ namespace prompto.parser
 			SetNodeValue (ctx, items);
 		}
 
-		
+
+		public override void ExitFlush_statement (EParser.Flush_statementContext ctx)
+		{
+			SetNodeValue (ctx, new FlushStatement());
+		}
+
+
+		public override void ExitFlushStatement (EParser.FlushStatementContext ctx)
+		{
+			SetNodeValue (ctx, GetNodeValue<IStatement> (ctx.stmt));
+		}
+
 		public override void ExitFull_argument_list (EParser.Full_argument_listContext ctx)
 		{
 			ArgumentList items = this.GetNodeValue<ArgumentList> (ctx.items); 

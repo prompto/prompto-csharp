@@ -31,6 +31,11 @@ namespace prompto.store
 			documents.Add (document);
 		}
 
+		public void flush()
+		{
+			// nothing to do
+		}
+
 		public Document fetchOne (Context context, IExpression predicate)
 		{
 			foreach (Document doc in documents) {
