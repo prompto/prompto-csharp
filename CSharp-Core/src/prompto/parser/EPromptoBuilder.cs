@@ -154,6 +154,17 @@ namespace prompto.parser
 		}
 
 		
+		public override void ExitUUIDLiteral(EParser.UUIDLiteralContext ctx)
+		{
+			SetNodeValue(ctx, new UUIDLiteral(ctx.t.Text));
+		}
+
+
+		public override void ExitUUIDType(EParser.UUIDTypeContext ctx)
+		{
+			SetNodeValue(ctx, UUIDType.Instance);
+		}
+
 
 		public override void ExitBlobExpression (EParser.BlobExpressionContext ctx)
 		{

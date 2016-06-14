@@ -2902,6 +2902,18 @@ public partial class SParserBaseListener : ISParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitPeriodLiteral([NotNull] SParser.PeriodLiteralContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="SParser.UUIDLiteral"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterUUIDLiteral([NotNull] SParser.UUIDLiteralContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="SParser.UUIDLiteral"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitUUIDLiteral([NotNull] SParser.UUIDLiteralContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="SParser.NullLiteral"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>

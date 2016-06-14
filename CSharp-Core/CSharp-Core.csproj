@@ -455,6 +455,9 @@
     <Compile Include="src\prompto\value\IterableValue.cs" />
     <Compile Include="src\prompto\expression\FetchManyExpression.cs" />
     <Compile Include="src\prompto\statement\FlushStatement.cs" />
+    <Compile Include="src\prompto\literal\UUIDLiteral.cs" />
+    <Compile Include="src\prompto\type\UUIDType.cs" />
+    <Compile Include="src\prompto\value\UUIDValue.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />

@@ -2704,6 +2704,18 @@ public interface ISParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitPeriodLiteral([NotNull] SParser.PeriodLiteralContext context);
 	/// <summary>
+	/// Enter a parse tree produced by the <c>UUIDLiteral</c>
+	/// labeled alternative in <see cref="SParser.atomic_literal"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterUUIDLiteral([NotNull] SParser.UUIDLiteralContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>UUIDLiteral</c>
+	/// labeled alternative in <see cref="SParser.atomic_literal"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitUUIDLiteral([NotNull] SParser.UUIDLiteralContext context);
+	/// <summary>
 	/// Enter a parse tree produced by the <c>NullLiteral</c>
 	/// labeled alternative in <see cref="SParser.atomic_literal"/>.
 	/// </summary>

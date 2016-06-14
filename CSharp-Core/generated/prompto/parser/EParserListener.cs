@@ -2874,6 +2874,18 @@ public interface IEParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitPeriodLiteral([NotNull] EParser.PeriodLiteralContext context);
 	/// <summary>
+	/// Enter a parse tree produced by the <c>UUIDLiteral</c>
+	/// labeled alternative in <see cref="EParser.atomic_literal"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterUUIDLiteral([NotNull] EParser.UUIDLiteralContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>UUIDLiteral</c>
+	/// labeled alternative in <see cref="EParser.atomic_literal"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitUUIDLiteral([NotNull] EParser.UUIDLiteralContext context);
+	/// <summary>
 	/// Enter a parse tree produced by the <c>NullLiteral</c>
 	/// labeled alternative in <see cref="EParser.atomic_literal"/>.
 	/// </summary>

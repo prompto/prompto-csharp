@@ -342,6 +342,12 @@
     <Compile Include="src\prompto\runtime\e\TestPredicate.cs" />
     <Compile Include="src\prompto\translate\eoe\TestPredicate.cs" />
     <Compile Include="src\prompto\translate\ese\TestPredicate.cs" />
+    <Compile Include="src\prompto\runtime\e\TestUuid.cs" />
+    <Compile Include="src\prompto\runtime\o\TestUuid.cs" />
+    <Compile Include="src\prompto\translate\eoe\TestUuid.cs" />
+    <Compile Include="src\prompto\translate\ese\TestUuid.cs" />
+    <Compile Include="src\prompto\translate\oeo\TestUuid.cs" />
+    <Compile Include="src\prompto\translate\oso\TestUuid.cs" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />

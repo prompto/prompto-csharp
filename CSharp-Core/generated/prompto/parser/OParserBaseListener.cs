@@ -2938,6 +2938,18 @@ public partial class OParserBaseListener : IOParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitPeriodLiteral([NotNull] OParser.PeriodLiteralContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="OParser.UUIDLiteral"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterUUIDLiteral([NotNull] OParser.UUIDLiteralContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="OParser.UUIDLiteral"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitUUIDLiteral([NotNull] OParser.UUIDLiteralContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="OParser.NullLiteral"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>

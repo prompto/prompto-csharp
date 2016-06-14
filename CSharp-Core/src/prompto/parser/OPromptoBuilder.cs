@@ -236,6 +236,19 @@ namespace prompto.parser
 		}
 
 
+		public override void ExitUUIDLiteral(OParser.UUIDLiteralContext ctx)
+		{
+			SetNodeValue(ctx, new UUIDLiteral(ctx.t.Text));
+		}
+
+
+		public override void ExitUUIDType(OParser.UUIDTypeContext ctx)
+		{
+			SetNodeValue(ctx, UUIDType.Instance);
+		}
+
+
+
 		public override void ExitVariable_identifier (OParser.Variable_identifierContext ctx)
 		{
 			SetNodeValue (ctx, ctx.GetText ());

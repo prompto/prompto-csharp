@@ -24,8 +24,8 @@ namespace prompto.type
         {
         }
 
-        override
-        public Type ToCSharpType()
+        
+        public override Type ToCSharpType()
         {
             return typeof(char?);
         }

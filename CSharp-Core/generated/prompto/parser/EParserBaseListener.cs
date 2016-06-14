@@ -3070,6 +3070,18 @@ public partial class EParserBaseListener : IEParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitPeriodLiteral([NotNull] EParser.PeriodLiteralContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="EParser.UUIDLiteral"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterUUIDLiteral([NotNull] EParser.UUIDLiteralContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="EParser.UUIDLiteral"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitUUIDLiteral([NotNull] EParser.UUIDLiteralContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="EParser.NullLiteral"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
