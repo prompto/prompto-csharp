@@ -52,11 +52,8 @@ namespace prompto.type
                 return this; // ignore time section
             else if (other is DateType)
                 return PeriodType.Instance;
-            else if (other is TimeType)
-                return PeriodType.Instance;
-            else if (other is DateTimeType)
-                return PeriodType.Instance;
-            return base.checkSubstract(context, other);
+            else
+				return base.checkSubstract(context, other);
         }
 
         override

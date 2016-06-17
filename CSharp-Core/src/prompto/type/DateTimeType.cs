@@ -88,13 +88,10 @@ namespace prompto.type
         {
             if (other is DateTimeType)
                 return PeriodType.Instance;
-            if (other is DateType)
-                return PeriodType.Instance;
-            if (other is TimeType)
-                return PeriodType.Instance;
-            if (other is PeriodType)
+            else if (other is PeriodType)
                 return this;
-            return base.checkSubstract(context, other);
+            else
+				return base.checkSubstract(context, other);
         }
 
         override

@@ -67,7 +67,7 @@ namespace prompto.type
             if (other is TimeType)
                 return PeriodType.Instance;
             if (other is PeriodType)
-                return DateTimeType.Instance;
+                return this;
             return base.checkSubstract(context, other);
         }
 
