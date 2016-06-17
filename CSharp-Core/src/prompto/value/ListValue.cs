@@ -38,9 +38,11 @@ namespace prompto.value
 		      
 		public override IValue Add(Context context, IValue value)
         {
-            if (value is ListValue)
+			if (value is ListValue)
                 return this.merge((ListValue)value);
-            else
+			else if (value is SetValue)
+				return this.merge((SetValue)value);
+			else
                 throw new SyntaxError("Illegal : List + " + value.GetType().Name);
         }
 

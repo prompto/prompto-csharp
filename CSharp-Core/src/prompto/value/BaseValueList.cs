@@ -215,6 +215,14 @@ namespace prompto.value
 			return list;
 		}
 
+		public T merge(SetValue other)
+		{
+			T list = this.newInstance();
+			list.AddRange(this);
+			list.AddRange(other.getItems());
+			return list;
+		}
+
 		public T merge (TupleValue other)
 		{
 			T list = this.newInstance ();
