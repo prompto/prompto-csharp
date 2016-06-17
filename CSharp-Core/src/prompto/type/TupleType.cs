@@ -58,7 +58,7 @@ namespace prompto.type
         
 		public override IType checkAdd(Context context, IType other, bool tryReverse)
         {
-            if (other is TupleType || other is ListType)
+            if (other is TupleType || other is ListType || other is SetType)
                 return this;
 			return base.checkAdd(context, other, tryReverse);
         }

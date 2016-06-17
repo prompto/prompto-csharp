@@ -41,7 +41,9 @@ namespace prompto.value
                 return this.merge((TupleValue)value);
             else if (value is ListValue)
                 return this.merge((ListValue)value);
-            else
+			else if (value is SetValue)
+				return this.merge((SetValue)value);
+			else
                 throw new SyntaxError("Illegal: Tuple + " + value.GetType().Name);
         }
 
