@@ -9,15 +9,39 @@ namespace prompto.translate.ese
 	{
 
 		[Test]
+		public void testAutoDecimalCast()
+		{
+			compareResourceESE("cast/autoDecimalCast.pec");
+		}
+
+		[Test]
 		public void testAutoDowncast()
 		{
 			compareResourceESE("cast/autoDowncast.pec");
 		}
 
 		[Test]
+		public void testAutoIntegerCast()
+		{
+			compareResourceESE("cast/autoIntegerCast.pec");
+		}
+
+		[Test]
 		public void testCastChild()
 		{
 			compareResourceESE("cast/castChild.pec");
+		}
+
+		[Test]
+		public void testCastDecimal()
+		{
+			compareResourceESE("cast/castDecimal.pec");
+		}
+
+		[Test]
+		public void testCastInteger()
+		{
+			compareResourceESE("cast/castInteger.pec");
 		}
 
 		[Test]

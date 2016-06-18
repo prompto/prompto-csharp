@@ -50,6 +50,12 @@ namespace prompto.library.e
 		}
 
 		[Test]
+		public void testMath()
+		{
+			CheckTests("core/math.pec");
+		}
+
+		[Test]
 		public void testTime()
 		{
 			CheckTests("core/time.pec");

@@ -27,8 +27,15 @@ namespace prompto.expression {
 
 		public IValue interpret(Context context) {
 			IValue value = expression.interpret(context);
-			if(value!=null && type.isMoreSpecificThan(context, value.GetIType()))
-				value.SetIType(type);
+			if (value != null)
+			{
+				if (type == DecimalType.Instance && value is Integer)
+					value = new value.Decimal(((Integer)value).DecimalValue);
+				else if (type == IntegerType.Instance && value is value.Decimal)
+					value = new Integer(((value.Decimal)value).IntegerValue);
+				else if (type.isMoreSpecificThan(context, value.GetIType()))
+					value.SetIType(type);
+			}
 			return value;
 		}
 

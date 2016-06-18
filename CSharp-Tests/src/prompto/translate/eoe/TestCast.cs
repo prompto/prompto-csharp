@@ -9,15 +9,39 @@ namespace prompto.translate.eoe
 	{
 
 		[Test]
+		public void testAutoDecimalCast()
+		{
+			compareResourceEOE("cast/autoDecimalCast.pec");
+		}
+
+		[Test]
 		public void testAutoDowncast()
 		{
 			compareResourceEOE("cast/autoDowncast.pec");
 		}
 
 		[Test]
+		public void testAutoIntegerCast()
+		{
+			compareResourceEOE("cast/autoIntegerCast.pec");
+		}
+
+		[Test]
 		public void testCastChild()
 		{
 			compareResourceEOE("cast/castChild.pec");
+		}
+
+		[Test]
+		public void testCastDecimal()
+		{
+			compareResourceEOE("cast/castDecimal.pec");
+		}
+
+		[Test]
+		public void testCastInteger()
+		{
+			compareResourceEOE("cast/castInteger.pec");
 		}
 
 		[Test]

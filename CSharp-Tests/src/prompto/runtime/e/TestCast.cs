@@ -22,15 +22,39 @@ namespace prompto.runtime.e
 		}
 
 		[Test]
+		public void testAutoDecimalCast()
+		{
+			CheckOutput("cast/autoDecimalCast.pec");
+		}
+
+		[Test]
 		public void testAutoDowncast()
 		{
 			CheckOutput("cast/autoDowncast.pec");
 		}
 
 		[Test]
+		public void testAutoIntegerCast()
+		{
+			CheckOutput("cast/autoIntegerCast.pec");
+		}
+
+		[Test]
 		public void testCastChild()
 		{
 			CheckOutput("cast/castChild.pec");
+		}
+
+		[Test]
+		public void testCastDecimal()
+		{
+			CheckOutput("cast/castDecimal.pec");
+		}
+
+		[Test]
+		public void testCastInteger()
+		{
+			CheckOutput("cast/castInteger.pec");
 		}
 
 		[Test]
