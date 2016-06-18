@@ -78,7 +78,7 @@ namespace prompto.value
 				if (values.TryGetValue (index.ToString(), out result))
 					return result;
 				else
-					return null;
+					return NullValue.Instance;
 			} else
 				throw new InvalidDataError ("No such item:" + index.ToString ());
 		}
