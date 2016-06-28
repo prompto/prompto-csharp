@@ -100,7 +100,7 @@ namespace prompto.value
 
 		public override IValue GetMember (Context context, string name, bool autoCreate)
 		{
-			if ("length" == name)
+			if ("count" == name)
 				return new Integer (Length ());
 			else
 				throw new InvalidDataError ("No such member:" + name);

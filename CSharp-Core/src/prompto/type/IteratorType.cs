@@ -35,7 +35,7 @@ public class IteratorType : IterableType {
 	}
 
 		public override IType checkMember(Context context, String name) {
-		if ("length"==name)
+		if ("count"==name)
 			return IntegerType.Instance;
 		else
 				return base.checkMember(context, name);

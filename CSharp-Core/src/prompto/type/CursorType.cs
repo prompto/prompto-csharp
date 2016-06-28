@@ -39,7 +39,7 @@ namespace prompto.type
 
 		public override IType checkMember (Context context, string name)
 		{
-			if ("length".Equals (name))
+			if ("count".Equals (name))
 				return IntegerType.Instance;
 			else
 				return base.checkMember (context, name);
