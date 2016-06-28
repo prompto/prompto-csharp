@@ -76,12 +76,6 @@ namespace prompto.runtime.o
 		}
 
 		[Test]
-		public void testDateTimeTZOffset()
-		{
-			CheckOutput("builtins/dateTimeTZOffset.poc");
-		}
-
-		[Test]
 		public void testDateTimeYear()
 		{
 			CheckOutput("builtins/dateTimeYear.poc");
