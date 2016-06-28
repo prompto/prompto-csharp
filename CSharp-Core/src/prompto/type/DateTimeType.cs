@@ -59,7 +59,7 @@ namespace prompto.type
                 return IntegerType.Instance;
             else if ("second" == name)
                 return IntegerType.Instance;
-            else if ("millis" == name)
+            else if ("millisecond" == name)
                 return IntegerType.Instance;
             else if ("tzOffset" == name)
                 return IntegerType.Instance;

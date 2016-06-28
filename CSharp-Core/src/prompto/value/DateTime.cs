@@ -121,7 +121,7 @@ namespace prompto.value
                 return new Integer(this.MinuteOfHour);
             else if ("second" == name)
                 return new Integer(this.SecondOfMinute);
-            else if ("millis" == name)
+            else if ("millisecond" == name)
                 return new Integer(this.MillisOfSecond);
             else if ("tzOffset" == name)
                 return new Integer(this.TZOffset);

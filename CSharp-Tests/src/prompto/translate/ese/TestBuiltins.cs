@@ -51,6 +51,12 @@ namespace prompto.translate.ese
 		}
 
 		[Test]
+		public void testDateTimeMilli()
+		{
+			compareResourceESE("builtins/dateTimeMilli.pec");
+		}
+
+		[Test]
 		public void testDateTimeMinute()
 		{
 			compareResourceESE("builtins/dateTimeMinute.pec");
@@ -138,6 +144,12 @@ namespace prompto.translate.ese
 		public void testTimeHour()
 		{
 			compareResourceESE("builtins/timeHour.pec");
+		}
+
+		[Test]
+		public void testTimeMilli()
+		{
+			compareResourceESE("builtins/timeMilli.pec");
 		}
 
 		[Test]

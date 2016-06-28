@@ -51,6 +51,12 @@ namespace prompto.translate.eoe
 		}
 
 		[Test]
+		public void testDateTimeMilli()
+		{
+			compareResourceEOE("builtins/dateTimeMilli.pec");
+		}
+
+		[Test]
 		public void testDateTimeMinute()
 		{
 			compareResourceEOE("builtins/dateTimeMinute.pec");
@@ -138,6 +144,12 @@ namespace prompto.translate.eoe
 		public void testTimeHour()
 		{
 			compareResourceEOE("builtins/timeHour.pec");
+		}
+
+		[Test]
+		public void testTimeMilli()
+		{
+			compareResourceEOE("builtins/timeMilli.pec");
 		}
 
 		[Test]

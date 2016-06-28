@@ -64,6 +64,12 @@ namespace prompto.runtime.e
 		}
 
 		[Test]
+		public void testDateTimeMilli()
+		{
+			CheckOutput("builtins/dateTimeMilli.pec");
+		}
+
+		[Test]
 		public void testDateTimeMinute()
 		{
 			CheckOutput("builtins/dateTimeMinute.pec");
@@ -145,6 +151,12 @@ namespace prompto.runtime.e
 		public void testTimeHour()
 		{
 			CheckOutput("builtins/timeHour.pec");
+		}
+
+		[Test]
+		public void testTimeMilli()
+		{
+			CheckOutput("builtins/timeMilli.pec");
 		}
 
 		[Test]

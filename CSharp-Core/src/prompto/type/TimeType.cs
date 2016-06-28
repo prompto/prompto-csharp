@@ -41,7 +41,7 @@ namespace prompto.type
                 return IntegerType.Instance;
             else if ("second" == name)
                 return IntegerType.Instance;
-            else if ("millis" == name)
+            else if ("millisecond" == name)
                 return IntegerType.Instance;
             else
                 return base.checkMember(context, name);
