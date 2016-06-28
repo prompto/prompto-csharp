@@ -105,6 +105,18 @@ namespace prompto.translate.ese
 		}
 
 		[Test]
+		public void testDictKeys()
+		{
+			compareResourceESE("builtins/dictKeys.pec");
+		}
+
+		[Test]
+		public void testDictValues()
+		{
+			compareResourceESE("builtins/dictValues.pec");
+		}
+
+		[Test]
 		public void testEnumName()
 		{
 			compareResourceESE("builtins/enumName.pec");

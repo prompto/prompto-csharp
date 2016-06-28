@@ -112,6 +112,18 @@ namespace prompto.runtime.e
 		}
 
 		[Test]
+		public void testDictKeys()
+		{
+			CheckOutput("builtins/dictKeys.pec");
+		}
+
+		[Test]
+		public void testDictValues()
+		{
+			CheckOutput("builtins/dictValues.pec");
+		}
+
+		[Test]
 		public void testEnumName()
 		{
 			CheckOutput("builtins/enumName.pec");

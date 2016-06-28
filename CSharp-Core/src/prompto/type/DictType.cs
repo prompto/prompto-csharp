@@ -37,7 +37,7 @@ namespace prompto.type
 			if ("count" == name)
 				return IntegerType.Instance;
 			else if ("keys" == name)
-				return new ListType (TextType.Instance);
+				return new SetType (TextType.Instance);
 			else if ("values" == name)
 				return new ListType (GetItemType ());
 			else

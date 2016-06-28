@@ -105,6 +105,18 @@ namespace prompto.translate.eoe
 		}
 
 		[Test]
+		public void testDictKeys()
+		{
+			compareResourceEOE("builtins/dictKeys.pec");
+		}
+
+		[Test]
+		public void testDictValues()
+		{
+			compareResourceEOE("builtins/dictValues.pec");
+		}
+
+		[Test]
 		public void testEnumName()
 		{
 			compareResourceEOE("builtins/enumName.pec");

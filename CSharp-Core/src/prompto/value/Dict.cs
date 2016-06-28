@@ -123,9 +123,10 @@ namespace prompto.value
                 return new Integer(this.Count);
             else if ("keys" == name)
             {
-				ListValue list = new ListValue(TextType.Instance);
-                list.AddRange(this.Keys);
-                return list;
+				HashSet<IValue> items = new HashSet<IValue>();
+				foreach (Text item in this.Keys)
+					items.Add(item);
+				return new SetValue(TextType.Instance, items);
             }
             else if ("values" == name)
             {
