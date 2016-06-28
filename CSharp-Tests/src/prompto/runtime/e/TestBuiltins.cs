@@ -22,6 +22,12 @@ namespace prompto.runtime.e
 		}
 
 		[Test]
+		public void testCharCodePoint()
+		{
+			CheckOutput("builtins/charCodePoint.pec");
+		}
+
+		[Test]
 		public void testDateDayOfMonth()
 		{
 			CheckOutput("builtins/dateDayOfMonth.pec");

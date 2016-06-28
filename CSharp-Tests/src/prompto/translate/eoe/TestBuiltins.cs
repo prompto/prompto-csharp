@@ -9,6 +9,12 @@ namespace prompto.translate.eoe
 	{
 
 		[Test]
+		public void testCharCodePoint()
+		{
+			compareResourceEOE("builtins/charCodePoint.pec");
+		}
+
+		[Test]
 		public void testDateDayOfMonth()
 		{
 			compareResourceEOE("builtins/dateDayOfMonth.pec");

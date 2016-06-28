@@ -26,7 +26,15 @@ namespace prompto.value
 			return new Text (value.ToString ());
 		}
 
-        override
+		public override IValue GetMember(Context context, String name, bool autoCreate)
+		{
+			if ("codePoint" == name)
+				return new Integer((int)value);
+			else
+				throw new NotSupportedException("No such member:" + name);
+		}
+
+		override
         public IValue Add(Context context, IValue value)
         {
             return new Text(this.value.ToString() + value.ToString());

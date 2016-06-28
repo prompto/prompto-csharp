@@ -37,7 +37,15 @@ namespace prompto.type
             return (other is CharacterType) || (other is TextType) || (other is AnyType);
         }
 
-        override
+		public override IType checkMember(Context context, String name)
+		{
+			if ("codePoint" == name)
+				return IntegerType.Instance;
+			else
+				return base.checkMember(context, name);
+		}
+
+		override
 		public IType checkAdd(Context context, IType other, bool tryReverse)
         {
             return TextType.Instance;

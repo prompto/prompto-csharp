@@ -9,6 +9,12 @@ namespace prompto.translate.ese
 	{
 
 		[Test]
+		public void testCharCodePoint()
+		{
+			compareResourceESE("builtins/charCodePoint.pec");
+		}
+
+		[Test]
 		public void testDateDayOfMonth()
 		{
 			compareResourceESE("builtins/dateDayOfMonth.pec");
