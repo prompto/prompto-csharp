@@ -87,9 +87,9 @@ namespace prompto.translate.oeo
 		}
 
 		[Test]
-		public void testDictLength()
+		public void testDictCount()
 		{
-			compareResourceOEO("builtins/dictLength.poc");
+			compareResourceOEO("builtins/dictCount.poc");
 		}
 
 		[Test]
@@ -111,21 +111,21 @@ namespace prompto.translate.oeo
 		}
 
 		[Test]
-		public void testListLength()
+		public void testListCount()
 		{
-			compareResourceOEO("builtins/listLength.poc");
+			compareResourceOEO("builtins/listCount.poc");
 		}
 
 		[Test]
-		public void testSetLength()
+		public void testSetCount()
 		{
-			compareResourceOEO("builtins/setLength.poc");
+			compareResourceOEO("builtins/setCount.poc");
 		}
 
 		[Test]
-		public void testTextLength()
+		public void testTextCount()
 		{
-			compareResourceOEO("builtins/textLength.poc");
+			compareResourceOEO("builtins/textCount.poc");
 		}
 
 		[Test]
@@ -147,9 +147,9 @@ namespace prompto.translate.oeo
 		}
 
 		[Test]
-		public void testTupleLength()
+		public void testTupleCount()
 		{
-			compareResourceOEO("builtins/tupleLength.poc");
+			compareResourceOEO("builtins/tupleCount.poc");
 		}
 
 	}

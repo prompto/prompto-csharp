@@ -121,7 +121,7 @@ namespace prompto.value
 
 		public virtual IValue GetMember (Context context, String name, bool autoCreate)
 		{
-			if ("length" == name)
+			if ("count" == name)
 				return new Integer (this.Count);
 			else
 				throw new NotSupportedException ("No such member:" + name);

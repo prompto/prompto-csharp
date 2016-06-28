@@ -93,9 +93,9 @@ namespace prompto.translate.eoe
 		}
 
 		[Test]
-		public void testDictLength()
+		public void testDictCount()
 		{
-			compareResourceEOE("builtins/dictLength.pec");
+			compareResourceEOE("builtins/dictCount.pec");
 		}
 
 		[Test]
@@ -117,21 +117,21 @@ namespace prompto.translate.eoe
 		}
 
 		[Test]
-		public void testListLength()
+		public void testListCount()
 		{
-			compareResourceEOE("builtins/listLength.pec");
+			compareResourceEOE("builtins/listCount.pec");
 		}
 
 		[Test]
-		public void testSetLength()
+		public void testSetCount()
 		{
-			compareResourceEOE("builtins/setLength.pec");
+			compareResourceEOE("builtins/setCount.pec");
 		}
 
 		[Test]
-		public void testTextLength()
+		public void testTextCount()
 		{
-			compareResourceEOE("builtins/textLength.pec");
+			compareResourceEOE("builtins/textCount.pec");
 		}
 
 		[Test]
@@ -153,9 +153,9 @@ namespace prompto.translate.eoe
 		}
 
 		[Test]
-		public void testTupleLength()
+		public void testTupleCount()
 		{
-			compareResourceEOE("builtins/tupleLength.pec");
+			compareResourceEOE("builtins/tupleCount.pec");
 		}
 
 	}

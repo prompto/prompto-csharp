@@ -93,9 +93,9 @@ namespace prompto.translate.ese
 		}
 
 		[Test]
-		public void testDictLength()
+		public void testDictCount()
 		{
-			compareResourceESE("builtins/dictLength.pec");
+			compareResourceESE("builtins/dictCount.pec");
 		}
 
 		[Test]
@@ -117,21 +117,21 @@ namespace prompto.translate.ese
 		}
 
 		[Test]
-		public void testListLength()
+		public void testListCount()
 		{
-			compareResourceESE("builtins/listLength.pec");
+			compareResourceESE("builtins/listCount.pec");
 		}
 
 		[Test]
-		public void testSetLength()
+		public void testSetCount()
 		{
-			compareResourceESE("builtins/setLength.pec");
+			compareResourceESE("builtins/setCount.pec");
 		}
 
 		[Test]
-		public void testTextLength()
+		public void testTextCount()
 		{
-			compareResourceESE("builtins/textLength.pec");
+			compareResourceESE("builtins/textCount.pec");
 		}
 
 		[Test]
@@ -153,9 +153,9 @@ namespace prompto.translate.ese
 		}
 
 		[Test]
-		public void testTupleLength()
+		public void testTupleCount()
 		{
-			compareResourceESE("builtins/tupleLength.pec");
+			compareResourceESE("builtins/tupleCount.pec");
 		}
 
 	}

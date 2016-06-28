@@ -34,7 +34,7 @@ namespace prompto.type
     
 		public override IType checkMember (Context context, String name)
 		{
-			if ("length" == name)
+			if ("count" == name)
 				return IntegerType.Instance;
 			else if ("keys" == name)
 				return new ListType (TextType.Instance);

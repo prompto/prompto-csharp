@@ -94,9 +94,9 @@ namespace prompto.runtime.o
 		}
 
 		[Test]
-		public void testDictLength()
+		public void testDictCount()
 		{
-			CheckOutput("builtins/dictLength.poc");
+			CheckOutput("builtins/dictCount.poc");
 		}
 
 		[Test]
@@ -118,21 +118,21 @@ namespace prompto.runtime.o
 		}
 
 		[Test]
-		public void testListLength()
+		public void testListCount()
 		{
-			CheckOutput("builtins/listLength.poc");
+			CheckOutput("builtins/listCount.poc");
 		}
 
 		[Test]
-		public void testSetLength()
+		public void testSetCount()
 		{
-			CheckOutput("builtins/setLength.poc");
+			CheckOutput("builtins/setCount.poc");
 		}
 
 		[Test]
-		public void testTextLength()
+		public void testTextCount()
 		{
-			CheckOutput("builtins/textLength.poc");
+			CheckOutput("builtins/textCount.poc");
 		}
 
 		[Test]
@@ -154,9 +154,9 @@ namespace prompto.runtime.o
 		}
 
 		[Test]
-		public void testTupleLength()
+		public void testTupleCount()
 		{
-			CheckOutput("builtins/tupleLength.poc");
+			CheckOutput("builtins/tupleCount.poc");
 		}
 
 	}
