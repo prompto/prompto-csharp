@@ -39,6 +39,11 @@ namespace prompto.expression
             return symbol;
         }
 
+		public override string ToString()
+		{
+			return GetName();
+		}
+
 		public abstract void ToDialect (CodeWriter writer);
   
         public void register(Context context)

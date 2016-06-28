@@ -141,6 +141,10 @@ namespace prompto.grammar
 			throw new NotSupportedException("No ToJson support for " + this.GetType().Name);
 		}
 
+		public override string ToString()
+		{
+			return "[" + base.ToString() + "]";
+		}
 
 	}
 
