@@ -15,6 +15,12 @@ namespace prompto.translate.ese
 		}
 
 		[Test]
+		public void testContainsAllRange()
+		{
+			compareResourceESE("contains/containsAllRange.pec");
+		}
+
+		[Test]
 		public void testContainsAllSet()
 		{
 			compareResourceESE("contains/containsAllSet.pec");
@@ -36,6 +42,12 @@ namespace prompto.translate.ese
 		public void testContainsAnyList()
 		{
 			compareResourceESE("contains/containsAnyList.pec");
+		}
+
+		[Test]
+		public void testContainsAnyRange()
+		{
+			compareResourceESE("contains/containsAnyRange.pec");
 		}
 
 		[Test]

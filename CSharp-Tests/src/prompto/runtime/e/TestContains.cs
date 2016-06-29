@@ -28,6 +28,12 @@ namespace prompto.runtime.e
 		}
 
 		[Test]
+		public void testContainsAllRange()
+		{
+			CheckOutput("contains/containsAllRange.pec");
+		}
+
+		[Test]
 		public void testContainsAllSet()
 		{
 			CheckOutput("contains/containsAllSet.pec");
@@ -49,6 +55,12 @@ namespace prompto.runtime.e
 		public void testContainsAnyList()
 		{
 			CheckOutput("contains/containsAnyList.pec");
+		}
+
+		[Test]
+		public void testContainsAnyRange()
+		{
+			CheckOutput("contains/containsAnyRange.pec");
 		}
 
 		[Test]

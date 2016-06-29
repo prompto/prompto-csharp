@@ -15,6 +15,12 @@ namespace prompto.translate.eoe
 		}
 
 		[Test]
+		public void testContainsAllRange()
+		{
+			compareResourceEOE("contains/containsAllRange.pec");
+		}
+
+		[Test]
 		public void testContainsAllSet()
 		{
 			compareResourceEOE("contains/containsAllSet.pec");
@@ -36,6 +42,12 @@ namespace prompto.translate.eoe
 		public void testContainsAnyList()
 		{
 			compareResourceEOE("contains/containsAnyList.pec");
+		}
+
+		[Test]
+		public void testContainsAnyRange()
+		{
+			compareResourceEOE("contains/containsAnyRange.pec");
 		}
 
 		[Test]
