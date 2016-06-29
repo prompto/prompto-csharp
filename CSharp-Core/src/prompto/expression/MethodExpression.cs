@@ -6,7 +6,8 @@ using prompto.type;
 using prompto.grammar;
 using prompto.utils;
 using prompto.value;
-
+using prompto.declaration;
+using System.Collections.Generic;
 
 namespace prompto.expression
 {
@@ -43,7 +44,18 @@ namespace prompto.expression
 
         public IValue interpret(Context context)
         {
-            return context.getValue(name);
+			if (context.hasValue(name))
+				return context.getValue(name);
+			else {
+				INamed named = context.getRegistered(name);
+				if (named is MethodDeclarationMap) {
+					IEnumerator<IMethodDeclaration> en = ((MethodDeclarationMap)named).Values.GetEnumerator();
+					en.MoveNext();
+					ConcreteMethodDeclaration decl = (ConcreteMethodDeclaration)en.Current;
+					return new ClosureValue(context, decl);
+				} else
+				throw new SyntaxError("No method with name:" + name);
+			}
         }
 
     }

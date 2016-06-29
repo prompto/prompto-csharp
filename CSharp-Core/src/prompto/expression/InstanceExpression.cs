@@ -49,7 +49,7 @@ namespace prompto.expression
 			if(writer.getDialect()!=Dialect.E)
 				return false;
 			Object o = writer.getContext().getRegistered(name);
-			if(o is IMethodDeclaration)
+			if(o is MethodDeclarationMap)
 				return true;
 			return false;
 		}

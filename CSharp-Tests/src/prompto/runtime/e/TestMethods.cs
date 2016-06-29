@@ -46,6 +46,12 @@ namespace prompto.runtime.e
 		}
 
 		[Test]
+		public void testExplicit()
+		{
+			CheckOutput("methods/explicit.pec");
+		}
+
+		[Test]
 		public void testExpressionWith()
 		{
 			CheckOutput("methods/expressionWith.pec");

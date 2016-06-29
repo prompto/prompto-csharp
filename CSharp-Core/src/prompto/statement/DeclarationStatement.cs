@@ -23,7 +23,8 @@ namespace prompto.statement {
     public void ToDialect(CodeWriter writer)
     {
 			try {
-				writer.getContext().registerDeclaration(declaration);
+				ConcreteMethodDeclaration method = (ConcreteMethodDeclaration)(object)declaration;
+				writer.getContext().registerDeclaration(method);
 			} catch(SyntaxError /*e*/) {
 				// ok
 			}

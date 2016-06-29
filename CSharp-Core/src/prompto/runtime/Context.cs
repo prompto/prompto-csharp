@@ -283,6 +283,11 @@ namespace prompto.runtime
 			instances[named.GetName()] = named;
         }
 
+		public bool hasValue(String name)
+		{
+			return contextForValue(name) != null;
+		}
+
         public IValue getValue(String name)
         {
             Context context = contextForValue(name);
