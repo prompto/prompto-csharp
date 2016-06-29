@@ -90,6 +90,11 @@ namespace prompto.type
 		{
 			return new EntryType (itemType);
 		}
+
+		public override IType checkContainsAllOrAny(Context context, IType other)
+		{
+			return BooleanType.Instance;
+		}
 	
 	}
 

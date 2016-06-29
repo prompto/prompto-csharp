@@ -22,6 +22,12 @@ namespace prompto.runtime.e
 		}
 
 		[Test]
+		public void testContainsAllDict()
+		{
+			CheckOutput("contains/containsAllDict.pec");
+		}
+
+		[Test]
 		public void testContainsAllList()
 		{
 			CheckOutput("contains/containsAllList.pec");
@@ -49,6 +55,12 @@ namespace prompto.runtime.e
 		public void testContainsAllTuple()
 		{
 			CheckOutput("contains/containsAllTuple.pec");
+		}
+
+		[Test]
+		public void testContainsAnyDict()
+		{
+			CheckOutput("contains/containsAnyDict.pec");
 		}
 
 		[Test]

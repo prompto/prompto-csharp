@@ -9,6 +9,12 @@ namespace prompto.translate.ese
 	{
 
 		[Test]
+		public void testContainsAllDict()
+		{
+			compareResourceESE("contains/containsAllDict.pec");
+		}
+
+		[Test]
 		public void testContainsAllList()
 		{
 			compareResourceESE("contains/containsAllList.pec");
@@ -36,6 +42,12 @@ namespace prompto.translate.ese
 		public void testContainsAllTuple()
 		{
 			compareResourceESE("contains/containsAllTuple.pec");
+		}
+
+		[Test]
+		public void testContainsAnyDict()
+		{
+			compareResourceESE("contains/containsAnyDict.pec");
 		}
 
 		[Test]
