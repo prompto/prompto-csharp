@@ -41,7 +41,10 @@ namespace prompto.statement
         {
 			IType valueType = expression.check (context);
 			instance.checkAssignValue(context, valueType);
-            return VoidType.Instance;
+			// Code expressions need to be interpreted as part of full check
+			if (valueType == CodeType.Instance)
+				instance.assign(context, expression);
+			return VoidType.Instance;
         }
 
         override
