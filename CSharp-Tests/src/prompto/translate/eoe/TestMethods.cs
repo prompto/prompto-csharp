@@ -45,6 +45,12 @@ namespace prompto.translate.eoe
 		}
 
 		[Test]
+		public void testExtended()
+		{
+			compareResourceEOE("methods/extended.pec");
+		}
+
+		[Test]
 		public void testImplicit()
 		{
 			compareResourceEOE("methods/implicit.pec");

@@ -58,6 +58,12 @@ namespace prompto.runtime.e
 		}
 
 		[Test]
+		public void testExtended()
+		{
+			CheckOutput("methods/extended.pec");
+		}
+
+		[Test]
 		public void testImplicit()
 		{
 			CheckOutput("methods/implicit.pec");

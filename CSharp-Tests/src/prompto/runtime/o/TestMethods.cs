@@ -52,6 +52,12 @@ namespace prompto.runtime.o
 		}
 
 		[Test]
+		public void testExtended()
+		{
+			CheckOutput("methods/extended.poc");
+		}
+
+		[Test]
 		public void testImplicit()
 		{
 			CheckOutput("methods/implicit.poc");

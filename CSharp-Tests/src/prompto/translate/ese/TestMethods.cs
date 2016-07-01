@@ -45,6 +45,12 @@ namespace prompto.translate.ese
 		}
 
 		[Test]
+		public void testExtended()
+		{
+			compareResourceESE("methods/extended.pec");
+		}
+
+		[Test]
 		public void testImplicit()
 		{
 			compareResourceESE("methods/implicit.pec");

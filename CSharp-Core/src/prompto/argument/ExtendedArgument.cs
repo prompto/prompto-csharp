@@ -44,12 +44,9 @@ namespace prompto.argument
 		}
 
 		protected override void toEDialect(CodeWriter writer) {
-			bool anonymous = "any"==type.GetName();
 			type.ToDialect(writer);
-			if(anonymous) {
-				writer.append(' ');
-				writer.append(name);
-			}
+			writer.append(' ');
+			writer.append(name);
 			if(attributes!=null) {
 				switch(attributes.Count) {
 				case 0:
@@ -63,10 +60,6 @@ namespace prompto.argument
 					attributes.ToDialect(writer, true);
 					break;
 				}
-			}
-			if(!anonymous) {
-				writer.append(' ');
-				writer.append(name);
 			}
 		}
 

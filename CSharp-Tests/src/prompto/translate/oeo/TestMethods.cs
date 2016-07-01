@@ -39,6 +39,12 @@ namespace prompto.translate.oeo
 		}
 
 		[Test]
+		public void testExtended()
+		{
+			compareResourceOEO("methods/extended.poc");
+		}
+
+		[Test]
 		public void testImplicit()
 		{
 			compareResourceOEO("methods/implicit.poc");
