@@ -187,9 +187,7 @@ namespace prompto.runtime
                 return actualName;
             if (parent != null)
                 return parent.getRegistered(name);
-			if (calling != null && calling != parent)
-				return calling.getRegistered(name);
-			if (globals != this)
+            if (globals != this)
                 return globals.getRegistered(name);
             return null;
         }
@@ -201,9 +199,7 @@ namespace prompto.runtime
             declarations.TryGetValue(name, out actual);
             if (actual == null && parent != null)
                 actual = parent.getRegisteredDeclaration<IDeclaration>(name);
-			if (actual == null && calling != null && calling!=parent)
-				actual = calling.getRegisteredDeclaration<IDeclaration>(name);
-			if (actual == null && globals != this)
+            if (actual == null && globals != this)
                 actual = globals.getRegisteredDeclaration<IDeclaration>(name);
             if (actual != null)
                 return prompto.utils.Utils.downcast<T>(actual);
