@@ -91,6 +91,8 @@ namespace prompto.statement
                 child.registerValue(new Variable(v1, elemType));
 				child.setValue(v1, iterator.Current);
 				IValue value = statements.interpret(child);
+				if (value == BreakResult.Instance)
+					break;
                 if (value != null)
                     return value;
             }
@@ -110,6 +112,8 @@ namespace prompto.statement
                 child.registerValue(new Variable(v1, IntegerType.Instance));
                 child.setValue(v1, new Integer(++index));
 				IValue value = statements.interpret(child);
+  				if (value == BreakResult.Instance)
+					break;
                 if (value != null)
                     return value;
             }

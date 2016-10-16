@@ -157,6 +157,12 @@ namespace prompto.parser
 			SetNodeValue (ctx, new BooleanLiteral (ctx.t.Text));
 		}
 
+		public override void ExitBreakStatement(OParser.BreakStatementContext ctx)
+		{
+			SetNodeValue(ctx, new BreakStatement());
+		}
+
+
 		public override void ExitMinIntegerLiteral (OParser.MinIntegerLiteralContext ctx)
 		{
 			SetNodeValue (ctx, new MinIntegerLiteral ());

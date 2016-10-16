@@ -442,6 +442,18 @@ public partial class OParserBaseListener : IOParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitFlushStatement([NotNull] OParser.FlushStatementContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="OParser.BreakStatement"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterBreakStatement([NotNull] OParser.BreakStatementContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="OParser.BreakStatement"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitBreakStatement([NotNull] OParser.BreakStatementContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="OParser.ReturnStatement"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
@@ -801,6 +813,18 @@ public partial class OParserBaseListener : IOParserListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitCatchCollectionStatement([NotNull] OParser.CatchCollectionStatementContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="OParser.break_statement"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterBreak_statement([NotNull] OParser.Break_statementContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="OParser.break_statement"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitBreak_statement([NotNull] OParser.Break_statementContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="OParser.return_statement"/>.
 	/// <para>The default implementation does nothing.</para>

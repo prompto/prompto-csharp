@@ -87,6 +87,8 @@ namespace prompto.statement
 			do {
 				Context child = context.newChildContext ();
 				IValue value = statements.interpret (child);
+				if (value == BreakResult.Instance)
+					break;
 				if (value != null)
 					return value;
 			} while(interpretCondition (context));

@@ -88,6 +88,8 @@ namespace prompto.statement
             {
                 Context child = context.newChildContext();
 				IValue value = statements.interpret(child);
+				if (value == BreakResult.Instance)
+					break;
                 if (value != null)
                     return value;
             }

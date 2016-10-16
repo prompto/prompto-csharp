@@ -382,6 +382,18 @@ public interface IEParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitFlushStatement([NotNull] EParser.FlushStatementContext context);
 	/// <summary>
+	/// Enter a parse tree produced by the <c>BreakStatement</c>
+	/// labeled alternative in <see cref="EParser.statement"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterBreakStatement([NotNull] EParser.BreakStatementContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>BreakStatement</c>
+	/// labeled alternative in <see cref="EParser.statement"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitBreakStatement([NotNull] EParser.BreakStatementContext context);
+	/// <summary>
 	/// Enter a parse tree produced by the <c>ReturnStatement</c>
 	/// labeled alternative in <see cref="EParser.statement"/>.
 	/// </summary>
@@ -743,6 +755,16 @@ public interface IEParserListener : IParseTreeListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void ExitCatchCollectionStatement([NotNull] EParser.CatchCollectionStatementContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="EParser.break_statement"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterBreak_statement([NotNull] EParser.Break_statementContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="EParser.break_statement"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitBreak_statement([NotNull] EParser.Break_statementContext context);
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="EParser.return_statement"/>.
 	/// </summary>

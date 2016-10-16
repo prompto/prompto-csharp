@@ -458,6 +458,8 @@
     <Compile Include="src\prompto\literal\UUIDLiteral.cs" />
     <Compile Include="src\prompto\type\UUIDType.cs" />
     <Compile Include="src\prompto\value\UUIDValue.cs" />
+    <Compile Include="src\prompto\runtime\BreakResult.cs" />
+    <Compile Include="src\prompto\statement\BreakStatement.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />

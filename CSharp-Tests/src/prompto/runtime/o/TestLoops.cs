@@ -28,9 +28,21 @@ namespace prompto.runtime.o
 		}
 
 		[Test]
+		public void testDoWhileBreak()
+		{
+			CheckOutput("loops/doWhileBreak.poc");
+		}
+
+		[Test]
 		public void testEmbeddedForEach()
 		{
 			CheckOutput("loops/embeddedForEach.poc");
+		}
+
+		[Test]
+		public void testForEachBreak()
+		{
+			CheckOutput("loops/forEachBreak.poc");
 		}
 
 		[Test]
@@ -193,6 +205,12 @@ namespace prompto.runtime.o
 		public void testWhile()
 		{
 			CheckOutput("loops/while.poc");
+		}
+
+		[Test]
+		public void testWhileBreak()
+		{
+			CheckOutput("loops/whileBreak.poc");
 		}
 
 	}

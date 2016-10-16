@@ -15,9 +15,21 @@ namespace prompto.translate.ese
 		}
 
 		[Test]
+		public void testDoWhileBreak()
+		{
+			compareResourceESE("loops/doWhileBreak.pec");
+		}
+
+		[Test]
 		public void testEmbeddedForEach()
 		{
 			compareResourceESE("loops/embeddedForEach.pec");
+		}
+
+		[Test]
+		public void testForEachBreak()
+		{
+			compareResourceESE("loops/forEachBreak.pec");
 		}
 
 		[Test]
@@ -180,6 +192,12 @@ namespace prompto.translate.ese
 		public void testWhile()
 		{
 			compareResourceESE("loops/while.pec");
+		}
+
+		[Test]
+		public void testWhileBreak()
+		{
+			compareResourceESE("loops/whileBreak.pec");
 		}
 
 	}

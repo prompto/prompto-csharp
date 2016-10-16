@@ -15,9 +15,21 @@ namespace prompto.translate.oeo
 		}
 
 		[Test]
+		public void testDoWhileBreak()
+		{
+			compareResourceOEO("loops/doWhileBreak.poc");
+		}
+
+		[Test]
 		public void testEmbeddedForEach()
 		{
 			compareResourceOEO("loops/embeddedForEach.poc");
+		}
+
+		[Test]
+		public void testForEachBreak()
+		{
+			compareResourceOEO("loops/forEachBreak.poc");
 		}
 
 		[Test]
@@ -180,6 +192,12 @@ namespace prompto.translate.oeo
 		public void testWhile()
 		{
 			compareResourceOEO("loops/while.poc");
+		}
+
+		[Test]
+		public void testWhileBreak()
+		{
+			compareResourceOEO("loops/whileBreak.poc");
 		}
 
 	}

@@ -15,9 +15,21 @@ namespace prompto.translate.oso
 		}
 
 		[Test]
+		public void testDoWhileBreak()
+		{
+			compareResourceOSO("loops/doWhileBreak.poc");
+		}
+
+		[Test]
 		public void testEmbeddedForEach()
 		{
 			compareResourceOSO("loops/embeddedForEach.poc");
+		}
+
+		[Test]
+		public void testForEachBreak()
+		{
+			compareResourceOSO("loops/forEachBreak.poc");
 		}
 
 		[Test]
@@ -180,6 +192,12 @@ namespace prompto.translate.oso
 		public void testWhile()
 		{
 			compareResourceOSO("loops/while.poc");
+		}
+
+		[Test]
+		public void testWhileBreak()
+		{
+			compareResourceOSO("loops/whileBreak.poc");
 		}
 
 	}
