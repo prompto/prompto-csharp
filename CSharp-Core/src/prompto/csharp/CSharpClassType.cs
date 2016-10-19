@@ -131,7 +131,7 @@ namespace prompto.csharp
 				if (IsA (expected, intf))
 					return true;
 			}
-			if (actual != typeof(Object))
+			if (actual.BaseType != null)
 				return IsA (expected, actual.BaseType);
 			else
 				return false;
