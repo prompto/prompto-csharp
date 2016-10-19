@@ -1,6 +1,7 @@
 ﻿using prompto.value;
 using System.Net;
 using System;
+using System.IO;
 
 namespace prompto.internet
 {
@@ -9,6 +10,8 @@ namespace prompto.internet
 
 		Uri url;
 		String _encoding;
+		WebClient client = null;
+		StreamReader reader = null;
 
 		public String path 
 		{
@@ -42,6 +45,16 @@ namespace prompto.internet
 
 		public void close ()
 		{
+			if (reader != null)
+			{
+				reader.Close();
+				reader = null;
+			}
+			if (client != null)
+			{
+				client.Dispose();
+				client = null;
+			}
 		}
 
 		public String readFully ()
@@ -53,8 +66,22 @@ namespace prompto.internet
 
 		public void writeFully (String data)
 		{
+			throw new Exception("Unsupported!");
 		}
 
+		public String readLine()
+		{
+			if (client == null)
+				client = new WebClient();
+			if (reader == null)
+				reader = new StreamReader(client.OpenRead( url));
+			return reader.ReadLine();
+		}
+
+		public void writeLine(String data)
+		{
+			throw new Exception("Unsupported!");
+		}
 
 	}
 }

@@ -65,7 +65,11 @@ namespace prompto.statement
 			if (!res.isWritable ())
 				throw new InvalidResourceError ("Not writable");
 			try {
-				res.writeFully (content.interpret (context).ToString ());
+				String data = content.interpret(context).ToString();
+				if(context==resContext)
+				   res.writeLine(data);
+				else
+				   res.writeFully (data);
 				return null;
 			} finally {
 				if (resContext != context)

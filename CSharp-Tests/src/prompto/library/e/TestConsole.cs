@@ -27,6 +27,12 @@ namespace prompto.library.e
 		}
 
 		[Test]
+		public void testBuffer()
+		{
+			CheckTests("console/buffer.pec");
+		}
+
+		[Test]
 		public void testPrint()
 		{
 			CheckTests("console/print.pec");

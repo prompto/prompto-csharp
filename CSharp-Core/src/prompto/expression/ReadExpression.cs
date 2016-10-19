@@ -48,8 +48,10 @@ namespace prompto.expression
             if (!res.isReadable())
                 throw new InvalidResourceError("Not readable");
 			try {
-				String str = res.readFully();
-				return new Text (str);
+				if (context == resContext)
+					return new Text(res.readLine());
+				else
+					return new Text (res.readFully());
 			} finally {
 				if (resContext != context)
 					res.close ();

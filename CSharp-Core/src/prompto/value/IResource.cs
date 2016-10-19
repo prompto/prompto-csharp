@@ -9,6 +9,8 @@ namespace prompto.value
         bool isWritable();
         String readFully();
         void writeFully(String data);
+		String readLine();
+		void writeLine(String data);
         void close();
 
     }

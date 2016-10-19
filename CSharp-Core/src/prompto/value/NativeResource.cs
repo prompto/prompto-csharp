@@ -33,7 +33,17 @@ namespace prompto.value
             ((IResource)instance).writeFully(data);
         }
 
-        public void close()
+		public String readLine()
+		{
+			return ((IResource)instance).readLine();
+		}
+
+		public void writeLine(String data)
+		{
+			((IResource)instance).writeLine(data);
+		}
+
+		public void close()
         {
             ((IResource)instance).close();
         }

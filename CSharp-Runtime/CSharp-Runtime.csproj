@@ -34,6 +34,7 @@
     <Compile Include="src\prompto\internet\Url.cs" />
     <Compile Include="src\prompto\runtime\Loader.cs" />
     <Compile Include="src\prompto\reader\CSVReader.cs" />
+    <Compile Include="src\prompto\io\Buffer.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -42,6 +43,7 @@
     <Folder Include="src\prompto\internet\" />
     <Folder Include="src\prompto\runtime\" />
     <Folder Include="src\prompto\reader\" />
+    <Folder Include="src\prompto\io\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CSharp-Core\CSharp-Core.csproj">
