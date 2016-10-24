@@ -2048,8 +2048,9 @@ namespace prompto.parser
 		public override void ExitSorted_expression (OParser.Sorted_expressionContext ctx)
 		{
 			IExpression source = this.GetNodeValue<IExpression> (ctx.source);
+			bool descending = ctx.DESC() != null;
 			IExpression key = this.GetNodeValue<IExpression> (ctx.key);
-			SetNodeValue (ctx, new SortedExpression (source, key));
+			SetNodeValue (ctx, new SortedExpression (source, descending, key));
 		}
 			
 		public override void ExitDocument_expression (OParser.Document_expressionContext ctx)

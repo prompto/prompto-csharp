@@ -102,9 +102,9 @@ namespace prompto.type
 
  
         override
-		public ListValue sort(Context context, IContainer list)
+		public ListValue sort(Context context, IContainer list, bool descending)
         {
-			return this.doSort(context, list, new StringComparer(context));
+			return this.doSort(context, list, new TextComparer(context, descending));
         }
 
         override
@@ -128,10 +128,10 @@ namespace prompto.type
 
     }
 
-    class StringComparer : ExpressionComparer<Object>
+    class TextComparer : ExpressionComparer<Object>
     {
-         public StringComparer(Context context)
-             : base(context)
+         public TextComparer(Context context, bool descending)
+             : base(context, descending)
         {
          }
 

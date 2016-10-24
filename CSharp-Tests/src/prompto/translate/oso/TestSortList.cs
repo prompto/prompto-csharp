@@ -33,6 +33,72 @@ namespace prompto.translate.oso
 		}
 
 		[Test]
+		public void testSortDescBooleans()
+		{
+			compareResourceOSO("sortList/sortDescBooleans.poc");
+		}
+
+		[Test]
+		public void testSortDescDates()
+		{
+			compareResourceOSO("sortList/sortDescDates.poc");
+		}
+
+		[Test]
+		public void testSortDescDateTimes()
+		{
+			compareResourceOSO("sortList/sortDescDateTimes.poc");
+		}
+
+		[Test]
+		public void testSortDescDecimals()
+		{
+			compareResourceOSO("sortList/sortDescDecimals.poc");
+		}
+
+		[Test]
+		public void testSortDescExpressions()
+		{
+			compareResourceOSO("sortList/sortDescExpressions.poc");
+		}
+
+		[Test]
+		public void testSortDescIntegers()
+		{
+			compareResourceOSO("sortList/sortDescIntegers.poc");
+		}
+
+		[Test]
+		public void testSortDescKeys()
+		{
+			compareResourceOSO("sortList/sortDescKeys.poc");
+		}
+
+		[Test]
+		public void testSortDescMethods()
+		{
+			compareResourceOSO("sortList/sortDescMethods.poc");
+		}
+
+		[Test]
+		public void testSortDescNames()
+		{
+			compareResourceOSO("sortList/sortDescNames.poc");
+		}
+
+		[Test]
+		public void testSortDescTexts()
+		{
+			compareResourceOSO("sortList/sortDescTexts.poc");
+		}
+
+		[Test]
+		public void testSortDescTimes()
+		{
+			compareResourceOSO("sortList/sortDescTimes.poc");
+		}
+
+		[Test]
 		public void testSortExpressions()
 		{
 			compareResourceOSO("sortList/sortExpressions.poc");

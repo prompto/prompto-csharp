@@ -55,7 +55,7 @@ namespace prompto.type
 
 		bool isMoreSpecificThan (Context context, IType other);
 
-		ListValue sort (Context context, IContainer list);
+		ListValue sort (Context context, IContainer list, bool descending);
 
 		String ToString (Object value);
 

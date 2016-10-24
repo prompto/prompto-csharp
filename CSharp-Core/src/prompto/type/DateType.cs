@@ -98,9 +98,9 @@ namespace prompto.type
         } 
 
         override
-		public ListValue sort(Context context, IContainer list)
+		public ListValue sort(Context context, IContainer list, bool descending)
         {
-			return this.doSort(context, list, new DateComparer(context));
+			return this.doSort(context, list, new DateComparer(context, descending));
         }
 
         override
@@ -112,8 +112,8 @@ namespace prompto.type
 
     class DateComparer : ExpressionComparer<Date>
     {
-        public DateComparer(Context context)
-            : base(context)
+        public DateComparer(Context context, bool descending)
+            : base(context, descending)
         {
         }
         override

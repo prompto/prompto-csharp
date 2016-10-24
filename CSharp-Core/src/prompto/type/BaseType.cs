@@ -148,7 +148,7 @@ namespace prompto.type
 			return value.ToString ();
 		}
 
-		public virtual ListValue sort (Context context, IContainer list)
+		public virtual ListValue sort (Context context, IContainer list, bool descending)
 		{
 			throw new Exception ("Unsupported!");
 		}

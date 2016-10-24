@@ -10,10 +10,12 @@ namespace prompto.runtime
     public abstract class ExpressionComparer<T> : Comparer<Object> 
     {
         Context context;
+		bool descending;
 
-        protected ExpressionComparer(Context context)
+        protected ExpressionComparer(Context context, bool descending)
         {
             this.context = context;
+			this.descending = descending;
         }
 
         override
@@ -21,7 +23,7 @@ namespace prompto.runtime
         {
            T t1 = Evaluate(o1);
            T t2 = Evaluate(o2);
-           return DoCompare(t1,t2);
+           return descending ? DoCompare(t2, t1) : DoCompare(t1,t2);
         }
 
         private T Evaluate(Object o)

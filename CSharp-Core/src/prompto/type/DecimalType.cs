@@ -104,9 +104,9 @@ namespace prompto.type
         }
 
         override
-		public ListValue sort(Context context, IContainer list)
+		public ListValue sort(Context context, IContainer list, bool descending)
         {
-			return this.doSort(context, list, new DecimalComparer(context));
+			return this.doSort(context, list, new DecimalComparer(context, descending));
         }
 
         override
@@ -127,8 +127,8 @@ namespace prompto.type
 
     class DecimalComparer : ExpressionComparer<INumber>
     {
-        public DecimalComparer(Context context)
-            : base(context)
+        public DecimalComparer(Context context, bool descending)
+            : base(context, descending)
         {
         }
 

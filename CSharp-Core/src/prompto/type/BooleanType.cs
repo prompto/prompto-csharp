@@ -40,9 +40,9 @@ namespace prompto.type
 
  
         override
-		public ListValue sort(Context context, IContainer list)
+		public ListValue sort(Context context, IContainer list, bool descending)
         {
-			return this.doSort(context, list, new BooleanComparer(context));
+			return this.doSort(context, list, new BooleanComparer(context, descending));
         }
 
         override
@@ -59,10 +59,10 @@ namespace prompto.type
 
     }
 
-    class BooleanComparer : ExpressionComparer<Boolean>
+   class BooleanComparer : ExpressionComparer<Boolean>
     {
-        public BooleanComparer(Context context)
-            : base(context)
+        public BooleanComparer(Context context, bool descending)
+            : base(context, descending)
         {
         }
 

@@ -15,16 +15,19 @@ namespace prompto.expression
     {
 
         IExpression source;
+		bool descending;
         IExpression key;
 
-        public SortedExpression(IExpression source)
+        public SortedExpression(IExpression source, bool descending)
         {
             this.source = source;
+			this.descending = descending;
         }
 
-		public SortedExpression(IExpression source, IExpression key)
+		public SortedExpression(IExpression source, bool descending, IExpression key)
         {
             this.source = source;
+			this.descending = descending;
 			this.key = key;
         }
 
@@ -45,6 +48,8 @@ namespace prompto.expression
 
 		private void toEDialect(CodeWriter writer) {
 			writer.append("sorted ");
+			if(descending)
+				writer.append("descending ");
 			source.ToDialect(writer);
 			if(key!=null) {
 				writer.append(" with ");
@@ -63,7 +68,10 @@ namespace prompto.expression
 		}	
 
 		private void toODialect(CodeWriter writer) {
-			writer.append("sorted (");
+			writer.append("sorted ");
+			if (descending)
+				writer.append("desc ");
+			writer.append('(');
 			source.ToDialect(writer);
 			if(key!=null) {
 				writer.append(", key = ");
@@ -96,9 +104,9 @@ namespace prompto.expression
                 throw new InternalError("Unexpected type:" + o.GetType().Name);
             IType itemType = ((ContainerType)type).GetItemType();
             if (itemType is CategoryType)
-				return ((CategoryType)itemType).sort(context, (IContainer)o, key);
+				return ((CategoryType)itemType).sort(context, (IContainer)o, key, descending);
             else
-				return itemType.sort(context, (IContainer)o);
+				return itemType.sort(context, (IContainer)o, descending);
         }
 
 		public void setKey(IExpression key)

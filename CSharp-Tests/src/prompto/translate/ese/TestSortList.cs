@@ -33,6 +33,72 @@ namespace prompto.translate.ese
 		}
 
 		[Test]
+		public void testSortDescBooleans()
+		{
+			compareResourceESE("sortList/sortDescBooleans.pec");
+		}
+
+		[Test]
+		public void testSortDescDates()
+		{
+			compareResourceESE("sortList/sortDescDates.pec");
+		}
+
+		[Test]
+		public void testSortDescDateTimes()
+		{
+			compareResourceESE("sortList/sortDescDateTimes.pec");
+		}
+
+		[Test]
+		public void testSortDescDecimals()
+		{
+			compareResourceESE("sortList/sortDescDecimals.pec");
+		}
+
+		[Test]
+		public void testSortDescExpressions()
+		{
+			compareResourceESE("sortList/sortDescExpressions.pec");
+		}
+
+		[Test]
+		public void testSortDescIntegers()
+		{
+			compareResourceESE("sortList/sortDescIntegers.pec");
+		}
+
+		[Test]
+		public void testSortDescKeys()
+		{
+			compareResourceESE("sortList/sortDescKeys.pec");
+		}
+
+		[Test]
+		public void testSortDescMethods()
+		{
+			compareResourceESE("sortList/sortDescMethods.pec");
+		}
+
+		[Test]
+		public void testSortDescNames()
+		{
+			compareResourceESE("sortList/sortDescNames.pec");
+		}
+
+		[Test]
+		public void testSortDescTexts()
+		{
+			compareResourceESE("sortList/sortDescTexts.pec");
+		}
+
+		[Test]
+		public void testSortDescTimes()
+		{
+			compareResourceESE("sortList/sortDescTimes.pec");
+		}
+
+		[Test]
 		public void testSortExpressions()
 		{
 			compareResourceESE("sortList/sortExpressions.pec");

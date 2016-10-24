@@ -285,7 +285,7 @@ namespace prompto.type
 		}
 
 
-        public ListValue sort(Context context, IContainer list, IExpression key)
+        public ListValue sort(Context context, IContainer list, IExpression key, bool descending)
         {
             if (key == null)
                 key = new UnresolvedIdentifier("key");
@@ -293,13 +293,13 @@ namespace prompto.type
 			if (d is CategoryDeclaration) {
 				CategoryDeclaration decl = (CategoryDeclaration)d;
 				if (decl.hasAttribute (context, key.ToString ()))
-					return sortByAttribute (context, list, key.ToString ());
+					return sortByAttribute (context, list, key.ToString (), descending);
 				else if (decl.hasMethod (context, key.ToString (), null))
-					return sortByClassMethod (context, list, key.ToString ());
+					return sortByClassMethod (context, list, key.ToString (),descending);
 				else if (globalMethodExists (context, list, key.ToString ()))
-					return sortByGlobalMethod (context, list, key.ToString ());
+					return sortByGlobalMethod (context, list, key.ToString (), descending);
 				else
-					return sortByExpression (context, list, key);
+					return sortByExpression (context, list, key, descending);
 			} else
 				throw new Exception ("Unsupported!");
         }
@@ -311,8 +311,8 @@ namespace prompto.type
             Context context;
             IExpression key;
 
-            public ConcreteInstanceComparer(CategoryType type, Context context, IExpression key)
-                : base(context)
+            public ConcreteInstanceComparer(CategoryType type, Context context, IExpression key, bool descending)
+                : base(context, descending)
             {
                 this.type = type;
                 this.context = context;
@@ -330,9 +330,9 @@ namespace prompto.type
             }
 
         }
-		private ListValue sortByExpression(Context context, IContainer list, IExpression key)
+		private ListValue sortByExpression(Context context, IContainer list, IExpression key, bool descending)
         {
-			return this.doSort(context, list, new ConcreteInstanceComparer(this, context, key));
+			return this.doSort(context, list, new ConcreteInstanceComparer(this, context, key, descending));
         }
 
         public class InstanceAttributeComparer : ExpressionComparer<IInstance>
@@ -341,8 +341,8 @@ namespace prompto.type
             Context context;
             String name;
 
-            public InstanceAttributeComparer(CategoryType type, Context context, String name)
-                : base(context)
+            public InstanceAttributeComparer(CategoryType type, Context context, String name, bool descending)
+				: base(context, descending)
             {
                 this.type = type;
                 this.context = context;
@@ -359,12 +359,12 @@ namespace prompto.type
 
         }
 
-		private ListValue sortByAttribute(Context context, IContainer list, String name)
+		private ListValue sortByAttribute(Context context, IContainer list, String name, bool descending)
         {
-			return this.doSort( context, list, new InstanceAttributeComparer(this, context, name));
+			return this.doSort( context, list, new InstanceAttributeComparer(this, context, name, descending));
         }
 
-		private ListValue sortByClassMethod(Context context, IContainer list, String name)
+		private ListValue sortByClassMethod(Context context, IContainer list, String name, bool descending)
         {
             return null;
         }
@@ -386,7 +386,7 @@ namespace prompto.type
             }
         }
 
-		private ListValue sortByGlobalMethod(Context context, IContainer list, String name)
+		private ListValue sortByGlobalMethod(Context context, IContainer list, String name, bool descending)
         {
 			IExpression exp = new ExpressionValue(this, newInstance(context));
             ArgumentAssignment arg = new ArgumentAssignment(null, exp);
@@ -394,7 +394,7 @@ namespace prompto.type
             MethodCall proto = new MethodCall(new MethodSelector(name), args);
             MethodFinder finder = new MethodFinder(context, proto);
             IMethodDeclaration method = finder.findMethod(true);
-            return sortByGlobalMethod(context, list, proto, method);
+			return sortByGlobalMethod(context, list, proto, method, descending);
         }
 
         class InstanceGlobalMethodComparer : ExpressionComparer<IInstance>
@@ -403,8 +403,8 @@ namespace prompto.type
             Context context;
             MethodCall method;
 
-            public InstanceGlobalMethodComparer(CategoryType type, Context context, MethodCall method)
-                : base(context)
+            public InstanceGlobalMethodComparer(CategoryType type, Context context, MethodCall method, bool descending)
+                : base(context, descending)
             {
                 this.type = type;
                 this.context = context;
@@ -423,9 +423,9 @@ namespace prompto.type
             }
 
         }
-		private ListValue sortByGlobalMethod(Context context, IContainer list, MethodCall method, IMethodDeclaration declaration)
+		private ListValue sortByGlobalMethod(Context context, IContainer list, MethodCall method, IMethodDeclaration declaration, bool descending)
         {
-			return this.doSort(context, list, new InstanceGlobalMethodComparer(this, context, method));
+			return this.doSort(context, list, new InstanceGlobalMethodComparer(this, context, method, descending));
         }
 
         private int compareKeys(Object key1, Object key2)
