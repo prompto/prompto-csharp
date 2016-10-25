@@ -46,6 +46,72 @@ namespace prompto.runtime.o
 		}
 
 		[Test]
+		public void testSortDescBooleans()
+		{
+			CheckOutput("sortSet/sortDescBooleans.poc");
+		}
+
+		[Test]
+		public void testSortDescDates()
+		{
+			CheckOutput("sortSet/sortDescDates.poc");
+		}
+
+		[Test]
+		public void testSortDescDateTimes()
+		{
+			CheckOutput("sortSet/sortDescDateTimes.poc");
+		}
+
+		[Test]
+		public void testSortDescDecimals()
+		{
+			CheckOutput("sortSet/sortDescDecimals.poc");
+		}
+
+		[Test]
+		public void testSortDescExpressions()
+		{
+			CheckOutput("sortSet/sortDescExpressions.poc");
+		}
+
+		[Test]
+		public void testSortDescIntegers()
+		{
+			CheckOutput("sortSet/sortDescIntegers.poc");
+		}
+
+		[Test]
+		public void testSortDescKeys()
+		{
+			CheckOutput("sortSet/sortDescKeys.poc");
+		}
+
+		[Test]
+		public void testSortDescMethods()
+		{
+			CheckOutput("sortSet/sortDescMethods.poc");
+		}
+
+		[Test]
+		public void testSortDescNames()
+		{
+			CheckOutput("sortSet/sortDescNames.poc");
+		}
+
+		[Test]
+		public void testSortDescTexts()
+		{
+			CheckOutput("sortSet/sortDescTexts.poc");
+		}
+
+		[Test]
+		public void testSortDescTimes()
+		{
+			CheckOutput("sortSet/sortDescTimes.poc");
+		}
+
+		[Test]
 		public void testSortExpressions()
 		{
 			CheckOutput("sortSet/sortExpressions.poc");

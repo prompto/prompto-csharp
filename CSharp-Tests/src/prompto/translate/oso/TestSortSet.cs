@@ -33,6 +33,72 @@ namespace prompto.translate.oso
 		}
 
 		[Test]
+		public void testSortDescBooleans()
+		{
+			compareResourceOSO("sortSet/sortDescBooleans.poc");
+		}
+
+		[Test]
+		public void testSortDescDates()
+		{
+			compareResourceOSO("sortSet/sortDescDates.poc");
+		}
+
+		[Test]
+		public void testSortDescDateTimes()
+		{
+			compareResourceOSO("sortSet/sortDescDateTimes.poc");
+		}
+
+		[Test]
+		public void testSortDescDecimals()
+		{
+			compareResourceOSO("sortSet/sortDescDecimals.poc");
+		}
+
+		[Test]
+		public void testSortDescExpressions()
+		{
+			compareResourceOSO("sortSet/sortDescExpressions.poc");
+		}
+
+		[Test]
+		public void testSortDescIntegers()
+		{
+			compareResourceOSO("sortSet/sortDescIntegers.poc");
+		}
+
+		[Test]
+		public void testSortDescKeys()
+		{
+			compareResourceOSO("sortSet/sortDescKeys.poc");
+		}
+
+		[Test]
+		public void testSortDescMethods()
+		{
+			compareResourceOSO("sortSet/sortDescMethods.poc");
+		}
+
+		[Test]
+		public void testSortDescNames()
+		{
+			compareResourceOSO("sortSet/sortDescNames.poc");
+		}
+
+		[Test]
+		public void testSortDescTexts()
+		{
+			compareResourceOSO("sortSet/sortDescTexts.poc");
+		}
+
+		[Test]
+		public void testSortDescTimes()
+		{
+			compareResourceOSO("sortSet/sortDescTimes.poc");
+		}
+
+		[Test]
 		public void testSortExpressions()
 		{
 			compareResourceOSO("sortSet/sortExpressions.poc");

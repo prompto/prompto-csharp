@@ -33,6 +33,72 @@ namespace prompto.translate.ese
 		}
 
 		[Test]
+		public void testSortDescBooleans()
+		{
+			compareResourceESE("sortSet/sortDescBooleans.pec");
+		}
+
+		[Test]
+		public void testSortDescDates()
+		{
+			compareResourceESE("sortSet/sortDescDates.pec");
+		}
+
+		[Test]
+		public void testSortDescDateTimes()
+		{
+			compareResourceESE("sortSet/sortDescDateTimes.pec");
+		}
+
+		[Test]
+		public void testSortDescDecimals()
+		{
+			compareResourceESE("sortSet/sortDescDecimals.pec");
+		}
+
+		[Test]
+		public void testSortDescExpressions()
+		{
+			compareResourceESE("sortSet/sortDescExpressions.pec");
+		}
+
+		[Test]
+		public void testSortDescIntegers()
+		{
+			compareResourceESE("sortSet/sortDescIntegers.pec");
+		}
+
+		[Test]
+		public void testSortDescKeys()
+		{
+			compareResourceESE("sortSet/sortDescKeys.pec");
+		}
+
+		[Test]
+		public void testSortDescMethods()
+		{
+			compareResourceESE("sortSet/sortDescMethods.pec");
+		}
+
+		[Test]
+		public void testSortDescNames()
+		{
+			compareResourceESE("sortSet/sortDescNames.pec");
+		}
+
+		[Test]
+		public void testSortDescTexts()
+		{
+			compareResourceESE("sortSet/sortDescTexts.pec");
+		}
+
+		[Test]
+		public void testSortDescTimes()
+		{
+			compareResourceESE("sortSet/sortDescTimes.pec");
+		}
+
+		[Test]
 		public void testSortExpressions()
 		{
 			compareResourceESE("sortSet/sortExpressions.pec");
