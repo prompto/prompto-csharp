@@ -15,7 +15,7 @@ namespace prompto.expression
 	{
 
 		CategoryType type;
-		IExpression filter;
+		IExpression predicate;
 		IExpression start;
 		IExpression end;
 		OrderByClauseList orderBy;
@@ -23,7 +23,7 @@ namespace prompto.expression
 		public FetchManyExpression (CategoryType type, IExpression filter, IExpression start, IExpression end, OrderByClauseList orderBy)
 		{
 			this.type = type;
-			this.filter = filter;
+			this.predicate = filter;
 			this.start = start;
 			this.end = end;
 			this.orderBy = orderBy;
@@ -54,11 +54,11 @@ namespace prompto.expression
 			} else
 				writer.append("all ");
 			writer.append(" ( ");
-			writer.append(type.GetName().ToString());
+			writer.append(type.GetTypeName().ToString());
 			writer.append(" ) ");
-			if(filter!=null) {
+			if(predicate!=null) {
 				writer.append(" where ");
-				filter.ToDialect(writer);
+				predicate.ToDialect(writer);
 			}
 			if(orderBy!=null)
 				orderBy.ToDialect(writer);
@@ -70,7 +70,7 @@ namespace prompto.expression
 			if(start==null)
 				writer.append("all ");
 			writer.append("( ");
-			writer.append(type.GetName().ToString());
+			writer.append(type.GetTypeName().ToString());
 			writer.append(" ) ");
 			if(start!=null) {
 				writer.append("rows ( ");
@@ -79,9 +79,9 @@ namespace prompto.expression
 				end.ToDialect(writer);
 				writer.append(") ");
 			}
-			if(filter!=null) {
+			if(predicate!=null) {
 				writer.append(" where ( ");
-				filter.ToDialect(writer);
+				predicate.ToDialect(writer);
 				writer.append(") ");
 			}
 			if(orderBy!=null)
@@ -93,15 +93,15 @@ namespace prompto.expression
 			writer.append("fetch ");
 			if(start==null)
 				writer.append("all ");
-			writer.append(type.GetName().ToString());
+			writer.append(type.GetTypeName().ToString());
 			if(start!=null) {
 				start.ToDialect(writer);
 				writer.append(" to ");
 				end.ToDialect(writer);
 			} 
-			if(filter!=null) {
+			if(predicate!=null) {
 				writer.append(" where ");
-				filter.ToDialect(writer);
+				predicate.ToDialect(writer);
 			}
 			if(orderBy!=null)
 				orderBy.ToDialect(writer);
@@ -109,9 +109,9 @@ namespace prompto.expression
 
 		public IType check (Context context)
 		{
-			CategoryDeclaration decl = context.getRegisteredDeclaration<CategoryDeclaration> (type.GetName ());
+			CategoryDeclaration decl = context.getRegisteredDeclaration<CategoryDeclaration> (type.GetTypeName ());
 			if (decl == null)
-				throw new SyntaxError ("Unknown category: " + type.GetName ().ToString ());
+				throw new SyntaxError ("Unknown category: " + type.GetTypeName ().ToString ());
 			checkFilter (context);
 			checkOrderBy (context);
 			checkSlice (context);
@@ -129,16 +129,20 @@ namespace prompto.expression
 
 		public void checkFilter (Context context)
 		{
-			if (filter == null)
+			if (predicate == null)
 				return;
-			IType filterType = filter.check (context);
+			if (!(predicate is IPredicateExpression))
+				throw new SyntaxError("Filtering expression must be a predicate !");
+			IType filterType = predicate.check (context);
 			if (filterType != BooleanType.Instance)
 				throw new SyntaxError ("Filtering expresion must return a boolean !");
 		}
 
 		public IValue interpret (Context context)
 		{
-			IDocumentEnumerator docs = Store.Instance.fetchMany(context, start, end, filter, orderBy);
+			if (predicate!=null && !(predicate is IPredicateExpression))
+				throw new SyntaxError("Filtering expression must be a predicate !");
+			IStoredEnumerable docs = DataStore.Instance.interpretFetchMany(context, type, start, end, (IPredicateExpression)predicate, orderBy);
 			return new Cursor(context, type, docs);
 		}
 

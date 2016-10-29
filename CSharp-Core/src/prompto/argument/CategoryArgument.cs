@@ -42,7 +42,7 @@ namespace prompto.argument
 
         String getProto()
         {
-            return type.GetName();
+            return type.GetTypeName();
         }
 
         override
@@ -68,7 +68,7 @@ namespace prompto.argument
 		}
 
 		protected virtual void toEDialect(CodeWriter writer) {
-			bool anonymous = "any"==type.GetName();
+			bool anonymous = "any"==type.GetTypeName();
 			type.ToDialect(writer);
 			if(anonymous) {
 				writer.append(' ');
@@ -102,8 +102,8 @@ namespace prompto.argument
             if (!(obj is CategoryArgument))
                 return false;
             CategoryArgument other = (CategoryArgument)obj;
-            return Utils.equal(this.getType(), other.getType())
-				&& Utils.equal(this.GetName(), other.GetName());
+            return ObjectUtils.equal(this.getType(), other.getType())
+				&& ObjectUtils.equal(this.GetName(), other.GetName());
         }
 
         override

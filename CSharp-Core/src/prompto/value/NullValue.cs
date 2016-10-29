@@ -21,7 +21,12 @@ namespace prompto.value
 
 		public override object ConvertTo (System.Type type)
 		{
-			return null;
+			return null; // YES! you read correctly
+		}
+
+		public override object GetStorableData()
+		{
+			return null; // YES! you read correctly
 		}
 	}
 }

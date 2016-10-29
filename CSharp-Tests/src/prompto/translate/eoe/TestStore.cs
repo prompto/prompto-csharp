@@ -56,6 +56,12 @@ namespace prompto.translate.eoe
 			compareResourceEOE("store/subRecord.pec");
 		}
 
+		[Test]
+		public void testUntypedRecord()
+		{
+			compareResourceEOE("store/untypedRecord.pec");
+		}
+
 	}
 }
 

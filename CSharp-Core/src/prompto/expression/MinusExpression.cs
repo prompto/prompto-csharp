@@ -37,7 +37,7 @@ namespace prompto.expression
             if (type is IntegerType || type is DecimalType || type is PeriodType)
                 return type;
             else
-				throw new SyntaxError("Cannot negate " + type.GetName());
+				throw new SyntaxError("Cannot negate " + type.GetTypeName());
         }
 
         public IValue interpret(Context context)

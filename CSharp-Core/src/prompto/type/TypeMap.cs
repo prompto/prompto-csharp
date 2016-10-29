@@ -25,13 +25,13 @@ namespace prompto.type
                 else if (type.isAssignableTo(context, t))
                     type = t;
                 else
-					throw new SyntaxError("Incompatible types: " + type.GetName() + " and " + t.GetName());
+					throw new SyntaxError("Incompatible types: " + type.GetTypeName() + " and " + t.GetTypeName());
             }
             // second pass: check compatible
             foreach (IType t in Values)
             {
                 if (!t.isAssignableTo(context, type))
-					throw new SyntaxError("Incompatible types: " + type.GetName() + " and " + t.GetName());
+					throw new SyntaxError("Incompatible types: " + type.GetTypeName() + " and " + t.GetTypeName());
             }
             return type;
         }

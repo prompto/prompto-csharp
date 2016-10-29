@@ -1,7 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using prompto.error;
 using prompto.runtime;
 using prompto.grammar;
@@ -23,14 +21,20 @@ namespace prompto.value
 
         public string Value { get { return value; } }
 
-        override
-        public IValue Add(Context context, IValue value)
+
+		public override object GetStorableData()
+		{
+			return value;
+		}
+    
+
+        public override IValue Add(Context context, IValue value)
         {
             return new Text(this.value + value.ToString());
         }
 
-        override
-        public IValue Multiply(Context context, IValue value)
+        
+        public override IValue Multiply(Context context, IValue value)
         {
             if (value is Integer)
             {
@@ -45,7 +49,7 @@ namespace prompto.value
                 char[] cc = new char[count * src.Length];
                 for (int i = 0; i < count; i++)
                     Array.Copy(src, 0, cc, i * src.Length, src.Length);
-                return new Text(new String(cc));
+                return new Text(new string(cc));
             }
             else
                 throw new SyntaxError("Illegal: Chararacter * " + value.GetType().Name);

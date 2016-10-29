@@ -28,8 +28,13 @@ namespace prompto.value
 
         public Double DecimalValue { get { return value; } }
 
-        override
-        public IValue Add(Context context, IValue value)
+        
+		public override object GetStorableData()
+		{
+			return value;
+		}
+    
+		public override IValue Add(Context context, IValue value)
         {
             if (value is Integer)
                 return new Integer(this.IntegerValue + ((Integer)value).IntegerValue);
@@ -39,8 +44,8 @@ namespace prompto.value
                 throw new SyntaxError("Illegal: Integer + " + value.GetType().Name);
         }
 
-        override
-        public IValue Subtract(Context context, IValue value)
+        
+        public override IValue Subtract(Context context, IValue value)
         {
             if (value is Integer)
                 return new Integer(this.IntegerValue - ((Integer)value).IntegerValue);

@@ -100,16 +100,16 @@ namespace prompto.expression
 
         public IType check(Context context)
         {
-			CategoryDeclaration cd = context.getRegisteredDeclaration<CategoryDeclaration>(this.type.GetName());
+			CategoryDeclaration cd = context.getRegisteredDeclaration<CategoryDeclaration>(this.type.GetTypeName());
             if (cd == null)
-				throw new SyntaxError("Unknown category " + this.type.GetName());
+				throw new SyntaxError("Unknown category " + this.type.GetTypeName());
             IType type = (CategoryType)cd.GetIType(context);
             cd.checkConstructorContext(context);
             if (copyFrom != null)
             {
                 IType cft = copyFrom.check(context);
 				if (!(cft is CategoryType) && (cft!=DocumentType.Instance))
-					throw new SyntaxError("Cannot copy from " + cft.GetName());
+					throw new SyntaxError("Cannot copy from " + cft.GetTypeName());
             }
             if (assignments != null)
             {
@@ -117,7 +117,7 @@ namespace prompto.expression
                 {
 					if (!cd.hasAttribute(context, assignment.GetName()))
 						throw new SyntaxError("\"" + assignment.GetName() +
-							"\" is not an attribute of " + type.GetName());
+							"\" is not an attribute of " + type.GetTypeName());
                     assignment.check(context);
                 }
             }
@@ -136,7 +136,7 @@ namespace prompto.expression
 	                if (copyObj is IInstance)
 	                {
 						IInstance copyFrom = (IInstance)copyObj;
-						CategoryDeclaration cd = context.getRegisteredDeclaration<CategoryDeclaration>(type.GetName());
+						CategoryDeclaration cd = context.getRegisteredDeclaration<CategoryDeclaration>(type.GetTypeName());
 	                    foreach (String name in copyFrom.GetMemberNames())
 	                    {
 	                        if (cd.hasAttribute(context, name))
@@ -151,7 +151,7 @@ namespace prompto.expression
 					else if (copyObj is Document) 
 					{
 						Document copyFrom = (Document)copyObj;
-						CategoryDeclaration cd = context.getRegisteredDeclaration<CategoryDeclaration>(type.GetName());
+						CategoryDeclaration cd = context.getRegisteredDeclaration<CategoryDeclaration>(type.GetTypeName());
 						foreach (String name in copyFrom.GetMemberNames())
 						{
 							if (cd.hasAttribute(context, name))

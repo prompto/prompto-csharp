@@ -23,7 +23,7 @@ namespace prompto.statement
         {
             IType thisType = expression.check(context);
             if (!thisType.isAssignableTo(context, type))
-				throw new SyntaxError("Cannot assign:" + thisType.GetName() + " to:" + type.GetName());
+				throw new SyntaxError("Cannot assign:" + thisType.GetTypeName() + " to:" + type.GetTypeName());
 
         }
 

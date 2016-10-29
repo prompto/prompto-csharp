@@ -9,6 +9,7 @@ using prompto.error;
 using prompto.expression;
 using prompto.type;
 using Newtonsoft.Json;
+using prompto.store;
 
 namespace prompto.value
 {
@@ -59,6 +60,17 @@ namespace prompto.value
 		public IType GetIType()
 		{
 			return type;
+		}
+
+
+		public void CollectStorables(List<IStorable> storables)
+		{
+			// nothing to do
+		}
+
+		public object GetStorableData()
+		{
+			throw new NotSupportedException("GetStorableData not supported by " + this.GetType().Name);
 		}
 
         public IValue Add(Context context, IValue value)
@@ -237,8 +249,7 @@ namespace prompto.value
 			throw new NotSupportedException("No ToJson support for " + this.GetType().Name);
 		}
 
-
-     }
+	}
 
     public class KVPValue : BaseValue
     {

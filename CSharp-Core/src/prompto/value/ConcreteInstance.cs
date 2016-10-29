@@ -5,10 +5,8 @@ using System.Threading;
 using System;
 using prompto.utils;
 using System.Text;
-using prompto.value;
 using prompto.runtime;
 using prompto.declaration;
-using prompto.expression;
 using prompto.type;
 using prompto.store;
 using prompto.argument;
@@ -22,19 +20,67 @@ namespace prompto.value
 		ConcreteCategoryDeclaration declaration;
 		Dictionary<String, IValue> values = new Dictionary<String, IValue> ();
 		bool mutable = false;
-		StorableDocument storable = null;
+		IStorable storable = null;
 
-		public ConcreteInstance (ConcreteCategoryDeclaration declaration)
+		public ConcreteInstance (Context context, ConcreteCategoryDeclaration declaration)
 			: base (new CategoryType (declaration.GetName ()))
 		{
 			this.declaration = declaration;
-			if(declaration.Storable)
-				storable = new StorableDocument();
+			if (declaration.Storable)
+			{
+				List<String> categories = declaration.CollectCategories(context);
+				storable = DataStore.Instance.NewStorable(categories);
+			}
 		}
 
 		public IStorable getStorable() {
 			return storable;
 		}
+
+		public override void CollectStorables(List<IStorable> list)
+		{
+			if (storable == null)
+				throw new NotStorableError();
+			if (storable.Dirty)
+				list.Add(storable);
+			foreach (IValue value in values.Values)
+			{
+				value.CollectStorables(list);
+			}
+		}
+
+		public override Object GetStorableData() 
+		{
+			// this is called when storing the instance as a field value, so we just store the dbId
+			// the instance data itself will be collected as part of collectStorables
+			if(this.storable==null)
+				throw new NotStorableError();
+			else
+				return this.GetOrCreateDbId();
+		}
+
+		private Object GetDbId()
+		{
+			try
+			{
+				IValue dbId;
+				if (values.TryGetValue("dbId", out dbId))
+					return dbId.GetStorableData();
+				else
+					return null;
+			}
+			catch (NotStorableError e)
+			{
+				throw new Exception("Should never get here!", e);
+			}
+		}
+
+		private Object GetOrCreateDbId() 
+		{
+			Object dbId = GetDbId();
+			return dbId!=null ? dbId : this.storable.GetOrCreateDbId();
+		}
+
 
 		public bool setMutable (bool set)
 		{
@@ -126,7 +172,7 @@ namespace prompto.value
 			if (setter != null) {
 				// use attribute name as parameter name for incoming value
 				context = context.newInstanceContext (this).newChildContext();
-				context.registerValue (new Variable (attrName, decl.getType ()));
+				context.registerValue (new Variable (attrName, decl.getIType ()));
 				context.setValue (attrName, value);
 				value = setter.interpret (context);
 			}
@@ -134,32 +180,34 @@ namespace prompto.value
 			values [attrName] = value;
 			if(storable!=null && decl.Storable) {
 				// TODO convert object graph if(value instanceof IInstance)
-				storable.setMember(context, attrName, value);
+				storable.SetData(attrName, value.GetStorableData());
 			}
 		}
 
 		private IValue autocast (AttributeDeclaration decl, IValue value)
 		{
-			if (value != null && value is prompto.value.Integer && decl.getType () == DecimalType.Instance)
+			if (value != null && value is prompto.value.Integer && decl.getIType () == DecimalType.Instance)
 				value = new Decimal (((prompto.value.Integer)value).DecimalValue);
 			return value;
 		}
 
-		override
-        public bool Equals (Object obj)
+
+        public override bool Equals (Object obj)
 		{
 			if (!(obj is ConcreteInstance))
 				return false;
-			return Utils.EqualDictionaries (this.values, ((ConcreteInstance)obj).values);
+			return ObjectUtils.EqualDictionaries (this.values, ((ConcreteInstance)obj).values);
 		}
 
-		override
-        public String ToString ()
+
+        public override String ToString ()
 		{
 			StringBuilder sb = new StringBuilder ();
 			sb.Append ("{");
 			if (values.Count > 0) {
 				foreach (KeyValuePair<String, IValue> kvp in values) {
+					if ("dbId".Equals(kvp.Key))
+						continue;
 					sb.Append (kvp.Key);
 					sb.Append (":");
 					sb.Append (kvp.Value);

@@ -3,6 +3,9 @@ using prompto.expression;
 using prompto.runtime;
 using prompto.value;
 using prompto.grammar;
+using System;
+using System.Collections.Generic;
+using prompto.type;
 
 namespace prompto.store
 {
@@ -10,26 +13,19 @@ namespace prompto.store
 	/* a mean to store and fetch facts */
 	public interface IStore
 	{
-		void store (Document document);
-		Document fetchOne (Context context, IExpression filter) ;
-		IDocumentEnumerator fetchMany(Context context, IExpression start, IExpression end, 
-			IExpression filter, OrderByClauseList orderBy);
+		Type GetDbIdType(); 
+		void store (ICollection<object> idsToDelete, ICollection<IStorable> docsToStore);
+		IQueryInterpreter getQueryInterpreter(Context context);
+		IQueryFactory getQueryFactory();
+		IStored interpretFetchOne (Context context, CategoryType category, IPredicateExpression filter);
+		IStoredEnumerable interpretFetchMany(Context context, CategoryType category, 
+		                                       IExpression start, IExpression end, 
+												IPredicateExpression filter, OrderByClauseList orderBy);
+		IStored fetchUnique(object dbId);
+		IStored fetchOne(IQuery query);
+		IStoredEnumerable fetchMany(IQuery query);
 		void flush();
-	}
-
-	public abstract class Store
-	{
-		static IStore instance = new MemStore();
-
-		public static IStore Instance {
-			get {
-				return instance;
-			}
-			set {
-				instance = value;
-			}
-		}
-
+		IStorable NewStorable(List<string> categories);
 	}
 
 }

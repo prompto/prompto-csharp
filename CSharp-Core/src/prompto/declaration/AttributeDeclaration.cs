@@ -7,6 +7,7 @@ using prompto.expression;
 using prompto.utils;
 using prompto.value;
 using prompto.constraint;
+using System.Collections.Generic;
 
 namespace prompto.declaration
 {
@@ -34,7 +35,7 @@ namespace prompto.declaration
 
 		public bool Storable { get; set; }
 	
-        public IType getType()
+        public IType getIType()
         {
             return type;
         }
@@ -139,6 +140,15 @@ namespace prompto.declaration
 	            constraint.checkValue(context, value);
             return value;
         }
-    }
+
+		public AttributeInfo getAttributeInfo()
+		{
+			List<String> list = indexTypes == null ? null : indexTypes;
+			bool collection = type is ContainerType;
+			TypeFamily family = collection ? ((ContainerType)type).GetItemType().GetFamily() : type.GetFamily();
+			return new AttributeInfo(GetName(), family, collection, list);
+		}
+
+	}
 
 }

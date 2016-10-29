@@ -1,12 +1,14 @@
-﻿using prompto.value;
-
+﻿
 namespace prompto.store
 {
 
 	public interface IStorable
 	{
+
+		object GetOrCreateDbId();
 		bool Dirty { get; set; }
-		Document asDocument ();
+		void SetData(string attrName, object value);
+
 	}
 
 }

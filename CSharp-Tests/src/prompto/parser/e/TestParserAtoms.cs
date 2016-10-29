@@ -57,7 +57,7 @@ namespace prompto.parser
             AttributeDeclaration ad = parser.parse_attribute_declaration();
             Assert.IsNotNull(ad);
             Assert.AreEqual("id", ad.GetName());
-            Assert.AreEqual("Integer", ad.getType().GetName());
+            Assert.AreEqual("Integer", ad.getIType().GetTypeName());
         }
 
         [Test]
@@ -68,7 +68,7 @@ namespace prompto.parser
             AttributeDeclaration ad = parser.parse_attribute_declaration();
             Assert.IsNotNull(ad);
 			Assert.AreEqual("id", ad.GetName());
-			Assert.AreEqual("Integer[]", ad.getType().GetName());
+			Assert.AreEqual("Integer[]", ad.getIType().GetTypeName());
         }
 
         [Test]
@@ -147,7 +147,7 @@ namespace prompto.parser
             ETestParser parser = new ETestParser(statement, false);
             ITypedArgument a = parser.parse_typed_argument();
             Assert.IsNotNull(a);
-			Assert.AreEqual("Person", a.getType().GetName());
+			Assert.AreEqual("Person", a.getType().GetTypeName());
             Assert.AreEqual("p", a.GetName());
         }
 

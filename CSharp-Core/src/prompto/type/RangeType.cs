@@ -7,7 +7,7 @@ namespace prompto.type
     {
 
         public RangeType(IType itemType)
-			: base(itemType.GetName() + "[..]", itemType)
+			: base(TypeFamily.RANGE, itemType, itemType.GetTypeName() + "[..]")
         {
         }
 

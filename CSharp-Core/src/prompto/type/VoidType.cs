@@ -16,7 +16,7 @@ public class VoidType : NativeType {
 	}
 	
 	private VoidType() 
-    	: base("Void")
+			: base(TypeFamily.VOID)
 	{
 	}
 	

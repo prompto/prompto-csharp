@@ -21,25 +21,30 @@ namespace prompto.type
         }
 
         private DateTimeType()
-            : base("DateTime")
+			: base(TypeFamily.DATETIME)
         {
         }
 
-        override
-        public Type ToCSharpType()
+		public override string GetTypeName()
+		{
+			return "DateTime";
+		}
+
+        
+        public override Type ToCSharpType()
         {
             return typeof(DateTime);
         }
 
-		override
-		public IValue ConvertCSharpValueToPromptoValue(Object value)
+
+		public override IValue ConvertCSharpValueToIValue(Context context, Object value)
 		{
 			if (value is System.DateTimeOffset)
 				return new DateTime((System.DateTimeOffset)value);
 			else if (value is System.DateTime?)
 				return new DateTime(((System.DateTimeOffset?)value).Value);
 			else
-				return base.ConvertCSharpValueToPromptoValue(value);
+				return base.ConvertCSharpValueToIValue(context, value);
 		}
 
 

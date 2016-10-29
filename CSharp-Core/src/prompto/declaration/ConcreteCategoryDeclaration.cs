@@ -31,6 +31,54 @@ namespace prompto.declaration
 			this.methods = methods != null ? methods : new MethodDeclarationList ();
 		}
 
+		internal List<string> CollectCategories(Context context)
+		{
+			HashSet<String> set = new HashSet<String>();
+			List<String> list = new List<String>();
+			collectCategories(context, set, list);
+			return list;
+		}
+
+		private void collectCategories(Context context, HashSet<String> set, List<String> list)
+		{
+			if (derivedFrom != null) derivedFrom.ForEach((cat) =>
+			{
+				ConcreteCategoryDeclaration cd = context.getRegisteredDeclaration<ConcreteCategoryDeclaration>(cat);
+				cd.collectCategories(context, set, list);
+			});
+			if(!set.Contains(this.GetName())) {
+				set.Add(this.GetName());
+				list.add(this.GetName());
+			}
+		}
+
+		public override HashSet<String> GetAllAttributes(Context context)
+		{
+			HashSet<String> all = new HashSet<String>();
+			HashSet<String> more = base.GetAllAttributes(context);
+			if (more != null)
+				all.UnionWith(more);
+			if (derivedFrom != null)
+			{
+				derivedFrom.ForEach((id)=> {
+					HashSet<String> ids = GetAncestorAttributes(context, id);
+					if (ids != null)
+						all.UnionWith(ids);
+				});
+			}
+			return all.Count==0 ? null : all;
+		}
+
+		private HashSet<String> GetAncestorAttributes(Context context, String ancestor)
+		{
+			CategoryDeclaration actual = context.getRegisteredDeclaration<CategoryDeclaration>(ancestor);
+			if(actual==null)
+				return null;
+			else
+				return actual.GetAllAttributes(context);
+		}
+
+
 		public void setDerivedFrom (IdentifierList derivedFrom)
 		{
 			this.derivedFrom = derivedFrom;
@@ -216,7 +264,7 @@ namespace prompto.declaration
 			if (derivedFrom == null)
 				return false;
 			foreach (String ancestor in derivedFrom) {
-				if (ancestor.Equals (categoryType.GetName ()))
+				if (ancestor.Equals (categoryType.GetTypeName ()))
 					return true;
 				if (isAncestorDerivedFrom (ancestor, context, categoryType))
 					return true;
@@ -233,10 +281,10 @@ namespace prompto.declaration
 			return cd.isDerivedFrom (context, categoryType);
 		}
 
-		override
-        public IInstance newInstance ()
+
+        public override IInstance newInstance (Context context)
 		{
-			return new ConcreteInstance (this);
+			return new ConcreteInstance (context, this);
 		}
 
 		public GetterMethodDeclaration findGetter (Context context, String attrName)

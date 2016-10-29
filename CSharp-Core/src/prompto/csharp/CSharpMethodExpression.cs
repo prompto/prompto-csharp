@@ -121,7 +121,7 @@ namespace prompto.csharp
 			if (type is CSharpClassType)
 				klass = ((CSharpClassType)type).type;
 			else if (type is CategoryType) {
-				IDeclaration named = context.getRegisteredDeclaration<IDeclaration> (type.GetName ());
+				IDeclaration named = context.getRegisteredDeclaration<IDeclaration> (type.GetTypeName ());
 				if (named is NativeCategoryDeclaration)
 					klass = ((NativeCategoryDeclaration)named).getBoundClass (true);
 			} else

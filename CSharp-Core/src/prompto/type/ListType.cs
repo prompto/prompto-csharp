@@ -4,6 +4,7 @@ using prompto.runtime;
 using System;
 using System.Collections.Generic;
 using prompto.value;
+using System.Collections;
 
 namespace prompto.type
 {
@@ -12,7 +13,7 @@ namespace prompto.type
     {
 
         public ListType(IType itemType)
-			: base(itemType.GetName() + "[]", itemType)
+			: base(TypeFamily.LIST, itemType, itemType.GetTypeName() + "[]")
         {
         }
 
@@ -95,6 +96,17 @@ namespace prompto.type
         {
             return itemType;
         }
+
+		public override IValue ConvertCSharpValueToIValue(Context context, Object value)
+		{
+			if (value is ICollection) {
+				ListValue list = new ListValue(itemType);
+				foreach(Object item in (ICollection<Object>)value)
+					list.Add(itemType.ConvertCSharpValueToIValue(context, item));
+				return list;
+			} else
+			return base.ConvertCSharpValueToIValue(context, value);
+		}
 
     }
 

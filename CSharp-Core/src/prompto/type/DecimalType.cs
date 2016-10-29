@@ -22,7 +22,7 @@ namespace prompto.type
         }
 
         private DecimalType()
-            : base("Decimal")
+			: base(TypeFamily.DECIMAL)
         {
         }
 
@@ -110,7 +110,7 @@ namespace prompto.type
         }
 
         override
-        public IValue ConvertCSharpValueToPromptoValue(Object value)
+        public IValue ConvertCSharpValueToIValue(Context context, Object value)
         {
             if (value is float)
                 return new Decimal((float)value);

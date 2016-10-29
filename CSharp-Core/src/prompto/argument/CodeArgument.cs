@@ -25,19 +25,19 @@ namespace prompto.argument
         override
         public String getSignature(Dialect dialect)
         {
-			return name + ':' + CodeType.Instance.GetName();
+			return name + ':' + CodeType.Instance.GetTypeName();
         }
 
         override
         public String getProto(Context context)
         {
-			return CodeType.Instance.GetName();
+			return CodeType.Instance.GetTypeName();
         }
 
         override
         public void ToDialect(CodeWriter writer)
         {
-			writer.append(CodeType.Instance.GetName());
+			writer.append(CodeType.Instance.GetTypeName());
 			writer.append(" ");
 			writer.append(name);
        }
@@ -52,7 +52,7 @@ namespace prompto.argument
             if (!(obj is CodeArgument))
                 return false;
             CodeArgument other = (CodeArgument)obj;
-			return Utils.equal(this.GetName(), other.GetName());
+			return ObjectUtils.equal(this.GetName(), other.GetName());
         }
 
         override

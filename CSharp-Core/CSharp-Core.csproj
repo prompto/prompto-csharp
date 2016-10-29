@@ -113,7 +113,6 @@
     <Compile Include="src\prompto\type\BaseType.cs" />
     <Compile Include="src\prompto\utils\Extensions.cs" />
     <Compile Include="src\prompto\utils\RuntimePatch.cs" />
-    <Compile Include="src\prompto\value\BaseValueList.cs" />
     <Compile Include="src\prompto\literal\BooleanLiteral.cs" />
     <Compile Include="src\prompto\type\BooleanType.cs" />
     <Compile Include="src\prompto\declaration\CategoryDeclaration.cs" />
@@ -304,7 +303,7 @@
     <Compile Include="src\prompto\value\Time.cs" />
     <Compile Include="src\prompto\utils\StructEnumerator.cs" />
     <Compile Include="src\prompto\utils\Out.cs" />
-    <Compile Include="src\prompto\utils\Utils.cs" />
+    <Compile Include="src\prompto\utils\ObjectUtils.cs" />
     <Compile Include="src\prompto\expression\ConstructorExpression.cs" />
     <Compile Include="src\prompto\expression\TypeExpression.cs" />
     <Compile Include="src\prompto\value\TypeValue.cs" />
@@ -393,7 +392,6 @@
     <Compile Include="src\prompto\statement\StoreStatement.cs" />
     <Compile Include="src\prompto\store\IStorable.cs" />
     <Compile Include="src\prompto\error\NotStorableError.cs" />
-    <Compile Include="src\prompto\store\StorableDocument.cs" />
     <Compile Include="src\prompto\parser\EPromptoBuilder.cs" />
     <Compile Include="src\prompto\parser\OPromptoBuilder.cs" />
     <Compile Include="src\prompto\parser\SPromptoBuilder.cs" />
@@ -402,7 +400,6 @@
     <Compile Include="src\prompto\grammar\OrderByClauseList.cs" />
     <Compile Include="src\prompto\type\CursorType.cs" />
     <Compile Include="src\prompto\value\Cursor.cs" />
-    <Compile Include="src\prompto\store\IDocumentEnumerable.cs" />
     <Compile Include="src\prompto\error\PromptoError.cs" />
     <Compile Include="src\prompto\type\ContainerType.cs" />
     <Compile Include="src\prompto\expression\IteratorExpression.cs" />
@@ -460,6 +457,29 @@
     <Compile Include="src\prompto\value\UUIDValue.cs" />
     <Compile Include="src\prompto\runtime\BreakResult.cs" />
     <Compile Include="src\prompto\statement\BreakStatement.cs" />
+    <Compile Include="src\prompto\store\IStored.cs" />
+    <Compile Include="src\prompto\utils\TypeUtils.cs" />
+    <Compile Include="src\prompto\store\IQuery.cs" />
+    <Compile Include="src\prompto\declaration\AttributeInfo.cs" />
+    <Compile Include="src\prompto\type\TypeFamily.cs" />
+    <Compile Include="src\prompto\store\MatchOp.cs" />
+    <Compile Include="src\prompto\store\IQueryInterpreter.cs" />
+    <Compile Include="src\prompto\store\IQueryFactory.cs" />
+    <Compile Include="src\prompto\store\IStoredEnumerable.cs" />
+    <Compile Include="src\prompto\store\IPredicateExpression.cs" />
+    <Compile Include="src\prompto\store\Query.cs" />
+    <Compile Include="src\prompto\store\IOrderBy.cs" />
+    <Compile Include="src\prompto\store\IPredicate.cs" />
+    <Compile Include="src\prompto\store\OrderBy.cs" />
+    <Compile Include="src\prompto\store\AndPredicate.cs" />
+    <Compile Include="src\prompto\store\OrPredicate.cs" />
+    <Compile Include="src\prompto\store\NotPredicate.cs" />
+    <Compile Include="src\prompto\store\MatchesPredicate.cs" />
+    <Compile Include="src\prompto\store\QueryInterpreter.cs" />
+    <Compile Include="src\prompto\store\QueryInterpreterBase.cs" />
+    <Compile Include="src\prompto\store\InvalidValueError.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="src\prompto\store\DataStore.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -487,6 +507,7 @@
     <Folder Include="src\prompto\argument\" />
     <Folder Include="src\prompto\instance\" />
     <Folder Include="src\prompto\constraint\" />
+    <Folder Include="src\prompto\code\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -173,7 +173,7 @@ namespace prompto.parser
 
 		protected void CheckOutput (String resourceName)
 		{
-			Store.Instance = new MemStore ();
+			DataStore.Instance = new MemStore ();
 			runResource (resourceName);
 			String read = Out.read ();
 			List<String> expected = ReadExpected (resourceName);

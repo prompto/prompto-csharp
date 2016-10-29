@@ -94,8 +94,9 @@ namespace prompto.expression
 		}
 
 		private IValue interpretSingleton(Context context, IExpression parent) {
-			if(parent is TypeExpression && ((TypeExpression)parent).getType() is CategoryType) {
-				ConcreteInstance instance = context.loadSingleton((CategoryType)((TypeExpression)parent).getType());
+			IType type = parent is TypeExpression ? ((TypeExpression)parent).getType() : null;
+			if( type is CategoryType) {
+				ConcreteInstance instance = context.loadSingleton(context, (CategoryType)type);
 				if(instance!=null)
 					return instance.GetMember(context, name, false); 
 			}

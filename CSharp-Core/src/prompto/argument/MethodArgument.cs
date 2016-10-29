@@ -40,7 +40,7 @@ public class MethodArgument : BaseArgument, INamedArgument {
 		if(!(obj is MethodArgument))
 			return false;
 		MethodArgument other = (MethodArgument)obj;
-			return Utils.equal(this.GetName(),other.GetName());
+			return ObjectUtils.equal(this.GetName(),other.GetName());
 	}
 
 	override

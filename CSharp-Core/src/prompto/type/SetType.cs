@@ -11,7 +11,7 @@ namespace prompto.type
 	{
 
 		public SetType (IType itemType)
-			: base (itemType.GetName () + "<>", itemType)
+			: base (TypeFamily.SET, itemType, itemType.GetTypeName() + "<>")
 		{
 		}
 

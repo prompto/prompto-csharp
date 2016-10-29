@@ -17,7 +17,7 @@ public class CodeType : NativeType {
 	}
 	
 	private CodeType() 
- 		: base("Code")
+			: base(TypeFamily.CODE)
    {
 	}
 	

@@ -32,8 +32,8 @@ namespace prompto.type
             return all;
         }
         
-        public NativeType(String name)
-            : base(name)
+		public NativeType(TypeFamily family)
+            : base(family)
         {
         }
 

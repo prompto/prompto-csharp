@@ -1,6 +1,10 @@
 ﻿using prompto.parser;
 using prompto.grammar;
 using prompto.utils;
+using prompto.declaration;
+using prompto.runtime;
+using System;
+using prompto.store;
 
 namespace prompto.grammar
 {
@@ -8,18 +12,18 @@ namespace prompto.grammar
 	public class OrderByClause : Section
 	{
 
-		IdentifierList names;
+		IdentifierList qualifiedName;
 		bool descending;
 
-		public OrderByClause (IdentifierList names, bool descending)
+		public OrderByClause (IdentifierList qualifiedName, bool descending)
 		{
-			this.names = names;
+			this.qualifiedName = qualifiedName;
 			this.descending = descending;
 		}
 
 		public IdentifierList getNames ()
 		{
-			return names;
+			return qualifiedName;
 		}
 
 		public bool isDescending ()
@@ -29,7 +33,7 @@ namespace prompto.grammar
 
 		public void ToDialect (CodeWriter writer)
 		{
-			foreach (string name in names) {
+			foreach (String name in qualifiedName) {
 				writer.append (name);
 				writer.append (".");
 			}
@@ -37,5 +41,14 @@ namespace prompto.grammar
 			if (descending)
 				writer.append (" descending");
 		}
+
+		public void interpretQuery(Context context, IQuery q)
+		{
+			// TODO members
+			String name = qualifiedName[0];
+			AttributeInfo info = context.findAttribute(name.ToString()).getAttributeInfo();
+			q.addOrderByClause(info, isDescending());
+		}
+
 	}
 }

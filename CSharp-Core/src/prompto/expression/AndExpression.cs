@@ -7,11 +7,12 @@ using prompto.type;
 using prompto.utils;
 using prompto.value;
 using prompto.declaration;
+using prompto.store;
 
 namespace prompto.expression
 {
 
-	public class AndExpression : IExpression, IAssertion
+	public class AndExpression : IPredicateExpression, IAssertion
     {
 
         IExpression left;
@@ -49,7 +50,7 @@ namespace prompto.expression
             IType lt = left.check(context);
             IType rt = right.check(context);
             if (!(lt is BooleanType) || !(rt is BooleanType))
-				throw new SyntaxError("Cannot combine " + lt.GetName() + " and " + rt.GetName());
+				throw new SyntaxError("Cannot combine " + lt.GetTypeName() + " and " + rt.GetTypeName());
             return BooleanType.Instance;
         }
 
@@ -80,6 +81,17 @@ namespace prompto.expression
 			String actual = lval.ToString() + operatorToDialect(test.Dialect) + rval.ToString();
 			test.printFailure(context, expected, actual);
 			return false;
+		}
+
+		public void interpretQuery(Context context, IQuery query)
+		{
+			if (!(left is IPredicateExpression))
+				throw new SyntaxError("Not a predicate: " + left.ToString());
+			((IPredicateExpression)left).interpretQuery(context, query);
+			if (!(right is IPredicateExpression))
+				throw new SyntaxError("Not a predicate: " + right.ToString());
+			((IPredicateExpression)right).interpretQuery(context, query);
+			query.and();
 		}
 
     }

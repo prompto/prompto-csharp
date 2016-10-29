@@ -8,6 +8,7 @@ using prompto.expression;
 using prompto.declaration;
 using prompto.statement;
 using prompto.utils;
+using prompto.store;
 
 namespace prompto.type
 {
@@ -15,9 +16,12 @@ namespace prompto.type
     public class CategoryType : BaseType
     {
 
-        public CategoryType(String name)
-            : base(name)
+		String typeName;
+
+        public CategoryType(String typeName)
+			: base(TypeFamily.CATEGORY)
         {
+			this.typeName = typeName;
         }
 
 		public bool Mutable { get; set; } 
@@ -26,17 +30,21 @@ namespace prompto.type
 		{
 			if (Mutable)
 				writer.append ("mutable ");
-			writer.append (name);
+			writer.append (typeName);
 		}
 
-        
+		public override string GetTypeName()
+		{
+			return typeName;
+		}
+	
 		public override IType checkMember(Context context, String name)
         {
-			CategoryDeclaration cd = context.getRegisteredDeclaration<CategoryDeclaration>(GetName());
+			CategoryDeclaration cd = context.getRegisteredDeclaration<CategoryDeclaration>(GetTypeName());
             if (cd == null)
-				throw new SyntaxError("Unknown category:" + GetName());
+				throw new SyntaxError("Unknown category:" + GetTypeName());
             if (!cd.hasAttribute(context, name))
-				throw new SyntaxError("No attribute:" + name + " in category:" + GetName());
+				throw new SyntaxError("No attribute:" + name + " in category:" + GetTypeName());
             AttributeDeclaration ad = context.getRegisteredDeclaration<AttributeDeclaration>(name);
             if (ad == null)
                 throw new SyntaxError("Unknown atttribute:" + name);
@@ -59,24 +67,24 @@ namespace prompto.type
             if (!(obj is CategoryType))
                 return false;
             CategoryType other = (CategoryType)obj;
-			return this.GetName().Equals(other.GetName());
+			return this.GetTypeName().Equals(other.GetTypeName());
         }
 
         override
         public void checkUnique(Context context)
         {
-            IDeclaration actual = context.getRegisteredDeclaration<IDeclaration>(name);
+			IDeclaration actual = context.getRegisteredDeclaration<IDeclaration>(typeName);
             if (actual != null)
-                throw new SyntaxError("Duplicate name: \"" + name + "\"");
+                throw new SyntaxError("Duplicate name: \"" + typeName + "\"");
         }
 
         IDeclaration getDeclaration(Context context)
         {
-            IDeclaration actual = context.getRegisteredDeclaration<CategoryDeclaration>(name);
+            IDeclaration actual = context.getRegisteredDeclaration<CategoryDeclaration>(typeName);
 			if (actual == null)
-				actual = context.getRegisteredDeclaration<EnumeratedNativeDeclaration> (name);
+				actual = context.getRegisteredDeclaration<EnumeratedNativeDeclaration> (typeName);
             if (actual == null)
-                throw new SyntaxError("Unknown category: \"" + name + "\"");
+                throw new SyntaxError("Unknown category: \"" + typeName + "\"");
             return actual;
         }
 
@@ -144,7 +152,7 @@ namespace prompto.type
 			if(tryReverse)
 				return null;
 			else
-				throw new SyntaxError("Unsupported operation: " + this.name + " " + Enums.OperatorToString(oper) + " " + other.GetName());
+				throw new SyntaxError("Unsupported operation: " + this.typeName + " " + Enums.OperatorToString(oper) + " " + other.GetTypeName());
 		}
 
 		override
@@ -156,7 +164,7 @@ namespace prompto.type
         
 		public override bool isAssignableTo(Context context, IType other)
         {
-			if (name.Equals(other.GetName()))
+			if (typeName.Equals(other.GetTypeName()))
                 return true;
 			if (other is NullType || other is AnyType || other is MissingType)
                 return true;
@@ -167,7 +175,7 @@ namespace prompto.type
 
         bool isAssignableTo(Context context, CategoryType other)
         {
-			if (name.Equals(other.GetName()))
+			if (typeName.Equals(other.GetTypeName()))
                 return true;
             try
             {
@@ -223,7 +231,7 @@ namespace prompto.type
 
         public bool isAnonymous()
         {
-            return Char.IsLower(name[0]); // since it's the name of the argument
+            return Char.IsLower(typeName[0]); // since it's the name of the argument
         }
 
         bool isAssignableToAnonymousCategory(Context context, CategoryDeclaration decl, CategoryDeclaration other)
@@ -251,7 +259,7 @@ namespace prompto.type
             CategoryType otherCat = (CategoryType)other;
             if (otherCat.isAnonymous())
                 return true;
-			CategoryDeclaration thisDecl = context.getRegisteredDeclaration<CategoryDeclaration>(this.GetName());
+			CategoryDeclaration thisDecl = context.getRegisteredDeclaration<CategoryDeclaration>(this.GetTypeName());
             if (thisDecl.isDerivedFrom(context, otherCat))
                 return true;
             return false;
@@ -275,13 +283,13 @@ namespace prompto.type
 
         public IInstance newInstance(Context context)
         {
-			CategoryDeclaration decl = context.getRegisteredDeclaration<CategoryDeclaration>(this.GetName());
-            return decl.newInstance();
+			CategoryDeclaration decl = context.getRegisteredDeclaration<CategoryDeclaration>(this.GetTypeName());
+            return decl.newInstance(context);
         }
 
-		public IInstance newInstance(Context context, Document document) {
-			CategoryDeclaration decl = context.getRegisteredDeclaration<CategoryDeclaration>(this.GetName());
-			return decl.newInstance(context, document);
+		public IInstance newInstance(Context context, IStored stored) {
+			CategoryDeclaration decl = context.getRegisteredDeclaration<CategoryDeclaration>(this.GetTypeName());
+			return decl.newInstance(context, stored);
 		}
 
 
@@ -305,7 +313,27 @@ namespace prompto.type
         }
 
 
-        class ConcreteInstanceComparer : ExpressionComparer<ConcreteInstance>
+		public override IValue ConvertCSharpValueToIValue(Context context, object value)
+		{
+			IDeclaration decl = getDeclaration(context);
+			if (decl is CategoryDeclaration)
+				return ConvertCSharpValueToIValue(context, (CategoryDeclaration)decl, value);
+			else
+				return base.ConvertCSharpValueToIValue(context, value);
+		}
+
+		private IValue ConvertCSharpValueToIValue(Context context, CategoryDeclaration decl, Object value) 
+		{
+			if(DataStore.Instance.GetDbIdType().IsInstanceOfType(value))
+				value = DataStore.Instance.fetchUnique(value);
+			if(value is IStored)
+				return decl.newInstance(context, (IStored)value);
+			else
+				return base.ConvertCSharpValueToIValue(context, value);
+		}
+
+
+		class ConcreteInstanceComparer : ExpressionComparer<ConcreteInstance>
         {
             CategoryType type;
             Context context;

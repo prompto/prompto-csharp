@@ -27,7 +27,7 @@ namespace prompto.expression
         {
             IType type = condition.check(context);
             if (!(type is BooleanType))
-				throw new SyntaxError("Cannot test condition on " + type.GetName());
+				throw new SyntaxError("Cannot test condition on " + type.GetTypeName());
             IType trueType = ifTrue.check(context);
             // IType falseType = ifFalse.check(context);
             // TODO check compatibility

@@ -7,11 +7,12 @@ using prompto.type;
 using prompto.utils;
 using prompto.value;
 using prompto.declaration;
+using prompto.store;
 
 namespace prompto.expression
 {
 
-	public class NotExpression : IUnaryExpression, IAssertion
+	public class NotExpression : IUnaryExpression, IPredicateExpression, IAssertion
     {
 
         IExpression expression;
@@ -25,7 +26,7 @@ namespace prompto.expression
         {
             IType type = expression.check(context);
             if (!(type is BooleanType))
-				throw new SyntaxError("Cannot negate " + type.GetName());
+				throw new SyntaxError("Cannot negate " + type.GetTypeName());
             return BooleanType.Instance;
         }
 
@@ -72,6 +73,14 @@ namespace prompto.expression
 			String actual = operatorToDialect(test.Dialect) + val.ToString();
 			test.printFailure(context, expected, actual);
 			return false;
+		}
+
+		public void interpretQuery(Context context, IQuery query)
+		{
+			if (!(expression is IPredicateExpression))
+				throw new SyntaxError("Not a predicate: " + expression.ToString());
+			((IPredicateExpression)expression).interpretQuery(context, query);
+			query.not();
 		}
 
     }

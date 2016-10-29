@@ -97,7 +97,7 @@ namespace prompto.csharp
 			IValue result = ConvertIValue (value);
 			if (result != null)
 				return result;
-			result = ConvertNative (value, type);
+			result = ConvertNative (context, value, type);
 			if (result != null)
 				return result;
 			result = ConvertCategory (context, value, type, returnType);
@@ -206,10 +206,10 @@ namespace prompto.csharp
 				return null;
 		}
 
-		private static IValue ConvertNative(Object value, Type type) {
+		private static IValue ConvertNative(Context context, Object value, Type type) {
 			IType itype;
 			if (typeToPrestoMap.TryGetValue (type, out itype))
-				return itype.ConvertCSharpValueToPromptoValue (value);
+				return itype.ConvertCSharpValueToIValue (context, value);
 			else
 				return null;
 		}

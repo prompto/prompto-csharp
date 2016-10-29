@@ -23,8 +23,8 @@ namespace prompto.value
 			| BindingFlags.IgnoreCase | BindingFlags.FlattenHierarchy;
 		
         NativeCategoryDeclaration declaration;
-        protected Object instance;
-		StorableDocument storable = null;
+        protected object instance;
+		IStorable storable = null;
 		bool mutable = false;
 
         public NativeInstance(NativeCategoryDeclaration declaration)
@@ -32,8 +32,12 @@ namespace prompto.value
 		{
             this.declaration = declaration;
             this.instance = makeInstance();
-			if(declaration.Storable)
-				storable = new StorableDocument();
+			if (declaration.Storable)
+			{
+				List<string> categories = new List<string>();
+				categories.Add(declaration.GetName());
+				storable = DataStore.Instance.NewStorable(categories);
+			}
 		}
 
 		public NativeInstance(NativeCategoryDeclaration declaration, Object instance)
@@ -41,8 +45,11 @@ namespace prompto.value
 		{
 			this.declaration = declaration;
 			this.instance = instance;
-			if(declaration.Storable)
-				storable = new StorableDocument();
+			if(declaration.Storable) {
+				List<string> categories = new List<string>();
+				categories.Add(declaration.GetName());
+				storable = DataStore.Instance.NewStorable(categories);
+			}
 		}
 
 		public IStorable getStorable() {
@@ -82,21 +89,21 @@ namespace prompto.value
 			return (CategoryType)this.type;
         }
 
-        public ICollection<String> GetMemberNames()
+        public ICollection<string> GetMemberNames()
         {
 			throw new NotSupportedException();
         }
 
-		static Dictionary<String, Context> Factory ()
+		static Dictionary<string, Context> Factory ()
 		{
-			return new Dictionary<String, Context> ();
+			return new Dictionary<string, Context> ();
 		}
 
 		// don't call getters from getters, so register them
-		ThreadLocal<Dictionary<String, Context>> activeGetters = new ThreadLocal<Dictionary<String, Context>> (Factory);
+		ThreadLocal<Dictionary<string, Context>> activeGetters = new ThreadLocal<Dictionary<string, Context>> (Factory);
 
 
-		public override IValue GetMember (Context context, String attrName, bool autoCreate)
+		public override IValue GetMember (Context context, string attrName, bool autoCreate)
 		{
 			Context stacked;
 			activeGetters.Value.TryGetValue (attrName, out stacked);
@@ -111,7 +118,7 @@ namespace prompto.value
 			}
 		}
 
-		protected IValue GetMemberAllowGetter (Context context, String attrName, bool allowGetter)
+		protected IValue GetMemberAllowGetter (Context context, string attrName, bool allowGetter)
 		{
 			GetterMethodDeclaration getter = allowGetter ? declaration.findGetter (context, attrName) : null;
 			if (getter != null) {
@@ -124,7 +131,7 @@ namespace prompto.value
 			}
         }
 
-        private Object getPropertyOrField(String attrName)
+        private Object getPropertyOrField(string attrName)
         {
             Object value = null;
             if (TryGetProperty(attrName, out value))
@@ -145,7 +152,7 @@ namespace prompto.value
             return field != null;
         }
 
-        private bool TryGetProperty(String attrName, out Object value)
+        private bool TryGetProperty(string attrName, out Object value)
         {
 			Type type = instance.GetType ();
 			PropertyInfo property = type.GetProperty(attrName, bindingFlags);
@@ -158,9 +165,9 @@ namespace prompto.value
 	
    
 		// don't call setters from setters, so register them
-		ThreadLocal<Dictionary<String, Context>> activeSetters = new ThreadLocal<Dictionary<String, Context>> (Factory);
+		ThreadLocal<Dictionary<string, Context>> activeSetters = new ThreadLocal<Dictionary<string, Context>> (Factory);
 
-		public override void SetMember (Context context, String attrName, IValue value)
+		public override void SetMember (Context context, string attrName, IValue value)
 		{
 			if (!mutable)
 				throw new NotMutableError ();
@@ -176,25 +183,25 @@ namespace prompto.value
 			}
 		}
 
-		public void SetMember (Context context, String attrName, IValue value, bool allowSetter)
+		public void SetMember (Context context, string attrName, IValue value, bool allowSetter)
 		{
 			AttributeDeclaration decl = context.getRegisteredDeclaration<AttributeDeclaration> (attrName);
 			SetterMethodDeclaration setter = allowSetter ? declaration.findSetter (context, attrName) : null;
 			if (setter != null) {
 				// use attribute name as parameter name for incoming value
 				context = context.newInstanceContext (this).newChildContext();
-				context.registerValue (new Variable (attrName, decl.getType ()));
+				context.registerValue (new Variable (attrName, decl.getIType ()));
 				context.setValue (attrName, value);
 				value = setter.interpret (context);
 			}
             setPropertyOrField(value, attrName);
 			if(storable!=null && decl.Storable) {
 				// TODO convert object graph if(value instanceof IInstance)
-				storable.setMember(context, attrName, value);
+				storable.SetData(attrName, value);
 			}
         }
 
-        private void setPropertyOrField(IValue value, String attrName)
+        private void setPropertyOrField(IValue value, string attrName)
         {
             if (TrySetProperty(value, attrName))
                 return;
@@ -203,7 +210,7 @@ namespace prompto.value
             throw new SyntaxError("Missing property or field:" + attrName);
         }
 
-        private bool TrySetField(IValue value, String attrName)
+        private bool TrySetField(IValue value, string attrName)
         {
 			FieldInfo field = instance.GetType().GetField(attrName, bindingFlags);
             if (field != null)
@@ -211,7 +218,7 @@ namespace prompto.value
             return field != null;
         }
 
-        private bool TrySetProperty(IValue value, String attrName)
+        private bool TrySetProperty(IValue value, string attrName)
         {
 			PropertyInfo property = instance.GetType().GetProperty(attrName, bindingFlags);
             if(property!=null)

@@ -115,8 +115,8 @@ namespace prompto.declaration
 		}
 
 
-		override
-        public IInstance newInstance ()
+
+        public override IInstance newInstance (Context context)
 		{
 			return new NativeInstance (this);
 		}

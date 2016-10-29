@@ -74,7 +74,7 @@ namespace prompto.expression
 			IFilterable list = (IFilterable)value;
             IType listType = source.check(context);
 			if (!(listType is ContainerType))
-				throw new InternalError("Illegal source type: " + listType.GetName());
+				throw new InternalError("Illegal source type: " + listType.GetTypeName());
 			IType itemType = ((ContainerType)listType).GetItemType();
 			Context local = context.newLocalContext();
 			Variable item = new Variable(itemName, itemType);

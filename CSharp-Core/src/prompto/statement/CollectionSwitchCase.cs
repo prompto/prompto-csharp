@@ -26,7 +26,7 @@ namespace prompto.statement
             if (thisType is ContainerType)
                 thisType = ((ContainerType)thisType).GetItemType();
             if (!thisType.isAssignableTo(context, type))
-				throw new SyntaxError("Cannot assign:" + thisType.GetName() + " to:" + type.GetName());
+				throw new SyntaxError("Cannot assign:" + thisType.GetTypeName() + " to:" + type.GetTypeName());
         }
 
         override

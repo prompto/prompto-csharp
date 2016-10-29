@@ -17,7 +17,7 @@ namespace prompto.type
         }
 
         private PeriodType()
-            : base("Duration")
+			: base(TypeFamily.PERIOD)
         {
         }
 

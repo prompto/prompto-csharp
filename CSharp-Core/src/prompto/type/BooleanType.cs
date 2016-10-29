@@ -22,7 +22,7 @@ namespace prompto.type
         }
 
         private BooleanType()
-            : base("Boolean")
+			: base(TypeFamily.BOOLEAN)
         {
         }
 
@@ -46,7 +46,7 @@ namespace prompto.type
         }
 
         override
-        public IValue ConvertCSharpValueToPromptoValue(Object value)
+        public IValue ConvertCSharpValueToIValue(Context context, Object value)
         {
             if (value is bool)
                 return Boolean.ValueOf((bool)value);

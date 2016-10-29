@@ -202,7 +202,7 @@ namespace prompto.runtime
             if (actual == null && globals != this)
                 actual = globals.getRegisteredDeclaration<IDeclaration>(name);
             if (actual != null)
-                return prompto.utils.Utils.downcast<T>(actual);
+                return prompto.utils.TypeUtils.downcast<T>(actual);
             else
                 return default(T);
         }
@@ -264,7 +264,7 @@ namespace prompto.runtime
 			INamed actual = null;
 			instances.TryGetValue(name, out actual);
 			if(actual!=null)
-				return Utils.downcast<T>(actual);
+				return TypeUtils.downcast<T>(actual);
 			else
 				return default(T);
 		}
@@ -372,24 +372,24 @@ namespace prompto.runtime
                 debugger.whenTerminated();
         }
 
-		public ConcreteInstance loadSingleton(CategoryType type) {
+		public ConcreteInstance loadSingleton(Context context, CategoryType type) {
 			if(this==globals) {
 				IValue value = null;
-				values.TryGetValue(type.GetName(), out value);
+				values.TryGetValue(type.GetTypeName(), out value);
 				if(value==null) {
-					IDeclaration decl = declarations[type.GetName()];
+					IDeclaration decl = declarations[type.GetTypeName()];
 					if(!(decl is ConcreteCategoryDeclaration))
-						throw new InternalError("No such singleton:" + type.GetName());
-					value = new ConcreteInstance((ConcreteCategoryDeclaration)decl);
+						throw new InternalError("No such singleton:" + type.GetTypeName());
+					value = new ConcreteInstance(context, (ConcreteCategoryDeclaration)decl);
 					((IInstance)value).setMutable(true); // a singleton is protected by "with x do", so always mutable in that context
-					values[type.GetName()] = value;
+					values[type.GetTypeName()] = value;
 				}
 				if(value is ConcreteInstance)
 					return (ConcreteInstance)value;
 				else
 					throw new InternalError("Not a concrete instance:" + value.GetType().Name);
 			} else
-				return this.globals.loadSingleton(type);
+				return this.globals.loadSingleton(context, type);
 		}
 
 		public void registerNativeBinding(Type type, NativeCategoryDeclaration declaration) 
@@ -453,11 +453,11 @@ namespace prompto.runtime
 			// not very pure, but avoids a lot of complexity when registering a value
 			if(actual==null) {
 				AttributeDeclaration attr = getRegisteredDeclaration<AttributeDeclaration>(name);
-				IType type = attr.getType();
+				IType type = attr.getIType();
 				actual = new Variable(name, type);
 				instances[name] = actual;
 			}
-			return Utils.downcast<T>(actual);
+			return TypeUtils.downcast<T>(actual);
 		}
 
 		protected override Context contextForValue(String name)
@@ -477,7 +477,7 @@ namespace prompto.runtime
 			if(instance!=null)
 				return instance.getDeclaration();
 			else
-				return getRegisteredDeclaration<ConcreteCategoryDeclaration>(type.GetName());
+				return getRegisteredDeclaration<ConcreteCategoryDeclaration>(type.GetTypeName());
 		}
 
 

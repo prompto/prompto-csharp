@@ -8,7 +8,7 @@ namespace prompto.type
 public class IteratorType : IterableType {
 
 	public IteratorType(IType itemType)
-		: base("Iterator<" + itemType.GetName() + ">", itemType)
+			: base(TypeFamily.ITERATOR, itemType, "Iterator<" + itemType.GetTypeName() + ">")
 		{
 	}
 

@@ -20,11 +20,15 @@ namespace prompto.type
         }
 
         private AnyType()
-            : base("any")
+			: base(TypeFamily.ANY)
         {
         }
 
-        
+		public override string GetTypeName()
+		{
+			return "any";
+		}
+
 		public override IType checkMember(Context context, String name)
         {
             return AnyType.Instance;

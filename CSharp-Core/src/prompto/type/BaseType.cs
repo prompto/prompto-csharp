@@ -12,20 +12,25 @@ namespace prompto.type
 	public abstract class BaseType : IType
 	{
 
-		protected String name;
+		TypeFamily family;
 
-		protected BaseType (String name)
+		protected BaseType (TypeFamily family)
 		{
-			this.name = name;
+			this.family = family;
 		}
 
-		public String GetName ()
+		public TypeFamily GetFamily()
 		{
-			return name;
+			return family;
 		}
 
-		override
-        public bool Equals (Object obj)
+		public virtual String GetTypeName ()
+		{
+			return family.ToString()[0] + family.ToString().Substring(1).ToLower();
+		}
+
+
+        public override bool Equals (Object obj)
 		{
 			if (this == obj)
 				return true;
@@ -34,18 +39,18 @@ namespace prompto.type
 			if (!(obj is IType))
 				return false;
 			IType type = (IType)obj;
-			return this.GetName ().Equals (type.GetName ());
+			return this.GetTypeName ().Equals (type.GetTypeName ());
 		}
 
-		override
-        public String ToString ()
+
+        public override String ToString ()
 		{
-			return name;
+			return GetTypeName();
 		}
 
 		public virtual void ToDialect (CodeWriter writer)
 		{
-			writer.append (name);
+			writer.append (GetTypeName());
 		}
 
 		public virtual IType checkAdd (Context context, IType other, bool tryReverse)
@@ -53,12 +58,12 @@ namespace prompto.type
 			if (tryReverse)
 				return other.checkAdd (context, this, false);
 			else
-				throw new SyntaxError ("Cannot add " + this.GetName () + " to " + other.GetName ());
+				throw new SyntaxError ("Cannot add " + this.GetTypeName () + " to " + other.GetTypeName ());
 		}
 
 		public virtual IType checkSubstract (Context context, IType other)
 		{
-			throw new SyntaxError ("Cannot substract " + this.GetName () + " from " + other.GetName ());
+			throw new SyntaxError ("Cannot substract " + this.GetTypeName () + " from " + other.GetTypeName ());
 		}
 
 		public virtual IType checkMultiply (Context context, IType other, bool tryReverse)
@@ -66,57 +71,57 @@ namespace prompto.type
 			if (tryReverse)
 				return other.checkMultiply (context, this, false);
 			else
-				throw new SyntaxError ("Cannot multiply " + this.GetName () + " with " + other.GetName ());
+				throw new SyntaxError ("Cannot multiply " + this.GetTypeName () + " with " + other.GetTypeName ());
 		}
 
 		public virtual IType checkDivide (Context context, IType other)
 		{
-			throw new SyntaxError ("Cannot divide " + this.GetName () + " with " + other.GetName ());
+			throw new SyntaxError ("Cannot divide " + this.GetTypeName () + " with " + other.GetTypeName ());
 		}
 
 		public virtual IType checkIntDivide (Context context, IType other)
 		{
-			throw new SyntaxError ("Cannot int divide " + this.GetName () + " with " + other.GetName ());
+			throw new SyntaxError ("Cannot int divide " + this.GetTypeName () + " with " + other.GetTypeName ());
 		}
 
 		public virtual IType checkModulo (Context context, IType other)
 		{
-			throw new SyntaxError ("Cannot modulo " + this.GetName () + " with " + other.GetName ());
+			throw new SyntaxError ("Cannot modulo " + this.GetTypeName () + " with " + other.GetTypeName ());
 		}
 
 		public virtual IType checkCompare (Context context, IType other)
 		{
-			throw new SyntaxError ("Cannot compare " + this.GetName () + " to " + other.GetName ());
+			throw new SyntaxError ("Cannot compare " + this.GetTypeName () + " to " + other.GetTypeName ());
 		}
 
 		public virtual IType checkContains (Context context, IType other)
 		{
-			throw new SyntaxError (this.GetName () + " cannot contain " + other.GetName ());
+			throw new SyntaxError (this.GetTypeName () + " cannot contain " + other.GetTypeName ());
 		}
 
 		public virtual IType checkContainsAllOrAny (Context context, IType other)
 		{
-			throw new SyntaxError (this.GetName () + " cannot contain " + other.GetName ());
+			throw new SyntaxError (this.GetTypeName () + " cannot contain " + other.GetTypeName ());
 		}
 
 		public virtual IType checkItem (Context context, IType itemType)
 		{
-			throw new SyntaxError ("Cannot read item from " + this.GetName ());
+			throw new SyntaxError ("Cannot read item from " + this.GetTypeName ());
 		}
 
 		public virtual IType checkSlice (Context context)
 		{
-			throw new SyntaxError ("Cannot slice " + this.GetName ());
+			throw new SyntaxError ("Cannot slice " + this.GetTypeName ());
 		}
 
 		public virtual IType checkIterator (Context context)
 		{
-			throw new SyntaxError ("Cannot iterate over " + this.GetName ());
+			throw new SyntaxError ("Cannot iterate over " + this.GetTypeName ());
 		}
 
 		public virtual IType checkMember (Context context, String name)
 		{
-			throw new SyntaxError (this.GetName () + " has no member support for:" + name);
+			throw new SyntaxError (this.GetTypeName () + " has no member support for:" + name);
 		}
 
 		public abstract void checkUnique (Context context);
@@ -130,17 +135,17 @@ namespace prompto.type
 		public void checkAssignableTo (Context context, IType other)
 		{
 			if (!isAssignableTo (context, other))
-				throw new SyntaxError ("IType: " + this.GetName () + " is not compatible with: " + other.GetName ());
+				throw new SyntaxError ("IType: " + this.GetTypeName () + " is not compatible with: " + other.GetTypeName ());
 		}
 
 		public virtual IType checkRange (Context context, IType other)
 		{
-			throw new SyntaxError ("Cannot create range of " + this.GetName () + " and " + other.GetName ());
+			throw new SyntaxError ("Cannot create range of " + this.GetTypeName () + " and " + other.GetTypeName ());
 		}
 
 		public virtual IRange newRange (Object left, Object right)
 		{
-			throw new SyntaxError ("Cannot create range of " + this.GetName ());
+			throw new SyntaxError ("Cannot create range of " + this.GetTypeName ());
 		}
 
 		public virtual String ToString (Object value)
@@ -164,19 +169,19 @@ namespace prompto.type
 
 		public abstract Type ToCSharpType ();
 
-		public virtual IValue ConvertCSharpValueToPromptoValue (Object value)
+		public virtual IValue ConvertCSharpValueToIValue (Context context, Object value)
 		{
 			return (IValue)value; // TODO for now
 		}
 
 		public virtual IValue getMember (Context context, String name)
 		{
-			throw new SyntaxError ("Cannot read member from " + this.GetName ());
+			throw new SyntaxError ("Cannot read member from " + this.GetTypeName ());
 		}
 
 		public virtual IValue ReadJSONValue (Context context, JToken json, Dictionary<String, byte[]> parts)
 		{
-			throw new SyntaxError ("Cannot read JSON value from " + this.GetName ());
+			throw new SyntaxError ("Cannot read JSON value from " + this.GetTypeName ());
 		}
 
 	}

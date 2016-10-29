@@ -18,7 +18,7 @@ namespace prompto.type
         }
 
         private MissingType()
-            : base("*")
+			: base(TypeFamily.MISSING)
         {
         }
 

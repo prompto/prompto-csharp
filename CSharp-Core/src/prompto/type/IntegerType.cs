@@ -21,7 +21,7 @@ namespace prompto.type
         }
 
         private IntegerType()
-            : base("Integer")
+			: base(TypeFamily.INTEGER)
         {
         }
 
@@ -133,8 +133,8 @@ namespace prompto.type
 			return this.doSort(context, list, new IntegerComparer(context, descending));
         }
 
-        override
-         public IValue ConvertCSharpValueToPromptoValue(Object value)
+        
+         public override IValue ConvertCSharpValueToIValue(Context context, Object value)
         {
             if (value is Int16)
                 return new Integer((Int16)value);

@@ -11,7 +11,9 @@ namespace prompto.type
 	public interface IType
 	{
 	
-		String GetName ();
+		String GetTypeName ();
+
+		TypeFamily GetFamily();
 
 		IType checkAdd (Context context, IType other, bool tryReverse);
 
@@ -63,10 +65,9 @@ namespace prompto.type
 
 		Type ToCSharpType ();
 
-		IValue ConvertCSharpValueToPromptoValue (Object value);
+		IValue ConvertCSharpValueToIValue (Context context, Object value);
 
 		IValue ReadJSONValue (Context context, JToken json, Dictionary<String, byte[]> parts);
-
-	}
+}
  
 }

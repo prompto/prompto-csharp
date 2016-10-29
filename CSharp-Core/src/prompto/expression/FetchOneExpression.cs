@@ -6,6 +6,8 @@ using prompto.utils;
 using prompto.error;
 using prompto.value;
 using prompto.store;
+using System;
+using System.Collections.Generic;
 
 namespace prompto.expression
 {
@@ -14,58 +16,81 @@ namespace prompto.expression
 	{
 
 		CategoryType type;
-		IExpression filter;
+		IExpression predicate;
 
-		public FetchOneExpression (CategoryType type, IExpression filter)
+		public FetchOneExpression(CategoryType type, IExpression predicate)
 		{
 			this.type = type;
-			this.filter = filter;
+			this.predicate = predicate;
 		}
 
 
-		public void ToDialect (CodeWriter writer)
+		public void ToDialect(CodeWriter writer)
 		{
-			switch (writer.getDialect ()) {
-			case Dialect.E:
-				writer.append ("fetch one ");
-				writer.append (type.GetName ().ToString ());
-				writer.append (" where ");
-				filter.ToDialect (writer);
-				break;
-			case Dialect.O:
-				writer.append ("fetch one (");
-				writer.append (type.GetName ().ToString ());
-				writer.append (") where (");
-				filter.ToDialect (writer);
-				writer.append (")");
-				break;
-			case Dialect.S:
-				writer.append ("fetch one ");
-				writer.append (type.GetName ().ToString ());
-				writer.append (" where ");
-				filter.ToDialect (writer);
-				break;
+			switch (writer.getDialect())
+			{
+				case Dialect.E:
+				case Dialect.S:
+					writer.append("fetch one ");
+					if (type != null)
+					{
+						writer.append(type.GetTypeName().ToString());
+						writer.append(" ");
+					}
+					writer.append("where ");
+					predicate.ToDialect(writer);
+					break;
+				case Dialect.O:
+					writer.append("fetch one ");
+					if (type != null)
+					{
+						writer.append("(");
+						writer.append(type.GetTypeName().ToString());
+						writer.append(") ");
+					}
+					writer.append("where (");
+					predicate.ToDialect(writer);
+					writer.append(")");
+					break;
 			}
 		}
 
-		public IType check (Context context)
+		public IType check(Context context)
 		{
-			CategoryDeclaration decl = context.getRegisteredDeclaration<CategoryDeclaration> (type.GetName ());
-			if (decl == null)
-				throw new SyntaxError ("Unknown category: " + type.GetName ().ToString ());
-			IType filterType = filter.check (context);
+			if (!(predicate is IPredicateExpression))
+				throw new SyntaxError("Filtering expression must be a predicate !");
+			if (type != null)
+			{
+				CategoryDeclaration decl = context.getRegisteredDeclaration<CategoryDeclaration>(type.GetTypeName());
+				if (decl == null)
+					throw new SyntaxError("Unknown category: " + type.GetTypeName().ToString());
+			}
+			IType filterType = predicate.check(context);
 			if (filterType != BooleanType.Instance)
-				throw new SyntaxError ("Filtering expresion must return a boolean !");
-			return type;
+				throw new SyntaxError("Filtering expression must return a boolean !");
+			if (type != null)
+				return type;
+			else
+				return AnyType.Instance;
 		}
 
-		public IValue interpret (Context context)
+		public IValue interpret(Context context)
 		{
-			Document doc = Store.Instance.fetchOne (context, filter);
-			if (doc == null)
+			if (!(predicate is IPredicateExpression))
+				throw new SyntaxError("Filtering expression must be a predicate !");
+			IStored stored = DataStore.Instance.interpretFetchOne(context, type, (IPredicateExpression)predicate);
+			if (stored == null)
 				return NullValue.Instance;
 			else
-				return type.newInstance (context, doc);
+			{
+				List<String> categories = (List<String>)stored.GetData("category");
+				String actualTypeName = categories.FindLast((v) => true);
+				CategoryType type = new CategoryType(actualTypeName);
+				if (this.type != null)
+					type.Mutable = this.type.Mutable;
+				return type.newInstance(context, stored);
+
+			}
 		}
 
 	}

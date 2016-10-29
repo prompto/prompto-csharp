@@ -20,7 +20,7 @@ namespace prompto.type
         }
 
         private CharacterType()
-            : base("Character")
+			: base(TypeFamily.CHARACTER)
         {
         }
 
@@ -97,7 +97,7 @@ namespace prompto.type
         }
 
         override
-        public IValue ConvertCSharpValueToPromptoValue(Object value)
+        public IValue ConvertCSharpValueToIValue(Context context, Object value)
         {
             if (value is char)
                 return new Character((char)value);

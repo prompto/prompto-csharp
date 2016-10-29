@@ -14,13 +14,13 @@ namespace prompto.value
 	{
 
 		Context context;
-		IDocumentEnumerator documents;
+		IStoredEnumerator documents;
 
-		public Cursor (Context context, IType itemType, IDocumentEnumerator documents)
+		public Cursor (Context context, IType itemType, IStoredEnumerable documents)
 			: base (new CursorType (itemType))
 		{
 			this.context = context;
-			this.documents = documents;
+			this.documents = documents.GetEnumerator();
 		}
 
 		public bool Empty ()
@@ -69,9 +69,9 @@ namespace prompto.value
 		IValue getCurrent() 
 		{
 			try {
-				Document doc = documents.Current;
+				IStored stored = documents.Current;
 				CategoryType itemType = (CategoryType)((ContainerType)type).GetItemType ();
-				return itemType.newInstance (context, doc);
+				return itemType.newInstance (context, stored);
 			} catch (PromptoError e) {
 				throw new Exception (e.Message);
 			}

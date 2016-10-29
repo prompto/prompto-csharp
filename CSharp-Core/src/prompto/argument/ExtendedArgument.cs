@@ -40,7 +40,7 @@ namespace prompto.argument
 		}
 
 		public override String getProto(Context context) {
-			return type.GetName() + '(' + attributes.ToString() + ')';
+			return type.GetTypeName() + '(' + attributes.ToString() + ')';
 		}
 
 		protected override void toEDialect(CodeWriter writer) {
@@ -95,9 +95,9 @@ namespace prompto.argument
 			if (!(obj is ExtendedArgument))
 				return false;
 			ExtendedArgument other = (ExtendedArgument)obj;
-			return Utils.equal(this.getType(), other.getType())
-				&& Utils.equal(this.GetName(), other.GetName())
-				&& Utils.equal(this.getAttributes(), other.getAttributes());
+			return ObjectUtils.equal(this.getType(), other.getType())
+				&& ObjectUtils.equal(this.GetName(), other.GetName())
+				&& ObjectUtils.equal(this.getAttributes(), other.getAttributes());
 		}
 
 
@@ -107,7 +107,7 @@ namespace prompto.argument
 			if (actual != null)
 				throw new SyntaxError("Duplicate argument: \"" + name + "\"");
 			ConcreteCategoryDeclaration declaration = new ConcreteCategoryDeclaration(name);
-			declaration.setDerivedFrom(new IdentifierList(type.GetName()));
+			declaration.setDerivedFrom(new IdentifierList(type.GetTypeName()));
 			declaration.setAttributes(attributes);
 			context.registerDeclaration(declaration);
 			context.registerValue(this);

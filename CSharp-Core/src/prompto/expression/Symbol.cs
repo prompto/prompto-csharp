@@ -9,7 +9,7 @@ using prompto.expression;
 using prompto.grammar;
 using Newtonsoft.Json;
 using System.Collections.Generic;
-
+using prompto.store;
 
 namespace prompto.expression
 {
@@ -137,6 +137,15 @@ namespace prompto.expression
 			return null;
 		}
 
-    }
+		public object GetStorableData()
+		{
+			throw new NotSupportedException("No GetStorableData support for " + this.GetType().Name);
+		}
+
+		public void CollectStorables(List<IStorable> storables)
+		{
+			// nothing to do;
+		}
+	}
 
 }

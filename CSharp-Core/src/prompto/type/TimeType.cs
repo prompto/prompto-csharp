@@ -21,7 +21,7 @@ namespace prompto.type
         }
 
         private TimeType()
-            : base("Time")
+			: base(TypeFamily.TIME)
         {
         }
 

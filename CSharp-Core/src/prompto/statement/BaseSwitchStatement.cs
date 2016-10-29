@@ -70,13 +70,13 @@ namespace prompto.statement
             {
                 IType type = sc.checkReturnType(context);
                 if (type != VoidType.Instance)
-					types[type.GetName()] = type;
+					types[type.GetTypeName()] = type;
             }
             if (defaultCase != null)
             {
                 IType type = defaultCase.check(context, null);
                 if (type != VoidType.Instance)
-					types[type.GetName()] = type;
+					types[type.GetTypeName()] = type;
             }
         }
 

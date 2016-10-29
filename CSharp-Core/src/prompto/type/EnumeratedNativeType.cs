@@ -12,12 +12,19 @@ namespace prompto.type
     {
 
         NativeType derivedFrom;
+		String typeName;
 
-        public EnumeratedNativeType(String name, NativeType derivedFrom)
-        : base(name)
+        public EnumeratedNativeType(String typeName, NativeType derivedFrom)
+			: base(TypeFamily.ENUMERATED)
          {
            this.derivedFrom = derivedFrom;
+			this.typeName = typeName;
         }
+
+		public override string GetTypeName()
+		{
+			return typeName;
+		}
 
         
 		public override IType checkMember(Context context, String name)
@@ -35,7 +42,7 @@ namespace prompto.type
         override
         public IValue getMember(Context context, String name)
         {
-            IDeclaration decl = context.getRegisteredDeclaration<IDeclaration>(this.name);
+            IDeclaration decl = context.getRegisteredDeclaration<IDeclaration>(this.typeName);
             if (!(decl is EnumeratedNativeDeclaration))
                 throw new SyntaxError(name + " is not an enumerated type!");
             if ("symbols" == name)

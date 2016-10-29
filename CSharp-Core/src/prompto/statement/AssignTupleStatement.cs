@@ -81,7 +81,7 @@ namespace prompto.statement
         {
             IType type = expression.check(context);
             if (type != TupleType.Instance)
-				throw new SyntaxError("Expecting a tuple expression, got " + type.GetName());
+				throw new SyntaxError("Expecting a tuple expression, got " + type.GetTypeName());
             foreach (String name in names)
             {
                 INamed actual = context.getRegistered(name);

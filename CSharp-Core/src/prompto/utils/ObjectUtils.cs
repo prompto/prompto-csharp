@@ -10,7 +10,7 @@ using prompto.error;
 namespace prompto.utils
 {
 
-    public class Utils
+    public class ObjectUtils
     {
 
         public static bool equal(Object o1, Object o2)
@@ -36,14 +36,6 @@ namespace prompto.utils
             return list.ToArray();
         }
 
-        public static T downcast<T>(Object actual)
-        {
-            if (actual != null && typeof(T).IsAssignableFrom(actual.GetType()))
-                return (T)actual;
-            else
-                return default(T);
-        }
-
         public static bool EqualDictionaries<K, V>(Dictionary<K, V> d1, Dictionary<K, V> d2)
         {
             if (d1.Keys.Count != d2.Keys.Count)
@@ -59,44 +51,5 @@ namespace prompto.utils
             return true;
         }
 
-		public static IType InferElementType(Context context, IEnumerable<IExpression> expressions)
-		{
-			List<IType> types = new List<IType> ();
-			foreach (IExpression exp in expressions)
-				types.Add (exp.check(context));
-			return InferElementType (context, types);
-		}
-
-		public static IType InferElementType(Context context, IEnumerable<IValue> values)
-		{
-			List<IType> types = new List<IType> ();
-			foreach (IValue value in values)
-				types.Add (value.GetIType());
-			return InferElementType (context, types);
-		}
-
-		public static IType InferElementType(Context context, List<IType> types)
-		{
-			if (types.Count == 0)
-				return MissingType.Instance;
-			IType lastType = null;
-			foreach (IType type in types)
-			{
-				if (lastType == null)
-					lastType = type;
-				else if (!lastType.Equals(type))
-				{
-					if (type.isAssignableTo(context, lastType))
-					{
-						// lastType is less specific
-					}
-					else if (lastType.isAssignableTo(context, type))
-						lastType = type; // elemType is less specific
-					else
-						throw new SyntaxError("Incompatible types: " + type.ToString() + " and " + lastType.ToString());
-				}
-			}
-			return lastType;
-		}
     }
 }

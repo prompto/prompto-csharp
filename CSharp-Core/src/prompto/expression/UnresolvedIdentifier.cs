@@ -153,7 +153,7 @@ namespace prompto.expression
                 return new TypeExpression(decl.GetIType(context));
             else foreach (IType type in NativeType.getAll())
              {
-				if (name == type.GetName())
+				if (name == type.GetTypeName())
                         return new TypeExpression(type);
                 }
             return null;

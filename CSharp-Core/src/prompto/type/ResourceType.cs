@@ -22,7 +22,7 @@ namespace prompto.type
             if (!(obj is ResourceType))
                 return false;
             ResourceType other = (ResourceType)obj;
-			return this.GetName().Equals(other.GetName());
+			return this.GetTypeName().Equals(other.GetTypeName());
         }
 
         override

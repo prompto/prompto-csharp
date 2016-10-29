@@ -84,7 +84,7 @@ namespace prompto.expression
         {
             IType actual = expression.check(context);
             if (!actual.isAssignableTo(context, type.getDerivedFrom()))
-				throw new SyntaxError("Cannot assign " + actual.GetName() + " to " + type.getDerivedFrom().GetName());
+				throw new SyntaxError("Cannot assign " + actual.GetTypeName() + " to " + type.getDerivedFrom().GetTypeName());
             return type;
         }
 

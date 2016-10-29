@@ -112,7 +112,7 @@ namespace prompto.statement
        }
 
 		private IDeclaration resolveUnresolvedMember(InstanceContext context, String name) {
-			ConcreteCategoryDeclaration decl = context.getRegisteredDeclaration<ConcreteCategoryDeclaration>(context.getInstanceType().GetName());
+			ConcreteCategoryDeclaration decl = context.getRegisteredDeclaration<ConcreteCategoryDeclaration>(context.getInstanceType().GetTypeName());
 			MethodDeclarationMap methods = decl.getMemberMethods(context, name);
 			if(methods!=null && methods.Count>0)
 				return methods;

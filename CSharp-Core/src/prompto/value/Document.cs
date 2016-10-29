@@ -24,6 +24,11 @@ namespace prompto.value
 			return true;
 		}
 
+		public override object GetStorableData()
+		{
+			return values;
+		}
+
 		public ICollection<String> GetMemberNames()
 		{
 			return values.Keys;
@@ -95,7 +100,7 @@ namespace prompto.value
 			try {
 				generator.WriteStartObject();
 				generator.WritePropertyName("type");
-				generator.WriteValue(DocumentType.Instance.GetName());
+				generator.WriteValue(DocumentType.Instance.GetTypeName());
 				generator.WritePropertyName("value");
 				generator.WriteStartObject();
 				foreach(KeyValuePair<String, IValue> entry in values) {

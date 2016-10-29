@@ -10,11 +10,13 @@ namespace prompto.type
     {
 
         protected IType itemType;
+		protected String typeName;
 
-		protected IterableType(String name, IType itemType)
-            : base(name)
+		protected IterableType(TypeFamily family, IType itemType, String typeName)
+            : base(family)
         {
             this.itemType = itemType;
+			this.typeName = typeName;
         }
 
 		public IType GetItemType()
@@ -27,6 +29,11 @@ namespace prompto.type
 			this.itemType = itemType;
 		}
 
+
+		public override string GetTypeName()
+		{
+			return typeName;
+		}
         
 		public override void checkExists(Context context)
         {

@@ -1,10 +1,9 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using prompto.runtime;
 using prompto.type;
 using Newtonsoft.Json;
+using prompto.store;
 
 namespace prompto.value
 {
@@ -27,6 +26,17 @@ namespace prompto.value
 
 		public virtual void SetIType(IType type) {
 			this.type = type;
+		}
+
+
+		public virtual void CollectStorables(List<IStorable> storables)
+		{
+			// nothing to do;
+		}
+
+		public virtual object GetStorableData()
+		{
+			throw new NotSupportedException("GetStorableData not supported by " + this.GetType().Name);
 		}
 
 		public virtual IValue Add(Context context, IValue value)
@@ -104,6 +114,5 @@ namespace prompto.value
 			throw new NotSupportedException("No ToJson support for " + this.GetType().Name);
 		}
 
-
-    }
+	}
 }

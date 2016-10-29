@@ -9,8 +9,8 @@ namespace prompto.type
 	public abstract class ContainerType : IterableType
     {
 
-        protected ContainerType(String name, IType itemType)
-			: base(name, itemType)
+		protected ContainerType(TypeFamily family, IType itemType, String typeName)
+			: base(family, itemType, typeName)
         {
         }
 

@@ -56,6 +56,12 @@ namespace prompto.translate.ese
 			compareResourceESE("store/subRecord.pec");
 		}
 
+		[Test]
+		public void testUntypedRecord()
+		{
+			compareResourceESE("store/untypedRecord.pec");
+		}
+
 	}
 }
 

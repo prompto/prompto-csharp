@@ -1,4 +1,6 @@
 ﻿using prompto.parser;
+using prompto.runtime;
+using prompto.store;
 using prompto.utils;
 
 namespace prompto.grammar
@@ -29,6 +31,13 @@ namespace prompto.grammar
 			if (writer.getDialect () == Dialect.O)
 				writer.append (" )");
 		}
+
+		public void interpretQuery(Context context, IQuery q)
+		{
+			this.ForEach((clause)=>
+				clause.interpretQuery(context, q));
+		}
+
 
 	}
 }

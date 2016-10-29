@@ -42,8 +42,13 @@ namespace prompto.value
 
         public Boolean Not { get { return not; } }
 
-        override
-        public Int32 CompareTo(Context context, IValue value)
+		public override object GetStorableData()
+		{
+			return value;
+		}
+
+        
+        public override Int32 CompareTo(Context context, IValue value)
         {
             if (value is Boolean)
                 return this.value.CompareTo(((Boolean)value).value);

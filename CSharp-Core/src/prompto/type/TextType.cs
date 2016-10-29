@@ -23,7 +23,7 @@ namespace prompto.type
         }
 
         private TextType()
-            : base("Text")
+			: base(TypeFamily.TEXT)
         {
         }
 
@@ -117,7 +117,7 @@ namespace prompto.type
         }
 
         override
-        public IValue ConvertCSharpValueToPromptoValue(Object value)
+        public IValue ConvertCSharpValueToIValue(Context context, Object value)
         {
             if (value is String)
                 return new Text((String)value);

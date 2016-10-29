@@ -6,6 +6,8 @@ using prompto.grammar;
 using prompto.value;
 using prompto.utils;
 using prompto.parser;
+using prompto.store;
+using System.Collections.Generic;
 
 namespace prompto.declaration
 {
@@ -37,6 +39,15 @@ namespace prompto.declaration
 		{
 			return attributes;
 		}
+
+		public virtual HashSet<String> GetAllAttributes(Context context)
+		{
+			if (attributes != null)
+				return new HashSet<String>(attributes);
+			else
+				return null;
+		}
+
 
 
 		public override void register (Context context)
@@ -82,29 +93,39 @@ namespace prompto.declaration
 			return null;
 		}
 
-		public abstract IInstance newInstance ();
+		public abstract IInstance newInstance (Context context);
 
-		public IInstance newInstance(Context context, Document document) {
-			IInstance instance = newInstance();
+		public IInstance newInstance(Context context, IStored stored) {
+			IInstance instance = newInstance(context);
 			instance.setMutable(true);
 			try {
-				foreach(String name in this.getAttributes()) {
-					AttributeDeclaration decl = context.getRegisteredDeclaration<AttributeDeclaration>(name);
-					if(!decl.Storable)
-						continue;
-					IValue value = document.GetMember(context, name, false);
-					if(value is Document) {
-						IType type = decl.GetIType(context);
-						if(!(type is CategoryType))
-							throw new InternalError("How did we get there?");
-						value = ((CategoryType)type).newInstance(context, (Document)value);
-					}
-					instance.SetMember(context, name, value);
-				}
+				PopulateInstance(context, stored, instance);
 			} finally {
 				instance.setMutable(false);
 			}
 			return instance;
+		}
+
+		void PopulateInstance(Context context, IStored stored, IInstance instance)
+		{
+			Object dbId = stored.DbId;
+			IValue value = TypeUtils.FieldToValue(context, "dbId", dbId);
+			instance.SetMember(context, "dbId", value);
+			foreach(String name in GetAllAttributes(context))
+				PopulateMember(context, stored, instance, name);
+			if (instance.getStorable() != null)
+				instance.getStorable().Dirty = false;
+		}
+
+		void PopulateMember(Context context, IStored stored, IInstance instance, String name)
+		{
+			AttributeDeclaration decl = context.getRegisteredDeclaration<AttributeDeclaration>(name);
+			if (!decl.Storable)
+				return;
+			Object data = stored.GetData(name);
+			IValue value = data == null ? null : decl.getIType().ConvertCSharpValueToIValue(context, data);
+			if (value != null)
+				instance.SetMember(context, name, value);
 		}
 
 		public virtual void checkConstructorContext (Context context)

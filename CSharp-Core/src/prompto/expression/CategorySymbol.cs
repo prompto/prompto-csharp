@@ -57,7 +57,7 @@ namespace prompto.expression
             if (assignments != null)
                 sb.Append(assignments.ToString());
             if (sb.Length == 0)
-				sb.Append(type.GetName());
+				sb.Append(type.GetTypeName());
             return sb.ToString();
         }
 
@@ -71,16 +71,16 @@ namespace prompto.expression
         override
         public IType check(Context context)
         {
-			EnumeratedCategoryDeclaration cd = context.getRegisteredDeclaration<EnumeratedCategoryDeclaration>(type.GetName());
+			EnumeratedCategoryDeclaration cd = context.getRegisteredDeclaration<EnumeratedCategoryDeclaration>(type.GetTypeName());
             if (cd == null)
-				throw new SyntaxError("Unknown category " + type.GetName());
+				throw new SyntaxError("Unknown category " + type.GetTypeName());
             if (assignments != null)
             {
 				context = context.newLocalContext ();
                 foreach (ArgumentAssignment assignment in assignments)
                 {
 					if (!cd.hasAttribute(context, assignment.GetName()))
-						throw new SyntaxError("\"" + assignment.GetName() + "\" is not an attribute of " + type.GetName());
+						throw new SyntaxError("\"" + assignment.GetName() + "\" is not an attribute of " + type.GetTypeName());
                     assignment.check(context);
                 }
             }

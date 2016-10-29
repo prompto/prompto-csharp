@@ -20,7 +20,7 @@ namespace prompto.type
         }
 
         private TupleType()
-			: base("Tuple", AnyType.Instance)
+			: base(TypeFamily.TUPLE, AnyType.Instance, "Tuple")
         {
         }
 

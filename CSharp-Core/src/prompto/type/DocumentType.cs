@@ -22,7 +22,7 @@ namespace prompto.type
         }
 
         private DocumentType()
-            : base("Document")
+			: base(TypeFamily.DOCUMENT)
         {
         }
 

@@ -16,7 +16,7 @@ namespace prompto.type
 
 
 		private BlobType ()
-			: base ("Blob")
+			: base (TypeFamily.BLOB)
 		{
 		}
 

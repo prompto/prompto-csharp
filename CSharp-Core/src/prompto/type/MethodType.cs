@@ -13,11 +13,13 @@ namespace prompto.type
     {
 
         Context context;
+		String methodName;
 
-        public MethodType(Context context, String name)
-            : base(name)
+        public MethodType(Context context, String methodName)
+			: base(TypeFamily.METHOD)
         {
             this.context = context;
+			this.methodName = methodName;
         }
 
 		public Context GetContext()
@@ -41,21 +43,21 @@ namespace prompto.type
             if (!(obj is MethodType))
                 return false;
             MethodType other = (MethodType)obj;
-			return this.GetName().Equals(other.GetName());
+			return this.methodName.Equals(((MethodType)other).methodName);
         }
 
         override
         public void checkUnique(Context context)
         {
-            IDeclaration actual = context.getRegisteredDeclaration<IDeclaration>(name);
+            IDeclaration actual = context.getRegisteredDeclaration<IDeclaration>(methodName);
             if (actual != null)
-                throw new SyntaxError("Duplicate name: \"" + name + "\"");
+                throw new SyntaxError("Duplicate name: \"" + methodName + "\"");
         }
 
         IMethodDeclaration getDeclaration(Context context) {
-            MethodDeclarationMap map = this.context.getRegisteredDeclaration<MethodDeclarationMap>(name);
+            MethodDeclarationMap map = this.context.getRegisteredDeclaration<MethodDeclarationMap>(methodName);
 		    if(map==null)
-			    throw new SyntaxError("Unknown method: \"" + name + "\"");
+			    throw new SyntaxError("Unknown method: \"" + methodName + "\"");
             IEnumerator<IMethodDeclaration> emd = map.Values.GetEnumerator();
             emd.MoveNext();
             return emd.Current;

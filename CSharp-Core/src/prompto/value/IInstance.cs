@@ -19,6 +19,6 @@ namespace prompto.value
 		bool setMutable(bool set);
 		ConcreteCategoryDeclaration getDeclaration();
 		IStorable getStorable();
-    }
+	}
 
 }

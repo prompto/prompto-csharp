@@ -10,11 +10,12 @@ using prompto.grammar;
 using prompto.utils;
 using prompto.error;
 using prompto.declaration;
+using prompto.store;
 
 namespace prompto.expression
 {
 
-	public class EqualsExpression : IExpression, IAssertion
+	public class EqualsExpression : IPredicateExpression, IAssertion
     {
 
         IExpression left;
@@ -178,7 +179,54 @@ namespace prompto.expression
 			return false;
 		}
 
-			
-    }
+		public void interpretQuery(Context context, IQuery query)
+		{
+			IValue value = null;
+			String name = readFieldName(left);
+			if (name != null)
+				value = right.interpret(context);
+			else {
+				name = readFieldName(right);
+				if (name != null)
+					value = left.interpret(context);
+				else
+					throw new SyntaxError("Unable to interpret predicate");
+			}
+			if (value is IInstance)
+				value = ((IInstance)value).GetMember(context, "dbId", false);
+			AttributeDeclaration decl = context.findAttribute(name);
+			AttributeInfo info = decl == null ? null : decl.getAttributeInfo();
+			Object data = value == null ? null : value.GetStorableData();
+			MatchOp match = GetMatchOp();
+			query.verify<Object>(info, match, data);
+			if (oper == EqOp.NOT_EQUALS)
+				query.not();
+		}
+
+		private MatchOp GetMatchOp()
+		{
+			switch (oper) {
+				case EqOp.EQUALS:
+						return MatchOp.EQUALS;
+				case EqOp.ROUGHLY:
+						return MatchOp.ROUGHLY;
+				case EqOp.NOT_EQUALS:
+					return MatchOp.EQUALS;
+				default:
+					throw new NotSupportedException();
+			}
+		}
+
+		private String readFieldName(IExpression exp)
+		{
+			if (exp is UnresolvedIdentifier
+			|| exp is InstanceExpression
+			|| exp is MemberSelector)
+				return exp.ToString();
+			else
+				return null;
+		}
+
+	}
 
 }

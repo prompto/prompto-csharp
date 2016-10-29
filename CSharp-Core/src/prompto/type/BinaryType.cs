@@ -8,8 +8,8 @@ namespace prompto.type
 	public abstract class BinaryType : NativeType
 	{
 
-		protected BinaryType (String typeName)
-			: base (typeName)
+		protected BinaryType (TypeFamily family)
+			: base (family)
 		{
 		}
 

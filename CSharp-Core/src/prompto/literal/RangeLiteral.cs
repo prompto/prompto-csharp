@@ -56,7 +56,7 @@ namespace prompto.literal
 		public IValue interpret(Context context)
         {
             IType type = first.check(context);
-			if ("IntegerLimits".Equals(type.GetName()))
+			if ("IntegerLimits".Equals(type.GetTypeName()))
                 type = IntegerType.Instance;
 			IValue of = first.interpret(context);
 			IValue ol = last.interpret(context);

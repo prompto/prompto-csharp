@@ -134,7 +134,7 @@ namespace prompto.statement
         {
             IType type = statements.check(context, null);
             if (type != VoidType.Instance)
-				types[type.GetName()] = type;
+				types[type.GetTypeName()] = type;
             Context local = context.newLocalContext();
             local.registerValue(new ErrorVariable(errorName));
             base.collectReturnTypes(local, types);
@@ -142,7 +142,7 @@ namespace prompto.statement
             {
 				type = alwaysStatements.check(context, null);
                 if (type != VoidType.Instance)
-					types[type.GetName()] = type;
+					types[type.GetTypeName()] = type;
             }
         }
 

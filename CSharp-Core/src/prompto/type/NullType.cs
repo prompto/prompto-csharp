@@ -16,7 +16,7 @@ namespace prompto.type
 		}
 
 		private NullType ()
-			: base ("Null")
+			: base (TypeFamily.NULL)
 		{
 		}
 

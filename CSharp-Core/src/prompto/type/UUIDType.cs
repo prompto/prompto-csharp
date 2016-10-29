@@ -17,7 +17,7 @@ namespace prompto.type
 		}
 
 		private UUIDType()
-			: base("UUID")
+			: base(TypeFamily.UUID)
 		{
 		}
 

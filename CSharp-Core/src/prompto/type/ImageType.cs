@@ -16,7 +16,7 @@ namespace prompto.type
 
 
 		private ImageType ()
-			: base ("Image")
+			: base (TypeFamily.IMAGE)
 		{
 		}
 

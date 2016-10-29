@@ -43,11 +43,11 @@ namespace prompto.statement
 			} else {
 				TypeMap types = new TypeMap();
 				if(returnType!=null)
-					types[returnType.GetName()] = returnType;
+					types[returnType.GetTypeName()] = returnType;
 				foreach(IStatement statement in this) {
 					type = statement.check(context);
 					if(type!=VoidType.Instance)
-						types[type.GetName()] = type;
+						types[type.GetTypeName()] = type;
 				}
 				type = types.inferType(context);
 				if(returnType!=null)

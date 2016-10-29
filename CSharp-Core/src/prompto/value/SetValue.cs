@@ -123,7 +123,7 @@ namespace prompto.value
 			else if (value is SetValue)
 				return this.merge (((SetValue)value).GetItems (context));
 			else
-				throw new SyntaxError ("Illegal: " + this.type.GetName () + " + " + value.GetType().Name);
+				throw new SyntaxError ("Illegal: " + this.type.GetTypeName () + " + " + value.GetType().Name);
 		}
 
 		public SetValue merge (IEnumerable<IValue> items)

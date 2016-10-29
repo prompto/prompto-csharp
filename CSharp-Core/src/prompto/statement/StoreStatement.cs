@@ -7,6 +7,7 @@ using prompto.type;
 using prompto.utils;
 using prompto.value;
 using System;
+using System.Collections.Generic;
 
 namespace prompto.statement
 {
@@ -15,36 +16,36 @@ namespace prompto.statement
 	public class StoreStatement : SimpleStatement
 	{
 
-		ExpressionList deletables;
-		ExpressionList storables;
+		ExpressionList toDelete;
+		ExpressionList toStore;
 
-		public StoreStatement (ExpressionList deletables, ExpressionList storables)
+		public StoreStatement (ExpressionList toDelete, ExpressionList toStore)
 		{
-			this.deletables = deletables;
-			this.storables = storables;
+			this.toDelete = toDelete;
+			this.toStore = toStore;
 		}
 
 		public override void ToDialect (CodeWriter writer)
 		{
-			if (deletables != null) {
+			if (toDelete != null) {
 				writer.append ("delete ");
 				if (writer.getDialect () == Dialect.E)
-					deletables.toDialect (writer);
+					toDelete.toDialect (writer);
 				else {
 					writer.append ('(');
-					deletables.toDialect (writer);
+					toDelete.toDialect (writer);
 					writer.append (')');
 				}
-				if (storables != null)
+				if (toStore != null)
 					writer.append (" and ");
 			}
-			if (storables != null) {
+			if (toStore != null) {
 				writer.append ("store ");
 				if (writer.getDialect () == Dialect.E)
-					storables.toDialect (writer);
+					toStore.toDialect (writer);
 				else {
 					writer.append ('(');
-					storables.toDialect (writer);
+					toStore.toDialect (writer);
 					writer.append (')');
 				}
 			}
@@ -52,7 +53,7 @@ namespace prompto.statement
 
 		public override String ToString ()
 		{
-			return "store " + storables.ToString ();
+			return "store " + toStore.ToString ();
 		}
 
 		public override bool Equals (Object obj)
@@ -64,7 +65,7 @@ namespace prompto.statement
 			if (!(obj is StoreStatement))
 				return false;
 			StoreStatement other = (StoreStatement)obj;
-			return this.storables.Equals (other.storables);
+			return this.toStore.Equals (other.toStore);
 		}
 
 		public override IType check (Context context)
@@ -75,23 +76,56 @@ namespace prompto.statement
 
 		public override IValue interpret (Context context)
 		{
-			IStore store = Store.Instance;
-			if (store == null)
-				store = MemStore.Instance;
-			foreach (IExpression exp in storables) {
-				IValue value = exp.interpret (context);
-				IStorable storable = null;
-				if (value is IInstance)
-					storable = ((IInstance)value).getStorable ();
-				if (storable == null)
-					throw new NotStorableError ();
-				if (!storable.Dirty)
-					continue;
-				Document document = storable.asDocument ();
-				store.store (document);
+			List<object> deletables = null;
+			if (toDelete != null)
+			{
+				deletables = new List<object>();
+				toDelete.ForEach((exp) => CollectDeletables(context, exp, deletables));
 			}
+			List<IStorable> storables = null;
+			if (toStore != null)
+			{
+				storables = new List<IStorable>();
+				toStore.ForEach((exp) => CollectStorables(context, exp, storables));
+			}
+			if (deletables != null || storables != null)
+				DataStore.Instance.store(deletables, storables);
 			return null;
 		}
 
+		void CollectDeletables(Context context, IExpression exp, List<object> deletables)
+		{
+			IValue value = exp.interpret(context);
+			if (value == NullValue.Instance)
+				return;
+			else if (value is IInstance)
+			{
+				IValue dbId = ((IInstance)value).GetMember(context, "dbId", false);
+				if (dbId != null)
+					deletables.add(dbId.GetStorableData());
+			}
+			else if (value is IEnumerable<IValue>)
+			{
+				IEnumerator<IValue> iter = ((IEnumerable<IValue>)value).GetEnumerator();
+				while (iter.MoveNext())
+				{
+					IValue item = iter.Current;
+					if (item is IInstance)
+					{
+						IValue dbId = ((IInstance)value).GetMember(context, "dbId", false);
+						if (dbId != null)
+							deletables.add(dbId.GetStorableData());
+					}
+				}
+			}
+			else
+				throw new NotSupportedException("Can't delete " + value.GetType());
+		}
+
+		void CollectStorables(Context context, IExpression exp, List<IStorable> storables)
+		{
+			IValue value = exp.interpret(context);
+			value.CollectStorables(storables);
+		}
 	}
 }

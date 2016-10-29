@@ -54,7 +54,7 @@ namespace prompto.expression
 			// if called from a member method, could be a member method called without this/self
 			if(context.getParentContext() is InstanceContext) {
 				IType type = ((InstanceContext)context.getParentContext()).getInstanceType();
-				ConcreteCategoryDeclaration cd = context.getRegisteredDeclaration<ConcreteCategoryDeclaration>(type.GetName());
+				ConcreteCategoryDeclaration cd = context.getRegisteredDeclaration<ConcreteCategoryDeclaration>(type.GetTypeName());
 				if(cd!=null) {
 					MethodDeclarationMap members = cd.getMemberMethods(context, name);
 					if(members!=null)
@@ -73,7 +73,7 @@ namespace prompto.expression
 			IType parentType = checkParent(context);
 			if(!(parentType is CategoryType))
 				throw new SyntaxError(parent.ToString() + " is not a category");
-			ConcreteCategoryDeclaration cd = context.getRegisteredDeclaration<ConcreteCategoryDeclaration>(parentType.GetName());
+			ConcreteCategoryDeclaration cd = context.getRegisteredDeclaration<ConcreteCategoryDeclaration>(parentType.GetTypeName());
 			MethodDeclarationMap map = cd == null ? null : cd.getMemberMethods (context, name);
 			if(map!=null)
 				methods.AddRange(map.Values);
@@ -123,8 +123,9 @@ namespace prompto.expression
 			Object value = parent.interpret(context);
 			if(value==null || value==NullValue.Instance)
 				throw new NullReferenceError();
-			if(value is TypeValue && ((TypeValue)value).GetValue() is CategoryType)
-				value = context.loadSingleton((CategoryType)((TypeValue)value).GetValue());
+			IType type = value is TypeValue ? ((TypeValue)value).GetValue() : null;
+			if(type is CategoryType)
+				value = context.loadSingleton(context, (CategoryType)type);
 			if(!(value is ConcreteInstance))
 				throw new InvalidDataError("Not an instance !");
 			context = context.newInstanceContext((ConcreteInstance)value);

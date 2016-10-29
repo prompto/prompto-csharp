@@ -8,7 +8,7 @@ namespace prompto.type
 	{
 
 		public CursorType (IType itemType)
-			: base (itemType.GetName () + "[]", itemType)
+			: base (TypeFamily.CURSOR, itemType, itemType.GetTypeName() + "[]")
 		{
 		}
 

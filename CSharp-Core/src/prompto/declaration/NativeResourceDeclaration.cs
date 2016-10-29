@@ -27,8 +27,8 @@ namespace prompto.declaration
 			return new ResourceType (name);
 		}
 
-		override
-        public IInstance newInstance ()
+
+        public override IInstance newInstance (Context context)
 		{
 			return new NativeResource (this);
 		}

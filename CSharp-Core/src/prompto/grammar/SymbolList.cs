@@ -6,6 +6,7 @@ using prompto.runtime;
 using System;
 using prompto.expression;
 using Newtonsoft.Json;
+using prompto.store;
 
 namespace prompto.grammar
 {
@@ -23,6 +24,7 @@ namespace prompto.grammar
 		{
 			this.Add (symbol);
 		}
+
 
 		public bool Empty()
 		{
@@ -146,6 +148,16 @@ namespace prompto.grammar
 			return "[" + base.ToString() + "]";
 		}
 
+		public void CollectStorables(List<IStorable> storables)
+		{
+			// nothing to do
+		}
+
+
+		public object GetStorableData()
+		{
+			throw new NotSupportedException();
+		}
 	}
 
 }
