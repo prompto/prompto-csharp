@@ -89,7 +89,6 @@ namespace prompto.expression
 				if (this.type != null)
 					type.Mutable = this.type.Mutable;
 				return type.newInstance(context, stored);
-
 			}
 		}
 

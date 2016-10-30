@@ -51,7 +51,7 @@ namespace prompto.value
 
 		public override Object GetStorableData() 
 		{
-			// this is called when storing the instance as a field value, so we just store the dbId
+			// this is called when storing the instance as a field value, so we just return the dbId
 			// the instance data itself will be collected as part of collectStorables
 			if(this.storable==null)
 				throw new NotStorableError();

@@ -101,7 +101,7 @@ namespace prompto.statement
 			else if (value is IInstance)
 			{
 				IValue dbId = ((IInstance)value).GetMember(context, "dbId", false);
-				if (dbId != null)
+				if (dbId != null && dbId != NullValue.Instance)
 					deletables.add(dbId.GetStorableData());
 			}
 			else if (value is IEnumerable<IValue>)
@@ -113,7 +113,7 @@ namespace prompto.statement
 					if (item is IInstance)
 					{
 						IValue dbId = ((IInstance)value).GetMember(context, "dbId", false);
-						if (dbId != null)
+						if (dbId != null && dbId!=NullValue.Instance)
 							deletables.add(dbId.GetStorableData());
 					}
 				}
