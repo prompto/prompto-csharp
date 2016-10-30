@@ -3,6 +3,7 @@ using Boolean = prompto.value.Boolean;
 using prompto.runtime;
 using System.Collections.Generic;
 using prompto.value;
+using prompto.store;
 
 namespace prompto.type
 {

@@ -388,7 +388,6 @@
     <Compile Include="src\prompto\declaration\DeclarationList.cs" />
     <Compile Include="src\prompto\expression\FetchOneExpression.cs" />
     <Compile Include="src\prompto\store\IStore.cs" />
-    <Compile Include="src\prompto\store\MemStore.cs" />
     <Compile Include="src\prompto\statement\StoreStatement.cs" />
     <Compile Include="src\prompto\store\IStorable.cs" />
     <Compile Include="src\prompto\error\NotStorableError.cs" />
@@ -460,26 +459,24 @@
     <Compile Include="src\prompto\store\IStored.cs" />
     <Compile Include="src\prompto\utils\TypeUtils.cs" />
     <Compile Include="src\prompto\store\IQuery.cs" />
-    <Compile Include="src\prompto\declaration\AttributeInfo.cs" />
-    <Compile Include="src\prompto\type\TypeFamily.cs" />
     <Compile Include="src\prompto\store\MatchOp.cs" />
-    <Compile Include="src\prompto\store\IQueryInterpreter.cs" />
-    <Compile Include="src\prompto\store\IQueryFactory.cs" />
     <Compile Include="src\prompto\store\IStoredEnumerable.cs" />
-    <Compile Include="src\prompto\store\IPredicateExpression.cs" />
-    <Compile Include="src\prompto\store\Query.cs" />
-    <Compile Include="src\prompto\store\IOrderBy.cs" />
-    <Compile Include="src\prompto\store\IPredicate.cs" />
-    <Compile Include="src\prompto\store\OrderBy.cs" />
-    <Compile Include="src\prompto\store\AndPredicate.cs" />
-    <Compile Include="src\prompto\store\OrPredicate.cs" />
-    <Compile Include="src\prompto\store\NotPredicate.cs" />
-    <Compile Include="src\prompto\store\MatchesPredicate.cs" />
-    <Compile Include="src\prompto\store\QueryInterpreter.cs" />
-    <Compile Include="src\prompto\store\QueryInterpreterBase.cs" />
     <Compile Include="src\prompto\store\InvalidValueError.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="src\prompto\store\DataStore.cs" />
+    <Compile Include="src\prompto\store\IQueryBuilder.cs" />
+    <Compile Include="src\prompto\store\AttributeInfo.cs" />
+    <Compile Include="src\prompto\memstore\AndPredicate.cs" />
+    <Compile Include="src\prompto\store\TypeFamily.cs" />
+    <Compile Include="src\prompto\expression\IPredicateExpression.cs" />
+    <Compile Include="src\prompto\memstore\IPredicate.cs" />
+    <Compile Include="src\prompto\memstore\MatchesPredicate.cs" />
+    <Compile Include="src\prompto\memstore\MemStore.cs" />
+    <Compile Include="src\prompto\memstore\NotPredicate.cs" />
+    <Compile Include="src\prompto\memstore\OrPredicate.cs" />
+    <Compile Include="src\prompto\memstore\OrderBy.cs" />
+    <Compile Include="src\prompto\memstore\QueryBuilder.cs" />
+    <Compile Include="src\prompto\memstore\Query.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -508,6 +505,7 @@
     <Folder Include="src\prompto\instance\" />
     <Folder Include="src\prompto\constraint\" />
     <Folder Include="src\prompto\code\" />
+    <Folder Include="src\prompto\memstore\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

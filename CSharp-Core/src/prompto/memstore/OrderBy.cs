@@ -1,8 +1,8 @@
-﻿using prompto.declaration;
+﻿using prompto.store;
 
-namespace prompto.store
+namespace prompto.memstore
 {
-	public class OrderBy : IOrderBy
+	public class OrderBy
 	{
 
 

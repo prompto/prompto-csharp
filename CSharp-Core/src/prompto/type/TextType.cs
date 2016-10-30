@@ -4,6 +4,7 @@ using prompto.runtime;
 using System;
 using System.Collections.Generic;
 using prompto.value;
+using prompto.store;
 
 namespace prompto.type
 {

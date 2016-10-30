@@ -14,17 +14,12 @@ namespace prompto.store
 	public interface IStore
 	{
 		Type GetDbIdType(); 
-		void store (ICollection<object> idsToDelete, ICollection<IStorable> docsToStore);
-		IQueryInterpreter getQueryInterpreter(Context context);
-		IQueryFactory getQueryFactory();
-		IStored interpretFetchOne (Context context, CategoryType category, IPredicateExpression filter);
-		IStoredEnumerable interpretFetchMany(Context context, CategoryType category, 
-		                                       IExpression start, IExpression end, 
-												IPredicateExpression filter, OrderByClauseList orderBy);
-		IStored fetchUnique(object dbId);
-		IStored fetchOne(IQuery query);
-		IStoredEnumerable fetchMany(IQuery query);
-		void flush();
+		void Store (ICollection<object> idsToDelete, ICollection<IStorable> docsToStore);
+		IQueryBuilder NewQueryBuilder();
+		IStored FetchUnique(object dbId);
+		IStored FetchOne(IQuery query);
+		IStoredEnumerable FetchMany(IQuery query);
+		void Flush();
 		IStorable NewStorable(List<string> categories);
 	}
 

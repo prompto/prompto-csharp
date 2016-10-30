@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using prompto.declaration;
 using prompto.store;
 using Antlr4.Runtime;
+using prompto.memstore;
 
 namespace prompto.parser
 {

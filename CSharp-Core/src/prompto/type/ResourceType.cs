@@ -1,5 +1,6 @@
 using prompto.runtime;
 using System;
+using prompto.store;
 
 namespace prompto.type
 {
@@ -8,12 +9,12 @@ namespace prompto.type
     {
 
         public ResourceType(String name)
-            : base(name)
+            : base(TypeFamily.RESOURCE, name)
         {
         }
 
-        override
-        public bool Equals(Object obj)
+        
+        public override bool Equals(Object obj)
         {
             if (obj == this)
                 return true;
@@ -25,8 +26,8 @@ namespace prompto.type
 			return this.GetTypeName().Equals(other.GetTypeName());
         }
 
-        override
-        public bool isAssignableTo(Context context, IType other)
+        
+        public override bool isAssignableTo(Context context, IType other)
         {
             return this.Equals(other);
         }

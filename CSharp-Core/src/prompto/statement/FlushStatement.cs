@@ -14,7 +14,7 @@ namespace prompto.statement
 		}
 
 		public override IValue interpret(Context context) {
-			DataStore.Instance.flush();
+			DataStore.Instance.Flush();
 			return null;
 		}
 

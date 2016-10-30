@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace prompto.type
+namespace prompto.store
 {
 	public enum TypeFamily
 	{

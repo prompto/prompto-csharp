@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using prompto.type;
 
-namespace prompto.declaration
+namespace prompto.store
 {
 	public class AttributeInfo
 	{

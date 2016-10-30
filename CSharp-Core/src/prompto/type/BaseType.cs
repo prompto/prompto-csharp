@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using prompto.value;
 using prompto.utils;
 using Newtonsoft.Json.Linq;
+using prompto.store;
 
 namespace prompto.type
 {

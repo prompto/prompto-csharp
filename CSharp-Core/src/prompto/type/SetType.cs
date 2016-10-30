@@ -2,6 +2,7 @@
 using prompto.value;
 using System;
 using System.Collections.Generic;
+using prompto.store;
 
 namespace prompto.type
 {

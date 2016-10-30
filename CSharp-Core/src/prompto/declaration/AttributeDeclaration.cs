@@ -8,6 +8,7 @@ using prompto.utils;
 using prompto.value;
 using prompto.constraint;
 using System.Collections.Generic;
+using prompto.store;
 
 namespace prompto.declaration
 {

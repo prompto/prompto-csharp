@@ -167,7 +167,7 @@ namespace prompto.expression
 			return false;
 		}
 
-		public void interpretQuery(Context context, IQuery query)
+		public void interpretQuery(Context context, IQueryBuilder builder)
 		{
 			IValue value = null;
 			String name = readFieldName(left);
@@ -186,9 +186,9 @@ namespace prompto.expression
 				value = ((IInstance)value).GetMember(context, "dbId", false);
 			AttributeInfo info = context.findAttribute(name).getAttributeInfo();
 			Object data = value == null ? null : value.GetStorableData();
-			query.verify<Object>(info, matchOp, data);
+			builder.Verify<Object>(info, matchOp, data);
 			if (oper.ToString().StartsWith("NOT_"))
-				query.not();
+				builder.Not();
 		}
 
 		private IType getAttributeType(Context context, String name)

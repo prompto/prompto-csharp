@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using prompto.declaration;
+using prompto.store;
 
-namespace prompto.store
+namespace prompto.memstore
 {
 	public class MatchesPredicate<T> : IPredicate
 	{

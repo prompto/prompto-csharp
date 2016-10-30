@@ -76,21 +76,40 @@ namespace prompto.expression
 
 		public IValue interpret(Context context)
 		{
-			if (!(predicate is IPredicateExpression))
-				throw new SyntaxError("Filtering expression must be a predicate !");
-			IStored stored = DataStore.Instance.interpretFetchOne(context, type, (IPredicateExpression)predicate);
+			IStore store = DataStore.Instance;
+			IQuery query = buildFetchOneQuery(context, store);
+			IStored stored = store.FetchOne(query);
 			if (stored == null)
 				return NullValue.Instance;
-			else
-			{
+			else {
 				List<String> categories = (List<String>)stored.GetData("category");
 				String actualTypeName = categories.FindLast((v) => true);
 				CategoryType type = new CategoryType(actualTypeName);
 				if (this.type != null)
-					type.Mutable = this.type.Mutable;
+					return type.newInstance(context, stored);
 				return type.newInstance(context, stored);
 			}
 		}
+
+		public IQuery buildFetchOneQuery(Context context, IStore store)
+		{
+			IQueryBuilder builder = store.NewQueryBuilder();
+			if (type != null)
+			{
+				AttributeInfo info = new AttributeInfo("category", TypeFamily.TEXT, true, null);
+				builder.Verify(info, MatchOp.CONTAINS, type.GetTypeName());
+			}
+			if (predicate != null)
+			{
+				if (!(predicate is IPredicateExpression))
+					throw new SyntaxError("Filtering expression must be a predicate !");
+				((IPredicateExpression)predicate).interpretQuery(context, builder);
+			}
+			if (type != null && predicate != null)
+				builder.And();
+			return builder.Build();
+		}
+
 
 	}
 }

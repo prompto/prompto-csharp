@@ -3,6 +3,8 @@ using prompto.runtime;
 using System;
 using System.Collections.Generic;
 using prompto.error;
+using prompto.store;
+
 namespace prompto.type
 {
 

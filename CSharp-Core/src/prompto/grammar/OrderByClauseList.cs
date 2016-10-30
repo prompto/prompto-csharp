@@ -32,10 +32,10 @@ namespace prompto.grammar
 				writer.append (" )");
 		}
 
-		public void interpretQuery(Context context, IQuery q)
+		public void interpretQuery(Context context, IQueryBuilder builder)
 		{
 			this.ForEach((clause)=>
-				clause.interpretQuery(context, q));
+				clause.interpretQuery(context, builder));
 		}
 
 

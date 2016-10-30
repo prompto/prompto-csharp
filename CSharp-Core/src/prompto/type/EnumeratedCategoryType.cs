@@ -1,5 +1,6 @@
 using System;
 using prompto.runtime;
+using prompto.store;
 
 namespace prompto.type
 {
@@ -8,7 +9,7 @@ namespace prompto.type
     {
 
         public EnumeratedCategoryType(String name)
-            : base(name)
+            : base(TypeFamily.ENUMERATED, name)
         {
         }
 

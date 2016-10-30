@@ -3,6 +3,7 @@ using prompto.runtime;
 using System;
 using System.Collections.Generic;
 using DateTime = prompto.value.DateTime;
+using prompto.store;
 
 namespace prompto.type
 {

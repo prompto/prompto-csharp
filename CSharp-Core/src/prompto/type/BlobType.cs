@@ -1,4 +1,5 @@
 ﻿using prompto.runtime;
+using prompto.store;
 
 namespace prompto.type
 {

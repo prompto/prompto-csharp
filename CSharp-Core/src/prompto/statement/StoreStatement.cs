@@ -89,7 +89,7 @@ namespace prompto.statement
 				toStore.ForEach((exp) => CollectStorables(context, exp, storables));
 			}
 			if (deletables != null || storables != null)
-				DataStore.Instance.store(deletables, storables);
+				DataStore.Instance.Store(deletables, storables);
 			return null;
 		}
 

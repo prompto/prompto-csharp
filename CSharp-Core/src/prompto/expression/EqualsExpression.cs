@@ -179,7 +179,7 @@ namespace prompto.expression
 			return false;
 		}
 
-		public void interpretQuery(Context context, IQuery query)
+		public void interpretQuery(Context context, IQueryBuilder builder)
 		{
 			IValue value = null;
 			String name = readFieldName(left);
@@ -198,9 +198,9 @@ namespace prompto.expression
 			AttributeInfo info = decl == null ? null : decl.getAttributeInfo();
 			Object data = value == null ? null : value.GetStorableData();
 			MatchOp match = GetMatchOp();
-			query.verify<Object>(info, match, data);
+			builder.Verify<Object>(info, match, data);
 			if (oper == EqOp.NOT_EQUALS)
-				query.not();
+				builder.Not();
 		}
 
 		private MatchOp GetMatchOp()

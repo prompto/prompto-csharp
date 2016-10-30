@@ -1,6 +1,7 @@
 using prompto.runtime;
 using System;
 using prompto.literal;
+using prompto.store;
 
 namespace prompto.type
 {

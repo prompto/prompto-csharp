@@ -42,12 +42,12 @@ namespace prompto.grammar
 				writer.append (" descending");
 		}
 
-		public void interpretQuery(Context context, IQuery q)
+		public void interpretQuery(Context context, IQueryBuilder builder)
 		{
 			// TODO members
 			String name = qualifiedName[0];
 			AttributeInfo info = context.findAttribute(name.ToString()).getAttributeInfo();
-			q.addOrderByClause(info, isDescending());
+			builder.AddOrderByClause(info, isDescending());
 		}
 
 	}

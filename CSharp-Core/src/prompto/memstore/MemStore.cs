@@ -1,15 +1,11 @@
-﻿using prompto.runtime;
-using prompto.value;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System;
 using System.Threading;
 using System.Collections;
 using System.Linq;
-using prompto.type;
-using prompto.expression;
-using prompto.grammar;
+using prompto.store;
 
-namespace prompto.store
+namespace prompto.memstore
 {
 
 	/* a utility class for running unit tests only */
@@ -28,7 +24,7 @@ namespace prompto.store
 
 		private Dictionary<long, StorableDocument> documents = new Dictionary<long, StorableDocument>();
 
-		public void store(ICollection<object> idsToDelete, ICollection<IStorable> docsToStore)
+		public void Store(ICollection<object> idsToDelete, ICollection<IStorable> docsToStore)
 		{
 			if (idsToDelete != null)
 			{
@@ -47,12 +43,12 @@ namespace prompto.store
 			}
 		}
 
-		public void flush()
+		public void Flush()
 		{
 			// nothing to do
 		}
 
-		public IStored fetchUnique(object dbId)
+		public IStored FetchUnique(object dbId)
 		{
 			StorableDocument stored;
 			if (documents.TryGetValue((long)dbId, out stored))
@@ -62,21 +58,13 @@ namespace prompto.store
 		}
 
 
-		public IStored interpretFetchOne(Context context, CategoryType category, IPredicateExpression filter)
+		public IQueryBuilder NewQueryBuilder()
 		{
-			return fetchOne(getQueryInterpreter(context).buildFetchOneQuery(category, filter));
+			return new QueryBuilder();
 		}
 
-		public IStoredEnumerable interpretFetchMany(Context context, CategoryType category,
-						IExpression start, IExpression end,
-						IPredicateExpression filter,
-						OrderByClauseList orderBy)
-		{
-			return fetchMany(getQueryInterpreter(context)
-				.buildFetchManyQuery(category, start, end, filter, orderBy));
-		}
 
-		public IStored fetchOne(IQuery query)
+		public IStored FetchOne(IQuery query)
 		{
 			IPredicate predicate = ((Query)query).GetPredicate();
 			foreach (StorableDocument doc in documents.Values)
@@ -87,32 +75,23 @@ namespace prompto.store
 			return null;
 		}
 
-		public IQueryInterpreter getQueryInterpreter(Context context)
+		public IStoredEnumerable FetchMany(IQuery query)
 		{
-			return new QueryInterpreter(context);
-		}
-
-		public IQueryFactory getQueryFactory()
-		{
-			throw new NotImplementedException();
-		}
-
-		public IStoredEnumerable fetchMany(IQuery query)
-		{
-			List<StorableDocument> allDocs = fetchManyDocs(query);
-			List<StorableDocument> slicedDocs = slice(query, allDocs);
+			Query q = (Query)query;
+			List<StorableDocument> allDocs = FetchManyDocs(q);
+			List<StorableDocument> slicedDocs = Slice(q, allDocs);
 			return new StorableDocumentEnumerable(allDocs, slicedDocs);
 		}
 
 
-		private List<StorableDocument> fetchManyDocs(IQuery query)
+		private List<StorableDocument> FetchManyDocs(Query query)
 		{
-			List<StorableDocument> docs = filterDocs(((Query)query).GetPredicate());
-			docs = sort(((Query)query).getOrdering(), docs);
+			List<StorableDocument> docs = FilterDocs(query.GetPredicate());
+			docs = Sort(query.GetOrdering(), docs);
 			return docs;
 		}
 
-		private List<StorableDocument> filterDocs(IPredicate predicate)
+		private List<StorableDocument> FilterDocs(IPredicate predicate)
 		{
 			// create list of filtered docs
 			List<StorableDocument> docs = new List<StorableDocument>();
@@ -124,12 +103,12 @@ namespace prompto.store
 			return docs;
 		}
 
-		private List<StorableDocument> slice(IQuery query, List<StorableDocument> docs)
+		private List<StorableDocument> Slice(Query query, List<StorableDocument> docs)
 		{
 			if (docs == null || docs.Count == 0)
 				return docs;
-			long? first = query.getFirst();
-			long? last = query.getLast();
+			long? first = query.GetFirst();
+			long? last = query.GetLast();
 			if (first == null && last == null)
 				return docs;
 			if (first == null || first < 1)
@@ -141,27 +120,27 @@ namespace prompto.store
 			return docs.Skip((int)(first - 1)).Take((int)(1 + last - first)).ToList();
 		}
 
-		private List<StorableDocument> sort(ICollection<IOrderBy> orderBy, List<StorableDocument> docs)
+		private List<StorableDocument> Sort(ICollection<OrderBy> orderBy, List<StorableDocument> docs)
 		{
 			if (orderBy == null || orderBy.Count == 0 || docs.Count < 2)
 				return docs;
 			List<bool> directions = new List<bool>();
-			foreach (IOrderBy o in orderBy)
+			foreach (OrderBy o in orderBy)
 				directions.Add(o.isDescending());
 			docs.Sort((o1, o2) =>
 			{
-				DataTuple v1 = readTuple(o1, orderBy);
-				DataTuple v2 = readTuple(o2, orderBy);
+				DataTuple v1 = ReadTuple(o1, orderBy);
+				DataTuple v2 = ReadTuple(o2, orderBy);
 				return v1.CompareTo(v2, directions);
 			});
 			return docs;
 		}
 
 
-		private DataTuple readTuple(StorableDocument doc, ICollection<IOrderBy> orderBy)
+		private DataTuple ReadTuple(StorableDocument doc, ICollection<OrderBy> orderBy)
 		{
 			DataTuple tuple = new DataTuple();
-			foreach (IOrderBy o in orderBy)
+			foreach (OrderBy o in orderBy)
 				tuple.Add(doc.GetData(o.getAttributeInfo().getName()));
 			return tuple;
 		}

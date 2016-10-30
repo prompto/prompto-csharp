@@ -24,6 +24,12 @@ namespace prompto.type
 			this.typeName = typeName;
         }
 
+		public CategoryType(TypeFamily family, String typeName)
+	 		: base(family)
+		{
+			this.typeName = typeName;
+		}
+
 		public bool Mutable { get; set; } 
 
 		public override void ToDialect(CodeWriter writer)
@@ -325,7 +331,7 @@ namespace prompto.type
 		private IValue ConvertCSharpValueToIValue(Context context, CategoryDeclaration decl, Object value) 
 		{
 			if(DataStore.Instance.GetDbIdType().IsInstanceOfType(value))
-				value = DataStore.Instance.fetchUnique(value);
+				value = DataStore.Instance.FetchUnique(value);
 			if(value is IStored)
 				return decl.newInstance(context, (IStored)value);
 			else

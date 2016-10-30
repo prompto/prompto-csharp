@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace prompto.store
+namespace prompto.memstore
 {
 	public class NotPredicate : IPredicate
 	{

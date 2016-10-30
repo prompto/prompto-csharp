@@ -3,6 +3,7 @@ using prompto.runtime;
 using Decimal = prompto.value.Decimal;
 using System.Collections.Generic;
 using prompto.value;
+using prompto.store;
 
 namespace prompto.type
 {

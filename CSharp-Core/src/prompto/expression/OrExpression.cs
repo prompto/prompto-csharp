@@ -84,15 +84,15 @@ namespace prompto.expression
 			return false;
 		}
 
-		public void interpretQuery(Context context, IQuery query)
+		public void interpretQuery(Context context, IQueryBuilder builder)
 		{
 			if (!(left is IPredicateExpression))
 				throw new SyntaxError("Not a predicate: " + left.ToString());
-			((IPredicateExpression)left).interpretQuery(context, query);
+			((IPredicateExpression)left).interpretQuery(context, builder);
 			if (!(right is IPredicateExpression))
 				throw new SyntaxError("Not a predicate: " + right.ToString());
-			((IPredicateExpression)right).interpretQuery(context, query);
-			query.or();
+			((IPredicateExpression)right).interpretQuery(context, builder);
+			builder.Or();
 		}
 
 	}

@@ -105,7 +105,7 @@ namespace prompto.expression
 			return false;
 		}
 
-		public void interpretQuery(Context context, IQuery query)
+		public void interpretQuery(Context context, IQueryBuilder builder)
 		{
 			String name = null;
 			IValue value = null;
@@ -137,12 +137,12 @@ namespace prompto.expression
 				if (value is IInstance)
 					value = ((IInstance)value).GetMember(context, "dbId", false);
 				MatchOp matchOp = getMatchOp();
-				query.verify(info, matchOp, value == null ? null : value.GetStorableData());
+				builder.Verify(info, matchOp, value == null ? null : value.GetStorableData());
 				switch (oper)
 				{
 					case CmpOp.GTE:
 					case CmpOp.LTE:
-						query.not();
+						builder.Not();
 						break;
 				}
 			}

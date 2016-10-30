@@ -3,6 +3,7 @@ using prompto.runtime;
 using prompto.value;
 using Decimal = prompto.value.Decimal;
 using prompto.grammar;
+using prompto.store;
 
 namespace prompto.type
 {

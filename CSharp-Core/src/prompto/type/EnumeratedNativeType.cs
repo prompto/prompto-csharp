@@ -4,6 +4,7 @@ using System;
 using prompto.declaration;
 using prompto.value;
 using prompto.error;
+using prompto.store;
 
 namespace prompto.type
 {

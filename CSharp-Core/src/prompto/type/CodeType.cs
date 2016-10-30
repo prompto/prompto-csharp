@@ -1,4 +1,6 @@
 using System;
+using prompto.store;
+
 namespace prompto.type
 {
 
