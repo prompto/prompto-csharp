@@ -79,8 +79,11 @@ namespace prompto.instance
         public void assign(Context context, IExpression expression)
         {
             IValue value = expression.interpret(context);
-            if (context.getRegisteredValue<INamed>(name) == null)
-				context.registerValue(new Variable(name, value.GetIType()));
+			if (context.getRegisteredValue<INamed>(name) == null)
+			{
+				IType type = value != NullValue.Instance ? value.GetIType() : expression.check(context);
+				context.registerValue(new Variable(name, type));
+			}
             context.setValue(name, value);
         }
 
