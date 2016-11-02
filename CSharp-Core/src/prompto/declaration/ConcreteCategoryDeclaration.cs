@@ -35,16 +35,16 @@ namespace prompto.declaration
 		{
 			HashSet<String> set = new HashSet<String>();
 			List<String> list = new List<String>();
-			collectCategories(context, set, list);
+			DoCollectCategories(context, set, list);
 			return list;
 		}
 
-		private void collectCategories(Context context, HashSet<String> set, List<String> list)
+		private void DoCollectCategories(Context context, HashSet<String> set, List<String> list)
 		{
 			if (derivedFrom != null) derivedFrom.ForEach((cat) =>
 			{
 				ConcreteCategoryDeclaration cd = context.getRegisteredDeclaration<ConcreteCategoryDeclaration>(cat);
-				cd.collectCategories(context, set, list);
+				cd.DoCollectCategories(context, set, list);
 			});
 			if(!set.Contains(this.GetName())) {
 				set.Add(this.GetName());
