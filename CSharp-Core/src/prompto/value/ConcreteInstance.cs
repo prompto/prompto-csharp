@@ -80,14 +80,13 @@ namespace prompto.value
 		private Object GetOrCreateDbId() 
 		{
 			Object dbId = GetDbId();
-			if (dbId != null)
-				return dbId;
-			else {
+			if (dbId == null)
+			{
 				dbId = this.storable.GetOrCreateDbId();
 				IValue value = TypeUtils.FieldToValue(null, "dbId", dbId);
 				values["dbId"] = value;
-				return dbId;
 			}
+			return dbId;
 		}
 
 
