@@ -41,8 +41,10 @@ namespace prompto.value
 		{
 			if (storable == null)
 				throw new NotStorableError();
-			if (storable.Dirty)
+			if (storable.Dirty) {
+				GetOrCreateDbId();
 				list.Add(storable);
+			}
 			foreach (IValue value in values.Values)
 			{
 				value.CollectStorables(list);
@@ -78,7 +80,14 @@ namespace prompto.value
 		private Object GetOrCreateDbId() 
 		{
 			Object dbId = GetDbId();
-			return dbId!=null ? dbId : this.storable.GetOrCreateDbId();
+			if (dbId != null)
+				return dbId;
+			else {
+				dbId = this.storable.GetOrCreateDbId();
+				IValue value = TypeUtils.FieldToValue(null, "dbId", dbId);
+				values["dbId"] = value;
+				return dbId;
+			}
 		}
 
 
