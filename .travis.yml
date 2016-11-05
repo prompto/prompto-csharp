@@ -9,3 +9,6 @@ before_install:
   - curl https://codeload.github.com/prompto/prompto-libraries/zip/master > prompto-libraries.zip
   - unzip prompto-libraries.zip
   - mv prompto-libraries-master prompto-libraries
+script:
+  - xbuild /p:Configuration=Release Prompto.sln
+  - mono ./testrunner/NUnit.Runners.2.6.4/tools/nunit-console.exe ./CSharp-Tests/bin/Release/CSharp-Tests.dll
