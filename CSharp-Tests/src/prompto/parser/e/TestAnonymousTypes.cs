@@ -48,6 +48,7 @@ namespace prompto.e.runtime
             Assert.IsTrue(new CategoryType("Root").isAssignableTo(context, st));
             Assert.IsTrue(new CategoryType("DerivedWithOther").isAssignableTo(context, st));
             Assert.IsTrue(new CategoryType("DerivedWithName").isAssignableTo(context, st));
+			Assert.IsTrue(false);
         }
 
         [Test]
