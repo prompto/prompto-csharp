@@ -39,14 +39,11 @@ namespace prompto.parser
 		}
 
 		public List<String> ListLibraryFiles(String libraryName) {
-			String resourceDir = Path.GetDirectoryName (
-									Path.GetDirectoryName (
-									Path.GetDirectoryName (
-									Path.GetDirectoryName (
-									Directory.GetCurrentDirectory ()))));
-			String libsPath = resourceDir + SEP + "prompto-libraries" + SEP;
+			String currentDir = Directory.GetCurrentDirectory();
+			String parentDir = currentDir.Substring(0, currentDir.IndexOf("CSharp-Tests"));
+			String libsDir = parentDir + SEP + "prompto-libraries" + SEP;
 			List<String> files = new List<String> ();
-			foreach(String file in Directory.GetFiles(libsPath + libraryName)) {
+			foreach(String file in Directory.GetFiles(libsDir + libraryName)) {
 				if(file.EndsWith(".pec") || file.EndsWith(".poc") || file.EndsWith(".psc"))
 					files.Add(file);
 			}
@@ -140,8 +137,8 @@ namespace prompto.parser
 		private Stream OpenResource (String resourceName)
 		{
 			resourceName = resourceName.Replace ('/', SEP);
-			String thisDir = Directory.GetCurrentDirectory();
-			String parentDir = thisDir.Substring(0, thisDir.IndexOf("CSharp-Tests"));
+			String currentDir = Directory.GetCurrentDirectory();
+			String parentDir = currentDir.Substring(0, currentDir.IndexOf("CSharp-Tests"));
 			String fullPath = parentDir + SEP + "prompto-tests" + SEP + "Tests" + SEP + "resources" + SEP + resourceName;
 			if(!File.Exists (fullPath))
 				fullPath = parentDir + SEP + "prompto-libraries" + SEP + resourceName;
