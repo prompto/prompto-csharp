@@ -14,3 +14,5 @@ CSharp-Core/generated/prompto/parser/OParser.tokens
 CSharp-Core/generated/prompto/parser/SLexer.tokens
 CSharp-Core/generated/prompto/parser/SParser.tokens
 travis.yml
+prompto-libraries
+prompto-tests

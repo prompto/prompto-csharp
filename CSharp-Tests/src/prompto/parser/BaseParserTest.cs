@@ -140,11 +140,11 @@ namespace prompto.parser
 		private Stream OpenResource (String resourceName)
 		{
 			resourceName = resourceName.Replace ('/', SEP);
-			String resourceDir = Path.GetDirectoryName (Path.GetDirectoryName (
-				                     Path.GetDirectoryName (Path.GetDirectoryName (Directory.GetCurrentDirectory ()))));
-			String fullPath = resourceDir + SEP + "prompto-tests" + SEP + "Tests" + SEP + "resources" + SEP + resourceName;
+			String thisDir = Directory.GetCurrentDirectory();
+			String parentDir = thisDir.Substring(0, thisDir.IndexOf("CSharp-Tests"));
+			String fullPath = parentDir + SEP + "prompto-tests" + SEP + "Tests" + SEP + "resources" + SEP + resourceName;
 			if(!File.Exists (fullPath))
-				fullPath = resourceDir + SEP + "prompto-libraries" + SEP + resourceName;
+				fullPath = parentDir + SEP + "prompto-libraries" + SEP + resourceName;
 			Assert.IsTrue (File.Exists (fullPath), "resource not found:" + fullPath);
 			return new FileStream (fullPath, FileMode.Open, FileAccess.Read);
 		}
@@ -191,7 +191,7 @@ namespace prompto.parser
 
 		private List<String> ReadExpected (String resourceName)
 		{
-			int idx = resourceName.LastIndexOf (".");
+			int idx = resourceName.LastIndexOf ('.');
 			resourceName = resourceName.Substring(0, idx) + ".txt";
 			Stream input = OpenResource (resourceName);
 			try {
