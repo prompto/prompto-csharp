@@ -2,12 +2,9 @@ using prompto.parser;
 using System;
 using prompto.runtime;
 using prompto.error;
-using Boolean = prompto.value.Boolean;
 using prompto.type;
 using prompto.value;
-using prompto.grammar;
 using prompto.utils;
-using System.Collections;
 
 namespace prompto.expression
 {
