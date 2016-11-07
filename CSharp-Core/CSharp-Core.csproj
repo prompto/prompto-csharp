@@ -170,7 +170,7 @@
     <Compile Include="src\prompto\expression\EqualsExpression.cs" />
     <Compile Include="src\prompto\expression\ExecuteExpression.cs" />
     <Compile Include="src\prompto\expression\IExpression.cs" />
-    <Compile Include="src\prompto\expression\FetchExpression.cs" />
+    <Compile Include="src\prompto\expression\FilteredExpression.cs" />
     <Compile Include="src\prompto\statement\ForEachStatement.cs" />
     <Compile Include="src\prompto\declaration\GetterMethodDeclaration.cs" />
     <Compile Include="src\prompto\literal\HexaLiteral.cs" />

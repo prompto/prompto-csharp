@@ -1042,6 +1042,18 @@ public partial class SParserBaseListener : ISParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitContainsExpression([NotNull] SParser.ContainsExpressionContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="SParser.FilteredListExpression"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterFilteredListExpression([NotNull] SParser.FilteredListExpressionContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="SParser.FilteredListExpression"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitFilteredListExpression([NotNull] SParser.FilteredListExpressionContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="SParser.NotContainsExpression"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
@@ -1474,17 +1486,17 @@ public partial class SParserBaseListener : ISParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitWrite_statement([NotNull] SParser.Write_statementContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="SParser.fetch_list_expression"/>.
+	/// Enter a parse tree produced by <see cref="SParser.filtered_list_suffix"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void EnterFetch_list_expression([NotNull] SParser.Fetch_list_expressionContext context) { }
+	public virtual void EnterFiltered_list_suffix([NotNull] SParser.Filtered_list_suffixContext context) { }
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="SParser.fetch_list_expression"/>.
+	/// Exit a parse tree produced by <see cref="SParser.filtered_list_suffix"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void ExitFetch_list_expression([NotNull] SParser.Fetch_list_expressionContext context) { }
+	public virtual void ExitFiltered_list_suffix([NotNull] SParser.Filtered_list_suffixContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="SParser.FetchOne"/>.
 	/// <para>The default implementation does nothing.</para>

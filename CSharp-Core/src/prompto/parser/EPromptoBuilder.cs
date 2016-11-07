@@ -2343,26 +2343,11 @@ namespace prompto.parser
 		}
 
 
-		public override void ExitFetch_list_expression (EParser.Fetch_list_expressionContext ctx)
-		{
-			String itemName = this.GetNodeValue<String> (ctx.name);
-			IExpression source = this.GetNodeValue<IExpression> (ctx.source);
-			IExpression filter = this.GetNodeValue<IExpression> (ctx.predicate);
-			SetNodeValue (ctx, new FetchExpression (itemName, source, filter));
-		}
-
-
 		public override void ExitFetchOne (EParser.FetchOneContext ctx)
 		{
 			CategoryType category = this.GetNodeValue<CategoryType>(ctx.typ);
 			IExpression filter = this.GetNodeValue<IExpression>(ctx.predicate);
 			SetNodeValue(ctx, new FetchOneExpression(category, filter));
-		}
-
-		public override void ExitFetchListExpression (EParser.FetchListExpressionContext ctx)
-		{
-			IExpression exp = this.GetNodeValue<IExpression> (ctx.GetChild(0));
-			SetNodeValue (ctx, exp);
 		}
 
 		public override void ExitFetchMany (EParser.FetchManyContext ctx)
@@ -2381,6 +2366,23 @@ namespace prompto.parser
 			IExpression exp = this.GetNodeValue<IExpression> (ctx.GetChild(0));
 			SetNodeValue (ctx, exp);
 		}
+
+		public override void ExitFiltered_list_suffix(EParser.Filtered_list_suffixContext ctx)
+		{
+			String itemName = this.GetNodeValue<String>(ctx.name);
+			IExpression predicate = this.GetNodeValue<IExpression>(ctx.predicate);
+			SetNodeValue(ctx, new FilteredExpression(itemName, null, predicate));
+		}
+
+
+		public override void ExitFilteredListExpression(EParser.FilteredListExpressionContext ctx)
+		{
+			FilteredExpression fetch = this.GetNodeValue<FilteredExpression>(ctx.filtered_list_suffix());
+			IExpression source = this.GetNodeValue<IExpression>(ctx.src);
+			fetch.Source = source;
+			SetNodeValue(ctx, fetch);
+		}
+	
 
 		public override void ExitCode_type (EParser.Code_typeContext ctx)
 		{

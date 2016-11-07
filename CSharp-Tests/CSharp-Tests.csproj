@@ -77,7 +77,6 @@
     <Compile Include="src\prompto\runtime\e\TestEnums.cs" />
     <Compile Include="src\prompto\runtime\e\TestEquals.cs" />
     <Compile Include="src\prompto\runtime\e\TestErrors.cs" />
-    <Compile Include="src\prompto\runtime\e\TestFetch.cs" />
     <Compile Include="src\prompto\runtime\e\TestForward.cs" />
     <Compile Include="src\prompto\runtime\e\TestGreater.cs" />
     <Compile Include="src\prompto\runtime\e\TestInjections.cs" />
@@ -104,7 +103,6 @@
     <Compile Include="src\prompto\runtime\o\TestEnums.cs" />
     <Compile Include="src\prompto\runtime\o\TestEquals.cs" />
     <Compile Include="src\prompto\runtime\o\TestErrors.cs" />
-    <Compile Include="src\prompto\runtime\o\TestFetch.cs" />
     <Compile Include="src\prompto\runtime\o\TestForward.cs" />
     <Compile Include="src\prompto\runtime\o\TestGreater.cs" />
     <Compile Include="src\prompto\runtime\o\TestInjections.cs" />
@@ -139,7 +137,6 @@
     <Compile Include="src\prompto\translate\eoe\TestEnums.cs" />
     <Compile Include="src\prompto\translate\eoe\TestEquals.cs" />
     <Compile Include="src\prompto\translate\eoe\TestErrors.cs" />
-    <Compile Include="src\prompto\translate\eoe\TestFetch.cs" />
     <Compile Include="src\prompto\translate\eoe\TestForward.cs" />
     <Compile Include="src\prompto\translate\eoe\TestGreater.cs" />
     <Compile Include="src\prompto\translate\eoe\TestInjections.cs" />
@@ -170,7 +167,6 @@
     <Compile Include="src\prompto\translate\oeo\TestEnums.cs" />
     <Compile Include="src\prompto\translate\oeo\TestEquals.cs" />
     <Compile Include="src\prompto\translate\oeo\TestErrors.cs" />
-    <Compile Include="src\prompto\translate\oeo\TestFetch.cs" />
     <Compile Include="src\prompto\translate\oeo\TestForward.cs" />
     <Compile Include="src\prompto\translate\oeo\TestGreater.cs" />
     <Compile Include="src\prompto\translate\oeo\TestInjections.cs" />
@@ -245,7 +241,6 @@
     <Compile Include="src\prompto\translate\ese\TestEnums.cs" />
     <Compile Include="src\prompto\translate\ese\TestEquals.cs" />
     <Compile Include="src\prompto\translate\ese\TestErrors.cs" />
-    <Compile Include="src\prompto\translate\ese\TestFetch.cs" />
     <Compile Include="src\prompto\translate\ese\TestForward.cs" />
     <Compile Include="src\prompto\translate\ese\TestGreater.cs" />
     <Compile Include="src\prompto\translate\ese\TestInjections.cs" />
@@ -283,7 +278,6 @@
     <Compile Include="src\prompto\translate\oso\TestEnums.cs" />
     <Compile Include="src\prompto\translate\oso\TestEquals.cs" />
     <Compile Include="src\prompto\translate\oso\TestErrors.cs" />
-    <Compile Include="src\prompto\translate\oso\TestFetch.cs" />
     <Compile Include="src\prompto\translate\oso\TestForward.cs" />
     <Compile Include="src\prompto\translate\oso\TestGreater.cs" />
     <Compile Include="src\prompto\translate\oso\TestInjections.cs" />
@@ -348,6 +342,12 @@
     <Compile Include="src\prompto\translate\ese\TestUuid.cs" />
     <Compile Include="src\prompto\translate\oeo\TestUuid.cs" />
     <Compile Include="src\prompto\translate\oso\TestUuid.cs" />
+    <Compile Include="src\prompto\runtime\e\TestFilter.cs" />
+    <Compile Include="src\prompto\runtime\o\TestFilter.cs" />
+    <Compile Include="src\prompto\translate\eoe\TestFilter.cs" />
+    <Compile Include="src\prompto\translate\ese\TestFilter.cs" />
+    <Compile Include="src\prompto\translate\oeo\TestFilter.cs" />
+    <Compile Include="src\prompto\translate\oso\TestFilter.cs" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />

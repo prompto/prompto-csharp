@@ -2,11 +2,11 @@ using NUnit.Framework;
 using prompto.parser;
 using prompto.utils;
 
-namespace prompto.runtime.o
+namespace prompto.runtime.e
 {
 
 	[TestFixture]
-	public class TestFetch : BaseOParserTest
+	public class TestFilter : BaseEParserTest
 	{
 
 		[SetUp]
@@ -22,15 +22,15 @@ namespace prompto.runtime.o
 		}
 
 		[Test]
-		public void testFetchFromList()
+		public void testFilterFromList()
 		{
-			CheckOutput("fetch/fetchFromList.poc");
+			CheckOutput("filter/filterFromList.pec");
 		}
 
 		[Test]
-		public void testFetchFromSet()
+		public void testFilterFromSet()
 		{
-			CheckOutput("fetch/fetchFromSet.poc");
+			CheckOutput("filter/filterFromSet.pec");
 		}
 
 	}

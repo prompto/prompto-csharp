@@ -964,6 +964,18 @@ public interface ISParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitContainsExpression([NotNull] SParser.ContainsExpressionContext context);
 	/// <summary>
+	/// Enter a parse tree produced by the <c>FilteredListExpression</c>
+	/// labeled alternative in <see cref="SParser.expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterFilteredListExpression([NotNull] SParser.FilteredListExpressionContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>FilteredListExpression</c>
+	/// labeled alternative in <see cref="SParser.expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitFilteredListExpression([NotNull] SParser.FilteredListExpressionContext context);
+	/// <summary>
 	/// Enter a parse tree produced by the <c>NotContainsExpression</c>
 	/// labeled alternative in <see cref="SParser.expression"/>.
 	/// </summary>
@@ -1380,15 +1392,15 @@ public interface ISParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitWrite_statement([NotNull] SParser.Write_statementContext context);
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="SParser.fetch_list_expression"/>.
+	/// Enter a parse tree produced by <see cref="SParser.filtered_list_suffix"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterFetch_list_expression([NotNull] SParser.Fetch_list_expressionContext context);
+	void EnterFiltered_list_suffix([NotNull] SParser.Filtered_list_suffixContext context);
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="SParser.fetch_list_expression"/>.
+	/// Exit a parse tree produced by <see cref="SParser.filtered_list_suffix"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitFetch_list_expression([NotNull] SParser.Fetch_list_expressionContext context);
+	void ExitFiltered_list_suffix([NotNull] SParser.Filtered_list_suffixContext context);
 	/// <summary>
 	/// Enter a parse tree produced by the <c>FetchOne</c>
 	/// labeled alternative in <see cref="SParser.fetch_store_expression"/>.

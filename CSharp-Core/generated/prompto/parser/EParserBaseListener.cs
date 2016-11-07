@@ -1114,6 +1114,18 @@ public partial class EParserBaseListener : IEParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitContainsExpression([NotNull] EParser.ContainsExpressionContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="EParser.FilteredListExpression"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterFilteredListExpression([NotNull] EParser.FilteredListExpressionContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="EParser.FilteredListExpression"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitFilteredListExpression([NotNull] EParser.FilteredListExpressionContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="EParser.ConstructorExpression"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
@@ -1173,18 +1185,6 @@ public partial class EParserBaseListener : IEParserListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitExecuteExpression([NotNull] EParser.ExecuteExpressionContext context) { }
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="EParser.FetchListExpression"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void EnterFetchListExpression([NotNull] EParser.FetchListExpressionContext context) { }
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="EParser.FetchListExpression"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void ExitFetchListExpression([NotNull] EParser.FetchListExpressionContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="EParser.GreaterThanOrEqualExpression"/>.
 	/// <para>The default implementation does nothing.</para>
@@ -1582,17 +1582,17 @@ public partial class EParserBaseListener : IEParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitAmbiguous_expression([NotNull] EParser.Ambiguous_expressionContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="EParser.fetch_list_expression"/>.
+	/// Enter a parse tree produced by <see cref="EParser.filtered_list_suffix"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void EnterFetch_list_expression([NotNull] EParser.Fetch_list_expressionContext context) { }
+	public virtual void EnterFiltered_list_suffix([NotNull] EParser.Filtered_list_suffixContext context) { }
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="EParser.fetch_list_expression"/>.
+	/// Exit a parse tree produced by <see cref="EParser.filtered_list_suffix"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void ExitFetch_list_expression([NotNull] EParser.Fetch_list_expressionContext context) { }
+	public virtual void ExitFiltered_list_suffix([NotNull] EParser.Filtered_list_suffixContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="EParser.FetchOne"/>.
 	/// <para>The default implementation does nothing.</para>

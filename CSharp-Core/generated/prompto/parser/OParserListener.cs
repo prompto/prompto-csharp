@@ -1374,15 +1374,15 @@ public interface IOParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitWrite_statement([NotNull] OParser.Write_statementContext context);
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="OParser.fetch_list_expression"/>.
+	/// Enter a parse tree produced by <see cref="OParser.filtered_list_expression"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterFetch_list_expression([NotNull] OParser.Fetch_list_expressionContext context);
+	void EnterFiltered_list_expression([NotNull] OParser.Filtered_list_expressionContext context);
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="OParser.fetch_list_expression"/>.
+	/// Exit a parse tree produced by <see cref="OParser.filtered_list_expression"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitFetch_list_expression([NotNull] OParser.Fetch_list_expressionContext context);
+	void ExitFiltered_list_expression([NotNull] OParser.Filtered_list_expressionContext context);
 	/// <summary>
 	/// Enter a parse tree produced by the <c>FetchOne</c>
 	/// labeled alternative in <see cref="OParser.fetch_store_expression"/>.

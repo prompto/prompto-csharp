@@ -2064,14 +2064,6 @@ namespace prompto.parser
 			SetNodeValue (ctx, DocumentType.Instance);
 		}
 
-		public override void ExitFetch_list_expression (OParser.Fetch_list_expressionContext ctx)
-		{
-			String itemName = this.GetNodeValue<String> (ctx.name);
-			IExpression source = this.GetNodeValue<IExpression> (ctx.source);
-			IExpression filter = this.GetNodeValue<IExpression> (ctx.predicate);
-			SetNodeValue (ctx, new FetchExpression (itemName, source, filter));
-		}
-
 		public override void ExitFetchOne (OParser.FetchOneContext ctx)
 		{
 			CategoryType category = this.GetNodeValue<CategoryType>(ctx.typ);
@@ -2087,6 +2079,14 @@ namespace prompto.parser
 			IExpression stop = this.GetNodeValue<IExpression>(ctx.xstop);
 			OrderByClauseList orderBy = this.GetNodeValue<OrderByClauseList>(ctx.orderby);
 			SetNodeValue(ctx, new FetchManyExpression(category, filter, start, stop, orderBy));
+		}
+
+		public override void ExitFiltered_list_expression(OParser.Filtered_list_expressionContext ctx)
+		{
+			String itemName = this.GetNodeValue<String>(ctx.name);
+			IExpression source = this.GetNodeValue<IExpression>(ctx.source);
+			IExpression predicate = this.GetNodeValue<IExpression>(ctx.predicate);
+			SetNodeValue(ctx, new FilteredExpression(itemName, source, predicate));
 		}
 
 		public override void ExitCode_type (OParser.Code_typeContext ctx)
