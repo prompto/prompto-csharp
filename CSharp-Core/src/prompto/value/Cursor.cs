@@ -21,6 +21,7 @@ namespace prompto.value
 		{
 			this.context = context;
 			this.documents = documents.GetEnumerator();
+			this.Mutable = itemType is CategoryType ? ((CategoryType)itemType).Mutable : false;
 		}
 
 		public bool Mutable { get; set; }
