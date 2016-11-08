@@ -46,6 +46,12 @@ namespace prompto.runtime.e
 		}
 
 		[Test]
+		public void testManyUntypedRecords()
+		{
+			CheckOutput("store/manyUntypedRecords.pec");
+		}
+
+		[Test]
 		public void testSimpleRecord()
 		{
 			CheckOutput("store/simpleRecord.pec");

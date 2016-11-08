@@ -16,3 +16,4 @@ CSharp-Core/generated/prompto/parser/SParser.tokens
 travis.yml
 prompto-libraries
 prompto-tests
+.DS_Store

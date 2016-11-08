@@ -76,9 +76,12 @@ namespace prompto.expression
 			writer.append("fetch ");
 			if (first == null)
 				writer.append("all ");
-			writer.append("( ");
-			writer.append(type.GetTypeName().ToString());
-			writer.append(" ) ");
+			if (type != null)
+			{
+				writer.append("( ");
+				writer.append(type.GetTypeName().ToString());
+				writer.append(" ) ");
+			}
 			if (first != null)
 			{
 				writer.append("rows ( ");
@@ -100,12 +103,17 @@ namespace prompto.expression
 
 		private void ToEDialect(CodeWriter writer)
 		{
-			writer.append("fetch ");
+			writer.append("fetch");
 			if (first == null)
-				writer.append("all ");
-			writer.append(type.GetTypeName().ToString());
+				writer.append(" all");
+			if (type != null)
+			{
+				writer.append(" ");
+				writer.append(type.GetTypeName());
+			}
 			if (first != null)
 			{
+				writer.append(" ");
 				first.ToDialect(writer);
 				writer.append(" to ");
 				last.ToDialect(writer);
@@ -116,14 +124,23 @@ namespace prompto.expression
 				predicate.ToDialect(writer);
 			}
 			if (orderBy != null)
+			{
+				writer.append(" ");
 				orderBy.ToDialect(writer);
+			}
 		}
 
 		public IType check(Context context)
 		{
-			CategoryDeclaration decl = context.getRegisteredDeclaration<CategoryDeclaration>(type.GetTypeName());
-			if (decl == null)
-				throw new SyntaxError("Unknown category: " + type.GetTypeName().ToString());
+			IType type = this.type;
+			if(type==null)
+				type = AnyType.Instance;
+			else
+			{
+				CategoryDeclaration decl = context.getRegisteredDeclaration<CategoryDeclaration>(type.GetTypeName());
+				if (decl == null)
+					throw new SyntaxError("Unknown category: " + type.GetTypeName().ToString());
+			}
 			checkFilter(context);
 			checkOrderBy(context);
 			checkSlice(context);

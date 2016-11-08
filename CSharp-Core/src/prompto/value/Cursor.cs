@@ -23,6 +23,8 @@ namespace prompto.value
 			this.documents = documents.GetEnumerator();
 		}
 
+		public bool Mutable { get; set; }
+
 		public bool Empty ()
 		{
 			return Length () == 0;
@@ -68,13 +70,29 @@ namespace prompto.value
 
 		IValue getCurrent() 
 		{
-			try {
+			try 
+			{
 				IStored stored = documents.Current;
-				CategoryType itemType = (CategoryType)((ContainerType)type).GetItemType ();
-				return itemType.newInstance (context, stored);
+				CategoryType type = ReadItemType(stored);
+				return type.newInstance(context, stored);
 			} catch (PromptoError e) {
 				throw new Exception (e.Message);
 			}
+		}
+
+		CategoryType ReadItemType(IStored stored)
+		{
+			Object value = stored.GetData("category");
+			if (value is List<String>)
+			{
+				List<String> categories = (List<String>)value;
+				String category = categories[categories.Count - 1];
+				CategoryType type = new CategoryType(category);
+				type.Mutable = this.Mutable;
+				return type;
+			}
+			else
+				throw new InvalidDataError("Could not infer category!");
 		}
 
 		public void Dispose()

@@ -33,6 +33,12 @@ namespace prompto.translate.ese
 		}
 
 		[Test]
+		public void testManyUntypedRecords()
+		{
+			compareResourceESE("store/manyUntypedRecords.pec");
+		}
+
+		[Test]
 		public void testSimpleRecord()
 		{
 			compareResourceESE("store/simpleRecord.pec");
