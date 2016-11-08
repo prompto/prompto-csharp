@@ -55,16 +55,22 @@ namespace prompto.expression
 				first.ToDialect(writer);
 				writer.append(" to ");
 				last.ToDialect(writer);
+				writer.append(" ");
 			}
 			else
 				writer.append("all ");
-			writer.append(" ( ");
-			writer.append(type.GetTypeName().ToString());
-			writer.append(" ) ");
+			writer.append("( ");
+			if (type != null)
+			{
+				writer.append(type.GetTypeName().ToString());
+				writer.append(" ");
+			}
+			writer.append(") ");
 			if (predicate != null)
 			{
-				writer.append(" where ");
+				writer.append("where ");
 				predicate.ToDialect(writer);
+				writer.append(" ");
 			}
 			if (orderBy != null)
 				orderBy.ToDialect(writer);
