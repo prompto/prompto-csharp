@@ -22,9 +22,21 @@ namespace prompto.runtime.e
 		}
 
 		[Test]
+		public void testInferDict()
+		{
+			CheckOutput("infer/inferDict.pec");
+		}
+
+		[Test]
 		public void testInferList()
 		{
 			CheckOutput("infer/inferList.pec");
+		}
+
+		[Test]
+		public void testInferSet()
+		{
+			CheckOutput("infer/inferSet.pec");
 		}
 
 	}

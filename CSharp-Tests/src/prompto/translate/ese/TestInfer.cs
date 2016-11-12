@@ -9,9 +9,21 @@ namespace prompto.translate.ese
 	{
 
 		[Test]
+		public void testInferDict()
+		{
+			compareResourceESE("infer/inferDict.pec");
+		}
+
+		[Test]
 		public void testInferList()
 		{
 			compareResourceESE("infer/inferList.pec");
+		}
+
+		[Test]
+		public void testInferSet()
+		{
+			compareResourceESE("infer/inferSet.pec");
 		}
 
 	}

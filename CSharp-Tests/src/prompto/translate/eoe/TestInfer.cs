@@ -9,9 +9,21 @@ namespace prompto.translate.eoe
 	{
 
 		[Test]
+		public void testInferDict()
+		{
+			compareResourceEOE("infer/inferDict.pec");
+		}
+
+		[Test]
 		public void testInferList()
 		{
 			compareResourceEOE("infer/inferList.pec");
+		}
+
+		[Test]
+		public void testInferSet()
+		{
+			compareResourceEOE("infer/inferSet.pec");
 		}
 
 	}

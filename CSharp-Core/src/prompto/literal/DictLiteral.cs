@@ -4,7 +4,7 @@ using System;
 using prompto.value;
 using prompto.type;
 using System.Collections.Generic;
-
+using prompto.utils;
 
 namespace prompto.literal
 {
@@ -45,24 +45,15 @@ namespace prompto.literal
 		{
 			if (entries.Count == 0)
 				return MissingType.Instance;
-			IType lastType = null;
-			foreach (DictEntry e in entries) {
-				IType keyType = e.getKey ().check (context);
+			List<IType> types = new List<IType>();
+			foreach (DictEntry e in entries)
+			{
+				IType keyType = e.getKey().check(context);
 				if (keyType != TextType.Instance)
-					throw new SyntaxError ("Illegal key type: " + keyType.ToString ());
-				IType elemType = e.getValue ().check (context);
-				if (lastType == null)
-					lastType = elemType;
-				else if (!lastType.Equals (elemType)) {
-					if (lastType.isAssignableFrom (context, elemType)) {
-						// lastType is less specific
-					} else if (elemType.isAssignableFrom (context, lastType))
-						lastType = elemType; // elemType is less specific
-                    else
-						throw new SyntaxError ("Incompatible value types: " + elemType.ToString () + " and " + lastType.ToString ());
-				}
+					throw new SyntaxError("Illegal key type: " + keyType.ToString());
+				types.Add(e.getValue().check(context));
 			}
-			return lastType;
+			return TypeUtils.InferElementType(context, types);
 		}
 
         
