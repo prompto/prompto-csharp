@@ -11,31 +11,31 @@ using prompto.declaration;
 namespace prompto.utils
 {
 
-    public class TypeUtils
-    {
+	public class TypeUtils
+	{
 
-        public static T downcast<T>(Object actual)
-        {
-            if (actual != null && typeof(T).IsAssignableFrom(actual.GetType()))
-                return (T)actual;
-            else
-                return default(T);
-        }
-
- 		public static IType InferElementType(Context context, IEnumerable<IExpression> expressions)
+		public static T downcast<T>(Object actual)
 		{
-			List<IType> types = new List<IType> ();
+			if (actual != null && typeof(T).IsAssignableFrom(actual.GetType()))
+				return (T)actual;
+			else
+				return default(T);
+		}
+
+		public static IType InferElementType(Context context, IEnumerable<IExpression> expressions)
+		{
+			List<IType> types = new List<IType>();
 			foreach (IExpression exp in expressions)
-				types.Add (exp.check(context));
-			return InferElementType (context, types);
+				types.Add(exp.check(context));
+			return InferElementType(context, types);
 		}
 
 		public static IType InferElementType(Context context, IEnumerable<IValue> values)
 		{
-			List<IType> types = new List<IType> ();
+			List<IType> types = new List<IType>();
 			foreach (IValue value in values)
-				types.Add (value.GetIType());
-			return InferElementType (context, types);
+				types.Add(value.GetIType());
+			return InferElementType(context, types);
 		}
 
 		public static IType InferElementType(Context context, List<IType> types)
@@ -55,12 +55,54 @@ namespace prompto.utils
 					}
 					else if (type.isAssignableFrom(context, lastType))
 						lastType = type; // elemType is less specific
-					else
-						throw new SyntaxError("Incompatible types: " + type.ToString() + " and " + lastType.ToString());
+					else {
+						IType common = inferCommonRootType(context, lastType, type);
+						if (common != null)
+							lastType = common;
+						else
+							throw new SyntaxError("Incompatible types: " + type.ToString() + " and " + lastType.ToString());
+					}
 				}
 			}
 			return lastType;
 		}
+
+
+		private static IType inferCommonRootType(Context context, IType type1, IType type2)
+		{
+			if (type1 is CategoryType && type2 is CategoryType)
+				return inferCommonRootType(context, (CategoryType)type1, (CategoryType)type2, true);
+			else
+				return null;
+		}
+
+
+		private static IType inferCommonRootType(Context context, CategoryType type1, CategoryType type2, bool trySwap)
+		{
+			CategoryDeclaration decl1 = context.getRegisteredDeclaration<CategoryDeclaration>(type1.GetTypeName());
+			if (decl1.getDerivedFrom() != null)
+			{
+				foreach (String name in decl1.getDerivedFrom())
+				{
+					CategoryType parentType = new CategoryType(name);
+					if (parentType.isAssignableFrom(context, type2))
+						return parentType;
+				}
+				// climb up the tree
+				foreach (String name in decl1.getDerivedFrom())
+				{
+					CategoryType parentType = new CategoryType(name);
+					IType commonType = inferCommonRootType(context, parentType, type2);
+					if (commonType != null)
+						return commonType;
+				}
+			}
+			if (trySwap)
+				return inferCommonRootType(context, type2, type1, false);
+			else
+				return null;
+		}
+
 
 		public static IValue FieldToValue(Context context, String name, Object data)
 		{
@@ -80,7 +122,7 @@ namespace prompto.utils
 			}
 		}
 
-		private static Dictionary<Type, IType> createTypeToITypeDict() 
+		private static Dictionary<Type, IType> createTypeToITypeDict()
 		{
 			Dictionary<Type, IType> dict = new Dictionary<Type, IType>();
 			dict[typeof(void)] = VoidType.Instance;
