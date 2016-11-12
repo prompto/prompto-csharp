@@ -95,7 +95,7 @@ namespace prompto.statement
                     // need to check type compatibility
 					IType actualType = actual.GetIType(context);
                     IType newType = expression.check(context);
-                    newType.checkAssignableTo(context, actualType);
+                    actualType.checkAssignableFrom(context, newType);
                 }
             }
             return VoidType.Instance;

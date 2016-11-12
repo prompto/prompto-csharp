@@ -26,8 +26,8 @@ public class VoidType : NativeType {
 		return typeof(void);
 	}
 
-	override
-	public bool isAssignableTo(Context context, IType other) {
+	
+	public override bool isAssignableFrom(Context context, IType other) {
 		throw new Exception("Should never get there !");
 	}
 	

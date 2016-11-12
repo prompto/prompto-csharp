@@ -2,9 +2,8 @@ using prompto.parser;
 using NUnit.Framework;
 using prompto.utils;
 using prompto.error;
-using prompto.runtime.utils;
 
-namespace prompto.e.runtime
+namespace prompto.parser.e
 {
 
     [TestFixture]

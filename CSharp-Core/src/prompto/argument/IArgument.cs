@@ -12,8 +12,8 @@ namespace prompto.argument
     public interface IArgument : INamed, IDialectElement
     {
 
+        String getProto();
         String getSignature(Dialect dialect);
-        String getProto(Context context);
         void register(Context context);
         void check(Context context);
 		IValue checkValue(Context context, IExpression expression);

@@ -14,12 +14,6 @@ namespace prompto.type
         }
 
         override
-        public bool isAssignableTo(Context context, IType other)
-        {
-            return this.Equals(other);
-        }
-
-        override
         public System.Type ToCSharpType()
         {
             return null; // no equivalent

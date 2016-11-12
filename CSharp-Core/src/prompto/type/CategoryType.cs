@@ -168,95 +168,119 @@ namespace prompto.type
         }
 
         
-		public override bool isAssignableTo(Context context, IType other)
+		public override bool isAssignableFrom(Context context, IType other)
         {
-			if (typeName.Equals(other.GetTypeName()))
-                return true;
-			if (other is NullType || other is AnyType || other is MissingType)
-                return true;
-            if (!(other is CategoryType))
-                return false;
-            return isAssignableTo(context, (CategoryType)other);
+			return base.isAssignableFrom(context, other)
+				       || (other is CategoryType 
+				           && isAssignableFrom(context, (CategoryType)other));
         }
 
-        bool isAssignableTo(Context context, CategoryType other)
-        {
-			if (typeName.Equals(other.GetTypeName()))
-                return true;
-            try
-            {
-                IDeclaration d = getDeclaration(context);
-				if(d is CategoryDeclaration)
-				{
-					CategoryDeclaration cd = (CategoryDeclaration)d;
-					return isDerivedFromCompatibleCategory(context, cd, other)
-                    	|| isAssignableToAnonymousCategory(context, cd, other);
-				}
-				else
-					return false;
-            }
-            catch (SyntaxError)
-            {
-                return false;
-            }
-        }
+        public bool isAssignableFrom(Context context, CategoryType other)
+		{
+			return other.isDerivedFrom(context, this)
+				|| other.isDerivedFromAnonymous(context, this);
+		}
 
-        bool isDerivedFromCompatibleCategory(Context context, CategoryDeclaration decl, CategoryType other)
-        {
-            if (decl.getDerivedFrom() == null)
-                return false;
-            foreach (String derived in decl.getDerivedFrom())
-            {
-                CategoryType ct = new CategoryType(derived);
-                if (ct.isAssignableTo(context, other))
-                    return true;
-            }
-            return false;
-        }
+		public bool isDerivedFrom(Context context, IType other)
+		{
+			if (!(other is CategoryType))
+				return false;
+			return isDerivedFrom(context, (CategoryType)other);
+		}
+	
+		public bool isDerivedFrom(Context context, CategoryType other)
+		{
+			try
+			{
+				IDeclaration thisDecl = getDeclaration(context);
+				if (thisDecl is CategoryDeclaration)
+					return isDerivedFrom(context, (CategoryDeclaration)thisDecl, other);
+			}
+			catch (SyntaxError )
+			{
+			}
+			return false; // TODO
+		}
 
-        bool isAssignableToAnonymousCategory(Context context, CategoryDeclaration decl, CategoryType other)
-        {
-            if (!other.isAnonymous())
-                return false;
-            try
-            {
-				IDeclaration d = other.getDeclaration(context);
-				if(d is CategoryDeclaration) 
-				{
-					CategoryDeclaration cd = (CategoryDeclaration)d;
-	                return isAssignableToAnonymousCategory(context, decl, cd);
-				}
-				else
-					return false;
-            }
-            catch (SyntaxError)
-            {
-                return false;
-            }
-        }
 
-        public bool isAnonymous()
+		public bool isDerivedFrom(Context context, CategoryDeclaration decl, CategoryType other)
+		{
+			if (decl.getDerivedFrom() == null)
+				return false;
+			foreach (String derived in decl.getDerivedFrom())
+			{
+				CategoryType ct = new CategoryType(derived);
+				if (ct.Equals(other) || ct.isDerivedFrom(context, other))
+					return true;
+			}
+			return false;
+		}
+	
+
+       public bool isAnonymous()
         {
             return Char.IsLower(typeName[0]); // since it's the name of the argument
         }
 
-        bool isAssignableToAnonymousCategory(Context context, CategoryDeclaration decl, CategoryDeclaration other)
-        {
-            // an anonymous category : 1 and only 1 category
-            String baseName = other.getDerivedFrom()[0];
-            // check we derive from root category (if not extending 'Any')
-            if (!"any".Equals(baseName) && !decl.isDerivedFrom(context, new CategoryType(baseName)))
-                return false;
-            foreach (String attribute in other.getAttributes())
-            {
-                if (!decl.hasAttribute(context, attribute))
-                    return false;
-            }
-            return true;
-        }
+        
+		public bool isDerivedFromAnonymous(Context context, IType other)
+		{
+			if (!(other is CategoryType))
+				return false;
+			return isDerivedFromAnonymous(context, (CategoryType)other);
+		}
 
-        override
-        public bool isMoreSpecificThan(Context context, IType other)
+		public bool isDerivedFromAnonymous(Context context, CategoryType other)
+		{
+			if (!other.isAnonymous())
+				return false;
+			try
+			{
+				IDeclaration thisDecl = getDeclaration(context);
+				if (thisDecl is CategoryDeclaration)
+					return isDerivedFromAnonymous(context, (CategoryDeclaration)thisDecl, other);
+			}
+			catch (SyntaxError )
+			{
+			}
+			return false; // TODO
+		}
+
+
+		public bool isDerivedFromAnonymous(Context context, CategoryDeclaration thisDecl, CategoryType other)
+		{
+			if (!other.isAnonymous())
+				return false;
+			try
+			{
+				IDeclaration otherDecl = other.getDeclaration(context);
+				if (otherDecl is CategoryDeclaration)
+					return isDerivedFromAnonymous(context, thisDecl, (CategoryDeclaration)otherDecl);
+			}
+			catch (SyntaxError )
+			{
+			}
+			return false; // TODO
+		}
+
+		public bool isDerivedFromAnonymous(Context context, CategoryDeclaration thisDecl, CategoryDeclaration otherDecl)
+		{
+			// an anonymous category extends 1 and only 1 category
+			String baseName = otherDecl.getDerivedFrom()[0];
+			// check we derive from root category (if not extending 'any')
+			if (!"any".Equals(baseName) && !thisDecl.isDerivedFrom(context, new CategoryType(baseName)))
+				return false;
+			foreach (String attribute in otherDecl.GetAllAttributes(context))
+			{
+				if (!thisDecl.hasAttribute(context, attribute))
+					return false;
+			}
+			return true;
+		}
+
+
+
+        public override bool isMoreSpecificThan(Context context, IType other)
         {
 			if(other is NullType || other is AnyType || other is MissingType)
 				return true;

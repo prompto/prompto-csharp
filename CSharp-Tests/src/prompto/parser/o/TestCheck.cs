@@ -5,7 +5,7 @@ using prompto.error;
 using prompto.declaration;
 
 
-namespace prompto.o.runtime
+namespace prompto.parser.o
 {
 
     [TestFixture]

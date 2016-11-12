@@ -21,11 +21,5 @@ namespace prompto.type
 		{
 		}
 
-		public override bool isAssignableTo (Context context, IType other)
-		{
-			return (other is BlobType);
-		}
-
-
 	}
 }

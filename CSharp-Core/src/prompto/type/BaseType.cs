@@ -129,14 +129,19 @@ namespace prompto.type
 
 		public abstract void checkExists (Context context);
 
-		public abstract bool isAssignableTo (Context context, IType other);
+		public virtual bool isAssignableFrom(Context context, IType other)
+		{
+			return this == other
+				|| this.Equals(other)
+				|| other.Equals(NullType.Instance);
+		}
 
 		public abstract bool isMoreSpecificThan (Context context, IType other);
 
-		public void checkAssignableTo (Context context, IType other)
+		public void checkAssignableFrom (Context context, IType other)
 		{
-			if (!isAssignableTo (context, other))
-				throw new SyntaxError ("IType: " + this.GetTypeName () + " is not compatible with: " + other.GetTypeName ());
+			if (!isAssignableFrom (context, other))
+				throw new SyntaxError ("IType: " + other.GetTypeName () + " is not compatible with: " + this.GetTypeName ());
 		}
 
 		public virtual IType checkRange (Context context, IType other)

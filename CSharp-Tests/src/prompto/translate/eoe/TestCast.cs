@@ -57,6 +57,12 @@ namespace prompto.translate.eoe
 		}
 
 		[Test]
+		public void testCastRoot()
+		{
+			compareResourceEOE("cast/castRoot.pec");
+		}
+
+		[Test]
 		public void testIsAChild()
 		{
 			compareResourceEOE("cast/isAChild.pec");

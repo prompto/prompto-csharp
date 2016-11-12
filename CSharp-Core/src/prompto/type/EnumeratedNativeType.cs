@@ -40,8 +40,8 @@ namespace prompto.type
                 return base.checkMember(context, name);
         }
 
-        override
-        public IValue getMember(Context context, String name)
+        
+        public override IValue getMember(Context context, String name)
         {
             IDeclaration decl = context.getRegisteredDeclaration<IDeclaration>(this.typeName);
             if (!(decl is EnumeratedNativeDeclaration))
@@ -58,36 +58,36 @@ namespace prompto.type
             return derivedFrom;
         }
 
-        override
-        public System.Type ToCSharpType()
+        
+        public override System.Type ToCSharpType()
         {
             // TODO Auto-generated method stub
             return null;
         }
 
-        override
-        public void checkUnique(Context context)
+        
+        public override void checkUnique(Context context)
         {
             // TODO Auto-generated method stub
 
         }
 
-        override
-        public void checkExists(Context context)
+        
+        public override void checkExists(Context context)
         {
             // TODO Auto-generated method stub
 
         }
 
-        override
-        public bool isAssignableTo(Context context, IType other)
+        
+        public override bool isAssignableFrom(Context context, IType other)
         {
             // TODO Auto-generated method stub
             return false;
         }
 
-        override
-        public bool isMoreSpecificThan(Context context, IType other)
+        
+        public override bool isMoreSpecificThan(Context context, IType other)
         {
             // TODO Auto-generated method stub
             return false;

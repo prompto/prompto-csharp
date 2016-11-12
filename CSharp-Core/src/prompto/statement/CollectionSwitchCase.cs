@@ -25,7 +25,7 @@ namespace prompto.statement
             IType thisType = expression.check(context);
             if (thisType is ContainerType)
                 thisType = ((ContainerType)thisType).GetItemType();
-            if (!thisType.isAssignableTo(context, type))
+			if (!type.isAssignableFrom(context, thisType))
 				throw new SyntaxError("Cannot assign:" + thisType.GetTypeName() + " to:" + type.GetTypeName());
         }
 

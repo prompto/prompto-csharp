@@ -50,9 +50,9 @@ namespace prompto.statement {
 		if(declaration is ConcreteMethodDeclaration) {
             ConcreteMethodDeclaration method = (ConcreteMethodDeclaration)(object)declaration;
 			context.registerDeclaration(method);
-				IType type = new MethodType(context,method.GetName());
+				MethodType type = new MethodType(method);
 				context.registerValue(new Variable(method.GetName(), type)); 
-				context.setValue(method.GetName(), new ClosureValue(context, method));
+				context.setValue(method.GetName(), new ClosureValue(context, type));
 			return null;
 		} else
 			throw new SyntaxError("Unsupported:" + declaration.GetType().Name);

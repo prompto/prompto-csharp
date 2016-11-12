@@ -20,14 +20,14 @@ namespace prompto.argument
         {
         }
 
-        override
-        public String getSignature(Dialect dialect)
+        
+        public override String getSignature(Dialect dialect)
         {
             return GetName();
         }
 
-        override
-		public void ToDialect(CodeWriter writer)
+        
+		public override void ToDialect(CodeWriter writer)
         {
 			writer.append(GetName());
 			if(DefaultValue!=null) {
@@ -36,14 +36,14 @@ namespace prompto.argument
 			}
         }
 
-        override
-        public String getProto(Context context)
+        
+        public override String getProto()
         {
             return GetName();
         }
 
-        override
-        public bool Equals(Object obj)
+        
+        public override bool Equals(Object obj)
         {
             if (obj == this)
                 return true;
@@ -55,8 +55,8 @@ namespace prompto.argument
 			return ObjectUtils.equal(this.GetName(), other.GetName());
         }
 
-        override
-        public void register(Context context)
+        
+        public override void register(Context context)
         {
             context.registerValue(this, true);
 			if (DefaultValue != null) {
@@ -65,16 +65,16 @@ namespace prompto.argument
 			}
         }
 
-        override
-        public void check(Context context)
+        
+        public override void check(Context context)
         {
             AttributeDeclaration actual = context.getRegisteredDeclaration<AttributeDeclaration>(name);
             if (actual == null)
                 throw new SyntaxError("Unknown attribute: \"" + name + "\"");
         }
 
-        override
-        public IType GetIType(Context context)
+        
+        public override IType GetIType(Context context)
         {
             IDeclaration named = context.getRegisteredDeclaration<IDeclaration>(name);
             return named.GetIType(context);

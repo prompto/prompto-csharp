@@ -20,9 +20,9 @@ namespace prompto.type
             {
                 if (type == null)
                     type = t;
-                else if (t.isAssignableTo(context, type))
+                else if (type.isAssignableFrom(context, t))
                     continue;
-                else if (type.isAssignableTo(context, t))
+                else if (t.isAssignableFrom(context, type))
                     type = t;
                 else
 					throw new SyntaxError("Incompatible types: " + type.GetTypeName() + " and " + t.GetTypeName());
@@ -30,7 +30,7 @@ namespace prompto.type
             // second pass: check compatible
             foreach (IType t in Values)
             {
-                if (!t.isAssignableTo(context, type))
+                if (!type.isAssignableFrom(context, t))
 					throw new SyntaxError("Incompatible types: " + type.GetTypeName() + " and " + t.GetTypeName());
             }
             return type;

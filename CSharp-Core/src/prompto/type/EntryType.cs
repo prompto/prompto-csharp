@@ -41,32 +41,32 @@ namespace prompto.type
 		}
 
 
-		override
-		public Type ToCSharpType()
+
+		public override Type ToCSharpType()
 		{
 			return typeof(DictEntry);
 		}
 
-		override
-		public void checkUnique(Context context)
+
+		public override void checkUnique(Context context)
 		{
 			throw new Exception("Should never get there!");
 		}
 
-		override
-		public void checkExists(Context context)
+
+		public override void checkExists(Context context)
 		{
 			throw new Exception("Should never get there!");
 		}
 
-		override
-		public bool isAssignableTo(Context context, IType other)
+
+		public override bool isAssignableFrom(Context context, IType other)
 		{
 			throw new Exception("Should never get there!");
 		}
 
-		override
-		public bool isMoreSpecificThan(Context context, IType other)
+
+		public override bool isMoreSpecificThan(Context context, IType other)
 		{
 			throw new Exception("Should never get there!");
 		}

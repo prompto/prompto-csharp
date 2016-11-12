@@ -12,10 +12,10 @@ namespace prompto.declaration
     public interface IMethodDeclaration : IDeclaration
     {
 
+		String getProto();
 		IType getReturnType();
         ArgumentList getArguments();
         String getSignature(Dialect dialect);
-        String getProto(Context context);
         Specificity? computeSpecificity(Context context, IArgument argument, ArgumentAssignment assignment, bool checkInstance);
 		IValue interpret(Context local);
         bool isAssignableTo(Context context, ArgumentAssignmentList assignments, bool useInstance);

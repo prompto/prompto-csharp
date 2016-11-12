@@ -114,7 +114,7 @@ namespace prompto.grammar {
                 // need to check type compatibility
                 IType actualType = actual.GetIType(context);
                 IType newType = expression.check(context);
-                newType.checkAssignableTo(context, actualType);
+                actualType.checkAssignableFrom(context, newType);
             }
             return VoidType.Instance;
         }
@@ -133,7 +133,7 @@ namespace prompto.grammar {
                 if (value is IInstance)
                     actual = ((IInstance)value).getType();
             }
-            if (!actual.isAssignableTo(context, required) && (actual is CategoryType))
+            if (!required.isAssignableFrom(context, actual) && (actual is CategoryType))
                 expression = new MemberSelector(expression, name);
             return expression;
         }

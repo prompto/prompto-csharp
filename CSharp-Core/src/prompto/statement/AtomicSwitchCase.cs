@@ -22,7 +22,7 @@ namespace prompto.statement
         public void checkSwitchType(Context context, IType type)
         {
             IType thisType = expression.check(context);
-            if (!thisType.isAssignableTo(context, type))
+            if (!type.isAssignableFrom(context, thisType))
 				throw new SyntaxError("Cannot assign:" + thisType.GetTypeName() + " to:" + type.GetTypeName());
 
         }

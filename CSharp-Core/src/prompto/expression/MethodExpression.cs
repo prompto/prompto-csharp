@@ -35,12 +35,23 @@ namespace prompto.expression
 
         public IType check(Context context)
         {
-            INamed named = context.getRegistered(name);
-            if (named is MethodDeclarationMap)
-                return new MethodType(context, name);
+            IMethodDeclaration declaration = getDeclaration(context);
+            if (declaration!=null)
+                return new MethodType(declaration);
             else
                 throw new SyntaxError("No method with name:" + name);
         }
+
+		private IMethodDeclaration getDeclaration(Context context)
+		{
+			MethodDeclarationMap methods = context.getRegisteredDeclaration<MethodDeclarationMap>(name);
+			if(methods!=null) {
+				IEnumerator<IMethodDeclaration> values = methods.Values.GetEnumerator();
+				values.MoveNext();
+				return values.Current;
+			} else
+				return null;
+		}
 
         public IValue interpret(Context context)
         {
@@ -51,8 +62,8 @@ namespace prompto.expression
 				if (named is MethodDeclarationMap) {
 					IEnumerator<IMethodDeclaration> en = ((MethodDeclarationMap)named).Values.GetEnumerator();
 					en.MoveNext();
-					ConcreteMethodDeclaration decl = (ConcreteMethodDeclaration)en.Current;
-					return new ClosureValue(context, decl);
+					MethodType type = new MethodType(en.Current);
+					return new ClosureValue(context, type);
 				} else
 				throw new SyntaxError("No method with name:" + name);
 			}

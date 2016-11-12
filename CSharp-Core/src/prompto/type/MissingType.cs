@@ -23,14 +23,14 @@ namespace prompto.type
         {
         }
 
-        override
-        public System.Type ToCSharpType()
+        
+        public override System.Type ToCSharpType()
         {
             return typeof(Object);
         }
 
-        override
-        public bool isAssignableTo(Context context, IType other)
+        
+        public override bool isAssignableFrom(Context context, IType other)
         {
             return true;
         }

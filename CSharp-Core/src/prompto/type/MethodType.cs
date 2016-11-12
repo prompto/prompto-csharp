@@ -2,8 +2,6 @@ using prompto.runtime;
 using prompto.error;
 using System;
 using System.Reflection;
-using System.Collections;
-using System.Collections.Generic;
 using prompto.declaration;
 using prompto.store;
 
@@ -13,29 +11,35 @@ namespace prompto.type
     public class MethodType : BaseType
     {
 
-        Context context;
-		String methodName;
+		IMethodDeclaration method;
 
-        public MethodType(Context context, String methodName)
+        public MethodType(IMethodDeclaration method)
 			: base(TypeFamily.METHOD)
         {
-            this.context = context;
-			this.methodName = methodName;
+			this.method = method;
         }
 
-		public Context GetContext()
+		public IMethodDeclaration Method
 		{
-			return context;
+			get
+			{
+				return method;
+			}
 		}
 
-        override
-        public Type ToCSharpType()
+		public override string GetTypeName()
+		{
+			return method.GetName();
+		}
+
+       
+        public override Type ToCSharpType()
         {
             return typeof(MethodInfo);
         }
 
-        override
-        public bool Equals(Object obj)
+        
+        public override bool Equals(Object obj)
         {
             if (obj == this)
                 return true;
@@ -43,53 +47,24 @@ namespace prompto.type
                 return false;
             if (!(obj is MethodType))
                 return false;
-            MethodType other = (MethodType)obj;
-			return this.methodName.Equals(((MethodType)other).methodName);
+            return this.method.getProto().Equals(((MethodType)obj).method.getProto());
         }
 
-        override
-        public void checkUnique(Context context)
+        
+        public override void checkUnique(Context context)
         {
-            IDeclaration actual = context.getRegisteredDeclaration<IDeclaration>(methodName);
+            IDeclaration actual = context.getRegisteredDeclaration<IDeclaration>(method.GetName());
             if (actual != null)
-                throw new SyntaxError("Duplicate name: \"" + methodName + "\"");
+				throw new SyntaxError("Duplicate name: \"" + method.GetName() + "\"");
         }
 
-        IMethodDeclaration getDeclaration(Context context) {
-            MethodDeclarationMap map = this.context.getRegisteredDeclaration<MethodDeclarationMap>(methodName);
-		    if(map==null)
-			    throw new SyntaxError("Unknown method: \"" + methodName + "\"");
-            IEnumerator<IMethodDeclaration> emd = map.Values.GetEnumerator();
-            emd.MoveNext();
-            return emd.Current;
-	    }
-
-        override
-        public void checkExists(Context context)
+        public override void checkExists(Context context)
         {
-            getDeclaration(context);
+            // nothing to do
         }
 
-        override
-        public bool isAssignableTo(Context context, IType other)
-        {
-            if (!(other is MethodType))
-                return false;
-            MethodType otherType = (MethodType)other;
-            try
-            {
-                IMethodDeclaration thisMethod = getDeclaration(context);
-                IMethodDeclaration otherMethod = otherType.getDeclaration(context);
-                return thisMethod.getProto(context).Equals(otherMethod.getProto(otherType.context)); // TODO: refine
-            }
-            catch (SyntaxError)
-            {
-                return false;
-            }
-        }
 
-        override
-        public bool isMoreSpecificThan(Context context, IType other)
+        public override bool isMoreSpecificThan(Context context, IType other)
         {
             // TODO Auto-generated method stub
             return false;

@@ -77,14 +77,14 @@ namespace prompto.declaration
 			return GetName() + ":(" + arguments.ToString() + ')';
         }
 
-        public String getProto(Context context)
+        public String getProto()
         {
             StringBuilder sb = new StringBuilder();
             foreach (IArgument arg in arguments)
             {
                 if (sb.Length > 0)
                     sb.Append('/');
-                sb.Append(arg.getProto(context));
+                sb.Append(arg.getProto());
             }
             return sb.ToString();
         }
@@ -168,10 +168,10 @@ namespace prompto.declaration
                 }
                 if (actual.Equals(required))
                     return Specificity.EXACT;
-                if (actual.isAssignableTo(context, required))
+                if (required.isAssignableFrom(context, actual))
                     return Specificity.INHERITED;
 				actual = assignment.resolve(context, this, useInstance).check(context);
-                if (actual.isAssignableTo(context, required))
+                if (required.isAssignableFrom(context, actual))
                     return Specificity.RESOLVED;
             }
             catch (PromptoError )

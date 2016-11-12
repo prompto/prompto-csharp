@@ -35,22 +35,22 @@ namespace prompto.type
             return AnyType.Instance;
         }
         
-        override
-        public Type ToCSharpType()
+        
+        public override Type ToCSharpType()
         {
             return typeof(Object);
         }
 
-        override
-        public IType checkItem(Context context, IType itemType)
+        
+        public override IType checkItem(Context context, IType itemType)
         {
             return AnyType.Instance; // needed to support lists in Documents
         }
 
-        override
-        public bool isAssignableTo(Context context, IType other)
+        
+        public override bool isAssignableFrom(Context context, IType other)
         {
-            return (other is AnyType);
+            return true;
         }
 
     }

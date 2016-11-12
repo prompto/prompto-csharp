@@ -413,13 +413,13 @@ namespace prompto.declaration
 			IMethodDeclaration candidate = null;
 			foreach (IMethodDeclaration method in methods.Values) {
 				IType potential = method.getArguments () [0].GetIType (context);
-				if (!type.isAssignableTo (context, potential))
+				if (!potential.isAssignableFrom (context, type))
 					continue;
 				if (candidate == null)
 					candidate = method;
 				else {
 					IType currentBest = candidate.getArguments () [0].GetIType (context);
-					if (currentBest.isAssignableTo (context, potential))
+					if (potential.isAssignableFrom (context, currentBest))
 						candidate = method;
 				}
 			}

@@ -187,8 +187,6 @@
     <Compile Include="src\prompto\translate\oeo\TestTuples.cs" />
     <Compile Include="src\prompto\runtime\e\TestBuiltins.cs" />
     <Compile Include="src\prompto\runtime\e\TestCondition.cs" />
-    <Compile Include="src\prompto\parser\o\TestAnonymousTypes.cs" />
-    <Compile Include="src\prompto\parser\o\TestDeclaredTypes.cs" />
     <Compile Include="src\prompto\parser\o\TestPrecedence.cs" />
     <Compile Include="src\prompto\parser\o\TestScope.cs" />
     <Compile Include="src\prompto\runtime\o\TestCondition.cs" />

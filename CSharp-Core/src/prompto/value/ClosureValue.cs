@@ -11,42 +11,44 @@ namespace prompto.value
 	public class ClosureValue : BaseValue
 	{
 
-		IMethodDeclaration method;
+		Context context;
 
-		public ClosureValue (Context context, IMethodDeclaration method)
-			: base(new MethodType (context, method.GetName ()))
+		public ClosureValue (Context context, MethodType type)
+			: base(type)
 		{
-			this.method = method;
-		}
-
-		public IMethodDeclaration getMethodDeclaration ()
-		{
-			return method;
+			this.context = context;
 		}
 
 		public IValue interpret (Context context)
 		{
-			Context thisContext = ((MethodType)type).GetContext ();
-			Context parentMost = thisContext.getParentMostContext ();
+			Context parentMost = this.context.getParentMostContext ();
 			parentMost.setParentContext (context);
-			IValue result = method.interpret (thisContext);
+			IValue result = Method.interpret (this.context);
 			parentMost.setParentContext (null);
 			return result;
 		}
 
+		private IMethodDeclaration Method
+		{
+			get
+			{
+				return ((MethodType)type).Method;
+			}
+		}
+
 		public String getName ()
 		{
-			return method.GetName ();
+			return Method.GetName ();
 		}
 
 		public ArgumentList getArguments ()
 		{
-			return method.getArguments ();
+			return Method.getArguments ();
 		}
 
 		public IType getReturnType ()
 		{
-			return method.getReturnType ();
+			return Method.getReturnType ();
 		}
 
 	}

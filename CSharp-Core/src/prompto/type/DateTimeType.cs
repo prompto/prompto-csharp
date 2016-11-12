@@ -75,22 +75,16 @@ namespace prompto.type
                 return base.checkMember(context, name);
         }
 
-        override
-        public bool isAssignableTo(Context context, IType other)
-        {
-            return (other is DateTimeType) || (other is DateType) || (other is TimeType) || (other is AnyType);
-        }
-
-        override
-		public IType checkAdd(Context context, IType other, bool tryReverse)
+        
+		public override IType checkAdd(Context context, IType other, bool tryReverse)
         {
             if (other is PeriodType)
                 return this;
 			return base.checkAdd(context, other, tryReverse);
         }
 
-        override
-        public IType checkSubstract(Context context, IType other)
+        
+        public override IType checkSubstract(Context context, IType other)
         {
             if (other is DateTimeType)
                 return PeriodType.Instance;
@@ -100,8 +94,8 @@ namespace prompto.type
 				return base.checkSubstract(context, other);
         }
 
-        override
-        public IType checkCompare(Context context, IType other)
+        
+        public override IType checkCompare(Context context, IType other)
         {
             if (other is DateType)
                 return BooleanType.Instance;

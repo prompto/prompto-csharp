@@ -21,6 +21,12 @@ namespace prompto.type
 			return itemType;
 		}
 
+		public override bool isAssignableFrom(Context context, IType other)
+		{
+			return base.isAssignableFrom(context, other)
+					   || (other is SetType && itemType.isAssignableFrom(context, ((SetType)other).GetItemType()));
+		}
+
 		public override IType checkAdd (Context context, IType other, bool tryReverse)
 		{
 			if ((other is ListType || other is SetType)

@@ -134,7 +134,7 @@ namespace prompto.expression
 			if(rval is TypeValue) {
 				IType actual = lval.GetIType();
 				IType toCheck = ((TypeValue)rval).GetValue();
-				return actual.isAssignableTo(context, toCheck);
+				return toCheck.isAssignableFrom(context, actual);
 			} else
 				return false;
 		}

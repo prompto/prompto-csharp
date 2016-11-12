@@ -40,16 +40,10 @@ namespace prompto.type
             return AnyType.Instance;
         }
 
-        override
-        public Type ToCSharpType()
+        
+        public override Type ToCSharpType()
         {
             return typeof(Document);
-        }
-
-        override
-        public bool isAssignableTo(Context context, IType other)
-        {
-            return (other is DocumentType) || (other is AnyType);
         }
 
 		public override IValue ReadJSONValue (Context context, JToken value, Dictionary<String, byte[]> parts) {

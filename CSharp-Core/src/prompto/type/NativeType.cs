@@ -38,29 +38,24 @@ namespace prompto.type
         {
         }
 
-        override
-        public void checkUnique(Context context)
+        
+        public override void checkUnique(Context context)
         {
             // nothing to do
         }
 
-        override
-        public void checkExists(Context context)
+        
+        public override void checkExists(Context context)
         {
             // nothing to do
         }
 
-        override
-        public bool isMoreSpecificThan(Context context, IType other)
+        
+        public override bool isMoreSpecificThan(Context context, IType other)
         {
             return false;
         }
 
-        override
-        public bool isAssignableTo(Context context, IType other)
-        {
-            return other == this;
-        }
 
     }
 

@@ -27,27 +27,20 @@ namespace prompto.type
         {
         }
 
-        override
-        public Type ToCSharpType()
+        
+        public override Type ToCSharpType()
         {
             return typeof(System.Boolean);
         }
 
-        override
-        public bool isAssignableTo(Context context, IType other)
-        {
-            return (other is BooleanType) || (other is AnyType);
-        }
-
- 
-        override
-		public ListValue sort(Context context, IContainer list, bool descending)
+        
+		public override ListValue sort(Context context, IContainer list, bool descending)
         {
 			return this.doSort(context, list, new BooleanComparer(context, descending));
         }
 
-        override
-        public IValue ConvertCSharpValueToIValue(Context context, Object value)
+        
+        public override IValue ConvertCSharpValueToIValue(Context context, Object value)
         {
             if (value is bool)
                 return Boolean.ValueOf((bool)value);

@@ -22,28 +22,28 @@ namespace prompto.argument
             return CodeType.Instance;
         }
 
-        override
-        public String getSignature(Dialect dialect)
+        
+        public override String getSignature(Dialect dialect)
         {
 			return name + ':' + CodeType.Instance.GetTypeName();
         }
 
-        override
-        public String getProto(Context context)
+        
+        public override String getProto()
         {
 			return CodeType.Instance.GetTypeName();
         }
 
-        override
-        public void ToDialect(CodeWriter writer)
+        
+        public override void ToDialect(CodeWriter writer)
         {
 			writer.append(CodeType.Instance.GetTypeName());
 			writer.append(" ");
 			writer.append(name);
        }
 
-        override
-        public bool Equals(Object obj)
+        
+        public override bool Equals(Object obj)
         {
             if (obj == this)
                 return true;
@@ -55,8 +55,8 @@ namespace prompto.argument
 			return ObjectUtils.equal(this.GetName(), other.GetName());
         }
 
-        override
-        public void register(Context context)
+        
+        public override void register(Context context)
         {
 			INamed actual = context.getRegisteredValue<INamed>(name);
             if (actual != null)
@@ -64,8 +64,8 @@ namespace prompto.argument
             context.registerValue(this);
         }
 
-        override
-        public void check(Context context)
+        
+        public override void check(Context context)
         {
         }
 

@@ -1,10 +1,8 @@
-using prompto.parser;
 using NUnit.Framework;
 using prompto.error;
-using prompto.runtime.utils;
 using prompto.utils;
 
-namespace prompto.o.runtime {
+namespace prompto.parser.o {
 
     [TestFixture]
     public class TestResourceError : BaseOParserTest

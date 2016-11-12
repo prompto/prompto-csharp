@@ -27,17 +27,17 @@ namespace prompto.type
         {
         }
 
-        override
-        public Type ToCSharpType()
+        
+        public override Type ToCSharpType()
         {
             return typeof(Decimal);
         }
 
 
-        override
-        public bool isAssignableTo(Context context, IType other)
+        
+        public override bool isAssignableFrom(Context context, IType other)
         {
-            return (other is IntegerType) || (other is DecimalType) || (other is AnyType);
+			return base.isAssignableFrom(context, other) || other == IntegerType.Instance;
         }
 
         override

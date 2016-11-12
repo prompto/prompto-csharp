@@ -40,14 +40,15 @@ namespace prompto.type
                 return base.checkMember(context, name);
         }
 
-        override
-        public bool isAssignableTo(Context context, IType other)
+        
+        public override bool isAssignableFrom(Context context, IType other)
         {
-            return (other is TupleType) || (other is AnyType);
+			return base.isAssignableFrom(context, other)
+			       || other is ListType || other is SetType;
         }
 
-        override
-        public IType checkItem(Context context, IType other)
+        
+        public override IType checkItem(Context context, IType other)
         {
             if (other == IntegerType.Instance)
                 return AnyType.Instance;
@@ -64,8 +65,8 @@ namespace prompto.type
 			return base.checkAdd(context, other, tryReverse);
         }
 
-        override
-        public IType checkContains(Context context, IType other)
+        
+        public override IType checkContains(Context context, IType other)
         {
             return BooleanType.Instance;
         }

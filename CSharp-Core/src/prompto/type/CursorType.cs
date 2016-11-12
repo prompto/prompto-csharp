@@ -18,9 +18,10 @@ namespace prompto.type
 			return typeof(Cursor);
 		}
 
-		public override bool isAssignableTo (Context context, IType other)
+		public override bool isAssignableFrom(Context context, IType other)
 		{
-			return (other is CursorType) && itemType.isAssignableTo (context, ((CursorType)other).GetItemType ());
+			return base.isAssignableFrom(context, other)
+					   || (other is CursorType && itemType.isAssignableFrom(context, ((CursorType)other).GetItemType()));
 		}
 
 		public override bool Equals (object obj)

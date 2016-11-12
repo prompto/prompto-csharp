@@ -36,7 +36,7 @@ namespace prompto.runtime
                 case 1:
                     return compatibles[0];
                 default:
-				return findMostSpecific(compatibles, useInstance);
+					return findMostSpecific(compatibles, useInstance);
             }
         }
 

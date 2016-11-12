@@ -57,6 +57,12 @@ namespace prompto.translate.ese
 		}
 
 		[Test]
+		public void testCastRoot()
+		{
+			compareResourceESE("cast/castRoot.pec");
+		}
+
+		[Test]
 		public void testIsAChild()
 		{
 			compareResourceESE("cast/isAChild.pec");

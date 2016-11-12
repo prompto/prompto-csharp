@@ -53,7 +53,7 @@ namespace prompto.argument
 
         abstract public void ToDialect(CodeWriter writer);
         abstract public String getSignature(Dialect dialect);
-        abstract public String getProto(Context context);
+        abstract public String getProto();
         abstract public void register(Context context);
         abstract public void check(Context context);
         abstract public IType GetIType(Context context);

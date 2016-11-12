@@ -2,7 +2,8 @@ using prompto.parser;
 using NUnit.Framework;
 using prompto.declaration;
 using prompto.type;
-namespace prompto.e.runtime
+
+namespace prompto.parser.e
 {
 
     [TestFixture]
@@ -25,17 +26,17 @@ namespace prompto.e.runtime
         {
             IType st = BooleanType.Instance;
             Assert.AreEqual(st, BooleanType.Instance);
-            Assert.IsTrue(st.isAssignableTo(context, BooleanType.Instance));
-            Assert.IsFalse(st.isAssignableTo(context, IntegerType.Instance));
-            Assert.IsFalse(st.isAssignableTo(context, DecimalType.Instance));
-            Assert.IsFalse(st.isAssignableTo(context, TextType.Instance));
-            Assert.IsFalse(st.isAssignableTo(context, DateType.Instance));
-            Assert.IsFalse(st.isAssignableTo(context, DateTimeType.Instance));
-            Assert.IsFalse(st.isAssignableTo(context, MissingType.Instance));
-            Assert.IsTrue(st.isAssignableTo(context, AnyType.Instance));
-            Assert.IsFalse(st.isAssignableTo(context, new CategoryType("Root")));
-            Assert.IsFalse(st.isAssignableTo(context, new CategoryType("Derived")));
-            Assert.IsFalse(st.isAssignableTo(context, new CategoryType("Unrelated")));
+            Assert.IsTrue(BooleanType.Instance.isAssignableFrom(context, st));
+            Assert.IsFalse(IntegerType.Instance.isAssignableFrom(context, st));
+            Assert.IsFalse(DecimalType.Instance.isAssignableFrom(context, st));
+            Assert.IsFalse(TextType.Instance.isAssignableFrom(context, st));
+            Assert.IsFalse(DateType.Instance.isAssignableFrom(context, st));
+            Assert.IsFalse(DateTimeType.Instance.isAssignableFrom(context, st));
+            Assert.IsTrue(MissingType.Instance.isAssignableFrom(context, st));
+            Assert.IsTrue(AnyType.Instance.isAssignableFrom(context, st));
+            Assert.IsFalse(new CategoryType("Root").isAssignableFrom(context, st));
+            Assert.IsFalse(new CategoryType("Derived").isAssignableFrom(context, st));
+            Assert.IsFalse(new CategoryType("Unrelated").isAssignableFrom(context, st));
         }
 
         [Test]
@@ -43,17 +44,17 @@ namespace prompto.e.runtime
         {
             IType st = IntegerType.Instance;
             Assert.AreEqual(st, IntegerType.Instance);
-            Assert.IsFalse(st.isAssignableTo(context, BooleanType.Instance));
-            Assert.IsTrue(st.isAssignableTo(context, IntegerType.Instance));
-            Assert.IsTrue(st.isAssignableTo(context, DecimalType.Instance));
-            Assert.IsFalse(st.isAssignableTo(context, TextType.Instance));
-            Assert.IsFalse(st.isAssignableTo(context, DateType.Instance));
-            Assert.IsFalse(st.isAssignableTo(context, DateTimeType.Instance));
-            Assert.IsFalse(st.isAssignableTo(context, MissingType.Instance));
-            Assert.IsTrue(st.isAssignableTo(context, AnyType.Instance));
-            Assert.IsFalse(st.isAssignableTo(context, new CategoryType("Root")));
-            Assert.IsFalse(st.isAssignableTo(context, new CategoryType("Derived")));
-            Assert.IsFalse(st.isAssignableTo(context, new CategoryType("Unrelated")));
+            Assert.IsFalse(BooleanType.Instance.isAssignableFrom(context, st));
+            Assert.IsTrue(IntegerType.Instance.isAssignableFrom(context, st));
+            Assert.IsTrue(DecimalType.Instance.isAssignableFrom(context, st));
+            Assert.IsFalse(TextType.Instance.isAssignableFrom(context, st));
+            Assert.IsFalse(DateType.Instance.isAssignableFrom(context, st));
+            Assert.IsFalse(DateTimeType.Instance.isAssignableFrom(context, st));
+            Assert.IsTrue(MissingType.Instance.isAssignableFrom(context, st));
+            Assert.IsTrue(AnyType.Instance.isAssignableFrom(context, st));
+            Assert.IsFalse(new CategoryType("Root").isAssignableFrom(context, st));
+            Assert.IsFalse(new CategoryType("Derived").isAssignableFrom(context, st));
+            Assert.IsFalse(new CategoryType("Unrelated").isAssignableFrom(context, st));
         }
 
         [Test]
@@ -61,17 +62,17 @@ namespace prompto.e.runtime
         {
             IType st = DecimalType.Instance;
             Assert.AreEqual(st, DecimalType.Instance);
-            Assert.IsFalse(st.isAssignableTo(context, BooleanType.Instance));
-            Assert.IsTrue(st.isAssignableTo(context, IntegerType.Instance));
-            Assert.IsTrue(st.isAssignableTo(context, DecimalType.Instance));
-            Assert.IsFalse(st.isAssignableTo(context, TextType.Instance));
-            Assert.IsFalse(st.isAssignableTo(context, DateType.Instance));
-            Assert.IsFalse(st.isAssignableTo(context, DateTimeType.Instance));
-            Assert.IsFalse(st.isAssignableTo(context, MissingType.Instance));
-            Assert.IsTrue(st.isAssignableTo(context, AnyType.Instance));
-            Assert.IsFalse(st.isAssignableTo(context, new CategoryType("Root")));
-            Assert.IsFalse(st.isAssignableTo(context, new CategoryType("Derived")));
-            Assert.IsFalse(st.isAssignableTo(context, new CategoryType("Unrelated")));
+            Assert.IsFalse(BooleanType.Instance.isAssignableFrom(context, st));
+            Assert.IsTrue(IntegerType.Instance.isAssignableFrom(context, st));
+            Assert.IsTrue(DecimalType.Instance.isAssignableFrom(context, st));
+            Assert.IsFalse(TextType.Instance.isAssignableFrom(context, st));
+            Assert.IsFalse(DateType.Instance.isAssignableFrom(context, st));
+            Assert.IsFalse(DateTimeType.Instance.isAssignableFrom(context, st));
+            Assert.IsTrue(MissingType.Instance.isAssignableFrom(context, st));
+            Assert.IsTrue(AnyType.Instance.isAssignableFrom(context, st));
+            Assert.IsFalse(new CategoryType("Root").isAssignableFrom(context, st));
+            Assert.IsFalse(new CategoryType("Derived").isAssignableFrom(context, st));
+            Assert.IsFalse(new CategoryType("Unrelated").isAssignableFrom(context, st));
         }
 
         [Test]
@@ -79,17 +80,17 @@ namespace prompto.e.runtime
         {
             IType st = TextType.Instance;
             Assert.AreEqual(st, TextType.Instance);
-            Assert.IsFalse(st.isAssignableTo(context, BooleanType.Instance));
-            Assert.IsFalse(st.isAssignableTo(context, IntegerType.Instance));
-            Assert.IsFalse(st.isAssignableTo(context, DecimalType.Instance));
-            Assert.IsTrue(st.isAssignableTo(context, TextType.Instance));
-            Assert.IsFalse(st.isAssignableTo(context, DateType.Instance));
-            Assert.IsFalse(st.isAssignableTo(context, DateTimeType.Instance));
-            Assert.IsFalse(st.isAssignableTo(context, MissingType.Instance));
-            Assert.IsTrue(st.isAssignableTo(context, AnyType.Instance));
-            Assert.IsFalse(st.isAssignableTo(context, new CategoryType("Root")));
-            Assert.IsFalse(st.isAssignableTo(context, new CategoryType("Derived")));
-            Assert.IsFalse(st.isAssignableTo(context, new CategoryType("Unrelated")));
+            Assert.IsFalse(BooleanType.Instance.isAssignableFrom(context, st));
+            Assert.IsFalse(IntegerType.Instance.isAssignableFrom(context, st));
+            Assert.IsFalse(DecimalType.Instance.isAssignableFrom(context, st));
+            Assert.IsTrue(TextType.Instance.isAssignableFrom(context, st));
+            Assert.IsFalse(DateType.Instance.isAssignableFrom(context, st));
+            Assert.IsFalse(DateTimeType.Instance.isAssignableFrom(context, st));
+            Assert.IsTrue(MissingType.Instance.isAssignableFrom(context, st));
+            Assert.IsTrue(AnyType.Instance.isAssignableFrom(context, st));
+            Assert.IsFalse(new CategoryType("Root").isAssignableFrom(context, st));
+            Assert.IsFalse(new CategoryType("Derived").isAssignableFrom(context, st));
+            Assert.IsFalse(new CategoryType("Unrelated").isAssignableFrom(context, st));
         }
 
         [Test]
@@ -97,17 +98,17 @@ namespace prompto.e.runtime
         {
             IType st = DateType.Instance;
             Assert.AreEqual(st, DateType.Instance);
-            Assert.IsFalse(st.isAssignableTo(context, BooleanType.Instance));
-            Assert.IsFalse(st.isAssignableTo(context, IntegerType.Instance));
-            Assert.IsFalse(st.isAssignableTo(context, DecimalType.Instance));
-            Assert.IsFalse(st.isAssignableTo(context, TextType.Instance));
-            Assert.IsTrue(st.isAssignableTo(context, DateType.Instance));
-            Assert.IsFalse(st.isAssignableTo(context, DateTimeType.Instance));
-            Assert.IsFalse(st.isAssignableTo(context, MissingType.Instance));
-            Assert.IsTrue(st.isAssignableTo(context, AnyType.Instance));
-            Assert.IsFalse(st.isAssignableTo(context, new CategoryType("Root")));
-            Assert.IsFalse(st.isAssignableTo(context, new CategoryType("Derived")));
-            Assert.IsFalse(st.isAssignableTo(context, new CategoryType("Unrelated")));
+            Assert.IsFalse(BooleanType.Instance.isAssignableFrom(context, st));
+            Assert.IsFalse(IntegerType.Instance.isAssignableFrom(context, st));
+            Assert.IsFalse(DecimalType.Instance.isAssignableFrom(context, st));
+            Assert.IsFalse(TextType.Instance.isAssignableFrom(context, st));
+            Assert.IsTrue(DateType.Instance.isAssignableFrom(context, st));
+            Assert.IsFalse(DateTimeType.Instance.isAssignableFrom(context, st));
+            Assert.IsTrue(MissingType.Instance.isAssignableFrom(context, st));
+            Assert.IsTrue(AnyType.Instance.isAssignableFrom(context, st));
+            Assert.IsFalse(new CategoryType("Root").isAssignableFrom(context, st));
+            Assert.IsFalse(new CategoryType("Derived").isAssignableFrom(context, st));
+            Assert.IsFalse(new CategoryType("Unrelated").isAssignableFrom(context, st));
         }
 
         [Test]
@@ -115,17 +116,17 @@ namespace prompto.e.runtime
         {
             IType st = DateTimeType.Instance;
             Assert.AreEqual(st, DateTimeType.Instance);
-            Assert.IsFalse(st.isAssignableTo(context, BooleanType.Instance));
-            Assert.IsFalse(st.isAssignableTo(context, IntegerType.Instance));
-            Assert.IsFalse(st.isAssignableTo(context, DecimalType.Instance));
-            Assert.IsFalse(st.isAssignableTo(context, TextType.Instance));
-            Assert.IsTrue(st.isAssignableTo(context, DateType.Instance));
-            Assert.IsTrue(st.isAssignableTo(context, DateTimeType.Instance));
-            Assert.IsFalse(st.isAssignableTo(context, MissingType.Instance));
-            Assert.IsTrue(st.isAssignableTo(context, AnyType.Instance));
-            Assert.IsFalse(st.isAssignableTo(context, new CategoryType("Root")));
-            Assert.IsFalse(st.isAssignableTo(context, new CategoryType("Derived")));
-            Assert.IsFalse(st.isAssignableTo(context, new CategoryType("Unrelated")));
+            Assert.IsFalse(BooleanType.Instance.isAssignableFrom(context, st));
+            Assert.IsFalse(IntegerType.Instance.isAssignableFrom(context, st));
+            Assert.IsFalse(DecimalType.Instance.isAssignableFrom(context, st));
+            Assert.IsFalse(TextType.Instance.isAssignableFrom(context, st));
+            Assert.IsTrue(DateType.Instance.isAssignableFrom(context, st));
+            Assert.IsTrue(DateTimeType.Instance.isAssignableFrom(context, st));
+            Assert.IsTrue(MissingType.Instance.isAssignableFrom(context, st));
+            Assert.IsTrue(AnyType.Instance.isAssignableFrom(context, st));
+            Assert.IsFalse(new CategoryType("Root").isAssignableFrom(context, st));
+            Assert.IsFalse(new CategoryType("Derived").isAssignableFrom(context, st));
+            Assert.IsFalse(new CategoryType("Unrelated").isAssignableFrom(context, st));
         }
 
         [Test]
@@ -133,17 +134,17 @@ namespace prompto.e.runtime
         {
             IType st = MissingType.Instance;
             Assert.AreEqual(st, MissingType.Instance);
-            Assert.IsTrue(st.isAssignableTo(context, BooleanType.Instance));
-            Assert.IsTrue(st.isAssignableTo(context, IntegerType.Instance));
-            Assert.IsTrue(st.isAssignableTo(context, DecimalType.Instance));
-            Assert.IsTrue(st.isAssignableTo(context, TextType.Instance));
-            Assert.IsTrue(st.isAssignableTo(context, DateType.Instance));
-            Assert.IsTrue(st.isAssignableTo(context, DateTimeType.Instance));
-            Assert.IsTrue(st.isAssignableTo(context, MissingType.Instance));
-            Assert.IsTrue(st.isAssignableTo(context, AnyType.Instance));
-            Assert.IsTrue(st.isAssignableTo(context, new CategoryType("Root")));
-            Assert.IsTrue(st.isAssignableTo(context, new CategoryType("Derived")));
-            Assert.IsTrue(st.isAssignableTo(context, new CategoryType("Unrelated")));
+            Assert.IsTrue(st.isAssignableFrom(context, BooleanType.Instance));
+            Assert.IsTrue(st.isAssignableFrom(context, IntegerType.Instance));
+            Assert.IsTrue(st.isAssignableFrom(context, DecimalType.Instance));
+            Assert.IsTrue(st.isAssignableFrom(context, TextType.Instance));
+            Assert.IsTrue(st.isAssignableFrom(context, DateType.Instance));
+            Assert.IsTrue(st.isAssignableFrom(context, DateTimeType.Instance));
+            Assert.IsTrue(st.isAssignableFrom(context, MissingType.Instance));
+            Assert.IsTrue(st.isAssignableFrom(context, AnyType.Instance));
+            Assert.IsTrue(st.isAssignableFrom(context, new CategoryType("Root")));
+            Assert.IsTrue(st.isAssignableFrom(context, new CategoryType("Derived")));
+            Assert.IsTrue(st.isAssignableFrom(context, new CategoryType("Unrelated")));
         }
 
         [Test]
@@ -151,17 +152,17 @@ namespace prompto.e.runtime
         {
             IType st = new CategoryType("Root");
             Assert.AreEqual(st, new CategoryType("Root"));
-            Assert.IsFalse(st.isAssignableTo(context, BooleanType.Instance));
-            Assert.IsFalse(st.isAssignableTo(context, IntegerType.Instance));
-            Assert.IsFalse(st.isAssignableTo(context, DecimalType.Instance));
-            Assert.IsFalse(st.isAssignableTo(context, TextType.Instance));
-            Assert.IsFalse(st.isAssignableTo(context, DateType.Instance));
-            Assert.IsFalse(st.isAssignableTo(context, DateTimeType.Instance));
-			Assert.IsTrue(st.isAssignableTo(context, MissingType.Instance));
-            Assert.IsTrue(st.isAssignableTo(context, AnyType.Instance));
-            Assert.IsTrue(st.isAssignableTo(context, new CategoryType("Root")));
-            Assert.IsFalse(st.isAssignableTo(context, new CategoryType("Derived")));
-            Assert.IsFalse(st.isAssignableTo(context, new CategoryType("Unrelated")));
+            Assert.IsFalse(BooleanType.Instance.isAssignableFrom(context, st));
+            Assert.IsFalse(IntegerType.Instance.isAssignableFrom(context, st));
+            Assert.IsFalse(DecimalType.Instance.isAssignableFrom(context, st));
+            Assert.IsFalse(TextType.Instance.isAssignableFrom(context, st));
+            Assert.IsFalse(DateType.Instance.isAssignableFrom(context, st));
+            Assert.IsFalse(DateTimeType.Instance.isAssignableFrom(context, st));
+			Assert.IsTrue(MissingType.Instance.isAssignableFrom(context, st));
+            Assert.IsTrue(AnyType.Instance.isAssignableFrom(context, st));
+            Assert.IsTrue(new CategoryType("Root").isAssignableFrom(context, st));
+            Assert.IsFalse(new CategoryType("Derived").isAssignableFrom(context, st));
+            Assert.IsFalse(new CategoryType("Unrelated").isAssignableFrom(context, st));
         }
 
         [Test]
@@ -169,17 +170,17 @@ namespace prompto.e.runtime
         {
             IType st = new CategoryType("Derived");
             Assert.AreEqual(st, new CategoryType("Derived"));
-            Assert.IsFalse(st.isAssignableTo(context, BooleanType.Instance));
-            Assert.IsFalse(st.isAssignableTo(context, IntegerType.Instance));
-            Assert.IsFalse(st.isAssignableTo(context, DecimalType.Instance));
-            Assert.IsFalse(st.isAssignableTo(context, TextType.Instance));
-            Assert.IsFalse(st.isAssignableTo(context, DateType.Instance));
-            Assert.IsFalse(st.isAssignableTo(context, DateTimeType.Instance));
-			Assert.IsTrue(st.isAssignableTo(context, MissingType.Instance));
-            Assert.IsTrue(st.isAssignableTo(context, AnyType.Instance));
-            Assert.IsTrue(st.isAssignableTo(context, new CategoryType("Root")));
-            Assert.IsTrue(st.isAssignableTo(context, new CategoryType("Derived")));
-            Assert.IsFalse(st.isAssignableTo(context, new CategoryType("Unrelated")));
+            Assert.IsFalse(BooleanType.Instance.isAssignableFrom(context, st));
+            Assert.IsFalse(IntegerType.Instance.isAssignableFrom(context, st));
+            Assert.IsFalse(DecimalType.Instance.isAssignableFrom(context, st));
+            Assert.IsFalse(TextType.Instance.isAssignableFrom(context, st));
+            Assert.IsFalse(DateType.Instance.isAssignableFrom(context, st));
+            Assert.IsFalse(DateTimeType.Instance.isAssignableFrom(context, st));
+			Assert.IsTrue(MissingType.Instance.isAssignableFrom(context, st));
+            Assert.IsTrue(AnyType.Instance.isAssignableFrom(context, st));
+            Assert.IsTrue(new CategoryType("Root").isAssignableFrom(context, st));
+            Assert.IsTrue(new CategoryType("Derived").isAssignableFrom(context, st));
+            Assert.IsFalse(new CategoryType("Unrelated").isAssignableFrom(context, st));
         }
 
         [Test]
@@ -187,17 +188,17 @@ namespace prompto.e.runtime
         {
             IType st = new CategoryType("Unrelated");
             Assert.AreEqual(st, new CategoryType("Unrelated"));
-            Assert.IsFalse(st.isAssignableTo(context, BooleanType.Instance));
-            Assert.IsFalse(st.isAssignableTo(context, IntegerType.Instance));
-            Assert.IsFalse(st.isAssignableTo(context, DecimalType.Instance));
-            Assert.IsFalse(st.isAssignableTo(context, TextType.Instance));
-            Assert.IsFalse(st.isAssignableTo(context, DateType.Instance));
-            Assert.IsFalse(st.isAssignableTo(context, DateTimeType.Instance));
-			Assert.IsTrue(st.isAssignableTo(context, MissingType.Instance));
-            Assert.IsTrue(st.isAssignableTo(context, AnyType.Instance));
-            Assert.IsFalse(st.isAssignableTo(context, new CategoryType("Root")));
-            Assert.IsFalse(st.isAssignableTo(context, new CategoryType("Derived")));
-            Assert.IsTrue(st.isAssignableTo(context, new CategoryType("Unrelated")));
+            Assert.IsFalse(BooleanType.Instance.isAssignableFrom(context, st));
+            Assert.IsFalse(IntegerType.Instance.isAssignableFrom(context, st));
+            Assert.IsFalse(DecimalType.Instance.isAssignableFrom(context, st));
+            Assert.IsFalse(TextType.Instance.isAssignableFrom(context, st));
+            Assert.IsFalse(DateType.Instance.isAssignableFrom(context, st));
+            Assert.IsFalse(DateTimeType.Instance.isAssignableFrom(context, st));
+			Assert.IsTrue(MissingType.Instance.isAssignableFrom(context, st));
+            Assert.IsTrue(AnyType.Instance.isAssignableFrom(context, st));
+            Assert.IsFalse(new CategoryType("Root").isAssignableFrom(context, st));
+            Assert.IsFalse(new CategoryType("Derived").isAssignableFrom(context, st));
+            Assert.IsTrue(new CategoryType("Unrelated").isAssignableFrom(context, st));
         }
 
     }

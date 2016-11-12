@@ -17,9 +17,10 @@ namespace prompto.type
 		}
 
 
-		public override bool isAssignableTo (Context context, IType other)
+		public override bool isAssignableFrom (Context context, IType other)
 		{
-			return (other is DictType) && itemType.isAssignableTo (context, ((DictType)other).GetItemType ());
+			return base.isAssignableFrom(context, other) 
+				       || (other is DictType && itemType.isAssignableFrom (context, ((DictType)other).GetItemType ()));
 		}
 
 

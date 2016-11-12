@@ -43,10 +43,11 @@ namespace prompto.type
                 return base.checkMember(context, name);
         }
 
-        override
-        public bool isAssignableTo(Context context, IType other)
+        
+        public override bool isAssignableFrom(Context context, IType other)
         {
-            return (other is TextType) || (other is AnyType);
+			return base.isAssignableFrom(context, other)
+				       || other==CharacterType.Instance;
         }
 
         

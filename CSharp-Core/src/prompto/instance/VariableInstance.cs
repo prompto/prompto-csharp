@@ -50,7 +50,7 @@ namespace prompto.instance
             {
                 // need to check type compatibility
                 IType actualType = actual.GetIType(context);
-				valueType.checkAssignableTo(context, actualType);
+				actualType.checkAssignableFrom(context, valueType);
 				valueType = actualType;
             }
 			return valueType;

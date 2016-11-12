@@ -18,7 +18,7 @@ namespace prompto.type
         
 		public override IType checkContains(Context context, IType other)
         {
-            if (itemType.isAssignableTo(context, other))
+            if (other.isAssignableFrom(context, itemType))
                 return BooleanType.Instance;
             else
                 return base.checkContains(context, other);

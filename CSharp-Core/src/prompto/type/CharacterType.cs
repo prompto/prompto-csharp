@@ -33,10 +33,10 @@ namespace prompto.type
         }
 
 
-        override
-        public bool isAssignableTo(Context context, IType other)
+        
+        public override bool isAssignableFrom(Context context, IType other)
         {
-            return (other is CharacterType) || (other is TextType) || (other is AnyType);
+            return other is CharacterType;
         }
 
 		public override IType checkMember(Context context, String name)

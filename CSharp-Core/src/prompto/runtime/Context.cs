@@ -576,7 +576,7 @@ namespace prompto.runtime
 
         public void register(IMethodDeclaration declaration, Context context)
         {
-            String proto = declaration.getProto(context);
+            String proto = declaration.getProto();
             if (this.ContainsKey(proto))
                 throw new SyntaxError("Duplicate prototype for name: \"" + declaration.GetName() + "\"");
             this[proto] = declaration;
@@ -584,7 +584,7 @@ namespace prompto.runtime
 
         public void registerIfMissing(IMethodDeclaration declaration, Context context)
         {
-            String proto = declaration.getProto(context);
+            String proto = declaration.getProto();
             if (!this.ContainsKey(proto))
                 this[proto] = declaration;
         }

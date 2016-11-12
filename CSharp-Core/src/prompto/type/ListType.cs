@@ -33,15 +33,15 @@ namespace prompto.type
 				return base.checkMember(context, name);
 		}
 
-		override
-		public bool isAssignableTo(Context context, IType other)
+
+		public override bool isAssignableFrom(Context context, IType other)
 		{
-			return (other == AnyType.Instance) ||
-				(other is ListType && itemType.isAssignableTo(context, ((ListType)other).GetItemType()));
+			return base.isAssignableFrom(context, other)
+					   || (other is ListType && itemType.isAssignableFrom(context, ((ListType)other).GetItemType()));
 		}
 
-		override
-		public bool Equals(Object obj)
+
+		public override bool Equals(Object obj)
 		{
 			if (obj == this)
 				return true;

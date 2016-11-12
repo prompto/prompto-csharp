@@ -7,7 +7,7 @@ using prompto.type;
 using prompto.argument;
 
 
-namespace prompto.e.runtime
+namespace prompto.parser.e
 {
 
     [TestFixture]
@@ -36,18 +36,18 @@ namespace prompto.e.runtime
             argument.register(context);
             IType st = argument.GetIType(context);
             Assert.IsTrue(st is AnyType);
-            Assert.IsTrue(BooleanType.Instance.isAssignableTo(context, st));
-            Assert.IsTrue(IntegerType.Instance.isAssignableTo(context, st));
-            Assert.IsTrue(DecimalType.Instance.isAssignableTo(context, st));
-            Assert.IsTrue(TextType.Instance.isAssignableTo(context, st));
-            Assert.IsTrue(DateType.Instance.isAssignableTo(context, st));
-            Assert.IsTrue(DateTimeType.Instance.isAssignableTo(context, st));
-            Assert.IsTrue(MissingType.Instance.isAssignableTo(context, st)); // missing type always compatible
-            Assert.IsTrue(AnyType.Instance.isAssignableTo(context, st));
-            Assert.IsTrue(new CategoryType("Simple").isAssignableTo(context, st));
-            Assert.IsTrue(new CategoryType("Root").isAssignableTo(context, st));
-            Assert.IsTrue(new CategoryType("DerivedWithOther").isAssignableTo(context, st));
-            Assert.IsTrue(new CategoryType("DerivedWithName").isAssignableTo(context, st));
+            Assert.IsTrue(st.isAssignableFrom(context, BooleanType.Instance));
+            Assert.IsTrue(st.isAssignableFrom(context, IntegerType.Instance));
+            Assert.IsTrue(st.isAssignableFrom(context, DecimalType.Instance));
+            Assert.IsTrue(st.isAssignableFrom(context, TextType.Instance));
+            Assert.IsTrue(st.isAssignableFrom(context, DateType.Instance));
+            Assert.IsTrue(st.isAssignableFrom(context, DateTimeType.Instance));
+            Assert.IsTrue(st.isAssignableFrom(context, MissingType.Instance)); 
+            Assert.IsTrue(st.isAssignableFrom(context, AnyType.Instance));
+            Assert.IsTrue(st.isAssignableFrom(context, new CategoryType("Simple")));
+            Assert.IsTrue(st.isAssignableFrom(context, new CategoryType("Root")));
+            Assert.IsTrue(st.isAssignableFrom(context, new CategoryType("DerivedWithOther")));
+            Assert.IsTrue(st.isAssignableFrom(context, new CategoryType("DerivedWithName")));
         }
 
         [Test]
@@ -59,18 +59,18 @@ namespace prompto.e.runtime
             argument.register(context);
             IType st = argument.GetIType(context);
             Assert.IsTrue(st is CategoryType);
-            Assert.IsFalse(BooleanType.Instance.isAssignableTo(context, st));
-            Assert.IsFalse(IntegerType.Instance.isAssignableTo(context, st));
-            Assert.IsFalse(DecimalType.Instance.isAssignableTo(context, st));
-            Assert.IsFalse(TextType.Instance.isAssignableTo(context, st));
-            Assert.IsFalse(DateType.Instance.isAssignableTo(context, st));
-            Assert.IsFalse(DateTimeType.Instance.isAssignableTo(context, st));
-            Assert.IsTrue(MissingType.Instance.isAssignableTo(context, st)); // missing type always compatible
-            Assert.IsFalse(AnyType.Instance.isAssignableTo(context, st)); // any type never compatible
-            Assert.IsTrue(new CategoryType("Simple").isAssignableTo(context, st)); // since Simple has a name
-            Assert.IsFalse(new CategoryType("Root").isAssignableTo(context, st)); // since Root has no name
-            Assert.IsFalse(new CategoryType("DerivedWithOther").isAssignableTo(context, st)); // since DerivedWithOther has no name
-            Assert.IsTrue(new CategoryType("DerivedWithName").isAssignableTo(context, st)); // since DerivedWithName has a name
+            Assert.IsFalse(st.isAssignableFrom(context, BooleanType.Instance));
+            Assert.IsFalse(st.isAssignableFrom(context, IntegerType.Instance));
+            Assert.IsFalse(st.isAssignableFrom(context, DecimalType.Instance));
+            Assert.IsFalse(st.isAssignableFrom(context, TextType.Instance));
+            Assert.IsFalse(st.isAssignableFrom(context, DateType.Instance));
+            Assert.IsFalse(st.isAssignableFrom(context, DateTimeType.Instance));
+            Assert.IsFalse(st.isAssignableFrom(context, MissingType.Instance)); 
+            Assert.IsFalse(st.isAssignableFrom(context, AnyType.Instance)); // any type never compatible
+            Assert.IsTrue(st.isAssignableFrom(context, new CategoryType("Simple"))); // since Simple has a name
+            Assert.IsFalse(st.isAssignableFrom(context, new CategoryType("Root"))); // since Root has no name
+            Assert.IsFalse(st.isAssignableFrom(context, new CategoryType("DerivedWithOther"))); // since DerivedWithOther has no name
+            Assert.IsTrue(st.isAssignableFrom(context, new CategoryType("DerivedWithName"))); // since DerivedWithName has a name
         }
 
         [Test]
@@ -81,18 +81,18 @@ namespace prompto.e.runtime
             argument.register(context);
             IType st = argument.GetIType(context);
             Assert.IsTrue(st is CategoryType);
-            Assert.IsFalse(BooleanType.Instance.isAssignableTo(context, st));
-            Assert.IsFalse(IntegerType.Instance.isAssignableTo(context, st));
-            Assert.IsFalse(DecimalType.Instance.isAssignableTo(context, st));
-            Assert.IsFalse(TextType.Instance.isAssignableTo(context, st));
-            Assert.IsFalse(DateType.Instance.isAssignableTo(context, st));
-            Assert.IsFalse(DateTimeType.Instance.isAssignableTo(context, st));
-            Assert.IsTrue(MissingType.Instance.isAssignableTo(context, st)); // missing type always compatible
-            Assert.IsFalse(AnyType.Instance.isAssignableTo(context, st)); // any type never compatible
-            Assert.IsFalse(new CategoryType("Simple").isAssignableTo(context, st));  // since Simple does not extend Root
-            Assert.IsTrue(new CategoryType("Root").isAssignableTo(context, st)); // since Root is Root
-            Assert.IsTrue(new CategoryType("DerivedWithOther").isAssignableTo(context, st)); // since DerivedWithOther : Root
-            Assert.IsTrue(new CategoryType("DerivedWithName").isAssignableTo(context, st)); // since DerivedWithName : Root
+            Assert.IsFalse(st.isAssignableFrom(context, BooleanType.Instance));
+            Assert.IsFalse(st.isAssignableFrom(context, IntegerType.Instance));
+            Assert.IsFalse(st.isAssignableFrom(context, DecimalType.Instance));
+            Assert.IsFalse(st.isAssignableFrom(context, TextType.Instance));
+            Assert.IsFalse(st.isAssignableFrom(context, DateType.Instance));
+            Assert.IsFalse(st.isAssignableFrom(context, DateTimeType.Instance));
+            Assert.IsFalse(st.isAssignableFrom(context, MissingType.Instance)); 
+            Assert.IsFalse(st.isAssignableFrom(context, AnyType.Instance)); // any type never compatible
+            Assert.IsFalse(st.isAssignableFrom(context, new CategoryType("Simple")));  // since Simple does not extend Root
+            Assert.IsTrue(st.isAssignableFrom(context, new CategoryType("Root"))); // since Root is Root
+            Assert.IsTrue(st.isAssignableFrom(context, new CategoryType("DerivedWithOther"))); // since DerivedWithOther : Root
+            Assert.IsTrue(st.isAssignableFrom(context, new CategoryType("DerivedWithName"))); // since DerivedWithName : Root
         }
 
         [Test]
@@ -104,18 +104,18 @@ namespace prompto.e.runtime
             argument.register(context);
             IType st = argument.GetIType(context);
             Assert.IsTrue(st is CategoryType);
-            Assert.IsFalse(BooleanType.Instance.isAssignableTo(context, st));
-            Assert.IsFalse(IntegerType.Instance.isAssignableTo(context, st));
-            Assert.IsFalse(DecimalType.Instance.isAssignableTo(context, st));
-            Assert.IsFalse(TextType.Instance.isAssignableTo(context, st));
-            Assert.IsFalse(DateType.Instance.isAssignableTo(context, st));
-            Assert.IsFalse(DateTimeType.Instance.isAssignableTo(context, st));
-            Assert.IsTrue(MissingType.Instance.isAssignableTo(context, st)); // missing type always compatible
-            Assert.IsFalse(AnyType.Instance.isAssignableTo(context, st)); // any type never compatible
-            Assert.IsFalse(new CategoryType("Simple").isAssignableTo(context, st));  // since Simple does not extend Root
-            Assert.IsFalse(new CategoryType("Root").isAssignableTo(context, st)); // since Root has no name
-            Assert.IsFalse(new CategoryType("DerivedWithOther").isAssignableTo(context, st)); // since DerivedWithOther has no name
-            Assert.IsTrue(new CategoryType("DerivedWithName").isAssignableTo(context, st)); // since DerivedWithName has a name
+            Assert.IsFalse(st.isAssignableFrom(context, BooleanType.Instance));
+            Assert.IsFalse(st.isAssignableFrom(context, IntegerType.Instance));
+            Assert.IsFalse(st.isAssignableFrom(context, DecimalType.Instance));
+            Assert.IsFalse(st.isAssignableFrom(context, TextType.Instance));
+            Assert.IsFalse(st.isAssignableFrom(context, DateType.Instance));
+            Assert.IsFalse(st.isAssignableFrom(context, DateTimeType.Instance));
+            Assert.IsFalse(st.isAssignableFrom(context, MissingType.Instance)); 
+            Assert.IsFalse(st.isAssignableFrom(context, AnyType.Instance)); // any type never compatible
+            Assert.IsFalse(st.isAssignableFrom(context, new CategoryType("Simple")));  // since Simple does not extend Root
+            Assert.IsFalse(st.isAssignableFrom(context, new CategoryType("Root"))); // since Root has no name
+            Assert.IsFalse(st.isAssignableFrom(context, new CategoryType("DerivedWithOther"))); // since DerivedWithOther has no name
+            Assert.IsTrue(st.isAssignableFrom(context, new CategoryType("DerivedWithName"))); // since DerivedWithName has a name
         }
 
     }

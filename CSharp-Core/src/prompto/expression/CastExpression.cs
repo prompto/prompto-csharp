@@ -20,9 +20,14 @@ namespace prompto.expression {
 
 		public IType check(Context context) {
 			IType actual = expression.check(context);
-			if(!type.isAssignableTo(context, actual))
-				throw new SyntaxError("Cannot cast " + actual.ToString() + " to " + type.ToString());
-			return type;
+			// check upcast
+			if (actual is CategoryType
+				&& ((CategoryType)actual).isDerivedFrom(context, type))
+				return type;
+			// check downcast
+			if(actual.isAssignableFrom(context, type))
+				return type;
+			throw new SyntaxError("Cannot cast " + actual.ToString() + " to " + type.ToString());
 		}
 
 		public IValue interpret(Context context) {

@@ -18,9 +18,12 @@ public class IteratorType : IterableType {
 			return typeof(IterableValue);
 		}
 
-		public override bool isAssignableTo(Context context, IType other) {
-			return (other is IteratorType) && itemType.isAssignableTo(context, ((IteratorType)other).GetItemType());
-	}
+		public override bool isAssignableFrom(Context context, IType other)
+		{
+			return base.isAssignableFrom(context, other)
+					   || (other is IteratorType && itemType.isAssignableFrom(context, 
+                                    ((IteratorType)other).GetItemType()));
+		}
 
 		public override bool Equals(Object obj) {
 		if(obj==this)

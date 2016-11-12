@@ -58,7 +58,8 @@ namespace prompto.statement
         public IType check(Context context)
         {
             IType type = expression.check(context);
-            if (!type.isAssignableTo(context, new CategoryType("Error")))
+			IType errorType = new CategoryType("Error");
+			if (!errorType.isAssignableFrom(context, type))
 				throw new SyntaxError(type.GetTypeName() + " does not extend Error");
 			return VoidType.Instance;
         }

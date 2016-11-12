@@ -34,13 +34,8 @@ namespace prompto.argument
             return getProto();
         }
 
-        override
-        public String getProto(Context context)
-        {
-            return getProto();
-        }
-
-        String getProto()
+        
+        public override String getProto()
         {
             return type.GetTypeName();
         }

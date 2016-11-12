@@ -39,7 +39,7 @@ namespace prompto.argument
 			return attributes;
 		}
 
-		public override String getProto(Context context) {
+		public override String getProto() {
 			return type.GetTypeName() + '(' + attributes.ToString() + ')';
 		}
 

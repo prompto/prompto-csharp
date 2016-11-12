@@ -8,7 +8,8 @@ using prompto.value;
 using prompto.expression;
 using Antlr4.Runtime;
 using Antlr4.Runtime.Tree;
-namespace prompto.o.runtime {
+
+namespace prompto.parser.o {
 
     [TestFixture]
     public class TestPrecedence : BaseOParserTest

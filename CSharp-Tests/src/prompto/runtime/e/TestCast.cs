@@ -70,6 +70,12 @@ namespace prompto.runtime.e
 		}
 
 		[Test]
+		public void testCastRoot()
+		{
+			CheckOutput("cast/castRoot.pec");
+		}
+
+		[Test]
 		public void testIsAChild()
 		{
 			CheckOutput("cast/isAChild.pec");

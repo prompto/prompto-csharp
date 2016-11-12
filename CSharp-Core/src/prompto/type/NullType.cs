@@ -36,17 +36,15 @@ namespace prompto.type
 			// ok
 		}
 
-		public override bool isAssignableTo (Context context, IType other)
-		{
-			return true;
-		}
-
 		public override bool isMoreSpecificThan (Context context, IType other)
 		{
 			return false;
 		}
 
-
+		public override bool isAssignableFrom(Context context, IType other)
+		{
+			return true;
+		}
 
 	}
 }

@@ -8,6 +8,7 @@ using prompto.declaration;
 using prompto.utils;
 using prompto.value;
 using prompto.argument;
+using System.Collections.Generic;
 
 namespace prompto.expression
 {
@@ -69,9 +70,11 @@ namespace prompto.expression
                 return named.GetIType(context);
             else if (named is AttributeDeclaration) // in category method
                 return named.GetIType(context);
-            else if (named is MethodDeclarationMap) // global method or closure
-                return new MethodType(context, name);
-            else
+			else if (named is MethodDeclarationMap) { // global method or closure
+				IEnumerator<IMethodDeclaration> decls = ((MethodDeclarationMap)named).Values.GetEnumerator();
+				decls.MoveNext();
+				return new MethodType(decls.Current);
+			} else
                 throw new SyntaxError(name + "  is not an instance:" + named.GetType().Name);
         }
 

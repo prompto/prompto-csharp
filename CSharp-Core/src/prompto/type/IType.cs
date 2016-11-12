@@ -52,9 +52,9 @@ namespace prompto.type
 
 		void checkExists (Context context);
 
-		void checkAssignableTo (Context context, IType other);
+		void checkAssignableFrom (Context context, IType other);
 
-		bool isAssignableTo (Context context, IType other);
+		bool isAssignableFrom(Context context, IType other);
 
 		bool isMoreSpecificThan (Context context, IType other);
 
