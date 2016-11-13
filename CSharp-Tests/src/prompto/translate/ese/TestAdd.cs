@@ -33,6 +33,12 @@ namespace prompto.translate.ese
 		}
 
 		[Test]
+		public void testAddDecimalEnum()
+		{
+			compareResourceESE("add/addDecimalEnum.pec");
+		}
+
+		[Test]
 		public void testAddDict()
 		{
 			compareResourceESE("add/addDict.pec");
@@ -42,6 +48,12 @@ namespace prompto.translate.ese
 		public void testAddInteger()
 		{
 			compareResourceESE("add/addInteger.pec");
+		}
+
+		[Test]
+		public void testAddIntegerEnum()
+		{
+			compareResourceESE("add/addIntegerEnum.pec");
 		}
 
 		[Test]
@@ -72,6 +84,12 @@ namespace prompto.translate.ese
 		public void testAddTextDecimal()
 		{
 			compareResourceESE("add/addTextDecimal.pec");
+		}
+
+		[Test]
+		public void testAddTextEnum()
+		{
+			compareResourceESE("add/addTextEnum.pec");
 		}
 
 		[Test]

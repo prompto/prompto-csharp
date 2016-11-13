@@ -27,9 +27,21 @@ namespace prompto.translate.eoe
 		}
 
 		[Test]
+		public void testSubDecimalEnum()
+		{
+			compareResourceEOE("sub/subDecimalEnum.pec");
+		}
+
+		[Test]
 		public void testSubInteger()
 		{
 			compareResourceEOE("sub/subInteger.pec");
+		}
+
+		[Test]
+		public void testSubIntegerEnum()
+		{
+			compareResourceEOE("sub/subIntegerEnum.pec");
 		}
 
 		[Test]

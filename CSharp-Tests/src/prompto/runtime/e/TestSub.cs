@@ -40,9 +40,21 @@ namespace prompto.runtime.e
 		}
 
 		[Test]
+		public void testSubDecimalEnum()
+		{
+			CheckOutput("sub/subDecimalEnum.pec");
+		}
+
+		[Test]
 		public void testSubInteger()
 		{
 			CheckOutput("sub/subInteger.pec");
+		}
+
+		[Test]
+		public void testSubIntegerEnum()
+		{
+			CheckOutput("sub/subIntegerEnum.pec");
 		}
 
 		[Test]

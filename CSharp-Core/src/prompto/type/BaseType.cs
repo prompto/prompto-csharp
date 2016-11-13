@@ -56,7 +56,9 @@ namespace prompto.type
 
 		public virtual IType checkAdd (Context context, IType other, bool tryReverse)
 		{
-			if (tryReverse)
+			if(other is EnumeratedNativeType)
+				return checkAdd(context, ((EnumeratedNativeType)other).getDerivedFrom(), tryReverse);
+			else if(tryReverse)
 				return other.checkAdd (context, this, false);
 			else
 				throw new SyntaxError ("Cannot add " + this.GetTypeName () + " to " + other.GetTypeName ());
@@ -64,12 +66,17 @@ namespace prompto.type
 
 		public virtual IType checkSubstract (Context context, IType other)
 		{
-			throw new SyntaxError ("Cannot substract " + this.GetTypeName () + " from " + other.GetTypeName ());
+			if (other is EnumeratedNativeType)
+				return checkSubstract(context, ((EnumeratedNativeType)other).getDerivedFrom());
+			else 
+				throw new SyntaxError ("Cannot substract " + this.GetTypeName () + " from " + other.GetTypeName ());
 		}
 
 		public virtual IType checkMultiply (Context context, IType other, bool tryReverse)
 		{
-			if (tryReverse)
+			if (other is EnumeratedNativeType)
+				return checkMultiply(context, ((EnumeratedNativeType)other).getDerivedFrom(), tryReverse);
+			else if (tryReverse)
 				return other.checkMultiply (context, this, false);
 			else
 				throw new SyntaxError ("Cannot multiply " + this.GetTypeName () + " with " + other.GetTypeName ());
@@ -77,37 +84,58 @@ namespace prompto.type
 
 		public virtual IType checkDivide (Context context, IType other)
 		{
-			throw new SyntaxError ("Cannot divide " + this.GetTypeName () + " with " + other.GetTypeName ());
+			if (other is EnumeratedNativeType)
+				return checkDivide(context, ((EnumeratedNativeType)other).getDerivedFrom());
+			else
+				throw new SyntaxError ("Cannot divide " + this.GetTypeName () + " with " + other.GetTypeName ());
 		}
 
 		public virtual IType checkIntDivide (Context context, IType other)
 		{
-			throw new SyntaxError ("Cannot int divide " + this.GetTypeName () + " with " + other.GetTypeName ());
+			if (other is EnumeratedNativeType)
+				return checkIntDivide(context, ((EnumeratedNativeType)other).getDerivedFrom());
+			else
+				throw new SyntaxError ("Cannot int divide " + this.GetTypeName () + " with " + other.GetTypeName ());
 		}
 
 		public virtual IType checkModulo (Context context, IType other)
 		{
-			throw new SyntaxError ("Cannot modulo " + this.GetTypeName () + " with " + other.GetTypeName ());
+			if (other is EnumeratedNativeType)
+				return checkModulo(context, ((EnumeratedNativeType)other).getDerivedFrom());
+			else
+				throw new SyntaxError ("Cannot modulo " + this.GetTypeName () + " with " + other.GetTypeName ());
 		}
 
 		public virtual IType checkCompare (Context context, IType other)
 		{
-			throw new SyntaxError ("Cannot compare " + this.GetTypeName () + " to " + other.GetTypeName ());
+			if (other is EnumeratedNativeType)
+				return checkCompare(context, ((EnumeratedNativeType)other).getDerivedFrom());
+			else
+				throw new SyntaxError ("Cannot compare " + this.GetTypeName () + " to " + other.GetTypeName ());
 		}
 
 		public virtual IType checkContains (Context context, IType other)
 		{
-			throw new SyntaxError (this.GetTypeName () + " cannot contain " + other.GetTypeName ());
+			if (other is EnumeratedNativeType)
+				return checkContains(context, ((EnumeratedNativeType)other).getDerivedFrom());
+			else
+				throw new SyntaxError (this.GetTypeName () + " cannot contain " + other.GetTypeName ());
 		}
 
 		public virtual IType checkContainsAllOrAny (Context context, IType other)
 		{
-			throw new SyntaxError (this.GetTypeName () + " cannot contain " + other.GetTypeName ());
+			if (other is EnumeratedNativeType)
+				return checkContainsAllOrAny(context, ((EnumeratedNativeType)other).getDerivedFrom());
+			else
+				throw new SyntaxError (this.GetTypeName () + " cannot contain " + other.GetTypeName ());
 		}
 
 		public virtual IType checkItem (Context context, IType itemType)
 		{
-			throw new SyntaxError ("Cannot read item from " + this.GetTypeName ());
+			if (itemType is EnumeratedNativeType)
+				return checkItem(context, ((EnumeratedNativeType)itemType).getDerivedFrom());
+			else
+				throw new SyntaxError ("Cannot read item from " + this.GetTypeName ());
 		}
 
 		public virtual IType checkSlice (Context context)

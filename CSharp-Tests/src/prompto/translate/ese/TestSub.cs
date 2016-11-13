@@ -27,9 +27,21 @@ namespace prompto.translate.ese
 		}
 
 		[Test]
+		public void testSubDecimalEnum()
+		{
+			compareResourceESE("sub/subDecimalEnum.pec");
+		}
+
+		[Test]
 		public void testSubInteger()
 		{
 			compareResourceESE("sub/subInteger.pec");
+		}
+
+		[Test]
+		public void testSubIntegerEnum()
+		{
+			compareResourceESE("sub/subIntegerEnum.pec");
 		}
 
 		[Test]

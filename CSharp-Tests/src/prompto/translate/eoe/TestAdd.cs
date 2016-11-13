@@ -33,6 +33,12 @@ namespace prompto.translate.eoe
 		}
 
 		[Test]
+		public void testAddDecimalEnum()
+		{
+			compareResourceEOE("add/addDecimalEnum.pec");
+		}
+
+		[Test]
 		public void testAddDict()
 		{
 			compareResourceEOE("add/addDict.pec");
@@ -42,6 +48,12 @@ namespace prompto.translate.eoe
 		public void testAddInteger()
 		{
 			compareResourceEOE("add/addInteger.pec");
+		}
+
+		[Test]
+		public void testAddIntegerEnum()
+		{
+			compareResourceEOE("add/addIntegerEnum.pec");
 		}
 
 		[Test]
@@ -72,6 +84,12 @@ namespace prompto.translate.eoe
 		public void testAddTextDecimal()
 		{
 			compareResourceEOE("add/addTextDecimal.pec");
+		}
+
+		[Test]
+		public void testAddTextEnum()
+		{
+			compareResourceEOE("add/addTextEnum.pec");
 		}
 
 		[Test]

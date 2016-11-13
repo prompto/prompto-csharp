@@ -46,6 +46,12 @@ namespace prompto.runtime.e
 		}
 
 		[Test]
+		public void testAddDecimalEnum()
+		{
+			CheckOutput("add/addDecimalEnum.pec");
+		}
+
+		[Test]
 		public void testAddDict()
 		{
 			CheckOutput("add/addDict.pec");
@@ -55,6 +61,12 @@ namespace prompto.runtime.e
 		public void testAddInteger()
 		{
 			CheckOutput("add/addInteger.pec");
+		}
+
+		[Test]
+		public void testAddIntegerEnum()
+		{
+			CheckOutput("add/addIntegerEnum.pec");
 		}
 
 		[Test]
@@ -85,6 +97,12 @@ namespace prompto.runtime.e
 		public void testAddTextDecimal()
 		{
 			CheckOutput("add/addTextDecimal.pec");
+		}
+
+		[Test]
+		public void testAddTextEnum()
+		{
+			CheckOutput("add/addTextEnum.pec");
 		}
 
 		[Test]
