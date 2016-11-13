@@ -26,6 +26,12 @@ namespace prompto.translate.ese
 			compareResourceESE("closures/instanceClosureNoArg.pec");
 		}
 
+		[Test]
+		public void testParameterClosure()
+		{
+			compareResourceESE("closures/parameterClosure.pec");
+		}
+
 	}
 }
 

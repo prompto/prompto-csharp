@@ -39,6 +39,12 @@ namespace prompto.runtime.e
 			CheckOutput("closures/instanceClosureNoArg.pec");
 		}
 
+		[Test]
+		public void testParameterClosure()
+		{
+			CheckOutput("closures/parameterClosure.pec");
+		}
+
 	}
 }
 

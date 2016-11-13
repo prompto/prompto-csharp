@@ -26,6 +26,12 @@ namespace prompto.translate.eoe
 			compareResourceEOE("closures/instanceClosureNoArg.pec");
 		}
 
+		[Test]
+		public void testParameterClosure()
+		{
+			compareResourceEOE("closures/parameterClosure.pec");
+		}
+
 	}
 }
 
