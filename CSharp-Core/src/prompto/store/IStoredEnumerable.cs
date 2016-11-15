@@ -13,6 +13,7 @@ namespace prompto.store
 	{
 
 		long Length { get; }
+		long TotalLength { get; }
 
 	}
 

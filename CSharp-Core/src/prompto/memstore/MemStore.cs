@@ -79,8 +79,9 @@ namespace prompto.memstore
 		{
 			Query q = (Query)query;
 			List<StorableDocument> allDocs = FetchManyDocs(q);
+			long totalCount = allDocs.Count;
 			List<StorableDocument> slicedDocs = Slice(q, allDocs);
-			return new StorableDocumentEnumerable(allDocs, slicedDocs);
+			return new StorableDocumentEnumerable(slicedDocs, totalCount);
 		}
 
 
@@ -199,13 +200,13 @@ namespace prompto.memstore
 
 		class StorableDocumentEnumerable : IStoredEnumerable
 		{
-			List<StorableDocument> allDocs;
 			List<StorableDocument> slicedDocs;
+			long totalCount;
 
-			public StorableDocumentEnumerable(List<StorableDocument> allDocs, List<StorableDocument> slicedDocs)
+			public StorableDocumentEnumerable(List<StorableDocument> slicedDocs, long totalCount)
 			{
-				this.allDocs = allDocs;
 				this.slicedDocs = slicedDocs;
+				this.totalCount = totalCount;
 			}
 
 			public long Length
@@ -216,34 +217,36 @@ namespace prompto.memstore
 			{
 				get
 				{
-					return allDocs.Count;
+					return totalCount;
 				}
 			}
 
 			public IEnumerator<IStored> GetEnumerator()
 			{
-				return new StorableDocumentEnumerator(slicedDocs);
+				return new StorableDocumentEnumerator(slicedDocs, totalCount);
 			}
 
 			IEnumerator IEnumerable.GetEnumerator()
 			{
-				return new StorableDocumentEnumerator(slicedDocs);
+				return new StorableDocumentEnumerator(slicedDocs, totalCount);
 			}
 
 			IStoredEnumerator IStoredEnumerable.GetEnumerator()
 			{
-				return new StorableDocumentEnumerator(slicedDocs);
+				return new StorableDocumentEnumerator(slicedDocs, totalCount);
 			}
 		}
 
 		class StorableDocumentEnumerator : IStoredEnumerator
 		{
 			List<StorableDocument> docs;
+			long totalCount;
 			IEnumerator<StorableDocument> iter;
 
-			public StorableDocumentEnumerator(List<StorableDocument> docs)
+			public StorableDocumentEnumerator(List<StorableDocument> docs, long totalCount)
 			{
 				this.docs = docs;
+				this.totalCount = totalCount;
 				iter = docs.GetEnumerator();
 			}
 
@@ -273,6 +276,14 @@ namespace prompto.memstore
 				get
 				{
 					return docs.Count;
+				}
+			}
+
+			public long TotalLength
+			{
+				get
+				{
+					return totalCount;
 				}
 			}
 

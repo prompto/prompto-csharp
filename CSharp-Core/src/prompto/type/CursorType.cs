@@ -43,6 +43,8 @@ namespace prompto.type
 		{
 			if ("count".Equals (name))
 				return IntegerType.Instance;
+			else if ("totalCount".Equals(name))
+				return IntegerType.Instance;
 			else
 				return base.checkMember (context, name);
 		}

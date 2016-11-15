@@ -14,13 +14,13 @@ namespace prompto.value
 	{
 
 		Context context;
-		IStoredEnumerator documents;
+		IStoredEnumerator enumerator;
 
 		public Cursor (Context context, IType itemType, IStoredEnumerable documents)
 			: base (new CursorType (itemType))
 		{
 			this.context = context;
-			this.documents = documents.GetEnumerator();
+			this.enumerator = documents.GetEnumerator();
 			this.Mutable = itemType is CategoryType ? ((CategoryType)itemType).Mutable : false;
 		}
 
@@ -33,7 +33,12 @@ namespace prompto.value
 
 		public long Length ()
 		{
-			return documents.Length;
+			return enumerator.Length;
+		}
+
+		public long TotalLength()
+		{
+			return enumerator.TotalLength;
 		}
 
 		public IEnumerable<IValue> GetEnumerable (Context context)
@@ -53,7 +58,7 @@ namespace prompto.value
 
 		public bool MoveNext ()
 		{
-			return documents.MoveNext ();
+			return enumerator.MoveNext ();
 		}
 
 		object IEnumerator.Current {
@@ -73,7 +78,7 @@ namespace prompto.value
 		{
 			try 
 			{
-				IStored stored = documents.Current;
+				IStored stored = enumerator.Current;
 				CategoryType type = ReadItemType(stored);
 				return type.newInstance(context, stored);
 			} catch (PromptoError e) {
@@ -110,6 +115,8 @@ namespace prompto.value
 		{
 			if ("count".Equals (name))
 				return new Integer (Length ());
+			else if ("totalCount".Equals(name))
+				return new Integer(TotalLength());
 			else
 				throw new InvalidDataError ("No such member:" + name);
 		}
