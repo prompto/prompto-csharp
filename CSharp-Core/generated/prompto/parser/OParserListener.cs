@@ -1354,16 +1354,6 @@ public interface IOParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitDocument_expression([NotNull] OParser.Document_expressionContext context);
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="OParser.read_expression"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterRead_expression([NotNull] OParser.Read_expressionContext context);
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="OParser.read_expression"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitRead_expression([NotNull] OParser.Read_expressionContext context);
-	/// <summary>
 	/// Enter a parse tree produced by <see cref="OParser.write_statement"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
@@ -3037,6 +3027,26 @@ public interface IOParserListener : IParseTreeListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void ExitIsOtherExpression([NotNull] OParser.IsOtherExpressionContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="OParser.read_all_expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterRead_all_expression([NotNull] OParser.Read_all_expressionContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="OParser.read_all_expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitRead_all_expression([NotNull] OParser.Read_all_expressionContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="OParser.read_one_expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterRead_one_expression([NotNull] OParser.Read_one_expressionContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="OParser.read_one_expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitRead_one_expression([NotNull] OParser.Read_one_expressionContext context);
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="OParser.order_by_list"/>.
 	/// </summary>

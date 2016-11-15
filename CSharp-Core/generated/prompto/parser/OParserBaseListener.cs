@@ -1438,18 +1438,6 @@ public partial class OParserBaseListener : IOParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitDocument_expression([NotNull] OParser.Document_expressionContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="OParser.read_expression"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void EnterRead_expression([NotNull] OParser.Read_expressionContext context) { }
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="OParser.read_expression"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void ExitRead_expression([NotNull] OParser.Read_expressionContext context) { }
-	/// <summary>
 	/// Enter a parse tree produced by <see cref="OParser.write_statement"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
@@ -3249,6 +3237,30 @@ public partial class OParserBaseListener : IOParserListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitIsOtherExpression([NotNull] OParser.IsOtherExpressionContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="OParser.read_all_expression"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterRead_all_expression([NotNull] OParser.Read_all_expressionContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="OParser.read_all_expression"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitRead_all_expression([NotNull] OParser.Read_all_expressionContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="OParser.read_one_expression"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterRead_one_expression([NotNull] OParser.Read_one_expressionContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="OParser.read_one_expression"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitRead_one_expression([NotNull] OParser.Read_one_expressionContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="OParser.order_by_list"/>.
 	/// <para>The default implementation does nothing.</para>

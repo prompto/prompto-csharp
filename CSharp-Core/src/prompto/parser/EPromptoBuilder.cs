@@ -2444,20 +2444,33 @@ namespace prompto.parser
 		}
 
 		
-		public override void ExitRead_expression (EParser.Read_expressionContext ctx)
+		public override void ExitRead_all_expression (EParser.Read_all_expressionContext ctx)
 		{
 			IExpression source = this.GetNodeValue<IExpression> (ctx.source);
-			SetNodeValue (ctx, new ReadExpression (source));
+			SetNodeValue (ctx, new ReadAllExpression (source));
 		}
 
 		
-		public override void ExitReadExpression (EParser.ReadExpressionContext ctx)
+		public override void ExitRead_one_expression(EParser.Read_one_expressionContext ctx)
+		{
+			IExpression source = this.GetNodeValue<IExpression>(ctx.source);
+			SetNodeValue(ctx, new ReadOneExpression(source));
+		}
+
+
+		public override void ExitReadAllExpression (EParser.ReadAllExpressionContext ctx)
 		{
 			IExpression exp = this.GetNodeValue<IExpression> (ctx.exp);
 			SetNodeValue (ctx, exp);
 		}
 
-		
+
+		public override void ExitReadOneExpression(EParser.ReadOneExpressionContext ctx)
+		{
+			IExpression exp = this.GetNodeValue<IExpression>(ctx.exp);
+			SetNodeValue(ctx, exp);
+		}
+
 		public override void ExitWrite_statement (EParser.Write_statementContext ctx)
 		{
 			IExpression what = this.GetNodeValue<IExpression> (ctx.what);

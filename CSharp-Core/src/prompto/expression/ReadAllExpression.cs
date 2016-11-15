@@ -10,12 +10,12 @@ using prompto.utils;
 namespace prompto.expression
 {
 
-    public class ReadExpression : IExpression
+    public class ReadAllExpression : IExpression
     {
 
         IExpression resource;
 
-        public ReadExpression(IExpression resource)
+        public ReadAllExpression(IExpression resource)
         {
             this.resource = resource;
         }
@@ -23,13 +23,13 @@ namespace prompto.expression
 
         public void ToDialect(CodeWriter writer)
         {
-			writer.append("read from ");
+			writer.append("read all from ");
 			resource.ToDialect(writer);
         }
 
         public IType check(Context context)
         {
-			context = context is ResourceContext ? context : context.newResourceContext();
+			context = context.newResourceContext();
 			IType sourceType = resource.check(context);
             if (!(sourceType is ResourceType))
                 throw new SyntaxError("Not a readable resource!");
@@ -38,8 +38,8 @@ namespace prompto.expression
 
 		public IValue interpret(Context context)
         {
-			Context resContext = context is ResourceContext ? context : context.newResourceContext();
-			IValue o = resource.interpret(resContext);
+			context = context.newResourceContext();
+			IValue o = resource.interpret(context);
             if (o == null)
                 throw new NullReferenceError();
             if (!(o is IResource))
@@ -48,13 +48,9 @@ namespace prompto.expression
             if (!res.isReadable())
                 throw new InvalidResourceError("Not readable");
 			try {
-				if (context == resContext)
-					return new Text(res.readLine());
-				else
-					return new Text (res.readFully());
+				return new Text (res.readFully());
 			} finally {
-				if (resContext != context)
-					res.close ();
+				res.close ();
 			}
         }
     }

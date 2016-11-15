@@ -2141,10 +2141,16 @@ namespace prompto.parser
 			SetNodeValue (ctx, new EnumeratedCategoryDeclaration (name, attrs, derived, symbols));
 		}
 
-		public override void ExitRead_expression (OParser.Read_expressionContext ctx)
+		public override void ExitRead_all_expression (OParser.Read_all_expressionContext ctx)
 		{
 			IExpression source = this.GetNodeValue<IExpression> (ctx.source);
-			SetNodeValue (ctx, new ReadExpression (source));
+			SetNodeValue (ctx, new ReadAllExpression (source));
+		}
+
+		public override void ExitRead_one_expression(OParser.Read_one_expressionContext ctx)
+		{
+			IExpression source = this.GetNodeValue<IExpression>(ctx.source);
+			SetNodeValue(ctx, new ReadOneExpression(source));
 		}
 
 		public override void ExitWrite_statement (OParser.Write_statementContext ctx)
