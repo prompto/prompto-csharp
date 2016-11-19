@@ -46,6 +46,12 @@ namespace prompto.runtime.o
 		}
 
 		[Test]
+		public void testExplicit()
+		{
+			CheckOutput("methods/explicit.poc");
+		}
+
+		[Test]
 		public void testExpressionWith()
 		{
 			CheckOutput("methods/expressionWith.poc");

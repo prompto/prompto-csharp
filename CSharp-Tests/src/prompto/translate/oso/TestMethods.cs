@@ -33,6 +33,12 @@ namespace prompto.translate.oso
 		}
 
 		[Test]
+		public void testExplicit()
+		{
+			compareResourceOSO("methods/explicit.poc");
+		}
+
+		[Test]
 		public void testExpressionWith()
 		{
 			compareResourceOSO("methods/expressionWith.poc");
