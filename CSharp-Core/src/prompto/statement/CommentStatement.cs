@@ -52,7 +52,7 @@ namespace prompto.statement
 					writer.newLine ();
 				}
 				break;
-			case Dialect.S:	
+			case Dialect.M:	
 				foreach (String line in lines) {
 					writer.append ("#");
 					writer.append (line);

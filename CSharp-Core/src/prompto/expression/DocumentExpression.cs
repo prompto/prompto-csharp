@@ -111,7 +111,7 @@ namespace prompto.expression
 				}
 				break;
 			case Dialect.O:
-			case Dialect.S:
+			case Dialect.M:
 				writer.append('(');
 				if(source!=null)
 					source.ToDialect(writer);

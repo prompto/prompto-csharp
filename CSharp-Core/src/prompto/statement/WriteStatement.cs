@@ -29,7 +29,7 @@ namespace prompto.statement
 			writer.append("write ");
 			switch(writer.getDialect()) {
 			case Dialect.E:
-			case Dialect.S:
+			case Dialect.M:
 				content.ToDialect(writer);
 				break;
 			case Dialect.O:

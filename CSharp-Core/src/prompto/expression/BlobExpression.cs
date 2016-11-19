@@ -36,7 +36,7 @@ namespace prompto.expression
 				source.ToDialect(writer);
 				break;
 			case Dialect.O:
-			case Dialect.S:
+			case Dialect.M:
 				writer.append('(');
 				source.ToDialect(writer);
 				writer.append(')');

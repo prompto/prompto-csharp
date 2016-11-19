@@ -35,18 +35,18 @@ namespace prompto.expression
         {
 			switch(writer.getDialect()) {
 			case Dialect.E:
-				toEDialect(writer);
+				ToEDialect(writer);
 				break;
 			case Dialect.O:
-				toODialect(writer);
+				ToODialect(writer);
 				break;
-			case Dialect.S:
+			case Dialect.M:
 				toPDialect(writer);
 				break;
 			}
 		}
 
-		private void toEDialect(CodeWriter writer) {
+		private void ToEDialect(CodeWriter writer) {
 			writer.append("sorted ");
 			if(descending)
 				writer.append("descending ");
@@ -67,7 +67,7 @@ namespace prompto.expression
 			}
 		}	
 
-		private void toODialect(CodeWriter writer) {
+		private void ToODialect(CodeWriter writer) {
 			writer.append("sorted ");
 			if (descending)
 				writer.append("desc ");
@@ -81,7 +81,7 @@ namespace prompto.expression
 		}
 
 		private void toPDialect(CodeWriter writer) {
-			toODialect(writer);
+			ToODialect(writer);
 		}
 
         public IType check(Context context)

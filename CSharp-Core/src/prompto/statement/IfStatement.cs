@@ -36,12 +36,12 @@ namespace prompto.statement
         {
 			switch(writer.getDialect()) {
 			case Dialect.E:
-				toEDialect(writer);
+				ToEDialect(writer);
 				break;
 			case Dialect.O:
-				toODialect(writer);
+				ToODialect(writer);
 				break;
-			case Dialect.S:
+			case Dialect.M:
 				toPDialect(writer);
 				break;
 			}
@@ -60,7 +60,7 @@ namespace prompto.statement
 		}
 
 
-		private void toODialect(CodeWriter writer) {
+		private void ToODialect(CodeWriter writer) {
 			bool first = true;
 			bool curly = false;
 			foreach(IfElement elem in elements) {
@@ -77,7 +77,7 @@ namespace prompto.statement
 		}
 
 
-		private void toEDialect(CodeWriter writer) {
+		private void ToEDialect(CodeWriter writer) {
 			bool first = true;
 			foreach(IfElement elem in elements) {
 				if(!first)
@@ -136,22 +136,22 @@ namespace prompto.statement
         {
 			switch(writer.getDialect()) {
 			case Dialect.E:
-				toEDialect(writer);
+				ToEDialect(writer);
 				break;
 			case Dialect.O:
-				toODialect(writer);
+				ToODialect(writer);
 				break;
-			case Dialect.S:
+			case Dialect.M:
 				toPDialect(writer);
 				break;
 			}
 		}
 
 		public void toPDialect(CodeWriter writer) {
-			toEDialect(writer);
+			ToEDialect(writer);
 		}
 
-		public void toEDialect(CodeWriter writer) {
+		public void ToEDialect(CodeWriter writer) {
 			if(condition!=null) {
 				writer.append("if ");
 				condition.ToDialect(writer);
@@ -162,7 +162,7 @@ namespace prompto.statement
 			writer.dedent();	
 		}
 
-		public void toODialect(CodeWriter writer) {
+		public void ToODialect(CodeWriter writer) {
 			if(condition!=null)
 			{
 				writer.append("if (");

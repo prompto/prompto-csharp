@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using prompto.grammar;
 using prompto.utils;
 
@@ -22,7 +22,7 @@ namespace prompto.declaration
 			writer.append ("singleton");
 		}
 
-		protected override void categoryTypeToSDialect (CodeWriter writer)
+		protected override void categoryTypeToMDialect (CodeWriter writer)
 		{
 			writer.append ("singleton");
 		}

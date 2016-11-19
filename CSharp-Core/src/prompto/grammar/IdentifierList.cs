@@ -27,19 +27,19 @@ namespace prompto.grammar {
     {
 			switch(writer.getDialect()) {
 			case Dialect.E:
-				toEDialect(writer, finalAnd);
+				ToEDialect(writer, finalAnd);
 				break;
 			case Dialect.O:
-				toODialect(writer);
+				ToODialect(writer);
 				break;
-			case Dialect.S:
+			case Dialect.M:
 				toPDialect(writer);
 				break;
 			}
 
 		}
 
-		private void toEDialect(CodeWriter writer, bool finalAnd) {
+		private void ToEDialect(CodeWriter writer, bool finalAnd) {
 			switch(this.Count) {
 			case 0:
 				return;
@@ -63,7 +63,7 @@ namespace prompto.grammar {
 			}
 		}
 
-		private void toODialect(CodeWriter writer) {
+		private void ToODialect(CodeWriter writer) {
 			if(this.Count>0) {
 				foreach(String s in this) {
 					writer.append(s);
@@ -74,7 +74,7 @@ namespace prompto.grammar {
 		}
 
 		private void toPDialect(CodeWriter writer) {
-			toODialect(writer);
+			ToODialect(writer);
 		}
 }
 

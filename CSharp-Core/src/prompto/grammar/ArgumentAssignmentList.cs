@@ -81,18 +81,18 @@ namespace prompto.grammar
 		public void ToDialect(CodeWriter writer) {
 			switch(writer.getDialect()) {
 			case Dialect.E:
-				toEDialect(writer);
+				ToEDialect(writer);
 				break;
 			case Dialect.O:
-				toODialect(writer);
+				ToODialect(writer);
 				break;
-			case Dialect.S:
+			case Dialect.M:
 				toPDialect(writer);
 				break;
 			}
 		}
 
-		private void toEDialect(CodeWriter writer) {
+		private void ToEDialect(CodeWriter writer) {
 			int idx = 0;
 			// anonymous argument before 'with'
 			if(this.Count>0 && this[0].getArgument()==null) {
@@ -115,7 +115,7 @@ namespace prompto.grammar
 			}
 		}
 
-		private void toODialect(CodeWriter writer) {
+		private void ToODialect(CodeWriter writer) {
 			writer.append("(");
 			foreach(ArgumentAssignment as_ in this) {
 				as_.ToDialect(writer);

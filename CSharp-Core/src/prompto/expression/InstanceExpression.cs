@@ -75,7 +75,7 @@ namespace prompto.expression
 				decls.MoveNext();
 				return new MethodType(decls.Current);
 			} else
-                throw new SyntaxError(name + "  is not an instance:" + named.GetType().Name);
+                throw new SyntaxError(name + "  is not a value or method:" + named.GetType().Name);
         }
 
         public IValue interpret(Context context)

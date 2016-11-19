@@ -53,7 +53,7 @@ namespace prompto.expression
 				case Dialect.E:
 					return " = ";
 				case Dialect.O:
-				case Dialect.S:
+				case Dialect.M:
 					return " == ";
 				default:
 					throw new Exception ("Unimplemented!");
@@ -63,7 +63,7 @@ namespace prompto.expression
 				case Dialect.E:
 					return " <> ";
 				case Dialect.O:
-				case Dialect.S:
+				case Dialect.M:
 					return " != ";
 				default:
 					throw new Exception ("Unimplemented!");
@@ -73,7 +73,7 @@ namespace prompto.expression
 				case Dialect.E:
 					return " ~ ";
 				case Dialect.O:
-				case Dialect.S:
+				case Dialect.M:
 					return " ~= ";
 				default:
 					throw new Exception ("Unimplemented!");

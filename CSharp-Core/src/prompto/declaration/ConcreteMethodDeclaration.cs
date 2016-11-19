@@ -35,18 +35,18 @@ namespace prompto.declaration
 				writer = writer.newLocalWriter();
 			switch(writer.getDialect()) {
 			case Dialect.E:
-				toEDialect(writer);
+				ToEDialect(writer);
 				break;
 			case Dialect.O:
-				toODialect(writer);
+				ToODialect(writer);
 				break;
-			case Dialect.S:
-				toSDialect(writer);
+			case Dialect.M:
+				ToMDialect(writer);
 				break;
 			}
 		}
 
-		protected virtual void toSDialect(CodeWriter writer) {
+		protected virtual void ToMDialect(CodeWriter writer) {
 			writer.append("def ");
 			writer.append(name);
 			writer.append(" (");
@@ -62,7 +62,7 @@ namespace prompto.declaration
 			writer.dedent();
 		}
 
-		protected virtual void toEDialect(CodeWriter writer) {
+		protected virtual void ToEDialect(CodeWriter writer) {
 			writer.append("define ");
 			writer.append(name);
 			writer.append(" as method ");
@@ -78,7 +78,7 @@ namespace prompto.declaration
 			writer.dedent();
 		}
 
-		protected virtual void toODialect(CodeWriter writer) {
+		protected virtual void ToODialect(CodeWriter writer) {
 			if(returnType!=null && returnType!=VoidType.Instance) {
 				returnType.ToDialect(writer);
 				writer.append(" ");

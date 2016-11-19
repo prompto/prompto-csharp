@@ -1,4 +1,4 @@
-﻿using prompto.statement;
+using prompto.statement;
 using prompto.utils;
 using prompto.expression;
 using System;
@@ -118,12 +118,12 @@ namespace prompto.declaration
 				writer = writer.newLocalWriter ();
 			switch (writer.getDialect ()) {
 			case Dialect.E:
-				toEDialect (writer);
+				ToEDialect (writer);
 				break;
 			case Dialect.O:
-				toODialect (writer);
+				ToODialect (writer);
 				break;
-			case Dialect.S:
+			case Dialect.M:
 				toPDialect (writer);
 				break;
 			}
@@ -153,7 +153,7 @@ namespace prompto.declaration
 			}
 		}
 
-		protected void toEDialect (CodeWriter writer)
+		protected void ToEDialect (CodeWriter writer)
 		{
 			writer.append ("define ");
 			writer.append (name);
@@ -177,7 +177,7 @@ namespace prompto.declaration
 			}
 		}
 
-		protected void toODialect (CodeWriter writer)
+		protected void ToODialect (CodeWriter writer)
 		{
 			writer.append ("test method ");
 			writer.append (name);

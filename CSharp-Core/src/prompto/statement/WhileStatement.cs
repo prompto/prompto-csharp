@@ -28,22 +28,22 @@ namespace prompto.statement
         {
 			switch(writer.getDialect()) {
 			case Dialect.E:
-				toEDialect(writer);
+				ToEDialect(writer);
 				break;
 			case Dialect.O:
-				toODialect(writer);
+				ToODialect(writer);
 				break;
-			case Dialect.S:
+			case Dialect.M:
 				toPDialect(writer);
 				break;
 			}
 		}
 
 		private void toPDialect(CodeWriter writer) {
-			toEDialect(writer);
+			ToEDialect(writer);
 		}
 
-		private void toEDialect(CodeWriter writer) {
+		private void ToEDialect(CodeWriter writer) {
 			writer.append("while ");
 			condition.ToDialect(writer);
 			writer.append(" :\n");
@@ -52,7 +52,7 @@ namespace prompto.statement
 			writer.dedent();
 		}
 
-		private void toODialect(CodeWriter writer) {
+		private void ToODialect(CodeWriter writer) {
 			writer.append("while (");
 			condition.ToDialect(writer);
 			writer.append(") {\n");

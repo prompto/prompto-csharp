@@ -47,7 +47,7 @@ namespace prompto.expression {
 		public void ToDialect(CodeWriter writer) {
 			switch(writer.getDialect()) {
 			case Dialect.E:
-			case Dialect.S:
+			case Dialect.M:
 				expression.ToDialect(writer);
 				writer.append(" as ");
 				type.ToDialect(writer);

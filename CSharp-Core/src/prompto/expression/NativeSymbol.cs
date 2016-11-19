@@ -58,7 +58,7 @@ namespace prompto.expression
 				writer.append(" = ");
 				expression.ToDialect(writer);
 				break;
-			case Dialect.S:
+			case Dialect.M:
 				writer.append(" = ");
 				expression.ToDialect(writer);
 				break;

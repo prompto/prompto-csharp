@@ -1,4 +1,4 @@
-﻿using prompto.type;
+using prompto.type;
 using prompto.runtime;
 using prompto.value;
 using prompto.utils;
@@ -39,18 +39,18 @@ namespace prompto.statement
 		{
 			switch (writer.getDialect ()) {
 			case Dialect.E:
-				toEDialect (writer);
+				ToEDialect (writer);
 				break;
 			case Dialect.O:
-				toODialect (writer);
+				ToODialect (writer);
 				break;
-			case Dialect.S:
+			case Dialect.M:
 				toPDialect (writer);
 				break;
 			}
 		}
 
-		private void toEDialect (CodeWriter writer)
+		private void ToEDialect (CodeWriter writer)
 		{
 			writer.append ("with ");
 			type.ToDialect (writer);
@@ -60,7 +60,7 @@ namespace prompto.statement
 			writer.dedent ();
 		}
 
-		private void toODialect (CodeWriter writer)
+		private void ToODialect (CodeWriter writer)
 		{
 			writer.append ("with (");
 			type.ToDialect (writer);

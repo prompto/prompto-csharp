@@ -69,7 +69,7 @@ namespace prompto.declaration
         }
 
 		override
-		protected void toODialect(CodeWriter writer) {
+		protected void ToODialect(CodeWriter writer) {
 			writer.append("enumerated category ");
 			writer.append(name);
 			if(attributes!=null) {
@@ -92,7 +92,7 @@ namespace prompto.declaration
 		}
 
 		override
-		protected void toEDialect(CodeWriter writer) {
+		protected void ToEDialect(CodeWriter writer) {
 			writer.append("define ");
 			writer.append(name);
 			writer.append(" as enumerated ");
@@ -120,7 +120,7 @@ namespace prompto.declaration
 		}
 
 
-		protected override void toSDialect(CodeWriter writer) {
+		protected override void ToMDialect(CodeWriter writer) {
 			writer.append("enum ");
 			writer.append(name);
 			writer.append("(");

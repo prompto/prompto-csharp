@@ -30,7 +30,7 @@ namespace prompto.expression
 			switch (writer.getDialect())
 			{
 				case Dialect.E:
-				case Dialect.S:
+				case Dialect.M:
 					writer.append("fetch one ");
 					if (type != null)
 					{

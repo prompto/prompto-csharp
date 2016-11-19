@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using prompto.expression;
 using prompto.type;
 using prompto.runtime;
@@ -53,12 +53,12 @@ public class IteratorExpression : IExpression {
 		public void ToDialect(CodeWriter writer) {
 		switch(writer.getDialect()) {
 		case Dialect.E:
-			toEDialect(writer);
+			ToEDialect(writer);
 			break;
 			case Dialect.O:
-			toODialect(writer);
+			ToODialect(writer);
 			break;
-			case Dialect.S:
+			case Dialect.M:
 			toPDialect(writer);
 			break;
 		}
@@ -72,7 +72,7 @@ public class IteratorExpression : IExpression {
 			source.ToDialect(writer);
 	}
 
-	private void toODialect(CodeWriter writer) {
+	private void ToODialect(CodeWriter writer) {
 			expression.ToDialect(writer);
 		writer.append(" for each ( ");
 			writer.append(name.ToString());
@@ -81,7 +81,7 @@ public class IteratorExpression : IExpression {
 		writer.append(" )");
 	}
 
-	private void toEDialect(CodeWriter writer) {
+	private void ToEDialect(CodeWriter writer) {
 			expression.ToDialect(writer);
 		writer.append(" for each ");
 			writer.append(name.ToString());

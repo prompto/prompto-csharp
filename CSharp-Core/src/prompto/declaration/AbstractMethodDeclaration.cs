@@ -47,12 +47,12 @@ namespace prompto.declaration
 		public void ToDialect(CodeWriter writer) {
 			switch(writer.getDialect()) {
 			case Dialect.E:
-				toEDialect(writer);
+				ToEDialect(writer);
 				break;
 			case Dialect.O:
-				toODialect(writer);
+				ToODialect(writer);
 				break;
-			case Dialect.S:
+			case Dialect.M:
 				toPDialect(writer);
 				break;
 			}
@@ -70,7 +70,7 @@ namespace prompto.declaration
 			}
 		}
 
-		protected void toEDialect(CodeWriter writer) {
+		protected void ToEDialect(CodeWriter writer) {
 			writer.append("define ");
 			writer.append(name);
 			writer.append(" as abstract method ");
@@ -81,7 +81,7 @@ namespace prompto.declaration
 			}
 		}
 
-		protected void toODialect(CodeWriter writer) {
+		protected void ToODialect(CodeWriter writer) {
 			writer.append("abstract ");
 			if(returnType!=null && returnType!=VoidType.Instance) {
 				returnType.ToDialect(writer);

@@ -52,18 +52,18 @@ namespace prompto.grammar {
 		public void ToDialect(CodeWriter writer) {
 			switch(writer.getDialect()) {
 			case Dialect.E:
-				toEDialect(writer);
+				ToEDialect(writer);
 				break;
 			case Dialect.O:
-				toODialect(writer);
+				ToODialect(writer);
 				break;
-			case Dialect.S:
+			case Dialect.M:
 				toPDialect(writer);
 				break;
 			}
 		}
 
-		private void toODialect(CodeWriter writer) {
+		private void ToODialect(CodeWriter writer) {
 			if(argument!=null) {
 				writer.append(argument.GetName());
 				writer.append(" = ");
@@ -79,7 +79,7 @@ namespace prompto.grammar {
 			expression.ToDialect(writer);
 		}
 
-		private void toEDialect(CodeWriter writer) {
+		private void ToEDialect(CodeWriter writer) {
 			expression.ToDialect(writer);
 			if(argument!=null) {
 				writer.append(" as ");

@@ -42,7 +42,7 @@ namespace prompto.literal
 			case Dialect.O:
 				writer.append ("null");
 				break;
-			case Dialect.S:
+			case Dialect.M:
 				writer.append ("None");
 				break;
 			}

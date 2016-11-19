@@ -85,7 +85,7 @@ namespace prompto.declaration
 				}
 				writer.append(';');
 				break;
-			case Dialect.S:
+			case Dialect.M:
 				if(this.Storable)
 					writer.append("storable ");
 				writer.append("attr ");

@@ -1,4 +1,4 @@
-﻿using prompto.parser;
+using prompto.parser;
 using prompto.type;
 using prompto.runtime;
 using prompto.declaration;
@@ -40,13 +40,13 @@ namespace prompto.expression
 				case Dialect.O:
 					ToODialect(writer);
 					break;
-				case Dialect.S:
-					ToSDialect(writer);
+				case Dialect.M:
+					ToMDialect(writer);
 					break;
 			}
 		}
 
-		private void ToSDialect(CodeWriter writer)
+		private void ToMDialect(CodeWriter writer)
 		{
 			writer.append("fetch ");
 			if (first != null)

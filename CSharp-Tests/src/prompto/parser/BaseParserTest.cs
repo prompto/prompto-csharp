@@ -80,10 +80,10 @@ namespace prompto.parser
 			return parser.parse_declaration_list ();
 		}
 
-		public DeclarationList parsePString (String code)
+		public DeclarationList parseMString (String code)
 		{
 			context = Context.newGlobalContext ();
-			SCleverParser parser = new SCleverParser (code);
+			MCleverParser parser = new MCleverParser (code);
 			parser.ErrorHandler = new FatalErrorStrategy ();
 			return parser.parse_declaration_list ();
 		}
@@ -120,12 +120,12 @@ namespace prompto.parser
 			}
 		}
 
-		public DeclarationList parseSResource (String resourceName)
+		public DeclarationList parseMResource (String resourceName)
 		{
 			context = Context.newGlobalContext ();
 			Stream input = OpenResource (resourceName);
 			try {
-				SCleverParser parser = new SCleverParser (input);
+				MCleverParser parser = new MCleverParser (input);
 				return parser.parse_declaration_list ();
 			} finally {
 				input.Close ();
@@ -250,7 +250,7 @@ namespace prompto.parser
 			assertEquivalent(expected, actual);
 		}
 
-		public void compareResourceESE(String resourceName) {
+		public void compareResourceEME(String resourceName) {
 			String expected = getResourceAsString(resourceName);
 			// Console.WriteLine(expected);
 			// parse e source code
@@ -258,12 +258,12 @@ namespace prompto.parser
 			context = Context.newGlobalContext();
 			dle.register(context);
 			// rewrite as p
-			CodeWriter writer = new CodeWriter(Dialect.S, context);
+			CodeWriter writer = new CodeWriter(Dialect.M, context);
 			dle.ToDialect(writer);
-			String p = writer.ToString();
+			String m = writer.ToString();
 			// Console.WriteLine(p);
-			// parse p source code
-			DeclarationList dlp = parsePString(p);
+			// parse m source code
+			DeclarationList dlp = parseMString(m);
 			context = Context.newGlobalContext();
 			dlp.register(context);
 			// rewrite as e
@@ -300,7 +300,7 @@ namespace prompto.parser
 			assertEquivalent(expected, actual);
 		}
 
-		public void compareResourceOSO(String resourceName) {
+		public void compareResourceOMO(String resourceName) {
 			String expected = getResourceAsString(resourceName);
 			// Console.WriteLine(expected);
 			// parse o source code
@@ -308,12 +308,12 @@ namespace prompto.parser
 			context = Context.newGlobalContext();
 			dlo.register(context);
 			// rewrite as p
-			CodeWriter writer = new CodeWriter(Dialect.S, context);
+			CodeWriter writer = new CodeWriter(Dialect.M, context);
 			dlo.ToDialect(writer);
-			String p = writer.ToString();
+			String m = writer.ToString();
 			// Console.WriteLine(p);
-			// parse p source code
-			DeclarationList dlp = parsePString(p);
+			// parse m source code
+			DeclarationList dlp = parseMString(m);
 			context = Context.newGlobalContext();
 			dlp.register(context);
 			// rewrite as o

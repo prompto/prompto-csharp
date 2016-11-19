@@ -39,7 +39,7 @@ namespace prompto.expression
 		private String operatorToDialect(Dialect dialect) {
 			switch(dialect) {
 				case Dialect.E:
-				case Dialect.S:
+				case Dialect.M:
 					return "not ";
 				case Dialect.O:
 					return "!";

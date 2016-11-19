@@ -47,12 +47,12 @@ namespace prompto.argument
 				writer.append("mutable ");
 			switch(writer.getDialect()) {
 			case Dialect.E:
-				toEDialect(writer);
+				ToEDialect(writer);
 				break;
 			case Dialect.O:
-				toODialect(writer);
+				ToODialect(writer);
 				break;
-			case Dialect.S:
+			case Dialect.M:
 				toPDialect(writer);
 				break;
 			}
@@ -62,7 +62,7 @@ namespace prompto.argument
 			}
 		}
 
-		protected virtual void toEDialect(CodeWriter writer) {
+		protected virtual void ToEDialect(CodeWriter writer) {
 			bool anonymous = "any"==type.GetTypeName();
 			type.ToDialect(writer);
 			if(anonymous) {
@@ -75,7 +75,7 @@ namespace prompto.argument
 			}
 		}
 
-		protected virtual void toODialect(CodeWriter writer) {
+		protected virtual void ToODialect(CodeWriter writer) {
 			type.ToDialect(writer);
 			writer.append(' ');
 			writer.append(name);

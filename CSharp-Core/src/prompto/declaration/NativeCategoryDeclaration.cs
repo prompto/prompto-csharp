@@ -39,7 +39,7 @@ namespace prompto.declaration
 				context.registerNativeBinding (type, this);
 		}
 
-		protected override void toEDialect (CodeWriter writer)
+		protected override void ToEDialect (CodeWriter writer)
 		{
 			protoToEDialect (writer, false, true);
 			bindingsToEDialect (writer);
@@ -68,10 +68,10 @@ namespace prompto.declaration
 			writer.newLine ();
 		}
 
-		protected override void toODialect (CodeWriter writer)
+		protected override void ToODialect (CodeWriter writer)
 		{
 			bool hasBody = true; // always one
-			toODialect (writer, hasBody); 
+			ToODialect (writer, hasBody); 
 		}
 
 		protected override void categoryTypeToODialect (CodeWriter writer)
@@ -91,9 +91,9 @@ namespace prompto.declaration
 			}
 		}
 
-		protected override void toSDialect (CodeWriter writer)
+		protected override void ToMDialect (CodeWriter writer)
 		{
-			protoToSDialect (writer, null);
+			protoToMDialect (writer, null);
 			writer.indent ();
 			writer.newLine ();
 			categoryBindings.ToDialect (writer);
@@ -109,7 +109,7 @@ namespace prompto.declaration
 			writer.newLine ();
 		}
 
-		protected override void categoryTypeToSDialect (CodeWriter writer)
+		protected override void categoryTypeToMDialect (CodeWriter writer)
 		{
 			writer.append ("native category");
 		}

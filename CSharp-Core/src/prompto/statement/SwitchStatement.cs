@@ -27,7 +27,7 @@ namespace prompto.statement
         }
 
 		override
-		protected void toODialect(CodeWriter writer) {
+		protected void ToODialect(CodeWriter writer) {
 			writer.append("switch(");
 			expression.ToDialect(writer);
 			writer.append(") {\n");
@@ -43,7 +43,7 @@ namespace prompto.statement
 		}
 
 		override
-		protected void toEDialect(CodeWriter writer) {
+		protected void ToEDialect(CodeWriter writer) {
 			writer.append("switch on ");
 			expression.ToDialect(writer);
 			writer.append(":\n");
@@ -61,7 +61,7 @@ namespace prompto.statement
 
 		override
 		protected void toPDialect(CodeWriter writer) {
-			toEDialect(writer);
+			ToEDialect(writer);
 		}
         override
         protected IType checkSwitchType(Context context)

@@ -61,22 +61,22 @@ namespace prompto.expression
         {
 			switch(writer.getDialect()) {
 			case Dialect.E:
-				toEDialect(writer);
+				ToEDialect(writer);
 				break;
 			case Dialect.O:
-				toODialect(writer);
+				ToODialect(writer);
 				break;
-			case Dialect.S:
+			case Dialect.M:
 				toPDialect(writer);
 				break;
 			}
 		}
 
 		private void toPDialect(CodeWriter writer) {
-			toODialect(writer);
+			ToODialect(writer);
 		}
 
-		private void toODialect(CodeWriter writer) {
+		private void ToODialect(CodeWriter writer) {
 			type.ToDialect (writer);
 			ArgumentAssignmentList assignments = new ArgumentAssignmentList();
 			if (copyFrom != null)
@@ -86,7 +86,7 @@ namespace prompto.expression
 			assignments.ToDialect(writer);
 		}
 
-		private void toEDialect(CodeWriter writer) {
+		private void ToEDialect(CodeWriter writer) {
 			type.ToDialect (writer);
 			if (copyFrom != null) {
 				writer.append(" from ");

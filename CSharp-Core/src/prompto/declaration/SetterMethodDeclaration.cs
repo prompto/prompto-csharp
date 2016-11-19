@@ -19,7 +19,7 @@ namespace prompto.declaration
         {
         }
 
-		protected override void toODialect(CodeWriter writer) {
+		protected override void ToODialect(CodeWriter writer) {
 			writer.append("setter ");
 			writer.append(name);
 			writer.append(" {\n");
@@ -29,7 +29,7 @@ namespace prompto.declaration
 			writer.append("}\n");
 		}
 
-		protected override void toEDialect(CodeWriter writer) {
+		protected override void ToEDialect(CodeWriter writer) {
 			writer.append("define ");
 			writer.append(name);
 			writer.append(" as setter doing:\n");
@@ -38,7 +38,7 @@ namespace prompto.declaration
 			writer.dedent();
 		}	
 
-		protected override void toSDialect(CodeWriter writer) {
+		protected override void ToMDialect(CodeWriter writer) {
 			writer.append("def ");
 			writer.append(name);
 			writer.append(" setter():\n");

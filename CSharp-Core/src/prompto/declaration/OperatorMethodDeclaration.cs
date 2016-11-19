@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using prompto.grammar;
 using prompto.type;
 using prompto.expression;
@@ -21,7 +21,7 @@ namespace prompto.declaration
 		}
 
 
-		protected override void toSDialect(CodeWriter writer) {
+		protected override void ToMDialect(CodeWriter writer) {
 			writer.append("def operator ");
 			writer.append(Enums.OperatorToString(oper));
 			writer.append(" (");
@@ -37,7 +37,7 @@ namespace prompto.declaration
 			writer.dedent();
 		}
 
-		protected override void toEDialect(CodeWriter writer) {
+		protected override void ToEDialect(CodeWriter writer) {
 			writer.append("define ");
 			writer.append(Enums.OperatorToString(oper));
 			writer.append(" as operator ");
@@ -53,7 +53,7 @@ namespace prompto.declaration
 			writer.dedent();
 		}
 
-		protected override void toODialect(CodeWriter writer) {
+		protected override void ToODialect(CodeWriter writer) {
 			if(returnType!=null && returnType!=VoidType.Instance) {
 				returnType.ToDialect(writer);
 				writer.append(" ");

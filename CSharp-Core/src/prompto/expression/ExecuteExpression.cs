@@ -33,7 +33,7 @@ namespace prompto.expression
 				writer.append(name);
 				break;
 			case Dialect.O:
-			case Dialect.S:
+			case Dialect.M:
 				writer.append("execute(");
 				writer.append(name);
 				writer.append(")");

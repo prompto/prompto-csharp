@@ -61,7 +61,7 @@ namespace prompto.declaration
         }
 
 
-		protected override void toSDialect(CodeWriter writer) {
+		protected override void ToMDialect(CodeWriter writer) {
 			writer.append("def native ");
 			writer.append(name);
 			writer.append(" (");
@@ -78,7 +78,7 @@ namespace prompto.declaration
 		}
 
 
-		protected override void toODialect(CodeWriter writer) {
+		protected override void ToODialect(CodeWriter writer) {
 			if(returnType!=null  && returnType!=VoidType.Instance) {
 				returnType.ToDialect(writer);
 				writer.append(" ");
@@ -98,7 +98,7 @@ namespace prompto.declaration
 		}
 
 		override
-		protected void toEDialect(CodeWriter writer) {
+		protected void ToEDialect(CodeWriter writer) {
 			writer.append("define ");
 			writer.append(name);
 			writer.append(" as native method ");

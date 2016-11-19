@@ -50,7 +50,7 @@ namespace prompto.declaration
 			writer.append ("native resource");
 		}
 
-		protected override void categoryTypeToSDialect (CodeWriter writer)
+		protected override void categoryTypeToMDialect (CodeWriter writer)
 		{
 			writer.append ("native resource");
 		}

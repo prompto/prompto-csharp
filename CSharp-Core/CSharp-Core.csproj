@@ -54,10 +54,10 @@
     <Compile Include="generated\prompto\parser\OParser.cs" />
     <Compile Include="generated\prompto\parser\OParserBaseListener.cs" />
     <Compile Include="generated\prompto\parser\OParserListener.cs" />
-    <Compile Include="generated\prompto\parser\SLexer.cs" />
-    <Compile Include="generated\prompto\parser\SParser.cs" />
-    <Compile Include="generated\prompto\parser\SParserBaseListener.cs" />
-    <Compile Include="generated\prompto\parser\SParserListener.cs" />
+    <Compile Include="generated\prompto\parser\MLexer.cs" />
+    <Compile Include="generated\prompto\parser\MParser.cs" />
+    <Compile Include="generated\prompto\parser\MParserBaseListener.cs" />
+    <Compile Include="generated\prompto\parser\MParserListener.cs" />
     <Compile Include="src\prompto\csharp\CSharpDecimalLiteral.cs" />
     <Compile Include="src\prompto\java\JavaCharacterLiteral.cs" />
     <Compile Include="src\prompto\java\JavaDecimalLiteral.cs" />
@@ -368,8 +368,8 @@
     <Compile Include="src\prompto\declaration\TestMethodDeclaration.cs" />
     <Compile Include="src\prompto\expression\IAssertion.cs" />
     <Compile Include="src\prompto\statement\UnresolvedCall.cs" />
-    <Compile Include="src\prompto\parser\SIndentingLexer.cs" />
-    <Compile Include="src\prompto\parser\SCleverParser.cs" />
+    <Compile Include="src\prompto\parser\MIndentingLexer.cs" />
+    <Compile Include="src\prompto\parser\MCleverParser.cs" />
     <Compile Include="src\prompto\error\NotMutableError.cs" />
     <Compile Include="src\prompto\declaration\AnyNativeCategoryDeclaration.cs" />
     <Compile Include="src\prompto\grammar\NativeAttributeBindingListMap.cs" />
@@ -393,7 +393,7 @@
     <Compile Include="src\prompto\error\NotStorableError.cs" />
     <Compile Include="src\prompto\parser\EPromptoBuilder.cs" />
     <Compile Include="src\prompto\parser\OPromptoBuilder.cs" />
-    <Compile Include="src\prompto\parser\SPromptoBuilder.cs" />
+    <Compile Include="src\prompto\parser\MPromptoBuilder.cs" />
     <Compile Include="src\prompto\statement\CommentStatement.cs" />
     <Compile Include="src\prompto\grammar\OrderByClause.cs" />
     <Compile Include="src\prompto\grammar\OrderByClauseList.cs" />

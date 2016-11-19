@@ -31,7 +31,7 @@ namespace prompto.statement
         {
 			switch(writer.getDialect()) {
 			case Dialect.E:
-			case Dialect.S:
+			case Dialect.M:
 				writer.append("raise ");
 				break;
 			case Dialect.O:

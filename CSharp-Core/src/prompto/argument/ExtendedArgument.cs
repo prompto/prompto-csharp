@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using prompto.grammar;
 using prompto.type;
 using prompto.utils;
@@ -43,7 +43,7 @@ namespace prompto.argument
 			return type.GetTypeName() + '(' + attributes.ToString() + ')';
 		}
 
-		protected override void toEDialect(CodeWriter writer) {
+		protected override void ToEDialect(CodeWriter writer) {
 			type.ToDialect(writer);
 			writer.append(' ');
 			writer.append(name);
@@ -63,7 +63,7 @@ namespace prompto.argument
 			}
 		}
 
-		protected override void toODialect(CodeWriter writer) {
+		protected override void ToODialect(CodeWriter writer) {
 			type.ToDialect(writer);
 			if(attributes!=null) {
 				writer.append('(');

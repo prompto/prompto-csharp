@@ -37,18 +37,18 @@ public class ArgumentList : ObjectList<IArgument> {
 				return;
 			switch(writer.getDialect()) {
 			case Dialect.E:
-				toEDialect(writer);
+				ToEDialect(writer);
 				break;
 			case Dialect.O:
-				toODialect(writer);
+				ToODialect(writer);
 				break;
-			case Dialect.S:
+			case Dialect.M:
 				toPDialect(writer);
 				break;
 			}
 		}
 
-		private void toEDialect(CodeWriter writer) {
+		private void ToEDialect(CodeWriter writer) {
 			IArgument last = this.Count>0 ? this[this.Count-1] : null;
 			writer.append("receiving ");
 			foreach(IArgument argument in this) {
@@ -65,7 +65,7 @@ public class ArgumentList : ObjectList<IArgument> {
 			writer.append(" ");
 		}
 
-		private void toODialect(CodeWriter writer) {
+		private void ToODialect(CodeWriter writer) {
 			foreach(IArgument argument in this) {
 				argument.ToDialect(writer);
 				writer.append(", ");

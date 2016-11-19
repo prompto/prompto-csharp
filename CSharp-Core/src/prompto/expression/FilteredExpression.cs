@@ -42,7 +42,7 @@ namespace prompto.expression
 			switch (writer.getDialect())
 			{
 				case Dialect.E:
-				case Dialect.S:
+				case Dialect.M:
 					source.ToDialect(writer);
 					writer.append(" filtered with ");
 					writer.append(itemName);

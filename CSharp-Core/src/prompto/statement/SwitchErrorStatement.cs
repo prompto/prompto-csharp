@@ -40,7 +40,7 @@ namespace prompto.statement
         }
 
 		override
-		protected void toODialect(CodeWriter writer) {
+		protected void ToODialect(CodeWriter writer) {
 			writer.append("try (");
 			writer.append(errorName);
 			writer.append(") {\n");
@@ -93,7 +93,7 @@ namespace prompto.statement
 		}
 
 		override
-		protected void toEDialect(CodeWriter writer) {
+		protected void ToEDialect(CodeWriter writer) {
 			writer.append("switch on ");
 			writer.append(errorName);
 			writer.append(" doing:\n");

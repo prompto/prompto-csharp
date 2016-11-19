@@ -140,18 +140,18 @@ namespace prompto.declaration
 			writer = writer.newInstanceWriter(type);
 			switch (writer.getDialect ()) {
 			case Dialect.E:
-				toEDialect (writer);
+				ToEDialect (writer);
 				break;
 			case Dialect.O:
-				toODialect (writer);
+				ToODialect (writer);
 				break;
-			case Dialect.S:
-				toSDialect (writer);
+			case Dialect.M:
+				ToMDialect (writer);
 				break;
 			}
 		}
 
-		protected abstract void toEDialect (CodeWriter writer);
+		protected abstract void ToEDialect (CodeWriter writer);
 
 		protected virtual void protoToEDialect (CodeWriter writer, bool hasMethods, bool hasBindings)
 		{
@@ -197,9 +197,9 @@ namespace prompto.declaration
 
 		protected abstract void categoryTypeToEDialect (CodeWriter writer);
 
-		protected abstract void toODialect (CodeWriter writer);
+		protected abstract void ToODialect (CodeWriter writer);
 
-		protected virtual void toODialect (CodeWriter writer, bool hasBody)
+		protected virtual void ToODialect (CodeWriter writer, bool hasBody)
 		{
 			categoryTypeToODialect (writer);
 			writer.append (" ");
@@ -239,13 +239,13 @@ namespace prompto.declaration
 
 		protected abstract void bodyToODialect (CodeWriter writer);
 
-		protected abstract void toSDialect (CodeWriter writer);
+		protected abstract void ToMDialect (CodeWriter writer);
 
-		protected void protoToSDialect (CodeWriter writer, IdentifierList derivedFrom)
+		protected void protoToMDialect (CodeWriter writer, IdentifierList derivedFrom)
 		{
 			if(this.Storable)
 				writer.append("storable ");
-			categoryTypeToSDialect (writer);
+			categoryTypeToMDialect (writer);
 			writer.append (" ");
 			writer.append (name);
 			writer.append ("(");
@@ -260,7 +260,7 @@ namespace prompto.declaration
 			writer.newLine ();
 		}
 
-		protected abstract void categoryTypeToSDialect (CodeWriter writer);
+		protected abstract void categoryTypeToMDialect (CodeWriter writer);
 
 
 	}

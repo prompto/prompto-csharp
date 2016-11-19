@@ -26,7 +26,7 @@ namespace prompto.expression
 				expression.ToDialect (writer);
 				break;
 			case Dialect.O:
-			case Dialect.S:
+			case Dialect.M:
 				writer.append ("Code(");
 				expression.ToDialect (writer);
 				writer.append (")");

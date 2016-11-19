@@ -63,12 +63,12 @@ namespace prompto.declaration
 		public void ToDialect(CodeWriter writer) {
 			switch(writer.getDialect()) {
 			case Dialect.E:
-				toEDialect(writer);
+				ToEDialect(writer);
 				break;
 			case Dialect.O:
-				toODialect(writer);
+				ToODialect(writer);
 				break;
-			case Dialect.S:
+			case Dialect.M:
 				toPDialect(writer);
 				break;
 			}
@@ -88,7 +88,7 @@ namespace prompto.declaration
 			writer.dedent();
 		}
 
-		private void toODialect(CodeWriter writer) {
+		private void ToODialect(CodeWriter writer) {
 			writer.append("enumerated ");
 			writer.append(name);
 			writer.append('(');
@@ -103,7 +103,7 @@ namespace prompto.declaration
 			writer.append("}\n");
 		}
 
-		private void toEDialect(CodeWriter writer) {
+		private void ToEDialect(CodeWriter writer) {
 			writer.append("define ");
 			writer.append(name);
 			writer.append(" as enumerated ");

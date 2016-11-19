@@ -98,19 +98,19 @@ namespace prompto.statement
 		public void ToDialect(CodeWriter writer) {
 			switch(writer.getDialect()) {
 			case Dialect.E:
-				toEDialect(writer);
+				ToEDialect(writer);
 				break;
 			case Dialect.O:
-				toODialect(writer);
+				ToODialect(writer);
 				break;
-			case Dialect.S:
+			case Dialect.M:
 				toPDialect(writer);
 				break;
 			}
 		}
 
-		protected abstract void toEDialect(CodeWriter writer);
-		protected abstract void toODialect(CodeWriter writer);
+		protected abstract void ToEDialect(CodeWriter writer);
+		protected abstract void ToODialect(CodeWriter writer);
 		protected abstract void toPDialect(CodeWriter writer);
     }
 

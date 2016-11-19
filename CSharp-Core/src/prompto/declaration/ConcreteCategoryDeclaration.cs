@@ -100,7 +100,7 @@ namespace prompto.declaration
 			return methods;
 		}
 
-		protected override void toEDialect (CodeWriter writer)
+		protected override void ToEDialect (CodeWriter writer)
 		{
 			bool hasMethods = methods != null && methods.Count > 0;
 			protoToEDialect (writer, hasMethods, false); // no bindings
@@ -117,10 +117,10 @@ namespace prompto.declaration
 		}
 
 
-		protected override void toODialect (CodeWriter writer)
+		protected override void ToODialect (CodeWriter writer)
 		{
 			bool hasMethods = methods != null && methods.Count > 0;
-			toODialect (writer, hasMethods);
+			ToODialect (writer, hasMethods);
 		}
 
 		protected override void categoryTypeToODialect (CodeWriter writer)
@@ -143,18 +143,18 @@ namespace prompto.declaration
 			methodsToODialect (writer, methods);
 		}
 
-		protected override void toSDialect (CodeWriter writer)
+		protected override void ToMDialect (CodeWriter writer)
 		{
-			protoToSDialect (writer, derivedFrom);
-			methodsToSDialect (writer);
+			protoToMDialect (writer, derivedFrom);
+			methodsToMDialect (writer);
 		}
 
-		protected override void categoryTypeToSDialect (CodeWriter writer)
+		protected override void categoryTypeToMDialect (CodeWriter writer)
 		{
 			writer.append ("class");
 		}
 
-		private void methodsToSDialect (CodeWriter writer)
+		private void methodsToMDialect (CodeWriter writer)
 		{
 			writer.indent ();
 			if (methods == null || methods.Count == 0)

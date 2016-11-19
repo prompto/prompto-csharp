@@ -36,7 +36,7 @@ namespace prompto.expression
 			switch(dialect) 
 			{
 			case Dialect.E:
-			case Dialect.S:
+			case Dialect.M:
 				return " or ";
 			case Dialect.O:
 				return " || ";
