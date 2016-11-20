@@ -124,9 +124,33 @@ namespace prompto.runtime.o
 		}
 
 		[Test]
+		public void testTextCapitalize()
+		{
+			CheckOutput("builtins/textCapitalize.poc");
+		}
+
+		[Test]
 		public void testTextCount()
 		{
 			CheckOutput("builtins/textCount.poc");
+		}
+
+		[Test]
+		public void testTextLowercase()
+		{
+			CheckOutput("builtins/textLowercase.poc");
+		}
+
+		[Test]
+		public void testTextSplit()
+		{
+			CheckOutput("builtins/textSplit.poc");
+		}
+
+		[Test]
+		public void testTextUppercase()
+		{
+			CheckOutput("builtins/textUppercase.poc");
 		}
 
 		[Test]

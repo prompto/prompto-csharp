@@ -123,9 +123,33 @@ namespace prompto.translate.omo
 		}
 
 		[Test]
+		public void testTextCapitalize()
+		{
+			compareResourceOMO("builtins/textCapitalize.poc");
+		}
+
+		[Test]
 		public void testTextCount()
 		{
 			compareResourceOMO("builtins/textCount.poc");
+		}
+
+		[Test]
+		public void testTextLowercase()
+		{
+			compareResourceOMO("builtins/textLowercase.poc");
+		}
+
+		[Test]
+		public void testTextSplit()
+		{
+			compareResourceOMO("builtins/textSplit.poc");
+		}
+
+		[Test]
+		public void testTextUppercase()
+		{
+			compareResourceOMO("builtins/textUppercase.poc");
 		}
 
 		[Test]

@@ -147,9 +147,33 @@ namespace prompto.translate.eme
 		}
 
 		[Test]
+		public void testTextCapitalize()
+		{
+			compareResourceEME("builtins/textCapitalize.pec");
+		}
+
+		[Test]
 		public void testTextCount()
 		{
 			compareResourceEME("builtins/textCount.pec");
+		}
+
+		[Test]
+		public void testTextLowercase()
+		{
+			compareResourceEME("builtins/textLowercase.pec");
+		}
+
+		[Test]
+		public void testTextSplit()
+		{
+			compareResourceEME("builtins/textSplit.pec");
+		}
+
+		[Test]
+		public void testTextUppercase()
+		{
+			compareResourceEME("builtins/textUppercase.pec");
 		}
 
 		[Test]
