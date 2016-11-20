@@ -216,7 +216,7 @@ namespace prompto.declaration
 		}
 
 
-		private void registerMethods (Context context)
+		protected override void registerMethods (Context context)
 		{
 			if (methodsMap == null) {
 				methodsMap = new Dictionary<String, IDeclaration> ();

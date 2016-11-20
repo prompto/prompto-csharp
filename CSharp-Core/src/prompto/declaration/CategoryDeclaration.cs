@@ -53,8 +53,10 @@ namespace prompto.declaration
 		public override void register (Context context)
 		{
 			context.registerDeclaration (this);
+			registerMethods(context);
 		}
 
+		protected abstract void registerMethods(Context context);
 
 		public override IType check (Context context)
 		{
