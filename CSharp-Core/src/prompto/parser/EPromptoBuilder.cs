@@ -647,7 +647,7 @@ namespace prompto.parser
 		public override void ExitMemberSelector (EParser.MemberSelectorContext ctx)
 		{
 			String name = this.GetNodeValue<String> (ctx.name);
-			SetNodeValue (ctx, new MemberSelector (name));
+			SetNodeValue (ctx, new UnresolvedSelector (name));
 		}
 
 		

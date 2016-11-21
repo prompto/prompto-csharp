@@ -27,6 +27,14 @@ namespace prompto.type
         {
         }
 
+		public override bool isMoreSpecificThan(Context context, IType other)
+		{
+			if((other == NullType.Instance) || (other == AnyType.Instance) || (other == MissingType.Instance))
+				return true;
+			else
+				return base.isMoreSpecificThan(context, other);
+		}
+
 		public override IType checkItem (Context context, IType itemType)
 		{
 			if (itemType == TextType.Instance)

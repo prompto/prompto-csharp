@@ -5,6 +5,7 @@ using prompto.utils;
 using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
 using prompto.store;
+using prompto.declaration;
 
 namespace prompto.type
 {
@@ -46,7 +47,9 @@ namespace prompto.type
 
 		IRange newRange (Object left, Object right);
 
-		IValue getMember (Context context, String name);
+		IValue getMemberValue (Context context, String name);
+
+		ICollection<IMethodDeclaration> getMemberMethods(Context context, String name);
 
 		void checkUnique (Context context);
 

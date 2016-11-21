@@ -15,395 +15,413 @@ using prompto.type;
 namespace prompto.runtime
 {
 
-    public class Context : IContext
-    {
+	public class Context : IContext
+	{
 
-        public static Context newGlobalContext()
-        {
-            Context context = new Context();
-            context.globals = context;
-            context.calling = null;
-            context.parent = null;
-            context.debugger = null;
-            return context;
-        }
+		public static Context newGlobalContext()
+		{
+			Context context = new Context();
+			context.globals = context;
+			context.calling = null;
+			context.parent = null;
+			context.debugger = null;
+			return context;
+		}
 
-        Context globals;
-        protected Context calling;
-        Context parent; // for inner methods
-        Debugger debugger;
+		Context globals;
+		protected Context calling;
+		Context parent; // for inner methods
+		Debugger debugger;
 
-        Dictionary<String, IDeclaration> declarations = new Dictionary<String, IDeclaration>();
-		Dictionary<String,TestMethodDeclaration> tests = new Dictionary<String, TestMethodDeclaration>();
+		Dictionary<String, IDeclaration> declarations = new Dictionary<String, IDeclaration>();
+		Dictionary<String, TestMethodDeclaration> tests = new Dictionary<String, TestMethodDeclaration>();
 		protected Dictionary<String, INamed> instances = new Dictionary<String, INamed>();
 		Dictionary<String, IValue> values = new Dictionary<String, IValue>();
-		Dictionary<Type, NativeCategoryDeclaration> nativeBindings = new Dictionary<Type, NativeCategoryDeclaration> ();
+		Dictionary<Type, NativeCategoryDeclaration> nativeBindings = new Dictionary<Type, NativeCategoryDeclaration>();
 
-        protected Context()
-        {
-        }
+		protected Context()
+		{
+		}
 
-        public bool isGlobalContext()
-        {
-            return this == globals;
-        }
+		public bool isGlobalContext()
+		{
+			return this == globals;
+		}
 
-        public void setDebugger(Debugger debugger)
-        {
-            this.debugger = debugger;
-        }
+		public void setDebugger(Debugger debugger)
+		{
+			this.debugger = debugger;
+		}
 
-        public Debugger getDebugger()
-        {
-            return debugger;
-        }
+		public Debugger getDebugger()
+		{
+			return debugger;
+		}
 
-        override public String ToString()
-        {
-            StringBuilder sb = new StringBuilder();
-            sb.Append("{");
-            if (this != globals)
-            {
-                sb.Append("globals:");
-                sb.Append(globals);
-            }
-            sb.Append(",calling:");
-            sb.Append(calling);
-            sb.Append(",parent:");
-            sb.Append(parent);
-            sb.Append(",declarations:");
-            sb.Append(declarations);
-            sb.Append(",instances:");
-            sb.Append(instances);
-            sb.Append(",values:");
-            sb.Append(values);
-            sb.Append("}");
-            return sb.ToString();
-        }
+		override public String ToString()
+		{
+			StringBuilder sb = new StringBuilder();
+			sb.Append("{");
+			if (this != globals)
+			{
+				sb.Append("globals:");
+				sb.Append(globals);
+			}
+			sb.Append(",calling:");
+			sb.Append(calling);
+			sb.Append(",parent:");
+			sb.Append(parent);
+			sb.Append(",declarations:");
+			sb.Append(declarations);
+			sb.Append(",instances:");
+			sb.Append(instances);
+			sb.Append(",values:");
+			sb.Append(values);
+			sb.Append("}");
+			return sb.ToString();
+		}
 
-        public IContext getCallingContext()
-        {
-            return calling;
-        }
+		public IContext getCallingContext()
+		{
+			return calling;
+		}
 
-        public Context getParentMostContext()
-        {
-            if (parent == null)
-                return this;
-            else
-                return parent.getParentMostContext();
-        }
+		public Context getParentMostContext()
+		{
+			if (parent == null)
+				return this;
+			else
+				return parent.getParentMostContext();
+		}
 
-        public Context getParentContext()
-        {
-            return parent;
-        }
+		public Context getParentContext()
+		{
+			return parent;
+		}
 
-        public void setParentContext(Context parent)
-        {
-            this.parent = parent;
-        }
+		public void setParentContext(Context parent)
+		{
+			this.parent = parent;
+		}
 
-        public Context newResourceContext()
-        {
-            Context context = new ResourceContext();
-            context.globals = this.globals;
-            context.calling = this.calling;
-            context.parent = this;
-            context.debugger = this.debugger;
-            return context;
-        }
+		public Context newResourceContext()
+		{
+			Context context = new ResourceContext();
+			context.globals = this.globals;
+			context.calling = this.calling;
+			context.parent = this;
+			context.debugger = this.debugger;
+			return context;
+		}
 
-        public Context newLocalContext()
-        {
-            Context context = new Context();
-            context.globals = this.globals;
-            context.calling = this;
-            context.parent = null;
-            context.debugger = this.debugger;
-            return context;
-        }
+		public Context newLocalContext()
+		{
+			Context context = new Context();
+			context.globals = this.globals;
+			context.calling = this;
+			context.parent = null;
+			context.debugger = this.debugger;
+			return context;
+		}
 
-		public Context newInstanceContext(CategoryType type) 
+		public Context newInstanceContext(CategoryType type)
 		{
 			return initInstanceContext(new InstanceContext(type), false);
 		}
 
-		public Context newInstanceContext(IInstance instance) 
+		public Context newBuiltInContext(IValue value)
+		{
+			return initInstanceContext(new BuiltInContext(value), false);
+		}
+
+		public Context newInstanceContext(IInstance instance)
 		{
 			return initInstanceContext(new InstanceContext(instance), false);
 		}
 
-		public Context newDocumentContext(Document document, bool isChild) {
+		public Context newDocumentContext(Document document, bool isChild)
+		{
 			return initInstanceContext(new DocumentContext(document), isChild);
 		}
 
 		private Context initInstanceContext(Context context, bool isChild)
-        {
-            context.globals = this.globals;
+		{
+			context.globals = this.globals;
 			context.calling = isChild ? this.calling : this;
 			context.parent = isChild ? this : null;
-            context.debugger = this.debugger;
-            return context;
-        }
+			context.debugger = this.debugger;
+			return context;
+		}
 
-        public Context newChildContext()
-        {
-            Context context = new Context();
-            context.globals = this.globals;
-            context.calling = this.calling;
-            context.parent = this;
-            context.debugger = this.debugger;
-            return context;
-        }
+		public Context newChildContext()
+		{
+			Context context = new Context();
+			context.globals = this.globals;
+			context.calling = this.calling;
+			context.parent = this;
+			context.debugger = this.debugger;
+			return context;
+		}
 
 		public AttributeDeclaration findAttribute(String name)
 		{
-			return getRegisteredDeclaration<AttributeDeclaration> (name);
+			return getRegisteredDeclaration<AttributeDeclaration>(name);
 		}
 
 		public List<AttributeDeclaration> getAllAttributes()
 		{
 			if (globals != this)
-				return globals.getAllAttributes ();
-			List<AttributeDeclaration> list = new List<AttributeDeclaration> ();
-			foreach (IDeclaration decl in declarations.Values) {
+				return globals.getAllAttributes();
+			List<AttributeDeclaration> list = new List<AttributeDeclaration>();
+			foreach (IDeclaration decl in declarations.Values)
+			{
 				if (decl is AttributeDeclaration)
-					list.Add ((AttributeDeclaration)decl);
+					list.Add((AttributeDeclaration)decl);
 			}
 			return list;
 		}
 
-        public INamed getRegistered(String name)
-        {
-            // resolve upwards, since local names override global ones
-            IDeclaration actual;
-            declarations.TryGetValue(name, out actual);
-            if (actual != null)
-                return actual;
-            INamed actualName;
-            instances.TryGetValue(name, out actualName);
-            if (actualName != null)
-                return actualName;
-            if (parent != null)
-                return parent.getRegistered(name);
-            if (globals != this)
-                return globals.getRegistered(name);
-            return null;
-        }
+		public INamed getRegistered(String name)
+		{
+			// resolve upwards, since local names override global ones
+			IDeclaration actual;
+			declarations.TryGetValue(name, out actual);
+			if (actual != null)
+				return actual;
+			INamed actualName;
+			instances.TryGetValue(name, out actualName);
+			if (actualName != null)
+				return actualName;
+			if (parent != null)
+				return parent.getRegistered(name);
+			if (globals != this)
+				return globals.getRegistered(name);
+			return null;
+		}
 
-        public T getRegisteredDeclaration<T>(String name)
-        {
-            // resolve upwards, since local names override global ones
-            IDeclaration actual;
-            declarations.TryGetValue(name, out actual);
-            if (actual == null && parent != null)
-                actual = parent.getRegisteredDeclaration<IDeclaration>(name);
-            if (actual == null && globals != this)
-                actual = globals.getRegisteredDeclaration<IDeclaration>(name);
-            if (actual != null)
-                return prompto.utils.TypeUtils.downcast<T>(actual);
-            else
-                return default(T);
-        }
+		public T getRegisteredDeclaration<T>(String name)
+		{
+			// resolve upwards, since local names override global ones
+			IDeclaration actual;
+			declarations.TryGetValue(name, out actual);
+			if (actual == null && parent != null)
+				actual = parent.getRegisteredDeclaration<IDeclaration>(name);
+			if (actual == null && globals != this)
+				actual = globals.getRegisteredDeclaration<IDeclaration>(name);
+			if (actual != null)
+				return prompto.utils.TypeUtils.downcast<T>(actual);
+			else
+				return default(T);
+		}
 
-        public void registerDeclaration(IDeclaration declaration)
-        {
-            INamed actual = getRegistered(declaration.GetName());
-            if (actual != null)
-                throw new SyntaxError("Duplicate name: \"" + declaration.GetName() + "\"");
-            declarations[declaration.GetName()] = declaration;
-        }
+		public void registerDeclaration(IDeclaration declaration)
+		{
+			INamed actual = getRegistered(declaration.GetName());
+			if (actual != null)
+				throw new SyntaxError("Duplicate name: \"" + declaration.GetName() + "\"");
+			declarations[declaration.GetName()] = declaration;
+		}
 
-        public void registerDeclaration(IMethodDeclaration declaration)
-        {
-            INamed actual = getRegistered(declaration.GetName());
-            if (actual != null && !(actual is MethodDeclarationMap))
-                throw new SyntaxError("Duplicate name: \"" + declaration.GetName() + "\"");
-            if (actual == null)
-            {
-                actual = new MethodDeclarationMap(declaration.GetName());
-                declarations[declaration.GetName()] = (MethodDeclarationMap)actual;
-            }
-            ((MethodDeclarationMap)actual).register(declaration, this);
-        }
+		public void registerDeclaration(IMethodDeclaration declaration)
+		{
+			INamed actual = getRegistered(declaration.GetName());
+			if (actual != null && !(actual is MethodDeclarationMap))
+				throw new SyntaxError("Duplicate name: \"" + declaration.GetName() + "\"");
+			if (actual == null)
+			{
+				actual = new MethodDeclarationMap(declaration.GetName());
+				declarations[declaration.GetName()] = (MethodDeclarationMap)actual;
+			}
+			((MethodDeclarationMap)actual).register(declaration, this);
+		}
 
-		public void registerDeclaration(TestMethodDeclaration declaration) {
-			if(tests.ContainsKey(declaration.GetName()))
+		public void registerDeclaration(TestMethodDeclaration declaration)
+		{
+			if (tests.ContainsKey(declaration.GetName()))
 				throw new SyntaxError("Duplicate test: \"" + declaration.GetName() + "\"");
 			tests[declaration.GetName()] = declaration;
 		}
 
-		public bool hasTests() {
+		public bool hasTests()
+		{
 			return tests.Count > 0;
 		}
 
-		public Dictionary<String,TestMethodDeclaration>.ValueCollection getTests() {
+		public Dictionary<String, TestMethodDeclaration>.ValueCollection getTests()
+		{
 			return tests.Values;
 		}
 
-		public TestMethodDeclaration getTest(String testName) 
+		public TestMethodDeclaration getTest(String testName)
 		{
 			TestMethodDeclaration test;
-			if (!tests.TryGetValue (testName, out test))
+			if (!tests.TryGetValue(testName, out test))
 				return null;
 			return test;
 		}
 
 		public T getRegisteredValue<T>(String name) where T : INamed
-        {
+		{
 			Context context = contextForValue(name);
-			if(context==null)
+			if (context == null)
 				return default(T);
 			else
 				return context.readRegisteredValue<T>(name);
-       }
+		}
 
 		protected virtual T readRegisteredValue<T>(String name) where T : INamed
 		{
 			INamed actual = null;
 			instances.TryGetValue(name, out actual);
-			if(actual!=null)
+			if (actual != null)
 				return TypeUtils.downcast<T>(actual);
 			else
 				return default(T);
 		}
 
-        public void registerValue(INamed named)
+		public void registerValue(INamed named)
 		{
 			registerValue(named, true);
 		}
 
-		public void registerValue(INamed named, bool checkDuplicate) {
-			if (checkDuplicate) {
+		public void registerValue(INamed named, bool checkDuplicate)
+		{
+			if (checkDuplicate)
+			{
 				// only explore current context
-				if(instances.ContainsKey(named.GetName()))
-					throw new SyntaxError ("Duplicate name: \"" + named.GetName () + "\"");
+				if (instances.ContainsKey(named.GetName()))
+					throw new SyntaxError("Duplicate name: \"" + named.GetName() + "\"");
 			}
 			instances[named.GetName()] = named;
-        }
+		}
 
 		public bool hasValue(String name)
 		{
 			return contextForValue(name) != null;
 		}
 
-        public IValue getValue(String name)
-        {
-            Context context = contextForValue(name);
-            if (context == null)
-                throw new SyntaxError(name + " is not defined");
-            return context.readValue(name);
-        }
+		public IValue getValue(String name)
+		{
+			Context context = contextForValue(name);
+			if (context == null)
+				throw new SyntaxError(name + " is not defined");
+			return context.readValue(name);
+		}
 
 
 		protected virtual IValue readValue(String name)
-        {
+		{
 			IValue value;
-			if(!values.TryGetValue(name, out value))
-                throw new SyntaxError(name + " has no value");
-			if(value is LinkedValue)
+			if (!values.TryGetValue(name, out value))
+				throw new SyntaxError(name + " has no value");
+			if (value is LinkedValue)
 				return ((LinkedValue)value).getContext().getValue(name);
 			else
 				return value;
-        }
+		}
 
 		public void setValue(String name, IValue value)
-        {
-            Context context = contextForValue(name);
-            if (context == null)
-                throw new SyntaxError(name + " is not defined");
-            context.writeValue(name, value);
-        }
+		{
+			Context context = contextForValue(name);
+			if (context == null)
+				throw new SyntaxError(name + " is not defined");
+			context.writeValue(name, value);
+		}
 
 		protected virtual void writeValue(String name, IValue value)
-        {
-            if (value is IExpression)
-                value = ((IExpression)value).interpret(this);
+		{
+			if (value is IExpression)
+				value = ((IExpression)value).interpret(this);
 			IValue current;
 			values.TryGetValue(name, out current);
-			if(current is LinkedValue)
+			if (current is LinkedValue)
 				((LinkedValue)current).getContext().setValue(name, value);
 			else
 				values[name] = value;
-        }
+		}
 
-        protected virtual Context contextForValue(String name)
-        {
-            // resolve upwards, since local names override global ones
-            INamed actual;
-            instances.TryGetValue(name, out actual);
-            if (actual != null)
-                return this;
-            if (parent != null)
-                return parent.contextForValue(name);
-            if (globals != this)
-                return globals.contextForValue(name);
-            return null;
-        }
+		protected virtual Context contextForValue(String name)
+		{
+			// resolve upwards, since local names override global ones
+			INamed actual;
+			instances.TryGetValue(name, out actual);
+			if (actual != null)
+				return this;
+			if (parent != null)
+				return parent.contextForValue(name);
+			if (globals != this)
+				return globals.contextForValue(name);
+			return null;
+		}
 
-        public void enterMethod(IDeclaration method)
-        {
-            if (debugger != null)
-                debugger.enterMethod(this, method);
-        }
+		public void enterMethod(IDeclaration method)
+		{
+			if (debugger != null)
+				debugger.enterMethod(this, method);
+		}
 
 		public void leaveMethod(IDeclaration method)
-        {
-            if (debugger != null)
-                debugger.leaveMethod(this, method);
-        }
+		{
+			if (debugger != null)
+				debugger.leaveMethod(this, method);
+		}
 
-        public void enterStatement(IStatement statement)
-        {
-            if (debugger != null)
-                debugger.enterStatement(this, statement);
-        }
+		public void enterStatement(IStatement statement)
+		{
+			if (debugger != null)
+				debugger.enterStatement(this, statement);
+		}
 
-        public void leaveStatement(IStatement statement)
-        {
-            if (debugger != null)
-                debugger.leaveStatement(this, statement);
-        }
+		public void leaveStatement(IStatement statement)
+		{
+			if (debugger != null)
+				debugger.leaveStatement(this, statement);
+		}
 
-        public void fireTerminated()
-        {
-            if (debugger != null)
-                debugger.whenTerminated();
-        }
+		public void fireTerminated()
+		{
+			if (debugger != null)
+				debugger.whenTerminated();
+		}
 
-		public ConcreteInstance loadSingleton(Context context, CategoryType type) {
-			if(this==globals) {
+		public ConcreteInstance loadSingleton(Context context, CategoryType type)
+		{
+			if (this == globals)
+			{
 				IValue value = null;
 				values.TryGetValue(type.GetTypeName(), out value);
-				if(value==null) {
+				if (value == null)
+				{
 					IDeclaration decl = declarations[type.GetTypeName()];
-					if(!(decl is ConcreteCategoryDeclaration))
+					if (!(decl is ConcreteCategoryDeclaration))
 						throw new InternalError("No such singleton:" + type.GetTypeName());
 					value = new ConcreteInstance(context, (ConcreteCategoryDeclaration)decl);
 					((IInstance)value).setMutable(true); // a singleton is protected by "with x do", so always mutable in that context
 					values[type.GetTypeName()] = value;
 				}
-				if(value is ConcreteInstance)
+				if (value is ConcreteInstance)
 					return (ConcreteInstance)value;
 				else
 					throw new InternalError("Not a concrete instance:" + value.GetType().Name);
-			} else
+			}
+			else
 				return this.globals.loadSingleton(context, type);
 		}
 
-		public void registerNativeBinding(Type type, NativeCategoryDeclaration declaration) 
+		public void registerNativeBinding(Type type, NativeCategoryDeclaration declaration)
 		{
-			if(this==globals)
+			if (this == globals)
 				nativeBindings[type] = declaration;
 			else
 				globals.registerNativeBinding(type, declaration);
 		}
 
-		public NativeCategoryDeclaration getNativeBinding(Type type) {
-			if (this == globals) {
+		public NativeCategoryDeclaration getNativeBinding(Type type)
+		{
+			if (this == globals)
+			{
 				NativeCategoryDeclaration ncd;
-				if (nativeBindings.TryGetValue (type, out ncd))
+				if (nativeBindings.TryGetValue(type, out ncd))
 					return ncd;
 				else
 					return null;
@@ -414,35 +432,56 @@ namespace prompto.runtime
 
 	}
 
-    class ResourceContext : Context
-    {
+	class ResourceContext : Context
+	{
 
 		internal ResourceContext()
-        {
-        }
+		{
+		}
 
-    }
+	}
+
+	public class BuiltInContext : Context
+	{
+
+		IValue value;
+
+
+		internal BuiltInContext(IValue value)
+		{
+			this.value = value;
+		}
+
+		public IValue getValue()
+		{
+			return value;
+		}
+	}
+
 
 	public class InstanceContext : Context
-    {
-        IInstance instance;
+	{
+		IInstance instance;
 		CategoryType type;
 
-        internal InstanceContext(IInstance instance)
-        {
-            this.instance = instance;
+		internal InstanceContext(IInstance instance)
+		{
+			this.instance = instance;
 			this.type = instance.getType();
-        }
+		}
 
-		internal InstanceContext(CategoryType type) {
+		internal InstanceContext(CategoryType type)
+		{
 			this.type = type;
 		}
 
-		public IInstance getInstance() {
+		public IInstance getInstance()
+		{
 			return instance;
 		}
 
-		public CategoryType getInstanceType() {
+		public CategoryType getInstanceType()
+		{
 			return type;
 		}
 
@@ -451,7 +490,8 @@ namespace prompto.runtime
 			INamed actual = null;
 			instances.TryGetValue(name, out actual);
 			// not very pure, but avoids a lot of complexity when registering a value
-			if(actual==null) {
+			if (actual == null)
+			{
 				AttributeDeclaration attr = getRegisteredDeclaration<AttributeDeclaration>(name);
 				IType type = attr.getIType();
 				actual = new Variable(name, type);
@@ -461,20 +501,21 @@ namespace prompto.runtime
 		}
 
 		protected override Context contextForValue(String name)
-        {
-            // params and variables have precedence over members
-            // so first look in context values
-            Context context = base.contextForValue(name);
-            if (context != null)
-                return context;
-            else if (getDeclaration().hasAttribute(this, name))
-                return this;
-            else
-                return null;
-        }
+		{
+			// params and variables have precedence over members
+			// so first look in context values
+			Context context = base.contextForValue(name);
+			if (context != null)
+				return context;
+			else if (getDeclaration().hasAttribute(this, name))
+				return this;
+			else
+				return null;
+		}
 
-		private ConcreteCategoryDeclaration getDeclaration() {
-			if(instance!=null)
+		private ConcreteCategoryDeclaration getDeclaration()
+		{
+			if (instance != null)
 				return instance.getDeclaration();
 			else
 				return getRegisteredDeclaration<ConcreteCategoryDeclaration>(type.GetTypeName());
@@ -482,32 +523,35 @@ namespace prompto.runtime
 
 
 		protected override IValue readValue(String name)
-        {
-            return instance.GetMember(calling, name, false);
-        }
+		{
+			return instance.GetMember(calling, name, false);
+		}
 
-        
+
 		protected override void writeValue(String name, IValue value)
-        {
-            if (value is IExpression)
-                value = ((IExpression)value).interpret(this);
-            instance.SetMember(calling, name, (IValue)value);
-        }
-    }
+		{
+			if (value is IExpression)
+				value = ((IExpression)value).interpret(this);
+			instance.SetMember(calling, name, (IValue)value);
+		}
+	}
 
-	public class DocumentContext : Context {
+	public class DocumentContext : Context
+	{
 
 		Document document;
 
-		internal DocumentContext(Document document) {
+		internal DocumentContext(Document document)
+		{
 			this.document = document;
 		}
 
-		protected override Context contextForValue(String name) {
+		protected override Context contextForValue(String name)
+		{
 			// params and variables have precedence over members
 			// so first look in context values
 			Context context = base.contextForValue(name);
-			if(context!=null)
+			if (context != null)
 				return context;
 			// since any name is valid in the context of a document
 			// simply return this document context
@@ -515,99 +559,104 @@ namespace prompto.runtime
 				return this;
 		}
 
-		protected override IValue readValue(String name) {
+		protected override IValue readValue(String name)
+		{
 			return document.GetMember(calling, name, false);
 		}
 
-		protected override void writeValue(String name, IValue value) {
+		protected override void writeValue(String name, IValue value)
+		{
 			document.SetMember(calling, name, value);
 		}
 
 	}
 
-    public class MethodDeclarationMap : Dictionary<String, IMethodDeclaration>, IDeclaration
-    {
+	public class MethodDeclarationMap : Dictionary<String, IMethodDeclaration>, IDeclaration
+	{
 
-        String name;
+		String name;
 
-        public MethodDeclarationMap(String name)
-        {
-            this.name = name;
-        }
+		public MethodDeclarationMap(String name)
+		{
+			this.name = name;
+		}
 
 		public void SetClosureOf(IMethodDeclaration d)
 		{
-			throw new NotImplementedException ();
+			throw new NotImplementedException();
 		}
 
 		public IMethodDeclaration GetClosureOf()
 		{
-			throw new NotImplementedException ();
+			throw new NotImplementedException();
 		}
 
-		public List<CommentStatement> Comments {
-			get {
+		public List<CommentStatement> Comments
+		{
+			get
+			{
 				throw new Exception("Should never get there!");
 			}
-			set {
+			set
+			{
 				throw new Exception("Should never get there!");
 			}
 		}
 
-        public void ToDialect(CodeWriter writer)
-        {
+		public void ToDialect(CodeWriter writer)
+		{
 			throw new Exception("Should never get there!");
-        }
+		}
 
 		public String GetName()
-        {
-            return name;
-        }
+		{
+			return name;
+		}
 
-        public IType check(Context context)
-        {
-            throw new Exception("Should never get there!");
-        }
+		public IType check(Context context)
+		{
+			throw new Exception("Should never get there!");
+		}
 
-        public void register(Context context)
-        {
-            throw new Exception("Should never get there!");
-        }
+		public void register(Context context)
+		{
+			throw new Exception("Should never get there!");
+		}
 
-        public void register(IMethodDeclaration declaration, Context context)
-        {
-            String proto = declaration.getProto();
-            if (this.ContainsKey(proto))
-                throw new SyntaxError("Duplicate prototype for name: \"" + declaration.GetName() + "\"");
-            this[proto] = declaration;
-        }
+		public void register(IMethodDeclaration declaration, Context context)
+		{
+			String proto = declaration.getProto();
+			if (this.ContainsKey(proto))
+				throw new SyntaxError("Duplicate prototype for name: \"" + declaration.GetName() + "\"");
+			this[proto] = declaration;
+		}
 
-        public void registerIfMissing(IMethodDeclaration declaration, Context context)
-        {
-            String proto = declaration.getProto();
-            if (!this.ContainsKey(proto))
-                this[proto] = declaration;
-        }
+		public void registerIfMissing(IMethodDeclaration declaration, Context context)
+		{
+			String proto = declaration.getProto();
+			if (!this.ContainsKey(proto))
+				this[proto] = declaration;
+		}
 
-        public IType GetIType(Context context)
-        {
-            throw new SyntaxError("Should never get there!");
-        }
+		public IType GetIType(Context context)
+		{
+			throw new SyntaxError("Should never get there!");
+		}
 
-        public String Path
-        {
-            get { throw new Exception("Should never get there!"); }
-        }
+		public String Path
+		{
+			get { throw new Exception("Should never get there!"); }
+		}
 
-        public ILocation Start
-        {
-            get { throw new Exception("Should never get there!"); }
-        }
+		public ILocation Start
+		{
+			get { throw new Exception("Should never get there!"); }
+		}
 
-        public ILocation End
-        {
-            get { throw new Exception("Should never get there!"); }
-        }
+		public ILocation End
+		{
+			get { throw new Exception("Should never get there!"); }
+		}
 
 		public Dialect Dialect
 		{
@@ -615,10 +664,10 @@ namespace prompto.runtime
 		}
 
 		public bool Breakpoint
-        {
-            get { throw new Exception("Should never get there!"); }
-             set { throw new Exception("Should never get there!"); }
-       }
+		{
+			get { throw new Exception("Should never get there!"); }
+			set { throw new Exception("Should never get there!"); }
+		}
 
-    }
+	}
 }

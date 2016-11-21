@@ -40,45 +40,41 @@ namespace prompto.expression
 				base.ToDialect (writer);
 		}
 
-		public List<IMethodDeclaration> getCandidates (Context context)
+		public ICollection<IMethodDeclaration> getCandidates (Context context)
 		{
 			if (parent == null)
 				return getGlobalCandidates (context);
 			else
-				return getCategoryCandidates (context);
+				return getMemberCandidates (context);
 		}
 
-		private List<IMethodDeclaration> getGlobalCandidates (Context context)
+		private ICollection<IMethodDeclaration> getGlobalCandidates(Context context)
 		{
-			List<IMethodDeclaration> methods = new List<IMethodDeclaration> ();
+			List<IMethodDeclaration> methods = new List<IMethodDeclaration>();
 			// if called from a member method, could be a member method called without this/self
-			if(context.getParentContext() is InstanceContext) {
+			if (context.getParentContext() is InstanceContext)
+			{
 				IType type = ((InstanceContext)context.getParentContext()).getInstanceType();
 				ConcreteCategoryDeclaration cd = context.getRegisteredDeclaration<ConcreteCategoryDeclaration>(type.GetTypeName());
-				if(cd!=null) {
+				if (cd != null)
+				{
 					MethodDeclarationMap members = cd.getMemberMethods(context, name);
-					if(members!=null)
+					if (members != null)
 						methods.AddRange(members.Values);
 				}
 			}
-			MethodDeclarationMap globals = context.getRegisteredDeclaration<MethodDeclarationMap> (name);
+			MethodDeclarationMap globals = context.getRegisteredDeclaration<MethodDeclarationMap>(name);
 			if (globals != null)
 				methods.AddRange(globals.Values);
 			return methods;
 		}
 
-		private List<IMethodDeclaration> getCategoryCandidates (Context context)
+		private ICollection<IMethodDeclaration> getMemberCandidates (Context context)
 		{
-			List<IMethodDeclaration> methods = new List<IMethodDeclaration> ();
 			IType parentType = checkParent(context);
-			if(!(parentType is CategoryType))
-				throw new SyntaxError(parent.ToString() + " is not a category");
-			ConcreteCategoryDeclaration cd = context.getRegisteredDeclaration<ConcreteCategoryDeclaration>(parentType.GetTypeName());
-			MethodDeclarationMap map = cd == null ? null : cd.getMemberMethods (context, name);
-			if(map!=null)
-				methods.AddRange(map.Values);
-			return methods;
+			return parentType.getMemberMethods(context, name);
 		}
+
 
 		public Context newLocalContext (Context context, IMethodDeclaration declaration)
 		{
@@ -103,10 +99,13 @@ namespace prompto.expression
 		private Context newInstanceCheckContext (Context context)
 		{
 			IType type = parent.check (context);
-			if (!(type is CategoryType))
-				throw new SyntaxError ("Not an instance !");
-			context = context.newInstanceContext ((CategoryType)type);
-			return context.newChildContext ();
+			if (type is CategoryType)
+			{
+				context = context.newInstanceContext((CategoryType)type);
+				return context.newChildContext();
+			}
+			else
+				return context.newChildContext();
 		}
 
 		private Context newLocalInstanceContext(Context context) {
@@ -120,16 +119,22 @@ namespace prompto.expression
 
 		private Context newInstanceContext (Context context)
 		{
-			Object value = parent.interpret(context);
+			IValue value = parent.interpret(context);
 			if(value==null || value==NullValue.Instance)
 				throw new NullReferenceError();
 			IType type = value is TypeValue ? ((TypeValue)value).GetValue() : null;
 			if(type is CategoryType)
 				value = context.loadSingleton(context, (CategoryType)type);
-			if(!(value is ConcreteInstance))
-				throw new InvalidDataError("Not an instance !");
-			context = context.newInstanceContext((ConcreteInstance)value);
-			return context.newChildContext();
+			if (value is ConcreteInstance)
+			{
+				context = context.newInstanceContext((ConcreteInstance)value);
+				return context.newChildContext();
+			}
+			else
+			{
+				context = context.newBuiltInContext(value);
+				return context.newChildContext();
+			}
 		}
 
 		public IExpression toInstanceExpression ()

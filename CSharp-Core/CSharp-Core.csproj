@@ -478,6 +478,8 @@
     <Compile Include="src\prompto\memstore\QueryBuilder.cs" />
     <Compile Include="src\prompto\memstore\Query.cs" />
     <Compile Include="src\prompto\expression\ReadAllExpression.cs" />
+    <Compile Include="src\prompto\expression\UnresolvedSelector.cs" />
+    <Compile Include="src\prompto\declaration\BuiltInMethodDeclaration.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />

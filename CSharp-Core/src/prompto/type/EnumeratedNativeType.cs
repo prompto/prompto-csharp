@@ -41,7 +41,7 @@ namespace prompto.type
         }
 
         
-        public override IValue getMember(Context context, String name)
+        public override IValue getMemberValue(Context context, String name)
         {
             IDeclaration decl = context.getRegisteredDeclaration<IDeclaration>(this.typeName);
             if (!(decl is EnumeratedNativeDeclaration))

@@ -165,13 +165,13 @@ namespace prompto.type
 	}
 
 	override
-	public IValue getMember(Context context, String name) {
+	public IValue getMemberValue(Context context, String name) {
 		if(name=="min")
 			return new Integer(Int64.MinValue);
 		else if(name=="max")
             return new Integer(Int64.MaxValue);
 		else
-            return base.getMember(context, name);
+            return base.getMemberValue(context, name);
 	}
 
     }

@@ -132,8 +132,8 @@ namespace prompto.parser
             String statement = "p.name";
             ETestParser parser = new ETestParser(statement, false);
             IExpression e = parser.parse_instance_expression();
-            Assert.IsTrue(e is MemberSelector);
-            MemberSelector me = (MemberSelector)e;
+            Assert.IsTrue(e is UnresolvedSelector);
+            UnresolvedSelector me = (UnresolvedSelector)e;
             Assert.AreEqual("name", me.getName());
             Assert.IsTrue(me.getParent() is UnresolvedIdentifier);
             UnresolvedIdentifier uie = (UnresolvedIdentifier)me.getParent();

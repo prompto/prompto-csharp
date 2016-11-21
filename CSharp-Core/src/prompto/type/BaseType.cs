@@ -6,6 +6,7 @@ using prompto.value;
 using prompto.utils;
 using Newtonsoft.Json.Linq;
 using prompto.store;
+using prompto.declaration;
 
 namespace prompto.type
 {
@@ -208,9 +209,14 @@ namespace prompto.type
 			return (IValue)value; // TODO for now
 		}
 
-		public virtual IValue getMember (Context context, String name)
+		public virtual IValue getMemberValue (Context context, String name)
 		{
 			throw new SyntaxError ("Cannot read member from " + this.GetTypeName ());
+		}
+
+		public virtual ICollection<IMethodDeclaration> getMemberMethods(Context context, String name)
+		{
+			return new List<IMethodDeclaration>();
 		}
 
 		public virtual IValue ReadJSONValue (Context context, JToken json, Dictionary<String, byte[]> parts)

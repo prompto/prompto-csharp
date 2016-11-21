@@ -167,6 +167,14 @@ namespace prompto.type
             getDeclaration(context);
         }
 
+		public override ICollection<IMethodDeclaration> getMemberMethods(Context context, string name)
+		{
+			IDeclaration cd = getDeclaration(context);
+			if(!(cd is ConcreteCategoryDeclaration))
+				throw new SyntaxError("Unknown category:" + this.GetTypeName());
+			return ((ConcreteCategoryDeclaration)cd).getMemberMethods(context, name).Values;
+		}
+
         
 		public override bool isAssignableFrom(Context context, IType other)
         {

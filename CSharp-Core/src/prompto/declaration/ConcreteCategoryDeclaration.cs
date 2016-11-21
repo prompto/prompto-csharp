@@ -1,9 +1,7 @@
 using System;
-using System.Text;
 using prompto.error;
 using System.Collections.Generic;
 using prompto.runtime;
-using prompto.parser;
 using prompto.type;
 using prompto.value;
 using prompto.grammar;
@@ -22,6 +20,7 @@ namespace prompto.declaration
 		public ConcreteCategoryDeclaration (String name)
 			: base (name)
 		{
+			this.methods = new MethodDeclarationList();
 		}
 
 		public ConcreteCategoryDeclaration (String name, IdentifierList attrs, IdentifierList derivedFrom, MethodDeclarationList methods)

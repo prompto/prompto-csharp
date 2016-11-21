@@ -46,7 +46,7 @@ namespace prompto.expression
 
 		public IValue getMember(Context context, String name)
         {
-            return type.getMember(context, name);
+            return type.getMemberValue(context, name);
         }
     }
 }

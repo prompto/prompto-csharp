@@ -26,7 +26,7 @@ namespace prompto.runtime
 
         public IMethodDeclaration findMethod(bool useInstance)
         {
-            List<IMethodDeclaration> candidates = methodCall.getMethod().getCandidates(context);
+			ICollection<IMethodDeclaration> candidates = methodCall.getMethod().getCandidates(context);
 			List<IMethodDeclaration> compatibles = filterCompatible(candidates, useInstance);
             switch (compatibles.Count)
             {
@@ -126,7 +126,7 @@ namespace prompto.runtime
             return Score.SIMILAR;
         }
 
-		List<IMethodDeclaration> filterCompatible(List<IMethodDeclaration> candidates, bool useInstance)
+		List<IMethodDeclaration> filterCompatible(ICollection<IMethodDeclaration> candidates, bool useInstance)
         {
             List<IMethodDeclaration> compatibles = new List<IMethodDeclaration>();
             foreach (IMethodDeclaration declaration in candidates)

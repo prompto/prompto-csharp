@@ -7,7 +7,7 @@ using prompto.type;
 using prompto.declaration;
 using prompto.value;
 using prompto.grammar;
-
+using prompto.expression;
 
 namespace prompto.argument
 {
@@ -23,7 +23,15 @@ namespace prompto.argument
             this.type = type;
         }
 
-        public IType getType()
+		public CategoryArgument(IType type, String name, IExpression defaultValue)
+			: base(name)
+		{
+			this.type = type;
+			DefaultValue = defaultValue;
+		}
+
+
+		public IType getType()
         {
             return type;
         }
