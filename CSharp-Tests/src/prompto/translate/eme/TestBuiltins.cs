@@ -171,6 +171,12 @@ namespace prompto.translate.eme
 		}
 
 		[Test]
+		public void testTextTrim()
+		{
+			compareResourceEME("builtins/textTrim.pec");
+		}
+
+		[Test]
 		public void testTextUppercase()
 		{
 			compareResourceEME("builtins/textUppercase.pec");

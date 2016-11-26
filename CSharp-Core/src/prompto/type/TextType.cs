@@ -51,13 +51,16 @@ namespace prompto.type
 					list.Add(TO_LOWERCASE_METHOD);
 					return list;
 				case "toUpperCase":
-						list.Add(TO_UPPERCASE_METHOD);
-						return list;
+					list.Add(TO_UPPERCASE_METHOD);
+					return list;
 				case "toCapitalized":
-						list.Add(TO_CAPITALIZED_METHOD);
-						return list;
+					list.Add(TO_CAPITALIZED_METHOD);
+					return list;
 				case "split":
 					list.Add(SPLIT_METHOD);
+					return list;
+				case "trim":
+					list.Add(TRIM_METHOD);
 					return list;
 				default:
 					return base.getMemberMethods(context, name);
@@ -70,6 +73,7 @@ namespace prompto.type
 		internal static IMethodDeclaration TO_LOWERCASE_METHOD = new ToLowerCaseMethodDeclaration();
 		internal static IMethodDeclaration TO_UPPERCASE_METHOD = new ToUpperCaseMethodDeclaration();
 		internal static IMethodDeclaration TO_CAPITALIZED_METHOD = new ToCapitalizedMethodDeclaration();
+		internal static IMethodDeclaration TRIM_METHOD = new TrimMethodDeclaration();
 
 		public override IType checkMember(Context context, String name)
 		{
@@ -243,8 +247,30 @@ namespace prompto.type
 		public override IValue interpret(Context context)
 		{
 			string value = (String)getValue(context).GetStorableData();
-			String lower = value.ToUpper();
-			return new Text(lower);
+			String upper = value.ToUpper();
+			return new Text(upper);
+		}
+
+		public override IType check(Context context)
+		{
+			return TextType.Instance;
+		}
+
+
+	};
+
+	class TrimMethodDeclaration : BuiltInMethodDeclaration
+	{
+		public TrimMethodDeclaration()
+			: base("trim")
+		{
+		}
+
+		public override IValue interpret(Context context)
+		{
+			string value = (String)getValue(context).GetStorableData();
+			String trim = value.Trim();
+			return new Text(trim);
 		}
 
 		public override IType check(Context context)

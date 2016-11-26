@@ -148,6 +148,12 @@ namespace prompto.runtime.o
 		}
 
 		[Test]
+		public void testTextTrim()
+		{
+			CheckOutput("builtins/textTrim.poc");
+		}
+
+		[Test]
 		public void testTextUppercase()
 		{
 			CheckOutput("builtins/textUppercase.poc");

@@ -147,6 +147,12 @@ namespace prompto.translate.omo
 		}
 
 		[Test]
+		public void testTextTrim()
+		{
+			compareResourceOMO("builtins/textTrim.poc");
+		}
+
+		[Test]
 		public void testTextUppercase()
 		{
 			compareResourceOMO("builtins/textUppercase.poc");

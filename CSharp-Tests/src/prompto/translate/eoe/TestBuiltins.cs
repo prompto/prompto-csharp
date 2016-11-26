@@ -171,6 +171,12 @@ namespace prompto.translate.eoe
 		}
 
 		[Test]
+		public void testTextTrim()
+		{
+			compareResourceEOE("builtins/textTrim.pec");
+		}
+
+		[Test]
 		public void testTextUppercase()
 		{
 			compareResourceEOE("builtins/textUppercase.pec");
