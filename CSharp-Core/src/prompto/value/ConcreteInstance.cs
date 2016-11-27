@@ -144,19 +144,25 @@ namespace prompto.value
 		protected IValue GetMemberAllowGetter (Context context, String attrName, bool allowGetter)
 		{
 			GetterMethodDeclaration getter = allowGetter ? declaration.findGetter (context, attrName) : null;
-			if (getter != null) {
+			if (getter != null) 
+			{
 				context = context.newInstanceContext (this).newChildContext();
 				return getter.interpret(context);
-			} else {
-				IValue value = null;
-				if (values.TryGetValue(attrName, out value))
-					return value;
-				else if ("text" == attrName)
-					return new Text(this.ToString());
+			} 
+			else if(getDeclaration().hasAttribute(context, attrName) || "dbId"==attrName)
+			{
+				IValue result = null;
+				if (values.TryGetValue(attrName, out result))
+					return result;
 				else
 					return NullValue.Instance;
 			}
+			else if ("text" == attrName)
+				return new Text(this.ToString());
+			else
+				return NullValue.Instance;
 		}
+
 
 		// don't call setters from setters, so register them
 		ThreadLocal<Dictionary<String, Context>> activeSetters = new ThreadLocal<Dictionary<String, Context>> (Factory);
