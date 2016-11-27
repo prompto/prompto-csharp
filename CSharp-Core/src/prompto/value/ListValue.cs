@@ -59,7 +59,7 @@ namespace prompto.value
 			return sb.ToString();
 		}
 
-		public void ToJson(Context context, JsonWriter generator, Object instanceId, String fieldName, Dictionary<String, byte[]> binaries)
+		public void ToJson(Context context, JsonWriter generator, Object instanceId, String fieldName, bool withType, Dictionary<String, byte[]> binaries)
 		{
 			throw new NotSupportedException("No ToJson support for " + this.GetType().Name);
 		}

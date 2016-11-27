@@ -62,7 +62,7 @@ namespace prompto.expression
 			using(MemoryStream stream = new MemoryStream()) {
 				using (TextWriter text = new StreamWriter(stream)) {
 					using (JsonWriter writer = new JsonTextWriter (text)) {
-						value.ToJson (context, writer, null, null, binaries);
+						value.ToJson (context, writer, null, null, true, binaries);
 					}
 				}
 				binaries ["value.json"] = stream.ToArray();

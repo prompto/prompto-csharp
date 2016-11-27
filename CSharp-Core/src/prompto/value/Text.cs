@@ -199,7 +199,7 @@ namespace prompto.value
             return value.GetHashCode();
         }
 
-		public override void ToJson (Context context, JsonWriter generator, object instanceId, String fieldName, Dictionary<string, byte[]> binaries)
+		public override void ToJson (Context context, JsonWriter generator, object instanceId, String fieldName, bool withType, Dictionary<string, byte[]> binaries)
 		{
 			generator.WriteValue (value);
 		}

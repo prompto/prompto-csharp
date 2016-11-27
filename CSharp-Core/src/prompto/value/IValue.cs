@@ -28,7 +28,7 @@ namespace prompto.value
 		Object ConvertTo(Type type);
 		bool Equals(Context context, IValue value);
 		bool Roughly(Context context, IValue value);
-		void ToJson(Context context, JsonWriter generator, Object instanceId, String fieldName, Dictionary<String, byte[]> binaries);
+		void ToJson(Context context, JsonWriter generator, Object instanceId, String fieldName, bool withType, Dictionary<String, byte[]> binaries);
 		object GetStorableData();
 		void CollectStorables(List<IStorable> storables);
 

@@ -113,7 +113,7 @@ namespace prompto.expression
 			throw new NotSupportedException("No item support for " + this.GetType().Name);
 		}
 
-		public virtual void ToJson (Context context, JsonWriter generator, Object instanceId, String fieldName, Dictionary<String, byte[]> binaries)
+		public virtual void ToJson (Context context, JsonWriter generator, Object instanceId, String fieldName, bool withType, Dictionary<String, byte[]> binaries)
 		{
 			throw new NotSupportedException("No ToJson support for " + this.GetType().Name);
 		}

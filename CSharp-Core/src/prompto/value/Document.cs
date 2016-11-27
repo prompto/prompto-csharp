@@ -116,7 +116,7 @@ namespace prompto.value
 								generator.WriteNull();
 							else {
 								Object id = System.Runtime.CompilerServices.RuntimeHelpers.GetHashCode(this);
-								entry.Value.ToJson(null, generator, id, entry.Key, binaries);
+								entry.Value.ToJson(null, generator, id, entry.Key, false, binaries);
 							}
 						}
 						generator.WriteEndObject();
@@ -127,13 +127,17 @@ namespace prompto.value
 		}
 	
 
-		public override void ToJson (Context context, JsonWriter generator, object instanceId, String fieldName, Dictionary<string, byte[]> binaries)
+		public override void ToJson (Context context, JsonWriter generator, object instanceId, String fieldName, bool withType, Dictionary<string, byte[]> binaries)
 		{
-			try {
-				generator.WriteStartObject();
-				generator.WritePropertyName("type");
-				generator.WriteValue(DocumentType.Instance.GetTypeName());
-				generator.WritePropertyName("value");
+			try 
+			{
+				if(withType)
+				{
+					generator.WriteStartObject();
+					generator.WritePropertyName("type");
+					generator.WriteValue(DocumentType.Instance.GetTypeName());
+					generator.WritePropertyName("value");
+				}
 				generator.WriteStartObject();
 				foreach(KeyValuePair<String, IValue> entry in values) {
 					generator.WritePropertyName(entry.Key);
@@ -141,11 +145,12 @@ namespace prompto.value
 						generator.WriteNull();
 					else {
 						Object id = System.Runtime.CompilerServices.RuntimeHelpers.GetHashCode(this);
-						entry.Value.ToJson(context, generator, id, entry.Key, binaries);
+						entry.Value.ToJson(context, generator, id, entry.Key, withType, binaries);
 					}
 				}
 				generator.WriteEndObject();
-				generator.WriteEndObject();
+				if(withType)
+					generator.WriteEndObject();
 			} catch(Exception e) {
 				throw new ReadWriteError(e.Message);
 			}
