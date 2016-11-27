@@ -9,9 +9,27 @@ namespace prompto.translate.eme
 	{
 
 		[Test]
+		public void testBooleanText()
+		{
+			compareResourceEME("builtins/booleanText.pec");
+		}
+
+		[Test]
+		public void testCategoryText()
+		{
+			compareResourceEME("builtins/categoryText.pec");
+		}
+
+		[Test]
 		public void testCharCodePoint()
 		{
 			compareResourceEME("builtins/charCodePoint.pec");
+		}
+
+		[Test]
+		public void testCharText()
+		{
+			compareResourceEME("builtins/charText.pec");
 		}
 
 		[Test]
@@ -30,6 +48,12 @@ namespace prompto.translate.eme
 		public void testDateMonth()
 		{
 			compareResourceEME("builtins/dateMonth.pec");
+		}
+
+		[Test]
+		public void testDateText()
+		{
+			compareResourceEME("builtins/dateText.pec");
 		}
 
 		[Test]
@@ -75,6 +99,12 @@ namespace prompto.translate.eme
 		}
 
 		[Test]
+		public void testDateTimeText()
+		{
+			compareResourceEME("builtins/dateTimeText.pec");
+		}
+
+		[Test]
 		public void testDateTimeTZName()
 		{
 			compareResourceEME("builtins/dateTimeTZName.pec");
@@ -99,6 +129,12 @@ namespace prompto.translate.eme
 		}
 
 		[Test]
+		public void testDecimalText()
+		{
+			compareResourceEME("builtins/decimalText.pec");
+		}
+
+		[Test]
 		public void testDictCount()
 		{
 			compareResourceEME("builtins/dictCount.pec");
@@ -111,9 +147,21 @@ namespace prompto.translate.eme
 		}
 
 		[Test]
+		public void testDictText()
+		{
+			compareResourceEME("builtins/dictText.pec");
+		}
+
+		[Test]
 		public void testDictValues()
 		{
 			compareResourceEME("builtins/dictValues.pec");
+		}
+
+		[Test]
+		public void testDocumentText()
+		{
+			compareResourceEME("builtins/documentText.pec");
 		}
 
 		[Test]
@@ -135,15 +183,39 @@ namespace prompto.translate.eme
 		}
 
 		[Test]
+		public void testIntegerText()
+		{
+			compareResourceEME("builtins/integerText.pec");
+		}
+
+		[Test]
 		public void testListCount()
 		{
 			compareResourceEME("builtins/listCount.pec");
 		}
 
 		[Test]
+		public void testListText()
+		{
+			compareResourceEME("builtins/listText.pec");
+		}
+
+		[Test]
+		public void testPeriodText()
+		{
+			compareResourceEME("builtins/periodText.pec");
+		}
+
+		[Test]
 		public void testSetCount()
 		{
 			compareResourceEME("builtins/setCount.pec");
+		}
+
+		[Test]
+		public void testSetText()
+		{
+			compareResourceEME("builtins/setText.pec");
 		}
 
 		[Test]
@@ -168,6 +240,12 @@ namespace prompto.translate.eme
 		public void testTextSplit()
 		{
 			compareResourceEME("builtins/textSplit.pec");
+		}
+
+		[Test]
+		public void testTextText()
+		{
+			compareResourceEME("builtins/textText.pec");
 		}
 
 		[Test]
@@ -207,9 +285,27 @@ namespace prompto.translate.eme
 		}
 
 		[Test]
+		public void testTimeText()
+		{
+			compareResourceEME("builtins/timeText.pec");
+		}
+
+		[Test]
 		public void testTupleCount()
 		{
 			compareResourceEME("builtins/tupleCount.pec");
+		}
+
+		[Test]
+		public void testTupleText()
+		{
+			compareResourceEME("builtins/tupleText.pec");
+		}
+
+		[Test]
+		public void testUuidText()
+		{
+			compareResourceEME("builtins/uuidText.pec");
 		}
 
 	}

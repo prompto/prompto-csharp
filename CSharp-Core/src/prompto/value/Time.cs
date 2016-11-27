@@ -84,7 +84,7 @@ namespace prompto.value
             else if ("millisecond" == name)
                 return new Integer(this.MillisOfSecond);
             else
-                throw new NotSupportedException("No such member:" + name);
+                return base.GetMember(context, name, autoCreate);
         }
 
         override

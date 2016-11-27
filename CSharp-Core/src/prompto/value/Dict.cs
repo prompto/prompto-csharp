@@ -146,8 +146,10 @@ namespace prompto.value
                 list.AddRange(this.Values);
                 return list;
             }
-            else
-                throw new NotSupportedException("No such member:" + name);
+			else if ("text" == name)
+				return new Text(this.ToString());
+			else
+				throw new NotSupportedException("No such member " + name);
         }
 
 		public virtual void SetMember(Context context, String name, IValue value)
@@ -202,7 +204,9 @@ namespace prompto.value
             sb.Append("{");
 			foreach (KeyValuePair<Text, IValue> kvp in ((Dictionary<Text, IValue>)this))
             {
-                sb.Append(kvp.Key.ToString());
+                sb.Append('"');
+				sb.Append(kvp.Key.ToString());
+				sb.Append('"');
                 sb.Append(":");
                 sb.Append(kvp.Value.ToString());
                 sb.Append(", ");

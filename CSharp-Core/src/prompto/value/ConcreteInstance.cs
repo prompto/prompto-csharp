@@ -149,8 +149,12 @@ namespace prompto.value
 				return getter.interpret(context);
 			} else {
 				IValue value = null;
-				values.TryGetValue (attrName, out value);
-				return value;
+				if (values.TryGetValue(attrName, out value))
+					return value;
+				else if ("text" == attrName)
+					return new Text(this.ToString());
+				else
+					return NullValue.Instance;
 			}
 		}
 

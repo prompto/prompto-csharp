@@ -36,7 +36,7 @@ namespace prompto.value
 			if ("codePoint" == name)
 				return new Integer((int)value);
 			else
-				throw new NotSupportedException("No such member:" + name);
+				return base.GetMember(context, name, autoCreate);
 		}
 
 		override

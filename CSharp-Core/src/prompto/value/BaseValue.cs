@@ -76,7 +76,10 @@ namespace prompto.value
 
 		public virtual IValue GetMember(Context context, String name, bool autoCreate)
         {
-            throw new NotSupportedException("No member support for " + this.GetType().Name);
+			if("text"==name)
+				return new Text(this.ToString());
+			else
+				throw new NotSupportedException("No member support for " + this.GetType().Name);
         }
 
 		public virtual void SetMember(Context context, String name, IValue value)

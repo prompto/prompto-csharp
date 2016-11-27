@@ -128,7 +128,7 @@ namespace prompto.value
             else if ("tzName" == name)
                 return new Text(this.TZName);
             else
-                throw new NotSupportedException("No such member:" + name);
+                return base.GetMember(context, name, autoCreate);
         }
 
         override

@@ -22,9 +22,27 @@ namespace prompto.runtime.e
 		}
 
 		[Test]
+		public void testBooleanText()
+		{
+			CheckOutput("builtins/booleanText.pec");
+		}
+
+		[Test]
+		public void testCategoryText()
+		{
+			CheckOutput("builtins/categoryText.pec");
+		}
+
+		[Test]
 		public void testCharCodePoint()
 		{
 			CheckOutput("builtins/charCodePoint.pec");
+		}
+
+		[Test]
+		public void testCharText()
+		{
+			CheckOutput("builtins/charText.pec");
 		}
 
 		[Test]
@@ -43,6 +61,12 @@ namespace prompto.runtime.e
 		public void testDateMonth()
 		{
 			CheckOutput("builtins/dateMonth.pec");
+		}
+
+		[Test]
+		public void testDateText()
+		{
+			CheckOutput("builtins/dateText.pec");
 		}
 
 		[Test]
@@ -88,6 +112,12 @@ namespace prompto.runtime.e
 		}
 
 		[Test]
+		public void testDateTimeText()
+		{
+			CheckOutput("builtins/dateTimeText.pec");
+		}
+
+		[Test]
 		public void testDateTimeYear()
 		{
 			CheckOutput("builtins/dateTimeYear.pec");
@@ -97,6 +127,12 @@ namespace prompto.runtime.e
 		public void testDateYear()
 		{
 			CheckOutput("builtins/dateYear.pec");
+		}
+
+		[Test]
+		public void testDecimalText()
+		{
+			CheckOutput("builtins/decimalText.pec");
 		}
 
 		[Test]
@@ -112,9 +148,21 @@ namespace prompto.runtime.e
 		}
 
 		[Test]
+		public void testDictText()
+		{
+			CheckOutput("builtins/dictText.pec");
+		}
+
+		[Test]
 		public void testDictValues()
 		{
 			CheckOutput("builtins/dictValues.pec");
+		}
+
+		[Test]
+		public void testDocumentText()
+		{
+			CheckOutput("builtins/documentText.pec");
 		}
 
 		[Test]
@@ -136,15 +184,39 @@ namespace prompto.runtime.e
 		}
 
 		[Test]
+		public void testIntegerText()
+		{
+			CheckOutput("builtins/integerText.pec");
+		}
+
+		[Test]
 		public void testListCount()
 		{
 			CheckOutput("builtins/listCount.pec");
 		}
 
 		[Test]
+		public void testListText()
+		{
+			CheckOutput("builtins/listText.pec");
+		}
+
+		[Test]
+		public void testPeriodText()
+		{
+			CheckOutput("builtins/periodText.pec");
+		}
+
+		[Test]
 		public void testSetCount()
 		{
 			CheckOutput("builtins/setCount.pec");
+		}
+
+		[Test]
+		public void testSetText()
+		{
+			CheckOutput("builtins/setText.pec");
 		}
 
 		[Test]
@@ -169,6 +241,12 @@ namespace prompto.runtime.e
 		public void testTextSplit()
 		{
 			CheckOutput("builtins/textSplit.pec");
+		}
+
+		[Test]
+		public void testTextText()
+		{
+			CheckOutput("builtins/textText.pec");
 		}
 
 		[Test]
@@ -208,9 +286,27 @@ namespace prompto.runtime.e
 		}
 
 		[Test]
+		public void testTimeText()
+		{
+			CheckOutput("builtins/timeText.pec");
+		}
+
+		[Test]
 		public void testTupleCount()
 		{
 			CheckOutput("builtins/tupleCount.pec");
+		}
+
+		[Test]
+		public void testTupleText()
+		{
+			CheckOutput("builtins/tupleText.pec");
+		}
+
+		[Test]
+		public void testUuidText()
+		{
+			CheckOutput("builtins/uuidText.pec");
 		}
 
 	}

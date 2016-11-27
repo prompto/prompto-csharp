@@ -106,7 +106,7 @@ namespace prompto.value
             if ("count" == name)
                 return new Integer(value.Length);
            else
-                throw new NotSupportedException("No such member:" + name);
+                return base.GetMember(context, name, autoCreate);
         }
 
         public override IValue GetItem(Context context, IValue index)

@@ -83,7 +83,7 @@ namespace prompto.value
             else if ("dayOfYear" == name)
                 return new Integer(this.DayOfYear);
             else
-                throw new NotSupportedException("No such member:" + name);
+                return base.GetMember(context, name, autoCreate);
         }
 
         override

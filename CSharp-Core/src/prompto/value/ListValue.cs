@@ -229,8 +229,10 @@ namespace prompto.value
 		{
 			if ("count" == name)
 				return new Integer(this.Count);
+			else if ("text" == name)
+				return new Text(this.ToString());
 			else
-				throw new NotSupportedException("No such member:" + name);
+				throw new NotSupportedException("No such member " + name);
 		}
 
 		public void SetMember(Context context, String name, IValue value)

@@ -5,7 +5,7 @@ using prompto.runtime;
 using prompto.type;
 using Newtonsoft.Json;
 using prompto.error;
-
+using System.IO;
 
 namespace prompto.value
 {
@@ -51,17 +51,19 @@ namespace prompto.value
 
 		public IValue GetMember(String name, bool autoCreate)
 		{
-            IValue result;
-			if (values.TryGetValue (name, out result))
+            IValue result = null;
+			if (values.TryGetValue(name, out result))
 				return result;
-			else
-				result = NullValue.Instance;
-			if(autoCreate)
-            {
-                result = new Document();
-                values[name] = result;
-            }
-            return result;
+			else if ("text" == name)
+				return new Text(this.ToString());
+			else if (autoCreate)
+			{
+				result = new Document();
+				values[name] = result; 
+				return result;
+			} else
+				return NullValue.Instance;
+		
         }
 
 
@@ -95,6 +97,36 @@ namespace prompto.value
 			values[item.ToString ()] = value;
 		}
 
+
+		public override string ToString()
+		{
+			Dictionary<String, byte[]> binaries = new Dictionary<String, byte[]>();
+			// create textual data
+			using (MemoryStream stream = new MemoryStream())
+			{
+				using (TextWriter text = new StreamWriter(stream))
+				{
+					using (JsonWriter generator = new JsonTextWriter(text))
+					{
+						generator.WriteStartObject();
+						foreach (KeyValuePair<String, IValue> entry in values)
+						{
+							generator.WritePropertyName(entry.Key);
+							if (entry.Value == null)
+								generator.WriteNull();
+							else {
+								Object id = System.Runtime.CompilerServices.RuntimeHelpers.GetHashCode(this);
+								entry.Value.ToJson(null, generator, id, entry.Key, binaries);
+							}
+						}
+						generator.WriteEndObject();
+					}
+				}
+				return System.Text.Encoding.UTF8.GetString(stream.ToArray());
+			}
+		}
+	
+
 		public override void ToJson (Context context, JsonWriter generator, object instanceId, String fieldName, Dictionary<string, byte[]> binaries)
 		{
 			try {
@@ -105,12 +137,11 @@ namespace prompto.value
 				generator.WriteStartObject();
 				foreach(KeyValuePair<String, IValue> entry in values) {
 					generator.WritePropertyName(entry.Key);
-					IValue value = entry.Value;
-					if(value==null)
+					if(entry.Value==null)
 						generator.WriteNull();
 					else {
 						Object id = System.Runtime.CompilerServices.RuntimeHelpers.GetHashCode(this);
-						value.ToJson(context, generator, id, entry.Key, binaries);
+						entry.Value.ToJson(context, generator, id, entry.Key, binaries);
 					}
 				}
 				generator.WriteEndObject();

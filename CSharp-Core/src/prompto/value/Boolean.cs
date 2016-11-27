@@ -47,8 +47,7 @@ namespace prompto.value
 			return value;
 		}
 
-        
-        public override Int32 CompareTo(Context context, IValue value)
+       public override Int32 CompareTo(Context context, IValue value)
         {
             if (value is Boolean)
                 return this.value.CompareTo(((Boolean)value).value);
@@ -57,20 +56,20 @@ namespace prompto.value
  
         }
 
-        override
-        public Object ConvertTo(Type type)
+        
+        public override Object ConvertTo(Type type)
         {
             return value;
         }
         
-        override
-        public String ToString()
+        
+        public override String ToString()
         {
             return Value.ToString().ToLower();
         }
 
-        override
-        public bool Equals(object obj)
+        
+        public override bool Equals(object obj)
         {
             if (obj is Boolean)
                 return value.Equals(((Boolean)obj).value);
@@ -78,8 +77,8 @@ namespace prompto.value
                 return value.Equals(obj);
         }
 
-        override
-        public int GetHashCode()
+        
+        public override int GetHashCode()
         {
             return value.GetHashCode();
         }
