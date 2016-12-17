@@ -85,8 +85,12 @@ namespace prompto.expression
 
 		private IType checkParentInstance(Context context)
 		{
-			if (parent is UnresolvedIdentifier) {
-				string name = ((UnresolvedIdentifier)parent).getName();
+			string name = null;
+			if (parent is UnresolvedIdentifier)
+				name = ((UnresolvedIdentifier)parent).getName();
+			else if(parent is InstanceExpression)
+				name = ((InstanceExpression)parent).getName();
+			if(name!=null) {
 				// don't get Singleton values
 				if (char.IsLower(name[0]))
 				{

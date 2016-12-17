@@ -76,6 +76,12 @@ namespace prompto.runtime.o
 		}
 
 		[Test]
+		public void testOverride()
+		{
+			CheckOutput("methods/override.poc");
+		}
+
+		[Test]
 		public void testPolymorphic_abstract()
 		{
 			CheckOutput("methods/polymorphic_abstract.poc");

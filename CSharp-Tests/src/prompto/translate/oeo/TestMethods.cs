@@ -63,6 +63,12 @@ namespace prompto.translate.oeo
 		}
 
 		[Test]
+		public void testOverride()
+		{
+			compareResourceOEO("methods/override.poc");
+		}
+
+		[Test]
 		public void testPolymorphic_abstract()
 		{
 			compareResourceOEO("methods/polymorphic_abstract.poc");
