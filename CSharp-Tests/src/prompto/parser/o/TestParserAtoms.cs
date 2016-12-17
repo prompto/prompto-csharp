@@ -191,7 +191,7 @@ namespace prompto.parser
             ArgumentAssignment ars = mc.getAssignments()[0];
 			Assert.AreEqual("value", ars.GetName());
             IExpression exp = ars.getExpression();
-            Assert.IsTrue(exp is AddExpression);
+            Assert.IsTrue(exp is PlusExpression);
 			Assert.AreEqual("print(value = \"person\" + p.name)", generate(mc));
 
         }

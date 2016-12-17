@@ -1,24 +1,18 @@
-using System;
 using prompto.runtime;
 using prompto.value;
-using prompto.error;
-using System.Globalization;
 using prompto.utils;
-using Decimal = prompto.value.Decimal;
-using DateTime = prompto.value.DateTime;
-using prompto.parser;
 using prompto.type;
 
 namespace prompto.expression
 {
 
-	public class AddExpression : IExpression
+	public class PlusExpression : IExpression
     {
 
         IExpression left;
         IExpression right;
 
-        public AddExpression(IExpression left, IExpression right)
+        public PlusExpression(IExpression left, IExpression right)
         {
             this.left = left;
             this.right = right;

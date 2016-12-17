@@ -759,7 +759,7 @@ namespace prompto.parser
 			IExpression left = this.GetNodeValue<IExpression> (ctx.left);
 			IExpression right = this.GetNodeValue<IExpression> (ctx.right);
 			IExpression exp = ctx.op.Type == MParser.PLUS ? 
-            (IExpression)new AddExpression (left, right) 
+            (IExpression)new PlusExpression (left, right) 
             : (IExpression)new SubtractExpression (left, right);
 			SetNodeValue (ctx, exp);
 		}

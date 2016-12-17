@@ -210,7 +210,7 @@ namespace prompto.parser
             ArgumentAssignment ars = parser.parse_argument_assignment();
 			Assert.AreEqual("value", ars.GetName());
             IExpression exp = ars.getExpression();
-            Assert.IsTrue(exp is AddExpression);
+            Assert.IsTrue(exp is PlusExpression);
 			Assert.AreEqual("\"person\" + p.name as value", generate(ars));
         }
 
@@ -223,7 +223,7 @@ namespace prompto.parser
             ArgumentAssignment ars = ls[0];
 			Assert.AreEqual("value", ars.GetName());
             IExpression exp = ars.getExpression();
-            Assert.IsTrue(exp is AddExpression);
+            Assert.IsTrue(exp is PlusExpression);
 			Assert.AreEqual("\"person\" + p.name as value", generate(ars));
 
         }
@@ -240,7 +240,7 @@ namespace prompto.parser
             ArgumentAssignment ars = mc.getAssignments()[0];
 			Assert.AreEqual("value", ars.GetName());
             IExpression exp = ars.getExpression();
-            Assert.IsTrue(exp is AddExpression);
+            Assert.IsTrue(exp is PlusExpression);
 			Assert.AreEqual("print with \"person\" + p.name as value", generate(mc));
 
         }

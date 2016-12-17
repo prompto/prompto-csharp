@@ -60,7 +60,8 @@ namespace prompto.expression
 
 		override
 		public IValue interpret (Context context)
-		{       // resolve parent to keep clarity
+		{       
+			// resolve parent to keep clarity
 			IExpression parent = resolveParent(context);
 			// special case for Symbol which evaluates as value
 			IValue value = interpretSymbol(context, parent);
@@ -94,11 +95,15 @@ namespace prompto.expression
 		}
 
 		private IValue interpretSingleton(Context context, IExpression parent) {
-			IType type = parent is TypeExpression ? ((TypeExpression)parent).getType() : null;
-			if( type is CategoryType) {
-				ConcreteInstance instance = context.loadSingleton(context, (CategoryType)type);
-				if(instance!=null)
-					return instance.GetMember(context, name, false); 
+			if (parent is TypeExpression)
+			{
+				IType type = ((TypeExpression)parent).getType();
+				if (type is CategoryType && !(type is EnumeratedCategoryType))
+				{
+					ConcreteInstance instance = context.loadSingleton(context, (CategoryType)type);
+					if (instance != null)
+						return instance.GetMember(context, name, false);
+				}
 			}
 			return null;
 		}

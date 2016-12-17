@@ -7,6 +7,7 @@ using System;
 using prompto.expression;
 using Newtonsoft.Json;
 using prompto.store;
+using System.Text;
 
 namespace prompto.grammar
 {
@@ -145,7 +146,16 @@ namespace prompto.grammar
 
 		public override string ToString()
 		{
-			return "[" + base.ToString() + "]";
+			StringBuilder sb = new StringBuilder();
+			sb.Append("[");
+			foreach (Symbol s in this)
+			{
+				sb.Append(s.GetName());
+				sb.Append(", ");
+			}
+			sb.Length -= ", ".Length;
+			sb.Append("]");
+			return sb.ToString();	
 		}
 
 		public void CollectStorables(List<IStorable> storables)

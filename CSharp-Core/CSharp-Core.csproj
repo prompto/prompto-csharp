@@ -78,7 +78,7 @@
     <Compile Include="src\prompto\error\TerminatedError.cs" />
     <Compile Include="src\prompto\error\UserError.cs" />
     <Compile Include="src\prompto\declaration\AbstractMethodDeclaration.cs" />
-    <Compile Include="src\prompto\expression\AddExpression.cs" />
+    <Compile Include="src\prompto\expression\PlusExpression.cs" />
     <Compile Include="src\prompto\expression\AndExpression.cs" />
     <Compile Include="src\prompto\python\Python2NativeCall.cs" />
     <Compile Include="src\prompto\python\Python3NativeCall.cs" />

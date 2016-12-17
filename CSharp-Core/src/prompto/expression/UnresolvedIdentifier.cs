@@ -147,7 +147,9 @@ namespace prompto.expression
         private IExpression resolveType(Context context)
         {
             IDeclaration decl = context.getRegisteredDeclaration<IDeclaration>(name);
-            if (decl is CategoryDeclaration)
+			if (decl is EnumeratedCategoryDeclaration)
+				return new TypeExpression(new EnumeratedCategoryType(name));
+            else if (decl is CategoryDeclaration)
                 return new TypeExpression(new CategoryType(name));
             else if (decl is EnumeratedNativeDeclaration)
                 return new TypeExpression(decl.GetIType(context));
