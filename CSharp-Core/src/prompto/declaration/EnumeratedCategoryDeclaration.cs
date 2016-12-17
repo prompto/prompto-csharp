@@ -43,16 +43,16 @@ namespace prompto.declaration
 			this.symbols.SetIType(new ListType (type));
         }
 
-        override
-        public void register(Context context)
+        
+        public override void register(Context context)
         {
             context.registerDeclaration(this);
             foreach (CategorySymbol symbol in symbols)
                 context.registerValue(symbol);
         }
 
-        override
-        public IType check(Context context)
+        
+        public override IType check(Context context)
         {
             base.check(context);
             foreach (CategorySymbol s in symbols)
@@ -62,14 +62,22 @@ namespace prompto.declaration
             return GetIType(context);
         }
 
-        override
-        public IType GetIType(Context context)
+        
+        public override IType GetIType(Context context)
         {
             return new EnumeratedCategoryType(name);
         }
 
-		override
-		protected void ToODialect(CodeWriter writer) {
+
+		public override bool hasAttribute(Context context, string name)
+		{
+			if ("name"==name)
+				return true;
+			else	
+				return base.hasAttribute(context, name);
+		}
+
+		protected override void ToODialect(CodeWriter writer) {
 			writer.append("enumerated category ");
 			writer.append(name);
 			if(attributes!=null) {
@@ -91,8 +99,8 @@ namespace prompto.declaration
 			writer.append("}\n");
 		}
 
-		override
-		protected void ToEDialect(CodeWriter writer) {
+
+		protected override void ToEDialect(CodeWriter writer) {
 			writer.append("define ");
 			writer.append(name);
 			writer.append(" as enumerated ");

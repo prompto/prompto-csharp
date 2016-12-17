@@ -18,7 +18,7 @@ namespace prompto.type
         {
             if ("value" == name)
                 return this;
-            else if ("symbol" == name)
+            else if ("name" == name)
                 return TextType.Instance;
             else
                 return base.checkMember(context, name);
