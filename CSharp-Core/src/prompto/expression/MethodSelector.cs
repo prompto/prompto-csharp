@@ -40,12 +40,12 @@ namespace prompto.expression
 				base.ToDialect (writer);
 		}
 
-		public ICollection<IMethodDeclaration> getCandidates (Context context)
+		public ICollection<IMethodDeclaration> getCandidates (Context context, bool checkInstance)
 		{
 			if (parent == null)
 				return getGlobalCandidates (context);
 			else
-				return getMemberCandidates (context);
+				return getMemberCandidates (context, checkInstance);
 		}
 
 		private ICollection<IMethodDeclaration> getGlobalCandidates(Context context)
@@ -69,12 +69,35 @@ namespace prompto.expression
 			return methods;
 		}
 
-		private ICollection<IMethodDeclaration> getMemberCandidates (Context context)
+		private ICollection<IMethodDeclaration> getMemberCandidates (Context context, bool checkInstance)
 		{
-			IType parentType = checkParent(context);
+			IType parentType = checkParentType(context, checkInstance);
 			return parentType.getMemberMethods(context, name);
 		}
 
+		private IType checkParentType(Context context, bool checkInstance)
+		{
+			if (checkInstance)
+				return checkParentInstance(context);
+			else
+				return checkParent(context);
+		}
+
+		private IType checkParentInstance(Context context)
+		{
+			if (parent is UnresolvedIdentifier) {
+				string name = ((UnresolvedIdentifier)parent).getName();
+				// don't get Singleton values
+				if (char.IsLower(name[0]))
+				{
+					IValue value = context.getValue(name);
+					if (value != null && value != NullValue.Instance)
+						return value.GetIType();
+				}
+			}
+			// TODO check result instance
+			return checkParent(context);
+		}
 
 		public Context newLocalContext (Context context, IMethodDeclaration declaration)
 		{

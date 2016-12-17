@@ -69,6 +69,12 @@ namespace prompto.translate.eme
 		}
 
 		[Test]
+		public void testOverride()
+		{
+			compareResourceEME("methods/override.pec");
+		}
+
+		[Test]
 		public void testPolymorphic_abstract()
 		{
 			compareResourceEME("methods/polymorphic_abstract.pec");

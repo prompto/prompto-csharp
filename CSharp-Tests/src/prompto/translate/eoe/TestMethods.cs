@@ -69,6 +69,12 @@ namespace prompto.translate.eoe
 		}
 
 		[Test]
+		public void testOverride()
+		{
+			compareResourceEOE("methods/override.pec");
+		}
+
+		[Test]
 		public void testPolymorphic_abstract()
 		{
 			compareResourceEOE("methods/polymorphic_abstract.pec");
