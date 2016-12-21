@@ -14,28 +14,28 @@ namespace prompto.csharp
     public class CSharpClassType : CategoryType
     {
 
-		static Dictionary<Type, IType> typeToPrestoMap = new Dictionary<Type, IType>();
+		static Dictionary<Type, IType> typeToPromptoMap = new Dictionary<Type, IType>();
 
         static CSharpClassType()
         {
-            typeToPrestoMap[typeof(void)] = VoidType.Instance;
-            typeToPrestoMap[typeof(bool)] = BooleanType.Instance;
-            typeToPrestoMap[typeof(bool?)] = BooleanType.Instance;
-            typeToPrestoMap[typeof(char)] = CharacterType.Instance;
-            typeToPrestoMap[typeof(char?)] = CharacterType.Instance;
-            typeToPrestoMap[typeof(int)] = IntegerType.Instance;
-            typeToPrestoMap[typeof(int?)] = IntegerType.Instance;
-            typeToPrestoMap[typeof(long)] = IntegerType.Instance;
-            typeToPrestoMap[typeof(long?)] = IntegerType.Instance;
-            typeToPrestoMap[typeof(float)] = DecimalType.Instance;
-            typeToPrestoMap[typeof(float?)] = DecimalType.Instance;
-            typeToPrestoMap[typeof(double)] = DecimalType.Instance;
-            typeToPrestoMap[typeof(double?)] = DecimalType.Instance;
-            typeToPrestoMap[typeof(string)] = TextType.Instance;
-			typeToPrestoMap[typeof(DateTimeOffset)] = DateTimeType.Instance;
-			typeToPrestoMap[typeof(DateTimeOffset?)] = DateTimeType.Instance;
-			typeToPrestoMap[typeof(Document)] = DocumentType.Instance; // TODO until we have a compiler
-			typeToPrestoMap[typeof(object)] = AnyType.Instance;
+            typeToPromptoMap[typeof(void)] = VoidType.Instance;
+            typeToPromptoMap[typeof(bool)] = BooleanType.Instance;
+            typeToPromptoMap[typeof(bool?)] = BooleanType.Instance;
+            typeToPromptoMap[typeof(char)] = CharacterType.Instance;
+            typeToPromptoMap[typeof(char?)] = CharacterType.Instance;
+            typeToPromptoMap[typeof(int)] = IntegerType.Instance;
+            typeToPromptoMap[typeof(int?)] = IntegerType.Instance;
+            typeToPromptoMap[typeof(long)] = IntegerType.Instance;
+            typeToPromptoMap[typeof(long?)] = IntegerType.Instance;
+            typeToPromptoMap[typeof(float)] = DecimalType.Instance;
+            typeToPromptoMap[typeof(float?)] = DecimalType.Instance;
+            typeToPromptoMap[typeof(double)] = DecimalType.Instance;
+            typeToPromptoMap[typeof(double?)] = DecimalType.Instance;
+            typeToPromptoMap[typeof(string)] = TextType.Instance;
+			typeToPromptoMap[typeof(DateTimeOffset)] = DateTimeType.Instance;
+			typeToPromptoMap[typeof(DateTimeOffset?)] = DateTimeType.Instance;
+			typeToPromptoMap[typeof(Document)] = DocumentType.Instance; // TODO until we have a compiler
+			typeToPromptoMap[typeof(object)] = AnyType.Instance;
       }
 
         internal Type type;
@@ -60,7 +60,7 @@ namespace prompto.csharp
 		public IType ConvertCSharpTypeToPromptoType(Context context, Type type, IType returnType )
 		{
             IType result;
-            typeToPrestoMap.TryGetValue(type, out result);
+            typeToPromptoMap.TryGetValue(type, out result);
             if (result != null)
                 return result;
 			Type item = GetItemTypeFromListType (type);
@@ -208,7 +208,7 @@ namespace prompto.csharp
 
 		private static IValue ConvertNative(Context context, Object value, Type type) {
 			IType itype;
-			if (typeToPrestoMap.TryGetValue (type, out itype))
+			if (typeToPromptoMap.TryGetValue (type, out itype))
 				return itype.ConvertCSharpValueToIValue (context, value);
 			else
 				return null;
