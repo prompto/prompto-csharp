@@ -54,7 +54,7 @@ namespace prompto.declaration
 		{
 			// we land here only if no error was raised
 			if (error != null)
-				printFailure (context, error.getName (), "no error");
+				printMissingError (context, error.getName (), "no error");
 		}
 
 		private void interpretAsserts (Context context)
@@ -74,9 +74,14 @@ namespace prompto.declaration
 			}
 		}
 
-		public void printFailure (Context context, String expected, String actual)
+		public void printMissingError(Context context, String expected, String actual)
 		{
-			Console.Write (this.name + " test failed, expected: " + expected + ", actual: " + actual);
+			Console.Write(this.name + " test failed while expecting: " + expected + ", found: " + actual);
+		}
+
+		public void printAssertionFailed (Context context, String expected, String actual)
+		{
+			Console.Write (this.name + " test failed while verifying: " + expected + ", found: " + actual);
 		}
 
 		private void printSuccess (Context context)
@@ -108,7 +113,7 @@ namespace prompto.declaration
 			else {
 				String actualName = ((IInstance)actual).GetMember (context, "name", false).ToString ();
 				String expectedName = error == null ? "SUCCESS" : error.getName ();
-				printFailure (context, expectedName, actualName);
+				printMissingError (context, expectedName, actualName);
 			}
 		}
 

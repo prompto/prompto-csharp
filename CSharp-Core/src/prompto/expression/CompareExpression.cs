@@ -101,7 +101,7 @@ namespace prompto.expression
 			this.ToDialect(writer);
 			String expected = writer.ToString();
 			String actual = lval.ToString() + " " + oper.ToString() + " " + rval.ToString();
-			test.printFailure(context, expected, actual);
+			test.printAssertionFailed(context, expected, actual);
 			return false;
 		}
 

@@ -79,7 +79,7 @@ namespace prompto.expression
 			this.ToDialect(writer);
 			String expected = writer.ToString();
 			String actual = lval.ToString() + operatorToDialect(test.Dialect) + rval.ToString();
-			test.printFailure(context, expected, actual);
+			test.printAssertionFailed(context, expected, actual);
 			return false;
 		}
 
