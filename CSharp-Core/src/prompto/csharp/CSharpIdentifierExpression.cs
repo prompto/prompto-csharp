@@ -186,7 +186,7 @@ namespace prompto.csharp
 
         IType check_root(Context context)
         {
-			IType t = check_presto (context);
+			IType t = check_prompto (context);
 			if (t != null)
 				return t;
 			t = check_instance(context);
@@ -196,7 +196,7 @@ namespace prompto.csharp
                 return check_class(); // as an instance for accessing static field/method
         }
 
-		IType check_presto(Context context)
+		IType check_prompto(Context context)
 		{
 			switch (identifier) {
 			case "$context":
