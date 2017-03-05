@@ -2,7 +2,7 @@ sudo: true
 language: csharp
 solution: Prompto.sln
 install:
-  - nuget install NUnit.Runners -Version 2.6.4 -OutputDirectory testrunner
+  - nuget install NUnit.Runners -Version 3.6.1 -OutputDirectory testrunner
 script:
   - xbuild /p:Configuration=Release Prompto.sln
-  - mono ./testrunner/NUnit.Runners.2.6.4/tools/nunit-console.exe ./CSharp-Tests/bin/Release/CSharp-Tests.dll
+  - mono ./testrunner/NUnit.Runners.3.6.1/tools/nunit-console.exe ./CSharp-Tests/bin/Release/CSharp-Tests.dll
