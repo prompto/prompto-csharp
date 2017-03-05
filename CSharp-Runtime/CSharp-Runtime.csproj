@@ -28,6 +28,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -35,6 +38,7 @@
     <Compile Include="src\prompto\runtime\Loader.cs" />
     <Compile Include="src\prompto\reader\CSVReader.cs" />
     <Compile Include="src\prompto\io\Buffer.cs" />
+    <Compile Include="src\prompto\reader\JSONReader.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -50,5 +54,8 @@
       <Project>{066EA73C-B3DD-41CA-9AD7-81A1D7D3A6DA}</Project>
       <Name>CSharp-Core</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
 </Project>

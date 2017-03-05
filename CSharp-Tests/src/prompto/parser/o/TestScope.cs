@@ -11,33 +11,37 @@ namespace prompto.parser.o
     {
 
         [Test]
-        [ExpectedException(typeof(SyntaxError))]
         public void testAttribute()
         {
-			context = Context.newGlobalContext();
-            Assert.IsNull(context.getRegisteredDeclaration<IDeclaration>("id"));
-            DeclarationList stmts = parseString("attribute id: Integer; ");
-            Assert.IsNotNull(stmts);
-            stmts.register(context);
-            IDeclaration actual = context.getRegisteredDeclaration<IDeclaration>("id");
-            Assert.IsNotNull(actual);
-            Assert.IsTrue(actual is AttributeDeclaration);
-            stmts.register(context);
+			Assert.Throws<SyntaxError>(() =>
+			{
+				context = Context.newGlobalContext();
+				Assert.IsNull(context.getRegisteredDeclaration<IDeclaration>("id"));
+				DeclarationList stmts = parseString("attribute id: Integer; ");
+				Assert.IsNotNull(stmts);
+				stmts.register(context);
+				IDeclaration actual = context.getRegisteredDeclaration<IDeclaration>("id");
+				Assert.IsNotNull(actual);
+				Assert.IsTrue(actual is AttributeDeclaration);
+				stmts.register(context);
+			});
         }
 
         [Test]
-        [ExpectedException(typeof(SyntaxError))]
         public void testCategory()
         {
-			context = Context.newGlobalContext();
-            Assert.IsNull(context.getRegisteredDeclaration<IDeclaration>("Person"));
-            DeclarationList stmts = parseString("category Person(id, name);");
-            Assert.IsNotNull(stmts);
-            stmts.register(context);
-            IDeclaration actual = context.getRegisteredDeclaration<IDeclaration>("Person");
-            Assert.IsNotNull(actual);
-            Assert.IsTrue(actual is CategoryDeclaration);
-            stmts.register(context);
+			Assert.Throws<SyntaxError>(() =>
+			{
+				context = Context.newGlobalContext();
+				Assert.IsNull(context.getRegisteredDeclaration<IDeclaration>("Person"));
+				DeclarationList stmts = parseString("category Person(id, name);");
+				Assert.IsNotNull(stmts);
+				stmts.register(context);
+				IDeclaration actual = context.getRegisteredDeclaration<IDeclaration>("Person");
+				Assert.IsNotNull(actual);
+				Assert.IsTrue(actual is CategoryDeclaration);
+				stmts.register(context);
+			});
         }
 
         [Test]

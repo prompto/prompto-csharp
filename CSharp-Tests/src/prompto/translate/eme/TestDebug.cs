@@ -14,6 +14,12 @@ namespace prompto.translate.eme
 			compareResourceEME("debug/stack.pec");
 		}
 
+		[Test]
+		public void testVariables()
+		{
+			compareResourceEME("debug/variables.pec");
+		}
+
 	}
 }
 

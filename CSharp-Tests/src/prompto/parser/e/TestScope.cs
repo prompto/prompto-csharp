@@ -12,33 +12,37 @@ namespace prompto.parser.e
     {
 
         [Test]
-        [ExpectedException(typeof(SyntaxError))]
         public void testAttribute()
         {
-			context = Context.newGlobalContext();
-            Assert.IsNull(context.getRegisteredDeclaration<IDeclaration>("id"));
-            DeclarationList stmts = parseString("define id as Integer attribute");
-            Assert.IsNotNull(stmts);
-            stmts.register(context);
-            IDeclaration actual = context.getRegisteredDeclaration<IDeclaration>("id");
-            Assert.IsNotNull(actual);
-            Assert.IsTrue(actual is AttributeDeclaration);
-            stmts.register(context);
+			Assert.Throws<SyntaxError>(() =>
+			{
+				context = Context.newGlobalContext();
+				Assert.IsNull(context.getRegisteredDeclaration<IDeclaration>("id"));
+				DeclarationList stmts = parseString("define id as Integer attribute");
+				Assert.IsNotNull(stmts);
+				stmts.register(context);
+				IDeclaration actual = context.getRegisteredDeclaration<IDeclaration>("id");
+				Assert.IsNotNull(actual);
+				Assert.IsTrue(actual is AttributeDeclaration);
+				stmts.register(context);
+			});
         }
 
         [Test]
-        [ExpectedException(typeof(SyntaxError))]
         public void testCategory()
         {
-			context = Context.newGlobalContext();
-			Assert.IsNull(context.getRegisteredDeclaration<IDeclaration>("Person"));
-            DeclarationList stmts = parseString("define Person as category with attributes id and name");
-            Assert.IsNotNull(stmts);
-            stmts.register(context);
-            IDeclaration actual = context.getRegisteredDeclaration<IDeclaration>("Person");
-            Assert.IsNotNull(actual);
-            Assert.IsTrue(actual is CategoryDeclaration);
-            stmts.register(context);
+			Assert.Throws<SyntaxError>(() =>
+			{
+				context = Context.newGlobalContext();
+				Assert.IsNull(context.getRegisteredDeclaration<IDeclaration>("Person"));
+				DeclarationList stmts = parseString("define Person as category with attributes id and name");
+				Assert.IsNotNull(stmts);
+				stmts.register(context);
+				IDeclaration actual = context.getRegisteredDeclaration<IDeclaration>("Person");
+				Assert.IsNotNull(actual);
+				Assert.IsTrue(actual is CategoryDeclaration);
+				stmts.register(context);
+			});
         }
 
         [Test]

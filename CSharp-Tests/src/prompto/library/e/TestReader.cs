@@ -27,6 +27,12 @@ namespace prompto.library.e
 		}
 
 		[Test]
+		public void testJson()
+		{
+			CheckTests("reader/json.pec");
+		}
+
+		[Test]
 		public void testReader()
 		{
 			CheckTests("reader/reader.pec");

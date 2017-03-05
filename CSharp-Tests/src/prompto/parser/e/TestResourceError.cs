@@ -22,25 +22,31 @@ namespace prompto.parser.e
             Out.restore();
         }
 
-        [Test]
-        [ExpectedException(typeof(SyntaxError))]
-        public void testBadRead()
-        {
-            runResource("resourceError/badRead.pec");
-        }
+		[Test]
+		public void testBadRead()
+		{
+			Assert.Throws<SyntaxError>(() =>
+			{
+				runResource("resourceError/badRead.pec");
+			});
+       }
 
         [Test]
-        [ExpectedException(typeof(SyntaxError))]
         public void testBadWrite()
         {
-			runResource("resourceError/badWrite.pec");
+			Assert.Throws<SyntaxError>(() =>
+			{
+				runResource("resourceError/badWrite.pec");
+			});
         }
 
         [Test]
-        [ExpectedException(typeof(SyntaxError))]
         public void testBadResource()
         {
-			runResource("resourceError/badResource.pec");
+			Assert.Throws<SyntaxError>(() =>
+			{
+				runResource("resourceError/badResource.pec");
+			});
         }
 
     }

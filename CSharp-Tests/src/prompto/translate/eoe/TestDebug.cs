@@ -14,6 +14,12 @@ namespace prompto.translate.eoe
 			compareResourceEOE("debug/stack.pec");
 		}
 
+		[Test]
+		public void testVariables()
+		{
+			compareResourceEOE("debug/variables.pec");
+		}
+
 	}
 }
 

@@ -12,11 +12,18 @@ namespace prompto.value
 
     public class Document : BaseValue
     {
-		Dictionary<String, IValue> values = new Dictionary<String, IValue>();
+		Dictionary<String, IValue> values;
 
 		public Document()
 			: base (DocumentType.Instance)
 		{
+			values = new Dictionary<String, IValue>();
+		}
+
+		public Document(Dictionary<String, IValue> values)
+			: base(DocumentType.Instance)
+		{
+			this.values = values;
 		}
 
 		public override bool IsMutable ()
