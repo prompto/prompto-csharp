@@ -21,8 +21,7 @@ namespace prompto.expression {
 		public IType check(Context context) {
 			IType actual = expression.check(context);
 			// check upcast
-			if (actual is CategoryType
-				&& ((CategoryType)actual).isDerivedFrom(context, type))
+			if (type.isAssignableFrom(context, actual))
 				return type;
 			// check downcast
 			if(actual.isAssignableFrom(context, type))

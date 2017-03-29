@@ -27,6 +27,15 @@ namespace prompto.type
         {
         }
 
+
+		public override bool isAssignableFrom(Context context, IType other)
+		{
+			return base.isAssignableFrom(context, other) 
+				       || other == AnyType.Instance
+				       || (other is CategoryType && "Any".Equals(other.GetTypeName()));
+		}
+
+
 		public override bool isMoreSpecificThan(Context context, IType other)
 		{
 			if((other == NullType.Instance) || (other == AnyType.Instance) || (other == MissingType.Instance))

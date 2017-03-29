@@ -52,6 +52,12 @@ namespace prompto.runtime.e
 		}
 
 		[Test]
+		public void testCastDocument()
+		{
+			CheckOutput("cast/castDocument.pec");
+		}
+
+		[Test]
 		public void testCastInteger()
 		{
 			CheckOutput("cast/castInteger.pec");
