@@ -29,8 +29,8 @@ namespace prompto.csharp
         }
 
 		public void ToDialect(CodeWriter writer) {
-			expression.ToDialect(writer);
-		}
+			writer.append("this");
+		}	
 
     }
 

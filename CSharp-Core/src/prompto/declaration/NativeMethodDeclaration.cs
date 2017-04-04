@@ -62,7 +62,9 @@ namespace prompto.declaration
 
 
 		protected override void ToMDialect(CodeWriter writer) {
-			writer.append("def native ");
+			writer.append("def ");
+			if(this.getMemberOf()==null)
+				writer.append("native ");
 			writer.append(name);
 			writer.append(" (");
 			arguments.ToDialect(writer);
@@ -83,7 +85,9 @@ namespace prompto.declaration
 				returnType.ToDialect(writer);
 				writer.append(" ");
 			}
-			writer.append("native method ");
+			if (this.getMemberOf() == null)
+				writer.append("native ");
+			writer.append("method ");
 			writer.append(name);
 			writer.append(" (");
 			arguments.ToDialect(writer);
@@ -101,7 +105,10 @@ namespace prompto.declaration
 		protected void ToEDialect(CodeWriter writer) {
 			writer.append("define ");
 			writer.append(name);
-			writer.append(" as native method ");
+			writer.append(" as ");
+			if (this.getMemberOf() == null)
+				writer.append("native ");
+			writer.append("method ");
 			arguments.ToDialect(writer);
 			if(returnType!=null && returnType!=VoidType.Instance) {
 				writer.append("returning ");

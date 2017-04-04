@@ -1065,6 +1065,12 @@ namespace prompto.parser
 		}
 
 
+		public override void ExitPythonSelfExpression(OParser.PythonSelfExpressionContext ctx)
+		{
+			SetNodeValue(ctx, new PythonSelfExpression());
+		}
+
+
 		public override void ExitCSharpIdentifier (OParser.CSharpIdentifierContext ctx)
 		{
 			String name = this.GetNodeValue<String> (ctx.name);

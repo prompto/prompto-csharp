@@ -3814,6 +3814,18 @@ public partial class OParserBaseListener : IOParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitPythonPrimaryExpression([NotNull] OParser.PythonPrimaryExpressionContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="OParser.PythonSelfExpression"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterPythonSelfExpression([NotNull] OParser.PythonSelfExpressionContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="OParser.PythonSelfExpression"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitPythonSelfExpression([NotNull] OParser.PythonSelfExpressionContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="OParser.PythonParenthesisExpression"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
@@ -3861,6 +3873,18 @@ public partial class OParserBaseListener : IOParserListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitPythonGlobalMethodExpression([NotNull] OParser.PythonGlobalMethodExpressionContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="OParser.python_self_expression"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterPython_self_expression([NotNull] OParser.Python_self_expressionContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="OParser.python_self_expression"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitPython_self_expression([NotNull] OParser.Python_self_expressionContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="OParser.PythonMethodExpression"/>.
 	/// <para>The default implementation does nothing.</para>

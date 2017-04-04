@@ -4,14 +4,14 @@ using prompto.utils;
 using prompto.expression;
 
 
-namespace prompto.java
+namespace prompto.python
 {
 
-	public class JavaThisExpression : JavaExpression
+	public class PythonSelfExpression : PythonExpression
 	{
 
 		public void ToDialect(CodeWriter writer) {
-			writer.append("this");
+			writer.append("self");
 		}
 
 	}

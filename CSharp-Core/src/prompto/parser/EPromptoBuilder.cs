@@ -1089,7 +1089,12 @@ namespace prompto.parser
 		{
 			SetNodeValue (ctx, new JavaThisExpression());
 		}
-		
+
+		public override void ExitPythonSelfExpression(EParser.PythonSelfExpressionContext ctx)
+		{
+			SetNodeValue(ctx, new PythonSelfExpression());
+		}
+
 		public override void ExitJavaChildIdentifier (EParser.JavaChildIdentifierContext ctx)
 		{
 			JavaIdentifierExpression parent = this.GetNodeValue<JavaIdentifierExpression> (ctx.parent);

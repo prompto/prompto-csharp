@@ -10,16 +10,9 @@ namespace prompto.javascript
 	public class JavaScriptThisExpression : JavaScriptExpression
 	{
 
-		ThisExpression expression;
-
-		public JavaScriptThisExpression()
-		{
-			this.expression = new ThisExpression();
-		}
-
 		public void ToDialect(CodeWriter writer) {
-			expression.ToDialect(writer);
-		}
+			writer.append("this");
+		}	
 
 	}
 }

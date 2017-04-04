@@ -156,6 +156,11 @@ namespace prompto.expression
 			{
 				context = context.newInstanceContext((ConcreteInstance)value);
 				return context.newChildContext();
+			} 
+			else if(value is NativeInstance) 
+			{
+				context = context.newInstanceContext((NativeInstance)value);
+				return context.newChildContext();
 			}
 			else
 			{

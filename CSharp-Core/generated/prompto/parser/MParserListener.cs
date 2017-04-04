@@ -3502,6 +3502,18 @@ public interface IMParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitPythonPrimaryExpression([NotNull] MParser.PythonPrimaryExpressionContext context);
 	/// <summary>
+	/// Enter a parse tree produced by the <c>PythonSelfExpression</c>
+	/// labeled alternative in <see cref="MParser.python_primary_expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterPythonSelfExpression([NotNull] MParser.PythonSelfExpressionContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>PythonSelfExpression</c>
+	/// labeled alternative in <see cref="MParser.python_primary_expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitPythonSelfExpression([NotNull] MParser.PythonSelfExpressionContext context);
+	/// <summary>
 	/// Enter a parse tree produced by the <c>PythonParenthesisExpression</c>
 	/// labeled alternative in <see cref="MParser.python_primary_expression"/>.
 	/// </summary>
@@ -3549,6 +3561,16 @@ public interface IMParserListener : IParseTreeListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void ExitPythonGlobalMethodExpression([NotNull] MParser.PythonGlobalMethodExpressionContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="MParser.python_self_expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterPython_self_expression([NotNull] MParser.Python_self_expressionContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="MParser.python_self_expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitPython_self_expression([NotNull] MParser.Python_self_expressionContext context);
 	/// <summary>
 	/// Enter a parse tree produced by the <c>PythonMethodExpression</c>
 	/// labeled alternative in <see cref="MParser.python_selector_expression"/>.

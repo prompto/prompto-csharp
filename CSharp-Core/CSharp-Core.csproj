@@ -480,6 +480,7 @@
     <Compile Include="src\prompto\expression\ReadAllExpression.cs" />
     <Compile Include="src\prompto\expression\UnresolvedSelector.cs" />
     <Compile Include="src\prompto\declaration\BuiltInMethodDeclaration.cs" />
+    <Compile Include="src\prompto\python\PythonSelfExpression.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
