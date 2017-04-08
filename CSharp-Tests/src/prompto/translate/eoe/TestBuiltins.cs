@@ -237,6 +237,12 @@ namespace prompto.translate.eoe
 		}
 
 		[Test]
+		public void testTextReplace()
+		{
+			compareResourceEOE("builtins/textReplace.pec");
+		}
+
+		[Test]
 		public void testTextSplit()
 		{
 			compareResourceEOE("builtins/textSplit.pec");

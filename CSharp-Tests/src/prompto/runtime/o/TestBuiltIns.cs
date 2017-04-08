@@ -142,6 +142,12 @@ namespace prompto.runtime.o
 		}
 
 		[Test]
+		public void testTextReplace()
+		{
+			CheckOutput("builtins/textReplace.poc");
+		}
+
+		[Test]
 		public void testTextSplit()
 		{
 			CheckOutput("builtins/textSplit.poc");

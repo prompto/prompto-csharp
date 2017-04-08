@@ -16,8 +16,8 @@ namespace prompto.declaration
 
 		}
 
-		public BuiltInMethodDeclaration(string name, IArgument argument)
-			: base(name, new ArgumentList(argument))
+		public BuiltInMethodDeclaration(string name, params IArgument[] arguments)
+			: base(name, new ArgumentList(arguments))
 		{
 
 		}

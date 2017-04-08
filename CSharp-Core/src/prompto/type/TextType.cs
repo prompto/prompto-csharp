@@ -56,6 +56,9 @@ namespace prompto.type
 				case "toCapitalized":
 					list.Add(TO_CAPITALIZED_METHOD);
 					return list;
+				case "replace":
+					list.Add(REPLACE_METHOD);
+					return list;
 				case "split":
 					list.Add(SPLIT_METHOD);
 					return list;
@@ -68,8 +71,11 @@ namespace prompto.type
 		}
 
 		internal static IArgument SINGLE_SPACE_ARGUMENT = new CategoryArgument(TextType.Instance, "separator", new TextLiteral("\" \""));
+		internal static IArgument TO_REPLACE_ARGUMENT = new CategoryArgument(TextType.Instance, "toReplace");
+		internal static IArgument REPLACE_WITH_ARGUMENT = new CategoryArgument(TextType.Instance, "replaceWith");
 
 		internal static IMethodDeclaration SPLIT_METHOD = new SplitMethodDeclaration();
+		internal static IMethodDeclaration REPLACE_METHOD = new ReplaceMethodDeclaration();
 		internal static IMethodDeclaration TO_LOWERCASE_METHOD = new ToLowerCaseMethodDeclaration();
 		internal static IMethodDeclaration TO_UPPERCASE_METHOD = new ToUpperCaseMethodDeclaration();
 		internal static IMethodDeclaration TO_CAPITALIZED_METHOD = new ToCapitalizedMethodDeclaration();
@@ -209,6 +215,33 @@ namespace prompto.type
 		public override IType check(Context context)
 		{
 			return new ListType(TextType.Instance);
+		}
+
+
+
+	};
+
+	class ReplaceMethodDeclaration : BuiltInMethodDeclaration
+	{
+
+		public ReplaceMethodDeclaration()
+			: base("replace", TextType.TO_REPLACE_ARGUMENT, TextType.REPLACE_WITH_ARGUMENT)
+		{ }
+
+		public override IValue interpret(Context context)
+		{
+			string value = (String)getValue(context).GetStorableData();
+			string toReplace = (String)context.getValue("toReplace").GetStorableData();
+			string replaceWith = (String)context.getValue("replaceWith").GetStorableData();
+			value = value.Replace(toReplace, replaceWith);
+			return new Text(value);
+		}
+
+
+
+		public override IType check(Context context)
+		{
+			return TextType.Instance;
 		}
 
 

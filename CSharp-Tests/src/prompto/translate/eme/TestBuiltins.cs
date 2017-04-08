@@ -237,6 +237,12 @@ namespace prompto.translate.eme
 		}
 
 		[Test]
+		public void testTextReplace()
+		{
+			compareResourceEME("builtins/textReplace.pec");
+		}
+
+		[Test]
 		public void testTextSplit()
 		{
 			compareResourceEME("builtins/textSplit.pec");

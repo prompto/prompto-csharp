@@ -141,6 +141,12 @@ namespace prompto.translate.omo
 		}
 
 		[Test]
+		public void testTextReplace()
+		{
+			compareResourceOMO("builtins/textReplace.poc");
+		}
+
+		[Test]
 		public void testTextSplit()
 		{
 			compareResourceOMO("builtins/textSplit.poc");
