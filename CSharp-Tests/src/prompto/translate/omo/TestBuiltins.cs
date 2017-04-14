@@ -111,6 +111,12 @@ namespace prompto.translate.omo
 		}
 
 		[Test]
+		public void testIntegerFormat()
+		{
+			compareResourceOMO("builtins/integerFormat.poc");
+		}
+
+		[Test]
 		public void testListCount()
 		{
 			compareResourceOMO("builtins/listCount.poc");

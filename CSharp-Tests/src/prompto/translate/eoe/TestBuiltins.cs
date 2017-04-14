@@ -183,6 +183,12 @@ namespace prompto.translate.eoe
 		}
 
 		[Test]
+		public void testIntegerFormat()
+		{
+			compareResourceEOE("builtins/integerFormat.pec");
+		}
+
+		[Test]
 		public void testIntegerText()
 		{
 			compareResourceEOE("builtins/integerText.pec");

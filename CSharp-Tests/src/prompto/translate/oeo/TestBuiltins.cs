@@ -111,6 +111,12 @@ namespace prompto.translate.oeo
 		}
 
 		[Test]
+		public void testIntegerFormat()
+		{
+			compareResourceOEO("builtins/integerFormat.poc");
+		}
+
+		[Test]
 		public void testListCount()
 		{
 			compareResourceOEO("builtins/listCount.poc");

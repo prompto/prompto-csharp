@@ -112,6 +112,12 @@ namespace prompto.runtime.o
 		}
 
 		[Test]
+		public void testIntegerFormat()
+		{
+			CheckOutput("builtins/integerFormat.poc");
+		}
+
+		[Test]
 		public void testListCount()
 		{
 			CheckOutput("builtins/listCount.poc");

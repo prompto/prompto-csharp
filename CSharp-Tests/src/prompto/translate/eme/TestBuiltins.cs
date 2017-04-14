@@ -183,6 +183,12 @@ namespace prompto.translate.eme
 		}
 
 		[Test]
+		public void testIntegerFormat()
+		{
+			compareResourceEME("builtins/integerFormat.pec");
+		}
+
+		[Test]
 		public void testIntegerText()
 		{
 			compareResourceEME("builtins/integerText.pec");

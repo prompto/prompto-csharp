@@ -184,6 +184,12 @@ namespace prompto.runtime.e
 		}
 
 		[Test]
+		public void testIntegerFormat()
+		{
+			CheckOutput("builtins/integerFormat.pec");
+		}
+
+		[Test]
 		public void testIntegerText()
 		{
 			CheckOutput("builtins/integerText.pec");
