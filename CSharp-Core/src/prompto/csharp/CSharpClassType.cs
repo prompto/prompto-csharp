@@ -41,7 +41,7 @@ namespace prompto.csharp
         internal Type type;
 
 		public CSharpClassType(Type type)
-			: base(type.Name)
+			: base(type.FullName)
         {
 			this.type = type;
         }

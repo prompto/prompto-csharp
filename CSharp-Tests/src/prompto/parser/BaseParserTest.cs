@@ -139,9 +139,9 @@ namespace prompto.parser
 			resourceName = resourceName.Replace ('/', SEP);
 			String currentDir = TestContext.CurrentContext.TestDirectory;
 			String parentDir = currentDir.Substring(0, currentDir.IndexOf("CSharp-Tests"));
-			String fullPath = parentDir + SEP + "prompto-tests" + SEP + "Tests" + SEP + "resources" + SEP + resourceName;
+			String fullPath = parentDir + "prompto-tests" + SEP + "Tests" + SEP + "resources" + SEP + resourceName;
 			if(!File.Exists (fullPath))
-				fullPath = parentDir + SEP + "prompto-libraries" + SEP + resourceName;
+				fullPath = parentDir + "prompto-libraries" + SEP + resourceName;
 			Assert.IsTrue (File.Exists (fullPath), "resource not found:" + fullPath);
 			return new FileStream (fullPath, FileMode.Open, FileAccess.Read);
 		}

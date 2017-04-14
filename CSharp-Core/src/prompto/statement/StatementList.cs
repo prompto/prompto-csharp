@@ -63,8 +63,9 @@ namespace prompto.statement
             {
                 return doInterpret(context);
             }
-            catch (NullReferenceException)
+            catch (NullReferenceException e)
             {
+				Console.Error.WriteLine(e.StackTrace);
                 throw new NullReferenceError();
             }
         }
