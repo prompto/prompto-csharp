@@ -66,7 +66,7 @@ namespace prompto.expression
 			IType listType = source.check(context);
 			if (!(listType is ContainerType))
 				throw new SyntaxError("Expecting a list type as data source !");
-			Context local = context.newLocalContext();
+			Context local = context.newChildContext();
 			IType itemType = ((ContainerType)listType).GetItemType();
 			local.registerValue(new Variable(itemName, itemType));
 			IType filterType = predicate.check(local);
@@ -87,7 +87,7 @@ namespace prompto.expression
 			if (!(listType is ContainerType))
 				throw new InternalError("Illegal source type: " + listType.GetTypeName());
 			IType itemType = ((ContainerType)listType).GetItemType();
-			Context local = context.newLocalContext();
+			Context local = context.newChildContext();
 			Variable item = new Variable(itemName, itemType);
 			local.registerValue(item);
 			return list.Filter(local, itemName, predicate);
