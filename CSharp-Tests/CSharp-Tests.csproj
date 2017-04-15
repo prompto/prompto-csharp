@@ -349,6 +349,9 @@
     <Compile Include="src\prompto\runtime\e\TestInfer.cs" />
     <Compile Include="src\prompto\translate\eoe\TestInfer.cs" />
     <Compile Include="src\prompto\translate\eme\TestInfer.cs" />
+    <Compile Include="src\prompto\runtime\e\TestExit.cs" />
+    <Compile Include="src\prompto\translate\eme\TestExit.cs" />
+    <Compile Include="src\prompto\translate\eoe\TestExit.cs" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />

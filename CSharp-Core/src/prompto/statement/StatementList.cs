@@ -46,6 +46,8 @@ namespace prompto.statement
 					types[returnType.GetTypeName()] = returnType;
 				foreach(IStatement statement in this) {
 					type = statement.check(context);
+					if (!statement.CanReturn)
+						type = VoidType.Instance;
 					if(type!=VoidType.Instance)
 						types[type.GetTypeName()] = type;
 				}
@@ -78,6 +80,8 @@ namespace prompto.statement
                 try
                 {
 					IValue result = statement.interpret(context);
+					if (!statement.CanReturn)
+						result = null;
                     if (result != null)
                         return result;
                 }

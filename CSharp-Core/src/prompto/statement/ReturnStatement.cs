@@ -69,6 +69,14 @@ namespace prompto.statement
 			}
       }
 
+		public override bool CanReturn
+		{
+			get
+			{
+				return true;
+			}
+		}
+
     }
 
 }

@@ -6,6 +6,7 @@ namespace prompto.statement
 
     public interface IStatement : IExpression, ISection
     {
+		bool CanReturn { get; }
     }
 
 }

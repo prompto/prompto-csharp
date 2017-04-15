@@ -10,32 +10,40 @@ namespace prompto.statement
 {
 
 	public class BreakStatement : SimpleStatement
-    {
+	{
 
-        override
-        public void ToDialect(CodeWriter writer)
-        {
+		override
+		public void ToDialect(CodeWriter writer)
+		{
 			writer.append("break");
-        }
+		}
 
-        override
-        public bool Equals(Object obj)
-        {
+		override
+		public bool Equals(Object obj)
+		{
 			return (obj is BreakStatement);
-        }
+		}
 
-        override
-        public IType check(Context context)
-        {
+		override
+		public IType check(Context context)
+		{
 			return VoidType.Instance;
-        }
+		}
 
-        override
+		override
 		public IValue interpret(Context context)
-        {
+		{
 			return BreakResult.Instance;
-      }
+		}
 
-    }
+		public override bool CanReturn
+		{
+			get
+			{
+				return true;
+			}
+		}
+
+	}
 
 }

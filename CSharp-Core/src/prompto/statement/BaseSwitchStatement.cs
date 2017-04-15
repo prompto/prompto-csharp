@@ -109,6 +109,14 @@ namespace prompto.statement
 			}
 		}
 
+		public override bool CanReturn
+		{
+			get
+			{
+				return true;
+			}
+		}
+
 		protected abstract void ToEDialect(CodeWriter writer);
 		protected abstract void ToODialect(CodeWriter writer);
 		protected abstract void toPDialect(CodeWriter writer);

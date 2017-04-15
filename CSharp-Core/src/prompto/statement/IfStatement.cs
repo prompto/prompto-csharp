@@ -115,6 +115,14 @@ namespace prompto.statement
 		return null;
 	}
 
+
+		public override bool CanReturn
+		{
+			get
+			{
+				return true;
+			}
+		}
    
 
     }

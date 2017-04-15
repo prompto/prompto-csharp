@@ -103,6 +103,14 @@ namespace prompto.statement
 			return Boolean.TRUE == value;
 		}
 
+		public override bool CanReturn
+		{
+			get
+			{
+				return true;
+			}
+		}
+
     }
 
 

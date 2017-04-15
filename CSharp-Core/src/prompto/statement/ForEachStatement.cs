@@ -189,6 +189,14 @@ namespace prompto.statement
 			statements.ToDialect(writer);
 			writer.dedent();
 		}
+
+		public override bool CanReturn
+		{
+			get
+			{
+				return true;
+			}
+		}
     }
 
 }

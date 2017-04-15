@@ -36,6 +36,8 @@ namespace prompto.statement
 			return statements.interpret(context);
         }
 
+
+
 		public abstract void caseToEDialect(CodeWriter writer);
 		public abstract void caseToODialect(CodeWriter writer);
 		public abstract void caseToPDialect(CodeWriter writer);
