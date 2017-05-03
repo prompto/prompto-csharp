@@ -21,8 +21,8 @@ namespace prompto.value
 		IEnumerator<IValue> source;
 		IExpression expression;
 
-		public IterableValue (IType itemType, Context context, Integer length, String name, 
-			IEnumerator<IValue> source, IExpression expression)
+		public IterableValue (Context context, String name, IType itemType, 
+			IEnumerator<IValue> source, Integer length, IExpression expression)
 			: base (new IteratorType (itemType))
 		{
 			this.itemType = itemType;
