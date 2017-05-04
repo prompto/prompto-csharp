@@ -146,7 +146,7 @@ namespace prompto.value
 			GetterMethodDeclaration getter = allowGetter ? declaration.findGetter (context, attrName) : null;
 			if (getter != null) 
 			{
-				context = context.newInstanceContext (this).newChildContext();
+				context = context.newInstanceContext (this, false).newChildContext();
 				return getter.interpret(context);
 			} 
 			else if(getDeclaration().hasAttribute(context, attrName) || "dbId"==attrName)
@@ -189,7 +189,7 @@ namespace prompto.value
 			SetterMethodDeclaration setter = allowSetter ? declaration.findSetter (context, attrName) : null;
 			if (setter != null) {
 				// use attribute name as parameter name for incoming value
-				context = context.newInstanceContext (this).newChildContext();
+				context = context.newInstanceContext (this, false).newChildContext();
 				context.registerValue (new Variable (attrName, decl.getIType ()));
 				context.setValue (attrName, value);
 				value = setter.interpret (context);
@@ -301,7 +301,7 @@ namespace prompto.value
 		private IValue interpretOperator (Context context, IValue value, Operator oper)
 		{
 			IMethodDeclaration decl = declaration.findOperator (context, oper, value.GetIType ());
-			context = context.newInstanceContext (this).newChildContext ();
+			context = context.newInstanceContext (this, false).newChildContext ();
 			decl.registerArguments (context);
 			IArgument arg = decl.getArguments () [0];
 			context.setValue (arg.GetName (), value);

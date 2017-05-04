@@ -135,7 +135,7 @@ namespace prompto.utils
 
 		public CodeWriter newInstanceWriter(CategoryType type) 
 		{
-			return new CodeWriter(dialect, context.newInstanceContext(type), sb, indenter);
+			return new CodeWriter(dialect, context.newInstanceContext(type, false), sb, indenter);
 		}
 	}
 	 

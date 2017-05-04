@@ -122,7 +122,7 @@ namespace prompto.value
 		{
 			GetterMethodDeclaration getter = allowGetter ? declaration.findGetter (context, attrName) : null;
 			if (getter != null) {
-				context = context.newInstanceContext (this).newChildContext(); // mimic method call
+				context = context.newInstanceContext (this, false).newChildContext(); // mimic method call
 				return getter.interpret(context);
 			} else {
 	            Object value = getPropertyOrField(attrName);
@@ -189,7 +189,7 @@ namespace prompto.value
 			SetterMethodDeclaration setter = allowSetter ? declaration.findSetter (context, attrName) : null;
 			if (setter != null) {
 				// use attribute name as parameter name for incoming value
-				context = context.newInstanceContext (this).newChildContext();
+				context = context.newInstanceContext (this, false).newChildContext();
 				context.registerValue (new Variable (attrName, decl.getIType ()));
 				context.setValue (attrName, value);
 				value = setter.interpret (context);

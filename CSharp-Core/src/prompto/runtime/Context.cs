@@ -124,19 +124,19 @@ namespace prompto.runtime
 			return context;
 		}
 
-		public Context newInstanceContext(CategoryType type)
-		{
-			return initInstanceContext(new InstanceContext(type), false);
-		}
-
 		public Context newBuiltInContext(IValue value)
 		{
 			return initInstanceContext(new BuiltInContext(value), false);
 		}
 
-		public Context newInstanceContext(IInstance instance)
+		public Context newInstanceContext(CategoryType type, bool isChild)
 		{
-			return initInstanceContext(new InstanceContext(instance), false);
+			return initInstanceContext(new InstanceContext(type), isChild);
+		}
+
+		public Context newInstanceContext(IInstance instance, bool isChild)
+		{
+			return initInstanceContext(new InstanceContext(instance), isChild);
 		}
 
 		public Context newDocumentContext(Document document, bool isChild)

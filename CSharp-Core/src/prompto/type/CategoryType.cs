@@ -154,7 +154,7 @@ namespace prompto.type
 				IMethodDeclaration method = ((ConcreteCategoryDeclaration)actual).findOperator(context, oper, other);
 				if(method==null)
 					return null;
-				context = context.newInstanceContext(this);
+				context = context.newInstanceContext(this, false);
 				Context local = context.newLocalContext();
 				method.registerArguments(local);
 				return method.check(local);
@@ -394,9 +394,9 @@ namespace prompto.type
             override
             protected int DoCompare(ConcreteInstance o1, ConcreteInstance o2)
             {
-                Context co = context.newInstanceContext(o1);
+                Context co = context.newInstanceContext(o1, false);
                 Object key1 = key.interpret(co);
-                co = context.newInstanceContext(o2);
+                co = context.newInstanceContext(o2, false);
                 Object key2 = key.interpret(co);
                 return type.compareKeys(key1, key2);
             }

@@ -21,7 +21,7 @@ namespace prompto.statement
 
 		public override IType check (Context context)
 		{
-			Context instanceContext = context.newInstanceContext (type);
+			Context instanceContext = context.newInstanceContext (type, true);
 			Context childContext = instanceContext.newChildContext ();
 			return statements.check (childContext, null);
 		}
@@ -30,7 +30,7 @@ namespace prompto.statement
 		{
 			// TODO synchronize
 			ConcreteInstance instance = context.loadSingleton (context, type);
-			Context instanceContext = context.newInstanceContext (instance);
+			Context instanceContext = context.newInstanceContext (instance, true);
 			Context childContext = instanceContext.newChildContext ();
 			return statements.interpret (childContext);
 		}

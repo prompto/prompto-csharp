@@ -128,7 +128,7 @@ namespace prompto.expression
 			IType type = parent.check (context);
 			if (type is CategoryType)
 			{
-				context = context.newInstanceContext((CategoryType)type);
+				context = context.newInstanceContext((CategoryType)type, false);
 				return context.newChildContext();
 			}
 			else
@@ -154,12 +154,12 @@ namespace prompto.expression
 				value = context.loadSingleton(context, (CategoryType)type);
 			if (value is ConcreteInstance)
 			{
-				context = context.newInstanceContext((ConcreteInstance)value);
+				context = context.newInstanceContext((ConcreteInstance)value, false);
 				return context.newChildContext();
 			} 
 			else if(value is NativeInstance) 
 			{
-				context = context.newInstanceContext((NativeInstance)value);
+				context = context.newInstanceContext((NativeInstance)value, false);
 				return context.newChildContext();
 			}
 			else
