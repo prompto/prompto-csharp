@@ -135,13 +135,13 @@ namespace prompto.expression
 	                Object copyObj = copyFrom.interpret(context);
 	                if (copyObj is IInstance)
 	                {
-						IInstance copyFrom = (IInstance)copyObj;
+						IInstance copyInstance = (IInstance)copyObj;
 						CategoryDeclaration cd = context.getRegisteredDeclaration<CategoryDeclaration>(type.GetTypeName());
-	                    foreach (String name in copyFrom.GetMemberNames())
+	                    foreach (String name in copyInstance.GetMemberNames())
 	                    {
 	                        if (cd.hasAttribute(context, name))
 							{
-								IValue value = copyFrom.GetMember(context, name, false);
+								IValue value = copyInstance.GetMember(context, name, false);
 								if(value!=null && value.IsMutable() && !this.type.Mutable)
 									throw new NotMutableError();
 								instance.SetMember(context, name, value);
@@ -150,13 +150,13 @@ namespace prompto.expression
 	                }
 					else if (copyObj is Document) 
 					{
-						Document copyFrom = (Document)copyObj;
+						Document copyDoc = (Document)copyObj;
 						CategoryDeclaration cd = context.getRegisteredDeclaration<CategoryDeclaration>(type.GetTypeName());
-						foreach (String name in copyFrom.GetMemberNames())
+						foreach (String name in copyDoc.GetMemberNames())
 						{
 							if (cd.hasAttribute(context, name))
 							{
-								IValue value = copyFrom.GetMember(context, name, false);
+								IValue value = copyDoc.GetMember(context, name, false);
 								if(value!=null && value.IsMutable() && !this.type.Mutable)
 									throw new NotMutableError();
 								// TODO convert to attribute type, see Java version
