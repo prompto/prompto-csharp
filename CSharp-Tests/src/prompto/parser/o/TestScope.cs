@@ -23,6 +23,7 @@ namespace prompto.parser.o
 				IDeclaration actual = context.getRegisteredDeclaration<IDeclaration>("id");
 				Assert.IsNotNull(actual);
 				Assert.IsTrue(actual is AttributeDeclaration);
+				stmts = parseString("attribute id: Integer; ");
 				stmts.register(context);
 			});
         }
@@ -40,6 +41,7 @@ namespace prompto.parser.o
 				IDeclaration actual = context.getRegisteredDeclaration<IDeclaration>("Person");
 				Assert.IsNotNull(actual);
 				Assert.IsTrue(actual is CategoryDeclaration);
+				stmts = parseString("category Person(id, name);");
 				stmts.register(context);
 			});
         }
