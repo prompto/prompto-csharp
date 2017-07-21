@@ -217,7 +217,7 @@ namespace prompto.runtime
 		public void registerDeclaration(IDeclaration declaration)
 		{
 			INamed actual = getRegistered(declaration.GetName());
-			if (actual != null)
+			if (actual != null && actual != declaration)
 				throw new SyntaxError("Duplicate name: \"" + declaration.GetName() + "\"");
 			declarations[declaration.GetName()] = declaration;
 		}
