@@ -15,7 +15,7 @@ namespace prompto.parser.o
         {
 			Assert.Throws<SyntaxError>(() =>
 			{
-				context = Context.newGlobalContext();
+				Context context = Context.newGlobalContext();
 				Assert.IsNull(context.getRegisteredDeclaration<IDeclaration>("id"));
 				DeclarationList stmts = parseString("attribute id: Integer; ");
 				Assert.IsNotNull(stmts);
@@ -33,7 +33,7 @@ namespace prompto.parser.o
         {
 			Assert.Throws<SyntaxError>(() =>
 			{
-				context = Context.newGlobalContext();
+				Context context = Context.newGlobalContext();
 				Assert.IsNull(context.getRegisteredDeclaration<IDeclaration>("Person"));
 				DeclarationList stmts = parseString("category Person(id, name);");
 				Assert.IsNotNull(stmts);
