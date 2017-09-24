@@ -481,6 +481,9 @@
     <Compile Include="src\prompto\expression\UnresolvedSelector.cs" />
     <Compile Include="src\prompto\declaration\BuiltInMethodDeclaration.cs" />
     <Compile Include="src\prompto\python\PythonSelfExpression.cs" />
+    <Compile Include="src\prompto\type\VersionType.cs" />
+    <Compile Include="src\prompto\value\Version.cs" />
+    <Compile Include="src\prompto\literal\VersionLiteral.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />

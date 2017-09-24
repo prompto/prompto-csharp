@@ -15,6 +15,7 @@ namespace prompto.store
 		TIME,
 		DATETIME,
 		PERIOD,
+		VERSION,
 		LIST,
 		SET,
 		TUPLE,

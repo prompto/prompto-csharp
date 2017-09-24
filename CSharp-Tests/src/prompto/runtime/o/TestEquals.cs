@@ -100,6 +100,12 @@ namespace prompto.runtime.o
 		}
 
 		[Test]
+		public void testEqVersion()
+		{
+			CheckOutput("equals/eqVersion.poc");
+		}
+
+		[Test]
 		public void testIsBoolean()
 		{
 			CheckOutput("equals/isBoolean.poc");

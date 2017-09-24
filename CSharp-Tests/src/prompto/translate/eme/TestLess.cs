@@ -92,6 +92,12 @@ namespace prompto.translate.eme
 			compareResourceEME("less/ltTime.pec");
 		}
 
+		[Test]
+		public void testLtVersion()
+		{
+			compareResourceEME("less/ltVersion.pec");
+		}
+
 	}
 }
 

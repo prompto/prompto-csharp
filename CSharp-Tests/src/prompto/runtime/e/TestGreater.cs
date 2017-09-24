@@ -105,6 +105,12 @@ namespace prompto.runtime.e
 			CheckOutput("greater/gtTime.pec");
 		}
 
+		[Test]
+		public void testGtVersion()
+		{
+			CheckOutput("greater/gtVersion.pec");
+		}
+
 	}
 }
 

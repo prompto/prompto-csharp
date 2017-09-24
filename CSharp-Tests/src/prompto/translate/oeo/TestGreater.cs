@@ -92,6 +92,12 @@ namespace prompto.translate.oeo
 			compareResourceOEO("greater/gtTime.poc");
 		}
 
+		[Test]
+		public void testGtVersion()
+		{
+			compareResourceOEO("greater/gtVersion.poc");
+		}
+
 	}
 }
 

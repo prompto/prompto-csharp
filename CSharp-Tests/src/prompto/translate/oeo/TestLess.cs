@@ -92,6 +92,12 @@ namespace prompto.translate.oeo
 			compareResourceOEO("less/ltTime.poc");
 		}
 
+		[Test]
+		public void testLtVersion()
+		{
+			compareResourceOEO("less/ltVersion.poc");
+		}
+
 	}
 }
 

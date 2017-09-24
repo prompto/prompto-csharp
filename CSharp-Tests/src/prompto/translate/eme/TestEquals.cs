@@ -87,6 +87,12 @@ namespace prompto.translate.eme
 		}
 
 		[Test]
+		public void testEqVersion()
+		{
+			compareResourceEME("equals/eqVersion.pec");
+		}
+
+		[Test]
 		public void testIsBoolean()
 		{
 			compareResourceEME("equals/isBoolean.pec");

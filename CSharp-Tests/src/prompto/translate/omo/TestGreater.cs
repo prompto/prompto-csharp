@@ -92,6 +92,12 @@ namespace prompto.translate.omo
 			compareResourceOMO("greater/gtTime.poc");
 		}
 
+		[Test]
+		public void testGtVersion()
+		{
+			compareResourceOMO("greater/gtVersion.poc");
+		}
+
 	}
 }
 

@@ -236,6 +236,25 @@ namespace prompto.parser
 			SetNodeValue (ctx, new PeriodLiteral (ctx.t.Text));
 		}
 
+		public override void ExitPeriodType(OParser.PeriodTypeContext ctx)
+		{
+			SetNodeValue(ctx, PeriodType.Instance);
+		}
+
+
+		public override void ExitVersionLiteral(OParser.VersionLiteralContext ctx)
+		{
+			SetNodeValue(ctx, new VersionLiteral(ctx.t.Text));
+		}
+
+
+		public override void ExitVersionType(OParser.VersionTypeContext ctx)
+		{
+			SetNodeValue(ctx, VersionType.Instance);
+		}
+
+
+
 		public override void ExitAttribute_identifier (OParser.Attribute_identifierContext ctx)
 		{
 			SetNodeValue (ctx, ctx.GetText ());

@@ -2062,6 +2062,18 @@ public partial class MParserBaseListener : IMParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitPeriodType([NotNull] MParser.PeriodTypeContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="MParser.VersionType"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterVersionType([NotNull] MParser.VersionTypeContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="MParser.VersionType"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitVersionType([NotNull] MParser.VersionTypeContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="MParser.CodeType"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
@@ -2925,6 +2937,18 @@ public partial class MParserBaseListener : IMParserListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitPeriodLiteral([NotNull] MParser.PeriodLiteralContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="MParser.VersionLiteral"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterVersionLiteral([NotNull] MParser.VersionLiteralContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="MParser.VersionLiteral"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitVersionLiteral([NotNull] MParser.VersionLiteralContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="MParser.UUIDLiteral"/>.
 	/// <para>The default implementation does nothing.</para>

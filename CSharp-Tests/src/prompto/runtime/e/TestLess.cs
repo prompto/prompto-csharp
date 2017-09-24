@@ -105,6 +105,12 @@ namespace prompto.runtime.e
 			CheckOutput("less/ltTime.pec");
 		}
 
+		[Test]
+		public void testLtVersion()
+		{
+			CheckOutput("less/ltVersion.pec");
+		}
+
 	}
 }
 

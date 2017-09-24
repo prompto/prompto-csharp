@@ -1930,6 +1930,18 @@ public interface IMParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitPeriodType([NotNull] MParser.PeriodTypeContext context);
 	/// <summary>
+	/// Enter a parse tree produced by the <c>VersionType</c>
+	/// labeled alternative in <see cref="MParser.native_type"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterVersionType([NotNull] MParser.VersionTypeContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>VersionType</c>
+	/// labeled alternative in <see cref="MParser.native_type"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitVersionType([NotNull] MParser.VersionTypeContext context);
+	/// <summary>
 	/// Enter a parse tree produced by the <c>CodeType</c>
 	/// labeled alternative in <see cref="MParser.native_type"/>.
 	/// </summary>
@@ -2727,6 +2739,18 @@ public interface IMParserListener : IParseTreeListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void ExitPeriodLiteral([NotNull] MParser.PeriodLiteralContext context);
+	/// <summary>
+	/// Enter a parse tree produced by the <c>VersionLiteral</c>
+	/// labeled alternative in <see cref="MParser.atomic_literal"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterVersionLiteral([NotNull] MParser.VersionLiteralContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>VersionLiteral</c>
+	/// labeled alternative in <see cref="MParser.atomic_literal"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitVersionLiteral([NotNull] MParser.VersionLiteralContext context);
 	/// <summary>
 	/// Enter a parse tree produced by the <c>UUIDLiteral</c>
 	/// labeled alternative in <see cref="MParser.atomic_literal"/>.

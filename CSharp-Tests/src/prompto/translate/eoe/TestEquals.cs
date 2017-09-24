@@ -87,6 +87,12 @@ namespace prompto.translate.eoe
 		}
 
 		[Test]
+		public void testEqVersion()
+		{
+			compareResourceEOE("equals/eqVersion.pec");
+		}
+
+		[Test]
 		public void testIsBoolean()
 		{
 			compareResourceEOE("equals/isBoolean.pec");

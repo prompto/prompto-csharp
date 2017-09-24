@@ -87,6 +87,12 @@ namespace prompto.translate.omo
 		}
 
 		[Test]
+		public void testEqVersion()
+		{
+			compareResourceOMO("equals/eqVersion.poc");
+		}
+
+		[Test]
 		public void testIsBoolean()
 		{
 			compareResourceOMO("equals/isBoolean.poc");
