@@ -58,6 +58,8 @@ namespace prompto.type
 					return list;
 				case "replace":
 					list.Add(REPLACE_METHOD);
+				case "replaceAll":
+					list.Add(REPLACE_ALL_METHOD);
 					return list;
 				case "split":
 					list.Add(SPLIT_METHOD);
@@ -76,6 +78,7 @@ namespace prompto.type
 
 		internal static IMethodDeclaration SPLIT_METHOD = new SplitMethodDeclaration();
 		internal static IMethodDeclaration REPLACE_METHOD = new ReplaceMethodDeclaration();
+		internal static IMethodDeclaration REPLACE_ALL_METHOD = new ReplaceAllMethodDeclaration();
 		internal static IMethodDeclaration TO_LOWERCASE_METHOD = new ToLowerCaseMethodDeclaration();
 		internal static IMethodDeclaration TO_UPPERCASE_METHOD = new ToUpperCaseMethodDeclaration();
 		internal static IMethodDeclaration TO_CAPITALIZED_METHOD = new ToCapitalizedMethodDeclaration();
@@ -217,9 +220,7 @@ namespace prompto.type
 			return new ListType(TextType.Instance);
 		}
 
-
-
-	};
+			};
 
 	class ReplaceMethodDeclaration : BuiltInMethodDeclaration
 	{
@@ -230,11 +231,38 @@ namespace prompto.type
 
 		public override IValue interpret(Context context)
 		{
-			string value = (String)getValue(context).GetStorableData();
+			IValue ivalue = getValue(context);
+			string text = (String)ivalue.GetStorableData();
+			string toReplace = (String)context.getValue("toReplace").GetStorableData();
+			int idx = text.IndexOf(toReplace);
+			if (idx < 0)
+				return ivalue;
+			string replaceWith = (String)context.getValue("replaceWith").GetStorableData();
+			text = text.Substring(0, idx) + replaceWith + text.Substring(pos + toReplace.Length);
+			return new Text(text);
+		}
+
+				public override IType check(Context context)
+		{
+			return TextType.Instance;
+		}
+
+	};
+
+	class ReplaceAllMethodDeclaration : BuiltInMethodDeclaration
+	{
+
+		public ReplaceAllMethodDeclaration()
+			: base("replaceAll", TextType.TO_REPLACE_ARGUMENT, TextType.REPLACE_WITH_ARGUMENT)
+		{ }
+
+		public override IValue interpret(Context context)
+		{
+			string text = (String)getValue(context).GetStorableData();
 			string toReplace = (String)context.getValue("toReplace").GetStorableData();
 			string replaceWith = (String)context.getValue("replaceWith").GetStorableData();
-			value = value.Replace(toReplace, replaceWith);
-			return new Text(value);
+			text = text.Replace(toReplace, replaceWith);
+			return new Text(text);
 		}
 
 
@@ -245,8 +273,8 @@ namespace prompto.type
 		}
 
 
-
 	};
+
 
 	class ToLowerCaseMethodDeclaration : BuiltInMethodDeclaration
 	{

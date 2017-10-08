@@ -250,6 +250,12 @@ namespace prompto.runtime.e
 		}
 
 		[Test]
+		public void testTextReplaceAll()
+		{
+			CheckOutput("builtins/textReplaceAll.pec");
+		}
+
+		[Test]
 		public void testTextSplit()
 		{
 			CheckOutput("builtins/textSplit.pec");

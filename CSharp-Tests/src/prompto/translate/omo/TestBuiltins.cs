@@ -153,6 +153,12 @@ namespace prompto.translate.omo
 		}
 
 		[Test]
+		public void testTextReplaceAll()
+		{
+			compareResourceOMO("builtins/textReplaceAll.poc");
+		}
+
+		[Test]
 		public void testTextSplit()
 		{
 			compareResourceOMO("builtins/textSplit.poc");
