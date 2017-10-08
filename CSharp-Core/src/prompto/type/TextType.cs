@@ -58,6 +58,7 @@ namespace prompto.type
 					return list;
 				case "replace":
 					list.Add(REPLACE_METHOD);
+					return list;
 				case "replaceAll":
 					list.Add(REPLACE_ALL_METHOD);
 					return list;
@@ -238,7 +239,7 @@ namespace prompto.type
 			if (idx < 0)
 				return ivalue;
 			string replaceWith = (String)context.getValue("replaceWith").GetStorableData();
-			text = text.Substring(0, idx) + replaceWith + text.Substring(pos + toReplace.Length);
+			text = text.Substring(0, idx) + replaceWith + text.Substring(idx + toReplace.Length);
 			return new Text(text);
 		}
 
