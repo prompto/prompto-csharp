@@ -26,6 +26,18 @@ namespace prompto.translate.oeo
 			compareResourceOEO("enums/textEnum.poc");
 		}
 
+		[Test]
+		public void testTextEnumArg()
+		{
+			compareResourceOEO("enums/textEnumArg.poc");
+		}
+
+		[Test]
+		public void testTextEnumVar()
+		{
+			compareResourceOEO("enums/textEnumVar.poc");
+		}
+
 	}
 }
 

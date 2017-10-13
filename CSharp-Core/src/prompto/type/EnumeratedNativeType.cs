@@ -31,9 +31,9 @@ namespace prompto.type
 		public override IType checkMember(Context context, String name)
         {
             if ("symbols" == name)
-			    return new ListType(derivedFrom);
+			    return new ListType(this);
 		    else if ("value" == name)
-                return this;
+                return this.derivedFrom;
             else if ("name" == name)
                 return TextType.Instance;
             else
@@ -82,9 +82,8 @@ namespace prompto.type
         
         public override bool isAssignableFrom(Context context, IType other)
         {
-            // TODO Auto-generated method stub
-            return false;
-        }
+ 			return this.GetTypeName().Equals(other.GetTypeName());
+       }
 
         
         public override bool isMoreSpecificThan(Context context, IType other)

@@ -46,21 +46,27 @@ namespace prompto.type
 
 		public override IType checkMember(Context context, String name)
 		{
-			CategoryDeclaration cd = context.getRegisteredDeclaration<CategoryDeclaration>(GetTypeName());
-			if (cd == null)
+			IDeclaration dd = context.getRegisteredDeclaration<IDeclaration>(GetTypeName());
+			if (dd == null)
 				throw new SyntaxError("Unknown category:" + GetTypeName());
-			if (cd.hasAttribute(context, name))
+			if (dd is EnumeratedNativeDeclaration)
+				return dd.GetIType(context).checkMember(context, name);
+			else if (dd is CategoryDeclaration)
 			{
-				AttributeDeclaration ad = context.getRegisteredDeclaration<AttributeDeclaration>(name);
-				if (ad == null)
-					throw new SyntaxError("Unknown atttribute:" + name);
+				if (((CategoryDeclaration)dd).hasAttribute(context, name))
+				{
+					AttributeDeclaration ad = context.getRegisteredDeclaration<AttributeDeclaration>(name);
+					if (ad == null)
+						throw new SyntaxError("Unknown atttribute:" + name);
+					else
+						return ad.GetIType(context);
+				}
+				else if ("text" == name)
+					return TextType.Instance;
 				else
-					return ad.GetIType(context);
-			}
-			else if ("text" == name)
-				return TextType.Instance;
-			else
-				throw new SyntaxError("No attribute:" + name + " in category:" + GetTypeName());
+					throw new SyntaxError("No attribute:" + name + " in category:" + GetTypeName());
+			} else
+				throw new SyntaxError("Not a category:" + GetTypeName());
         }
         
         override

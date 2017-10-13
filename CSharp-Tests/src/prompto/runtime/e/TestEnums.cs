@@ -39,6 +39,18 @@ namespace prompto.runtime.e
 			CheckOutput("enums/textEnum.pec");
 		}
 
+		[Test]
+		public void testTextEnumArg()
+		{
+			CheckOutput("enums/textEnumArg.pec");
+		}
+
+		[Test]
+		public void testTextEnumVar()
+		{
+			CheckOutput("enums/textEnumVar.pec");
+		}
+
 	}
 }
 

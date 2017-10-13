@@ -97,7 +97,7 @@ namespace prompto.expression
 		}
 
 		
-		public IValue GetMember(Context context, String name, bool autoCreate) {
+		public virtual IValue GetMember(Context context, String name, bool autoCreate) {
 			throw new NotSupportedException("No member support for " + this.GetType().Name);
 		}
 

@@ -39,6 +39,18 @@ namespace prompto.runtime.o
 			CheckOutput("enums/textEnum.poc");
 		}
 
+		[Test]
+		public void testTextEnumArg()
+		{
+			CheckOutput("enums/textEnumArg.poc");
+		}
+
+		[Test]
+		public void testTextEnumVar()
+		{
+			CheckOutput("enums/textEnumVar.poc");
+		}
+
 	}
 }
 

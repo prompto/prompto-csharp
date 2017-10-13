@@ -63,12 +63,8 @@ namespace prompto.expression
 		{       
 			// resolve parent to keep clarity
 			IExpression parent = resolveParent(context);
-			// special case for Symbol which evaluates as value
-			IValue value = interpretSymbol(context, parent);
-			if(value!=null)
-				return value;
 			// special case for singletons 
-			value = interpretSingleton(context, parent);
+			IValue value = interpretSingleton(context, parent);
 			if(value!=null)
 				return value;
 			// special case for 'static' type members (like Enum.symbols, Type.name etc...)
@@ -104,17 +100,6 @@ namespace prompto.expression
 					if (instance != null)
 						return instance.GetMember(context, name, false);
 				}
-			}
-			return null;
-		}
-
-		private IValue interpretSymbol(Context context, IExpression parent) {
-			if (parent is SymbolExpression)
-			{
-				if ("name".Equals(name))
-					return new Text(((SymbolExpression)parent).getName());
-				else if("value".Equals(name))
-					return parent.interpret(context);
 			}
 			return null;
 		}

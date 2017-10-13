@@ -44,8 +44,8 @@ namespace prompto.expression
 			this.type = (EnumeratedNativeType)type;
         }
 
-        override
-        public void ToDialect(CodeWriter writer)
+        
+        public override void ToDialect(CodeWriter writer)
         {
 			writer.append(symbol);
 			switch(writer.getDialect()) {
@@ -65,8 +65,8 @@ namespace prompto.expression
 			}
 		}
 
-        override
-        public bool Equals(Object obj)
+        
+        public override bool Equals(Object obj)
         {
             if (obj == this)
                 return true;
@@ -79,8 +79,8 @@ namespace prompto.expression
                     && this.getExpression().Equals(other.getExpression());
         }
 
-        override
-        public IType check(Context context)
+        
+        public override IType check(Context context)
         {
             IType actual = expression.check(context);
             if (!type.getDerivedFrom().isAssignableFrom(context, actual))
@@ -91,8 +91,19 @@ namespace prompto.expression
         override
 		public IValue interpret(Context context)
         {
-            return expression.interpret(context);
+            return this;
         }
+
+
+	public override IValue GetMember(Context context, String name, bool autoCreate) 
+	{
+		if("name".Equals(name))
+			return new Text(this.GetName());
+		else if("value".Equals(name))
+			return expression.interpret(context);
+		else
+			return base.GetMember(context, name, autoCreate);
+	}
 
     }
 

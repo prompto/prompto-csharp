@@ -26,6 +26,18 @@ namespace prompto.translate.eme
 			compareResourceEME("enums/textEnum.pec");
 		}
 
+		[Test]
+		public void testTextEnumArg()
+		{
+			compareResourceEME("enums/textEnumArg.pec");
+		}
+
+		[Test]
+		public void testTextEnumVar()
+		{
+			compareResourceEME("enums/textEnumVar.pec");
+		}
+
 	}
 }
 

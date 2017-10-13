@@ -71,7 +71,7 @@ namespace prompto.declaration
 
 		public override bool hasAttribute(Context context, string name)
 		{
-			if ("name"==name)
+			if ("name".Equals(name))
 				return true;
 			else	
 				return base.hasAttribute(context, name);
