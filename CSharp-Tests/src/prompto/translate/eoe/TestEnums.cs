@@ -21,6 +21,24 @@ namespace prompto.translate.eoe
 		}
 
 		[Test]
+		public void testStoreCategoryEnum()
+		{
+			compareResourceEOE("enums/storeCategoryEnum.pec");
+		}
+
+		[Test]
+		public void testStoreIntegerEnum()
+		{
+			compareResourceEOE("enums/storeIntegerEnum.pec");
+		}
+
+		[Test]
+		public void testStoreTextEnum()
+		{
+			compareResourceEOE("enums/storeTextEnum.pec");
+		}
+
+		[Test]
 		public void testTextEnum()
 		{
 			compareResourceEOE("enums/textEnum.pec");

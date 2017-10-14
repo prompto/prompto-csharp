@@ -139,7 +139,7 @@ namespace prompto.expression
 
 		public object GetStorableData()
 		{
-			throw new NotSupportedException("No GetStorableData support for " + this.GetType().Name);
+			return symbol;
 		}
 
 		public void CollectStorables(List<IStorable> storables)

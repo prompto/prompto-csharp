@@ -366,10 +366,19 @@ namespace prompto.type
 		public override IValue ConvertCSharpValueToIValue(Context context, object value)
 		{
 			IDeclaration decl = getDeclaration(context);
-			if (decl is CategoryDeclaration)
+			if (decl is EnumeratedNativeDeclaration || decl is EnumeratedCategoryDeclaration)
+				return LoadEnumValue(context, decl, value);
+			else if (decl is CategoryDeclaration)
 				return ConvertCSharpValueToIValue(context, (CategoryDeclaration)decl, value);
 			else
 				return base.ConvertCSharpValueToIValue(context, value);
+		}
+
+		IValue LoadEnumValue(Context context, IDeclaration decl, object value)
+		{
+			return context.getValue(value.ToString(), () =>
+					context.getRegisteredValue<Symbol>(value.ToString())
+               );
 		}
 
 		private IValue ConvertCSharpValueToIValue(Context context, CategoryDeclaration decl, Object value) 

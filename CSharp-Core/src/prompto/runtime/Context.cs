@@ -302,17 +302,28 @@ namespace prompto.runtime
 
 		public IValue getValue(String name)
 		{
+			return getValue(name, () => null);
+		}
+
+		public IValue getValue(String name, Func<IValue> supplier)
+		{
 			Context context = contextForValue(name);
 			if (context == null)
 				throw new SyntaxError(name + " is not defined");
-			return context.readValue(name);
+			return context.readValue(name, supplier);
 		}
 
 
-		protected virtual IValue readValue(String name)
+		protected virtual IValue readValue(String name, Func<IValue> supplier)
 		{
 			IValue value;
 			if (!values.TryGetValue(name, out value))
+			{
+				value = supplier.Invoke();
+				if (value != null)
+					values[name] = value;
+			}
+			if(value==null)
 				throw new SyntaxError(name + " has no value");
 			if (value is LinkedValue)
 				return ((LinkedValue)value).getContext().getValue(name);
@@ -522,7 +533,7 @@ namespace prompto.runtime
 		}
 
 
-		protected override IValue readValue(String name)
+		protected override IValue readValue(String name, Func<IValue> supplier)
 		{
 			return instance.GetMember(calling, name, false);
 		}
@@ -559,7 +570,7 @@ namespace prompto.runtime
 				return this;
 		}
 
-		protected override IValue readValue(String name)
+		protected override IValue readValue(String name, Func<IValue> supplier)
 		{
 			return document.GetMember(calling, name, false);
 		}

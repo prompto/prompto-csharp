@@ -34,6 +34,24 @@ namespace prompto.runtime.e
 		}
 
 		[Test]
+		public void testStoreCategoryEnum()
+		{
+			CheckOutput("enums/storeCategoryEnum.pec");
+		}
+
+		[Test]
+		public void testStoreIntegerEnum()
+		{
+			CheckOutput("enums/storeIntegerEnum.pec");
+		}
+
+		[Test]
+		public void testStoreTextEnum()
+		{
+			CheckOutput("enums/storeTextEnum.pec");
+		}
+
+		[Test]
 		public void testTextEnum()
 		{
 			CheckOutput("enums/textEnum.pec");

@@ -17,6 +17,7 @@ namespace prompto.expression
 
         ArgumentAssignmentList assignments;
         EnumeratedCategoryType type;
+		IInstance instance;
 
         public CategorySymbol(String name, ArgumentAssignmentList assignments)
             : base(name)
@@ -50,8 +51,8 @@ namespace prompto.expression
             return assignments;
         }
 
-        override
-        public String ToString()
+        
+        public override String ToString()
         {
             StringBuilder sb = new StringBuilder();
             if (assignments != null)
@@ -61,15 +62,15 @@ namespace prompto.expression
             return sb.ToString();
         }
 
-		override
-		public void ToDialect(CodeWriter writer) {
+
+		public override void ToDialect(CodeWriter writer) {
 			writer.append(symbol);
 			writer.append(" ");
 			assignments.ToDialect(writer);
 		}
 
-        override
-        public IType check(Context context)
+        
+        public override IType check(Context context)
         {
 			EnumeratedCategoryDeclaration cd = context.getRegisteredDeclaration<EnumeratedCategoryDeclaration>(type.GetTypeName());
             if (cd == null)
@@ -87,24 +88,43 @@ namespace prompto.expression
             return type;
         }
 
-        override
-        public IValue interpret(Context context)
-        {
-            IInstance instance = type.newInstance(context);
-			instance.setMutable (true);
-            if (assignments != null)
-            {
-				context = context.newLocalContext ();
-                foreach (ArgumentAssignment assignment in assignments)
-                {
-					IValue value = assignment.getExpression().interpret(context);
-					instance.SetMember(context, assignment.GetName(), value);
-                }
-            }
-			instance.SetMember(context, "name", new Text(this.GetName()));
-			instance.setMutable (false);
+
+		public override IValue interpret(Context context)
+		{
+			return makeInstance(context);
+		}
+
+
+		private IInstance makeInstance(Context context)
+		{
+			if (instance == null) 
+			{
+				IInstance _instance = type.newInstance(context);
+				_instance.setMutable(true);
+				if (assignments != null)
+				{
+					context = context.newLocalContext();
+					foreach (ArgumentAssignment assignment in assignments)
+					{
+						IValue val = assignment.getExpression().interpret(context);
+						_instance.SetMember(context, assignment.GetName(), val);
+					}
+				}
+				_instance.SetMember(context, "name", new Text(this.GetName()));
+				_instance.setMutable(false);
+				instance = _instance;
+			}
 			return instance;
         }
+
+
+		public override IValue GetMember(Context context, String name, bool autoCreate) 
+		{
+			makeInstance(context);
+			return instance.GetMember(context, name, autoCreate);
+		}
+	
+
 
     }
 }
