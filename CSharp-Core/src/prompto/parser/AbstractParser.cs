@@ -1,7 +1,7 @@
 using System;
 using Antlr4.Runtime;
-using System.Text;
 using System.Collections.Generic;
+using System.IO;
 
 namespace prompto.parser
 {
@@ -14,6 +14,12 @@ namespace prompto.parser
             : base(input)
         {
         }
+
+		public AbstractParser(ITokenStream input, TextWriter output, TextWriter errorOutput)
+            : base(input, output, errorOutput)
+		{
+		}
+
 
         public bool isText(IToken token, string text)
         {
@@ -32,12 +38,12 @@ namespace prompto.parser
 
         public bool willBe(int type)
         {
-            return this.InputStream.La(1) == type;
+            return this.InputStream.LA(1) == type;
         }
 
         public bool willNotBe(int type)
         {
-            return this.InputStream.La(1) != type;
+            return this.InputStream.LA(1) != type;
         }
 
 		public virtual int equalToken()
@@ -51,7 +57,7 @@ namespace prompto.parser
 		}
 
 		public bool willBeText(string text) {
-			return text==this.TokenStream.Lt(1).Text;
+			return text==this.TokenStream.LT(1).Text;
 		}
 
         public int nextHiddenTokenType()
