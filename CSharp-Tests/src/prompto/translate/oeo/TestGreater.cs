@@ -33,6 +33,30 @@ namespace prompto.translate.oeo
 		}
 
 		[Test]
+		public void testGtInteger()
+		{
+			compareResourceOEO("greater/gtInteger.poc");
+		}
+
+		[Test]
+		public void testGtText()
+		{
+			compareResourceOEO("greater/gtText.poc");
+		}
+
+		[Test]
+		public void testGtTime()
+		{
+			compareResourceOEO("greater/gtTime.poc");
+		}
+
+		[Test]
+		public void testGtVersion()
+		{
+			compareResourceOEO("greater/gtVersion.poc");
+		}
+
+		[Test]
 		public void testGteCharacter()
 		{
 			compareResourceOEO("greater/gteCharacter.poc");
@@ -72,30 +96,6 @@ namespace prompto.translate.oeo
 		public void testGteTime()
 		{
 			compareResourceOEO("greater/gteTime.poc");
-		}
-
-		[Test]
-		public void testGtInteger()
-		{
-			compareResourceOEO("greater/gtInteger.poc");
-		}
-
-		[Test]
-		public void testGtText()
-		{
-			compareResourceOEO("greater/gtText.poc");
-		}
-
-		[Test]
-		public void testGtTime()
-		{
-			compareResourceOEO("greater/gtTime.poc");
-		}
-
-		[Test]
-		public void testGtVersion()
-		{
-			compareResourceOEO("greater/gtVersion.poc");
 		}
 
 	}

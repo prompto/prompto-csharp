@@ -46,6 +46,30 @@ namespace prompto.runtime.o
 		}
 
 		[Test]
+		public void testGtInteger()
+		{
+			CheckOutput("greater/gtInteger.poc");
+		}
+
+		[Test]
+		public void testGtText()
+		{
+			CheckOutput("greater/gtText.poc");
+		}
+
+		[Test]
+		public void testGtTime()
+		{
+			CheckOutput("greater/gtTime.poc");
+		}
+
+		[Test]
+		public void testGtVersion()
+		{
+			CheckOutput("greater/gtVersion.poc");
+		}
+
+		[Test]
 		public void testGteCharacter()
 		{
 			CheckOutput("greater/gteCharacter.poc");
@@ -85,30 +109,6 @@ namespace prompto.runtime.o
 		public void testGteTime()
 		{
 			CheckOutput("greater/gteTime.poc");
-		}
-
-		[Test]
-		public void testGtInteger()
-		{
-			CheckOutput("greater/gtInteger.poc");
-		}
-
-		[Test]
-		public void testGtText()
-		{
-			CheckOutput("greater/gtText.poc");
-		}
-
-		[Test]
-		public void testGtTime()
-		{
-			CheckOutput("greater/gtTime.poc");
-		}
-
-		[Test]
-		public void testGtVersion()
-		{
-			CheckOutput("greater/gtVersion.poc");
 		}
 
 	}

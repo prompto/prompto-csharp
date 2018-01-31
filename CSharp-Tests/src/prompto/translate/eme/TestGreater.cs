@@ -33,6 +33,30 @@ namespace prompto.translate.eme
 		}
 
 		[Test]
+		public void testGtInteger()
+		{
+			compareResourceEME("greater/gtInteger.pec");
+		}
+
+		[Test]
+		public void testGtText()
+		{
+			compareResourceEME("greater/gtText.pec");
+		}
+
+		[Test]
+		public void testGtTime()
+		{
+			compareResourceEME("greater/gtTime.pec");
+		}
+
+		[Test]
+		public void testGtVersion()
+		{
+			compareResourceEME("greater/gtVersion.pec");
+		}
+
+		[Test]
 		public void testGteCharacter()
 		{
 			compareResourceEME("greater/gteCharacter.pec");
@@ -72,30 +96,6 @@ namespace prompto.translate.eme
 		public void testGteTime()
 		{
 			compareResourceEME("greater/gteTime.pec");
-		}
-
-		[Test]
-		public void testGtInteger()
-		{
-			compareResourceEME("greater/gtInteger.pec");
-		}
-
-		[Test]
-		public void testGtText()
-		{
-			compareResourceEME("greater/gtText.pec");
-		}
-
-		[Test]
-		public void testGtTime()
-		{
-			compareResourceEME("greater/gtTime.pec");
-		}
-
-		[Test]
-		public void testGtVersion()
-		{
-			compareResourceEME("greater/gtVersion.pec");
 		}
 
 	}

@@ -33,6 +33,30 @@ namespace prompto.translate.eoe
 		}
 
 		[Test]
+		public void testLtInteger()
+		{
+			compareResourceEOE("less/ltInteger.pec");
+		}
+
+		[Test]
+		public void testLtText()
+		{
+			compareResourceEOE("less/ltText.pec");
+		}
+
+		[Test]
+		public void testLtTime()
+		{
+			compareResourceEOE("less/ltTime.pec");
+		}
+
+		[Test]
+		public void testLtVersion()
+		{
+			compareResourceEOE("less/ltVersion.pec");
+		}
+
+		[Test]
 		public void testLteCharacter()
 		{
 			compareResourceEOE("less/lteCharacter.pec");
@@ -72,30 +96,6 @@ namespace prompto.translate.eoe
 		public void testLteTime()
 		{
 			compareResourceEOE("less/lteTime.pec");
-		}
-
-		[Test]
-		public void testLtInteger()
-		{
-			compareResourceEOE("less/ltInteger.pec");
-		}
-
-		[Test]
-		public void testLtText()
-		{
-			compareResourceEOE("less/ltText.pec");
-		}
-
-		[Test]
-		public void testLtTime()
-		{
-			compareResourceEOE("less/ltTime.pec");
-		}
-
-		[Test]
-		public void testLtVersion()
-		{
-			compareResourceEOE("less/ltVersion.pec");
 		}
 
 	}

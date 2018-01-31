@@ -46,6 +46,30 @@ namespace prompto.runtime.o
 		}
 
 		[Test]
+		public void testLtInteger()
+		{
+			CheckOutput("less/ltInteger.poc");
+		}
+
+		[Test]
+		public void testLtText()
+		{
+			CheckOutput("less/ltText.poc");
+		}
+
+		[Test]
+		public void testLtTime()
+		{
+			CheckOutput("less/ltTime.poc");
+		}
+
+		[Test]
+		public void testLtVersion()
+		{
+			CheckOutput("less/ltVersion.poc");
+		}
+
+		[Test]
 		public void testLteCharacter()
 		{
 			CheckOutput("less/lteCharacter.poc");
@@ -85,30 +109,6 @@ namespace prompto.runtime.o
 		public void testLteTime()
 		{
 			CheckOutput("less/lteTime.poc");
-		}
-
-		[Test]
-		public void testLtInteger()
-		{
-			CheckOutput("less/ltInteger.poc");
-		}
-
-		[Test]
-		public void testLtText()
-		{
-			CheckOutput("less/ltText.poc");
-		}
-
-		[Test]
-		public void testLtTime()
-		{
-			CheckOutput("less/ltTime.poc");
-		}
-
-		[Test]
-		public void testLtVersion()
-		{
-			CheckOutput("less/ltVersion.poc");
 		}
 
 	}

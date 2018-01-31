@@ -99,12 +99,6 @@ namespace prompto.translate.eoe
 		}
 
 		[Test]
-		public void testDateTimeText()
-		{
-			compareResourceEOE("builtins/dateTimeText.pec");
-		}
-
-		[Test]
 		public void testDateTimeTZName()
 		{
 			compareResourceEOE("builtins/dateTimeTZName.pec");
@@ -114,6 +108,12 @@ namespace prompto.translate.eoe
 		public void testDateTimeTZOffset()
 		{
 			compareResourceEOE("builtins/dateTimeTZOffset.pec");
+		}
+
+		[Test]
+		public void testDateTimeText()
+		{
+			compareResourceEOE("builtins/dateTimeText.pec");
 		}
 
 		[Test]

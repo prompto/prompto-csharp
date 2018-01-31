@@ -15,15 +15,15 @@ namespace prompto.translate.eoe
 		}
 
 		[Test]
-		public void testSortDates()
-		{
-			compareResourceEOE("sortSet/sortDates.pec");
-		}
-
-		[Test]
 		public void testSortDateTimes()
 		{
 			compareResourceEOE("sortSet/sortDateTimes.pec");
+		}
+
+		[Test]
+		public void testSortDates()
+		{
+			compareResourceEOE("sortSet/sortDates.pec");
 		}
 
 		[Test]
@@ -39,15 +39,15 @@ namespace prompto.translate.eoe
 		}
 
 		[Test]
-		public void testSortDescDates()
-		{
-			compareResourceEOE("sortSet/sortDescDates.pec");
-		}
-
-		[Test]
 		public void testSortDescDateTimes()
 		{
 			compareResourceEOE("sortSet/sortDescDateTimes.pec");
+		}
+
+		[Test]
+		public void testSortDescDates()
+		{
+			compareResourceEOE("sortSet/sortDescDates.pec");
 		}
 
 		[Test]

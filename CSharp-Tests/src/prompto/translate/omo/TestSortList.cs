@@ -15,15 +15,15 @@ namespace prompto.translate.omo
 		}
 
 		[Test]
-		public void testSortDates()
-		{
-			compareResourceOMO("sortList/sortDates.poc");
-		}
-
-		[Test]
 		public void testSortDateTimes()
 		{
 			compareResourceOMO("sortList/sortDateTimes.poc");
+		}
+
+		[Test]
+		public void testSortDates()
+		{
+			compareResourceOMO("sortList/sortDates.poc");
 		}
 
 		[Test]
@@ -39,15 +39,15 @@ namespace prompto.translate.omo
 		}
 
 		[Test]
-		public void testSortDescDates()
-		{
-			compareResourceOMO("sortList/sortDescDates.poc");
-		}
-
-		[Test]
 		public void testSortDescDateTimes()
 		{
 			compareResourceOMO("sortList/sortDescDateTimes.poc");
+		}
+
+		[Test]
+		public void testSortDescDates()
+		{
+			compareResourceOMO("sortList/sortDescDates.poc");
 		}
 
 		[Test]

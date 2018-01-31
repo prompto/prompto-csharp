@@ -67,6 +67,12 @@ namespace prompto.library.e
 			CheckTests("core/time.pec");
 		}
 
+		[Test]
+		public void testUtils()
+		{
+			CheckTests("core/utils.pec");
+		}
+
 	}
 }
 

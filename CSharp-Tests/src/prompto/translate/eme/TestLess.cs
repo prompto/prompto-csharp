@@ -33,6 +33,30 @@ namespace prompto.translate.eme
 		}
 
 		[Test]
+		public void testLtInteger()
+		{
+			compareResourceEME("less/ltInteger.pec");
+		}
+
+		[Test]
+		public void testLtText()
+		{
+			compareResourceEME("less/ltText.pec");
+		}
+
+		[Test]
+		public void testLtTime()
+		{
+			compareResourceEME("less/ltTime.pec");
+		}
+
+		[Test]
+		public void testLtVersion()
+		{
+			compareResourceEME("less/ltVersion.pec");
+		}
+
+		[Test]
 		public void testLteCharacter()
 		{
 			compareResourceEME("less/lteCharacter.pec");
@@ -72,30 +96,6 @@ namespace prompto.translate.eme
 		public void testLteTime()
 		{
 			compareResourceEME("less/lteTime.pec");
-		}
-
-		[Test]
-		public void testLtInteger()
-		{
-			compareResourceEME("less/ltInteger.pec");
-		}
-
-		[Test]
-		public void testLtText()
-		{
-			compareResourceEME("less/ltText.pec");
-		}
-
-		[Test]
-		public void testLtTime()
-		{
-			compareResourceEME("less/ltTime.pec");
-		}
-
-		[Test]
-		public void testLtVersion()
-		{
-			compareResourceEME("less/ltVersion.pec");
 		}
 
 	}

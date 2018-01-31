@@ -15,15 +15,15 @@ namespace prompto.translate.eme
 		}
 
 		[Test]
-		public void testSortDates()
-		{
-			compareResourceEME("sortSet/sortDates.pec");
-		}
-
-		[Test]
 		public void testSortDateTimes()
 		{
 			compareResourceEME("sortSet/sortDateTimes.pec");
+		}
+
+		[Test]
+		public void testSortDates()
+		{
+			compareResourceEME("sortSet/sortDates.pec");
 		}
 
 		[Test]
@@ -39,15 +39,15 @@ namespace prompto.translate.eme
 		}
 
 		[Test]
-		public void testSortDescDates()
-		{
-			compareResourceEME("sortSet/sortDescDates.pec");
-		}
-
-		[Test]
 		public void testSortDescDateTimes()
 		{
 			compareResourceEME("sortSet/sortDescDateTimes.pec");
+		}
+
+		[Test]
+		public void testSortDescDates()
+		{
+			compareResourceEME("sortSet/sortDescDates.pec");
 		}
 
 		[Test]

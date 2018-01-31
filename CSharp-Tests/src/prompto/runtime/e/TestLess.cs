@@ -46,6 +46,30 @@ namespace prompto.runtime.e
 		}
 
 		[Test]
+		public void testLtInteger()
+		{
+			CheckOutput("less/ltInteger.pec");
+		}
+
+		[Test]
+		public void testLtText()
+		{
+			CheckOutput("less/ltText.pec");
+		}
+
+		[Test]
+		public void testLtTime()
+		{
+			CheckOutput("less/ltTime.pec");
+		}
+
+		[Test]
+		public void testLtVersion()
+		{
+			CheckOutput("less/ltVersion.pec");
+		}
+
+		[Test]
 		public void testLteCharacter()
 		{
 			CheckOutput("less/lteCharacter.pec");
@@ -85,30 +109,6 @@ namespace prompto.runtime.e
 		public void testLteTime()
 		{
 			CheckOutput("less/lteTime.pec");
-		}
-
-		[Test]
-		public void testLtInteger()
-		{
-			CheckOutput("less/ltInteger.pec");
-		}
-
-		[Test]
-		public void testLtText()
-		{
-			CheckOutput("less/ltText.pec");
-		}
-
-		[Test]
-		public void testLtTime()
-		{
-			CheckOutput("less/ltTime.pec");
-		}
-
-		[Test]
-		public void testLtVersion()
-		{
-			CheckOutput("less/ltVersion.pec");
 		}
 
 	}

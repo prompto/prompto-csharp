@@ -28,15 +28,15 @@ namespace prompto.runtime.o
 		}
 
 		[Test]
-		public void testSortDates()
-		{
-			CheckOutput("sortList/sortDates.poc");
-		}
-
-		[Test]
 		public void testSortDateTimes()
 		{
 			CheckOutput("sortList/sortDateTimes.poc");
+		}
+
+		[Test]
+		public void testSortDates()
+		{
+			CheckOutput("sortList/sortDates.poc");
 		}
 
 		[Test]
@@ -52,15 +52,15 @@ namespace prompto.runtime.o
 		}
 
 		[Test]
-		public void testSortDescDates()
-		{
-			CheckOutput("sortList/sortDescDates.poc");
-		}
-
-		[Test]
 		public void testSortDescDateTimes()
 		{
 			CheckOutput("sortList/sortDescDateTimes.poc");
+		}
+
+		[Test]
+		public void testSortDescDates()
+		{
+			CheckOutput("sortList/sortDescDates.poc");
 		}
 
 		[Test]

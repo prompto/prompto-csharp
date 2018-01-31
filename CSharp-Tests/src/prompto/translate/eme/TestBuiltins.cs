@@ -99,12 +99,6 @@ namespace prompto.translate.eme
 		}
 
 		[Test]
-		public void testDateTimeText()
-		{
-			compareResourceEME("builtins/dateTimeText.pec");
-		}
-
-		[Test]
 		public void testDateTimeTZName()
 		{
 			compareResourceEME("builtins/dateTimeTZName.pec");
@@ -114,6 +108,12 @@ namespace prompto.translate.eme
 		public void testDateTimeTZOffset()
 		{
 			compareResourceEME("builtins/dateTimeTZOffset.pec");
+		}
+
+		[Test]
+		public void testDateTimeText()
+		{
+			compareResourceEME("builtins/dateTimeText.pec");
 		}
 
 		[Test]
