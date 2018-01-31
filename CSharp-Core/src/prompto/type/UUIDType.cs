@@ -1,5 +1,7 @@
 ﻿using System;
+using prompto.runtime;
 using prompto.store;
+using prompto.value;
 
 namespace prompto.type
 {
@@ -25,6 +27,14 @@ namespace prompto.type
 		public override Type ToCSharpType()
 		{
 			return typeof(Guid);
+		}
+
+		public override IValue ConvertCSharpValueToIValue(Context context, object value)
+		{
+			if (value is Guid)
+				return new UUIDValue((Guid)value);
+			else
+				return base.ConvertCSharpValueToIValue(context, value);
 		}
 
 	}
