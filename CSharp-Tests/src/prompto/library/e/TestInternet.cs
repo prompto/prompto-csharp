@@ -34,12 +34,6 @@ namespace prompto.library.e
 		}
 
 		[Test]
-		public void testServer()
-		{
-			CheckTests("internet/server.pec");
-		}
-
-		[Test]
 		public void testUrl()
 		{
 			CheckTests("internet/url.pec");
