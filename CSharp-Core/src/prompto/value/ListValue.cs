@@ -14,7 +14,7 @@ namespace prompto.value
 {
 
 
-	public class ListValue : List<IValue>, ISliceable, IFilterable, IMultiplyable
+	public class ListValue : List<IValue>, ISliceable, IContainer, IFilterable, IMultiplyable
 	{
 		List<Object> storables;
 		ListType type;
@@ -31,13 +31,13 @@ namespace prompto.value
 			Add(value);
 		}
 
-		public ListValue(IType itemType, List<IValue> values)
+		public ListValue(IType itemType, IEnumerable<IValue> values)
 		{
 			type = new ListType(itemType);
 			AddRange(values);
 		}
 
-		public ListValue(IType itemType, List<IValue> values, bool mutable)
+		public ListValue(IType itemType, IEnumerable<IValue> values, bool mutable)
 		{
 			type = new ListType(itemType);
 			AddRange(values);

@@ -72,7 +72,7 @@ namespace prompto.expression
 			IType filterType = predicate.check(local);
 			if (filterType != BooleanType.Instance)
 				throw new SyntaxError("Filtering expresion must return a bool !");
-			return new ListType(itemType);
+			return listType;
 		}
 
 		public IValue interpret(Context context)

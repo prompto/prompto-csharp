@@ -14,7 +14,7 @@ using Newtonsoft.Json;
 namespace prompto.value
 {
 
-	public class TupleValue : List<IValue>, ISliceable, IFilterable, IMultiplyable
+	public class TupleValue : List<IValue>, ISliceable, IContainer, IFilterable, IMultiplyable
 	{
 		List<Object> storables;
 		bool mutable = false;

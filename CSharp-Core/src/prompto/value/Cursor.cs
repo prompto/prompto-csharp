@@ -5,12 +5,12 @@ using prompto.type;
 using prompto.error;
 using System;
 using System.Collections;
-
+using prompto.expression;
 
 namespace prompto.value
 {
 
-	public class Cursor : BaseValue, IIterable, IEnumerable<IValue>, IEnumerator<IValue>
+	public class Cursor : BaseValue, IIterable, IEnumerable<IValue>, IEnumerator<IValue>, IFilterable
 	{
 
 		Context context;
@@ -23,6 +23,15 @@ namespace prompto.value
 			this.enumerator = documents.GetEnumerator();
 			this.Mutable = itemType is CategoryType ? ((CategoryType)itemType).Mutable : false;
 		}
+
+		protected Cursor(Cursor source)
+			: base(source.GetIType())
+		{
+			this.context = source.context;
+			this.enumerator = source.enumerator;
+			this.Mutable = source.Mutable;
+		}
+
 
 		public bool Mutable { get; set; }
 
@@ -56,7 +65,7 @@ namespace prompto.value
 			return this;
 		}
 
-		public bool MoveNext ()
+		public virtual bool MoveNext ()
 		{
 			return enumerator.MoveNext ();
 		}
@@ -74,7 +83,7 @@ namespace prompto.value
 			}
 		}
 
-		IValue getCurrent() 
+		protected virtual IValue getCurrent() 
 		{
 			try 
 			{
@@ -121,8 +130,60 @@ namespace prompto.value
 				throw new InvalidDataError ("No such member:" + name);
 		}
 
+		public IFilterable Filter(Context context, String itemName, IExpression filter)
+		{
+			return new FilteredCursor(this, context, itemName, filter);
+		}
 
 
 	}
+
+	public class FilteredCursor : Cursor
+	{
+		Context context;
+		String itemName;
+		IExpression filter;
+		IValue current;
+
+		public FilteredCursor(Cursor source, Context context, String itemName, IExpression filter)
+			: base(source)
+		{
+			this.context = context;
+			this.itemName = itemName;
+			this.filter = filter;
+		}
+
+		public override bool MoveNext()
+		{
+			current = null;
+			while (base.MoveNext())
+			{
+				current = base.getCurrent();
+				context.setValue(itemName, current);
+				IValue test = filter.interpret(context);
+				if (!(test is Boolean))
+					throw new InternalError("Illegal test result: " + test);
+				if (((Boolean)test).Value)
+					return true;
+
+			}
+			current = null;
+			return false;
+		}
+
+		protected override IValue getCurrent()
+		{
+			return current;
+		}
+
+
+		public override string ToString()
+		{
+			IType itemType = ((CursorType)GetIType()).GetItemType();
+			ListValue values = new ListValue(itemType, this, false);
+			return values.ToString();
+		}
+	}
+
 
 }

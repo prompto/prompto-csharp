@@ -22,6 +22,12 @@ namespace prompto.runtime.e
 		}
 
 		[Test]
+		public void testFilterFromCursor()
+		{
+			CheckOutput("filter/filterFromCursor.pec");
+		}
+
+		[Test]
 		public void testFilterFromList()
 		{
 			CheckOutput("filter/filterFromList.pec");

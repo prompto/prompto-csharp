@@ -9,6 +9,12 @@ namespace prompto.translate.eme
 	{
 
 		[Test]
+		public void testFilterFromCursor()
+		{
+			compareResourceEME("filter/filterFromCursor.pec");
+		}
+
+		[Test]
 		public void testFilterFromList()
 		{
 			compareResourceEME("filter/filterFromList.pec");

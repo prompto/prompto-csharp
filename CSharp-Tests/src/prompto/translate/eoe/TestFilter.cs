@@ -9,6 +9,12 @@ namespace prompto.translate.eoe
 	{
 
 		[Test]
+		public void testFilterFromCursor()
+		{
+			compareResourceEOE("filter/filterFromCursor.pec");
+		}
+
+		[Test]
 		public void testFilterFromList()
 		{
 			compareResourceEOE("filter/filterFromList.pec");

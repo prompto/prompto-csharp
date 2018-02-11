@@ -9,7 +9,7 @@ using prompto.expression;
 namespace prompto.value
 {
 
-	public class SetValue : BaseValue, IFilterable
+	public class SetValue : BaseValue, IContainer, IFilterable
 	{
 
 		HashSet<IValue> items = null;
