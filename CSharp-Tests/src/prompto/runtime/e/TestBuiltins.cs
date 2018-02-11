@@ -238,6 +238,12 @@ namespace prompto.runtime.e
 		}
 
 		[Test]
+		public void testTextEndsWith()
+		{
+			CheckOutput("builtins/textEndsWith.pec");
+		}
+
+		[Test]
 		public void testTextLowercase()
 		{
 			CheckOutput("builtins/textLowercase.pec");
@@ -259,6 +265,12 @@ namespace prompto.runtime.e
 		public void testTextSplit()
 		{
 			CheckOutput("builtins/textSplit.pec");
+		}
+
+		[Test]
+		public void testTextStartsWith()
+		{
+			CheckOutput("builtins/textStartsWith.pec");
 		}
 
 		[Test]

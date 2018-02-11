@@ -47,6 +47,12 @@ namespace prompto.type
 
 			switch (name)
 			{
+				case "startsWith":
+					list.Add(STARTS_WITH_METHOD);
+					return list;
+				case "endsWith":
+					list.Add(ENDS_WITH_METHOD);
+					return list;
 				case "toLowerCase":
 					list.Add(TO_LOWERCASE_METHOD);
 					return list;
@@ -76,7 +82,10 @@ namespace prompto.type
 		internal static IArgument SINGLE_SPACE_ARGUMENT = new CategoryArgument(TextType.Instance, "separator", new TextLiteral("\" \""));
 		internal static IArgument TO_REPLACE_ARGUMENT = new CategoryArgument(TextType.Instance, "toReplace");
 		internal static IArgument REPLACE_WITH_ARGUMENT = new CategoryArgument(TextType.Instance, "replaceWith");
+		internal static IArgument VALUE_ARGUMENT = new CategoryArgument(TextType.Instance, "value");
 
+		internal static IMethodDeclaration STARTS_WITH_METHOD = new StartsWithMethodDeclaration();
+		internal static IMethodDeclaration ENDS_WITH_METHOD = new EndsWithMethodDeclaration();
 		internal static IMethodDeclaration SPLIT_METHOD = new SplitMethodDeclaration();
 		internal static IMethodDeclaration REPLACE_METHOD = new ReplaceMethodDeclaration();
 		internal static IMethodDeclaration REPLACE_ALL_METHOD = new ReplaceAllMethodDeclaration();
@@ -196,6 +205,55 @@ namespace prompto.type
 	}
 
 
+	class StartsWithMethodDeclaration : BuiltInMethodDeclaration
+	{
+
+		public StartsWithMethodDeclaration()
+		: base("startsWith", TextType.VALUE_ARGUMENT)
+		{ }
+
+		public override IValue interpret(Context context)
+		{
+			string value = (String)getValue(context).GetStorableData();
+			string find = (String)context.getValue("value").GetStorableData();
+			bool test = value.StartsWith(find);
+			return prompto.value.Boolean.ValueOf(test);
+		}
+
+
+
+		public override IType check(Context context)
+		{
+			return BooleanType.Instance;
+		}
+
+	};
+
+	class EndsWithMethodDeclaration : BuiltInMethodDeclaration
+	{
+
+		public EndsWithMethodDeclaration()
+		: base("endsWith", TextType.VALUE_ARGUMENT)
+		{ }
+
+		public override IValue interpret(Context context)
+		{
+			string value = (String)getValue(context).GetStorableData();
+			string find = (String)context.getValue("value").GetStorableData();
+			bool test = value.EndsWith(find);
+			return prompto.value.Boolean.ValueOf(test);
+		}
+
+
+
+		public override IType check(Context context)
+		{
+			return BooleanType.Instance;
+		}
+
+	};
+
+
 	class SplitMethodDeclaration : BuiltInMethodDeclaration
 	{
 
@@ -221,7 +279,7 @@ namespace prompto.type
 			return new ListType(TextType.Instance);
 		}
 
-			};
+	};
 
 	class ReplaceMethodDeclaration : BuiltInMethodDeclaration
 	{

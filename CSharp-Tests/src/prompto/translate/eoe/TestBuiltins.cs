@@ -237,6 +237,12 @@ namespace prompto.translate.eoe
 		}
 
 		[Test]
+		public void testTextEndsWith()
+		{
+			compareResourceEOE("builtins/textEndsWith.pec");
+		}
+
+		[Test]
 		public void testTextLowercase()
 		{
 			compareResourceEOE("builtins/textLowercase.pec");
@@ -258,6 +264,12 @@ namespace prompto.translate.eoe
 		public void testTextSplit()
 		{
 			compareResourceEOE("builtins/textSplit.pec");
+		}
+
+		[Test]
+		public void testTextStartsWith()
+		{
+			compareResourceEOE("builtins/textStartsWith.pec");
 		}
 
 		[Test]

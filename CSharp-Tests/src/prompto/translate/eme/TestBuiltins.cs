@@ -237,6 +237,12 @@ namespace prompto.translate.eme
 		}
 
 		[Test]
+		public void testTextEndsWith()
+		{
+			compareResourceEME("builtins/textEndsWith.pec");
+		}
+
+		[Test]
 		public void testTextLowercase()
 		{
 			compareResourceEME("builtins/textLowercase.pec");
@@ -258,6 +264,12 @@ namespace prompto.translate.eme
 		public void testTextSplit()
 		{
 			compareResourceEME("builtins/textSplit.pec");
+		}
+
+		[Test]
+		public void testTextStartsWith()
+		{
+			compareResourceEME("builtins/textStartsWith.pec");
 		}
 
 		[Test]
