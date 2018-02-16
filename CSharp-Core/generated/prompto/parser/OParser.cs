@@ -5184,56 +5184,78 @@ public partial class OParser : AbstractParser {
 					switch ( Interpreter.AdaptivePredict(TokenStream,67,Context) ) {
 					case 1:
 						{
-						_localctx = new MultiplyExpressionContext(new ExpressionContext(_parentctx, _parentState));
-						((MultiplyExpressionContext)_localctx).left = _prevctx;
+						_localctx = new AndExpressionContext(new ExpressionContext(_parentctx, _parentState));
+						((AndExpressionContext)_localctx).left = _prevctx;
 						PushNewRecursionContext(_localctx, _startState, RULE_expression);
 						State = 996;
 						if (!(Precpred(Context, 32))) throw new FailedPredicateException(this, "Precpred(Context, 32)");
-						State = 997; multiply();
-						State = 998; ((MultiplyExpressionContext)_localctx).right = expression(33);
+						State = 997; Match(AMP2);
+						State = 998; ((AndExpressionContext)_localctx).right = expression(33);
 						}
 						break;
 					case 2:
 						{
-						_localctx = new DivideExpressionContext(new ExpressionContext(_parentctx, _parentState));
-						((DivideExpressionContext)_localctx).left = _prevctx;
+						_localctx = new OrExpressionContext(new ExpressionContext(_parentctx, _parentState));
+						((OrExpressionContext)_localctx).left = _prevctx;
 						PushNewRecursionContext(_localctx, _startState, RULE_expression);
-						State = 1000;
+						State = 999;
 						if (!(Precpred(Context, 31))) throw new FailedPredicateException(this, "Precpred(Context, 31)");
-						State = 1001; divide();
-						State = 1002; ((DivideExpressionContext)_localctx).right = expression(32);
+						State = 1000; Match(PIPE2);
+						State = 1001; ((OrExpressionContext)_localctx).right = expression(32);
 						}
 						break;
 					case 3:
 						{
-						_localctx = new ModuloExpressionContext(new ExpressionContext(_parentctx, _parentState));
-						((ModuloExpressionContext)_localctx).left = _prevctx;
+						_localctx = new MultiplyExpressionContext(new ExpressionContext(_parentctx, _parentState));
+						((MultiplyExpressionContext)_localctx).left = _prevctx;
 						PushNewRecursionContext(_localctx, _startState, RULE_expression);
-						State = 1004;
+						State = 1002;
 						if (!(Precpred(Context, 30))) throw new FailedPredicateException(this, "Precpred(Context, 30)");
-						State = 1005; modulo();
-						State = 1006; ((ModuloExpressionContext)_localctx).right = expression(31);
+						State = 1003; multiply();
+						State = 1004; ((MultiplyExpressionContext)_localctx).right = expression(31);
 						}
 						break;
 					case 4:
 						{
-						_localctx = new IntDivideExpressionContext(new ExpressionContext(_parentctx, _parentState));
-						((IntDivideExpressionContext)_localctx).left = _prevctx;
+						_localctx = new DivideExpressionContext(new ExpressionContext(_parentctx, _parentState));
+						((DivideExpressionContext)_localctx).left = _prevctx;
 						PushNewRecursionContext(_localctx, _startState, RULE_expression);
-						State = 1008;
+						State = 1006;
 						if (!(Precpred(Context, 29))) throw new FailedPredicateException(this, "Precpred(Context, 29)");
-						State = 1009; idivide();
-						State = 1010; ((IntDivideExpressionContext)_localctx).right = expression(30);
+						State = 1007; divide();
+						State = 1008; ((DivideExpressionContext)_localctx).right = expression(30);
 						}
 						break;
 					case 5:
 						{
+						_localctx = new ModuloExpressionContext(new ExpressionContext(_parentctx, _parentState));
+						((ModuloExpressionContext)_localctx).left = _prevctx;
+						PushNewRecursionContext(_localctx, _startState, RULE_expression);
+						State = 1010;
+						if (!(Precpred(Context, 28))) throw new FailedPredicateException(this, "Precpred(Context, 28)");
+						State = 1011; modulo();
+						State = 1012; ((ModuloExpressionContext)_localctx).right = expression(29);
+						}
+						break;
+					case 6:
+						{
+						_localctx = new IntDivideExpressionContext(new ExpressionContext(_parentctx, _parentState));
+						((IntDivideExpressionContext)_localctx).left = _prevctx;
+						PushNewRecursionContext(_localctx, _startState, RULE_expression);
+						State = 1014;
+						if (!(Precpred(Context, 27))) throw new FailedPredicateException(this, "Precpred(Context, 27)");
+						State = 1015; idivide();
+						State = 1016; ((IntDivideExpressionContext)_localctx).right = expression(28);
+						}
+						break;
+					case 7:
+						{
 						_localctx = new AddExpressionContext(new ExpressionContext(_parentctx, _parentState));
 						((AddExpressionContext)_localctx).left = _prevctx;
 						PushNewRecursionContext(_localctx, _startState, RULE_expression);
-						State = 1012;
-						if (!(Precpred(Context, 28))) throw new FailedPredicateException(this, "Precpred(Context, 28)");
-						State = 1013;
+						State = 1018;
+						if (!(Precpred(Context, 26))) throw new FailedPredicateException(this, "Precpred(Context, 26)");
+						State = 1019;
 						((AddExpressionContext)_localctx).op = TokenStream.LT(1);
 						_la = TokenStream.LA(1);
 						if ( !(_la==PLUS || _la==MINUS) ) {
@@ -5243,129 +5265,107 @@ public partial class OParser : AbstractParser {
 							ErrorHandler.ReportMatch(this);
 						    Consume();
 						}
-						State = 1014; ((AddExpressionContext)_localctx).right = expression(29);
-						}
-						break;
-					case 6:
-						{
-						_localctx = new LessThanExpressionContext(new ExpressionContext(_parentctx, _parentState));
-						((LessThanExpressionContext)_localctx).left = _prevctx;
-						PushNewRecursionContext(_localctx, _startState, RULE_expression);
-						State = 1015;
-						if (!(Precpred(Context, 27))) throw new FailedPredicateException(this, "Precpred(Context, 27)");
-						State = 1016; Match(LT);
-						State = 1017; ((LessThanExpressionContext)_localctx).right = expression(28);
-						}
-						break;
-					case 7:
-						{
-						_localctx = new LessThanOrEqualExpressionContext(new ExpressionContext(_parentctx, _parentState));
-						((LessThanOrEqualExpressionContext)_localctx).left = _prevctx;
-						PushNewRecursionContext(_localctx, _startState, RULE_expression);
-						State = 1018;
-						if (!(Precpred(Context, 26))) throw new FailedPredicateException(this, "Precpred(Context, 26)");
-						State = 1019; Match(LTE);
-						State = 1020; ((LessThanOrEqualExpressionContext)_localctx).right = expression(27);
+						State = 1020; ((AddExpressionContext)_localctx).right = expression(27);
 						}
 						break;
 					case 8:
 						{
-						_localctx = new GreaterThanExpressionContext(new ExpressionContext(_parentctx, _parentState));
-						((GreaterThanExpressionContext)_localctx).left = _prevctx;
+						_localctx = new LessThanExpressionContext(new ExpressionContext(_parentctx, _parentState));
+						((LessThanExpressionContext)_localctx).left = _prevctx;
 						PushNewRecursionContext(_localctx, _startState, RULE_expression);
 						State = 1021;
 						if (!(Precpred(Context, 25))) throw new FailedPredicateException(this, "Precpred(Context, 25)");
-						State = 1022; Match(GT);
-						State = 1023; ((GreaterThanExpressionContext)_localctx).right = expression(26);
+						State = 1022; Match(LT);
+						State = 1023; ((LessThanExpressionContext)_localctx).right = expression(26);
 						}
 						break;
 					case 9:
 						{
-						_localctx = new GreaterThanOrEqualExpressionContext(new ExpressionContext(_parentctx, _parentState));
-						((GreaterThanOrEqualExpressionContext)_localctx).left = _prevctx;
+						_localctx = new LessThanOrEqualExpressionContext(new ExpressionContext(_parentctx, _parentState));
+						((LessThanOrEqualExpressionContext)_localctx).left = _prevctx;
 						PushNewRecursionContext(_localctx, _startState, RULE_expression);
 						State = 1024;
 						if (!(Precpred(Context, 24))) throw new FailedPredicateException(this, "Precpred(Context, 24)");
-						State = 1025; Match(GTE);
-						State = 1026; ((GreaterThanOrEqualExpressionContext)_localctx).right = expression(25);
+						State = 1025; Match(LTE);
+						State = 1026; ((LessThanOrEqualExpressionContext)_localctx).right = expression(25);
 						}
 						break;
 					case 10:
 						{
-						_localctx = new IsNotExpressionContext(new ExpressionContext(_parentctx, _parentState));
-						((IsNotExpressionContext)_localctx).left = _prevctx;
+						_localctx = new GreaterThanExpressionContext(new ExpressionContext(_parentctx, _parentState));
+						((GreaterThanExpressionContext)_localctx).left = _prevctx;
 						PushNewRecursionContext(_localctx, _startState, RULE_expression);
 						State = 1027;
-						if (!(Precpred(Context, 21))) throw new FailedPredicateException(this, "Precpred(Context, 21)");
-						State = 1028; Match(IS);
-						State = 1029; Match(NOT);
-						State = 1030; ((IsNotExpressionContext)_localctx).right = expression(22);
+						if (!(Precpred(Context, 23))) throw new FailedPredicateException(this, "Precpred(Context, 23)");
+						State = 1028; Match(GT);
+						State = 1029; ((GreaterThanExpressionContext)_localctx).right = expression(24);
 						}
 						break;
 					case 11:
 						{
-						_localctx = new IsExpressionContext(new ExpressionContext(_parentctx, _parentState));
-						((IsExpressionContext)_localctx).left = _prevctx;
+						_localctx = new GreaterThanOrEqualExpressionContext(new ExpressionContext(_parentctx, _parentState));
+						((GreaterThanOrEqualExpressionContext)_localctx).left = _prevctx;
 						PushNewRecursionContext(_localctx, _startState, RULE_expression);
-						State = 1031;
-						if (!(Precpred(Context, 20))) throw new FailedPredicateException(this, "Precpred(Context, 20)");
-						State = 1032; Match(IS);
-						State = 1033; ((IsExpressionContext)_localctx).right = expression(21);
+						State = 1030;
+						if (!(Precpred(Context, 22))) throw new FailedPredicateException(this, "Precpred(Context, 22)");
+						State = 1031; Match(GTE);
+						State = 1032; ((GreaterThanOrEqualExpressionContext)_localctx).right = expression(23);
 						}
 						break;
 					case 12:
 						{
-						_localctx = new EqualsExpressionContext(new ExpressionContext(_parentctx, _parentState));
-						((EqualsExpressionContext)_localctx).left = _prevctx;
+						_localctx = new IsNotExpressionContext(new ExpressionContext(_parentctx, _parentState));
+						((IsNotExpressionContext)_localctx).left = _prevctx;
 						PushNewRecursionContext(_localctx, _startState, RULE_expression);
-						State = 1034;
+						State = 1033;
 						if (!(Precpred(Context, 19))) throw new FailedPredicateException(this, "Precpred(Context, 19)");
-						State = 1035; Match(EQ2);
-						State = 1036; ((EqualsExpressionContext)_localctx).right = expression(20);
+						State = 1034; Match(IS);
+						State = 1035; Match(NOT);
+						State = 1036; ((IsNotExpressionContext)_localctx).right = expression(20);
 						}
 						break;
 					case 13:
 						{
-						_localctx = new NotEqualsExpressionContext(new ExpressionContext(_parentctx, _parentState));
-						((NotEqualsExpressionContext)_localctx).left = _prevctx;
+						_localctx = new IsExpressionContext(new ExpressionContext(_parentctx, _parentState));
+						((IsExpressionContext)_localctx).left = _prevctx;
 						PushNewRecursionContext(_localctx, _startState, RULE_expression);
 						State = 1037;
 						if (!(Precpred(Context, 18))) throw new FailedPredicateException(this, "Precpred(Context, 18)");
-						State = 1038; Match(XEQ);
-						State = 1039; ((NotEqualsExpressionContext)_localctx).right = expression(19);
+						State = 1038; Match(IS);
+						State = 1039; ((IsExpressionContext)_localctx).right = expression(19);
 						}
 						break;
 					case 14:
 						{
-						_localctx = new RoughlyEqualsExpressionContext(new ExpressionContext(_parentctx, _parentState));
-						((RoughlyEqualsExpressionContext)_localctx).left = _prevctx;
+						_localctx = new EqualsExpressionContext(new ExpressionContext(_parentctx, _parentState));
+						((EqualsExpressionContext)_localctx).left = _prevctx;
 						PushNewRecursionContext(_localctx, _startState, RULE_expression);
 						State = 1040;
 						if (!(Precpred(Context, 17))) throw new FailedPredicateException(this, "Precpred(Context, 17)");
-						State = 1041; Match(TEQ);
-						State = 1042; ((RoughlyEqualsExpressionContext)_localctx).right = expression(18);
+						State = 1041; Match(EQ2);
+						State = 1042; ((EqualsExpressionContext)_localctx).right = expression(18);
 						}
 						break;
 					case 15:
 						{
-						_localctx = new OrExpressionContext(new ExpressionContext(_parentctx, _parentState));
-						((OrExpressionContext)_localctx).left = _prevctx;
+						_localctx = new NotEqualsExpressionContext(new ExpressionContext(_parentctx, _parentState));
+						((NotEqualsExpressionContext)_localctx).left = _prevctx;
 						PushNewRecursionContext(_localctx, _startState, RULE_expression);
 						State = 1043;
 						if (!(Precpred(Context, 16))) throw new FailedPredicateException(this, "Precpred(Context, 16)");
-						State = 1044; Match(PIPE2);
-						State = 1045; ((OrExpressionContext)_localctx).right = expression(17);
+						State = 1044; Match(XEQ);
+						State = 1045; ((NotEqualsExpressionContext)_localctx).right = expression(17);
 						}
 						break;
 					case 16:
 						{
-						_localctx = new AndExpressionContext(new ExpressionContext(_parentctx, _parentState));
-						((AndExpressionContext)_localctx).left = _prevctx;
+						_localctx = new RoughlyEqualsExpressionContext(new ExpressionContext(_parentctx, _parentState));
+						((RoughlyEqualsExpressionContext)_localctx).left = _prevctx;
 						PushNewRecursionContext(_localctx, _startState, RULE_expression);
 						State = 1046;
 						if (!(Precpred(Context, 15))) throw new FailedPredicateException(this, "Precpred(Context, 15)");
-						State = 1047; Match(AMP2);
-						State = 1048; ((AndExpressionContext)_localctx).right = expression(16);
+						State = 1047; Match(TEQ);
+						State = 1048; ((RoughlyEqualsExpressionContext)_localctx).right = expression(16);
 						}
 						break;
 					case 17:
@@ -5483,7 +5483,7 @@ public partial class OParser : AbstractParser {
 						((IsNotAnExpressionContext)_localctx).left = _prevctx;
 						PushNewRecursionContext(_localctx, _startState, RULE_expression);
 						State = 1087;
-						if (!(Precpred(Context, 23))) throw new FailedPredicateException(this, "Precpred(Context, 23)");
+						if (!(Precpred(Context, 21))) throw new FailedPredicateException(this, "Precpred(Context, 21)");
 						State = 1088; Match(IS);
 						State = 1089; Match(NOT);
 						State = 1090; ((IsNotAnExpressionContext)_localctx).right = an_expression();
@@ -5495,7 +5495,7 @@ public partial class OParser : AbstractParser {
 						((IsAnExpressionContext)_localctx).left = _prevctx;
 						PushNewRecursionContext(_localctx, _startState, RULE_expression);
 						State = 1091;
-						if (!(Precpred(Context, 22))) throw new FailedPredicateException(this, "Precpred(Context, 22)");
+						if (!(Precpred(Context, 20))) throw new FailedPredicateException(this, "Precpred(Context, 20)");
 						State = 1092; Match(IS);
 						State = 1093; ((IsAnExpressionContext)_localctx).right = an_expression();
 						}
@@ -18201,8 +18201,8 @@ public partial class OParser : AbstractParser {
 		case 10: return Precpred(Context, 26);
 		case 11: return Precpred(Context, 25);
 		case 12: return Precpred(Context, 24);
-		case 13: return Precpred(Context, 21);
-		case 14: return Precpred(Context, 20);
+		case 13: return Precpred(Context, 23);
+		case 14: return Precpred(Context, 22);
 		case 15: return Precpred(Context, 19);
 		case 16: return Precpred(Context, 18);
 		case 17: return Precpred(Context, 17);
@@ -18217,8 +18217,8 @@ public partial class OParser : AbstractParser {
 		case 26: return Precpred(Context, 7);
 		case 27: return Precpred(Context, 6);
 		case 28: return Precpred(Context, 5);
-		case 29: return Precpred(Context, 23);
-		case 30: return Precpred(Context, 22);
+		case 29: return Precpred(Context, 21);
+		case 30: return Precpred(Context, 20);
 		case 31: return Precpred(Context, 1);
 		}
 		return true;
@@ -19404,48 +19404,48 @@ public partial class OParser : AbstractParser {
 		'\x3E4', '\x3D9', '\x3', '\x2', '\x2', '\x2', '\x3E4', '\x3DE', '\x3', 
 		'\x2', '\x2', '\x2', '\x3E4', '\x3E3', '\x3', '\x2', '\x2', '\x2', '\x3E5', 
 		'\x453', '\x3', '\x2', '\x2', '\x2', '\x3E6', '\x3E7', '\f', '\"', '\x2', 
-		'\x2', '\x3E7', '\x3E8', '\x5', '\x12A', '\x96', '\x2', '\x3E8', '\x3E9', 
-		'\x5', '^', '\x30', '#', '\x3E9', '\x452', '\x3', '\x2', '\x2', '\x2', 
-		'\x3EA', '\x3EB', '\f', '!', '\x2', '\x2', '\x3EB', '\x3EC', '\x5', '\x12C', 
-		'\x97', '\x2', '\x3EC', '\x3ED', '\x5', '^', '\x30', '\"', '\x3ED', '\x452', 
-		'\x3', '\x2', '\x2', '\x2', '\x3EE', '\x3EF', '\f', ' ', '\x2', '\x2', 
-		'\x3EF', '\x3F0', '\x5', '\x130', '\x99', '\x2', '\x3F0', '\x3F1', '\x5', 
-		'^', '\x30', '!', '\x3F1', '\x452', '\x3', '\x2', '\x2', '\x2', '\x3F2', 
-		'\x3F3', '\f', '\x1F', '\x2', '\x2', '\x3F3', '\x3F4', '\x5', '\x12E', 
-		'\x98', '\x2', '\x3F4', '\x3F5', '\x5', '^', '\x30', ' ', '\x3F5', '\x452', 
-		'\x3', '\x2', '\x2', '\x2', '\x3F6', '\x3F7', '\f', '\x1E', '\x2', '\x2', 
-		'\x3F7', '\x3F8', '\t', '\x2', '\x2', '\x2', '\x3F8', '\x452', '\x5', 
-		'^', '\x30', '\x1F', '\x3F9', '\x3FA', '\f', '\x1D', '\x2', '\x2', '\x3FA', 
-		'\x3FB', '\a', '&', '\x2', '\x2', '\x3FB', '\x452', '\x5', '^', '\x30', 
-		'\x1E', '\x3FC', '\x3FD', '\f', '\x1C', '\x2', '\x2', '\x3FD', '\x3FE', 
-		'\a', '\'', '\x2', '\x2', '\x3FE', '\x452', '\x5', '^', '\x30', '\x1D', 
-		'\x3FF', '\x400', '\f', '\x1B', '\x2', '\x2', '\x400', '\x401', '\a', 
-		'$', '\x2', '\x2', '\x401', '\x452', '\x5', '^', '\x30', '\x1C', '\x402', 
-		'\x403', '\f', '\x1A', '\x2', '\x2', '\x403', '\x404', '\a', '%', '\x2', 
-		'\x2', '\x404', '\x452', '\x5', '^', '\x30', '\x1B', '\x405', '\x406', 
-		'\f', '\x17', '\x2', '\x2', '\x406', '\x407', '\a', 'o', '\x2', '\x2', 
-		'\x407', '\x408', '\a', 'w', '\x2', '\x2', '\x408', '\x452', '\x5', '^', 
-		'\x30', '\x18', '\x409', '\x40A', '\f', '\x16', '\x2', '\x2', '\x40A', 
-		'\x40B', '\a', 'o', '\x2', '\x2', '\x40B', '\x452', '\x5', '^', '\x30', 
-		'\x17', '\x40C', '\x40D', '\f', '\x15', '\x2', '\x2', '\x40D', '\x40E', 
-		'\a', '+', '\x2', '\x2', '\x40E', '\x452', '\x5', '^', '\x30', '\x16', 
-		'\x40F', '\x410', '\f', '\x14', '\x2', '\x2', '\x410', '\x411', '\a', 
-		'*', '\x2', '\x2', '\x411', '\x452', '\x5', '^', '\x30', '\x15', '\x412', 
-		'\x413', '\f', '\x13', '\x2', '\x2', '\x413', '\x414', '\a', ',', '\x2', 
-		'\x2', '\x414', '\x452', '\x5', '^', '\x30', '\x14', '\x415', '\x416', 
-		'\f', '\x12', '\x2', '\x2', '\x416', '\x417', '\a', '\x1D', '\x2', '\x2', 
-		'\x417', '\x452', '\x5', '^', '\x30', '\x13', '\x418', '\x419', '\f', 
-		'\x11', '\x2', '\x2', '\x419', '\x41A', '\a', '\x1B', '\x2', '\x2', '\x41A', 
-		'\x452', '\x5', '^', '\x30', '\x12', '\x41B', '\x41C', '\f', '\x10', '\x2', 
-		'\x2', '\x41C', '\x41D', '\a', '\x18', '\x2', '\x2', '\x41D', '\x41E', 
-		'\x5', '^', '\x30', '\x2', '\x41E', '\x41F', '\a', '\r', '\x2', '\x2', 
-		'\x41F', '\x420', '\x5', '^', '\x30', '\x11', '\x420', '\x452', '\x3', 
-		'\x2', '\x2', '\x2', '\x421', '\x422', '\f', '\xE', '\x2', '\x2', '\x422', 
-		'\x423', '\a', 'l', '\x2', '\x2', '\x423', '\x452', '\x5', '^', '\x30', 
-		'\xF', '\x424', '\x425', '\f', '\r', '\x2', '\x2', '\x425', '\x426', '\a', 
-		'T', '\x2', '\x2', '\x426', '\x452', '\x5', '^', '\x30', '\xE', '\x427', 
-		'\x428', '\f', '\f', '\x2', '\x2', '\x428', '\x429', '\a', 'T', '\x2', 
-		'\x2', '\x429', '\x42A', '\a', '\x43', '\x2', '\x2', '\x42A', '\x452', 
+		'\x2', '\x3E7', '\x3E8', '\a', '\x1B', '\x2', '\x2', '\x3E8', '\x452', 
+		'\x5', '^', '\x30', '#', '\x3E9', '\x3EA', '\f', '!', '\x2', '\x2', '\x3EA', 
+		'\x3EB', '\a', '\x1D', '\x2', '\x2', '\x3EB', '\x452', '\x5', '^', '\x30', 
+		'\"', '\x3EC', '\x3ED', '\f', ' ', '\x2', '\x2', '\x3ED', '\x3EE', '\x5', 
+		'\x12A', '\x96', '\x2', '\x3EE', '\x3EF', '\x5', '^', '\x30', '!', '\x3EF', 
+		'\x452', '\x3', '\x2', '\x2', '\x2', '\x3F0', '\x3F1', '\f', '\x1F', '\x2', 
+		'\x2', '\x3F1', '\x3F2', '\x5', '\x12C', '\x97', '\x2', '\x3F2', '\x3F3', 
+		'\x5', '^', '\x30', ' ', '\x3F3', '\x452', '\x3', '\x2', '\x2', '\x2', 
+		'\x3F4', '\x3F5', '\f', '\x1E', '\x2', '\x2', '\x3F5', '\x3F6', '\x5', 
+		'\x130', '\x99', '\x2', '\x3F6', '\x3F7', '\x5', '^', '\x30', '\x1F', 
+		'\x3F7', '\x452', '\x3', '\x2', '\x2', '\x2', '\x3F8', '\x3F9', '\f', 
+		'\x1D', '\x2', '\x2', '\x3F9', '\x3FA', '\x5', '\x12E', '\x98', '\x2', 
+		'\x3FA', '\x3FB', '\x5', '^', '\x30', '\x1E', '\x3FB', '\x452', '\x3', 
+		'\x2', '\x2', '\x2', '\x3FC', '\x3FD', '\f', '\x1C', '\x2', '\x2', '\x3FD', 
+		'\x3FE', '\t', '\x2', '\x2', '\x2', '\x3FE', '\x452', '\x5', '^', '\x30', 
+		'\x1D', '\x3FF', '\x400', '\f', '\x1B', '\x2', '\x2', '\x400', '\x401', 
+		'\a', '&', '\x2', '\x2', '\x401', '\x452', '\x5', '^', '\x30', '\x1C', 
+		'\x402', '\x403', '\f', '\x1A', '\x2', '\x2', '\x403', '\x404', '\a', 
+		'\'', '\x2', '\x2', '\x404', '\x452', '\x5', '^', '\x30', '\x1B', '\x405', 
+		'\x406', '\f', '\x19', '\x2', '\x2', '\x406', '\x407', '\a', '$', '\x2', 
+		'\x2', '\x407', '\x452', '\x5', '^', '\x30', '\x1A', '\x408', '\x409', 
+		'\f', '\x18', '\x2', '\x2', '\x409', '\x40A', '\a', '%', '\x2', '\x2', 
+		'\x40A', '\x452', '\x5', '^', '\x30', '\x19', '\x40B', '\x40C', '\f', 
+		'\x15', '\x2', '\x2', '\x40C', '\x40D', '\a', 'o', '\x2', '\x2', '\x40D', 
+		'\x40E', '\a', 'w', '\x2', '\x2', '\x40E', '\x452', '\x5', '^', '\x30', 
+		'\x16', '\x40F', '\x410', '\f', '\x14', '\x2', '\x2', '\x410', '\x411', 
+		'\a', 'o', '\x2', '\x2', '\x411', '\x452', '\x5', '^', '\x30', '\x15', 
+		'\x412', '\x413', '\f', '\x13', '\x2', '\x2', '\x413', '\x414', '\a', 
+		'+', '\x2', '\x2', '\x414', '\x452', '\x5', '^', '\x30', '\x14', '\x415', 
+		'\x416', '\f', '\x12', '\x2', '\x2', '\x416', '\x417', '\a', '*', '\x2', 
+		'\x2', '\x417', '\x452', '\x5', '^', '\x30', '\x13', '\x418', '\x419', 
+		'\f', '\x11', '\x2', '\x2', '\x419', '\x41A', '\a', ',', '\x2', '\x2', 
+		'\x41A', '\x452', '\x5', '^', '\x30', '\x12', '\x41B', '\x41C', '\f', 
+		'\x10', '\x2', '\x2', '\x41C', '\x41D', '\a', '\x18', '\x2', '\x2', '\x41D', 
+		'\x41E', '\x5', '^', '\x30', '\x2', '\x41E', '\x41F', '\a', '\r', '\x2', 
+		'\x2', '\x41F', '\x420', '\x5', '^', '\x30', '\x11', '\x420', '\x452', 
+		'\x3', '\x2', '\x2', '\x2', '\x421', '\x422', '\f', '\xE', '\x2', '\x2', 
+		'\x422', '\x423', '\a', 'l', '\x2', '\x2', '\x423', '\x452', '\x5', '^', 
+		'\x30', '\xF', '\x424', '\x425', '\f', '\r', '\x2', '\x2', '\x425', '\x426', 
+		'\a', 'T', '\x2', '\x2', '\x426', '\x452', '\x5', '^', '\x30', '\xE', 
+		'\x427', '\x428', '\f', '\f', '\x2', '\x2', '\x428', '\x429', '\a', 'T', 
+		'\x2', '\x2', '\x429', '\x42A', '\a', '\x43', '\x2', '\x2', '\x42A', '\x452', 
 		'\x5', '^', '\x30', '\r', '\x42B', '\x42C', '\f', '\v', '\x2', '\x2', 
 		'\x42C', '\x42D', '\a', 'T', '\x2', '\x2', '\x42D', '\x42E', '\a', '\x46', 
 		'\x2', '\x2', '\x42E', '\x452', '\x5', '^', '\x30', '\f', '\x42F', '\x430', 
@@ -19459,10 +19459,10 @@ public partial class OParser : AbstractParser {
 		'\x452', '\x5', '^', '\x30', '\t', '\x43C', '\x43D', '\f', '\a', '\x2', 
 		'\x2', '\x43D', '\x43E', '\a', 'w', '\x2', '\x2', '\x43E', '\x43F', '\a', 
 		'T', '\x2', '\x2', '\x43F', '\x440', '\a', '\x46', '\x2', '\x2', '\x440', 
-		'\x452', '\x5', '^', '\x30', '\b', '\x441', '\x442', '\f', '\x19', '\x2', 
+		'\x452', '\x5', '^', '\x30', '\b', '\x441', '\x442', '\f', '\x17', '\x2', 
 		'\x2', '\x442', '\x443', '\a', 'o', '\x2', '\x2', '\x443', '\x444', '\a', 
 		'w', '\x2', '\x2', '\x444', '\x452', '\x5', '`', '\x31', '\x2', '\x445', 
-		'\x446', '\f', '\x18', '\x2', '\x2', '\x446', '\x447', '\a', 'o', '\x2', 
+		'\x446', '\f', '\x16', '\x2', '\x2', '\x446', '\x447', '\a', 'o', '\x2', 
 		'\x2', '\x447', '\x452', '\x5', '`', '\x31', '\x2', '\x448', '\x449', 
 		'\f', '\x3', '\x2', '\x2', '\x449', '\x44A', '\a', 'h', '\x2', '\x2', 
 		'\x44A', '\x44B', '\a', '\\', '\x2', '\x2', '\x44B', '\x44C', '\a', '\x12', 
@@ -19470,13 +19470,13 @@ public partial class OParser : AbstractParser {
 		'\a', 'l', '\x2', '\x2', '\x44E', '\x44F', '\x5', '^', '\x30', '\x2', 
 		'\x44F', '\x450', '\a', '\x13', '\x2', '\x2', '\x450', '\x452', '\x3', 
 		'\x2', '\x2', '\x2', '\x451', '\x3E6', '\x3', '\x2', '\x2', '\x2', '\x451', 
-		'\x3EA', '\x3', '\x2', '\x2', '\x2', '\x451', '\x3EE', '\x3', '\x2', '\x2', 
-		'\x2', '\x451', '\x3F2', '\x3', '\x2', '\x2', '\x2', '\x451', '\x3F6', 
-		'\x3', '\x2', '\x2', '\x2', '\x451', '\x3F9', '\x3', '\x2', '\x2', '\x2', 
+		'\x3E9', '\x3', '\x2', '\x2', '\x2', '\x451', '\x3EC', '\x3', '\x2', '\x2', 
+		'\x2', '\x451', '\x3F0', '\x3', '\x2', '\x2', '\x2', '\x451', '\x3F4', 
+		'\x3', '\x2', '\x2', '\x2', '\x451', '\x3F8', '\x3', '\x2', '\x2', '\x2', 
 		'\x451', '\x3FC', '\x3', '\x2', '\x2', '\x2', '\x451', '\x3FF', '\x3', 
 		'\x2', '\x2', '\x2', '\x451', '\x402', '\x3', '\x2', '\x2', '\x2', '\x451', 
-		'\x405', '\x3', '\x2', '\x2', '\x2', '\x451', '\x409', '\x3', '\x2', '\x2', 
-		'\x2', '\x451', '\x40C', '\x3', '\x2', '\x2', '\x2', '\x451', '\x40F', 
+		'\x405', '\x3', '\x2', '\x2', '\x2', '\x451', '\x408', '\x3', '\x2', '\x2', 
+		'\x2', '\x451', '\x40B', '\x3', '\x2', '\x2', '\x2', '\x451', '\x40F', 
 		'\x3', '\x2', '\x2', '\x2', '\x451', '\x412', '\x3', '\x2', '\x2', '\x2', 
 		'\x451', '\x415', '\x3', '\x2', '\x2', '\x2', '\x451', '\x418', '\x3', 
 		'\x2', '\x2', '\x2', '\x451', '\x41B', '\x3', '\x2', '\x2', '\x2', '\x451', 
