@@ -4,13 +4,13 @@ namespace prompto.grammar
     public enum ContOp
     {
         IN,
-        CONTAINS,
-        CONTAINS_ALL,
-        CONTAINS_ANY,
+        HAS,
+        HAS_ALL,
+        HAS_ANY,
         NOT_IN,
-        NOT_CONTAINS,
-        NOT_CONTAINS_ALL,
-        NOT_CONTAINS_ANY
+        NOT_HAS,
+        NOT_HAS_ALL,
+        NOT_HAS_ANY
     }
 
 	public static class ContOpMethods
@@ -20,12 +20,12 @@ namespace prompto.grammar
 			switch (match)
 			{
 				case ContOp.IN:
-					return ContOp.CONTAINS;
-				case ContOp.CONTAINS:
+					return ContOp.HAS;
+				case ContOp.HAS:
 					return ContOp.IN;
 				case ContOp.NOT_IN:
-					return ContOp.NOT_CONTAINS;
-				case ContOp.NOT_CONTAINS:
+					return ContOp.NOT_HAS;
+				case ContOp.NOT_HAS:
 					return ContOp.NOT_IN;
 				default:
 					return null;

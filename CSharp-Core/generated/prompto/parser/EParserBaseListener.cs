@@ -932,6 +932,34 @@ public partial class EParserBaseListener : IEParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitIntDivideExpression([NotNull] EParser.IntDivideExpressionContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by the <c>HasAnyExpression</c>
+	/// labeled alternative in <see cref="EParser.expression"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterHasAnyExpression([NotNull] EParser.HasAnyExpressionContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by the <c>HasAnyExpression</c>
+	/// labeled alternative in <see cref="EParser.expression"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitHasAnyExpression([NotNull] EParser.HasAnyExpressionContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by the <c>HasExpression</c>
+	/// labeled alternative in <see cref="EParser.expression"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterHasExpression([NotNull] EParser.HasExpressionContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by the <c>HasExpression</c>
+	/// labeled alternative in <see cref="EParser.expression"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitHasExpression([NotNull] EParser.HasExpressionContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by the <c>TernaryExpression</c>
 	/// labeled alternative in <see cref="EParser.expression"/>.
 	/// <para>The default implementation does nothing.</para>
@@ -959,20 +987,6 @@ public partial class EParserBaseListener : IEParserListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitFetchStoreExpression([NotNull] EParser.FetchStoreExpressionContext context) { }
-	/// <summary>
-	/// Enter a parse tree produced by the <c>ContainsAllExpression</c>
-	/// labeled alternative in <see cref="EParser.expression"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void EnterContainsAllExpression([NotNull] EParser.ContainsAllExpressionContext context) { }
-	/// <summary>
-	/// Exit a parse tree produced by the <c>ContainsAllExpression</c>
-	/// labeled alternative in <see cref="EParser.expression"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void ExitContainsAllExpression([NotNull] EParser.ContainsAllExpressionContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by the <c>NotEqualsExpression</c>
 	/// labeled alternative in <see cref="EParser.expression"/>.
@@ -1128,6 +1142,20 @@ public partial class EParserBaseListener : IEParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitReadOneExpression([NotNull] EParser.ReadOneExpressionContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by the <c>NotHasAnyExpression</c>
+	/// labeled alternative in <see cref="EParser.expression"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterNotHasAnyExpression([NotNull] EParser.NotHasAnyExpressionContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by the <c>NotHasAnyExpression</c>
+	/// labeled alternative in <see cref="EParser.expression"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitNotHasAnyExpression([NotNull] EParser.NotHasAnyExpressionContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by the <c>AndExpression</c>
 	/// labeled alternative in <see cref="EParser.expression"/>.
 	/// <para>The default implementation does nothing.</para>
@@ -1155,6 +1183,20 @@ public partial class EParserBaseListener : IEParserListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitMethodCallExpression([NotNull] EParser.MethodCallExpressionContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by the <c>NotHasExpression</c>
+	/// labeled alternative in <see cref="EParser.expression"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterNotHasExpression([NotNull] EParser.NotHasExpressionContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by the <c>NotHasExpression</c>
+	/// labeled alternative in <see cref="EParser.expression"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitNotHasExpression([NotNull] EParser.NotHasExpressionContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by the <c>ClosureExpression</c>
 	/// labeled alternative in <see cref="EParser.expression"/>.
@@ -1184,6 +1226,20 @@ public partial class EParserBaseListener : IEParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitSortedExpression([NotNull] EParser.SortedExpressionContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by the <c>NotHasAllExpression</c>
+	/// labeled alternative in <see cref="EParser.expression"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterNotHasAllExpression([NotNull] EParser.NotHasAllExpressionContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by the <c>NotHasAllExpression</c>
+	/// labeled alternative in <see cref="EParser.expression"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitNotHasAllExpression([NotNull] EParser.NotHasAllExpressionContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by the <c>BlobExpression</c>
 	/// labeled alternative in <see cref="EParser.expression"/>.
 	/// <para>The default implementation does nothing.</para>
@@ -1197,20 +1253,6 @@ public partial class EParserBaseListener : IEParserListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitBlobExpression([NotNull] EParser.BlobExpressionContext context) { }
-	/// <summary>
-	/// Enter a parse tree produced by the <c>NotContainsAnyExpression</c>
-	/// labeled alternative in <see cref="EParser.expression"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void EnterNotContainsAnyExpression([NotNull] EParser.NotContainsAnyExpressionContext context) { }
-	/// <summary>
-	/// Exit a parse tree produced by the <c>NotContainsAnyExpression</c>
-	/// labeled alternative in <see cref="EParser.expression"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void ExitNotContainsAnyExpression([NotNull] EParser.NotContainsAnyExpressionContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by the <c>ContainsExpression</c>
 	/// labeled alternative in <see cref="EParser.expression"/>.
@@ -1436,19 +1478,19 @@ public partial class EParserBaseListener : IEParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitAddExpression([NotNull] EParser.AddExpressionContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by the <c>NotContainsAllExpression</c>
+	/// Enter a parse tree produced by the <c>HasAllExpression</c>
 	/// labeled alternative in <see cref="EParser.expression"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void EnterNotContainsAllExpression([NotNull] EParser.NotContainsAllExpressionContext context) { }
+	public virtual void EnterHasAllExpression([NotNull] EParser.HasAllExpressionContext context) { }
 	/// <summary>
-	/// Exit a parse tree produced by the <c>NotContainsAllExpression</c>
+	/// Exit a parse tree produced by the <c>HasAllExpression</c>
 	/// labeled alternative in <see cref="EParser.expression"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void ExitNotContainsAllExpression([NotNull] EParser.NotContainsAllExpressionContext context) { }
+	public virtual void ExitHasAllExpression([NotNull] EParser.HasAllExpressionContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by the <c>InstanceExpression</c>
 	/// labeled alternative in <see cref="EParser.expression"/>.
@@ -1477,20 +1519,6 @@ public partial class EParserBaseListener : IEParserListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitReadAllExpression([NotNull] EParser.ReadAllExpressionContext context) { }
-	/// <summary>
-	/// Enter a parse tree produced by the <c>ContainsAnyExpression</c>
-	/// labeled alternative in <see cref="EParser.expression"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void EnterContainsAnyExpression([NotNull] EParser.ContainsAnyExpressionContext context) { }
-	/// <summary>
-	/// Exit a parse tree produced by the <c>ContainsAnyExpression</c>
-	/// labeled alternative in <see cref="EParser.expression"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void ExitContainsAnyExpression([NotNull] EParser.ContainsAnyExpressionContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by the <c>CastExpression</c>
 	/// labeled alternative in <see cref="EParser.expression"/>.

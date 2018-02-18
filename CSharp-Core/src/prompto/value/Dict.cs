@@ -248,6 +248,12 @@ namespace prompto.value
 			return this.Equals (context, rval);
 		}
 
+		public bool Contains(Context context, IValue rval)
+		{
+			return false;
+		}
+
+
 		public virtual void ToJson (Context context, JsonWriter generator, Object instanceId, String fieldName, bool withType, Dictionary<String, byte[]> binaries)
 		{
 			throw new NotSupportedException("No ToJson support for " + this.GetType().Name);

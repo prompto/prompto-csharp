@@ -126,6 +126,12 @@ namespace prompto.value
 		}
 
 
+		public bool Contains(Context context, IValue rval)
+		{
+			return false;
+		}
+
+
 		public IValue Add(Context context, IValue value)
 		{
 			if (value is TupleValue)

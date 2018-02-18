@@ -1873,46 +1873,60 @@ namespace prompto.parser
 			SetNodeValue (ctx, new ContainsExpression (left, ContOp.NOT_IN, right));
 		}
 
-		public override void ExitContainsAllExpression (OParser.ContainsAllExpressionContext ctx)
+
+		public override void ExitHasExpression(OParser.HasExpressionContext ctx)
 		{
-			IExpression left = this.GetNodeValue<IExpression> (ctx.left);
-			IExpression right = this.GetNodeValue<IExpression> (ctx.right);
-			SetNodeValue (ctx, new ContainsExpression (left, ContOp.CONTAINS_ALL, right));
+			IExpression left = this.GetNodeValue<IExpression>(ctx.left);
+			IExpression right = this.GetNodeValue<IExpression>(ctx.right);
+			SetNodeValue(ctx, new ContainsExpression(left, ContOp.HAS, right));
 		}
 
-		public override void ExitNotContainsAllExpression (OParser.NotContainsAllExpressionContext ctx)
+
+		public override void ExitHasAllExpression(OParser.HasAllExpressionContext ctx)
 		{
-			IExpression left = this.GetNodeValue<IExpression> (ctx.left);
-			IExpression right = this.GetNodeValue<IExpression> (ctx.right);
-			SetNodeValue (ctx, new ContainsExpression (left, ContOp.NOT_CONTAINS_ALL, right));
+			IExpression left = this.GetNodeValue<IExpression>(ctx.left);
+			IExpression right = this.GetNodeValue<IExpression>(ctx.right);
+			SetNodeValue(ctx, new ContainsExpression(left, ContOp.HAS_ALL, right));
 		}
 
-		public override void ExitContainsAnyExpression (OParser.ContainsAnyExpressionContext ctx)
+
+		public override void ExitNotHasAllExpression(OParser.NotHasAllExpressionContext ctx)
 		{
-			IExpression left = this.GetNodeValue<IExpression> (ctx.left);
-			IExpression right = this.GetNodeValue<IExpression> (ctx.right);
-			SetNodeValue (ctx, new ContainsExpression (left, ContOp.CONTAINS_ANY, right));
+			IExpression left = this.GetNodeValue<IExpression>(ctx.left);
+			IExpression right = this.GetNodeValue<IExpression>(ctx.right);
+			SetNodeValue(ctx, new ContainsExpression(left, ContOp.NOT_HAS_ALL, right));
 		}
 
-		public override void ExitNotContainsAnyExpression (OParser.NotContainsAnyExpressionContext ctx)
+
+		public override void ExitHasAnyExpression(OParser.HasAnyExpressionContext ctx)
 		{
-			IExpression left = this.GetNodeValue<IExpression> (ctx.left);
-			IExpression right = this.GetNodeValue<IExpression> (ctx.right);
-			SetNodeValue (ctx, new ContainsExpression (left, ContOp.NOT_CONTAINS_ANY, right));
+			IExpression left = this.GetNodeValue<IExpression>(ctx.left);
+			IExpression right = this.GetNodeValue<IExpression>(ctx.right);
+			SetNodeValue(ctx, new ContainsExpression(left, ContOp.HAS_ANY, right));
 		}
 
-		public override void ExitContainsExpression (OParser.ContainsExpressionContext ctx)
+
+		public override void ExitNotHasAnyExpression(OParser.NotHasAnyExpressionContext ctx)
 		{
-			IExpression left = this.GetNodeValue<IExpression> (ctx.left);
-			IExpression right = this.GetNodeValue<IExpression> (ctx.right);
-			SetNodeValue (ctx, new ContainsExpression (left, ContOp.CONTAINS, right));
+			IExpression left = this.GetNodeValue<IExpression>(ctx.left);
+			IExpression right = this.GetNodeValue<IExpression>(ctx.right);
+			SetNodeValue(ctx, new ContainsExpression(left, ContOp.NOT_HAS_ANY, right));
 		}
 
-		public override void ExitNotContainsExpression (OParser.NotContainsExpressionContext ctx)
+
+		public override void ExitContainsExpression(OParser.ContainsExpressionContext ctx)
 		{
-			IExpression left = this.GetNodeValue<IExpression> (ctx.left);
-			IExpression right = this.GetNodeValue<IExpression> (ctx.right);
-			SetNodeValue (ctx, new ContainsExpression (left, ContOp.NOT_CONTAINS, right));
+			IExpression left = this.GetNodeValue<IExpression>(ctx.left);
+			IExpression right = this.GetNodeValue<IExpression>(ctx.right);
+			SetNodeValue(ctx, new EqualsExpression(left, EqOp.CONTAINS, right));
+		}
+
+
+		public override void ExitNotContainsExpression(OParser.NotContainsExpressionContext ctx)
+		{
+			IExpression left = this.GetNodeValue<IExpression>(ctx.left);
+			IExpression right = this.GetNodeValue<IExpression>(ctx.right);
+			SetNodeValue(ctx, new EqualsExpression(left, EqOp.NOT_CONTAINS, right));
 		}
 
 		public override void ExitDivideExpression (OParser.DivideExpressionContext ctx)

@@ -6,7 +6,8 @@ namespace prompto.store
 		EQUALS,
 		ROUGHLY,
 		CONTAINS,
-		CONTAINED,
+		HAS,
+		IN,
 		GREATER,
 		LESSER
 	}

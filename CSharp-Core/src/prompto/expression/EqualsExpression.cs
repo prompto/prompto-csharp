@@ -78,6 +78,10 @@ namespace prompto.expression
 				default:
 					throw new Exception ("Unimplemented!");
 				}
+			case EqOp.CONTAINS:
+				return " contains ";
+			case EqOp.NOT_CONTAINS:
+				return " not contains ";
 			default:
 				throw new Exception ("Unimplemented!");
 			}
@@ -85,10 +89,19 @@ namespace prompto.expression
 
         public IType check(Context context)
         {
-            left.check(context);
-            right.check(context);
-            return BooleanType.Instance; // can compare all objects
-        }
+            IType lt = left.check(context);
+            IType rt = right.check(context);
+			if (oper == EqOp.CONTAINS || oper == EqOp.NOT_CONTAINS)
+			{
+				if (lt is ContainerType)
+					lt = ((ContainerType)lt).GetItemType();
+				if (rt is ContainerType)
+					rt = ((ContainerType)rt).GetItemType();
+				if (!(lt is TextType) || !(rt is TextType || rt is CharacterType))
+					throw new SyntaxError("'contains' is only supported for textual values!");
+			}
+			return BooleanType.Instance; // can compare all objects
+		}
 
 		public IValue interpret(Context context)
 		{
@@ -122,6 +135,12 @@ namespace prompto.expression
 				break;
 			case EqOp.NOT_EQUALS:
 				equal = !lval.Equals (context, rval);
+				break;
+			case EqOp.CONTAINS:
+				equal = lval.Contains (context, rval);
+				break;
+			case EqOp.NOT_CONTAINS:
+				equal = !lval.Contains (context, rval);
 				break;
 			case EqOp.ROUGHLY:
 				equal = lval.Roughly (context, (IValue)rval);
@@ -207,11 +226,13 @@ namespace prompto.expression
 		{
 			switch (oper) {
 				case EqOp.EQUALS:
-						return MatchOp.EQUALS;
-				case EqOp.ROUGHLY:
-						return MatchOp.ROUGHLY;
 				case EqOp.NOT_EQUALS:
 					return MatchOp.EQUALS;
+				case EqOp.ROUGHLY:
+					return MatchOp.ROUGHLY;
+				case EqOp.CONTAINS:
+				case EqOp.NOT_CONTAINS:
+					return MatchOp.CONTAINS;
 				default:
 					throw new NotSupportedException();
 			}

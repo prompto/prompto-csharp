@@ -173,8 +173,8 @@ namespace prompto.value
 			return (IEnumerator<IValue>)new CharacterEnumerator(value);
         }
 
-         override
-        public bool Equals(object obj)
+         
+        public override bool Equals(object obj)
         {
             if (obj is Text)
                 return value.Equals(((Text)obj).value);
@@ -182,8 +182,8 @@ namespace prompto.value
                 return value.Equals(obj);
         }
 
-		override
-		public bool Roughly(Context context, IValue obj)
+
+		public override bool Roughly(Context context, IValue obj)
 		{
 			if (obj is Character || obj is Text) 
 			{
@@ -193,8 +193,18 @@ namespace prompto.value
 				return value.Equals(obj);
 		}
 
-		override
-        public int GetHashCode()
+		public override bool Contains(Context context, IValue obj)
+		{
+			if (obj is Text)
+				return value.Contains(((Text)obj).Value);
+			else if (obj is Character)
+				return value.IndexOf(((Character)obj).Value) >= 0;
+			else
+				return false;
+		}
+
+
+        public override int GetHashCode()
         {
             return value.GetHashCode();
         }

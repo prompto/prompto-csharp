@@ -132,7 +132,13 @@ namespace prompto.expression
 			return this.Equals(value);
 		}
 
-		
+
+		public bool Contains(Context context, IValue rval)
+		{
+			return false;
+		}
+
+
 		public ISliceable asSliceable(Context context) {
 			return null;
 		}

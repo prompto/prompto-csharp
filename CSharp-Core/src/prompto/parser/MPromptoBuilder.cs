@@ -1902,51 +1902,59 @@ namespace prompto.parser
 		}
 
 		
-		public override void ExitContainsAllExpression (MParser.ContainsAllExpressionContext ctx)
+		public override void ExitHasExpression(MParser.HasExpressionContext ctx)
 		{
-			IExpression left = this.GetNodeValue<IExpression> (ctx.left);
-			IExpression right = this.GetNodeValue<IExpression> (ctx.right);
-			SetNodeValue (ctx, new ContainsExpression (left, ContOp.CONTAINS_ALL, right));
+			IExpression left = this.GetNodeValue<IExpression>(ctx.left);
+			IExpression right = this.GetNodeValue<IExpression>(ctx.right);
+			SetNodeValue(ctx, new ContainsExpression(left, ContOp.HAS, right));
 		}
 
-		
-		public override void ExitNotContainsAllExpression (MParser.NotContainsAllExpressionContext ctx)
+
+		public override void ExitHasAllExpression(MParser.HasAllExpressionContext ctx)
 		{
-			IExpression left = this.GetNodeValue<IExpression> (ctx.left);
-			IExpression right = this.GetNodeValue<IExpression> (ctx.right);
-			SetNodeValue (ctx, new ContainsExpression (left, ContOp.NOT_CONTAINS_ALL, right));
+			IExpression left = this.GetNodeValue<IExpression>(ctx.left);
+			IExpression right = this.GetNodeValue<IExpression>(ctx.right);
+			SetNodeValue(ctx, new ContainsExpression(left, ContOp.HAS_ALL, right));
 		}
 
-		
-		public override void ExitContainsAnyExpression (MParser.ContainsAnyExpressionContext ctx)
+
+		public override void ExitNotHasAllExpression(MParser.NotHasAllExpressionContext ctx)
 		{
-			IExpression left = this.GetNodeValue<IExpression> (ctx.left);
-			IExpression right = this.GetNodeValue<IExpression> (ctx.right);
-			SetNodeValue (ctx, new ContainsExpression (left, ContOp.CONTAINS_ANY, right));
+			IExpression left = this.GetNodeValue<IExpression>(ctx.left);
+			IExpression right = this.GetNodeValue<IExpression>(ctx.right);
+			SetNodeValue(ctx, new ContainsExpression(left, ContOp.NOT_HAS_ALL, right));
 		}
 
-		
-		public override void ExitNotContainsAnyExpression (MParser.NotContainsAnyExpressionContext ctx)
+
+		public override void ExitHasAnyExpression(MParser.HasAnyExpressionContext ctx)
 		{
-			IExpression left = this.GetNodeValue<IExpression> (ctx.left);
-			IExpression right = this.GetNodeValue<IExpression> (ctx.right);
-			SetNodeValue (ctx, new ContainsExpression (left, ContOp.NOT_CONTAINS_ANY, right));
+			IExpression left = this.GetNodeValue<IExpression>(ctx.left);
+			IExpression right = this.GetNodeValue<IExpression>(ctx.right);
+			SetNodeValue(ctx, new ContainsExpression(left, ContOp.HAS_ANY, right));
 		}
 
-		
-		public override void ExitContainsExpression (MParser.ContainsExpressionContext ctx)
+
+		public override void ExitNotHasAnyExpression(MParser.NotHasAnyExpressionContext ctx)
 		{
-			IExpression left = this.GetNodeValue<IExpression> (ctx.left);
-			IExpression right = this.GetNodeValue<IExpression> (ctx.right);
-			SetNodeValue (ctx, new ContainsExpression (left, ContOp.CONTAINS, right));
+			IExpression left = this.GetNodeValue<IExpression>(ctx.left);
+			IExpression right = this.GetNodeValue<IExpression>(ctx.right);
+			SetNodeValue(ctx, new ContainsExpression(left, ContOp.NOT_HAS_ANY, right));
 		}
 
-		
-		public override void ExitNotContainsExpression (MParser.NotContainsExpressionContext ctx)
+
+		public override void ExitContainsExpression(MParser.ContainsExpressionContext ctx)
 		{
-			IExpression left = this.GetNodeValue<IExpression> (ctx.left);
-			IExpression right = this.GetNodeValue<IExpression> (ctx.right);
-			SetNodeValue (ctx, new ContainsExpression (left, ContOp.NOT_CONTAINS, right));
+			IExpression left = this.GetNodeValue<IExpression>(ctx.left);
+			IExpression right = this.GetNodeValue<IExpression>(ctx.right);
+			SetNodeValue(ctx, new EqualsExpression(left, EqOp.CONTAINS, right));
+		}
+
+
+		public override void ExitNotContainsExpression(MParser.NotContainsExpressionContext ctx)
+		{
+			IExpression left = this.GetNodeValue<IExpression>(ctx.left);
+			IExpression right = this.GetNodeValue<IExpression>(ctx.right);
+			SetNodeValue(ctx, new EqualsExpression(left, EqOp.NOT_CONTAINS, right));
 		}
 
 		

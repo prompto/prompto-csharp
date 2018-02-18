@@ -575,9 +575,9 @@ namespace prompto.parser
 	print ("d" + ((1,2,3,4) contains any [4,5]));
         */
         [Test]
-        public void testContainsAnyExpression()
+        public void testHasAnyExpression()
         {
-            String statement = "(1,2,3,4) contains any (1,2)";
+            String statement = "(1,2,3,4) has any (1,2)";
             OTestParser parser = new OTestParser(statement);
             IExpression exp = parser.parse_expression();
             Assert.IsTrue(exp is ContainsExpression);

@@ -956,6 +956,34 @@ public partial class MParserBaseListener : IMParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitIntDivideExpression([NotNull] MParser.IntDivideExpressionContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by the <c>HasAnyExpression</c>
+	/// labeled alternative in <see cref="MParser.expression"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterHasAnyExpression([NotNull] MParser.HasAnyExpressionContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by the <c>HasAnyExpression</c>
+	/// labeled alternative in <see cref="MParser.expression"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitHasAnyExpression([NotNull] MParser.HasAnyExpressionContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by the <c>HasExpression</c>
+	/// labeled alternative in <see cref="MParser.expression"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterHasExpression([NotNull] MParser.HasExpressionContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by the <c>HasExpression</c>
+	/// labeled alternative in <see cref="MParser.expression"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitHasExpression([NotNull] MParser.HasExpressionContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by the <c>TernaryExpression</c>
 	/// labeled alternative in <see cref="MParser.expression"/>.
 	/// <para>The default implementation does nothing.</para>
@@ -969,20 +997,6 @@ public partial class MParserBaseListener : IMParserListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitTernaryExpression([NotNull] MParser.TernaryExpressionContext context) { }
-	/// <summary>
-	/// Enter a parse tree produced by the <c>ContainsAllExpression</c>
-	/// labeled alternative in <see cref="MParser.expression"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void EnterContainsAllExpression([NotNull] MParser.ContainsAllExpressionContext context) { }
-	/// <summary>
-	/// Exit a parse tree produced by the <c>ContainsAllExpression</c>
-	/// labeled alternative in <see cref="MParser.expression"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void ExitContainsAllExpression([NotNull] MParser.ContainsAllExpressionContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by the <c>NotEqualsExpression</c>
 	/// labeled alternative in <see cref="MParser.expression"/>.
@@ -1082,6 +1096,20 @@ public partial class MParserBaseListener : IMParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitLessThanOrEqualExpression([NotNull] MParser.LessThanOrEqualExpressionContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by the <c>NotHasAnyExpression</c>
+	/// labeled alternative in <see cref="MParser.expression"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterNotHasAnyExpression([NotNull] MParser.NotHasAnyExpressionContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by the <c>NotHasAnyExpression</c>
+	/// labeled alternative in <see cref="MParser.expression"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitNotHasAnyExpression([NotNull] MParser.NotHasAnyExpressionContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by the <c>AndExpression</c>
 	/// labeled alternative in <see cref="MParser.expression"/>.
 	/// <para>The default implementation does nothing.</para>
@@ -1095,6 +1123,20 @@ public partial class MParserBaseListener : IMParserListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitAndExpression([NotNull] MParser.AndExpressionContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by the <c>NotHasExpression</c>
+	/// labeled alternative in <see cref="MParser.expression"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterNotHasExpression([NotNull] MParser.NotHasExpressionContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by the <c>NotHasExpression</c>
+	/// labeled alternative in <see cref="MParser.expression"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitNotHasExpression([NotNull] MParser.NotHasExpressionContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by the <c>ClosureExpression</c>
 	/// labeled alternative in <see cref="MParser.expression"/>.
@@ -1110,19 +1152,19 @@ public partial class MParserBaseListener : IMParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitClosureExpression([NotNull] MParser.ClosureExpressionContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by the <c>NotContainsAnyExpression</c>
+	/// Enter a parse tree produced by the <c>NotHasAllExpression</c>
 	/// labeled alternative in <see cref="MParser.expression"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void EnterNotContainsAnyExpression([NotNull] MParser.NotContainsAnyExpressionContext context) { }
+	public virtual void EnterNotHasAllExpression([NotNull] MParser.NotHasAllExpressionContext context) { }
 	/// <summary>
-	/// Exit a parse tree produced by the <c>NotContainsAnyExpression</c>
+	/// Exit a parse tree produced by the <c>NotHasAllExpression</c>
 	/// labeled alternative in <see cref="MParser.expression"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void ExitNotContainsAnyExpression([NotNull] MParser.NotContainsAnyExpressionContext context) { }
+	public virtual void ExitNotHasAllExpression([NotNull] MParser.NotHasAllExpressionContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by the <c>ContainsExpression</c>
 	/// labeled alternative in <see cref="MParser.expression"/>.
@@ -1334,19 +1376,19 @@ public partial class MParserBaseListener : IMParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitAddExpression([NotNull] MParser.AddExpressionContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by the <c>NotContainsAllExpression</c>
+	/// Enter a parse tree produced by the <c>HasAllExpression</c>
 	/// labeled alternative in <see cref="MParser.expression"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void EnterNotContainsAllExpression([NotNull] MParser.NotContainsAllExpressionContext context) { }
+	public virtual void EnterHasAllExpression([NotNull] MParser.HasAllExpressionContext context) { }
 	/// <summary>
-	/// Exit a parse tree produced by the <c>NotContainsAllExpression</c>
+	/// Exit a parse tree produced by the <c>HasAllExpression</c>
 	/// labeled alternative in <see cref="MParser.expression"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void ExitNotContainsAllExpression([NotNull] MParser.NotContainsAllExpressionContext context) { }
+	public virtual void ExitHasAllExpression([NotNull] MParser.HasAllExpressionContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by the <c>InstanceExpression</c>
 	/// labeled alternative in <see cref="MParser.expression"/>.
@@ -1361,20 +1403,6 @@ public partial class MParserBaseListener : IMParserListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitInstanceExpression([NotNull] MParser.InstanceExpressionContext context) { }
-	/// <summary>
-	/// Enter a parse tree produced by the <c>ContainsAnyExpression</c>
-	/// labeled alternative in <see cref="MParser.expression"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void EnterContainsAnyExpression([NotNull] MParser.ContainsAnyExpressionContext context) { }
-	/// <summary>
-	/// Exit a parse tree produced by the <c>ContainsAnyExpression</c>
-	/// labeled alternative in <see cref="MParser.expression"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void ExitContainsAnyExpression([NotNull] MParser.ContainsAnyExpressionContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by the <c>CastExpression</c>
 	/// labeled alternative in <see cref="MParser.expression"/>.

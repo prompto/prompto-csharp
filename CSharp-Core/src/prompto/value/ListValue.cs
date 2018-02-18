@@ -157,6 +157,14 @@ namespace prompto.value
 			return this.Equals(context, lval); // TODO
 		}
 
+
+		public bool Contains(Context context, IValue rval)
+		{
+			return false;
+		}
+
+
+
 		public Int32 CompareTo(Context context, IValue value)
 		{
 			throw new NotSupportedException("Compare not supported by " + this.GetType().Name);

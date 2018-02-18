@@ -2104,35 +2104,43 @@ namespace prompto.parser
 		}
 
 		
-		public override void ExitContainsAllExpression (EParser.ContainsAllExpressionContext ctx)
+		public override void ExitHasExpression(EParser.HasExpressionContext ctx)
+		{
+			IExpression left = this.GetNodeValue<IExpression>(ctx.left);
+			IExpression right = this.GetNodeValue<IExpression>(ctx.right);
+			SetNodeValue(ctx, new ContainsExpression(left, ContOp.HAS, right));
+		}
+
+
+		public override void ExitHasAllExpression (EParser.HasAllExpressionContext ctx)
 		{
 			IExpression left = this.GetNodeValue<IExpression> (ctx.left);
 			IExpression right = this.GetNodeValue<IExpression> (ctx.right);
-			SetNodeValue (ctx, new ContainsExpression (left, ContOp.CONTAINS_ALL, right));
+			SetNodeValue (ctx, new ContainsExpression (left, ContOp.HAS_ALL, right));
 		}
 
 		
-		public override void ExitNotContainsAllExpression (EParser.NotContainsAllExpressionContext ctx)
+		public override void ExitNotHasAllExpression (EParser.NotHasAllExpressionContext ctx)
 		{
 			IExpression left = this.GetNodeValue<IExpression> (ctx.left);
 			IExpression right = this.GetNodeValue<IExpression> (ctx.right);
-			SetNodeValue (ctx, new ContainsExpression (left, ContOp.NOT_CONTAINS_ALL, right));
+			SetNodeValue (ctx, new ContainsExpression (left, ContOp.NOT_HAS_ALL, right));
 		}
 
 		
-		public override void ExitContainsAnyExpression (EParser.ContainsAnyExpressionContext ctx)
+		public override void ExitHasAnyExpression (EParser.HasAnyExpressionContext ctx)
 		{
 			IExpression left = this.GetNodeValue<IExpression> (ctx.left);
 			IExpression right = this.GetNodeValue<IExpression> (ctx.right);
-			SetNodeValue (ctx, new ContainsExpression (left, ContOp.CONTAINS_ANY, right));
+			SetNodeValue (ctx, new ContainsExpression (left, ContOp.HAS_ANY, right));
 		}
 
 		
-		public override void ExitNotContainsAnyExpression (EParser.NotContainsAnyExpressionContext ctx)
+		public override void ExitNotHasAnyExpression (EParser.NotHasAnyExpressionContext ctx)
 		{
 			IExpression left = this.GetNodeValue<IExpression> (ctx.left);
 			IExpression right = this.GetNodeValue<IExpression> (ctx.right);
-			SetNodeValue (ctx, new ContainsExpression (left, ContOp.NOT_CONTAINS_ANY, right));
+			SetNodeValue (ctx, new ContainsExpression (left, ContOp.NOT_HAS_ANY, right));
 		}
 
 		
@@ -2140,7 +2148,7 @@ namespace prompto.parser
 		{
 			IExpression left = this.GetNodeValue<IExpression> (ctx.left);
 			IExpression right = this.GetNodeValue<IExpression> (ctx.right);
-			SetNodeValue (ctx, new ContainsExpression (left, ContOp.CONTAINS, right));
+			SetNodeValue (ctx, new EqualsExpression (left, EqOp.CONTAINS, right));
 		}
 
 		
@@ -2148,7 +2156,7 @@ namespace prompto.parser
 		{
 			IExpression left = this.GetNodeValue<IExpression> (ctx.left);
 			IExpression right = this.GetNodeValue<IExpression> (ctx.right);
-			SetNodeValue (ctx, new ContainsExpression (left, ContOp.NOT_CONTAINS, right));
+			SetNodeValue (ctx, new EqualsExpression (left, EqOp.NOT_CONTAINS, right));
 		}
 
 		

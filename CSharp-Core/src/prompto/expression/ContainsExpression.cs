@@ -50,8 +50,8 @@ namespace prompto.expression
 				case ContOp.IN:
 				case ContOp.NOT_IN:
 					return rt.checkContains(context, lt);
-				case ContOp.CONTAINS:
-				case ContOp.NOT_CONTAINS:
+				case ContOp.HAS:
+				case ContOp.NOT_HAS:
 					return lt.checkContains(context, rt);
 				default:
 					return lt.checkContainsAllOrAny(context, rt);
@@ -77,26 +77,26 @@ namespace prompto.expression
 					else if (rval is IContainer)
 						result = ((IContainer)rval).HasItem(context, lval);
 					break;
-				case ContOp.CONTAINS:
-				case ContOp.NOT_CONTAINS:
+				case ContOp.HAS:
+				case ContOp.NOT_HAS:
 					if (lval == NullValue.Instance)
 						result = false;
 					else if (lval is IContainer)
 						result = ((IContainer)lval).HasItem(context, rval);
 					break;
-				case ContOp.CONTAINS_ALL:
-				case ContOp.NOT_CONTAINS_ALL:
+				case ContOp.HAS_ALL:
+				case ContOp.NOT_HAS_ALL:
 					if (lval == NullValue.Instance || rval == NullValue.Instance)
 						result = false;
 					else if (lval is IContainer && rval is IContainer)
-						result = ContainsAll(context, (IContainer)lval, (IContainer)rval);
+						result = HasAll(context, (IContainer)lval, (IContainer)rval);
 					break;
-				case ContOp.CONTAINS_ANY:
-				case ContOp.NOT_CONTAINS_ANY:
+				case ContOp.HAS_ANY:
+				case ContOp.NOT_HAS_ANY:
 					if (lval == NullValue.Instance || rval == NullValue.Instance)
 						result = false;
 					else if (lval is IContainer && rval is IContainer)
-						result = ContainsAny(context, (IContainer)lval, (IContainer)rval);
+						result = HasAny(context, (IContainer)lval, (IContainer)rval);
 					break;
 			}
 			String name = Enum.GetName(typeof(ContOp), oper);
@@ -116,7 +116,7 @@ namespace prompto.expression
 			throw new SyntaxError("Illegal comparison: " + lval.GetType().Name + " " + lowerName + " " + rval.GetType().Name);
 		}
 
-		public bool ContainsAll(Context context, IContainer container, IContainer items)
+		public bool HasAll(Context context, IContainer container, IContainer items)
 		{
 			foreach (Object it in items.GetEnumerable(context))
 			{
@@ -134,7 +134,7 @@ namespace prompto.expression
 			return true;
 		}
 
-		public bool ContainsAny(Context context, IContainer container, IContainer items)
+		public bool HasAny(Context context, IContainer container, IContainer items)
 		{
 			foreach (Object it in items.GetEnumerable(context))
 			{
@@ -210,8 +210,8 @@ namespace prompto.expression
 			{
 				switch (oper)
 				{
-					case ContOp.CONTAINS:
-					case ContOp.NOT_CONTAINS:
+					case ContOp.HAS:
+					case ContOp.NOT_HAS:
 						return MatchOp.CONTAINS;
 				}
 			}
@@ -221,16 +221,16 @@ namespace prompto.expression
 				{
 					case ContOp.IN:
 					case ContOp.NOT_IN:
-						return MatchOp.CONTAINED;
+						return MatchOp.IN;
 				}
 			}
 			if (fieldType is ContainerType)
 			{
 				switch (oper)
 				{
-					case ContOp.CONTAINS:
-					case ContOp.NOT_CONTAINS:
-						return MatchOp.CONTAINS;
+					case ContOp.HAS:
+					case ContOp.NOT_HAS:
+						return MatchOp.HAS;
 				}
 			}
 			throw new SyntaxError("Unsupported operator: " + oper.ToString());

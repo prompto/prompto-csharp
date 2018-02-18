@@ -31,8 +31,10 @@ namespace prompto.memstore
 					return matchesROUGHLY(data);
 				case MatchOp.CONTAINS:
 					return matchesCONTAINS(data);
-				case MatchOp.CONTAINED:
-					return matchesCONTAINED(data);
+				case MatchOp.HAS:
+					return matchesHAS(data);
+				case MatchOp.IN:
+					return matchesIN(data);
 				case MatchOp.GREATER:
 					return matchesGREATER(data);
 				case MatchOp.LESSER:
@@ -62,13 +64,25 @@ namespace prompto.memstore
 		{
 			if (data is String && value is String)
 				return ((String)data).Contains((String)(object)value);
-			else if (data is ICollection<T>)
+			else if (data is ICollection<T>) {
+				foreach (T item in (ICollection<T>)data) {
+					if (matchesCONTAINS(item))
+						return true;
+				}
+				return false;
+			} else
+				return false;
+		}
+
+		private bool matchesHAS(Object data)
+		{
+			if (data is ICollection<T> )
 				return ((ICollection<T>)data).Contains(value);
 			else
 				return false;
 		}
 
-		private bool matchesCONTAINED(Object data)
+		private bool matchesIN(Object data)
 		{
 			if (data is String && value is String)
 				return ((String)(object)value).Contains((String)data);

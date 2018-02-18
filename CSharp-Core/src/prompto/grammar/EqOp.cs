@@ -9,7 +9,9 @@ namespace prompto.grammar
 		IS_NOT_A,
 		EQUALS,
         NOT_EQUALS,
-		ROUGHLY
+		ROUGHLY,
+		CONTAINS,
+		NOT_CONTAINS
     }
 
 }
