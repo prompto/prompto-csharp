@@ -1547,7 +1547,9 @@ namespace prompto.parser
 			IdentifierList attrs = this.GetNodeValue<IdentifierList> (ctx.attrs);
 			NativeCategoryBindingList bindings = this.GetNodeValue<NativeCategoryBindingList> (ctx.bindings);
 			MethodDeclarationList methods = this.GetNodeValue<MethodDeclarationList> (ctx.methods);
-			SetNodeValue (ctx, new NativeResourceDeclaration (name, attrs, bindings, null, methods));
+			NativeResourceDeclaration decl = new NativeResourceDeclaration(name, attrs, bindings, null, methods);
+			decl.Storable = ctx.STORABLE() != null;
+			SetNodeValue(ctx, decl);
 		}
 
 		public override void ExitResource_declaration (OParser.Resource_declarationContext ctx)
