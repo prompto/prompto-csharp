@@ -6563,7 +6563,7 @@ public partial class OParser : AbstractParser {
 	}
 	public partial class ConstructorFromContext : Constructor_expressionContext {
 		public Mutable_category_typeContext typ;
-		public Copy_fromContext copyFrom;
+		public Copy_fromContext copyExp;
 		public Argument_assignment_listContext args;
 		public ITerminalNode LPAR() { return GetToken(OParser.LPAR, 0); }
 		public ITerminalNode RPAR() { return GetToken(OParser.RPAR, 0); }
@@ -6624,7 +6624,7 @@ public partial class OParser : AbstractParser {
 				{
 				State = 1260; ((ConstructorFromContext)_localctx).typ = mutable_category_type();
 				State = 1261; Match(LPAR);
-				State = 1262; ((ConstructorFromContext)_localctx).copyFrom = copy_from();
+				State = 1262; ((ConstructorFromContext)_localctx).copyExp = copy_from();
 				State = 1265;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);

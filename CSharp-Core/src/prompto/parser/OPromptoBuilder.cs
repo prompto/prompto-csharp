@@ -903,7 +903,7 @@ namespace prompto.parser
 		public override void ExitConstructorFrom(OParser.ConstructorFromContext ctx)
 		{
 			CategoryType type = this.GetNodeValue<CategoryType>(ctx.typ);
-			IExpression copyFrom = this.GetNodeValue<IExpression>(ctx.copyFrom);
+			IExpression copyFrom = this.GetNodeValue<IExpression>(ctx.copyExp);
 			ArgumentAssignmentList args = this.GetNodeValue<ArgumentAssignmentList>(ctx.args);
 			SetNodeValue(ctx, new ConstructorExpression(type, copyFrom, args, true));
 		}

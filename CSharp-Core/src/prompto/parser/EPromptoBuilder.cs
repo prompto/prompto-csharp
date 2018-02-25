@@ -914,7 +914,7 @@ namespace prompto.parser
 		public override void ExitConstructorFrom (EParser.ConstructorFromContext ctx)
 		{
 			CategoryType type = this.GetNodeValue<CategoryType> (ctx.typ);
-			IExpression copyFrom = this.GetNodeValue<IExpression>(ctx.copyFrom);
+			IExpression copyFrom = this.GetNodeValue<IExpression>(ctx.copyExp);
 			ArgumentAssignmentList args = this.GetNodeValue<ArgumentAssignmentList> (ctx.args);
 			ArgumentAssignment arg = this.GetNodeValue<ArgumentAssignment> (ctx.arg);
 			if (arg != null) {

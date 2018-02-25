@@ -6385,7 +6385,7 @@ public partial class EParser : AbstractParser {
 	}
 	public partial class ConstructorFromContext : Constructor_expressionContext {
 		public Mutable_category_typeContext typ;
-		public ExpressionContext copyFrom;
+		public ExpressionContext copyExp;
 		public With_argument_assignment_listContext args;
 		public Argument_assignmentContext arg;
 		public ITerminalNode FROM() { return GetToken(EParser.FROM, 0); }
@@ -6453,7 +6453,7 @@ public partial class EParser : AbstractParser {
 				{
 				State = 1226; ((ConstructorFromContext)_localctx).typ = mutable_category_type();
 				State = 1227; Match(FROM);
-				State = 1228; ((ConstructorFromContext)_localctx).copyFrom = expression(0);
+				State = 1228; ((ConstructorFromContext)_localctx).copyExp = expression(0);
 				State = 1237;
 				ErrorHandler.Sync(this);
 				switch ( Interpreter.AdaptivePredict(TokenStream,63,Context) ) {
