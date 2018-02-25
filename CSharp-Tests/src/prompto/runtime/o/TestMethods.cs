@@ -64,9 +64,9 @@ namespace prompto.runtime.o
 		}
 
 		[Test]
-		public void testImplicit()
+		public void testImplicitMember()
 		{
-			CheckOutput("methods/implicit.poc");
+			CheckOutput("methods/implicitMember.poc");
 		}
 
 		[Test]

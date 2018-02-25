@@ -900,23 +900,40 @@ namespace prompto.parser
 		}
 
 
-		public override void ExitConstructor_expression (OParser.Constructor_expressionContext ctx)
+		public override void ExitConstructorFrom(OParser.ConstructorFromContext ctx)
 		{
-			CategoryType type = this.GetNodeValue<CategoryType> (ctx.typ);
-			ArgumentAssignmentList args = this.GetNodeValue<ArgumentAssignmentList> (ctx.args);
-			SetNodeValue (ctx, new ConstructorExpression (type, args));
+			CategoryType type = this.GetNodeValue<CategoryType>(ctx.typ);
+			IExpression copyFrom = this.GetNodeValue<IExpression>(ctx.copyFrom);
+			ArgumentAssignmentList args = this.GetNodeValue<ArgumentAssignmentList>(ctx.args);
+			SetNodeValue(ctx, new ConstructorExpression(type, copyFrom, args, true));
 		}
 
+		public override void ExitConstructorNoFrom(OParser.ConstructorNoFromContext ctx)
+		{
+			CategoryType type = this.GetNodeValue<CategoryType>(ctx.typ);
+			ArgumentAssignmentList args = this.GetNodeValue<ArgumentAssignmentList>(ctx.args);
+			SetNodeValue(ctx, new ConstructorExpression(type, null, args, true));
+		}
+
+
+		public override void ExitCopy_from(OParser.Copy_fromContext ctx)
+		{
+	        SetNodeValue(ctx, this.GetNodeValue<IExpression>(ctx.exp));
+		}
+
+	
 		public override void ExitAn_expression (OParser.An_expressionContext ctx)
 		{
 			IType type = this.GetNodeValue<IType> (ctx.typ);
 			SetNodeValue (ctx, type);
 		}
 
+
 		public override void ExitAssertion(OParser.AssertionContext ctx) {
 			IExpression exp = this.GetNodeValue<IExpression>(ctx.exp);
 			SetNodeValue(ctx, exp);
 		}
+
 
 		public override void ExitAssertion_list (OParser.Assertion_listContext ctx)
 		{

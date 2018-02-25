@@ -51,9 +51,15 @@ namespace prompto.translate.eoe
 		}
 
 		[Test]
-		public void testImplicit()
+		public void testHomonym()
 		{
-			compareResourceEOE("methods/implicit.pec");
+			compareResourceEOE("methods/homonym.pec");
+		}
+
+		[Test]
+		public void testImplicitMember()
+		{
+			compareResourceEOE("methods/implicitMember.pec");
 		}
 
 		[Test]

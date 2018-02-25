@@ -27,6 +27,12 @@ namespace prompto.translate.eoe
 		}
 
 		[Test]
+		public void testHasItem()
+		{
+			compareResourceEOE("predicate/hasItem.pec");
+		}
+
+		[Test]
 		public void testInList()
 		{
 			compareResourceEOE("predicate/inList.pec");

@@ -8,7 +8,7 @@ using prompto.declaration;
 using prompto.error;
 using prompto.value;
 using prompto.utils;
-
+using prompto.argument;
 
 namespace prompto.expression
 {
@@ -19,11 +19,14 @@ namespace prompto.expression
         CategoryType type;
         IExpression copyFrom;
         ArgumentAssignmentList assignments;
+		bool xchecked;
 
-        public ConstructorExpression(CategoryType type, ArgumentAssignmentList assignments)
+        public ConstructorExpression(CategoryType type, IExpression copyFrom, ArgumentAssignmentList assignments, bool xchecked)
         {
             this.type = type;
-            setAssignments(assignments);
+			this.copyFrom = copyFrom;
+			this.assignments = assignments;
+			this.xchecked = xchecked;
         }
 
         public CategoryType getType()
@@ -31,18 +34,7 @@ namespace prompto.expression
             return type;
         }
 
-        public void setAssignments(ArgumentAssignmentList assignments)
-        {
-            this.assignments = assignments;
-            // in OOPS, first anonymous argument is copyFrom
-            if (assignments != null && assignments.Count > 0 && assignments[0].getArgument() == null)
-            {
-                copyFrom = assignments[0].getExpression();
-                this.assignments.Remove(assignments[0]);
-            }
-        }
-
-        public ArgumentAssignmentList getAssignments()
+       public ArgumentAssignmentList getAssignments()
         {
             return assignments;
         }
@@ -59,6 +51,11 @@ namespace prompto.expression
 
         public void ToDialect(CodeWriter writer)
         {
+			Context context = writer.getContext();
+			CategoryDeclaration cd = context.getRegisteredDeclaration<CategoryDeclaration>(this.type.GetTypeName());
+			if(cd==null)
+				throw new SyntaxError("Unknown category " + this.type.GetTypeName());
+			checkFirstHomonym(context, cd);
 			switch(writer.getDialect()) {
 			case Dialect.E:
 				ToEDialect(writer);
@@ -72,6 +69,33 @@ namespace prompto.expression
 			}
 		}
 
+		void checkFirstHomonym(Context context,  CategoryDeclaration decl)
+		{
+			if (xchecked)
+				return;
+			if(assignments!=null && assignments.Count>0)
+            	checkFirstHomonym(context, decl, assignments[0]);
+			xchecked = true;
+		}
+
+		void checkFirstHomonym(Context context, CategoryDeclaration decl, ArgumentAssignment assignment)
+		{
+			if(assignment.getArgument()==null) {
+				IExpression exp = assignment.getExpression();
+				// when coming from UnresolvedCall, could be an homonym
+				string name = null;
+				if(exp is UnresolvedIdentifier) 
+					name = ((UnresolvedIdentifier)exp).getName();
+				else if(exp is InstanceExpression)
+					name = ((InstanceExpression)exp).getName();
+				if(name!=null && decl.hasAttribute(context, name)) {
+					// convert expression to name to avoid translation issues
+					assignment.setArgument(new AttributeArgument(name));
+					assignment.setExpression(null);
+				}
+			}
+		}
+
 		private void toPDialect(CodeWriter writer) {
 			ToODialect(writer);
 		}
@@ -80,7 +104,7 @@ namespace prompto.expression
 			type.ToDialect (writer);
 			ArgumentAssignmentList assignments = new ArgumentAssignmentList();
 			if (copyFrom != null)
-				assignments.add(new ArgumentAssignment(null, copyFrom));
+				assignments.add(new ArgumentAssignment(new AttributeArgument("from"), copyFrom));
 			if(this.assignments!=null)
 				assignments.addAll(this.assignments);
 			assignments.ToDialect(writer);
@@ -103,8 +127,8 @@ namespace prompto.expression
 			CategoryDeclaration cd = context.getRegisteredDeclaration<CategoryDeclaration>(this.type.GetTypeName());
             if (cd == null)
 				throw new SyntaxError("Unknown category " + this.type.GetTypeName());
-            IType type = (CategoryType)cd.GetIType(context);
-            cd.checkConstructorContext(context);
+            checkFirstHomonym(context, cd);
+	        cd.checkConstructorContext(context);
             if (copyFrom != null)
             {
                 IType cft = copyFrom.check(context);
@@ -121,12 +145,16 @@ namespace prompto.expression
                     assignment.check(context);
                 }
             }
-            return type;
+            return cd.GetIType(context);
         }
 
         public IValue interpret(Context context)
         {
-            IInstance instance = type.newInstance(context);
+			CategoryDeclaration cd = context.getRegisteredDeclaration<CategoryDeclaration>(this.type.GetTypeName());
+            if (cd == null)
+				throw new SyntaxError("Unknown category " + this.type.GetTypeName());
+            checkFirstHomonym(context, cd);
+	        IInstance instance = type.newInstance(context);
 			instance.setMutable (true);
 			try
 			{
@@ -136,7 +164,6 @@ namespace prompto.expression
 	                if (copyObj is IInstance)
 	                {
 						IInstance copyInstance = (IInstance)copyObj;
-						CategoryDeclaration cd = context.getRegisteredDeclaration<CategoryDeclaration>(type.GetTypeName());
 	                    foreach (String name in copyInstance.GetMemberNames())
 	                    {
 	                        if (cd.hasAttribute(context, name))
@@ -151,7 +178,6 @@ namespace prompto.expression
 					else if (copyObj is Document) 
 					{
 						Document copyDoc = (Document)copyObj;
-						CategoryDeclaration cd = context.getRegisteredDeclaration<CategoryDeclaration>(type.GetTypeName());
 						foreach (String name in copyDoc.GetMemberNames())
 						{
 							if (cd.hasAttribute(context, name))

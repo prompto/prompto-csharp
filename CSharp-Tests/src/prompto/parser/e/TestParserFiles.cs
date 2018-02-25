@@ -40,9 +40,9 @@ namespace prompto.parser
         }
 
         [Test]
-        public void testImplicit()
+        public void testImplicitMember()
         {
-            DeclarationList stmts = parseResource("methods/implicit.pec");
+            DeclarationList stmts = parseResource("methods/implicitMember.pec");
             Assert.IsNotNull(stmts);
             Assert.AreEqual(6, stmts.Count);
         }

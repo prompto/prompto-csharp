@@ -51,9 +51,9 @@ namespace prompto.translate.oeo
 		}
 
 		[Test]
-		public void testImplicit()
+		public void testImplicitMember()
 		{
-			compareResourceOEO("methods/implicit.poc");
+			compareResourceOEO("methods/implicitMember.poc");
 		}
 
 		[Test]

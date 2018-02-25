@@ -51,9 +51,15 @@ namespace prompto.translate.eme
 		}
 
 		[Test]
-		public void testImplicit()
+		public void testHomonym()
 		{
-			compareResourceEME("methods/implicit.pec");
+			compareResourceEME("methods/homonym.pec");
+		}
+
+		[Test]
+		public void testImplicitMember()
+		{
+			compareResourceEME("methods/implicitMember.pec");
 		}
 
 		[Test]

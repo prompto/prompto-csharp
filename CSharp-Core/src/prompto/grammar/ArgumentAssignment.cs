@@ -29,6 +29,13 @@ namespace prompto.grammar {
 			return ( argument==null ? "" : argument.ToString () + " ") + expression.ToString ();
 		}
 
+
+		public void setArgument(IArgument argument)
+		{
+			this.argument = argument;
+		}
+
+
         public IArgument getArgument()
         {
             return argument;
@@ -41,7 +48,7 @@ namespace prompto.grammar {
 
         public IExpression getExpression()
         {
-            return expression;
+			return expression!=null ? expression : new InstanceExpression(argument.GetName());
         }
 
         public void setExpression(IExpression expression)
@@ -63,32 +70,54 @@ namespace prompto.grammar {
 			}
 		}
 
-		private void ToODialect(CodeWriter writer) {
-			if(argument!=null) {
+		private void ToODialect(CodeWriter writer)
+		{
+			if (expression == null)
 				writer.append(argument.GetName());
-				writer.append(" = ");
-			}
-			expression.ToDialect(writer);
-		}
-
-		private void toPDialect(CodeWriter writer) {
-			if(argument!=null) {
-				writer.append(argument.GetName());
-				writer.append(" = ");
-			}
-			expression.ToDialect(writer);
-		}
-
-		private void ToEDialect(CodeWriter writer) {
-			expression.ToDialect(writer);
-			if(argument!=null) {
-				writer.append(" as ");
-				writer.append(argument.GetName());
+			else
+			{
+				if (argument != null)
+				{
+					writer.append(argument.GetName());
+					writer.append(" = ");
+				}
+				expression.ToDialect(writer);
 			}
 		}
 
-        override
-        public bool Equals(Object obj)
+
+		private void toPDialect(CodeWriter writer)
+		{
+			if (expression == null)
+				writer.append(argument.GetName());
+			else
+			{
+				if (argument != null)
+				{
+					writer.append(argument.GetName());
+					writer.append(" = ");
+				}
+				expression.ToDialect(writer);
+			}
+		}
+
+		private void ToEDialect(CodeWriter writer)
+		{
+			if (expression == null)
+				writer.append(argument.GetName());
+			else
+			{
+				expression.ToDialect(writer);
+				if (argument != null)
+				{
+					writer.append(" as ");
+					writer.append(argument.GetName());
+				}
+			}
+		}
+
+        
+        public override bool Equals(Object obj)
         {
             if (obj == this)
                 return true;
@@ -106,14 +135,14 @@ namespace prompto.grammar {
 			INamed actual = context.getRegisteredValue<INamed>(argument.GetName());
             if (actual == null)
             {
-				IType actualType = expression.check(context);
+				IType actualType = getExpression().check(context);
 				context.registerValue(new Variable(argument.GetName(), actualType));
             }
             else
             {
                 // need to check type compatibility
                 IType actualType = actual.GetIType(context);
-                IType newType = expression.check(context);
+				IType newType = getExpression().check(context);
                 actualType.checkAssignableFrom(context, newType);
             }
             return VoidType.Instance;
@@ -152,7 +181,7 @@ namespace prompto.grammar {
 				argument = declaration.getArguments().find(this.GetName());
             if (argument == null)
 				throw new SyntaxError("Method has no argument:" + this.GetName());
-            IExpression expression = new ContextualExpression(context, this.expression);
+			IExpression expression = new ContextualExpression(context, this.getExpression());
             return new ArgumentAssignment(argument, expression);
         }
 

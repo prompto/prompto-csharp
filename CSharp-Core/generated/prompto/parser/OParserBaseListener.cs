@@ -1728,17 +1728,45 @@ public partial class OParserBaseListener : IOParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitSliceSelector([NotNull] OParser.SliceSelectorContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="OParser.constructor_expression"/>.
+	/// Enter a parse tree produced by the <c>ConstructorFrom</c>
+	/// labeled alternative in <see cref="OParser.constructor_expression"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void EnterConstructor_expression([NotNull] OParser.Constructor_expressionContext context) { }
+	public virtual void EnterConstructorFrom([NotNull] OParser.ConstructorFromContext context) { }
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="OParser.constructor_expression"/>.
+	/// Exit a parse tree produced by the <c>ConstructorFrom</c>
+	/// labeled alternative in <see cref="OParser.constructor_expression"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void ExitConstructor_expression([NotNull] OParser.Constructor_expressionContext context) { }
+	public virtual void ExitConstructorFrom([NotNull] OParser.ConstructorFromContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by the <c>ConstructorNoFrom</c>
+	/// labeled alternative in <see cref="OParser.constructor_expression"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterConstructorNoFrom([NotNull] OParser.ConstructorNoFromContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by the <c>ConstructorNoFrom</c>
+	/// labeled alternative in <see cref="OParser.constructor_expression"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitConstructorNoFrom([NotNull] OParser.ConstructorNoFromContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="OParser.copy_from"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterCopy_from([NotNull] OParser.Copy_fromContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="OParser.copy_from"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitCopy_from([NotNull] OParser.Copy_fromContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by the <c>ExpressionAssignmentList</c>
 	/// labeled alternative in <see cref="OParser.argument_assignment_list"/>.

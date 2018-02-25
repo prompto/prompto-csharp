@@ -1342,15 +1342,39 @@ public interface IMParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitDocument_expression([NotNull] MParser.Document_expressionContext context);
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="MParser.constructor_expression"/>.
+	/// Enter a parse tree produced by the <c>ConstructorFrom</c>
+	/// labeled alternative in <see cref="MParser.constructor_expression"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterConstructor_expression([NotNull] MParser.Constructor_expressionContext context);
+	void EnterConstructorFrom([NotNull] MParser.ConstructorFromContext context);
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="MParser.constructor_expression"/>.
+	/// Exit a parse tree produced by the <c>ConstructorFrom</c>
+	/// labeled alternative in <see cref="MParser.constructor_expression"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitConstructor_expression([NotNull] MParser.Constructor_expressionContext context);
+	void ExitConstructorFrom([NotNull] MParser.ConstructorFromContext context);
+	/// <summary>
+	/// Enter a parse tree produced by the <c>ConstructorNoFrom</c>
+	/// labeled alternative in <see cref="MParser.constructor_expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterConstructorNoFrom([NotNull] MParser.ConstructorNoFromContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>ConstructorNoFrom</c>
+	/// labeled alternative in <see cref="MParser.constructor_expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitConstructorNoFrom([NotNull] MParser.ConstructorNoFromContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="MParser.copy_from"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterCopy_from([NotNull] MParser.Copy_fromContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="MParser.copy_from"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitCopy_from([NotNull] MParser.Copy_fromContext context);
 	/// <summary>
 	/// Enter a parse tree produced by the <c>ExpressionAssignmentList</c>
 	/// labeled alternative in <see cref="MParser.argument_assignment_list"/>.

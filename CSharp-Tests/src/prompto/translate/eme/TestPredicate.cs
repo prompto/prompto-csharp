@@ -27,6 +27,12 @@ namespace prompto.translate.eme
 		}
 
 		[Test]
+		public void testHasItem()
+		{
+			compareResourceEME("predicate/hasItem.pec");
+		}
+
+		[Test]
 		public void testInList()
 		{
 			compareResourceEME("predicate/inList.pec");

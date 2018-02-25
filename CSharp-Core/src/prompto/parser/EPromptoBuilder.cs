@@ -914,15 +914,15 @@ namespace prompto.parser
 		public override void ExitConstructorFrom (EParser.ConstructorFromContext ctx)
 		{
 			CategoryType type = this.GetNodeValue<CategoryType> (ctx.typ);
+			IExpression copyFrom = this.GetNodeValue<IExpression>(ctx.copyFrom);
 			ArgumentAssignmentList args = this.GetNodeValue<ArgumentAssignmentList> (ctx.args);
-			if (args == null)
-				args = new ArgumentAssignmentList ();
-			IExpression firstArg = this.GetNodeValue<IExpression> (ctx.firstArg);
-			args.Insert (0, new ArgumentAssignment (null, firstArg));
 			ArgumentAssignment arg = this.GetNodeValue<ArgumentAssignment> (ctx.arg);
-			if (arg != null)
+			if (arg != null) {
+				if (args == null)
+					args = new ArgumentAssignmentList ();
 				args.add (arg);
-			SetNodeValue (ctx, new ConstructorExpression (type, args));
+			}
+			SetNodeValue (ctx, new ConstructorExpression (type, copyFrom, args, true));
 		}
 
 		
@@ -930,12 +930,14 @@ namespace prompto.parser
 		{
 			CategoryType type = this.GetNodeValue<CategoryType> (ctx.typ);
 			ArgumentAssignmentList args = this.GetNodeValue<ArgumentAssignmentList> (ctx.args);
-			if (args == null)
-				args = new ArgumentAssignmentList ();
 			ArgumentAssignment arg = this.GetNodeValue<ArgumentAssignment> (ctx.arg);
 			if (arg != null)
+			{
+				if (args == null)
+					args = new ArgumentAssignmentList();
 				args.add (arg);
-			SetNodeValue (ctx, new ConstructorExpression (type, args));
+			}
+			SetNodeValue (ctx, new ConstructorExpression (type, null, args, true));
 		}
 
 		public override void ExitAssertion(EParser.AssertionContext ctx) {

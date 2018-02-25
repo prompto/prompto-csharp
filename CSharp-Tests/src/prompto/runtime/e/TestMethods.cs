@@ -64,9 +64,15 @@ namespace prompto.runtime.e
 		}
 
 		[Test]
-		public void testImplicit()
+		public void testHomonym()
 		{
-			CheckOutput("methods/implicit.pec");
+			CheckOutput("methods/homonym.pec");
+		}
+
+		[Test]
+		public void testImplicitMember()
+		{
+			CheckOutput("methods/implicitMember.pec");
 		}
 
 		[Test]

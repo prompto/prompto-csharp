@@ -106,7 +106,7 @@ namespace prompto.statement
 			if(decl==null)
 				throw new SyntaxError("Unknown name:" + name);
 			if(decl is CategoryDeclaration)
-				return new ConstructorExpression(new CategoryType(name), assignments);
+				return new ConstructorExpression(new CategoryType(name), null, assignments, false);
 			else
 				return new MethodCall(new MethodSelector(name), assignments);
        }

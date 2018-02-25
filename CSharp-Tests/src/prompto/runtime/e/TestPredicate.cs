@@ -40,6 +40,12 @@ namespace prompto.runtime.e
 		}
 
 		[Test]
+		public void testHasItem()
+		{
+			CheckOutput("predicate/hasItem.pec");
+		}
+
+		[Test]
 		public void testInList()
 		{
 			CheckOutput("predicate/inList.pec");

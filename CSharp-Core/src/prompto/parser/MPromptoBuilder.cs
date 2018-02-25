@@ -899,14 +899,28 @@ namespace prompto.parser
 		}
 
 		
-		public override void ExitConstructor_expression (MParser.Constructor_expressionContext ctx)
+		public override void ExitConstructorFrom(MParser.ConstructorFromContext ctx)
 		{
-			CategoryType type = this.GetNodeValue<CategoryType> (ctx.typ);
-			ArgumentAssignmentList args = this.GetNodeValue<ArgumentAssignmentList> (ctx.args);
-			SetNodeValue (ctx, new ConstructorExpression (type, args));
+			CategoryType type = this.GetNodeValue<CategoryType>(ctx.typ);
+			IExpression copyFrom = this.GetNodeValue<IExpression>(ctx.copyFrom);
+			ArgumentAssignmentList args = this.GetNodeValue<ArgumentAssignmentList>(ctx.args);
+			SetNodeValue(ctx, new ConstructorExpression(type, copyFrom, args, true));
 		}
 
-		
+		public override void ExitConstructorNoFrom(MParser.ConstructorNoFromContext ctx)
+		{
+			CategoryType type = this.GetNodeValue<CategoryType>(ctx.typ);
+			ArgumentAssignmentList args = this.GetNodeValue<ArgumentAssignmentList>(ctx.args);
+			SetNodeValue(ctx, new ConstructorExpression(type, null, args, true));
+		}
+
+
+		public override void ExitCopy_from(MParser.Copy_fromContext ctx)
+		{
+			SetNodeValue(ctx, this.GetNodeValue<IExpression>(ctx.exp));
+		}
+
+
 		public override void ExitAssertion(MParser.AssertionContext ctx) {
 			IExpression exp = this.GetNodeValue<IExpression>(ctx.exp);
 			SetNodeValue(ctx, exp);
