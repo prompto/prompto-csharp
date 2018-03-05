@@ -211,7 +211,7 @@ public partial class OParser : AbstractParser {
 		"'='", "'!='", "'=='", "'~='", "'~'", "'<-'", "'->'", "'Boolean'", "'Character'", 
 		"'Text'", "'Integer'", "'Decimal'", "'Date'", "'Time'", "'DateTime'", 
 		"'Period'", "'Version'", "'Method'", "'Code'", "'Document'", "'Blob'", 
-		"'Image'", "'UUID'", "'Iterator'", "'Cursor'", "'abstract'", "'all'", 
+		"'Image'", "'Uuid'", "'Iterator'", "'Cursor'", "'abstract'", "'all'", 
 		"'always'", "'and'", "'any'", "'as'", null, "'attr'", "'attribute'", "'attributes'", 
 		"'bindings'", "'break'", "'by'", "'case'", "'catch'", "'category'", "'class'", 
 		"'close'", "'contains'", "'def'", "'default'", "'define'", "'delete'", 

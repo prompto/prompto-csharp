@@ -211,7 +211,7 @@ public partial class EParser : AbstractParser {
 		"'>='", "'<'", "'<='", "'<>'", "'='", "'!='", "'=='", "'~='", "'~'", "'<-'", 
 		"'->'", "'Boolean'", "'Character'", "'Text'", "'Integer'", "'Decimal'", 
 		"'Date'", "'Time'", "'DateTime'", "'Period'", "'Version'", "'Method'", 
-		"'Code'", "'Document'", "'Blob'", "'Image'", "'UUID'", "'Iterator'", "'Cursor'", 
+		"'Code'", "'Document'", "'Blob'", "'Image'", "'Uuid'", "'Iterator'", "'Cursor'", 
 		"'abstract'", "'all'", "'always'", "'and'", "'any'", "'as'", null, "'attr'", 
 		"'attribute'", "'attributes'", "'bindings'", "'break'", "'by'", "'case'", 
 		"'catch'", "'category'", "'class'", "'close'", "'contains'", "'def'", 
