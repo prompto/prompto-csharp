@@ -51,6 +51,12 @@ namespace prompto.translate.oeo
 		}
 
 		[Test]
+		public void testGlobal()
+		{
+			compareResourceOEO("methods/global.poc");
+		}
+
+		[Test]
 		public void testImplicitMember()
 		{
 			compareResourceOEO("methods/implicitMember.poc");

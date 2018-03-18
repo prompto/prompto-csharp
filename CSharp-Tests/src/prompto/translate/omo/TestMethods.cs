@@ -51,6 +51,12 @@ namespace prompto.translate.omo
 		}
 
 		[Test]
+		public void testGlobal()
+		{
+			compareResourceOMO("methods/global.poc");
+		}
+
+		[Test]
 		public void testImplicitMember()
 		{
 			compareResourceOMO("methods/implicitMember.poc");
