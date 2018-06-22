@@ -484,6 +484,18 @@
     <Compile Include="src\prompto\type\VersionType.cs" />
     <Compile Include="src\prompto\value\Version.cs" />
     <Compile Include="src\prompto\literal\VersionLiteral.cs" />
+    <Compile Include="src\prompto\jsx\IJsxExpression.cs" />
+    <Compile Include="src\prompto\jsx\IJsxValue.cs" />
+    <Compile Include="src\prompto\jsx\JsxAttribute.cs" />
+    <Compile Include="src\prompto\jsx\JsxCode.cs" />
+    <Compile Include="src\prompto\jsx\JsxElement.cs" />
+    <Compile Include="src\prompto\jsx\JsxElementBase.cs" />
+    <Compile Include="src\prompto\jsx\JsxLiteral.cs" />
+    <Compile Include="src\prompto\jsx\JsxSelfClosing.cs" />
+    <Compile Include="src\prompto\jsx\JsxText.cs" />
+    <Compile Include="src\prompto\jsx\JsxExpression.cs" />
+    <Compile Include="src\prompto\value\JsxValue.cs" />
+    <Compile Include="src\prompto\type\JsxType.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -513,6 +525,7 @@
     <Folder Include="src\prompto\constraint\" />
     <Folder Include="src\prompto\code\" />
     <Folder Include="src\prompto\memstore\" />
+    <Folder Include="src\prompto\jsx\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

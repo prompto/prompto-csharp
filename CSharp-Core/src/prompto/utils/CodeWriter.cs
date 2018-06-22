@@ -73,47 +73,53 @@ namespace prompto.utils
 			return context;
 		}
 
-		public void append (String s)
+		public CodeWriter append (String s)
 		{
 			indenter.appendTabsIfRequired (s);
 			sb.Append (s);
+			return this;
 		}
 
-		public void append (char c)
+		public CodeWriter append (char c)
 		{
 			indenter.appendTabsIfRequired (c);
 			sb.Append (c);
+			return this;
 		}
 
 
-		public override String ToString ()
-		{
-			return sb.ToString ();
-		}
-
-		public Dialect getDialect ()
-		{
-			return dialect;
-		}
-
-		public void trimLast (int count)
+		public CodeWriter trimLast (int count)
 		{
 			sb.Length -= count;
+			return this;
 		}
 
-		public void indent ()
+		public CodeWriter indent ()
 		{
 			indenter.indent ();
+			return this;
 		}
 
-		public void dedent ()
+		public CodeWriter dedent ()
 		{
 			indenter.dedent ();
+			return this;
 		}
 
-		public void newLine ()
+		public CodeWriter newLine ()
 		{
 			append ('\n');
+			return this;
+		}
+
+		public override String ToString()
+		{
+			return sb.ToString();
+		}
+
+		public Dialect getDialect()
+		{
+			return dialect;
 		}
 
 		public bool isGlobalContext ()

@@ -352,6 +352,13 @@
     <Compile Include="src\prompto\runtime\e\TestExit.cs" />
     <Compile Include="src\prompto\translate\eme\TestExit.cs" />
     <Compile Include="src\prompto\translate\eoe\TestExit.cs" />
+    <Compile Include="src\prompto\runtime\e\TestJsx.cs" />
+    <Compile Include="src\prompto\runtime\m\TestJsx.cs" />
+    <Compile Include="src\prompto\runtime\o\TestJsx.cs" />
+    <Compile Include="src\prompto\translate\eme\TestJsx.cs" />
+    <Compile Include="src\prompto\translate\eoe\TestJsx.cs" />
+    <Compile Include="src\prompto\translate\oeo\TestJsx.cs" />
+    <Compile Include="src\prompto\translate\omo\TestJsx.cs" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />

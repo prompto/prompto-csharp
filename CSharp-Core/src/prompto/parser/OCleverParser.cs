@@ -57,7 +57,7 @@ namespace prompto.parser
         public DeclarationList parse_declaration_list()
         {
             IParseTree tree = declaration_list();
-            OPrestoBuilder builder = new OPrestoBuilder(this);
+            OPromptoBuilder builder = new OPromptoBuilder(this);
             ParseTreeWalker walker = new ParseTreeWalker();
             walker.Walk(builder, tree);
             return builder.GetNodeValue<DeclarationList>(tree);

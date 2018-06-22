@@ -9,15 +9,22 @@ namespace prompto.parser
     public abstract class AbstractParser : Parser
     {
         public static int EOF = Eof;
+		int WS_TOKEN;
 
         public AbstractParser(ITokenStream input)
-            : base(input)
+			: this(input, null, null)
         {
         }
 
 		public AbstractParser(ITokenStream input, TextWriter output, TextWriter errorOutput)
             : base(input, output, errorOutput)
 		{
+			if(this is EParser)
+				WS_TOKEN = EParser.WS;
+			else if(this is MParser)
+				WS_TOKEN = MParser.WS;
+			else if(this is OParser)
+				WS_TOKEN = OParser.WS;
 		}
 
 
@@ -35,6 +42,12 @@ namespace prompto.parser
         {
             return lastHiddenTokenType() != type;
         }
+
+		public bool wasNotWhiteSpace()
+		{
+			return lastHiddenTokenType() != WS_TOKEN;
+		}
+
 
         public bool willBe(int type)
         {

@@ -870,6 +870,18 @@ public interface IMParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitInExpression([NotNull] MParser.InExpressionContext context);
 	/// <summary>
+	/// Enter a parse tree produced by the <c>JsxExpression</c>
+	/// labeled alternative in <see cref="MParser.expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterJsxExpression([NotNull] MParser.JsxExpressionContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>JsxExpression</c>
+	/// labeled alternative in <see cref="MParser.expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitJsxExpression([NotNull] MParser.JsxExpressionContext context);
+	/// <summary>
 	/// Enter a parse tree produced by the <c>NotExpression</c>
 	/// labeled alternative in <see cref="MParser.expression"/>.
 	/// </summary>
@@ -3180,6 +3192,16 @@ public interface IMParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitOperatorModulo([NotNull] MParser.OperatorModuloContext context);
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="MParser.keyword"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterKeyword([NotNull] MParser.KeywordContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="MParser.keyword"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitKeyword([NotNull] MParser.KeywordContext context);
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="MParser.new_token"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
@@ -4415,5 +4437,239 @@ public interface IMParserListener : IParseTreeListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void ExitCsharp_identifier([NotNull] MParser.Csharp_identifierContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="MParser.jsx_expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterJsx_expression([NotNull] MParser.Jsx_expressionContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="MParser.jsx_expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitJsx_expression([NotNull] MParser.Jsx_expressionContext context);
+	/// <summary>
+	/// Enter a parse tree produced by the <c>JsxSelfClosing</c>
+	/// labeled alternative in <see cref="MParser.jsx_element"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterJsxSelfClosing([NotNull] MParser.JsxSelfClosingContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>JsxSelfClosing</c>
+	/// labeled alternative in <see cref="MParser.jsx_element"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitJsxSelfClosing([NotNull] MParser.JsxSelfClosingContext context);
+	/// <summary>
+	/// Enter a parse tree produced by the <c>JsxElement</c>
+	/// labeled alternative in <see cref="MParser.jsx_element"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterJsxElement([NotNull] MParser.JsxElementContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>JsxElement</c>
+	/// labeled alternative in <see cref="MParser.jsx_element"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitJsxElement([NotNull] MParser.JsxElementContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="MParser.jsx_fragment"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterJsx_fragment([NotNull] MParser.Jsx_fragmentContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="MParser.jsx_fragment"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitJsx_fragment([NotNull] MParser.Jsx_fragmentContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="MParser.jsx_fragment_start"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterJsx_fragment_start([NotNull] MParser.Jsx_fragment_startContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="MParser.jsx_fragment_start"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitJsx_fragment_start([NotNull] MParser.Jsx_fragment_startContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="MParser.jsx_fragment_end"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterJsx_fragment_end([NotNull] MParser.Jsx_fragment_endContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="MParser.jsx_fragment_end"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitJsx_fragment_end([NotNull] MParser.Jsx_fragment_endContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="MParser.jsx_self_closing"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterJsx_self_closing([NotNull] MParser.Jsx_self_closingContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="MParser.jsx_self_closing"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitJsx_self_closing([NotNull] MParser.Jsx_self_closingContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="MParser.jsx_opening"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterJsx_opening([NotNull] MParser.Jsx_openingContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="MParser.jsx_opening"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitJsx_opening([NotNull] MParser.Jsx_openingContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="MParser.jsx_closing"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterJsx_closing([NotNull] MParser.Jsx_closingContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="MParser.jsx_closing"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitJsx_closing([NotNull] MParser.Jsx_closingContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="MParser.jsx_element_name"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterJsx_element_name([NotNull] MParser.Jsx_element_nameContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="MParser.jsx_element_name"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitJsx_element_name([NotNull] MParser.Jsx_element_nameContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="MParser.jsx_identifier"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterJsx_identifier([NotNull] MParser.Jsx_identifierContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="MParser.jsx_identifier"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitJsx_identifier([NotNull] MParser.Jsx_identifierContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="MParser.jsx_hyphen_identifier"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterJsx_hyphen_identifier([NotNull] MParser.Jsx_hyphen_identifierContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="MParser.jsx_hyphen_identifier"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitJsx_hyphen_identifier([NotNull] MParser.Jsx_hyphen_identifierContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="MParser.hyphen_identifier"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterHyphen_identifier([NotNull] MParser.Hyphen_identifierContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="MParser.hyphen_identifier"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitHyphen_identifier([NotNull] MParser.Hyphen_identifierContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="MParser.identifier_or_keyword"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterIdentifier_or_keyword([NotNull] MParser.Identifier_or_keywordContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="MParser.identifier_or_keyword"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitIdentifier_or_keyword([NotNull] MParser.Identifier_or_keywordContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="MParser.jsx_attribute"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterJsx_attribute([NotNull] MParser.Jsx_attributeContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="MParser.jsx_attribute"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitJsx_attribute([NotNull] MParser.Jsx_attributeContext context);
+	/// <summary>
+	/// Enter a parse tree produced by the <c>JsxLiteral</c>
+	/// labeled alternative in <see cref="MParser.jsx_attribute_value"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterJsxLiteral([NotNull] MParser.JsxLiteralContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>JsxLiteral</c>
+	/// labeled alternative in <see cref="MParser.jsx_attribute_value"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitJsxLiteral([NotNull] MParser.JsxLiteralContext context);
+	/// <summary>
+	/// Enter a parse tree produced by the <c>JsxValue</c>
+	/// labeled alternative in <see cref="MParser.jsx_attribute_value"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterJsxValue([NotNull] MParser.JsxValueContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>JsxValue</c>
+	/// labeled alternative in <see cref="MParser.jsx_attribute_value"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitJsxValue([NotNull] MParser.JsxValueContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="MParser.jsx_children"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterJsx_children([NotNull] MParser.Jsx_childrenContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="MParser.jsx_children"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitJsx_children([NotNull] MParser.Jsx_childrenContext context);
+	/// <summary>
+	/// Enter a parse tree produced by the <c>JsxText</c>
+	/// labeled alternative in <see cref="MParser.jsx_child"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterJsxText([NotNull] MParser.JsxTextContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>JsxText</c>
+	/// labeled alternative in <see cref="MParser.jsx_child"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitJsxText([NotNull] MParser.JsxTextContext context);
+	/// <summary>
+	/// Enter a parse tree produced by the <c>JsxChild</c>
+	/// labeled alternative in <see cref="MParser.jsx_child"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterJsxChild([NotNull] MParser.JsxChildContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>JsxChild</c>
+	/// labeled alternative in <see cref="MParser.jsx_child"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitJsxChild([NotNull] MParser.JsxChildContext context);
+	/// <summary>
+	/// Enter a parse tree produced by the <c>JsxCode</c>
+	/// labeled alternative in <see cref="MParser.jsx_child"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterJsxCode([NotNull] MParser.JsxCodeContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>JsxCode</c>
+	/// labeled alternative in <see cref="MParser.jsx_child"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitJsxCode([NotNull] MParser.JsxCodeContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="MParser.jsx_text"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterJsx_text([NotNull] MParser.Jsx_textContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="MParser.jsx_text"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitJsx_text([NotNull] MParser.Jsx_textContext context);
 }
 } // namespace prompto.parser

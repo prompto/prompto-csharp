@@ -1100,6 +1100,20 @@ public partial class OParserBaseListener : IOParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitIsAnExpression([NotNull] OParser.IsAnExpressionContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by the <c>JsxExpression</c>
+	/// labeled alternative in <see cref="OParser.expression"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterJsxExpression([NotNull] OParser.JsxExpressionContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by the <c>JsxExpression</c>
+	/// labeled alternative in <see cref="OParser.expression"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitJsxExpression([NotNull] OParser.JsxExpressionContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by the <c>NotExpression</c>
 	/// labeled alternative in <see cref="OParser.expression"/>.
 	/// <para>The default implementation does nothing.</para>
@@ -3784,6 +3798,18 @@ public partial class OParserBaseListener : IOParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitOperatorModulo([NotNull] OParser.OperatorModuloContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="OParser.keyword"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterKeyword([NotNull] OParser.KeywordContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="OParser.keyword"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitKeyword([NotNull] OParser.KeywordContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="OParser.new_token"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
@@ -5261,6 +5287,284 @@ public partial class OParserBaseListener : IOParserListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitCsharp_identifier([NotNull] OParser.Csharp_identifierContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="OParser.jsx_expression"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterJsx_expression([NotNull] OParser.Jsx_expressionContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="OParser.jsx_expression"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitJsx_expression([NotNull] OParser.Jsx_expressionContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by the <c>JsxSelfClosing</c>
+	/// labeled alternative in <see cref="OParser.jsx_element"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterJsxSelfClosing([NotNull] OParser.JsxSelfClosingContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by the <c>JsxSelfClosing</c>
+	/// labeled alternative in <see cref="OParser.jsx_element"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitJsxSelfClosing([NotNull] OParser.JsxSelfClosingContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by the <c>JsxElement</c>
+	/// labeled alternative in <see cref="OParser.jsx_element"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterJsxElement([NotNull] OParser.JsxElementContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by the <c>JsxElement</c>
+	/// labeled alternative in <see cref="OParser.jsx_element"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitJsxElement([NotNull] OParser.JsxElementContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="OParser.jsx_fragment"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterJsx_fragment([NotNull] OParser.Jsx_fragmentContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="OParser.jsx_fragment"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitJsx_fragment([NotNull] OParser.Jsx_fragmentContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="OParser.jsx_fragment_start"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterJsx_fragment_start([NotNull] OParser.Jsx_fragment_startContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="OParser.jsx_fragment_start"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitJsx_fragment_start([NotNull] OParser.Jsx_fragment_startContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="OParser.jsx_fragment_end"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterJsx_fragment_end([NotNull] OParser.Jsx_fragment_endContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="OParser.jsx_fragment_end"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitJsx_fragment_end([NotNull] OParser.Jsx_fragment_endContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="OParser.jsx_self_closing"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterJsx_self_closing([NotNull] OParser.Jsx_self_closingContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="OParser.jsx_self_closing"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitJsx_self_closing([NotNull] OParser.Jsx_self_closingContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="OParser.jsx_opening"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterJsx_opening([NotNull] OParser.Jsx_openingContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="OParser.jsx_opening"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitJsx_opening([NotNull] OParser.Jsx_openingContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="OParser.jsx_closing"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterJsx_closing([NotNull] OParser.Jsx_closingContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="OParser.jsx_closing"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitJsx_closing([NotNull] OParser.Jsx_closingContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="OParser.jsx_element_name"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterJsx_element_name([NotNull] OParser.Jsx_element_nameContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="OParser.jsx_element_name"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitJsx_element_name([NotNull] OParser.Jsx_element_nameContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="OParser.jsx_identifier"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterJsx_identifier([NotNull] OParser.Jsx_identifierContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="OParser.jsx_identifier"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitJsx_identifier([NotNull] OParser.Jsx_identifierContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="OParser.jsx_hyphen_identifier"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterJsx_hyphen_identifier([NotNull] OParser.Jsx_hyphen_identifierContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="OParser.jsx_hyphen_identifier"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitJsx_hyphen_identifier([NotNull] OParser.Jsx_hyphen_identifierContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="OParser.hyphen_identifier"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterHyphen_identifier([NotNull] OParser.Hyphen_identifierContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="OParser.hyphen_identifier"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitHyphen_identifier([NotNull] OParser.Hyphen_identifierContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="OParser.identifier_or_keyword"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterIdentifier_or_keyword([NotNull] OParser.Identifier_or_keywordContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="OParser.identifier_or_keyword"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitIdentifier_or_keyword([NotNull] OParser.Identifier_or_keywordContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="OParser.jsx_attribute"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterJsx_attribute([NotNull] OParser.Jsx_attributeContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="OParser.jsx_attribute"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitJsx_attribute([NotNull] OParser.Jsx_attributeContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by the <c>JsxLiteral</c>
+	/// labeled alternative in <see cref="OParser.jsx_attribute_value"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterJsxLiteral([NotNull] OParser.JsxLiteralContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by the <c>JsxLiteral</c>
+	/// labeled alternative in <see cref="OParser.jsx_attribute_value"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitJsxLiteral([NotNull] OParser.JsxLiteralContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by the <c>JsxValue</c>
+	/// labeled alternative in <see cref="OParser.jsx_attribute_value"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterJsxValue([NotNull] OParser.JsxValueContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by the <c>JsxValue</c>
+	/// labeled alternative in <see cref="OParser.jsx_attribute_value"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitJsxValue([NotNull] OParser.JsxValueContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="OParser.jsx_children"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterJsx_children([NotNull] OParser.Jsx_childrenContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="OParser.jsx_children"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitJsx_children([NotNull] OParser.Jsx_childrenContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by the <c>JsxText</c>
+	/// labeled alternative in <see cref="OParser.jsx_child"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterJsxText([NotNull] OParser.JsxTextContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by the <c>JsxText</c>
+	/// labeled alternative in <see cref="OParser.jsx_child"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitJsxText([NotNull] OParser.JsxTextContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by the <c>JsxChild</c>
+	/// labeled alternative in <see cref="OParser.jsx_child"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterJsxChild([NotNull] OParser.JsxChildContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by the <c>JsxChild</c>
+	/// labeled alternative in <see cref="OParser.jsx_child"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitJsxChild([NotNull] OParser.JsxChildContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by the <c>JsxCode</c>
+	/// labeled alternative in <see cref="OParser.jsx_child"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterJsxCode([NotNull] OParser.JsxCodeContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by the <c>JsxCode</c>
+	/// labeled alternative in <see cref="OParser.jsx_child"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitJsxCode([NotNull] OParser.JsxCodeContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="OParser.jsx_text"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterJsx_text([NotNull] OParser.Jsx_textContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="OParser.jsx_text"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitJsx_text([NotNull] OParser.Jsx_textContext context) { }
 
 	/// <inheritdoc/>
 	/// <remarks>The default implementation does nothing.</remarks>

@@ -601,7 +601,7 @@ namespace prompto.parser
 
 		public IExpression parse_instance_expression() {
 			IParseTree tree = instance_expression();
-			OPrestoBuilder builder = new OPrestoBuilder(this);
+			OPromptoBuilder builder = new OPromptoBuilder(this);
 			ParseTreeWalker walker = new ParseTreeWalker();
 			walker.Walk(builder, tree);
 			return builder.GetNodeValue<IExpression>(tree);
@@ -610,7 +610,7 @@ namespace prompto.parser
         public TupleLiteral parse_tuple_literal()
         {
             IParseTree tree = tuple_literal();
-            OPrestoBuilder builder = new OPrestoBuilder(this);
+            OPromptoBuilder builder = new OPromptoBuilder(this);
             ParseTreeWalker walker = new ParseTreeWalker();
             walker.Walk(builder, tree);
             return builder.GetNodeValue<TupleLiteral>(tree);
@@ -619,7 +619,7 @@ namespace prompto.parser
         public RangeLiteral parse_range_literal()
         {
 			IParseTree tree = range_literal();
-			OPrestoBuilder builder = new OPrestoBuilder(this);
+			OPromptoBuilder builder = new OPromptoBuilder(this);
 			ParseTreeWalker walker = new ParseTreeWalker();
 			walker.Walk(builder, tree);
 			return builder.GetNodeValue<RangeLiteral>(tree);
@@ -628,7 +628,7 @@ namespace prompto.parser
 	
 		public AttributeDeclaration parse_attribute_declaration() {
 			IParseTree tree = attribute_declaration();
-			OPrestoBuilder builder = new OPrestoBuilder(this);
+			OPromptoBuilder builder = new OPromptoBuilder(this);
 			ParseTreeWalker walker = new ParseTreeWalker();
 			walker.Walk(builder, tree);
 			return builder.GetNodeValue<AttributeDeclaration>(tree);
@@ -636,7 +636,7 @@ namespace prompto.parser
 
 		public CategoryDeclaration parse_category_declaration() {
 			IParseTree tree = category_declaration();
-			OPrestoBuilder builder = new OPrestoBuilder(this);
+			OPromptoBuilder builder = new OPromptoBuilder(this);
 			ParseTreeWalker walker = new ParseTreeWalker();
 			walker.Walk(builder, tree);
 			return builder.GetNodeValue<CategoryDeclaration>(tree);
@@ -644,7 +644,7 @@ namespace prompto.parser
 
 		public ITypedArgument parse_typed_argument() {
 			IParseTree tree = typed_argument();
-			OPrestoBuilder builder = new OPrestoBuilder(this);
+			OPromptoBuilder builder = new OPromptoBuilder(this);
 			ParseTreeWalker walker = new ParseTreeWalker();
 			walker.Walk(builder, tree);
 			return builder.GetNodeValue<ITypedArgument>(tree);
@@ -652,7 +652,7 @@ namespace prompto.parser
 
 		public ArgumentList parse_argument_list() {
 			IParseTree tree = argument_list();
-			OPrestoBuilder builder = new OPrestoBuilder(this);
+			OPromptoBuilder builder = new OPromptoBuilder(this);
 			ParseTreeWalker walker = new ParseTreeWalker();
 			walker.Walk(builder, tree);
 			return builder.GetNodeValue<ArgumentList>(tree);
@@ -660,7 +660,7 @@ namespace prompto.parser
 
 		public UnresolvedCall parse_method_call() {
 			IParseTree tree = method_call();
-			OPrestoBuilder builder = new OPrestoBuilder(this);
+			OPromptoBuilder builder = new OPromptoBuilder(this);
 			ParseTreeWalker walker = new ParseTreeWalker();
 			walker.Walk(builder, tree);
 			return builder.GetNodeValue<UnresolvedCall>(tree);
@@ -668,7 +668,7 @@ namespace prompto.parser
 
 		public NativeMethodDeclaration parse_native_method_declaration() {
 			IParseTree tree = native_method_declaration();
-			OPrestoBuilder builder = new OPrestoBuilder(this);
+			OPromptoBuilder builder = new OPromptoBuilder(this);
 			ParseTreeWalker walker = new ParseTreeWalker();
 			walker.Walk(builder, tree);
 			return builder.GetNodeValue<NativeMethodDeclaration>(tree);
@@ -676,7 +676,7 @@ namespace prompto.parser
 
 		public ConcreteMethodDeclaration parse_concrete_method_declaration() {
 			IParseTree tree = concrete_method_declaration();
-			OPrestoBuilder builder = new OPrestoBuilder(this);
+			OPromptoBuilder builder = new OPromptoBuilder(this);
 			ParseTreeWalker walker = new ParseTreeWalker();
 			walker.Walk(builder, tree);
 			return builder.GetNodeValue<ConcreteMethodDeclaration>(tree);
@@ -684,7 +684,7 @@ namespace prompto.parser
 
 		public ConstructorExpression parse_constructor_expression() {
 			IParseTree tree = constructor_expression();
-			OPrestoBuilder builder = new OPrestoBuilder(this);
+			OPromptoBuilder builder = new OPromptoBuilder(this);
 			ParseTreeWalker walker = new ParseTreeWalker();
 			walker.Walk(builder, tree);
 			return builder.GetNodeValue<ConstructorExpression>(tree);
@@ -692,7 +692,7 @@ namespace prompto.parser
 
 		public AssignInstanceStatement parse_assign_instance_statement() {
 			IParseTree tree = assign_instance_statement();
-			OPrestoBuilder builder = new OPrestoBuilder(this);
+			OPromptoBuilder builder = new OPromptoBuilder(this);
 			ParseTreeWalker walker = new ParseTreeWalker();
 			walker.Walk(builder, tree);
 			return builder.GetNodeValue<AssignInstanceStatement>(tree);
@@ -700,7 +700,7 @@ namespace prompto.parser
 
 		public NativeCall parse_native_statement() {
 			IParseTree tree = native_statement();
-			OPrestoBuilder builder = new OPrestoBuilder(this);
+			OPromptoBuilder builder = new OPromptoBuilder(this);
 			ParseTreeWalker walker = new ParseTreeWalker();
 			walker.Walk(builder, tree);
 			return builder.GetNodeValue<NativeCall>(tree);
@@ -708,7 +708,7 @@ namespace prompto.parser
 
 		public IExpression parse_literal_expression() {
 			IParseTree tree = literal_expression();
-			OPrestoBuilder builder = new OPrestoBuilder(this);
+			OPromptoBuilder builder = new OPromptoBuilder(this);
 			ParseTreeWalker walker = new ParseTreeWalker();
 			walker.Walk(builder, tree);
 			return builder.GetNodeValue<IExpression>(tree);
@@ -716,7 +716,7 @@ namespace prompto.parser
 
 		public IExpression parse_native_symbol() {
 			IParseTree tree = native_symbol();
-			OPrestoBuilder builder = new OPrestoBuilder(this);
+			OPromptoBuilder builder = new OPromptoBuilder(this);
 			ParseTreeWalker walker = new ParseTreeWalker();
 			walker.Walk(builder, tree);
 			return builder.GetNodeValue<IExpression>(tree);
@@ -724,7 +724,7 @@ namespace prompto.parser
 
 		public IStatement parse_statement() {
 			IParseTree tree = statement();
-			OPrestoBuilder builder = new OPrestoBuilder(this);
+			OPromptoBuilder builder = new OPromptoBuilder(this);
 			ParseTreeWalker walker = new ParseTreeWalker();
 			walker.Walk(builder, tree);
 			return builder.GetNodeValue<IStatement>(tree);
@@ -732,7 +732,7 @@ namespace prompto.parser
 
 		public IExpression parse_expression() {
 			IParseTree tree = expression();
-			OPrestoBuilder builder = new OPrestoBuilder(this);
+			OPromptoBuilder builder = new OPromptoBuilder(this);
 			ParseTreeWalker walker = new ParseTreeWalker();
 			walker.Walk(builder, tree);
 			return builder.GetNodeValue<IExpression>(tree);

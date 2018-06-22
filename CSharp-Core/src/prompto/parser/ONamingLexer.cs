@@ -9,7 +9,7 @@ namespace prompto.parser
     public class ONamingLexer : OLexer, ILexer
     {
 
-        static Dictionary<int, String> tokenNames = ParserUtils.extractTokenNames(typeof(OLexer));
+        static Dictionary<int, String> tokenNames = ParserUtils.ExtractTokenNames(typeof(OLexer));
 
         public static String getTokenName(IToken t)
         {

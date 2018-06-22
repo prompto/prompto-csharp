@@ -58,7 +58,7 @@ namespace prompto.parser.o {
         {
             OCleverParser parser = new OCleverParser(code);
             IParseTree tree = parser.expression();
-            OPrestoBuilder builder = new OPrestoBuilder(parser);
+            OPromptoBuilder builder = new OPromptoBuilder(parser);
             ParseTreeWalker walker = new ParseTreeWalker();
             walker.Walk(builder, tree);
             return builder.GetNodeValue<IExpression>(tree);

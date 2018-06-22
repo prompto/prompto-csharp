@@ -16,19 +16,19 @@ using prompto.utils;
 using prompto.argument;
 using prompto.constraint;
 using prompto.instance;
-
+using prompto.jsx;
 
 namespace prompto.parser
 {
 
-	public class OPrestoBuilder : OParserBaseListener
+	public class OPromptoBuilder : OParserBaseListener
 	{
 
 		ParseTreeProperty<object> nodeValues = new ParseTreeProperty<object> ();
 		ITokenStream input;
 		string path = "";
 
-		public OPrestoBuilder (OCleverParser parser)
+		public OPromptoBuilder (OCleverParser parser)
 		{
 			this.input = (ITokenStream)parser.InputStream;
 			this.path = parser.Path;
@@ -1619,6 +1619,112 @@ namespace prompto.parser
 			IStatement stmt = this.GetNodeValue<IStatement> (ctx.stmt);
 			SetNodeValue (ctx, stmt);
 		}
+
+
+		public override void ExitJsxChild(OParser.JsxChildContext ctx)
+		{
+			SetNodeValue(ctx, this.GetNodeValue<Object>(ctx.jsx));
+		}
+
+
+		public override void ExitJsxCode(OParser.JsxCodeContext ctx)
+		{
+			IExpression exp = this.GetNodeValue<IExpression>(ctx.exp);
+			SetNodeValue(ctx, new JsxCode(exp));
+		}
+
+
+		public override void ExitJsxExpression(OParser.JsxExpressionContext ctx)
+		{
+			SetNodeValue(ctx, this.GetNodeValue<Object>(ctx.exp));
+		}
+
+
+		public override void ExitJsxElement(OParser.JsxElementContext ctx)
+		{
+			JsxElement elem = this.GetNodeValue<JsxElement>(ctx.jsx);
+			List<IJsxExpression> children = this.GetNodeValue<List<IJsxExpression>>(ctx.children_);
+			elem.setChildren(children);
+			SetNodeValue(ctx, elem);
+		}
+
+		public override void ExitJsxSelfClosing(OParser.JsxSelfClosingContext ctx)
+		{
+			SetNodeValue(ctx, this.GetNodeValue<Object>(ctx.jsx));
+		}
+
+
+		public override void ExitJsxText(OParser.JsxTextContext ctx)
+		{
+			String text = ParserUtils.GetFullText(ctx.text);
+			SetNodeValue(ctx, new JsxText(text));
+		}
+
+
+		public override void ExitJsxValue(OParser.JsxValueContext ctx)
+		{
+			IExpression exp = this.GetNodeValue<IExpression>(ctx.exp);
+			SetNodeValue(ctx, new JsxExpression(exp));
+		}
+
+		public override void ExitJsx_attribute(OParser.Jsx_attributeContext ctx)
+		{
+			String name = this.GetNodeValue<String>(ctx.name);
+			IJsxValue value = this.GetNodeValue<IJsxValue>(ctx.value);
+			SetNodeValue(ctx, new JsxAttribute(name, value));
+		}
+
+
+		public override void ExitJsx_children(OParser.Jsx_childrenContext ctx)
+		{
+			List<IJsxExpression> list = new List<IJsxExpression>();
+			foreach (ParserRuleContext child in ctx.jsx_child())
+				list.Add(this.GetNodeValue<IJsxExpression>(child));
+			SetNodeValue(ctx, list);
+		}
+
+		public override void ExitJsx_element_name(OParser.Jsx_element_nameContext ctx)
+		{
+			String name = ctx.GetText();
+			SetNodeValue(ctx, name);
+		}
+
+		public override void ExitJsx_expression(OParser.Jsx_expressionContext ctx)
+		{
+			SetNodeValue(ctx, this.GetNodeValue<Object>(ctx.GetChild(0)));
+		}
+
+		public override void ExitJsx_identifier(OParser.Jsx_identifierContext ctx)
+		{
+			String name = ctx.GetText();
+			SetNodeValue(ctx, name);
+		}
+
+		public override void ExitJsxLiteral(OParser.JsxLiteralContext ctx)
+		{
+			String text = ctx.GetText();
+			SetNodeValue(ctx, new JsxLiteral(text));
+		}
+
+		public override void ExitJsx_opening(OParser.Jsx_openingContext ctx)
+		{
+			String name = this.GetNodeValue<String>(ctx.name);
+			List<JsxAttribute> attributes = new List<JsxAttribute>();
+			foreach (ParserRuleContext child in ctx.jsx_attribute())
+				attributes.Add(this.GetNodeValue<JsxAttribute>(child));
+			SetNodeValue(ctx, new JsxElement(name, attributes));
+		}
+
+		public override void ExitJsx_self_closing(OParser.Jsx_self_closingContext ctx)
+		{
+			String name = this.GetNodeValue<String>(ctx.name);
+			List<JsxAttribute> attributes = new List<JsxAttribute>();
+			foreach (ParserRuleContext child in ctx.jsx_attribute())
+				attributes.Add(this.GetNodeValue<JsxAttribute>(child));
+			SetNodeValue(ctx, new JsxSelfClosing(name, attributes));
+		}
+
+
 
 		public override void ExitKey_token (OParser.Key_tokenContext ctx)
 		{
