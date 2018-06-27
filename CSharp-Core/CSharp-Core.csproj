@@ -496,6 +496,8 @@
     <Compile Include="src\prompto\jsx\JsxExpression.cs" />
     <Compile Include="src\prompto\value\JsxValue.cs" />
     <Compile Include="src\prompto\type\JsxType.cs" />
+    <Compile Include="src\prompto\declaration\ConcreteWidgetDeclaration.cs" />
+    <Compile Include="src\prompto\type\HtmlType.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />

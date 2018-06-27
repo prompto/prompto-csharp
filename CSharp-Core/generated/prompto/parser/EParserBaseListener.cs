@@ -96,6 +96,18 @@ public partial class EParserBaseListener : IEParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitAttribute_declaration([NotNull] EParser.Attribute_declarationContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="EParser.concrete_widget_declaration"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterConcrete_widget_declaration([NotNull] EParser.Concrete_widget_declarationContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="EParser.concrete_widget_declaration"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitConcrete_widget_declaration([NotNull] EParser.Concrete_widget_declarationContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="EParser.concrete_category_declaration"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
@@ -2570,6 +2582,20 @@ public partial class EParserBaseListener : IEParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitUUIDType([NotNull] EParser.UUIDTypeContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by the <c>HtmlType</c>
+	/// labeled alternative in <see cref="EParser.native_type"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterHtmlType([NotNull] EParser.HtmlTypeContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by the <c>HtmlType</c>
+	/// labeled alternative in <see cref="EParser.native_type"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitHtmlType([NotNull] EParser.HtmlTypeContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="EParser.category_type"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
@@ -2647,6 +2673,20 @@ public partial class EParserBaseListener : IEParserListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitSingletonCategoryDeclaration([NotNull] EParser.SingletonCategoryDeclarationContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by the <c>ConcreteWidgetDeclaration</c>
+	/// labeled alternative in <see cref="EParser.widget_declaration"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterConcreteWidgetDeclaration([NotNull] EParser.ConcreteWidgetDeclarationContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by the <c>ConcreteWidgetDeclaration</c>
+	/// labeled alternative in <see cref="EParser.widget_declaration"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitConcreteWidgetDeclaration([NotNull] EParser.ConcreteWidgetDeclarationContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="EParser.type_identifier_list"/>.
 	/// <para>The default implementation does nothing.</para>
@@ -4061,6 +4101,18 @@ public partial class EParserBaseListener : IEParserListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitModulo([NotNull] EParser.ModuloContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="EParser.native_widget_declaration"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterNative_widget_declaration([NotNull] EParser.Native_widget_declarationContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="EParser.native_widget_declaration"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitNative_widget_declaration([NotNull] EParser.Native_widget_declarationContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by the <c>JavascriptReturnStatement</c>
 	/// labeled alternative in <see cref="EParser.javascript_statement"/>.

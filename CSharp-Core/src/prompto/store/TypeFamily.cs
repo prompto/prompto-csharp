@@ -38,6 +38,7 @@ namespace prompto.store
 		TYPE,
 		CODE,
 		JSX,
+		HTML,
 		// volatile
 		MISSING
 	}

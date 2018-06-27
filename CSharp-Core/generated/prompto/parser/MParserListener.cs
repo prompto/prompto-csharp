@@ -92,6 +92,16 @@ public interface IMParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitIndex_clause([NotNull] MParser.Index_clauseContext context);
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="MParser.concrete_widget_declaration"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterConcrete_widget_declaration([NotNull] MParser.Concrete_widget_declarationContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="MParser.concrete_widget_declaration"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitConcrete_widget_declaration([NotNull] MParser.Concrete_widget_declarationContext context);
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="MParser.concrete_category_declaration"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
@@ -2040,6 +2050,18 @@ public interface IMParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitUUIDType([NotNull] MParser.UUIDTypeContext context);
 	/// <summary>
+	/// Enter a parse tree produced by the <c>HtmlType</c>
+	/// labeled alternative in <see cref="MParser.native_type"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterHtmlType([NotNull] MParser.HtmlTypeContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>HtmlType</c>
+	/// labeled alternative in <see cref="MParser.native_type"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitHtmlType([NotNull] MParser.HtmlTypeContext context);
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="MParser.category_type"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
@@ -2105,6 +2127,18 @@ public interface IMParserListener : IParseTreeListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void ExitSingletonCategoryDeclaration([NotNull] MParser.SingletonCategoryDeclarationContext context);
+	/// <summary>
+	/// Enter a parse tree produced by the <c>ConcreteWidgetDeclaration</c>
+	/// labeled alternative in <see cref="MParser.widget_declaration"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterConcreteWidgetDeclaration([NotNull] MParser.ConcreteWidgetDeclarationContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>ConcreteWidgetDeclaration</c>
+	/// labeled alternative in <see cref="MParser.widget_declaration"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitConcreteWidgetDeclaration([NotNull] MParser.ConcreteWidgetDeclarationContext context);
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="MParser.type_identifier_list"/>.
 	/// </summary>
@@ -3301,6 +3335,16 @@ public interface IMParserListener : IParseTreeListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void ExitModulo([NotNull] MParser.ModuloContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="MParser.native_widget_declaration"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterNative_widget_declaration([NotNull] MParser.Native_widget_declarationContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="MParser.native_widget_declaration"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitNative_widget_declaration([NotNull] MParser.Native_widget_declarationContext context);
 	/// <summary>
 	/// Enter a parse tree produced by the <c>JavascriptReturnStatement</c>
 	/// labeled alternative in <see cref="MParser.javascript_statement"/>.

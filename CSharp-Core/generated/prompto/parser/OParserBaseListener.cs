@@ -96,6 +96,18 @@ public partial class OParserBaseListener : IOParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitAttribute_declaration([NotNull] OParser.Attribute_declarationContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="OParser.concrete_widget_declaration"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterConcrete_widget_declaration([NotNull] OParser.Concrete_widget_declarationContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="OParser.concrete_widget_declaration"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitConcrete_widget_declaration([NotNull] OParser.Concrete_widget_declarationContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="OParser.concrete_category_declaration"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
@@ -2438,6 +2450,20 @@ public partial class OParserBaseListener : IOParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitUUIDType([NotNull] OParser.UUIDTypeContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by the <c>HtmlType</c>
+	/// labeled alternative in <see cref="OParser.native_type"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterHtmlType([NotNull] OParser.HtmlTypeContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by the <c>HtmlType</c>
+	/// labeled alternative in <see cref="OParser.native_type"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitHtmlType([NotNull] OParser.HtmlTypeContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="OParser.category_type"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
@@ -2515,6 +2541,20 @@ public partial class OParserBaseListener : IOParserListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitSingletonCategoryDeclaration([NotNull] OParser.SingletonCategoryDeclarationContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by the <c>ConcreteWidgetDeclaration</c>
+	/// labeled alternative in <see cref="OParser.widget_declaration"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterConcreteWidgetDeclaration([NotNull] OParser.ConcreteWidgetDeclarationContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by the <c>ConcreteWidgetDeclaration</c>
+	/// labeled alternative in <see cref="OParser.widget_declaration"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitConcreteWidgetDeclaration([NotNull] OParser.ConcreteWidgetDeclarationContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="OParser.type_identifier_list"/>.
 	/// <para>The default implementation does nothing.</para>
@@ -3953,6 +3993,18 @@ public partial class OParserBaseListener : IOParserListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitLfp([NotNull] OParser.LfpContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="OParser.native_widget_declaration"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterNative_widget_declaration([NotNull] OParser.Native_widget_declarationContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="OParser.native_widget_declaration"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitNative_widget_declaration([NotNull] OParser.Native_widget_declarationContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by the <c>JavascriptReturnStatement</c>
 	/// labeled alternative in <see cref="OParser.javascript_statement"/>.

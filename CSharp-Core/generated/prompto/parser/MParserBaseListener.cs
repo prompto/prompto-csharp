@@ -108,6 +108,18 @@ public partial class MParserBaseListener : IMParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitIndex_clause([NotNull] MParser.Index_clauseContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="MParser.concrete_widget_declaration"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterConcrete_widget_declaration([NotNull] MParser.Concrete_widget_declarationContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="MParser.concrete_widget_declaration"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitConcrete_widget_declaration([NotNull] MParser.Concrete_widget_declarationContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="MParser.concrete_category_declaration"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
@@ -2400,6 +2412,20 @@ public partial class MParserBaseListener : IMParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitUUIDType([NotNull] MParser.UUIDTypeContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by the <c>HtmlType</c>
+	/// labeled alternative in <see cref="MParser.native_type"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterHtmlType([NotNull] MParser.HtmlTypeContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by the <c>HtmlType</c>
+	/// labeled alternative in <see cref="MParser.native_type"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitHtmlType([NotNull] MParser.HtmlTypeContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="MParser.category_type"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
@@ -2477,6 +2503,20 @@ public partial class MParserBaseListener : IMParserListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitSingletonCategoryDeclaration([NotNull] MParser.SingletonCategoryDeclarationContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by the <c>ConcreteWidgetDeclaration</c>
+	/// labeled alternative in <see cref="MParser.widget_declaration"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterConcreteWidgetDeclaration([NotNull] MParser.ConcreteWidgetDeclarationContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by the <c>ConcreteWidgetDeclaration</c>
+	/// labeled alternative in <see cref="MParser.widget_declaration"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitConcreteWidgetDeclaration([NotNull] MParser.ConcreteWidgetDeclarationContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="MParser.type_identifier_list"/>.
 	/// <para>The default implementation does nothing.</para>
@@ -3891,6 +3931,18 @@ public partial class MParserBaseListener : IMParserListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitModulo([NotNull] MParser.ModuloContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="MParser.native_widget_declaration"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterNative_widget_declaration([NotNull] MParser.Native_widget_declarationContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="MParser.native_widget_declaration"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitNative_widget_declaration([NotNull] MParser.Native_widget_declarationContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by the <c>JavascriptReturnStatement</c>
 	/// labeled alternative in <see cref="MParser.javascript_statement"/>.

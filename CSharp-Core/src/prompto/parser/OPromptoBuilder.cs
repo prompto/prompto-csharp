@@ -421,6 +421,11 @@ namespace prompto.parser
 			SetNodeValue (ctx, TextType.Instance);
 		}
 
+		public override void ExitHtmlType(OParser.HtmlTypeContext ctx)
+		{
+			SetNodeValue(ctx, HtmlType.Instance);
+		}
+
 		public override void ExitThisExpression (OParser.ThisExpressionContext ctx)
 		{
 			SetNodeValue (ctx, new ThisExpression ());
@@ -538,11 +543,27 @@ namespace prompto.parser
 			SetNodeValue (ctx, decl);
 		}
 
+
+		public override void ExitConcrete_widget_declaration(OParser.Concrete_widget_declarationContext ctx)
+		{
+			String name = this.GetNodeValue< String > (ctx.name);
+			String derived = this.GetNodeValue< String > (ctx.derived);
+			MethodDeclarationList methods = this. GetNodeValue< MethodDeclarationList >(ctx.methods);
+			ConcreteWidgetDeclaration decl = new ConcreteWidgetDeclaration(name, derived, methods);
+			SetNodeValue(ctx, decl);
+		}
+
 		public override void ExitConcreteCategoryDeclaration (OParser.ConcreteCategoryDeclarationContext ctx)
 		{
-			ConcreteCategoryDeclaration decl = this.GetNodeValue<ConcreteCategoryDeclaration> (ctx.decl);
-			SetNodeValue (ctx, decl);
+	        SetNodeValue(ctx, this.GetNodeValue<Object> (ctx.decl));
 		}
+
+
+		public override void ExitConcreteWidgetDeclaration(OParser.ConcreteWidgetDeclarationContext ctx)
+		{
+            SetNodeValue(ctx, this.GetNodeValue<Object> (ctx.decl));
+		}
+
 
 		public override void ExitDerivedList (OParser.DerivedListContext ctx)
 		{
@@ -1286,6 +1307,8 @@ namespace prompto.parser
 				ctx_ = ctx.method_declaration();
 			if(ctx_==null)
 				ctx_ = ctx.resource_declaration();
+			if(ctx_==null)
+				ctx_ = ctx.widget_declaration();
 			IDeclaration decl = this.GetNodeValue<IDeclaration>(ctx_);
 			if(decl!=null) {
 				decl.Comments = stmts;
