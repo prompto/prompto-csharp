@@ -824,42 +824,6 @@ public interface IEParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitHasExpression([NotNull] EParser.HasExpressionContext context);
 	/// <summary>
-	/// Enter a parse tree produced by the <c>TernaryExpression</c>
-	/// labeled alternative in <see cref="EParser.expression"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterTernaryExpression([NotNull] EParser.TernaryExpressionContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>TernaryExpression</c>
-	/// labeled alternative in <see cref="EParser.expression"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitTernaryExpression([NotNull] EParser.TernaryExpressionContext context);
-	/// <summary>
-	/// Enter a parse tree produced by the <c>FetchStoreExpression</c>
-	/// labeled alternative in <see cref="EParser.expression"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterFetchStoreExpression([NotNull] EParser.FetchStoreExpressionContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>FetchStoreExpression</c>
-	/// labeled alternative in <see cref="EParser.expression"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitFetchStoreExpression([NotNull] EParser.FetchStoreExpressionContext context);
-	/// <summary>
-	/// Enter a parse tree produced by the <c>NotEqualsExpression</c>
-	/// labeled alternative in <see cref="EParser.expression"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterNotEqualsExpression([NotNull] EParser.NotEqualsExpressionContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>NotEqualsExpression</c>
-	/// labeled alternative in <see cref="EParser.expression"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitNotEqualsExpression([NotNull] EParser.NotEqualsExpressionContext context);
-	/// <summary>
 	/// Enter a parse tree produced by the <c>InExpression</c>
 	/// labeled alternative in <see cref="EParser.expression"/>.
 	/// </summary>
@@ -871,18 +835,6 @@ public interface IEParserListener : IParseTreeListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void ExitInExpression([NotNull] EParser.InExpressionContext context);
-	/// <summary>
-	/// Enter a parse tree produced by the <c>DocumentExpression</c>
-	/// labeled alternative in <see cref="EParser.expression"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterDocumentExpression([NotNull] EParser.DocumentExpressionContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>DocumentExpression</c>
-	/// labeled alternative in <see cref="EParser.expression"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitDocumentExpression([NotNull] EParser.DocumentExpressionContext context);
 	/// <summary>
 	/// Enter a parse tree produced by the <c>JsxExpression</c>
 	/// labeled alternative in <see cref="EParser.expression"/>.
@@ -896,18 +848,6 @@ public interface IEParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitJsxExpression([NotNull] EParser.JsxExpressionContext context);
 	/// <summary>
-	/// Enter a parse tree produced by the <c>NotExpression</c>
-	/// labeled alternative in <see cref="EParser.expression"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterNotExpression([NotNull] EParser.NotExpressionContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>NotExpression</c>
-	/// labeled alternative in <see cref="EParser.expression"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitNotExpression([NotNull] EParser.NotExpressionContext context);
-	/// <summary>
 	/// Enter a parse tree produced by the <c>GreaterThanExpression</c>
 	/// labeled alternative in <see cref="EParser.expression"/>.
 	/// </summary>
@@ -920,18 +860,6 @@ public interface IEParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitGreaterThanExpression([NotNull] EParser.GreaterThanExpressionContext context);
 	/// <summary>
-	/// Enter a parse tree produced by the <c>InvocationExpression</c>
-	/// labeled alternative in <see cref="EParser.expression"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterInvocationExpression([NotNull] EParser.InvocationExpressionContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>InvocationExpression</c>
-	/// labeled alternative in <see cref="EParser.expression"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitInvocationExpression([NotNull] EParser.InvocationExpressionContext context);
-	/// <summary>
 	/// Enter a parse tree produced by the <c>OrExpression</c>
 	/// labeled alternative in <see cref="EParser.expression"/>.
 	/// </summary>
@@ -943,42 +871,6 @@ public interface IEParserListener : IParseTreeListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void ExitOrExpression([NotNull] EParser.OrExpressionContext context);
-	/// <summary>
-	/// Enter a parse tree produced by the <c>CodeExpression</c>
-	/// labeled alternative in <see cref="EParser.expression"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterCodeExpression([NotNull] EParser.CodeExpressionContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>CodeExpression</c>
-	/// labeled alternative in <see cref="EParser.expression"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitCodeExpression([NotNull] EParser.CodeExpressionContext context);
-	/// <summary>
-	/// Enter a parse tree produced by the <c>AmbiguousExpression</c>
-	/// labeled alternative in <see cref="EParser.expression"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterAmbiguousExpression([NotNull] EParser.AmbiguousExpressionContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>AmbiguousExpression</c>
-	/// labeled alternative in <see cref="EParser.expression"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitAmbiguousExpression([NotNull] EParser.AmbiguousExpressionContext context);
-	/// <summary>
-	/// Enter a parse tree produced by the <c>LessThanOrEqualExpression</c>
-	/// labeled alternative in <see cref="EParser.expression"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterLessThanOrEqualExpression([NotNull] EParser.LessThanOrEqualExpressionContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>LessThanOrEqualExpression</c>
-	/// labeled alternative in <see cref="EParser.expression"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitLessThanOrEqualExpression([NotNull] EParser.LessThanOrEqualExpressionContext context);
 	/// <summary>
 	/// Enter a parse tree produced by the <c>ReadOneExpression</c>
 	/// labeled alternative in <see cref="EParser.expression"/>.
@@ -1040,18 +932,6 @@ public interface IEParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitNotHasExpression([NotNull] EParser.NotHasExpressionContext context);
 	/// <summary>
-	/// Enter a parse tree produced by the <c>ClosureExpression</c>
-	/// labeled alternative in <see cref="EParser.expression"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterClosureExpression([NotNull] EParser.ClosureExpressionContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>ClosureExpression</c>
-	/// labeled alternative in <see cref="EParser.expression"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitClosureExpression([NotNull] EParser.ClosureExpressionContext context);
-	/// <summary>
 	/// Enter a parse tree produced by the <c>SortedExpression</c>
 	/// labeled alternative in <see cref="EParser.expression"/>.
 	/// </summary>
@@ -1076,18 +956,6 @@ public interface IEParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitNotHasAllExpression([NotNull] EParser.NotHasAllExpressionContext context);
 	/// <summary>
-	/// Enter a parse tree produced by the <c>BlobExpression</c>
-	/// labeled alternative in <see cref="EParser.expression"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterBlobExpression([NotNull] EParser.BlobExpressionContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>BlobExpression</c>
-	/// labeled alternative in <see cref="EParser.expression"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitBlobExpression([NotNull] EParser.BlobExpressionContext context);
-	/// <summary>
 	/// Enter a parse tree produced by the <c>ContainsExpression</c>
 	/// labeled alternative in <see cref="EParser.expression"/>.
 	/// </summary>
@@ -1100,30 +968,6 @@ public interface IEParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitContainsExpression([NotNull] EParser.ContainsExpressionContext context);
 	/// <summary>
-	/// Enter a parse tree produced by the <c>FilteredListExpression</c>
-	/// labeled alternative in <see cref="EParser.expression"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterFilteredListExpression([NotNull] EParser.FilteredListExpressionContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>FilteredListExpression</c>
-	/// labeled alternative in <see cref="EParser.expression"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitFilteredListExpression([NotNull] EParser.FilteredListExpressionContext context);
-	/// <summary>
-	/// Enter a parse tree produced by the <c>ConstructorExpression</c>
-	/// labeled alternative in <see cref="EParser.expression"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterConstructorExpression([NotNull] EParser.ConstructorExpressionContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>ConstructorExpression</c>
-	/// labeled alternative in <see cref="EParser.expression"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitConstructorExpression([NotNull] EParser.ConstructorExpressionContext context);
-	/// <summary>
 	/// Enter a parse tree produced by the <c>NotContainsExpression</c>
 	/// labeled alternative in <see cref="EParser.expression"/>.
 	/// </summary>
@@ -1135,18 +979,6 @@ public interface IEParserListener : IParseTreeListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void ExitNotContainsExpression([NotNull] EParser.NotContainsExpressionContext context);
-	/// <summary>
-	/// Enter a parse tree produced by the <c>MultiplyExpression</c>
-	/// labeled alternative in <see cref="EParser.expression"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterMultiplyExpression([NotNull] EParser.MultiplyExpressionContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>MultiplyExpression</c>
-	/// labeled alternative in <see cref="EParser.expression"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitMultiplyExpression([NotNull] EParser.MultiplyExpressionContext context);
 	/// <summary>
 	/// Enter a parse tree produced by the <c>RoughlyEqualsExpression</c>
 	/// labeled alternative in <see cref="EParser.expression"/>.
@@ -1184,18 +1016,6 @@ public interface IEParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitGreaterThanOrEqualExpression([NotNull] EParser.GreaterThanOrEqualExpressionContext context);
 	/// <summary>
-	/// Enter a parse tree produced by the <c>NotInExpression</c>
-	/// labeled alternative in <see cref="EParser.expression"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterNotInExpression([NotNull] EParser.NotInExpressionContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>NotInExpression</c>
-	/// labeled alternative in <see cref="EParser.expression"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitNotInExpression([NotNull] EParser.NotInExpressionContext context);
-	/// <summary>
 	/// Enter a parse tree produced by the <c>IteratorExpression</c>
 	/// labeled alternative in <see cref="EParser.expression"/>.
 	/// </summary>
@@ -1207,18 +1027,6 @@ public interface IEParserListener : IParseTreeListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void ExitIteratorExpression([NotNull] EParser.IteratorExpressionContext context);
-	/// <summary>
-	/// Enter a parse tree produced by the <c>UnresolvedExpression</c>
-	/// labeled alternative in <see cref="EParser.expression"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterUnresolvedExpression([NotNull] EParser.UnresolvedExpressionContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>UnresolvedExpression</c>
-	/// labeled alternative in <see cref="EParser.expression"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitUnresolvedExpression([NotNull] EParser.UnresolvedExpressionContext context);
 	/// <summary>
 	/// Enter a parse tree produced by the <c>IsNotExpression</c>
 	/// labeled alternative in <see cref="EParser.expression"/>.
@@ -1256,18 +1064,6 @@ public interface IEParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitIsExpression([NotNull] EParser.IsExpressionContext context);
 	/// <summary>
-	/// Enter a parse tree produced by the <c>MinusExpression</c>
-	/// labeled alternative in <see cref="EParser.expression"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterMinusExpression([NotNull] EParser.MinusExpressionContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>MinusExpression</c>
-	/// labeled alternative in <see cref="EParser.expression"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitMinusExpression([NotNull] EParser.MinusExpressionContext context);
-	/// <summary>
 	/// Enter a parse tree produced by the <c>AddExpression</c>
 	/// labeled alternative in <see cref="EParser.expression"/>.
 	/// </summary>
@@ -1279,18 +1075,6 @@ public interface IEParserListener : IParseTreeListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void ExitAddExpression([NotNull] EParser.AddExpressionContext context);
-	/// <summary>
-	/// Enter a parse tree produced by the <c>HasAllExpression</c>
-	/// labeled alternative in <see cref="EParser.expression"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterHasAllExpression([NotNull] EParser.HasAllExpressionContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>HasAllExpression</c>
-	/// labeled alternative in <see cref="EParser.expression"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitHasAllExpression([NotNull] EParser.HasAllExpressionContext context);
 	/// <summary>
 	/// Enter a parse tree produced by the <c>InstanceExpression</c>
 	/// labeled alternative in <see cref="EParser.expression"/>.
@@ -1339,6 +1123,234 @@ public interface IEParserListener : IParseTreeListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void ExitModuloExpression([NotNull] EParser.ModuloExpressionContext context);
+	/// <summary>
+	/// Enter a parse tree produced by the <c>TernaryExpression</c>
+	/// labeled alternative in <see cref="EParser.expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterTernaryExpression([NotNull] EParser.TernaryExpressionContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>TernaryExpression</c>
+	/// labeled alternative in <see cref="EParser.expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitTernaryExpression([NotNull] EParser.TernaryExpressionContext context);
+	/// <summary>
+	/// Enter a parse tree produced by the <c>FetchStoreExpression</c>
+	/// labeled alternative in <see cref="EParser.expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterFetchStoreExpression([NotNull] EParser.FetchStoreExpressionContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>FetchStoreExpression</c>
+	/// labeled alternative in <see cref="EParser.expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitFetchStoreExpression([NotNull] EParser.FetchStoreExpressionContext context);
+	/// <summary>
+	/// Enter a parse tree produced by the <c>NotEqualsExpression</c>
+	/// labeled alternative in <see cref="EParser.expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterNotEqualsExpression([NotNull] EParser.NotEqualsExpressionContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>NotEqualsExpression</c>
+	/// labeled alternative in <see cref="EParser.expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitNotEqualsExpression([NotNull] EParser.NotEqualsExpressionContext context);
+	/// <summary>
+	/// Enter a parse tree produced by the <c>DocumentExpression</c>
+	/// labeled alternative in <see cref="EParser.expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterDocumentExpression([NotNull] EParser.DocumentExpressionContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>DocumentExpression</c>
+	/// labeled alternative in <see cref="EParser.expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitDocumentExpression([NotNull] EParser.DocumentExpressionContext context);
+	/// <summary>
+	/// Enter a parse tree produced by the <c>NotExpression</c>
+	/// labeled alternative in <see cref="EParser.expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterNotExpression([NotNull] EParser.NotExpressionContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>NotExpression</c>
+	/// labeled alternative in <see cref="EParser.expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitNotExpression([NotNull] EParser.NotExpressionContext context);
+	/// <summary>
+	/// Enter a parse tree produced by the <c>InvocationExpression</c>
+	/// labeled alternative in <see cref="EParser.expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterInvocationExpression([NotNull] EParser.InvocationExpressionContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>InvocationExpression</c>
+	/// labeled alternative in <see cref="EParser.expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitInvocationExpression([NotNull] EParser.InvocationExpressionContext context);
+	/// <summary>
+	/// Enter a parse tree produced by the <c>CodeExpression</c>
+	/// labeled alternative in <see cref="EParser.expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterCodeExpression([NotNull] EParser.CodeExpressionContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>CodeExpression</c>
+	/// labeled alternative in <see cref="EParser.expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitCodeExpression([NotNull] EParser.CodeExpressionContext context);
+	/// <summary>
+	/// Enter a parse tree produced by the <c>AmbiguousExpression</c>
+	/// labeled alternative in <see cref="EParser.expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterAmbiguousExpression([NotNull] EParser.AmbiguousExpressionContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>AmbiguousExpression</c>
+	/// labeled alternative in <see cref="EParser.expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitAmbiguousExpression([NotNull] EParser.AmbiguousExpressionContext context);
+	/// <summary>
+	/// Enter a parse tree produced by the <c>LessThanOrEqualExpression</c>
+	/// labeled alternative in <see cref="EParser.expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterLessThanOrEqualExpression([NotNull] EParser.LessThanOrEqualExpressionContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>LessThanOrEqualExpression</c>
+	/// labeled alternative in <see cref="EParser.expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitLessThanOrEqualExpression([NotNull] EParser.LessThanOrEqualExpressionContext context);
+	/// <summary>
+	/// Enter a parse tree produced by the <c>ClosureExpression</c>
+	/// labeled alternative in <see cref="EParser.expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterClosureExpression([NotNull] EParser.ClosureExpressionContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>ClosureExpression</c>
+	/// labeled alternative in <see cref="EParser.expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitClosureExpression([NotNull] EParser.ClosureExpressionContext context);
+	/// <summary>
+	/// Enter a parse tree produced by the <c>BlobExpression</c>
+	/// labeled alternative in <see cref="EParser.expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterBlobExpression([NotNull] EParser.BlobExpressionContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>BlobExpression</c>
+	/// labeled alternative in <see cref="EParser.expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitBlobExpression([NotNull] EParser.BlobExpressionContext context);
+	/// <summary>
+	/// Enter a parse tree produced by the <c>FilteredListExpression</c>
+	/// labeled alternative in <see cref="EParser.expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterFilteredListExpression([NotNull] EParser.FilteredListExpressionContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>FilteredListExpression</c>
+	/// labeled alternative in <see cref="EParser.expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitFilteredListExpression([NotNull] EParser.FilteredListExpressionContext context);
+	/// <summary>
+	/// Enter a parse tree produced by the <c>ConstructorExpression</c>
+	/// labeled alternative in <see cref="EParser.expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterConstructorExpression([NotNull] EParser.ConstructorExpressionContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>ConstructorExpression</c>
+	/// labeled alternative in <see cref="EParser.expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitConstructorExpression([NotNull] EParser.ConstructorExpressionContext context);
+	/// <summary>
+	/// Enter a parse tree produced by the <c>MultiplyExpression</c>
+	/// labeled alternative in <see cref="EParser.expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterMultiplyExpression([NotNull] EParser.MultiplyExpressionContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>MultiplyExpression</c>
+	/// labeled alternative in <see cref="EParser.expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitMultiplyExpression([NotNull] EParser.MultiplyExpressionContext context);
+	/// <summary>
+	/// Enter a parse tree produced by the <c>NotInExpression</c>
+	/// labeled alternative in <see cref="EParser.expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterNotInExpression([NotNull] EParser.NotInExpressionContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>NotInExpression</c>
+	/// labeled alternative in <see cref="EParser.expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitNotInExpression([NotNull] EParser.NotInExpressionContext context);
+	/// <summary>
+	/// Enter a parse tree produced by the <c>UnresolvedExpression</c>
+	/// labeled alternative in <see cref="EParser.expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterUnresolvedExpression([NotNull] EParser.UnresolvedExpressionContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>UnresolvedExpression</c>
+	/// labeled alternative in <see cref="EParser.expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitUnresolvedExpression([NotNull] EParser.UnresolvedExpressionContext context);
+	/// <summary>
+	/// Enter a parse tree produced by the <c>MinusExpression</c>
+	/// labeled alternative in <see cref="EParser.expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterMinusExpression([NotNull] EParser.MinusExpressionContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>MinusExpression</c>
+	/// labeled alternative in <see cref="EParser.expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitMinusExpression([NotNull] EParser.MinusExpressionContext context);
+	/// <summary>
+	/// Enter a parse tree produced by the <c>HasAllExpression</c>
+	/// labeled alternative in <see cref="EParser.expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterHasAllExpression([NotNull] EParser.HasAllExpressionContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>HasAllExpression</c>
+	/// labeled alternative in <see cref="EParser.expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitHasAllExpression([NotNull] EParser.HasAllExpressionContext context);
+	/// <summary>
+	/// Enter a parse tree produced by the <c>CssExpression</c>
+	/// labeled alternative in <see cref="EParser.expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterCssExpression([NotNull] EParser.CssExpressionContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>CssExpression</c>
+	/// labeled alternative in <see cref="EParser.expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitCssExpression([NotNull] EParser.CssExpressionContext context);
 	/// <summary>
 	/// Enter a parse tree produced by the <c>LessThanExpression</c>
 	/// labeled alternative in <see cref="EParser.expression"/>.
@@ -2305,6 +2317,36 @@ public interface IEParserListener : IParseTreeListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void ExitMethod_identifier([NotNull] EParser.Method_identifierContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="EParser.identifier_or_keyword"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterIdentifier_or_keyword([NotNull] EParser.Identifier_or_keywordContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="EParser.identifier_or_keyword"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitIdentifier_or_keyword([NotNull] EParser.Identifier_or_keywordContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="EParser.nospace_hyphen_identifier_or_keyword"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterNospace_hyphen_identifier_or_keyword([NotNull] EParser.Nospace_hyphen_identifier_or_keywordContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="EParser.nospace_hyphen_identifier_or_keyword"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitNospace_hyphen_identifier_or_keyword([NotNull] EParser.Nospace_hyphen_identifier_or_keywordContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="EParser.nospace_identifier_or_keyword"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterNospace_identifier_or_keyword([NotNull] EParser.Nospace_identifier_or_keywordContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="EParser.nospace_identifier_or_keyword"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitNospace_identifier_or_keyword([NotNull] EParser.Nospace_identifier_or_keywordContext context);
 	/// <summary>
 	/// Enter a parse tree produced by the <c>VariableIdentifier</c>
 	/// labeled alternative in <see cref="EParser.identifier"/>.
@@ -4742,36 +4784,6 @@ public interface IEParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitJsx_identifier([NotNull] EParser.Jsx_identifierContext context);
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="EParser.jsx_hyphen_identifier"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterJsx_hyphen_identifier([NotNull] EParser.Jsx_hyphen_identifierContext context);
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="EParser.jsx_hyphen_identifier"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitJsx_hyphen_identifier([NotNull] EParser.Jsx_hyphen_identifierContext context);
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="EParser.hyphen_identifier"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterHyphen_identifier([NotNull] EParser.Hyphen_identifierContext context);
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="EParser.hyphen_identifier"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitHyphen_identifier([NotNull] EParser.Hyphen_identifierContext context);
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="EParser.identifier_or_keyword"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterIdentifier_or_keyword([NotNull] EParser.Identifier_or_keywordContext context);
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="EParser.identifier_or_keyword"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitIdentifier_or_keyword([NotNull] EParser.Identifier_or_keywordContext context);
-	/// <summary>
 	/// Enter a parse tree produced by <see cref="EParser.jsx_attribute"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
@@ -4861,5 +4873,69 @@ public interface IEParserListener : IParseTreeListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void ExitJsx_text([NotNull] EParser.Jsx_textContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="EParser.css_expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterCss_expression([NotNull] EParser.Css_expressionContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="EParser.css_expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitCss_expression([NotNull] EParser.Css_expressionContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="EParser.css_field"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterCss_field([NotNull] EParser.Css_fieldContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="EParser.css_field"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitCss_field([NotNull] EParser.Css_fieldContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="EParser.css_identifier"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterCss_identifier([NotNull] EParser.Css_identifierContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="EParser.css_identifier"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitCss_identifier([NotNull] EParser.Css_identifierContext context);
+	/// <summary>
+	/// Enter a parse tree produced by the <c>CssValue</c>
+	/// labeled alternative in <see cref="EParser.css_value"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterCssValue([NotNull] EParser.CssValueContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>CssValue</c>
+	/// labeled alternative in <see cref="EParser.css_value"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitCssValue([NotNull] EParser.CssValueContext context);
+	/// <summary>
+	/// Enter a parse tree produced by the <c>CssText</c>
+	/// labeled alternative in <see cref="EParser.css_value"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterCssText([NotNull] EParser.CssTextContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>CssText</c>
+	/// labeled alternative in <see cref="EParser.css_value"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitCssText([NotNull] EParser.CssTextContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="EParser.css_text"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterCss_text([NotNull] EParser.Css_textContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="EParser.css_text"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitCss_text([NotNull] EParser.Css_textContext context);
 }
 } // namespace prompto.parser

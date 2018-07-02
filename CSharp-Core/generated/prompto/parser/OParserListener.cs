@@ -860,6 +860,16 @@ public interface IOParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitCallableItemSelector([NotNull] OParser.CallableItemSelectorContext context);
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="OParser.x_expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterX_expression([NotNull] OParser.X_expressionContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="OParser.x_expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitX_expression([NotNull] OParser.X_expressionContext context);
+	/// <summary>
 	/// Enter a parse tree produced by the <c>IntDivideExpression</c>
 	/// labeled alternative in <see cref="OParser.expression"/>.
 	/// </summary>
@@ -1279,6 +1289,18 @@ public interface IOParserListener : IParseTreeListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void ExitInstanceExpression([NotNull] OParser.InstanceExpressionContext context);
+	/// <summary>
+	/// Enter a parse tree produced by the <c>CssExpression</c>
+	/// labeled alternative in <see cref="OParser.expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterCssExpression([NotNull] OParser.CssExpressionContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>CssExpression</c>
+	/// labeled alternative in <see cref="OParser.expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitCssExpression([NotNull] OParser.CssExpressionContext context);
 	/// <summary>
 	/// Enter a parse tree produced by the <c>CastExpression</c>
 	/// labeled alternative in <see cref="OParser.expression"/>.
@@ -2193,6 +2215,36 @@ public interface IOParserListener : IParseTreeListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void ExitMethod_identifier([NotNull] OParser.Method_identifierContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="OParser.identifier_or_keyword"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterIdentifier_or_keyword([NotNull] OParser.Identifier_or_keywordContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="OParser.identifier_or_keyword"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitIdentifier_or_keyword([NotNull] OParser.Identifier_or_keywordContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="OParser.nospace_hyphen_identifier_or_keyword"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterNospace_hyphen_identifier_or_keyword([NotNull] OParser.Nospace_hyphen_identifier_or_keywordContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="OParser.nospace_hyphen_identifier_or_keyword"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitNospace_hyphen_identifier_or_keyword([NotNull] OParser.Nospace_hyphen_identifier_or_keywordContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="OParser.nospace_identifier_or_keyword"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterNospace_identifier_or_keyword([NotNull] OParser.Nospace_identifier_or_keywordContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="OParser.nospace_identifier_or_keyword"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitNospace_identifier_or_keyword([NotNull] OParser.Nospace_identifier_or_keywordContext context);
 	/// <summary>
 	/// Enter a parse tree produced by the <c>VariableIdentifier</c>
 	/// labeled alternative in <see cref="OParser.identifier"/>.
@@ -4650,36 +4702,6 @@ public interface IOParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitJsx_identifier([NotNull] OParser.Jsx_identifierContext context);
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="OParser.jsx_hyphen_identifier"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterJsx_hyphen_identifier([NotNull] OParser.Jsx_hyphen_identifierContext context);
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="OParser.jsx_hyphen_identifier"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitJsx_hyphen_identifier([NotNull] OParser.Jsx_hyphen_identifierContext context);
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="OParser.hyphen_identifier"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterHyphen_identifier([NotNull] OParser.Hyphen_identifierContext context);
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="OParser.hyphen_identifier"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitHyphen_identifier([NotNull] OParser.Hyphen_identifierContext context);
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="OParser.identifier_or_keyword"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterIdentifier_or_keyword([NotNull] OParser.Identifier_or_keywordContext context);
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="OParser.identifier_or_keyword"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitIdentifier_or_keyword([NotNull] OParser.Identifier_or_keywordContext context);
-	/// <summary>
 	/// Enter a parse tree produced by <see cref="OParser.jsx_attribute"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
@@ -4769,5 +4791,69 @@ public interface IOParserListener : IParseTreeListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void ExitJsx_text([NotNull] OParser.Jsx_textContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="OParser.css_expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterCss_expression([NotNull] OParser.Css_expressionContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="OParser.css_expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitCss_expression([NotNull] OParser.Css_expressionContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="OParser.css_field"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterCss_field([NotNull] OParser.Css_fieldContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="OParser.css_field"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitCss_field([NotNull] OParser.Css_fieldContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="OParser.css_identifier"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterCss_identifier([NotNull] OParser.Css_identifierContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="OParser.css_identifier"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitCss_identifier([NotNull] OParser.Css_identifierContext context);
+	/// <summary>
+	/// Enter a parse tree produced by the <c>CssValue</c>
+	/// labeled alternative in <see cref="OParser.css_value"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterCssValue([NotNull] OParser.CssValueContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>CssValue</c>
+	/// labeled alternative in <see cref="OParser.css_value"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitCssValue([NotNull] OParser.CssValueContext context);
+	/// <summary>
+	/// Enter a parse tree produced by the <c>CssText</c>
+	/// labeled alternative in <see cref="OParser.css_value"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterCssText([NotNull] OParser.CssTextContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>CssText</c>
+	/// labeled alternative in <see cref="OParser.css_value"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitCssText([NotNull] OParser.CssTextContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="OParser.css_text"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterCss_text([NotNull] OParser.Css_textContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="OParser.css_text"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitCss_text([NotNull] OParser.Css_textContext context);
 }
 } // namespace prompto.parser

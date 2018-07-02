@@ -17,6 +17,7 @@ using prompto.argument;
 using prompto.constraint;
 using prompto.instance;
 using prompto.jsx;
+using prompto.css;
 
 namespace prompto.parser
 {
@@ -1747,6 +1748,46 @@ namespace prompto.parser
 			SetNodeValue(ctx, new JsxSelfClosing(name, attributes));
 		}
 
+
+
+		public override void ExitCssExpression(OParser.CssExpressionContext ctx)
+		{
+			SetNodeValue(ctx, this.GetNodeValue<Object>(ctx.exp));
+		}
+
+
+		public override void ExitCss_expression(OParser.Css_expressionContext ctx)
+		{
+			CssExpression exp = new CssExpression();
+			foreach (ParserRuleContext child in ctx.css_field())
+			{
+				exp.AddField(this.GetNodeValue<CssField>(child));
+			}
+			SetNodeValue(ctx, exp);
+		}
+
+
+		public override void ExitCss_field(OParser.Css_fieldContext ctx)
+		{
+			String name = ctx.name.GetText();
+			ICssValue value = this.GetNodeValue<ICssValue>(ctx.value);
+			SetNodeValue(ctx, new CssField(name, value));
+		}
+
+
+
+		public override void ExitCssText(OParser.CssTextContext ctx)
+		{
+			String text = ctx.text.GetText();
+			SetNodeValue(ctx, new CssText(text));
+		}
+
+
+		public override void ExitCssValue(OParser.CssValueContext ctx)
+		{
+			IExpression exp = this.GetNodeValue<IExpression>(ctx.exp);
+			SetNodeValue(ctx, new CssCode(exp));
+		}
 
 
 		public override void ExitKey_token (OParser.Key_tokenContext ctx)

@@ -498,6 +498,13 @@
     <Compile Include="src\prompto\type\JsxType.cs" />
     <Compile Include="src\prompto\declaration\ConcreteWidgetDeclaration.cs" />
     <Compile Include="src\prompto\type\HtmlType.cs" />
+    <Compile Include="src\prompto\css\CssExpression.cs" />
+    <Compile Include="src\prompto\css\CssField.cs" />
+    <Compile Include="src\prompto\css\ICssValue.cs" />
+    <Compile Include="src\prompto\type\CssType.cs" />
+    <Compile Include="src\prompto\value\CssValue.cs" />
+    <Compile Include="src\prompto\css\CssText.cs" />
+    <Compile Include="src\prompto\css\CssCode.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -528,6 +535,7 @@
     <Folder Include="src\prompto\code\" />
     <Folder Include="src\prompto\memstore\" />
     <Folder Include="src\prompto\jsx\" />
+    <Folder Include="src\prompto\css\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -1430,6 +1430,20 @@ public partial class MParserBaseListener : IMParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitInstanceExpression([NotNull] MParser.InstanceExpressionContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by the <c>CssExpression</c>
+	/// labeled alternative in <see cref="MParser.expression"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterCssExpression([NotNull] MParser.CssExpressionContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by the <c>CssExpression</c>
+	/// labeled alternative in <see cref="MParser.expression"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitCssExpression([NotNull] MParser.CssExpressionContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by the <c>CastExpression</c>
 	/// labeled alternative in <see cref="MParser.expression"/>.
 	/// <para>The default implementation does nothing.</para>
@@ -2541,6 +2555,42 @@ public partial class MParserBaseListener : IMParserListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitMethod_identifier([NotNull] MParser.Method_identifierContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="MParser.identifier_or_keyword"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterIdentifier_or_keyword([NotNull] MParser.Identifier_or_keywordContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="MParser.identifier_or_keyword"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitIdentifier_or_keyword([NotNull] MParser.Identifier_or_keywordContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="MParser.nospace_hyphen_identifier_or_keyword"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterNospace_hyphen_identifier_or_keyword([NotNull] MParser.Nospace_hyphen_identifier_or_keywordContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="MParser.nospace_hyphen_identifier_or_keyword"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitNospace_hyphen_identifier_or_keyword([NotNull] MParser.Nospace_hyphen_identifier_or_keywordContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="MParser.nospace_identifier_or_keyword"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterNospace_identifier_or_keyword([NotNull] MParser.Nospace_identifier_or_keywordContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="MParser.nospace_identifier_or_keyword"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitNospace_identifier_or_keyword([NotNull] MParser.Nospace_identifier_or_keywordContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by the <c>VariableIdentifier</c>
 	/// labeled alternative in <see cref="MParser.identifier"/>.
@@ -5414,42 +5464,6 @@ public partial class MParserBaseListener : IMParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitJsx_identifier([NotNull] MParser.Jsx_identifierContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="MParser.jsx_hyphen_identifier"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void EnterJsx_hyphen_identifier([NotNull] MParser.Jsx_hyphen_identifierContext context) { }
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="MParser.jsx_hyphen_identifier"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void ExitJsx_hyphen_identifier([NotNull] MParser.Jsx_hyphen_identifierContext context) { }
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="MParser.hyphen_identifier"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void EnterHyphen_identifier([NotNull] MParser.Hyphen_identifierContext context) { }
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="MParser.hyphen_identifier"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void ExitHyphen_identifier([NotNull] MParser.Hyphen_identifierContext context) { }
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="MParser.identifier_or_keyword"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void EnterIdentifier_or_keyword([NotNull] MParser.Identifier_or_keywordContext context) { }
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="MParser.identifier_or_keyword"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void ExitIdentifier_or_keyword([NotNull] MParser.Identifier_or_keywordContext context) { }
-	/// <summary>
 	/// Enter a parse tree produced by <see cref="MParser.jsx_attribute"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
@@ -5555,6 +5569,82 @@ public partial class MParserBaseListener : IMParserListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitJsx_text([NotNull] MParser.Jsx_textContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="MParser.css_expression"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterCss_expression([NotNull] MParser.Css_expressionContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="MParser.css_expression"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitCss_expression([NotNull] MParser.Css_expressionContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="MParser.css_field"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterCss_field([NotNull] MParser.Css_fieldContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="MParser.css_field"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitCss_field([NotNull] MParser.Css_fieldContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="MParser.css_identifier"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterCss_identifier([NotNull] MParser.Css_identifierContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="MParser.css_identifier"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitCss_identifier([NotNull] MParser.Css_identifierContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by the <c>CssValue</c>
+	/// labeled alternative in <see cref="MParser.css_value"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterCssValue([NotNull] MParser.CssValueContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by the <c>CssValue</c>
+	/// labeled alternative in <see cref="MParser.css_value"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitCssValue([NotNull] MParser.CssValueContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by the <c>CssText</c>
+	/// labeled alternative in <see cref="MParser.css_value"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterCssText([NotNull] MParser.CssTextContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by the <c>CssText</c>
+	/// labeled alternative in <see cref="MParser.css_value"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitCssText([NotNull] MParser.CssTextContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="MParser.css_text"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterCss_text([NotNull] MParser.Css_textContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="MParser.css_text"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitCss_text([NotNull] MParser.Css_textContext context) { }
 
 	/// <inheritdoc/>
 	/// <remarks>The default implementation does nothing.</remarks>

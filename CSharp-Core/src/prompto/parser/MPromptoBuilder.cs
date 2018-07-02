@@ -17,6 +17,7 @@ using prompto.argument;
 using prompto.constraint;
 using prompto.instance;
 using prompto.jsx;
+using prompto.css;
 
 namespace prompto.parser
 {
@@ -2917,6 +2918,46 @@ namespace prompto.parser
 			foreach (ParserRuleContext child in ctx.jsx_attribute())
 				attributes.Add(this.GetNodeValue<JsxAttribute>(child));
 			SetNodeValue(ctx, new JsxSelfClosing(name, attributes));
+		}
+
+
+		public override void ExitCssExpression(MParser.CssExpressionContext ctx)
+		{
+			SetNodeValue(ctx, this.GetNodeValue<Object>(ctx.exp));
+		}
+
+
+		public override void ExitCss_expression(MParser.Css_expressionContext ctx)
+		{
+			CssExpression exp = new CssExpression();
+			foreach (ParserRuleContext child in ctx.css_field())
+			{
+				exp.AddField(this.GetNodeValue<CssField>(child));
+			}
+			SetNodeValue(ctx, exp);
+		}
+
+
+		public override void ExitCss_field(MParser.Css_fieldContext ctx)
+		{
+			String name = ctx.name.GetText();
+			ICssValue value = this.GetNodeValue<ICssValue>(ctx.value);
+			SetNodeValue(ctx, new CssField(name, value));
+		}
+
+
+
+		public override void ExitCssText(MParser.CssTextContext ctx)
+		{
+			String text = ctx.text.GetText();
+			SetNodeValue(ctx, new CssText(text));
+		}
+
+
+		public override void ExitCssValue(MParser.CssValueContext ctx)
+		{
+			IExpression exp = this.GetNodeValue<IExpression>(ctx.exp);
+			SetNodeValue(ctx, new CssCode(exp));  
 		}
 
 	}
