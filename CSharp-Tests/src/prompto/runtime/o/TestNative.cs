@@ -28,6 +28,12 @@ namespace prompto.runtime.o
 		}
 
 		[Test]
+		public void testCategoryReturn()
+		{
+			CheckOutput("native/categoryReturn.poc");
+		}
+
+		[Test]
 		public void testMethod()
 		{
 			CheckOutput("native/method.poc");

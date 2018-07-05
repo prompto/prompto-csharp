@@ -33,6 +33,12 @@ namespace prompto.translate.eme
 		}
 
 		[Test]
+		public void testCategoryReturn()
+		{
+			compareResourceEME("native/categoryReturn.pec");
+		}
+
+		[Test]
 		public void testMethod()
 		{
 			compareResourceEME("native/method.pec");

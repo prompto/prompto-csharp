@@ -27,6 +27,12 @@ namespace prompto.runtime.e
 			CheckOutput("widget/minimal.pec");
 		}
 
+		[Test]
+		public void testNative()
+		{
+			CheckOutput("widget/native.pec");
+		}
+
 	}
 }
 

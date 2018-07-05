@@ -27,6 +27,12 @@ namespace prompto.runtime.m
 			CheckOutput("widget/minimal.pmc");
 		}
 
+		[Test]
+		public void testNative()
+		{
+			CheckOutput("widget/native.pmc");
+		}
+
 	}
 }
 

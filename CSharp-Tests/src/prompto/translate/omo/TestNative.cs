@@ -15,6 +15,12 @@ namespace prompto.translate.omo
 		}
 
 		[Test]
+		public void testCategoryReturn()
+		{
+			compareResourceOMO("native/categoryReturn.poc");
+		}
+
+		[Test]
 		public void testMethod()
 		{
 			compareResourceOMO("native/method.poc");

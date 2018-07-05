@@ -46,6 +46,12 @@ namespace prompto.runtime.e
 		}
 
 		[Test]
+		public void testCategoryReturn()
+		{
+			CheckOutput("native/categoryReturn.pec");
+		}
+
+		[Test]
 		public void testMethod()
 		{
 			CheckOutput("native/method.pec");

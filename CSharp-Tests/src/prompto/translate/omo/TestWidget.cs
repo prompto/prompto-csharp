@@ -14,6 +14,12 @@ namespace prompto.translate.omo
 			compareResourceOMO("widget/minimal.poc");
 		}
 
+		[Test]
+		public void testNative()
+		{
+			compareResourceOMO("widget/native.poc");
+		}
+
 	}
 }
 

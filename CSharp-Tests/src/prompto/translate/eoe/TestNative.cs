@@ -33,6 +33,12 @@ namespace prompto.translate.eoe
 		}
 
 		[Test]
+		public void testCategoryReturn()
+		{
+			compareResourceEOE("native/categoryReturn.pec");
+		}
+
+		[Test]
 		public void testMethod()
 		{
 			compareResourceEOE("native/method.pec");

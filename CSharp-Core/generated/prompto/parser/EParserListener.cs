@@ -92,6 +92,16 @@ public interface IEParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitConcrete_widget_declaration([NotNull] EParser.Concrete_widget_declarationContext context);
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="EParser.native_widget_declaration"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterNative_widget_declaration([NotNull] EParser.Native_widget_declarationContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="EParser.native_widget_declaration"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitNative_widget_declaration([NotNull] EParser.Native_widget_declarationContext context);
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="EParser.concrete_category_declaration"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
@@ -2298,6 +2308,18 @@ public interface IEParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitConcreteWidgetDeclaration([NotNull] EParser.ConcreteWidgetDeclarationContext context);
 	/// <summary>
+	/// Enter a parse tree produced by the <c>NativeWidgetDeclaration</c>
+	/// labeled alternative in <see cref="EParser.widget_declaration"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterNativeWidgetDeclaration([NotNull] EParser.NativeWidgetDeclarationContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>NativeWidgetDeclaration</c>
+	/// labeled alternative in <see cref="EParser.widget_declaration"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitNativeWidgetDeclaration([NotNull] EParser.NativeWidgetDeclarationContext context);
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="EParser.type_identifier_list"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
@@ -3523,16 +3545,6 @@ public interface IEParserListener : IParseTreeListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void ExitModulo([NotNull] EParser.ModuloContext context);
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="EParser.native_widget_declaration"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterNative_widget_declaration([NotNull] EParser.Native_widget_declarationContext context);
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="EParser.native_widget_declaration"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitNative_widget_declaration([NotNull] EParser.Native_widget_declarationContext context);
 	/// <summary>
 	/// Enter a parse tree produced by the <c>JavascriptReturnStatement</c>
 	/// labeled alternative in <see cref="EParser.javascript_statement"/>.

@@ -566,6 +566,12 @@ namespace prompto.parser
 		}
 
 
+		public override void ExitNativeWidgetDeclaration(OParser.NativeWidgetDeclarationContext ctx)
+		{
+			SetNodeValue(ctx, this.GetNodeValue<Object>(ctx.decl));
+		}
+
+
 		public override void ExitDerivedList (OParser.DerivedListContext ctx)
 		{
 			String item = this.GetNodeValue<String> (ctx.item);
@@ -1575,6 +1581,16 @@ namespace prompto.parser
 			decl.Storable = ctx.STORABLE () != null;
 			SetNodeValue (ctx, decl);
 		}
+
+
+		public override void ExitNative_widget_declaration(OParser.Native_widget_declarationContext ctx)
+		{
+			String name = this.GetNodeValue<String>(ctx.name);
+			NativeCategoryBindingList bindings = this.GetNodeValue<NativeCategoryBindingList>(ctx.bindings);
+			MethodDeclarationList methods = this.GetNodeValue<MethodDeclarationList>(ctx.methods);
+			SetNodeValue(ctx, new NativeWidgetDeclaration(name, bindings, methods));
+		}
+
 
 		public override void ExitNativeCategoryDeclaration (OParser.NativeCategoryDeclarationContext ctx)
 		{

@@ -14,6 +14,12 @@ namespace prompto.translate.oeo
 			compareResourceOEO("widget/minimal.poc");
 		}
 
+		[Test]
+		public void testNative()
+		{
+			compareResourceOEO("widget/native.poc");
+		}
+
 	}
 }
 

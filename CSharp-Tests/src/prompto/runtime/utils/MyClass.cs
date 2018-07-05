@@ -108,6 +108,11 @@ namespace prompto.runtime.utils
             Console.Write(display);
         }
 
+		public String getDisplay()
+		{
+			return display;
+		}
+
     }
 
 }

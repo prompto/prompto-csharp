@@ -27,6 +27,12 @@ namespace prompto.runtime.o
 			CheckOutput("widget/minimal.poc");
 		}
 
+		[Test]
+		public void testNative()
+		{
+			CheckOutput("widget/native.poc");
+		}
+
 	}
 }
 

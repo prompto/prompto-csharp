@@ -505,6 +505,8 @@
     <Compile Include="src\prompto\value\CssValue.cs" />
     <Compile Include="src\prompto\css\CssText.cs" />
     <Compile Include="src\prompto\css\CssCode.cs" />
+    <Compile Include="src\prompto\declaration\NativeWidgetDeclaration.cs" />
+    <Compile Include="src\prompto\declaration\IWidgetDeclaration.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />

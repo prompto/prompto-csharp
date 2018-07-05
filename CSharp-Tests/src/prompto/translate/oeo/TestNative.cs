@@ -15,6 +15,12 @@ namespace prompto.translate.oeo
 		}
 
 		[Test]
+		public void testCategoryReturn()
+		{
+			compareResourceOEO("native/categoryReturn.poc");
+		}
+
+		[Test]
 		public void testMethod()
 		{
 			compareResourceOEO("native/method.poc");
