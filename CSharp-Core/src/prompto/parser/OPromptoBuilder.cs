@@ -18,6 +18,7 @@ using prompto.constraint;
 using prompto.instance;
 using prompto.jsx;
 using prompto.css;
+using System.Text;
 
 namespace prompto.parser
 {
@@ -2555,7 +2556,10 @@ namespace prompto.parser
 
 		public override void ExitJavascript_category_binding (OParser.Javascript_category_bindingContext ctx)
 		{
-			String identifier = ctx.identifier ().GetText ();
+			StringBuilder sb = new StringBuilder();
+			foreach (OParser.IdentifierContext cx in ctx.identifier())
+				sb.Append(cx.GetText());
+			String identifier = sb.ToString();
 			JavaScriptModule module = this.GetNodeValue<JavaScriptModule> (ctx.javascript_module ());
 			JavaScriptNativeCategoryBinding map = new JavaScriptNativeCategoryBinding (identifier, module);
 			SetNodeValue (ctx, map);
