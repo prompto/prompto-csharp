@@ -780,7 +780,9 @@ namespace prompto.parser
 			items.Insert (0, new ArgumentAssignment (null, exp));
 			ArgumentAssignment item = this.GetNodeValue<ArgumentAssignment> (ctx.item);
 			if (item != null)
-				items.add (item);
+				items.Add (item);
+			else
+				items.CheckLastAnd();
 			SetNodeValue (ctx, items);
 		}
 
@@ -790,7 +792,9 @@ namespace prompto.parser
 			ArgumentAssignmentList items = this.GetNodeValue<ArgumentAssignmentList> (ctx.items);
 			ArgumentAssignment item = this.GetNodeValue<ArgumentAssignment> (ctx.item);
 			if (item != null)
-				items.add (item);
+				items.Add(item);
+			else
+				items.CheckLastAnd();
 			SetNodeValue (ctx, items);
 		}
 
@@ -798,7 +802,8 @@ namespace prompto.parser
 		public override void ExitArgumentAssignmentList (EParser.ArgumentAssignmentListContext ctx)
 		{
 			ArgumentAssignment item = this.GetNodeValue<ArgumentAssignment> (ctx.item);
-			ArgumentAssignmentList items = new ArgumentAssignmentList (item);
+			ArgumentAssignmentList items = new ArgumentAssignmentList ();
+			items.Add(item);
 			SetNodeValue (ctx, items);
 		}
 
@@ -807,7 +812,7 @@ namespace prompto.parser
 		{
 			ArgumentAssignment item = this.GetNodeValue<ArgumentAssignment> (ctx.item);
 			ArgumentAssignmentList items = this.GetNodeValue<ArgumentAssignmentList> (ctx.items);
-			items.add (item);
+			items.Add(item);
 			SetNodeValue (ctx, items);
 		}
 

@@ -63,6 +63,12 @@ namespace prompto.translate.eoe
 		}
 
 		[Test]
+		public void testImplicitAnd()
+		{
+			compareResourceEOE("methods/implicitAnd.pec");
+		}
+
+		[Test]
 		public void testImplicitMember()
 		{
 			compareResourceEOE("methods/implicitMember.pec");

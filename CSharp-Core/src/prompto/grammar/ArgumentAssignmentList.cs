@@ -5,7 +5,8 @@ using System.Text;
 using prompto.parser;
 using prompto.declaration;
 using prompto.utils;
-
+using prompto.expression;
+using prompto.argument;
 
 namespace prompto.grammar
 {
@@ -18,22 +19,35 @@ namespace prompto.grammar
 
         }
 
-        public ArgumentAssignmentList(ArgumentAssignment assignment)
-        {
-            this.Add(assignment);
-        }
-
         public ArgumentAssignmentList(ArgumentAssignmentList assignments)
             : base(assignments)
         {
         }
 
-        public ArgumentAssignmentList(ArgumentAssignmentList assignments, ArgumentAssignment assignment)
-            : base(assignments)
-        {
-            this.Add(assignment);
-        }
-
+		public void CheckLastAnd()
+		{
+			ArgumentAssignment assignment = this[this.Count - 1];
+			if(assignment!=null && assignment.getArgument()!=null && assignment.getExpression() is AndExpression) 
+			{
+				AndExpression and = (AndExpression)assignment.getExpression();
+				if(and.Left is UnresolvedIdentifier) 
+				{
+					String id = ((UnresolvedIdentifier)and.Left).getName();
+					if (Char.IsLower(id[0]))
+					{
+						this.RemoveAt(this.Count - 1);
+						// add AttributeArgument
+						AttributeArgument argument = new AttributeArgument(id);
+						ArgumentAssignment attribute = new ArgumentAssignment(argument, null);
+						this.Add(attribute);
+						// fix last assignment
+						assignment.setExpression(and.Right);
+						this.Add(assignment);
+					}
+				}
+			}
+		}
+ 
 		public override string ToString ()
 		{
 			String s = "(";
@@ -49,17 +63,6 @@ namespace prompto.grammar
 			return s;
 		}
 
-        /* for unified grammar */
-        public void add(ArgumentAssignment assignment)
-        {
-            this.Add(assignment);
-        }
-
-        public void addAll(ArgumentAssignmentList assignments)
-        {
-            this.AddRange(assignments);
-        }
-        
         public ArgumentAssignment find(String name)
         {
             foreach (ArgumentAssignment assignment in this)
@@ -136,5 +139,6 @@ namespace prompto.grammar
 				writer.trimLast(2);
 			writer.append(")");
 		}
-    }
+
+}
 }

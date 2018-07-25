@@ -24,7 +24,23 @@ namespace prompto.expression
             this.right = right;
         }
 
-        public void ToDialect(CodeWriter writer)
+		public IExpression Left
+		{
+			get
+			{
+				return this.left;
+			}
+		}
+
+		public IExpression Right
+		{
+			get
+			{
+				return this.right;
+			}
+		}
+
+		public void ToDialect(CodeWriter writer)
         {
 			left.ToDialect(writer);
 			writer.append(operatorToDialect(writer.getDialect()));

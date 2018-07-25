@@ -710,7 +710,8 @@ namespace prompto.parser
 		{
 			IExpression exp = this.GetNodeValue<IExpression> (ctx.exp);
 			ArgumentAssignment item = new ArgumentAssignment (null, exp);
-			ArgumentAssignmentList items = new ArgumentAssignmentList (item);
+			ArgumentAssignmentList items = new ArgumentAssignmentList ();
+			items.Add(item);
 			SetNodeValue (ctx, items);
 		}
 
@@ -727,7 +728,8 @@ namespace prompto.parser
     public void ExitArgumentAssignmentList (OParser.ArgumentAssignmentListContext ctx)
 		{
 			ArgumentAssignment item = this.GetNodeValue<ArgumentAssignment> (ctx.item);
-			ArgumentAssignmentList items = new ArgumentAssignmentList (item);
+			ArgumentAssignmentList items = new ArgumentAssignmentList ();
+			items.Add(item);
 			SetNodeValue (ctx, items);
 		}
 

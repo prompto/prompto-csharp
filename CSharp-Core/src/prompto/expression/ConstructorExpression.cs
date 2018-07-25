@@ -104,9 +104,9 @@ namespace prompto.expression
 			type.ToDialect (writer);
 			ArgumentAssignmentList assignments = new ArgumentAssignmentList();
 			if (copyFrom != null)
-				assignments.add(new ArgumentAssignment(new AttributeArgument("from"), copyFrom));
+				assignments.Add(new ArgumentAssignment(new AttributeArgument("from"), copyFrom));
 			if(this.assignments!=null)
-				assignments.addAll(this.assignments);
+				assignments.AddRange(this.assignments);
 			assignments.ToDialect(writer);
 		}
 

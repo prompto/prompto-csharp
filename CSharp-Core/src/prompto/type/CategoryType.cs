@@ -462,7 +462,8 @@ namespace prompto.type
             {
 				IExpression exp = new ExpressionValue(this, newInstance(context));
                 ArgumentAssignment arg = new ArgumentAssignment(null, exp);
-                ArgumentAssignmentList args = new ArgumentAssignmentList(arg);
+                ArgumentAssignmentList args = new ArgumentAssignmentList();
+				args.Add(arg);
                 MethodCall proto = new MethodCall(new MethodSelector(name), args);
                 MethodFinder finder = new MethodFinder(context, proto);
                 return finder.findMethod(true) != null;
@@ -477,7 +478,8 @@ namespace prompto.type
         {
 			IExpression exp = new ExpressionValue(this, newInstance(context));
             ArgumentAssignment arg = new ArgumentAssignment(null, exp);
-            ArgumentAssignmentList args = new ArgumentAssignmentList(arg);
+            ArgumentAssignmentList args = new ArgumentAssignmentList();
+            args.Add(arg);
             MethodCall proto = new MethodCall(new MethodSelector(name), args);
             MethodFinder finder = new MethodFinder(context, proto);
             IMethodDeclaration method = finder.findMethod(true);

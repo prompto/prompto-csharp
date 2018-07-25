@@ -70,6 +70,12 @@ namespace prompto.runtime.e
 		}
 
 		[Test]
+		public void testImplicitAnd()
+		{
+			CheckOutput("methods/implicitAnd.pec");
+		}
+
+		[Test]
 		public void testImplicitMember()
 		{
 			CheckOutput("methods/implicitMember.pec");

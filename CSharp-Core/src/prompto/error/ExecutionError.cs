@@ -24,8 +24,8 @@ public abstract class ExecutionError : PromptoError {
 			IExpression exp = this.getExpression(context);
 			if(exp==null) {
 				ArgumentAssignmentList args = new ArgumentAssignmentList();
-				args.add(new ArgumentAssignment(new UnresolvedArgument("name"), new TextLiteral(this.GetType().Name)));
-				args.add(new ArgumentAssignment(new UnresolvedArgument("text"), new TextLiteral(this.Message)));
+				args.Add(new ArgumentAssignment(new UnresolvedArgument("name"), new TextLiteral(this.GetType().Name)));
+				args.Add(new ArgumentAssignment(new UnresolvedArgument("text"), new TextLiteral(this.Message)));
 				exp = new ConstructorExpression(new CategoryType("Error"), null, args, true);
 			}
 			if(context.getRegisteredValue<INamed>(errorName)==null)
