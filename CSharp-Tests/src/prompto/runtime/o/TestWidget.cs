@@ -33,6 +33,12 @@ namespace prompto.runtime.o
 			CheckOutput("widget/native.poc");
 		}
 
+		[Test]
+		public void testWithEvent()
+		{
+			CheckOutput("widget/withEvent.poc");
+		}
+
 	}
 }
 

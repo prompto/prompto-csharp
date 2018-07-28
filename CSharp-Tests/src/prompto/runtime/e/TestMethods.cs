@@ -52,6 +52,12 @@ namespace prompto.runtime.e
 		}
 
 		[Test]
+		public void testExplicitMember()
+		{
+			CheckOutput("methods/explicitMember.pec");
+		}
+
+		[Test]
 		public void testExpressionWith()
 		{
 			CheckOutput("methods/expressionWith.pec");

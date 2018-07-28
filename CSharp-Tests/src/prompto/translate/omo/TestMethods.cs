@@ -39,6 +39,12 @@ namespace prompto.translate.omo
 		}
 
 		[Test]
+		public void testExplicitMember()
+		{
+			compareResourceOMO("methods/explicitMember.poc");
+		}
+
+		[Test]
 		public void testExpressionWith()
 		{
 			compareResourceOMO("methods/expressionWith.poc");
