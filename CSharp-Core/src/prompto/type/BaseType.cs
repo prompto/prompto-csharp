@@ -214,9 +214,9 @@ namespace prompto.type
 			throw new SyntaxError ("Cannot read member from " + this.GetTypeName ());
 		}
 
-		public virtual ICollection<IMethodDeclaration> getMemberMethods(Context context, String name)
+		public virtual ISet<IMethodDeclaration> getMemberMethods(Context context, String name)
 		{
-			return new List<IMethodDeclaration>();
+			return new HashSet<IMethodDeclaration>();
 		}
 
 		public virtual IValue ReadJSONValue (Context context, JToken json, Dictionary<String, byte[]> parts)

@@ -49,7 +49,7 @@ namespace prompto.type
 
 		IValue getMemberValue (Context context, String name);
 
-		ICollection<IMethodDeclaration> getMemberMethods(Context context, String name);
+		ISet<IMethodDeclaration> getMemberMethods(Context context, String name);
 
 		void checkUnique (Context context);
 

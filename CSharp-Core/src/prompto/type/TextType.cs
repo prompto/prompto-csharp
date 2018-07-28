@@ -41,9 +41,9 @@ namespace prompto.type
 		}
 
 
-		public override ICollection<IMethodDeclaration> getMemberMethods(Context context, string name)
+		public override ISet<IMethodDeclaration> getMemberMethods(Context context, string name)
 		{
-			List<IMethodDeclaration> list = new List<IMethodDeclaration>();
+			ISet<IMethodDeclaration> list = new HashSet<IMethodDeclaration>();
 
 			switch (name)
 			{

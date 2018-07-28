@@ -39,8 +39,14 @@ namespace prompto.statement
 			alwaysStatements = list;
         }
 
-		override
-		protected void ToODialect(CodeWriter writer) {
+		public override void ToDialect(CodeWriter writer)
+		{
+			writer = writer.newLocalWriter();
+			writer.getContext().registerValue(new ErrorVariable(errorName));
+			base.ToDialect(writer);
+		}
+
+		protected override void ToODialect(CodeWriter writer) {
 			writer.append("try (");
 			writer.append(errorName);
 			writer.append(") {\n");

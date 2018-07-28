@@ -86,10 +86,8 @@ namespace prompto.expression
 				INamed named = context.getRegistered(name);
 				if (named is MethodDeclarationMap)
 				{
-					IEnumerator<IMethodDeclaration> en = ((MethodDeclarationMap)named).Values.GetEnumerator();
-					en.MoveNext();
-					MethodType type = new MethodType(en.Current);
-					return new ClosureValue(context, type);
+					IMethodDeclaration decl = ((MethodDeclarationMap)named).GetFirst();
+					return new ClosureValue(context, new MethodType(decl));
 				}
 				else
 					throw new SyntaxError("No value or method with name:" + name);

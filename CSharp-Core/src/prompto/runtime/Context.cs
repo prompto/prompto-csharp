@@ -181,7 +181,7 @@ namespace prompto.runtime
 			return list;
 		}
 
-		public INamed getRegistered(String name)
+		public virtual INamed getRegistered(String name)
 		{
 			// resolve upwards, since local names override global ones
 			IDeclaration actual;
@@ -199,17 +199,17 @@ namespace prompto.runtime
 			return null;
 		}
 
-		public T getRegisteredDeclaration<T>(String name)
+		public virtual T getRegisteredDeclaration<T>(String name) where T : IDeclaration
 		{
 			// resolve upwards, since local names override global ones
 			IDeclaration actual;
 			declarations.TryGetValue(name, out actual);
 			if (actual == null && parent != null)
-				actual = parent.getRegisteredDeclaration<IDeclaration>(name);
+				actual = parent.getRegisteredDeclaration<T>(name);
 			if (actual == null && globals != this)
-				actual = globals.getRegisteredDeclaration<IDeclaration>(name);
+				actual = globals.getRegisteredDeclaration<T>(name);
 			if (actual != null)
-				return prompto.utils.TypeUtils.downcast<T>(actual);
+				return TypeUtils.downcast<T>(actual);
 			else
 				return default(T);
 		}
@@ -496,6 +496,29 @@ namespace prompto.runtime
 			return type;
 		}
 
+		public override INamed getRegistered(string name)
+		{
+			INamed actual = base.getRegistered(name);
+			if (actual != null)
+				return actual;
+			ConcreteCategoryDeclaration decl = getDeclaration();
+			MethodDeclarationMap methods = decl.getMemberMethods(this, name);
+         return methods.Count==0 ? null : methods;
+		}
+
+		public override T getRegisteredDeclaration<T>(string name)
+		{
+			if(typeof(T)==typeof(MethodDeclarationMap)) {
+				ConcreteCategoryDeclaration decl = getDeclaration();
+				if(decl!=null) {
+					MethodDeclarationMap methods = decl.getMemberMethods(this, name);
+					if(methods!=null && methods.Count>0)
+						return TypeUtils.downcast<T>(methods);
+				}
+			}
+			return base.getRegisteredDeclaration<T>(name);
+		}
+
 		protected override T readRegisteredValue<T>(String name)
 		{
 			INamed actual = null;
@@ -518,7 +541,8 @@ namespace prompto.runtime
 			Context context = base.contextForValue(name);
 			if (context != null)
 				return context;
-			else if (getDeclaration().hasAttribute(this, name))
+			ConcreteCategoryDeclaration decl = getDeclaration();
+			if (decl.hasAttribute(this, name) || decl.hasMethod(this, name))
 				return this;
 			else
 				return null;
@@ -535,7 +559,19 @@ namespace prompto.runtime
 
 		protected override IValue readValue(String name, Func<IValue> supplier)
 		{
-			return instance.GetMember(calling, name, false);
+			ConcreteCategoryDeclaration decl = getDeclaration();
+			if (decl.hasAttribute(this, name))
+			{
+				IValue value = instance.GetMember(calling, name, false);
+				return value != null ? value : supplier.Invoke();
+			}
+			else if (decl.hasMethod(this, name))
+			{
+				IMethodDeclaration method = decl.getMemberMethods(this, name).GetFirst();
+				return new ClosureValue(this, new MethodType(method));
+			}
+			else
+				return supplier.Invoke();
 		}
 
 
@@ -652,6 +688,13 @@ namespace prompto.runtime
 		public IType GetIType(Context context)
 		{
 			throw new SyntaxError("Should never get there!");
+		}
+
+		public IMethodDeclaration GetFirst()
+		{
+			IEnumerator<IMethodDeclaration> en = this.Values.GetEnumerator();
+			en.MoveNext();
+			return en.Current;
 		}
 
 		public String Path

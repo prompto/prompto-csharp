@@ -20,9 +20,10 @@ namespace prompto.declaration
        public ConcreteMethodDeclaration(String name, ArgumentList arguments, IType returnType, StatementList statements)
             : base(name, arguments, returnType)
         {
-            this.statements = statements;
+			if (statements == null)
+				statements = new StatementList();
+			this.statements = statements;
 			foreach (IStatement s in statements) {
-
 				if (s is DeclarationStatement<IDeclaration>)
 					((DeclarationStatement<IDeclaration>)s).getDeclaration ().SetClosureOf (this);
 			}
@@ -33,6 +34,7 @@ namespace prompto.declaration
         {
 			if(writer.isGlobalContext())
 				writer = writer.newLocalWriter();
+			registerArguments(writer.getContext());
 			switch(writer.getDialect()) {
 			case Dialect.E:
 				ToEDialect(writer);

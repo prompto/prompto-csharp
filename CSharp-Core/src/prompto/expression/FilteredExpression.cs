@@ -39,6 +39,10 @@ namespace prompto.expression
 
 		public void ToDialect(CodeWriter writer)
 		{
+			writer = writer.newChildWriter();
+			IType sourceType = source.check(writer.getContext());
+			IType itemType = ((IterableType)sourceType).GetItemType();
+			writer.getContext().registerValue(new Variable(itemName, itemType));
 			switch (writer.getDialect())
 			{
 				case Dialect.E:
@@ -66,10 +70,10 @@ namespace prompto.expression
 			IType listType = source.check(context);
 			if (!(listType is ContainerType))
 				throw new SyntaxError("Expecting a list type as data source !");
-			Context local = context.newChildContext();
+			Context child = context.newChildContext();
 			IType itemType = ((ContainerType)listType).GetItemType();
-			local.registerValue(new Variable(itemName, itemType));
-			IType filterType = predicate.check(local);
+			child.registerValue(new Variable(itemName, itemType));
+			IType filterType = predicate.check(child);
 			if (filterType != BooleanType.Instance)
 				throw new SyntaxError("Filtering expresion must return a bool !");
 			return listType;

@@ -132,11 +132,16 @@ namespace prompto.utils
 			return new CodeWriter (dialect, context.newLocalContext (), sb, indenter);
 		}
 
+		public CodeWriter newChildWriter()
+		{
+			return new CodeWriter(dialect, context.newChildContext(), sb, indenter);
+		}
+
 		public CodeWriter newMemberWriter ()
 		{
-			Context context = this.context.newLocalContext ();
-			context.setParentContext (this.context);
-			return new CodeWriter (dialect, context, sb, indenter);
+			Context ctx = this.context.newLocalContext ();
+			ctx.setParentContext (this.context);
+			return new CodeWriter (dialect, ctx, sb, indenter);
 		}
 
 		public CodeWriter newInstanceWriter(CategoryType type) 

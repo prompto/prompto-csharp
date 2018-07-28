@@ -17,12 +17,14 @@ namespace prompto.expression
     public class UnresolvedIdentifier : IExpression
     {
 
-        String name;
+		Dialect dialect;
+		String name;
         IExpression resolved;
 
-        public UnresolvedIdentifier(String name)
+        public UnresolvedIdentifier(String name, Dialect dialect)
         {
             this.name = name;
+			this.dialect = dialect;
         }
 
         public String getName()
@@ -80,21 +82,7 @@ namespace prompto.expression
 		public IExpression resolve(Context context, bool forMember)
 		{
 			if (resolved == null) {
-				resolved = resolveSymbol(context);
-				if (resolved == null) {
-					if(Char.IsUpper(name[0]))
-		            {
-		                if (forMember)
-		                    resolved = resolveType(context);
-		                else
-		                    resolved = resolveConstructor(context);
-		            }
-					if (resolved == null) {
-                		resolved = resolveMethod(context);
-			            if (resolved == null)
-			                resolved = resolveInstance(context);
-					}
-				}
+				resolved = doResolve(context, forMember);
 			}
             if (resolved != null)
 				return resolved;
@@ -102,7 +90,33 @@ namespace prompto.expression
                 throw new SyntaxError("Unknown identifier:" + name);
         }
 
-        private IExpression resolveInstance(Context context)
+		IExpression doResolve(Context context, bool forMember)
+		{
+			IExpression resolved = resolveSymbol(context);
+			if (resolved != null)
+				return resolved;
+			resolved = resolveTypeOrConstructor(context, forMember);
+			if (resolved != null)
+				return resolved;
+			resolved = resolveMethodCall(context);
+			if (resolved != null)
+				return resolved;
+			resolved = resolveInstance(context);
+			return resolved;
+		}
+
+		IExpression resolveTypeOrConstructor(Context context, bool forMember)
+		{
+			if (!Char.IsUpper(name[0]))
+				return null;
+			if (forMember)
+				return resolveType(context);
+			else
+				return resolveConstructor(context);
+		}
+
+
+		private IExpression resolveInstance(Context context)
         {
             try
             {
@@ -116,8 +130,10 @@ namespace prompto.expression
             }
         }
 
-        private IExpression resolveMethod(Context context)
+        private IExpression resolveMethodCall(Context context)
         {
+			if (dialect != Dialect.E)
+				return null;
             try
             {
                 IExpression method = new MethodCall(new MethodSelector(name));

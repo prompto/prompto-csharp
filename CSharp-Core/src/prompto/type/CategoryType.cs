@@ -9,6 +9,7 @@ using prompto.declaration;
 using prompto.statement;
 using prompto.utils;
 using prompto.store;
+using prompto.parser;
 
 namespace prompto.type
 {
@@ -53,7 +54,8 @@ namespace prompto.type
 				return dd.GetIType(context).checkMember(context, name);
 			else if (dd is CategoryDeclaration)
 			{
-				if (((CategoryDeclaration)dd).hasAttribute(context, name))
+				CategoryDeclaration cd = (CategoryDeclaration)dd;
+				if (cd.hasAttribute(context, name))
 				{
 					AttributeDeclaration ad = context.getRegisteredDeclaration<AttributeDeclaration>(name);
 					if (ad == null)
@@ -63,6 +65,10 @@ namespace prompto.type
 				}
 				else if ("text" == name)
 					return TextType.Instance;
+				else if (cd.hasMethod(context, name)) {
+					IMethodDeclaration method = cd.getMemberMethods(context, name).GetFirst();
+	        		return new MethodType(method);
+				}
 				else
 					throw new SyntaxError("No attribute:" + name + " in category:" + GetTypeName());
 			} else
@@ -179,12 +185,13 @@ namespace prompto.type
             getDeclaration(context);
         }
 
-		public override ICollection<IMethodDeclaration> getMemberMethods(Context context, string name)
+		public override ISet<IMethodDeclaration> getMemberMethods(Context context, string name)
 		{
 			IDeclaration cd = getDeclaration(context);
 			if(!(cd is ConcreteCategoryDeclaration))
 				throw new SyntaxError("Unknown category:" + this.GetTypeName());
-			return ((ConcreteCategoryDeclaration)cd).getMemberMethods(context, name).Values;
+			ICollection<IMethodDeclaration> decls = ((ConcreteCategoryDeclaration)cd).getMemberMethods(context, name).Values;
+			return new HashSet<IMethodDeclaration>(decls);
 		}
 
         
@@ -346,13 +353,13 @@ namespace prompto.type
         public ListValue sort(Context context, IContainer list, IExpression key, bool descending)
         {
             if (key == null)
-                key = new UnresolvedIdentifier("key");
+                key = new UnresolvedIdentifier("key", Dialect.E);
             IDeclaration d = getDeclaration(context);
 			if (d is CategoryDeclaration) {
 				CategoryDeclaration decl = (CategoryDeclaration)d;
 				if (decl.hasAttribute (context, key.ToString ()))
 					return sortByAttribute (context, list, key.ToString (), descending);
-				else if (decl.hasMethod (context, key.ToString (), null))
+				else if (decl.hasMethod (context, key.ToString ()))
 					return sortByClassMethod (context, list, key.ToString (),descending);
 				else if (globalMethodExists (context, list, key.ToString ()))
 					return sortByGlobalMethod (context, list, key.ToString (), descending);

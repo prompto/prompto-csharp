@@ -37,10 +37,10 @@ namespace prompto.expression
 			if (parent == null)
 				writer.append (name);
 			else
-				base.ToDialect (writer);
+				base.parentAndMemberToDialect (writer);
 		}
 
-		public ICollection<IMethodDeclaration> getCandidates (Context context, bool checkInstance)
+		public ISet<IMethodDeclaration> getCandidates (Context context, bool checkInstance)
 		{
 			if (parent == null)
 				return getGlobalCandidates (context);
@@ -48,9 +48,9 @@ namespace prompto.expression
 				return getMemberCandidates (context, checkInstance);
 		}
 
-		private ICollection<IMethodDeclaration> getGlobalCandidates(Context context)
+		private ISet<IMethodDeclaration> getGlobalCandidates(Context context)
 		{
-			List<IMethodDeclaration> methods = new List<IMethodDeclaration>();
+			ISet<IMethodDeclaration> methods = new HashSet<IMethodDeclaration>();
 			// if called from a member method, could be a member method called without this/self
 			if (context.getParentContext() is InstanceContext)
 			{
@@ -60,16 +60,16 @@ namespace prompto.expression
 				{
 					MethodDeclarationMap members = cd.getMemberMethods(context, name);
 					if (members != null)
-						methods.AddRange(members.Values);
+						methods.UnionWith(members.Values);
 				}
 			}
 			MethodDeclarationMap globals = context.getRegisteredDeclaration<MethodDeclarationMap>(name);
 			if (globals != null)
-				methods.AddRange(globals.Values);
+				methods.UnionWith(globals.Values);
 			return methods;
 		}
 
-		private ICollection<IMethodDeclaration> getMemberCandidates (Context context, bool checkInstance)
+		private ISet<IMethodDeclaration> getMemberCandidates (Context context, bool checkInstance)
 		{
 			IType parentType = checkParentType(context, checkInstance);
 			return parentType.getMemberMethods(context, name);
@@ -172,7 +172,7 @@ namespace prompto.expression
 		public IExpression toInstanceExpression ()
 		{
 			if (parent == null)
-				return new UnresolvedIdentifier (name);
+				return new UnresolvedIdentifier (name, Dialect.O); // not a method call
 			else
 				return new MemberSelector (parent, name);
 		}

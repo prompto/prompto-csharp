@@ -107,7 +107,7 @@ namespace prompto.parser
 		public override void ExitIdentifierExpression (EParser.IdentifierExpressionContext ctx)
 		{
 			String name = this.GetNodeValue<String> (ctx.exp);
-			SetNodeValue (ctx, new UnresolvedIdentifier (name));
+			SetNodeValue (ctx, new UnresolvedIdentifier (name, Dialect.E));
 		}
 
 		
@@ -137,7 +137,7 @@ namespace prompto.parser
 		public override void ExitUnresolvedIdentifier (EParser.UnresolvedIdentifierContext ctx)
 		{
 			String name = this.GetNodeValue<String> (ctx.name);
-			SetNodeValue (ctx, new UnresolvedIdentifier (name));
+			SetNodeValue (ctx, new UnresolvedIdentifier (name, Dialect.E));
 		}
 
 		

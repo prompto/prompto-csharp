@@ -57,6 +57,11 @@ namespace prompto.declaration
 		}
 
 		protected abstract void registerMethods(Context context);
+		public virtual MethodDeclarationMap getMemberMethods(Context context, string name)
+		{
+			throw new NotImplementedException();	
+		}
+
 
 		public override IType check (Context context)
 		{
@@ -80,7 +85,7 @@ namespace prompto.declaration
 			return attributes != null && attributes.Contains (name);
 		}
 
-		public virtual bool hasMethod (Context context, String key, Object o)
+		public virtual bool hasMethod (Context context, String name)
 		{
 			return false;
 		}

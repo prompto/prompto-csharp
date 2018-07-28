@@ -198,8 +198,39 @@ namespace prompto.declaration
 			return actual.hasAttribute (context, name);
 		}
 
-		override
-        public IType check (Context context)
+
+		public override bool hasMethod(Context context, string name)
+		{
+            registerMethods(context);
+			if (methodsMap.ContainsKey(name))
+				return true;
+			if(hasDerivedMethod(context, name))
+				return true;
+			return false;
+		}
+
+		private bool hasDerivedMethod(Context context, String name)
+		{
+			if (derivedFrom == null)
+				return false;
+			foreach (String ancestor in derivedFrom)
+			{
+				if (ancestorHasMethod(ancestor, context, name))
+					return true;
+			}
+			return false;
+		}
+
+		private static bool ancestorHasMethod(String ancestor, Context context, String name)
+		{
+			CategoryDeclaration actual = context.getRegisteredDeclaration<CategoryDeclaration>(ancestor);
+			if (actual == null)
+				return false;
+			return actual.hasMethod(context, name);
+		}
+
+
+        public override IType check (Context context)
 		{
 			checkDerived (context);
 			checkMethods (context);
@@ -356,7 +387,7 @@ namespace prompto.declaration
 			return cd.findSetter (context, attrName);
 		}
 
-		public MethodDeclarationMap getMemberMethods (Context context, String name)
+		public override MethodDeclarationMap getMemberMethods (Context context, String name)
 		{
 			registerMethods(context);
 			MethodDeclarationMap result = new MethodDeclarationMap (name);

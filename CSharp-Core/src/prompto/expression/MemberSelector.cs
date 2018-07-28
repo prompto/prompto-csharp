@@ -34,7 +34,19 @@ namespace prompto.expression
 		}
 
 
-		public override void ToDialect (CodeWriter writer)
+		public override void ToDialect(CodeWriter writer)
+		{
+			if (writer.getDialect() == Dialect.E)
+			{
+				IType type = check(writer.getContext());
+				if (type is MethodType)
+					writer.append("Method: ");
+
+			}
+			parentAndMemberToDialect(writer);
+		}
+
+		protected void parentAndMemberToDialect(CodeWriter writer)
 		{
 			try {
 				resolveParent(writer.getContext());

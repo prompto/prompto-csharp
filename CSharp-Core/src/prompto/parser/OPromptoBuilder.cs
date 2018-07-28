@@ -398,7 +398,7 @@ namespace prompto.parser
 		public override void ExitTypeIdentifier (OParser.TypeIdentifierContext ctx)
 		{
 			String name = this.GetNodeValue<String> (ctx.type_identifier());
-			SetNodeValue (ctx, new UnresolvedIdentifier (name));
+			SetNodeValue (ctx, new UnresolvedIdentifier (name, Dialect.O));
 		}
 
 		public override void ExitSymbolIdentifier (OParser.SymbolIdentifierContext ctx)
@@ -687,7 +687,7 @@ namespace prompto.parser
 		public override void ExitMethodName (OParser.MethodNameContext ctx)
 		{
 			String name = this.GetNodeValue<String> (ctx.name);
-			SetNodeValue (ctx, new UnresolvedIdentifier (name));
+			SetNodeValue (ctx, new UnresolvedIdentifier (name, Dialect.O));
 		}
 
 	

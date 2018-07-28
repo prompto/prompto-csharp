@@ -22,6 +22,11 @@ namespace prompto.expression
             this.name = name;
         }
 
+		public override string ToString()
+		{
+			return name;
+		}
+
         public String getName()
         {
             return name;
@@ -46,9 +51,7 @@ namespace prompto.expression
 		{
 			MethodDeclarationMap methods = context.getRegisteredDeclaration<MethodDeclarationMap>(name);
 			if(methods!=null) {
-				IEnumerator<IMethodDeclaration> values = methods.Values.GetEnumerator();
-				values.MoveNext();
-				return values.Current;
+				return methods.GetFirst();
 			} else
 				return null;
 		}

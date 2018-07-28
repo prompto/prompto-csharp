@@ -120,8 +120,15 @@ namespace prompto.statement
             return null;
         }
 
-		override
-		public void ToDialect(CodeWriter writer) {
+
+		public override void ToDialect(CodeWriter writer) {
+			writer = writer.newChildWriter();
+			IType srcType = source.check(writer.getContext());
+			IType elemType = srcType.checkIterator(writer.getContext());
+			String itemName = v2 == null ? v1 : v2;
+			writer.getContext().registerValue(new Variable(itemName, elemType));
+			if (v2 != null)
+				writer.getContext().registerValue(new Variable(v1, IntegerType.Instance));
 			switch(writer.getDialect()) {
 			case Dialect.E:
 				ToEDialect(writer);
