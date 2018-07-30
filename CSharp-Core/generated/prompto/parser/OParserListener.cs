@@ -1690,6 +1690,16 @@ public interface IOParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitDeclaration([NotNull] OParser.DeclarationContext context);
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="OParser.annotation"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterAnnotation([NotNull] OParser.AnnotationContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="OParser.annotation"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitAnnotation([NotNull] OParser.AnnotationContext context);
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="OParser.resource_declaration"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>

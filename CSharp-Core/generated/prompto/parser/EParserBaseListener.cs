@@ -2108,6 +2108,18 @@ public partial class EParserBaseListener : IEParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitDeclaration([NotNull] EParser.DeclarationContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="EParser.annotation"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterAnnotation([NotNull] EParser.AnnotationContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="EParser.annotation"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitAnnotation([NotNull] EParser.AnnotationContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="EParser.resource_declaration"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>

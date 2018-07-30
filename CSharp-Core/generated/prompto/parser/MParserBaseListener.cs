@@ -1938,6 +1938,18 @@ public partial class MParserBaseListener : IMParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitDeclaration([NotNull] MParser.DeclarationContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="MParser.annotation"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterAnnotation([NotNull] MParser.AnnotationContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="MParser.annotation"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitAnnotation([NotNull] MParser.AnnotationContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="MParser.resource_declaration"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>

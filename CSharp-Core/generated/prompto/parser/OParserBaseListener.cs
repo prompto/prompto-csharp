@@ -1988,6 +1988,18 @@ public partial class OParserBaseListener : IOParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitDeclaration([NotNull] OParser.DeclarationContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="OParser.annotation"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterAnnotation([NotNull] OParser.AnnotationContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="OParser.annotation"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitAnnotation([NotNull] OParser.AnnotationContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="OParser.resource_declaration"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>

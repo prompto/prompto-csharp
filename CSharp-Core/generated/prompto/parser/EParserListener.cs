@@ -1792,6 +1792,16 @@ public interface IEParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitDeclaration([NotNull] EParser.DeclarationContext context);
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="EParser.annotation"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterAnnotation([NotNull] EParser.AnnotationContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="EParser.annotation"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitAnnotation([NotNull] EParser.AnnotationContext context);
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="EParser.resource_declaration"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
