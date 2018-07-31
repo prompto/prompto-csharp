@@ -2108,17 +2108,29 @@ public partial class EParserBaseListener : IEParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitDeclaration([NotNull] EParser.DeclarationContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="EParser.annotation"/>.
+	/// Enter a parse tree produced by <see cref="EParser.annotation_constructor"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void EnterAnnotation([NotNull] EParser.AnnotationContext context) { }
+	public virtual void EnterAnnotation_constructor([NotNull] EParser.Annotation_constructorContext context) { }
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="EParser.annotation"/>.
+	/// Exit a parse tree produced by <see cref="EParser.annotation_constructor"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void ExitAnnotation([NotNull] EParser.AnnotationContext context) { }
+	public virtual void ExitAnnotation_constructor([NotNull] EParser.Annotation_constructorContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="EParser.annotation_identifier"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterAnnotation_identifier([NotNull] EParser.Annotation_identifierContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="EParser.annotation_identifier"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitAnnotation_identifier([NotNull] EParser.Annotation_identifierContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="EParser.resource_declaration"/>.
 	/// <para>The default implementation does nothing.</para>

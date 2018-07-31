@@ -1646,15 +1646,25 @@ public interface IMParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitDeclaration([NotNull] MParser.DeclarationContext context);
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="MParser.annotation"/>.
+	/// Enter a parse tree produced by <see cref="MParser.annotation_constructor"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterAnnotation([NotNull] MParser.AnnotationContext context);
+	void EnterAnnotation_constructor([NotNull] MParser.Annotation_constructorContext context);
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="MParser.annotation"/>.
+	/// Exit a parse tree produced by <see cref="MParser.annotation_constructor"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitAnnotation([NotNull] MParser.AnnotationContext context);
+	void ExitAnnotation_constructor([NotNull] MParser.Annotation_constructorContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="MParser.annotation_identifier"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterAnnotation_identifier([NotNull] MParser.Annotation_identifierContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="MParser.annotation_identifier"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitAnnotation_identifier([NotNull] MParser.Annotation_identifierContext context);
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="MParser.resource_declaration"/>.
 	/// </summary>
