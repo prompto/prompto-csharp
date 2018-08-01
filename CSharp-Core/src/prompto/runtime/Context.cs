@@ -650,6 +650,18 @@ namespace prompto.runtime
 			}
 		}
 
+		public List<Annotation> Annotations
+		{
+			get
+			{
+				throw new Exception("Should never get there!");
+			}
+			set
+			{
+				throw new Exception("Should never get there!");
+			}
+		}
+
 		public void ToDialect(CodeWriter writer)
 		{
 			throw new Exception("Should never get there!");

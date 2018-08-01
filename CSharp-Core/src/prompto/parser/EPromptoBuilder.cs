@@ -1396,14 +1396,22 @@ namespace prompto.parser
 		
 		public override void ExitDeclaration (EParser.DeclarationContext ctx)
 		{
-			List<CommentStatement> stmts = null;
+			List<CommentStatement> comments = null;
 			foreach(EParser.Comment_statementContext csc in ctx.comment_statement()) {
 				if(csc==null)
 					continue;
-				if(stmts==null)
-					stmts = new List<CommentStatement>();
-				stmts.add((CommentStatement)this.GetNodeValue<CommentStatement>(csc));
+				if(comments==null)
+					comments = new List<CommentStatement>();
+				comments.add((CommentStatement)this.GetNodeValue<CommentStatement>(csc));
 			}
+			List<Annotation> annotations = null;
+			foreach(EParser.Annotation_constructorContext acs in ctx.annotation_constructor()) {
+				if(acs==null)
+					continue;
+				if(annotations==null)
+					annotations = new List<Annotation>();
+				annotations.add((Annotation)this.GetNodeValue<Annotation>(acs));
+}
 			ParserRuleContext ctx_ = ctx.attribute_declaration();
 			if(ctx_==null)
 				ctx_ = ctx.category_declaration();
@@ -1417,7 +1425,8 @@ namespace prompto.parser
 				ctx_ = ctx.widget_declaration();
 			IDeclaration decl = this.GetNodeValue<IDeclaration>(ctx_);
 			if(decl!=null) {
-				decl.Comments = stmts;
+				decl.Comments = comments;
+				decl.Annotations = annotations;
 				SetNodeValue(ctx, decl);
 			}
 		}
@@ -2231,7 +2240,22 @@ namespace prompto.parser
 			SetNodeValue (ctx, new ModuloExpression (left, right));
 		}
 
-		
+
+		public override void ExitAnnotation_constructor(EParser.Annotation_constructorContext ctx)
+		{
+			String name = this.GetNodeValue<String>(ctx.name);
+			IExpression exp = this.GetNodeValue<IExpression>(ctx.exp);
+			SetNodeValue(ctx, new Annotation(name, exp));
+		}
+
+
+		public override void ExitAnnotation_identifier(EParser.Annotation_identifierContext ctx)
+		{
+			String name = ctx.GetText();
+			SetNodeValue(ctx, name);
+		}
+	
+
 		public override void ExitAndExpression (EParser.AndExpressionContext ctx)
 		{
 			IExpression left = this.GetNodeValue<IExpression> (ctx.left);

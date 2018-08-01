@@ -5,6 +5,7 @@ using prompto.type;
 using prompto.utils;
 using System.Collections.Generic;
 using prompto.statement;
+using prompto.grammar;
 
 namespace prompto.declaration
 {
@@ -12,6 +13,7 @@ namespace prompto.declaration
 	public abstract class BaseDeclaration : Section, IDeclaration
 	{
 		List<CommentStatement> comments = null;
+		List<Annotation> annotations = null;
 
  		protected String name;
 
@@ -26,6 +28,18 @@ namespace prompto.declaration
 			}
 			set {
 				comments = value;
+			}
+		}
+
+		public List<Annotation> Annotations
+		{
+			get
+			{
+				return annotations;
+			}
+			set
+			{
+				annotations = value;
 			}
 		}
 

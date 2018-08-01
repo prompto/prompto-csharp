@@ -102,6 +102,10 @@ namespace prompto.declaration
 					foreach(CommentStatement comment in declaration.Comments)
 						comment.ToDialect(writer);
 				}
+				if(declaration.Annotations!=null) {
+					foreach(Annotation annotation in declaration.Annotations)
+						annotation.ToDialect(writer);
+				}
 				declaration.ToDialect(writer);
 				writer.append("\n");
 			}

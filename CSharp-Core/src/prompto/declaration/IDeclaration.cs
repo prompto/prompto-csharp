@@ -15,6 +15,7 @@ namespace prompto.declaration
 	    IType check(Context context);
         void ToDialect(CodeWriter writer);
 		List<CommentStatement> Comments { get; set; }
+		List<Annotation> Annotations { get; set; }
 		void SetClosureOf (IMethodDeclaration declaration);
 		IMethodDeclaration GetClosureOf ();
     }
