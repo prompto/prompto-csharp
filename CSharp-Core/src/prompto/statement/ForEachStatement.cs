@@ -46,9 +46,9 @@ namespace prompto.statement
         {
             Context child = context.newChildContext();
             String itemName = v2 == null ? v1 : v2;
-            context.registerValue(new Variable(itemName, elemType));
+            child.registerValue(new Variable(itemName, elemType));
             if (v2 != null)
-                context.registerValue(new Variable(v1, IntegerType.Instance));
+                child.registerValue(new Variable(v1, IntegerType.Instance));
 			return statements.check(child, null);
         }
 
