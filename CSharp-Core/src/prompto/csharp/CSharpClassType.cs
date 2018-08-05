@@ -64,11 +64,9 @@ namespace prompto.csharp
             typeToPromptoMap.TryGetValue(type, out result);
             if (result != null)
                 return result;
-			Type item = GetItemTypeFromListType (type);
-			if (item != null) {
-				IType itemType = ConvertCSharpTypeToPromptoType (context, item, null);
-				return new ListType (itemType);
-			}
+			result = GetITypeFromCollectionType(context, type);
+            if (result != null)
+                return result;
 			NativeCategoryDeclaration decl = context.getNativeBinding(type);
 			if(decl!=null)
 				return decl.GetIType(context);
@@ -78,14 +76,20 @@ namespace prompto.csharp
                 return null;
         }
 
-		public static Type GetItemTypeFromListType(Type type)
+		public IType GetITypeFromCollectionType(Context context, Type type)
 		{
-			
-			if (type.IsGenericType) {
-				if (type.GetGenericTypeDefinition () == typeof(List<>))
-					return type.GetGenericArguments () [0];
-			}
-			return null;
+
+			if (!type.IsGenericType)
+				return null;
+			Type parent = type.GetGenericTypeDefinition();
+			Type item = type.GetGenericArguments()[0];
+			IType itemType = ConvertCSharpTypeToPromptoType(context, item, null);
+			if (parent == typeof(List<>))
+				return new ListType(itemType);
+			else if (parent == typeof(IEnumerator<>))
+				return new IteratorType(itemType);
+			else
+				return null;
 		}
     
 		public IValue ConvertCSharpValueToPromptoValue(Context context, Object value, IType returnType)
