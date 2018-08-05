@@ -81,7 +81,7 @@ namespace prompto.instance
             IValue value = expression.interpret(context);
 			if (context.getRegisteredValue<INamed>(name) == null)
 			{
-				IType type = value != NullValue.Instance ? value.GetIType() : expression.check(context);
+				IType type = expression.check(context);
 				context.registerValue(new Variable(name, type));
 			}
             context.setValue(name, value);
