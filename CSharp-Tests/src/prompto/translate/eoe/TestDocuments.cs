@@ -21,9 +21,9 @@ namespace prompto.translate.eoe
 		}
 
 		[Test]
-		public void testDeepVariable()
+		public void testDeepMember()
 		{
-			compareResourceEOE("documents/deepVariable.pec");
+			compareResourceEOE("documents/deepMember.pec");
 		}
 
 		[Test]
@@ -33,15 +33,21 @@ namespace prompto.translate.eoe
 		}
 
 		[Test]
-		public void testNamedItem()
+		public void testLiteral()
 		{
-			compareResourceEOE("documents/namedItem.pec");
+			compareResourceEOE("documents/literal.pec");
 		}
 
 		[Test]
-		public void testVariable()
+		public void testMember()
 		{
-			compareResourceEOE("documents/variable.pec");
+			compareResourceEOE("documents/member.pec");
+		}
+
+		[Test]
+		public void testNamedItem()
+		{
+			compareResourceEOE("documents/namedItem.pec");
 		}
 
 	}

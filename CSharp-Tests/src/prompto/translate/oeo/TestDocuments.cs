@@ -15,9 +15,9 @@ namespace prompto.translate.oeo
 		}
 
 		[Test]
-		public void testDeepVariable()
+		public void testDeepMember()
 		{
-			compareResourceOEO("documents/deepVariable.poc");
+			compareResourceOEO("documents/deepMember.poc");
 		}
 
 		[Test]
@@ -27,9 +27,15 @@ namespace prompto.translate.oeo
 		}
 
 		[Test]
-		public void testVariable()
+		public void testLiteral()
 		{
-			compareResourceOEO("documents/variable.poc");
+			compareResourceOEO("documents/literal.poc");
+		}
+
+		[Test]
+		public void testMember()
+		{
+			compareResourceOEO("documents/member.poc");
 		}
 
 	}

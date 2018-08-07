@@ -28,9 +28,9 @@ namespace prompto.runtime.o
 		}
 
 		[Test]
-		public void testDeepVariable()
+		public void testDeepMember()
 		{
-			CheckOutput("documents/deepVariable.poc");
+			CheckOutput("documents/deepMember.poc");
 		}
 
 		[Test]
@@ -40,9 +40,15 @@ namespace prompto.runtime.o
 		}
 
 		[Test]
-		public void testVariable()
+		public void testLiteral()
 		{
-			CheckOutput("documents/variable.poc");
+			CheckOutput("documents/literal.poc");
+		}
+
+		[Test]
+		public void testMember()
+		{
+			CheckOutput("documents/member.poc");
 		}
 
 	}

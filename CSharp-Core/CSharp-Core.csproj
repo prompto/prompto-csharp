@@ -508,6 +508,8 @@
     <Compile Include="src\prompto\declaration\NativeWidgetDeclaration.cs" />
     <Compile Include="src\prompto\declaration\IWidgetDeclaration.cs" />
     <Compile Include="src\prompto\grammar\Annotation.cs" />
+    <Compile Include="src\prompto\literal\DocEntryList.cs" />
+    <Compile Include="src\prompto\literal\DocumentLiteral.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />

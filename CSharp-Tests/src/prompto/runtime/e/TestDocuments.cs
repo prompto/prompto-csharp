@@ -34,9 +34,9 @@ namespace prompto.runtime.e
 		}
 
 		[Test]
-		public void testDeepVariable()
+		public void testDeepMember()
 		{
-			CheckOutput("documents/deepVariable.pec");
+			CheckOutput("documents/deepMember.pec");
 		}
 
 		[Test]
@@ -46,15 +46,21 @@ namespace prompto.runtime.e
 		}
 
 		[Test]
-		public void testNamedItem()
+		public void testLiteral()
 		{
-			CheckOutput("documents/namedItem.pec");
+			CheckOutput("documents/literal.pec");
 		}
 
 		[Test]
-		public void testVariable()
+		public void testMember()
 		{
-			CheckOutput("documents/variable.pec");
+			CheckOutput("documents/member.pec");
+		}
+
+		[Test]
+		public void testNamedItem()
+		{
+			CheckOutput("documents/namedItem.pec");
 		}
 
 	}

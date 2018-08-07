@@ -15,9 +15,9 @@ namespace prompto.translate.omo
 		}
 
 		[Test]
-		public void testDeepVariable()
+		public void testDeepMember()
 		{
-			compareResourceOMO("documents/deepVariable.poc");
+			compareResourceOMO("documents/deepMember.poc");
 		}
 
 		[Test]
@@ -27,9 +27,15 @@ namespace prompto.translate.omo
 		}
 
 		[Test]
-		public void testVariable()
+		public void testLiteral()
 		{
-			compareResourceOMO("documents/variable.poc");
+			compareResourceOMO("documents/literal.poc");
+		}
+
+		[Test]
+		public void testMember()
+		{
+			compareResourceOMO("documents/member.poc");
 		}
 
 	}

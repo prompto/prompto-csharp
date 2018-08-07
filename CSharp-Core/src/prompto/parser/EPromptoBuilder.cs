@@ -2445,6 +2445,14 @@ namespace prompto.parser
 		}
 
 
+		public override void ExitDocument_literal(EParser.Document_literalContext ctx)
+		{
+			DictEntryList entries = this.GetNodeValue<DictEntryList>(ctx.dict_entry_list());
+			DocEntryList items = new DocEntryList(entries);
+			SetNodeValue(ctx, new DocumentLiteral(items));
+		}
+
+
 		public override void ExitFetchOne (EParser.FetchOneContext ctx)
 		{
 			CategoryType category = this.GetNodeValue<CategoryType>(ctx.typ);
