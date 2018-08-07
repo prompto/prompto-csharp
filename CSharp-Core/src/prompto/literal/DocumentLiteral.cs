@@ -1,10 +1,7 @@
 using prompto.runtime;
 using prompto.error;
-using System;
 using prompto.value;
 using prompto.type;
-using System.Collections.Generic;
-using prompto.utils;
 
 namespace prompto.literal
 {
@@ -18,13 +15,13 @@ namespace prompto.literal
 		DocEntryList entries;
 
 		public DocumentLiteral()
-					: base("{}", new Document())
+			: base("{}", new Document())
 		{
 			this.entries = new DocEntryList();
 		}
 
 		public DocumentLiteral(DocEntryList entries)
-					: base(entries.ToString(), new Document())
+			: base(entries.ToString(), new Document())
 		{
 			this.entries = entries;
 		}
