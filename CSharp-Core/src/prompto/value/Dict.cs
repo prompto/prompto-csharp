@@ -201,7 +201,7 @@ namespace prompto.value
         public String ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("{");
+            sb.Append("<");
 			foreach (KeyValuePair<Text, IValue> kvp in ((Dictionary<Text, IValue>)this))
             {
                 sb.Append('"');
@@ -213,7 +213,9 @@ namespace prompto.value
             }
             if(sb.Length>2)
                 sb.Length = sb.Length - 2;
-            sb.Append("}");
+            else
+				sb.Append(":");
+			sb.Append(">");
             return sb.ToString();
         }
 

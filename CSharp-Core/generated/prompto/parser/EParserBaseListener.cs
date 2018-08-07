@@ -3792,6 +3792,18 @@ public partial class EParserBaseListener : IEParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitDict_literal([NotNull] EParser.Dict_literalContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="EParser.document_literal"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterDocument_literal([NotNull] EParser.Document_literalContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="EParser.document_literal"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitDocument_literal([NotNull] EParser.Document_literalContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="EParser.expression_tuple"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>

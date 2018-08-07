@@ -151,7 +151,7 @@ namespace prompto.parser.o
         public void testDict()
         {
 			DeclarationList stmts = parseString("method testMethod (Text value) {" +
-                        "dict = { \"john\":123, \"jim\":345 };" +
+                        "dict = < \"john\":123, \"jim\":345 >;" +
                         "elem = dict[\"john\"]; }");
             stmts.register(context);
             stmts.check(context);

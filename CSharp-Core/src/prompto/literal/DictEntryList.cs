@@ -26,7 +26,7 @@ namespace prompto.literal
         public String ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("{");
+            sb.Append("<");
             foreach (DictEntry entry in this)
             {
                 sb.Append(entry.ToString());
@@ -34,7 +34,9 @@ namespace prompto.literal
             }
             if(sb.Length>2)
                 sb.Length = sb.Length - 2;
-            sb.Append("}");
+			else
+				sb.Append(":");
+            sb.Append(">");
             return sb.ToString();
         }
 

@@ -11,7 +11,7 @@ namespace prompto.type
 	{
 	
 		public DictType (IType itemType)
-			: base (TypeFamily.DICTIONARY, itemType, itemType.GetTypeName() + "{}")
+			: base (TypeFamily.DICTIONARY, itemType, itemType.GetTypeName() + "<:>")
 		{
 			this.itemType = itemType;
 		}

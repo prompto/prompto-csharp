@@ -20,7 +20,7 @@ namespace prompto.literal
 		IType itemType = null;
 
 		public DictLiteral (bool mutable)
-			: base ("{}", new Dict (MissingType.Instance, mutable))
+			: base ("<:>", new Dict (MissingType.Instance, mutable))
 		{
 			this.entries = new DictEntryList ();
 			this.mutable = mutable;

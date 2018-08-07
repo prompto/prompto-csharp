@@ -3622,6 +3622,18 @@ public partial class MParserBaseListener : IMParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitDict_literal([NotNull] MParser.Dict_literalContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="MParser.document_literal"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterDocument_literal([NotNull] MParser.Document_literalContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="MParser.document_literal"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitDocument_literal([NotNull] MParser.Document_literalContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="MParser.expression_tuple"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>

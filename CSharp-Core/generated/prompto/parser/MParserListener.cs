@@ -3074,6 +3074,16 @@ public interface IMParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitDict_literal([NotNull] MParser.Dict_literalContext context);
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="MParser.document_literal"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterDocument_literal([NotNull] MParser.Document_literalContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="MParser.document_literal"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitDocument_literal([NotNull] MParser.Document_literalContext context);
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="MParser.expression_tuple"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>

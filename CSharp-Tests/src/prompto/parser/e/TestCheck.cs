@@ -149,7 +149,7 @@ namespace prompto.parser.e
         public void testDict()
         {
 			DeclarationList stmts = parseString("define testMethod as method receiving Text value doing:\r\n" +
-                        "\tdict = { \"john\":123, \"jim\":345 }\r\n" +
+                        "\tdict = < \"john\":123, \"jim\":345 >\r\n" +
                         "\telem = dict[\"john\"]\r\n");
             stmts.register(context);
             stmts.check(context);

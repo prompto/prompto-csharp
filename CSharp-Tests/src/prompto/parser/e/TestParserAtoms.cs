@@ -507,23 +507,23 @@ namespace prompto.parser
         [Test]
         public void testEmptyDictLiteral()
         {
-            String statement = "{}";
+            String statement = "<:>";
             ETestParser parser = new ETestParser(statement, false);
             IExpression literal = parser.parse_literal_expression();
             Assert.IsNotNull(literal);
             Assert.IsTrue(literal is DictLiteral);
-            Assert.AreEqual("{}", literal.ToString());
+            Assert.AreEqual("<:>", literal.ToString());
         }
 
         [Test]
         public void testSimpleDictLiteral()
         {
-            String statement = "{ \"john\" : 1234, eric : 5678 }";
+            String statement = "< \"john\" : 1234, eric : 5678 >";
             ETestParser parser = new ETestParser(statement, false);
             IExpression literal = parser.parse_literal_expression();
             Assert.IsNotNull(literal);
             Assert.IsTrue(literal is DictLiteral);
-			Assert.AreEqual("{\"john\":1234, eric:5678}", generate(literal));
+			Assert.AreEqual("<\"john\":1234, eric:5678>", generate(literal));
         }
 
         [Test]

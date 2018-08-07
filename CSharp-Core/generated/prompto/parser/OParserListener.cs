@@ -3118,6 +3118,16 @@ public interface IOParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitDict_literal([NotNull] OParser.Dict_literalContext context);
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="OParser.document_literal"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterDocument_literal([NotNull] OParser.Document_literalContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="OParser.document_literal"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitDocument_literal([NotNull] OParser.Document_literalContext context);
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="OParser.expression_tuple"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>

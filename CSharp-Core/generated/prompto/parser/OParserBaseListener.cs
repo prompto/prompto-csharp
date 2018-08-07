@@ -3672,6 +3672,18 @@ public partial class OParserBaseListener : IOParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitDict_literal([NotNull] OParser.Dict_literalContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="OParser.document_literal"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterDocument_literal([NotNull] OParser.Document_literalContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="OParser.document_literal"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitDocument_literal([NotNull] OParser.Document_literalContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="OParser.expression_tuple"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
