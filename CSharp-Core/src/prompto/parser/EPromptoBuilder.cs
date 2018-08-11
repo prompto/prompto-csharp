@@ -358,7 +358,7 @@ namespace prompto.parser
 		
 		public override void ExitDict_entry (EParser.Dict_entryContext ctx)
 		{
-			IExpression key = this.GetNodeValue<IExpression> (ctx.key);
+			DictKey key = this.GetNodeValue<DictKey> (ctx.key);
 			IExpression value = this.GetNodeValue<IExpression> (ctx.value);
 			DictEntry entry = new DictEntry (key, value);
 			SetNodeValue (ctx, entry);
@@ -541,7 +541,21 @@ namespace prompto.parser
 			SetNodeValue (ctx, new ListType (type));
 		}
 
-		
+
+		public override void ExitDictKeyIdentifier(EParser.DictKeyIdentifierContext ctx)
+		{
+			String text = ctx.name.GetText();
+			SetNodeValue(ctx, new DictIdentifierKey(text));
+		}
+
+
+		public override void ExitDictKeyText(EParser.DictKeyTextContext ctx)
+		{
+			String text = ctx.name.Text;
+			SetNodeValue(ctx, new DictTextKey(text));
+		}
+	
+
 		public override void ExitDictType (EParser.DictTypeContext ctx)
 		{
 			IType type = this.GetNodeValue<IType> (ctx.d);

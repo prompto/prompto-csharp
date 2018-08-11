@@ -2732,6 +2732,18 @@ public partial class MParserBaseListener : IMParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitSymbol_identifier([NotNull] MParser.Symbol_identifierContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="MParser.any_identifier"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterAny_identifier([NotNull] MParser.Any_identifierContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="MParser.any_identifier"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitAny_identifier([NotNull] MParser.Any_identifierContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="MParser.argument_list"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
@@ -3669,6 +3681,34 @@ public partial class MParserBaseListener : IMParserListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitDict_entry([NotNull] MParser.Dict_entryContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by the <c>DictKeyIdentifier</c>
+	/// labeled alternative in <see cref="MParser.dict_key"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterDictKeyIdentifier([NotNull] MParser.DictKeyIdentifierContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by the <c>DictKeyIdentifier</c>
+	/// labeled alternative in <see cref="MParser.dict_key"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitDictKeyIdentifier([NotNull] MParser.DictKeyIdentifierContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by the <c>DictKeyText</c>
+	/// labeled alternative in <see cref="MParser.dict_key"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterDictKeyText([NotNull] MParser.DictKeyTextContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by the <c>DictKeyText</c>
+	/// labeled alternative in <see cref="MParser.dict_key"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitDictKeyText([NotNull] MParser.DictKeyTextContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by the <c>SliceFirstAndLast</c>
 	/// labeled alternative in <see cref="MParser.slice_arguments"/>.

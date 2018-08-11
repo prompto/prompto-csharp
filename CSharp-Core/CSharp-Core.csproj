@@ -510,6 +510,10 @@
     <Compile Include="src\prompto\grammar\Annotation.cs" />
     <Compile Include="src\prompto\literal\DocEntryList.cs" />
     <Compile Include="src\prompto\literal\DocumentLiteral.cs" />
+    <Compile Include="src\prompto\literal\DictKey.cs" />
+    <Compile Include="src\prompto\literal\DictIdentifierKey.cs" />
+    <Compile Include="src\prompto\literal\DictTextKey.cs" />
+    <Compile Include="src\prompto\utils\StringUtils.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />

@@ -12,17 +12,10 @@ namespace prompto.literal
     {
 
         public TextLiteral(String text)
-            : base(text, Unescape(text))
+			: base(text, new Text(StringUtils.Unescape(text)))
         {
         }
 
-        private static Text Unescape(String text)
-        {
-            StreamTokenizer parser = new StreamTokenizer(new StringReader(text));
-            parser.NextToken();
-            return new Text(parser.StringValue);
-        }
-        
         override
         public IType check(Context context)
         {

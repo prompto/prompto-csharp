@@ -41,7 +41,7 @@ namespace prompto.literal
 				Document doc = new Document();
 				foreach (DictEntry e in entries)
 				{
-					Text key = (Text)e.getKey().interpret(context);
+					Text key = e.getKey().asText();
 					IValue val = e.getValue().interpret(context);
 					doc.SetMember(key.Value, val);
 				}

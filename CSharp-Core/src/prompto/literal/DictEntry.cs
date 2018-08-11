@@ -3,6 +3,7 @@ using System.Text;
 using prompto.value;
 using prompto.runtime;
 using prompto.expression;
+
 namespace prompto.literal
 {
 
@@ -10,29 +11,29 @@ namespace prompto.literal
     public class DictEntry : BaseValue
     {
 
-        IExpression key;
+        DictKey key;
         IExpression value;
 
 
-        public DictEntry(IExpression key, IExpression value)
+        public DictEntry(DictKey key, IExpression value)
 			: base(null) // TODO check that this is safe
         {
             this.key = key;
             this.value = value;
         }
 
-        override
-		public IValue GetMember(Context context, String name, bool autoCreate)
+        
+		public override IValue GetMember(Context context, String name, bool autoCreate)
         {
             if ("key" == name)
-                return (IValue)key.interpret(context);
+                return key.asText();
             else if ("value" == name)
                 return (IValue)value.interpret(context);
             else
                 throw new NotSupportedException("No such member:" + name);
         }
         
-        public IExpression getKey()
+        public DictKey getKey()
         {
             return key;
         }
@@ -42,8 +43,8 @@ namespace prompto.literal
             return value;
         }
 
-        override
-        public String ToString()
+        
+        public override String ToString()
         {
             StringBuilder sb = new StringBuilder();
             sb.Append( key.ToString());

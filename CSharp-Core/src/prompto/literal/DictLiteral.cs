@@ -48,9 +48,6 @@ namespace prompto.literal
 			List<IType> types = new List<IType>();
 			foreach (DictEntry e in entries)
 			{
-				IType keyType = e.getKey().check(context);
-				if (keyType != TextType.Instance)
-					throw new SyntaxError("Illegal key type: " + keyType.ToString());
 				types.Add(e.getValue().check(context));
 			}
 			return TypeUtils.InferElementType(context, types);
@@ -63,7 +60,7 @@ namespace prompto.literal
 				check (context); // to compute itemType
 				Dictionary<Text, IValue> dict = new Dictionary<Text, IValue> ();
 				foreach (DictEntry e in entries) {
-					Text key = (Text)e.getKey ().interpret (context);
+					Text key = e.getKey ().asText ();
 					IValue val = e.getValue ().interpret (context);
 					dict [key] = val;
 				}

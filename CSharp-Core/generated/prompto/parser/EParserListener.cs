@@ -2466,6 +2466,16 @@ public interface IEParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitSymbol_identifier([NotNull] EParser.Symbol_identifierContext context);
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="EParser.any_identifier"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterAny_identifier([NotNull] EParser.Any_identifierContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="EParser.any_identifier"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitAny_identifier([NotNull] EParser.Any_identifierContext context);
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="EParser.argument_list"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
@@ -3259,6 +3269,30 @@ public interface IEParserListener : IParseTreeListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void ExitDict_entry([NotNull] EParser.Dict_entryContext context);
+	/// <summary>
+	/// Enter a parse tree produced by the <c>DictKeyIdentifier</c>
+	/// labeled alternative in <see cref="EParser.dict_key"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterDictKeyIdentifier([NotNull] EParser.DictKeyIdentifierContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>DictKeyIdentifier</c>
+	/// labeled alternative in <see cref="EParser.dict_key"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitDictKeyIdentifier([NotNull] EParser.DictKeyIdentifierContext context);
+	/// <summary>
+	/// Enter a parse tree produced by the <c>DictKeyText</c>
+	/// labeled alternative in <see cref="EParser.dict_key"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterDictKeyText([NotNull] EParser.DictKeyTextContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>DictKeyText</c>
+	/// labeled alternative in <see cref="EParser.dict_key"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitDictKeyText([NotNull] EParser.DictKeyTextContext context);
 	/// <summary>
 	/// Enter a parse tree produced by the <c>SliceFirstAndLast</c>
 	/// labeled alternative in <see cref="EParser.slice_arguments"/>.
