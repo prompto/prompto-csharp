@@ -9,6 +9,12 @@ namespace prompto.translate.eme
 	{
 
 		[Test]
+		public void testAnyAsParameter()
+		{
+			compareResourceEME("categories/anyAsParameter.pec");
+		}
+
+		[Test]
 		public void testComposed()
 		{
 			compareResourceEME("categories/composed.pec");

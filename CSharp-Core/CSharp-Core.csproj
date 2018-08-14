@@ -541,7 +541,6 @@
     <Folder Include="src\prompto\argument\" />
     <Folder Include="src\prompto\instance\" />
     <Folder Include="src\prompto\constraint\" />
-    <Folder Include="src\prompto\code\" />
     <Folder Include="src\prompto\memstore\" />
     <Folder Include="src\prompto\jsx\" />
     <Folder Include="src\prompto\css\" />

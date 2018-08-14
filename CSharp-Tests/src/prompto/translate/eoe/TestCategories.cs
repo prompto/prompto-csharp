@@ -9,6 +9,12 @@ namespace prompto.translate.eoe
 	{
 
 		[Test]
+		public void testAnyAsParameter()
+		{
+			compareResourceEOE("categories/anyAsParameter.pec");
+		}
+
+		[Test]
 		public void testComposed()
 		{
 			compareResourceEOE("categories/composed.pec");

@@ -22,6 +22,12 @@ namespace prompto.runtime.e
 		}
 
 		[Test]
+		public void testAnyAsParameter()
+		{
+			CheckOutput("categories/anyAsParameter.pec");
+		}
+
+		[Test]
 		public void testComposed()
 		{
 			CheckOutput("categories/composed.pec");
