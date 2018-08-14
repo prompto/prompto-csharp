@@ -204,7 +204,8 @@ namespace prompto.type
 
         public bool isAssignableFrom(Context context, CategoryType other)
 		{
-			return other.isDerivedFrom(context, this)
+			return "Any" == this.typeName
+                || other.isDerivedFrom(context, this)
 				|| other.isDerivedFromAnonymous(context, this);
 		}
 
