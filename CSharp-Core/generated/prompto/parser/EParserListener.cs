@@ -1730,6 +1730,16 @@ public interface IEParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitLfp([NotNull] EParser.LfpContext context);
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="EParser.jsx_ws"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterJsx_ws([NotNull] EParser.Jsx_wsContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="EParser.jsx_ws"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitJsx_ws([NotNull] EParser.Jsx_wsContext context);
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="EParser.indent"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>

@@ -2034,6 +2034,18 @@ public partial class EParserBaseListener : IEParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitLfp([NotNull] EParser.LfpContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="EParser.jsx_ws"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterJsx_ws([NotNull] EParser.Jsx_wsContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="EParser.jsx_ws"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitJsx_ws([NotNull] EParser.Jsx_wsContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="EParser.indent"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>

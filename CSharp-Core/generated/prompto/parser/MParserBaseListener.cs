@@ -1864,6 +1864,18 @@ public partial class MParserBaseListener : IMParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitLfp([NotNull] MParser.LfpContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="MParser.jsx_ws"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterJsx_ws([NotNull] MParser.Jsx_wsContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="MParser.jsx_ws"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitJsx_ws([NotNull] MParser.Jsx_wsContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="MParser.indent"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>

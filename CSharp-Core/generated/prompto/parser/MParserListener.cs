@@ -1584,6 +1584,16 @@ public interface IMParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitLfp([NotNull] MParser.LfpContext context);
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="MParser.jsx_ws"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterJsx_ws([NotNull] MParser.Jsx_wsContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="MParser.jsx_ws"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitJsx_ws([NotNull] MParser.Jsx_wsContext context);
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="MParser.indent"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>

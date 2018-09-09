@@ -9,12 +9,13 @@ namespace prompto.jsx {
 
 		String name;
 		IJsxValue value;
+		String suite;
 
-
-		public JsxAttribute(String name, IJsxValue value)
+		public JsxAttribute(String name, IJsxValue value, String suite)
 		{
 			this.name = name;
 			this.value = value;
+        	this.suite = (suite != null && suite.Length>0) ? suite : null;
 		}
 
 
@@ -27,12 +28,16 @@ namespace prompto.jsx {
 
 		public void ToDialect(CodeWriter writer)
 		{
-			writer.append(" ").append(name);
+			writer.append(name);
 			if (value != null)
 			{
 				writer.append("=");
 				value.ToDialect(writer);
 			}
+			if(suite!=null)
+				writer.appendRaw(suite);
+			else
+				writer.append(" ");
 		}
 
 	}

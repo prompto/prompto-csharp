@@ -27,14 +27,79 @@ namespace prompto.parser
 	{
 
 		ParseTreeProperty<object> nodeValues = new ParseTreeProperty<object> ();
-		ITokenStream input;
+		BufferedTokenStream input;
 		string path = "";
 
 		public MPromptoBuilder (MCleverParser parser)
 		{
-			this.input = (ITokenStream)parser.InputStream;
+           	this.input = (BufferedTokenStream)parser.InputStream;
 			this.path = parser.Path;
 		}
+
+		protected String getHiddenTokensBefore(ITerminalNode node)
+		{
+			return getHiddenTokensAfter(node.Symbol);
+		}
+
+		protected String getHiddenTokensBefore(IToken token)
+		{
+			IList<IToken> hidden = input.GetHiddenTokensToLeft(token.TokenIndex);
+			return getHiddenTokensText(hidden);
+		}
+
+		protected String getHiddenTokensAfter(ITerminalNode node)
+		{
+			return getHiddenTokensAfter(node.Symbol);
+		}
+
+		protected String getHiddenTokensAfter(IToken token)
+		{
+			IList<IToken> hidden = input.GetHiddenTokensToRight(token.TokenIndex);
+			return getHiddenTokensText(hidden);
+		}
+
+
+		private String getHiddenTokensText(IList<IToken> hidden)
+		{
+			if (hidden == null || hidden.Count == 0)
+				return null;
+			else
+			{
+				StringBuilder sb = new StringBuilder();
+				foreach (IToken token in hidden)
+					sb.Append(token.Text);
+				return sb.ToString();
+			}
+		}
+
+		private String getJsxWhiteSpace(ParserRuleContext ctx)
+		{
+			if (ctx.ChildCount == 0)
+				return null;
+			StringBuilder sb = new StringBuilder();
+			foreach (IParseTree child in ctx.children)
+			{
+				if (isIndent(child))
+					continue;
+				sb.Append(child.GetText());
+			}
+			String within = sb.ToString();
+			if (within.Length == 0)
+				return null;
+			String before = getHiddenTokensBefore(ctx.Start);
+			if (before != null)
+				within = before + within;
+			String after = getHiddenTokensAfter(ctx.Stop);
+			if (after != null)
+				within = within + after;
+			return within;
+		}
+
+		private static bool isIndent(IParseTree tree)
+		{
+			return tree is ITerminalNode && ((ITerminalNode)tree).Symbol.Type == MParser.INDENT;	
+		}
+
 
 		public T GetNodeValue<T> (IParseTree node)
 		{
@@ -2905,7 +2970,9 @@ namespace prompto.parser
 
 		public override void ExitJsxElement(MParser.JsxElementContext ctx)
 		{
-			JsxElement elem = this.GetNodeValue<JsxElement>(ctx.jsx);
+			JsxElement elem = this.GetNodeValue<JsxElement>(ctx.opening);
+			JsxClosing closing = this.GetNodeValue<JsxClosing>(ctx.closing);
+			elem.setClosing(closing);
 			List<IJsxExpression> children = this.GetNodeValue<List<IJsxExpression>>(ctx.children_);
 			elem.setChildren(children);
 			SetNodeValue(ctx, elem);
@@ -2934,7 +3001,8 @@ namespace prompto.parser
 		{
 			String name = this.GetNodeValue<String>(ctx.name);
 			IJsxValue value = this.GetNodeValue<IJsxValue>(ctx.value);
-			SetNodeValue(ctx, new JsxAttribute(name, value));
+			String suite = getJsxWhiteSpace(ctx.jsx_ws());
+			SetNodeValue(ctx, new JsxAttribute(name, value, suite));
 		}
 
 
@@ -2972,19 +3040,27 @@ namespace prompto.parser
 		public override void ExitJsx_opening(MParser.Jsx_openingContext ctx)
 		{
 			String name = this.GetNodeValue<String>(ctx.name);
+			String suite = getJsxWhiteSpace(ctx.jsx_ws());
 			List<JsxAttribute> attributes = new List<JsxAttribute>();
 			foreach (ParserRuleContext child in ctx.jsx_attribute())
 				attributes.Add(this.GetNodeValue<JsxAttribute>(child));
-			SetNodeValue(ctx, new JsxElement(name, attributes));
+			SetNodeValue(ctx, new JsxElement(name, suite, attributes, null));
+		}
+
+		public override void ExitJsx_closing(MParser.Jsx_closingContext ctx)
+		{
+			String name = this.GetNodeValue<String>(ctx.name);
+			SetNodeValue(ctx, new JsxClosing(name, null));
 		}
 
 		public override void ExitJsx_self_closing(MParser.Jsx_self_closingContext ctx)
 		{
 			String name = this.GetNodeValue<String>(ctx.name);
+			String suite = getJsxWhiteSpace(ctx.jsx_ws());
 			List<JsxAttribute> attributes = new List<JsxAttribute>();
 			foreach (ParserRuleContext child in ctx.jsx_attribute())
 				attributes.Add(this.GetNodeValue<JsxAttribute>(child));
-			SetNodeValue(ctx, new JsxSelfClosing(name, attributes));
+			SetNodeValue(ctx, new JsxSelfClosing(name, suite, attributes, null));
 		}
 
 

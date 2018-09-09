@@ -73,6 +73,12 @@ namespace prompto.utils
 			return context;
 		}
 
+		public CodeWriter appendRaw(String s)
+		{
+			sb.Append(s);
+			return this;
+		}
+
 		public CodeWriter append (String s)
 		{
 			indenter.appendTabsIfRequired (s);

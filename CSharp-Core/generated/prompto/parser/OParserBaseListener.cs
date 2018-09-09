@@ -1950,6 +1950,18 @@ public partial class OParserBaseListener : IOParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitNull_literal([NotNull] OParser.Null_literalContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="OParser.jsx_ws"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterJsx_ws([NotNull] OParser.Jsx_wsContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="OParser.jsx_ws"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitJsx_ws([NotNull] OParser.Jsx_wsContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by the <c>FullDeclarationList</c>
 	/// labeled alternative in <see cref="OParser.declaration_list"/>.
 	/// <para>The default implementation does nothing.</para>

@@ -27,13 +27,32 @@ namespace prompto.parser
 	{
 
 		ParseTreeProperty<object> nodeValues = new ParseTreeProperty<object> ();
-		ITokenStream input;
+		BufferedTokenStream input;
 		string path = "";
 
 		public OPromptoBuilder (OCleverParser parser)
 		{
-			this.input = (ITokenStream)parser.InputStream;
+           	this.input = (BufferedTokenStream)parser.InputStream;
 			this.path = parser.Path;
+		}
+
+		protected String getHiddenTokensAfter(ITerminalNode node)
+		{
+			return getHiddenTokensAfter(node.Symbol);
+		}
+
+		protected String getHiddenTokensAfter(IToken token)
+		{
+			IList<IToken> hidden = input.GetHiddenTokensToRight(token.TokenIndex);
+			if (hidden == null || hidden.Count == 0)
+				return null;
+			else
+			{
+				StringBuilder sb = new StringBuilder();
+				foreach (IToken t in hidden)
+					sb.Append(t.Text);
+				return sb.ToString();
+			}
 		}
 
 		public T GetNodeValue<T> (IParseTree node)
@@ -1709,7 +1728,9 @@ namespace prompto.parser
 
 		public override void ExitJsxElement(OParser.JsxElementContext ctx)
 		{
-			JsxElement elem = this.GetNodeValue<JsxElement>(ctx.jsx);
+			JsxElement elem = this.GetNodeValue<JsxElement>(ctx.opening);
+			JsxClosing closing = this.GetNodeValue<JsxClosing>(ctx.closing);
+			elem.setClosing(closing);
 			List<IJsxExpression> children = this.GetNodeValue<List<IJsxExpression>>(ctx.children_);
 			elem.setChildren(children);
 			SetNodeValue(ctx, elem);
@@ -1738,7 +1759,8 @@ namespace prompto.parser
 		{
 			String name = this.GetNodeValue<String>(ctx.name);
 			IJsxValue value = this.GetNodeValue<IJsxValue>(ctx.value);
-			SetNodeValue(ctx, new JsxAttribute(name, value));
+			String suite = getHiddenTokensAfter(ctx.value.Stop);
+			SetNodeValue(ctx, new JsxAttribute(name, value, suite));
 		}
 
 
@@ -1776,19 +1798,31 @@ namespace prompto.parser
 		public override void ExitJsx_opening(OParser.Jsx_openingContext ctx)
 		{
 			String name = this.GetNodeValue<String>(ctx.name);
+			String nameSuite = getHiddenTokensAfter(ctx.name.Stop);
 			List<JsxAttribute> attributes = new List<JsxAttribute>();
 			foreach (ParserRuleContext child in ctx.jsx_attribute())
 				attributes.Add(this.GetNodeValue<JsxAttribute>(child));
-			SetNodeValue(ctx, new JsxElement(name, attributes));
+			String openingSuite = getHiddenTokensAfter(ctx.GT());
+			SetNodeValue(ctx, new JsxElement(name, nameSuite, attributes, openingSuite));
 		}
 
+
+		public override void ExitJsx_closing(OParser.Jsx_closingContext ctx)
+		{
+			String name = this.GetNodeValue<String>(ctx.name);
+			String suite = getHiddenTokensAfter(ctx.GT());
+			SetNodeValue(ctx, new JsxClosing(name, suite));
+		}
+	
 		public override void ExitJsx_self_closing(OParser.Jsx_self_closingContext ctx)
 		{
 			String name = this.GetNodeValue<String>(ctx.name);
+			String nameSuite = getHiddenTokensAfter(ctx.name.Stop);
 			List<JsxAttribute> attributes = new List<JsxAttribute>();
 			foreach (ParserRuleContext child in ctx.jsx_attribute())
 				attributes.Add(this.GetNodeValue<JsxAttribute>(child));
-			SetNodeValue(ctx, new JsxSelfClosing(name, attributes));
+			String openingSuite = getHiddenTokensAfter(ctx.GT());
+			SetNodeValue(ctx, new JsxSelfClosing(name, nameSuite, attributes, openingSuite));
 		}
 
 

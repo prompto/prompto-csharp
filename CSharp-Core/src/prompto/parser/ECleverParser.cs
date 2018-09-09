@@ -58,21 +58,22 @@ namespace prompto.parser
 
 		public DeclarationList parse_declaration_list ()
 		{
-			IParseTree tree = this.declaration_list ();
-			EPromptoBuilder builder = new EPromptoBuilder (this);
-			ParseTreeWalker walker = new ParseTreeWalker ();
-			walker.Walk (builder, tree);
-			return builder.GetNodeValue<DeclarationList> (tree);
+			return doParse<DeclarationList>(this.declaration_list, false);
 		}
 
 		public IType parse_standalone_type ()
 		{
-			getLexer ().AddLF = false;
-			IParseTree tree = this.category_or_any_type ();
-			EPromptoBuilder builder = new EPromptoBuilder (this);
-			ParseTreeWalker walker = new ParseTreeWalker ();
+			return doParse<IType>(this.category_or_any_type, false);
+		}
+
+		public T doParse<T>(Func<IParseTree> method, bool addLF)
+		{
+            getLexer().AddLF = addLF;
+			IParseTree tree = method.Invoke();
+			EPromptoBuilder builder = new EPromptoBuilder(this);
+			ParseTreeWalker walker = new ParseTreeWalker();
 			walker.Walk (builder, tree);
-			return builder.GetNodeValue<IType> (tree);
+			return builder.GetNodeValue<T>(tree);
 		}
 	}
 

@@ -1658,6 +1658,16 @@ public interface IOParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitNull_literal([NotNull] OParser.Null_literalContext context);
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="OParser.jsx_ws"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterJsx_ws([NotNull] OParser.Jsx_wsContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="OParser.jsx_ws"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitJsx_ws([NotNull] OParser.Jsx_wsContext context);
+	/// <summary>
 	/// Enter a parse tree produced by the <c>FullDeclarationList</c>
 	/// labeled alternative in <see cref="OParser.declaration_list"/>.
 	/// </summary>
