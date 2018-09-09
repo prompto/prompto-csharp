@@ -1759,7 +1759,8 @@ namespace prompto.parser
 		{
 			String name = this.GetNodeValue<String>(ctx.name);
 			IJsxValue value = this.GetNodeValue<IJsxValue>(ctx.value);
-			String suite = getHiddenTokensAfter(ctx.value.Stop);
+			IToken stop = value != null ? ctx.value.Stop : ctx.name.Stop;
+			String suite = getHiddenTokensAfter(stop);
 			SetNodeValue(ctx, new JsxAttribute(name, value, suite));
 		}
 
