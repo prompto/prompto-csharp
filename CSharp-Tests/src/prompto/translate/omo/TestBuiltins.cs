@@ -141,6 +141,12 @@ namespace prompto.translate.omo
 		}
 
 		[Test]
+		public void testTextIndexOf()
+		{
+			compareResourceOMO("builtins/textIndexOf.poc");
+		}
+
+		[Test]
 		public void testTextLowercase()
 		{
 			compareResourceOMO("builtins/textLowercase.poc");

@@ -142,6 +142,12 @@ namespace prompto.runtime.o
 		}
 
 		[Test]
+		public void testTextIndexOf()
+		{
+			CheckOutput("builtins/textIndexOf.poc");
+		}
+
+		[Test]
 		public void testTextLowercase()
 		{
 			CheckOutput("builtins/textLowercase.poc");

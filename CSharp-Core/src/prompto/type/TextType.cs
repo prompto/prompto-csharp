@@ -74,6 +74,9 @@ namespace prompto.type
 				case "trim":
 					list.Add(TRIM_METHOD);
 					return list;
+				case "indexOf":
+					list.Add(INDEX_OF_METHOD);
+					return list;
 				default:
 					return base.getMemberMethods(context, name);
 			}
@@ -93,6 +96,7 @@ namespace prompto.type
 		internal static IMethodDeclaration TO_UPPERCASE_METHOD = new ToUpperCaseMethodDeclaration();
 		internal static IMethodDeclaration TO_CAPITALIZED_METHOD = new ToCapitalizedMethodDeclaration();
 		internal static IMethodDeclaration TRIM_METHOD = new TrimMethodDeclaration();
+		internal static IMethodDeclaration INDEX_OF_METHOD = new IndexOfMethodDeclaration();
 
 		public override IType checkMember(Context context, String name)
 		{
@@ -423,6 +427,32 @@ namespace prompto.type
 			return TextType.Instance;
 		}
 	};
+
+
+	class IndexOfMethodDeclaration : BuiltInMethodDeclaration
+	{
+
+		public IndexOfMethodDeclaration()
+			: base("indexOf", TextType.VALUE_ARGUMENT)
+		{
+		}
+
+		public override IValue interpret(Context context)
+		{
+			string value = (String)getValue(context).GetStorableData();
+			string find = (String)context.getValue("value").GetStorableData();
+			int indexOf = value.IndexOf(find);
+			return new prompto.value.Integer(indexOf + 1);
+		}
+
+
+		public override IType check(Context context)
+		{
+			return IntegerType.Instance;
+		}
+
+	};
+
 
 
 }

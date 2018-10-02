@@ -141,6 +141,12 @@ namespace prompto.translate.oeo
 		}
 
 		[Test]
+		public void testTextIndexOf()
+		{
+			compareResourceOEO("builtins/textIndexOf.poc");
+		}
+
+		[Test]
 		public void testTextLowercase()
 		{
 			compareResourceOEO("builtins/textLowercase.poc");
