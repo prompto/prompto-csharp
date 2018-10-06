@@ -103,8 +103,8 @@ namespace prompto.declaration
 
 		public virtual void check(ConcreteCategoryDeclaration declaration, Context context)
 		{
-			// TODO Auto-generated method stub
-
+			context = context.newInstanceContext((CategoryType)declaration.GetIType(context), false);
+	        checkChild(context);
 		}
 
         override
@@ -155,10 +155,15 @@ namespace prompto.declaration
                 arguments.check(context);
             Context child = context.newChildContext();
             registerArguments(child);
-			return statements.check(child, returnType);
+			return checkStatements(child);
         }
 
-        override
+		IType checkStatements(Context context)
+		{
+ 			return statements.check(context, returnType);
+		}
+
+		override
 		public IValue interpret(Context context)
         {
             context.enterMethod(this);

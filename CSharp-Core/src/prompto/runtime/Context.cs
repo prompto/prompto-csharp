@@ -86,6 +86,16 @@ namespace prompto.runtime
 			return calling;
 		}
 
+		public InstanceContext getClosestInstanceContext()
+		{
+			if (parent == null)
+				return null;
+			else if (parent is InstanceContext)
+					return (InstanceContext)parent;
+			else
+				return parent.getClosestInstanceContext();
+		}
+
 		public Context getParentMostContext()
 		{
 			if (parent == null)

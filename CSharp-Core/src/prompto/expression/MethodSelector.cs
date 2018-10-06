@@ -52,9 +52,10 @@ namespace prompto.expression
 		{
 			ISet<IMethodDeclaration> methods = new HashSet<IMethodDeclaration>();
 			// if called from a member method, could be a member method called without this/self
-			if (context.getParentContext() is InstanceContext)
+			InstanceContext instance = context.getClosestInstanceContext();
+			if (instance != null)
 			{
-				IType type = ((InstanceContext)context.getParentContext()).getInstanceType();
+				IType type = instance.getInstanceType();
 				ConcreteCategoryDeclaration cd = context.getRegisteredDeclaration<ConcreteCategoryDeclaration>(type.GetTypeName());
 				if (cd != null)
 				{
