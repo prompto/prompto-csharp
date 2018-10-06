@@ -55,7 +55,9 @@ namespace prompto.type
 			else if (dd is CategoryDeclaration)
 			{
 				CategoryDeclaration cd = (CategoryDeclaration)dd;
-				if (cd.hasAttribute(context, name))
+				if (cd.Storable && "dbId" == name)
+					return AnyType.Instance;
+				else if (cd.hasAttribute(context, name))
 				{
 					AttributeDeclaration ad = context.getRegisteredDeclaration<AttributeDeclaration>(name);
 					if (ad == null)
