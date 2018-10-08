@@ -1,9 +1,6 @@
 using prompto.error;
 using prompto.runtime;
-using System;
-using prompto.parser;
 using prompto.declaration;
-using prompto.statement;
 using prompto.type;
 using prompto.value;
 using prompto.utils;
@@ -22,13 +19,13 @@ namespace prompto.statement {
     override
     public void ToDialect(CodeWriter writer)
     {
-			try {
-				ConcreteMethodDeclaration method = (ConcreteMethodDeclaration)(object)declaration;
-				writer.getContext().registerDeclaration(method);
-			} catch(SyntaxError /*e*/) {
-				// ok
-			}
-			declaration.ToDialect(writer);
+		try {
+			ConcreteMethodDeclaration method = (ConcreteMethodDeclaration)(object)declaration;
+			writer.getContext().registerDeclaration(method);
+		} catch(SyntaxError /*e*/) {
+			// ok
+		}
+		declaration.ToDialect(writer);
     }
 
 	

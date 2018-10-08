@@ -2639,7 +2639,7 @@ namespace prompto.parser
 		public override void ExitJavascript_category_binding (OParser.Javascript_category_bindingContext ctx)
 		{
 			StringBuilder sb = new StringBuilder();
-			foreach (OParser.IdentifierContext cx in ctx.identifier())
+			foreach (OParser.Javascript_identifierContext cx in ctx.javascript_identifier())
 				sb.Append(cx.GetText());
 			String identifier = sb.ToString();
 			JavaScriptModule module = this.GetNodeValue<JavaScriptModule> (ctx.javascript_module ());
