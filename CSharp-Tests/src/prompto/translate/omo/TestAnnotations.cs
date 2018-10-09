@@ -14,6 +14,12 @@ namespace prompto.translate.omo
 			compareResourceOMO("annotations/callback.poc");
 		}
 
+		[Test]
+		public void testCategory()
+		{
+			compareResourceOMO("annotations/category.poc");
+		}
+
 	}
 }
 

@@ -14,6 +14,12 @@ namespace prompto.translate.eoe
 			compareResourceEOE("annotations/callback.pec");
 		}
 
+		[Test]
+		public void testCategory()
+		{
+			compareResourceEOE("annotations/category.pec");
+		}
+
 	}
 }
 

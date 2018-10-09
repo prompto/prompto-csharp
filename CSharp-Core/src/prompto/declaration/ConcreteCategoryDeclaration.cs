@@ -6,6 +6,7 @@ using prompto.type;
 using prompto.value;
 using prompto.grammar;
 using prompto.utils;
+using prompto.statement;
 
 namespace prompto.declaration
 {
@@ -160,6 +161,12 @@ namespace prompto.declaration
 				writer.append ("pass\n");
 			else {
 				foreach (IDeclaration decl in methods) {
+					if(decl.Comments!=null)
+						foreach(CommentStatement comment in decl.Comments)
+							comment.ToDialect(writer);
+					if(decl.Annotations!=null)
+						foreach(Annotation annotation in decl.Annotations)
+						annotation.ToDialect(writer);
 					CodeWriter w = writer.newMemberWriter ();
 					decl.ToDialect (w);
 					writer.newLine ();

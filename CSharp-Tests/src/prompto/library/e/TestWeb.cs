@@ -32,6 +32,12 @@ namespace prompto.library.e
 		}
 
 		[Test]
+		public void testReact()
+		{
+			CheckTests("web/react.pec");
+		}
+
+		[Test]
 		public void testUtils()
 		{
 			CheckTests("web/utils.pec");

@@ -168,6 +168,35 @@ namespace prompto.parser
 		}
 
 		
+		List<Annotation> ReadAnnotations(EParser.Annotation_constructorContext[] contexts)
+		{
+			List<Annotation> annotations = null;
+			foreach (RuleContext acs in contexts)
+			{
+				if (acs == null)
+					continue;
+				if (annotations == null)
+					annotations = new List<Annotation>();
+				annotations.add((Annotation)this.GetNodeValue<Annotation>(acs));
+			}
+			return annotations;
+		}
+
+		List<CommentStatement> ReadComments(EParser.Comment_statementContext[] contexts)
+		{
+			List<CommentStatement> comments = null;
+			foreach (RuleContext csc in contexts)
+			{
+				if (csc == null)
+					continue;
+				if (comments == null)
+					comments = new List<CommentStatement>();
+				comments.add((CommentStatement)this.GetNodeValue<CommentStatement>(csc));
+			}
+			return comments;
+		}
+
+
 		public override void ExitIdentifierExpression (EParser.IdentifierExpressionContext ctx)
 		{
 			String name = this.GetNodeValue<String> (ctx.exp);
@@ -968,8 +997,16 @@ namespace prompto.parser
 
 		public override void ExitMember_method_declaration (EParser.Member_method_declarationContext ctx)
 		{
-			IDeclaration decl = this.GetNodeValue<IDeclaration> (ctx.GetChild(0));
-			SetNodeValue (ctx, decl);
+			List<CommentStatement> comments = ReadComments(ctx.comment_statement());
+			List<Annotation> annotations = ReadAnnotations(ctx.annotation_constructor());
+			IParseTree ctx_ = ctx.children[ctx.ChildCount - 1];
+			IDeclaration decl = this.GetNodeValue<IDeclaration> (ctx_);
+			if (decl != null)
+			{
+				decl.Comments = comments;
+				decl.Annotations = annotations;
+				SetNodeValue(ctx, decl);
+			}
 		}
 			
 
@@ -1474,33 +1511,9 @@ namespace prompto.parser
 		
 		public override void ExitDeclaration (EParser.DeclarationContext ctx)
 		{
-			List<CommentStatement> comments = null;
-			foreach(EParser.Comment_statementContext csc in ctx.comment_statement()) {
-				if(csc==null)
-					continue;
-				if(comments==null)
-					comments = new List<CommentStatement>();
-				comments.add((CommentStatement)this.GetNodeValue<CommentStatement>(csc));
-			}
-			List<Annotation> annotations = null;
-			foreach(EParser.Annotation_constructorContext acs in ctx.annotation_constructor()) {
-				if(acs==null)
-					continue;
-				if(annotations==null)
-					annotations = new List<Annotation>();
-				annotations.add((Annotation)this.GetNodeValue<Annotation>(acs));
-}
-			ParserRuleContext ctx_ = ctx.attribute_declaration();
-			if(ctx_==null)
-				ctx_ = ctx.category_declaration();
-			if(ctx_==null)
-				ctx_ = ctx.enum_declaration();
-			if(ctx_==null)
-				ctx_ = ctx.method_declaration();
-			if(ctx_==null)
-				ctx_ = ctx.resource_declaration();
-			if(ctx_==null)
-				ctx_ = ctx.widget_declaration();
+			List<CommentStatement> comments = ReadComments(ctx.comment_statement());
+			List<Annotation> annotations = ReadAnnotations(ctx.annotation_constructor());
+			IParseTree ctx_ = ctx.children[ctx.ChildCount - 1];
 			IDeclaration decl = this.GetNodeValue<IDeclaration>(ctx_);
 			if(decl!=null) {
 				decl.Comments = comments;

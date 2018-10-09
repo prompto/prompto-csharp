@@ -8,6 +8,7 @@ using prompto.utils;
 using prompto.parser;
 using prompto.store;
 using System.Collections.Generic;
+using prompto.statement;
 
 namespace prompto.declaration
 {
@@ -195,6 +196,12 @@ namespace prompto.declaration
 			writer.indent ();
 			foreach (IDeclaration decl in methods) {
 				writer.newLine ();
+				if(decl.Comments!=null)
+					foreach(CommentStatement comment in decl.Comments)
+						comment.ToDialect(writer);
+				if(decl.Annotations!=null)
+					foreach(Annotation annotation in decl.Annotations)
+						annotation.ToDialect(writer);
 				CodeWriter w = writer.newMemberWriter ();
 				decl.ToDialect (w);
 			}
@@ -231,6 +238,12 @@ namespace prompto.declaration
 
 		protected virtual void methodsToODialect(CodeWriter writer, MethodDeclarationList methods) {
 			foreach(IDeclaration decl in methods) {
+				if(decl.Comments!=null)
+					foreach(CommentStatement comment in decl.Comments)
+						comment.ToDialect(writer);
+				if(decl.Annotations!=null)
+					foreach(Annotation annotation in decl.Annotations)
+						annotation.ToDialect(writer);
 				CodeWriter w = writer.newMemberWriter();
 				decl.ToDialect(w);
 				w.newLine();

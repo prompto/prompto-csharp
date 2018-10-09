@@ -14,6 +14,12 @@ namespace prompto.translate.eme
 			compareResourceEME("annotations/callback.pec");
 		}
 
+		[Test]
+		public void testCategory()
+		{
+			compareResourceEME("annotations/category.pec");
+		}
+
 	}
 }
 
