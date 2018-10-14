@@ -64,6 +64,12 @@ namespace prompto.runtime.e
 		}
 
 		[Test]
+		public void testCastMethod()
+		{
+			CheckOutput("cast/castMethod.pec");
+		}
+
+		[Test]
 		public void testCastMissing()
 		{
 			CheckOutput("cast/castMissing.pec");

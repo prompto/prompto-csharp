@@ -51,6 +51,12 @@ namespace prompto.translate.eme
 		}
 
 		[Test]
+		public void testCastMethod()
+		{
+			compareResourceEME("cast/castMethod.pec");
+		}
+
+		[Test]
 		public void testCastMissing()
 		{
 			compareResourceEME("cast/castMissing.pec");

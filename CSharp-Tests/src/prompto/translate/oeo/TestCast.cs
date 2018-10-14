@@ -21,6 +21,12 @@ namespace prompto.translate.oeo
 		}
 
 		[Test]
+		public void testCastMethod()
+		{
+			compareResourceOEO("cast/castMethod.poc");
+		}
+
+		[Test]
 		public void testCastMissing()
 		{
 			compareResourceOEO("cast/castMissing.poc");

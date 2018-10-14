@@ -21,6 +21,12 @@ namespace prompto.translate.omo
 		}
 
 		[Test]
+		public void testCastMethod()
+		{
+			compareResourceOMO("cast/castMethod.poc");
+		}
+
+		[Test]
 		public void testCastMissing()
 		{
 			compareResourceOMO("cast/castMissing.poc");
