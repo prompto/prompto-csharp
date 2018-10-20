@@ -42,7 +42,14 @@ namespace prompto.expression
 
 		public ISet<IMethodDeclaration> getCandidates (Context context, bool checkInstance)
 		{
-			if (parent == null)
+			INamed named = context.getRegistered(name);
+			if (named is Variable && named.GetIType(context) is MethodType)
+			{
+				ISet<IMethodDeclaration> result = new HashSet<IMethodDeclaration>();
+				result.Add(((MethodType)named.GetIType(context)).Method);
+				return result;
+			}
+			else if(parent == null)
 				return getGlobalCandidates (context);
 			else
 				return getMemberCandidates (context, checkInstance);

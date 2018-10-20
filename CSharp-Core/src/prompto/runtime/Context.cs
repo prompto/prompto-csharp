@@ -224,6 +224,19 @@ namespace prompto.runtime
 				return default(T);
 		}
 
+		public virtual T getLocalDeclaration<T>(String name) where T : IDeclaration
+		{
+			IDeclaration actual;
+			declarations.TryGetValue(name, out actual);
+			if (actual != null)
+				return TypeUtils.downcast<T>(actual);
+			else if (parent != null)
+				return parent.getLocalDeclaration<T>(name);
+			else
+				return default(T);	
+		}
+
+
 		public void registerDeclaration(IDeclaration declaration)
 		{
 			INamed actual = getRegistered(declaration.GetName());

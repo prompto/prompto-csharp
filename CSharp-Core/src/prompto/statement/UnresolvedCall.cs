@@ -95,21 +95,37 @@ namespace prompto.statement
 		private IExpression resolveUnresolvedIdentifier(Context context)
         {
 			String name = ((UnresolvedIdentifier)caller).getName();
+			IExpression call = null;
 			IDeclaration decl = null;
 			// if this happens in the context of a member method, then we need to check for category members first
-			if(context.getParentContext() is InstanceContext) {
-				decl = resolveUnresolvedMember((InstanceContext)context.getParentContext(), name);
-				if(decl!=null)
+			InstanceContext instance = context.getClosestInstanceContext();
+			if(instance!=null) {
+				decl = resolveUnresolvedMember(instance, name);
+			if(decl!=null)
+				call = new MethodCall(new MethodSelector(name), assignments);
+			}
+			if(call==null) {
+				INamed named = context.getRegisteredValue<INamed>(name);
+				if(named!=null) {
+					IType type = named.GetIType(context);
+					if(type is MethodType) {
+						call = new MethodCall(new MethodSelector(name), assignments);
+						((MethodCall)call).setVariableName(name);
+					}
+				}
+			}
+			if(call==null) {
+				decl = context.getRegisteredDeclaration<IDeclaration>(name);
+				if(decl==null)
+					throw new SyntaxError("Unknown name:" + name);
+				if(decl is CategoryDeclaration)
+					return new ConstructorExpression(new CategoryType(name), null, assignments, false);
+				else
 					return new MethodCall(new MethodSelector(name), assignments);
 			}
-			decl = context.getRegisteredDeclaration<IDeclaration>(name);
-			if(decl==null)
-				throw new SyntaxError("Unknown name:" + name);
-			if(decl is CategoryDeclaration)
-				return new ConstructorExpression(new CategoryType(name), null, assignments, false);
-			else
-				return new MethodCall(new MethodSelector(name), assignments);
-       }
+			// call.copySectionFrom(this); // TODO
+			return call;
+		}
 
 		private IDeclaration resolveUnresolvedMember(InstanceContext context, String name) {
 			ConcreteCategoryDeclaration decl = context.getRegisteredDeclaration<ConcreteCategoryDeclaration>(context.getInstanceType().GetTypeName());

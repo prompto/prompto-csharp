@@ -18,8 +18,13 @@ namespace prompto.type
 		{
 		}
 
-		override
-		public System.Type ToCSharpType()
+		public override IterableType WithItemType(IType itemType)
+		{
+			return new ListType(itemType);
+		}
+
+
+		public override Type ToCSharpType()
 		{
 			return typeof(ListValue);
 		}

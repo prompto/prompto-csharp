@@ -26,7 +26,7 @@ namespace prompto.runtime
 
         public IMethodDeclaration findMethod(bool useInstance)
         {
-			ICollection<IMethodDeclaration> candidates = methodCall.getMethod().getCandidates(context, useInstance);
+			ICollection<IMethodDeclaration> candidates = methodCall.getSelector().getCandidates(context, useInstance);
 			List<IMethodDeclaration> compatibles = filterCompatible(candidates, useInstance);
             switch (compatibles.Count)
             {

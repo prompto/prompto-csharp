@@ -20,6 +20,8 @@ namespace prompto.type
 			this.typeName = typeName;
         }
 
+		public abstract IterableType WithItemType(IType itemType);
+
 		public IType GetItemType()
         {
             return itemType;

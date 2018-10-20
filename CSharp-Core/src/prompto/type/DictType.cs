@@ -17,6 +17,11 @@ namespace prompto.type
 		}
 
 
+		public override IterableType WithItemType(IType itemType)
+		{
+			return new DictType(itemType);
+		}
+
 		public override bool isAssignableFrom (Context context, IType other)
 		{
 			return base.isAssignableFrom(context, other) 

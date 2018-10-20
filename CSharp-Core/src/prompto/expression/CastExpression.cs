@@ -5,10 +5,19 @@ using prompto.error;
 using prompto.utils;
 using prompto.parser;
 using prompto.value;
+using prompto.declaration;
 
 namespace prompto.expression {
 
 	public class CastExpression : IExpression {
+
+	public static IType anyfy(IType type)
+	{
+		if (type is CategoryType && "Any".Equals(((CategoryType)type).GetTypeName()))
+			return AnyType.Instance;	
+		else
+			return type;
+	}
 
 		IExpression expression;
 		IType type;
@@ -19,25 +28,58 @@ namespace prompto.expression {
 		}
 
 		public IType check(Context context) {
-			IType actual = expression.check(context);
+			IType actual = anyfy(expression.check(context));
+			IType target = getTargetType(context, type);
+			// check any
+			if (actual == AnyType.Instance)
+				return target;
 			// check upcast
-			if (type.isAssignableFrom(context, actual))
-				return type;
+			if (target.isAssignableFrom(context, actual))
+				return target;
 			// check downcast
-			if(actual.isAssignableFrom(context, type))
+			if(actual.isAssignableFrom(context, target))
 				return type;
-			throw new SyntaxError("Cannot cast " + actual.ToString() + " to " + type.ToString());
+			throw new SyntaxError("Cannot cast " + actual.ToString() + " to " + target.ToString());
 		}
+
+		private static IType getTargetType(Context context, IType type)
+		{
+			if (type is IterableType)
+			{
+				IType itemType = getTargetType(context, ((IterableType)type).GetItemType());
+				return ((IterableType)type).WithItemType(itemType);
+			}
+			else
+				return getTargetAtomicType(context, type);
+		}
+
+
+		private static IType getTargetAtomicType(Context context, IType type)
+		{
+			IDeclaration decl = context.getRegisteredDeclaration<IDeclaration>(type.GetTypeName());
+			if (decl == null)
+				throw new SyntaxError("Unknown identifier: " + type.GetTypeName());
+			else if(decl is MethodDeclarationMap) {
+				MethodDeclarationMap map = (MethodDeclarationMap)decl;
+				if(map.Count==1)
+					return new MethodType(map.GetFirst());
+				else
+					throw new SyntaxError("Ambiguous identifier: " + type.GetTypeName());
+			} else
+				return decl.GetIType(context);
+		}
+
 
 		public IValue interpret(Context context) {
 			IValue value = expression.interpret(context);
 			if (value != null)
 			{
-				if (type == DecimalType.Instance && value is Integer)
+				IType target = getTargetType(context, type);
+				if (target == DecimalType.Instance && value is Integer)
 					value = new value.Decimal(((Integer)value).DecimalValue);
-				else if (type == IntegerType.Instance && value is value.Decimal)
+				else if (target == IntegerType.Instance && value is value.Decimal)
 					value = new Integer(((value.Decimal)value).IntegerValue);
-				else if (type.isMoreSpecificThan(context, value.GetIType()))
+				else if (target.isMoreSpecificThan(context, value.GetIType()))
 					value.SetIType(type);
 			}
 			return value;

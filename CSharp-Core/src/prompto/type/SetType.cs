@@ -16,6 +16,11 @@ namespace prompto.type
 		{
 		}
 
+		public override IterableType WithItemType(IType itemType)
+		{
+			return new SetType(itemType);
+		}
+
 		public override IType checkIterator (Context context)
 		{
 			return itemType;

@@ -17,28 +17,34 @@ namespace prompto.statement
 	public class MethodCall : SimpleStatement, IAssertion
     {
 
-        MethodSelector method;
+		MethodSelector selector;
         ArgumentAssignmentList assignments;
+		String variableName;
 
         public MethodCall(MethodSelector method)
         {
-            this.method = method;
+            this.selector = method;
         }
 
-        public MethodCall(MethodSelector method, ArgumentAssignmentList assignments)
+        public MethodCall(MethodSelector selector, ArgumentAssignmentList assignments)
         {
-            this.method = method;
+            this.selector = selector;
             this.assignments = assignments;
         }
 
-		public override string ToString ()
+		public void setVariableName(String variableName)
 		{
-			return method.ToString() + (assignments != null ? assignments.ToString() : "");
+			this.variableName = variableName;
 		}
 
-        public MethodSelector getMethod()
+		public override string ToString ()
+		{
+			return selector.ToString() + (assignments != null ? assignments.ToString() : "");
+		}
+
+        public MethodSelector getSelector()
         {
-            return method;
+            return selector;
         }
 
         public ArgumentAssignmentList getAssignments()
@@ -50,7 +56,7 @@ namespace prompto.statement
 		public void ToDialect(CodeWriter writer) {
 			if (requiresInvoke(writer))
 				writer.append("invoke: ");
-			method.ToDialect(writer);
+			selector.ToDialect(writer);
 			if (assignments != null)
 				assignments.ToDialect(writer);
 			else if (writer.getDialect() != Dialect.E)
@@ -78,10 +84,18 @@ namespace prompto.statement
         {
             MethodFinder finder = new MethodFinder(context, this);
             IMethodDeclaration declaration = finder.findMethod(false);
-			Context local = method.newLocalCheckContext(context, declaration);
+			Context local = IsLocalClosure(context) ? context : selector.newLocalCheckContext(context, declaration);
 			return check(declaration, context, local);
         }
 
+
+		private bool IsLocalClosure(Context context)
+		{
+			if (this.selector.getParent() != null)
+				return false;
+			IDeclaration decl = context.getLocalDeclaration<IDeclaration>(this.selector.getName());
+			return decl is MethodDeclarationMap;
+		}
 
 		private IType check(IMethodDeclaration declaration, Context parent, Context local)
         {
@@ -129,7 +143,7 @@ namespace prompto.statement
         public IValue interpret(Context context)
         {
             IMethodDeclaration declaration = findDeclaration(context);
-            Context local = method.newLocalContext(context, declaration);
+            Context local = selector.newLocalContext(context, declaration);
             declaration.registerArguments(local);
             ArgumentAssignmentList assignments = makeAssignments(context, declaration);
             foreach (ArgumentAssignment assignment in assignments)
@@ -159,7 +173,7 @@ namespace prompto.statement
         {
             try
             {
-                Object o = context.getValue(method.getName());
+                Object o = context.getValue(selector.getName());
 				if (o is ClosureValue)
 					return new ClosureDeclaration((ClosureValue)o);
             }

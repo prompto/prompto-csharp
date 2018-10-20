@@ -13,8 +13,14 @@ namespace prompto.type
         {
         }
 
-        override
-        public System.Type ToCSharpType()
+
+		public override IterableType WithItemType(IType itemType)
+		{
+			return new RangeType(itemType);
+		}
+
+        
+        public override Type ToCSharpType()
         {
             return null; // no equivalent
         }

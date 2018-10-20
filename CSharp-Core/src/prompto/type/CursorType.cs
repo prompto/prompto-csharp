@@ -1,4 +1,5 @@
-﻿using prompto.runtime;
+﻿using System;
+using prompto.runtime;
 using prompto.store;
 using prompto.value;
 
@@ -13,7 +14,13 @@ namespace prompto.type
 		{
 		}
 
-		public override System.Type ToCSharpType ()
+
+		public override IterableType WithItemType(IType itemType)
+		{
+			return new CursorType(itemType);
+		}
+
+		public override Type ToCSharpType ()
 		{
 			return typeof(Cursor);
 		}

@@ -25,8 +25,13 @@ namespace prompto.type
         {
         }
 
-        override
-        public Type ToCSharpType()
+		public override IterableType WithItemType(IType itemType)
+		{
+			throw new NotImplementedException();
+		}
+
+        
+        public override Type ToCSharpType()
         {
             return typeof(TupleValue); 
         }
