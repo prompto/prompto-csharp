@@ -43,14 +43,19 @@ namespace prompto.declaration
 			return memberOf;
 		}
 
-		public void setClosureOf(IMethodDeclaration declaration) {
-			this.closureOf = declaration;
+		public new IMethodDeclaration ClosureOf
+		{
+			set
+			{
+				this.closureOf = value;
+			}
+			get
+			{
+				return closureOf;
+			}
 		}
 
-		public IMethodDeclaration getClosureOf() {
-			return closureOf;
-		}
-    
+
 		public IType getReturnType()
         {
             return this.returnType;

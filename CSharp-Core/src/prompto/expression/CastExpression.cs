@@ -49,6 +49,8 @@ namespace prompto.expression {
 				IType itemType = getTargetType(context, ((IterableType)type).GetItemType());
 				return ((IterableType)type).WithItemType(itemType);
 			}
+			else if (type is NativeType)
+				return type;
 			else
 				return getTargetAtomicType(context, type);
 		}

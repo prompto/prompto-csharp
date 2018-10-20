@@ -651,14 +651,16 @@ namespace prompto.runtime
 			this.name = name;
 		}
 
-		public void SetClosureOf(IMethodDeclaration d)
+		public IMethodDeclaration ClosureOf
 		{
-			throw new NotImplementedException();
-		}
-
-		public IMethodDeclaration GetClosureOf()
-		{
-			throw new NotImplementedException();
+			get
+			{
+				throw new NotImplementedException();
+			}
+			set
+			{
+				throw new NotImplementedException();
+			}
 		}
 
 		public List<CommentStatement> Comments

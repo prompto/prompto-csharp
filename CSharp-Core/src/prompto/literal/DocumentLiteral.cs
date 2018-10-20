@@ -51,6 +51,12 @@ namespace prompto.literal
 				return value;
 		}
 
+		public override void ToDialect(prompto.utils.CodeWriter writer)
+		{
+			this.entries.ToDialect(writer);
+		}
+
+
 	}
 
 }

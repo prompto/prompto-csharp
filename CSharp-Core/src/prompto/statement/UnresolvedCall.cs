@@ -101,8 +101,8 @@ namespace prompto.statement
 			InstanceContext instance = context.getClosestInstanceContext();
 			if(instance!=null) {
 				decl = resolveUnresolvedMember(instance, name);
-			if(decl!=null)
-				call = new MethodCall(new MethodSelector(name), assignments);
+				if(decl!=null)
+					call = new MethodCall(new MethodSelector(name), assignments);
 			}
 			if(call==null) {
 				INamed named = context.getRegisteredValue<INamed>(name);
@@ -123,7 +123,6 @@ namespace prompto.statement
 				else
 					return new MethodCall(new MethodSelector(name), assignments);
 			}
-			// call.copySectionFrom(this); // TODO
 			return call;
 		}
 

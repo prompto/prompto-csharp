@@ -73,7 +73,7 @@ namespace prompto.literal
 		{
 			if (mutable)
 				writer.append ("mutable ");
-			base.ToDialect (writer);
+			this.entries.ToDialect (writer);
 		}
 
 	}

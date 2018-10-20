@@ -61,13 +61,17 @@ namespace prompto.declaration
 
 		public abstract void ToDialect (CodeWriter writer);
 
-		public void SetClosureOf(IMethodDeclaration declaration) {
-			throw new NotImplementedException();
+		public IMethodDeclaration ClosureOf {
+			get
+			{
+				throw new NotImplementedException();
+			}
+			set
+			{
+				throw new NotImplementedException();
+			}
 		}
 
-		public IMethodDeclaration GetClosureOf() {
-			throw new NotImplementedException();
-		}
 	}
 
 }

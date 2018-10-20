@@ -64,16 +64,13 @@ namespace prompto.statement
 		}
 
 		private bool requiresInvoke(CodeWriter writer) {
-			if (writer.getDialect() != Dialect.E)
-				return false;
-			if (assignments != null && assignments.Count > 0)
+			if (writer.getDialect() != Dialect.E || (assignments!=null && assignments.Count>0))
 				return false;
 			try {
 				MethodFinder finder = new MethodFinder(writer.getContext(), this);
-				IMethodDeclaration declaration = finder.findMethod(false);
-				/* if method is abstract, need to prefix with invoke */
-				if(declaration is AbstractMethodDeclaration)
-					return true;
+				IMethodDeclaration method = finder.findMethod(false);
+				/* if method is a reference */
+				return method is AbstractMethodDeclaration || method.ClosureOf != null;
 			} catch(SyntaxError /*e*/) {
 				// ok
 			}

@@ -24,8 +24,8 @@ namespace prompto.declaration
 				statements = new StatementList();
 			this.statements = statements;
 			foreach (IStatement s in statements) {
-				if (s is DeclarationStatement<IDeclaration>)
-					((DeclarationStatement<IDeclaration>)s).getDeclaration ().SetClosureOf (this);
+				if (s is BaseDeclarationStatement)
+					((BaseDeclarationStatement)s).getDeclaration ().ClosureOf = this;
 			}
         }
 
