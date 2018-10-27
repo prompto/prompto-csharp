@@ -46,6 +46,12 @@ namespace prompto.runtime.e
 		}
 
 		[Test]
+		public void testCursorToList()
+		{
+			CheckOutput("builtins/cursorToList.pec");
+		}
+
+		[Test]
 		public void testDateDayOfMonth()
 		{
 			CheckOutput("builtins/dateDayOfMonth.pec");

@@ -33,6 +33,12 @@ namespace prompto.translate.eme
 		}
 
 		[Test]
+		public void testCursorToList()
+		{
+			compareResourceEME("builtins/cursorToList.pec");
+		}
+
+		[Test]
 		public void testDateDayOfMonth()
 		{
 			compareResourceEME("builtins/dateDayOfMonth.pec");

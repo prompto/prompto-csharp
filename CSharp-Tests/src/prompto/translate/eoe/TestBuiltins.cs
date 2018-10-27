@@ -33,6 +33,12 @@ namespace prompto.translate.eoe
 		}
 
 		[Test]
+		public void testCursorToList()
+		{
+			compareResourceEOE("builtins/cursorToList.pec");
+		}
+
+		[Test]
 		public void testDateDayOfMonth()
 		{
 			compareResourceEOE("builtins/dateDayOfMonth.pec");

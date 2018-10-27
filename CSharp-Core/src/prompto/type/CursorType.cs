@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using prompto.declaration;
 using prompto.runtime;
 using prompto.store;
 using prompto.value;
@@ -57,5 +59,46 @@ namespace prompto.type
 		}
 
 
+		public override ISet<declaration.IMethodDeclaration> getMemberMethods(Context context, string name)
+		{
+			ISet<IMethodDeclaration> list = new HashSet<IMethodDeclaration>();
+			switch (name)
+			{
+				case "toList":
+					list.Add(new ToListMethodDeclaration(GetItemType()));
+					return list;
+				default:
+					return base.getMemberMethods(context, name);
+			}
+		}
+
+
 	}
+
+	class ToListMethodDeclaration : BuiltInMethodDeclaration
+	{
+
+		IType itemType;
+
+		public ToListMethodDeclaration(IType itemType)
+		: base("toList")
+		{ 
+			this.itemType = itemType;
+		}
+
+		public override IValue interpret(Context context)
+		{
+			Cursor value = (Cursor)getValue(context);
+			return value.ToListValue();
+		}
+
+
+
+		public override IType check(Context context)
+		{
+			return new ListType(itemType);
+		}
+
+	};
+
 }

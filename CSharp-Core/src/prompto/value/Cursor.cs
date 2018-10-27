@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using prompto.runtime;
 using prompto.store;
 using prompto.type;
@@ -108,6 +108,14 @@ namespace prompto.value
 			}
 			else
 				throw new InvalidDataError("Could not infer category!");
+		}
+
+		public ListValue ToListValue()
+		{
+			ListValue result = new ListValue(((CursorType)GetIType()).GetItemType());
+			while (MoveNext())
+				result.Add(Current);
+			return result;
 		}
 
 		public void Dispose()
