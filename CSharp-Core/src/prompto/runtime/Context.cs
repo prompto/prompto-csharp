@@ -526,7 +526,12 @@ namespace prompto.runtime
 				return actual;
 			ConcreteCategoryDeclaration decl = getDeclaration();
 			MethodDeclarationMap methods = decl.getMemberMethods(this, name);
-         return methods.Count==0 ? null : methods;
+			if (methods != null && methods.Count > 0)
+				return methods;
+			else if (decl.hasAttribute(this, name))
+				return getRegisteredDeclaration<AttributeDeclaration>(name);
+			else
+         		return null;
 		}
 
 		public override T getRegisteredDeclaration<T>(string name)
