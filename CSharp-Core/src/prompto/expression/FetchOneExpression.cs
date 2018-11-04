@@ -15,8 +15,8 @@ namespace prompto.expression
 	public class FetchOneExpression : Section, IExpression
 	{
 
-		CategoryType type;
-		IExpression predicate;
+		protected CategoryType type;
+		protected IExpression predicate;
 
 		public FetchOneExpression(CategoryType type, IExpression predicate)
 		{
@@ -25,7 +25,7 @@ namespace prompto.expression
 		}
 
 
-		public void ToDialect(CodeWriter writer)
+		public virtual void ToDialect(CodeWriter writer)
 		{
 			switch (writer.getDialect())
 			{
@@ -55,7 +55,7 @@ namespace prompto.expression
 			}
 		}
 
-		public IType check(Context context)
+		public virtual IType check(Context context)
 		{
 			if (!(predicate is IPredicateExpression))
 				throw new SyntaxError("Filtering expression must be a predicate !");
@@ -75,7 +75,7 @@ namespace prompto.expression
 				return AnyType.Instance;
 		}
 
-		public IValue interpret(Context context)
+		public virtual IValue interpret(Context context)
 		{
 			IStore store = DataStore.Instance;
 			IQuery query = buildFetchOneQuery(context, store);

@@ -392,6 +392,18 @@ public interface IEParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitStoreStatement([NotNull] EParser.StoreStatementContext context);
 	/// <summary>
+	/// Enter a parse tree produced by the <c>FetchStatement</c>
+	/// labeled alternative in <see cref="EParser.statement"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterFetchStatement([NotNull] EParser.FetchStatementContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>FetchStatement</c>
+	/// labeled alternative in <see cref="EParser.statement"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitFetchStatement([NotNull] EParser.FetchStatementContext context);
+	/// <summary>
 	/// Enter a parse tree produced by the <c>FlushStatement</c>
 	/// labeled alternative in <see cref="EParser.statement"/>.
 	/// </summary>
@@ -930,6 +942,18 @@ public interface IEParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitMethodCallExpression([NotNull] EParser.MethodCallExpressionContext context);
 	/// <summary>
+	/// Enter a parse tree produced by the <c>FetchExpression</c>
+	/// labeled alternative in <see cref="EParser.expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterFetchExpression([NotNull] EParser.FetchExpressionContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>FetchExpression</c>
+	/// labeled alternative in <see cref="EParser.expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitFetchExpression([NotNull] EParser.FetchExpressionContext context);
+	/// <summary>
 	/// Enter a parse tree produced by the <c>NotHasExpression</c>
 	/// labeled alternative in <see cref="EParser.expression"/>.
 	/// </summary>
@@ -1145,18 +1169,6 @@ public interface IEParserListener : IParseTreeListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void ExitTernaryExpression([NotNull] EParser.TernaryExpressionContext context);
-	/// <summary>
-	/// Enter a parse tree produced by the <c>FetchStoreExpression</c>
-	/// labeled alternative in <see cref="EParser.expression"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterFetchStoreExpression([NotNull] EParser.FetchStoreExpressionContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>FetchStoreExpression</c>
-	/// labeled alternative in <see cref="EParser.expression"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitFetchStoreExpression([NotNull] EParser.FetchStoreExpressionContext context);
 	/// <summary>
 	/// Enter a parse tree produced by the <c>NotEqualsExpression</c>
 	/// labeled alternative in <see cref="EParser.expression"/>.
@@ -1575,28 +1587,52 @@ public interface IEParserListener : IParseTreeListener {
 	void ExitFiltered_list_suffix([NotNull] EParser.Filtered_list_suffixContext context);
 	/// <summary>
 	/// Enter a parse tree produced by the <c>FetchOne</c>
-	/// labeled alternative in <see cref="EParser.fetch_store_expression"/>.
+	/// labeled alternative in <see cref="EParser.fetch_expression"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void EnterFetchOne([NotNull] EParser.FetchOneContext context);
 	/// <summary>
 	/// Exit a parse tree produced by the <c>FetchOne</c>
-	/// labeled alternative in <see cref="EParser.fetch_store_expression"/>.
+	/// labeled alternative in <see cref="EParser.fetch_expression"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void ExitFetchOne([NotNull] EParser.FetchOneContext context);
 	/// <summary>
 	/// Enter a parse tree produced by the <c>FetchMany</c>
-	/// labeled alternative in <see cref="EParser.fetch_store_expression"/>.
+	/// labeled alternative in <see cref="EParser.fetch_expression"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void EnterFetchMany([NotNull] EParser.FetchManyContext context);
 	/// <summary>
 	/// Exit a parse tree produced by the <c>FetchMany</c>
-	/// labeled alternative in <see cref="EParser.fetch_store_expression"/>.
+	/// labeled alternative in <see cref="EParser.fetch_expression"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void ExitFetchMany([NotNull] EParser.FetchManyContext context);
+	/// <summary>
+	/// Enter a parse tree produced by the <c>FetchOneAsync</c>
+	/// labeled alternative in <see cref="EParser.fetch_statement"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterFetchOneAsync([NotNull] EParser.FetchOneAsyncContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>FetchOneAsync</c>
+	/// labeled alternative in <see cref="EParser.fetch_statement"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitFetchOneAsync([NotNull] EParser.FetchOneAsyncContext context);
+	/// <summary>
+	/// Enter a parse tree produced by the <c>FetchManyAsync</c>
+	/// labeled alternative in <see cref="EParser.fetch_statement"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterFetchManyAsync([NotNull] EParser.FetchManyAsyncContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>FetchManyAsync</c>
+	/// labeled alternative in <see cref="EParser.fetch_statement"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitFetchManyAsync([NotNull] EParser.FetchManyAsyncContext context);
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="EParser.sorted_expression"/>.
 	/// </summary>

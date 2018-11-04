@@ -480,6 +480,20 @@ public partial class OParserBaseListener : IOParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitStoreStatement([NotNull] OParser.StoreStatementContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by the <c>FetchStatement</c>
+	/// labeled alternative in <see cref="OParser.statement"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterFetchStatement([NotNull] OParser.FetchStatementContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by the <c>FetchStatement</c>
+	/// labeled alternative in <see cref="OParser.statement"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitFetchStatement([NotNull] OParser.FetchStatementContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by the <c>FlushStatement</c>
 	/// labeled alternative in <see cref="OParser.statement"/>.
 	/// <para>The default implementation does nothing.</para>
@@ -1711,32 +1725,60 @@ public partial class OParserBaseListener : IOParserListener {
 	public virtual void ExitFiltered_list_expression([NotNull] OParser.Filtered_list_expressionContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by the <c>FetchOne</c>
-	/// labeled alternative in <see cref="OParser.fetch_store_expression"/>.
+	/// labeled alternative in <see cref="OParser.fetch_expression"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	public virtual void EnterFetchOne([NotNull] OParser.FetchOneContext context) { }
 	/// <summary>
 	/// Exit a parse tree produced by the <c>FetchOne</c>
-	/// labeled alternative in <see cref="OParser.fetch_store_expression"/>.
+	/// labeled alternative in <see cref="OParser.fetch_expression"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitFetchOne([NotNull] OParser.FetchOneContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by the <c>FetchMany</c>
-	/// labeled alternative in <see cref="OParser.fetch_store_expression"/>.
+	/// labeled alternative in <see cref="OParser.fetch_expression"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	public virtual void EnterFetchMany([NotNull] OParser.FetchManyContext context) { }
 	/// <summary>
 	/// Exit a parse tree produced by the <c>FetchMany</c>
-	/// labeled alternative in <see cref="OParser.fetch_store_expression"/>.
+	/// labeled alternative in <see cref="OParser.fetch_expression"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitFetchMany([NotNull] OParser.FetchManyContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by the <c>FetchOneAsync</c>
+	/// labeled alternative in <see cref="OParser.fetch_statement"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterFetchOneAsync([NotNull] OParser.FetchOneAsyncContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by the <c>FetchOneAsync</c>
+	/// labeled alternative in <see cref="OParser.fetch_statement"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitFetchOneAsync([NotNull] OParser.FetchOneAsyncContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by the <c>FetchManyAsync</c>
+	/// labeled alternative in <see cref="OParser.fetch_statement"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterFetchManyAsync([NotNull] OParser.FetchManyAsyncContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by the <c>FetchManyAsync</c>
+	/// labeled alternative in <see cref="OParser.fetch_statement"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitFetchManyAsync([NotNull] OParser.FetchManyAsyncContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="OParser.sorted_expression"/>.
 	/// <para>The default implementation does nothing.</para>

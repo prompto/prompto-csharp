@@ -515,6 +515,8 @@
     <Compile Include="src\prompto\literal\DictTextKey.cs" />
     <Compile Include="src\prompto\utils\StringUtils.cs" />
     <Compile Include="src\prompto\jsx\JsxClosing.cs" />
+    <Compile Include="src\prompto\statement\FetchOneStatement.cs" />
+    <Compile Include="src\prompto\statement\FetchManyStatement.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
