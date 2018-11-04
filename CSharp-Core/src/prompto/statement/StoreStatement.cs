@@ -13,47 +13,68 @@ namespace prompto.statement
 {
 
 
-	public class StoreStatement : SimpleStatement
+	public class StoreStatement : BaseStatement
 	{
 
-		ExpressionList toDelete;
-		ExpressionList toStore;
+		ExpressionList deletables;
+		ExpressionList storables;
+		StatementList andThen;
 
-		public StoreStatement (ExpressionList toDelete, ExpressionList toStore)
+		public StoreStatement (ExpressionList deletables, ExpressionList storables, StatementList andThen)
 		{
-			this.toDelete = toDelete;
-			this.toStore = toStore;
+			this.deletables = deletables;
+			this.storables = storables;
+			this.andThen = andThen;
+		}
+
+		public override bool IsSimple
+		{
+			get
+			{
+				return andThen==null;
+			}
 		}
 
 		public override void ToDialect (CodeWriter writer)
 		{
-			if (toDelete != null) {
+			if (deletables != null) {
 				writer.append ("delete ");
 				if (writer.getDialect () == Dialect.E)
-					toDelete.toDialect (writer);
+					deletables.toDialect (writer);
 				else {
 					writer.append ('(');
-					toDelete.toDialect (writer);
+					deletables.toDialect (writer);
 					writer.append (')');
 				}
-				if (toStore != null)
+				if (storables != null)
 					writer.append (" and ");
 			}
-			if (toStore != null) {
+			if (storables != null) {
 				writer.append ("store ");
 				if (writer.getDialect () == Dialect.E)
-					toStore.toDialect (writer);
+					storables.toDialect (writer);
 				else {
 					writer.append ('(');
-					toStore.toDialect (writer);
+					storables.toDialect (writer);
 					writer.append (')');
+				}
+			}
+			if(andThen!=null) {
+				if(writer.getDialect()==Dialect.O) {
+					writer.append("then {").newLine().indent();
+					andThen.ToDialect(writer);
+					writer.dedent().append("}");
+				} else {
+					writer.append("then:").newLine().indent();
+					andThen.ToDialect(writer);
+					writer.dedent();
 				}
 			}
 		}
 
 		public override String ToString ()
 		{
-			return "store " + toStore.ToString ();
+			return "store " + storables.ToString ();
 		}
 
 		public override bool Equals (Object obj)
@@ -65,7 +86,7 @@ namespace prompto.statement
 			if (!(obj is StoreStatement))
 				return false;
 			StoreStatement other = (StoreStatement)obj;
-			return this.toStore.Equals (other.toStore);
+			return this.storables.Equals (other.storables);
 		}
 
 		public override IType check (Context context)
@@ -76,20 +97,22 @@ namespace prompto.statement
 
 		public override IValue interpret (Context context)
 		{
-			List<object> deletables = null;
-			if (toDelete != null)
+			List<object> toDelete = null;
+			if (deletables != null)
 			{
-				deletables = new List<object>();
-				toDelete.ForEach((exp) => CollectDeletables(context, exp, deletables));
+				toDelete = new List<object>();
+				deletables.ForEach((exp) => CollectDeletables(context, exp, toDelete));
 			}
-			List<IStorable> storables = null;
-			if (toStore != null)
+			List<IStorable> toStore = null;
+			if (storables != null)
 			{
-				storables = new List<IStorable>();
-				toStore.ForEach((exp) => CollectStorables(context, exp, storables));
+				toStore = new List<IStorable>();
+				storables.ForEach((exp) => CollectStorables(context, exp, toStore));
 			}
 			if (deletables != null || storables != null)
-				DataStore.Instance.Store(deletables, storables);
+				DataStore.Instance.Store(toDelete, toStore);
+			if(andThen!=null)
+				andThen.interpret(context);
 			return null;
 		}
 

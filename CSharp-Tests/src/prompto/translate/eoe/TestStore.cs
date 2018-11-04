@@ -9,6 +9,12 @@ namespace prompto.translate.eoe
 	{
 
 		[Test]
+		public void testAsyncStore()
+		{
+			compareResourceEOE("store/asyncStore.pec");
+		}
+
+		[Test]
 		public void testDeleteRecords()
 		{
 			compareResourceEOE("store/deleteRecords.pec");

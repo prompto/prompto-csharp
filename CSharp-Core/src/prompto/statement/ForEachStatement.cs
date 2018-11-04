@@ -152,7 +152,7 @@ namespace prompto.statement
 			writer.append(" in ");
 			source.ToDialect(writer);
 			writer.append(")");
-			bool oneLine = statements.Count==1 && (statements[0] is SimpleStatement);
+			bool oneLine = statements.Count==1 && (statements[0].IsSimple);
 			if(!oneLine)
 				writer.append(" {");
 			writer.newLine();

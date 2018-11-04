@@ -9,6 +9,12 @@ namespace prompto.translate.eme
 	{
 
 		[Test]
+		public void testAsyncStore()
+		{
+			compareResourceEME("store/asyncStore.pec");
+		}
+
+		[Test]
 		public void testDeleteRecords()
 		{
 			compareResourceEME("store/deleteRecords.pec");

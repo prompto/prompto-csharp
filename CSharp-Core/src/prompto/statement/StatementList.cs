@@ -129,7 +129,7 @@ namespace prompto.statement
 		public void ToDialect(CodeWriter writer) {
 			foreach(IStatement statement in this) {
 				statement.ToDialect(writer);
-				if(statement is SimpleStatement) {
+				if(statement.IsSimple) {
 					if(writer.getDialect()==Dialect.O && !(statement is NativeCall))
 						writer.append(';');
 					writer.newLine();
