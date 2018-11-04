@@ -83,7 +83,10 @@ namespace prompto.declaration
 
 		public virtual bool hasAttribute (Context context, String name)
 		{
-			return attributes != null && attributes.Contains (name);
+			if(name=="dbId")
+				return this.Storable;
+			else
+				return attributes != null && attributes.Contains (name);
 		}
 
 		public virtual bool hasMethod (Context context, String name)
