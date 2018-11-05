@@ -30,7 +30,7 @@ namespace prompto.statement
 			context = context.newChildContext();
 			context.registerValue(new Variable(name, type));
 			stmts.check(context, null);
-			return null;
+			return VoidType.Instance;
 		}
 
 		public override IValue interpret(Context context)
