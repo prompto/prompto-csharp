@@ -9,9 +9,15 @@ namespace prompto.translate.eoe
 	{
 
 		[Test]
-		public void testAsyncFetch()
+		public void testAsyncFetchMany()
 		{
-			compareResourceEOE("store/asyncFetch.pec");
+			compareResourceEOE("store/asyncFetchMany.pec");
+		}
+
+		[Test]
+		public void testAsyncFetchOne()
+		{
+			compareResourceEOE("store/asyncFetchOne.pec");
 		}
 
 		[Test]

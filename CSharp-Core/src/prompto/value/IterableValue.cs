@@ -6,7 +6,7 @@ using prompto.error;
 using System;
 using System.Collections;
 using prompto.expression;
-
+using System.Text;
 
 namespace prompto.value
 {
@@ -31,6 +31,19 @@ namespace prompto.value
 			this.name = name;
 			this.source = source;
 			this.expression = expression;
+		}
+
+		public override string ToString()
+		{
+			StringBuilder sb = new StringBuilder();
+			IEnumerator<IValue> values = GetEnumerator();
+			while (values.MoveNext())
+			{
+				if (sb.Length > 0)
+					sb.Append(", ");
+				sb.Append(values.Current.ToString());
+			}
+			return sb.ToString();
 		}
 
 		public bool Empty ()
@@ -101,9 +114,9 @@ namespace prompto.value
 		public override IValue GetMember (Context context, string name, bool autoCreate)
 		{
 			if ("count" == name)
-				return new Integer (Length ());
+				return new Integer(Length());
 			else
-				throw new InvalidDataError ("No such member:" + name);
+				return base.GetMember(context, name, autoCreate);
 		}
 
 

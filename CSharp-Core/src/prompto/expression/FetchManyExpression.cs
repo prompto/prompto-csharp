@@ -14,7 +14,7 @@ namespace prompto.expression
 	public class FetchManyExpression : Section, IExpression
 	{
 
-		CategoryType type;
+		protected CategoryType type;
 		IExpression predicate;
 		IExpression first;
 		IExpression last;
@@ -30,7 +30,7 @@ namespace prompto.expression
 		}
 
 
-		public void ToDialect(CodeWriter writer)
+		public virtual void ToDialect(CodeWriter writer)
 		{
 			switch (writer.getDialect())
 			{
@@ -136,7 +136,7 @@ namespace prompto.expression
 			}
 		}
 
-		public IType check(Context context)
+		public virtual IType check(Context context)
 		{
 			IType type = this.type;
 			if(type==null)
@@ -173,7 +173,7 @@ namespace prompto.expression
 				throw new SyntaxError("Filtering expresion must return a boolean !");
 		}
 
-		public IValue interpret(Context context)
+		public virtual IValue interpret(Context context)
 		{
 			IStore store = DataStore.Instance;
 			IQuery query = buildFetchManyQuery(context, store);

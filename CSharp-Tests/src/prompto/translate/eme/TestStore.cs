@@ -9,9 +9,15 @@ namespace prompto.translate.eme
 	{
 
 		[Test]
-		public void testAsyncFetch()
+		public void testAsyncFetchMany()
 		{
-			compareResourceEME("store/asyncFetch.pec");
+			compareResourceEME("store/asyncFetchMany.pec");
+		}
+
+		[Test]
+		public void testAsyncFetchOne()
+		{
+			compareResourceEME("store/asyncFetchOne.pec");
 		}
 
 		[Test]

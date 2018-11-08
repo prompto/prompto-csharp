@@ -22,9 +22,15 @@ namespace prompto.runtime.e
 		}
 
 		[Test]
-		public void testAsyncFetch()
+		public void testAsyncFetchMany()
 		{
-			CheckOutput("store/asyncFetch.pec");
+			CheckOutput("store/asyncFetchMany.pec");
+		}
+
+		[Test]
+		public void testAsyncFetchOne()
+		{
+			CheckOutput("store/asyncFetchOne.pec");
 		}
 
 		[Test]
