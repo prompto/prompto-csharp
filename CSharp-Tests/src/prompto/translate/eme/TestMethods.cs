@@ -134,6 +134,12 @@ namespace prompto.translate.eme
 			compareResourceEME("methods/specified.pec");
 		}
 
+		[Test]
+		public void testVoidAsync()
+		{
+			compareResourceEME("methods/voidAsync.pec");
+		}
+
 	}
 }
 

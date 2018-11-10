@@ -116,6 +116,12 @@ namespace prompto.translate.omo
 			compareResourceOMO("methods/specified.poc");
 		}
 
+		[Test]
+		public void testVoidAsync()
+		{
+			compareResourceOMO("methods/voidAsync.poc");
+		}
+
 	}
 }
 

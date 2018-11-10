@@ -135,6 +135,12 @@ namespace prompto.runtime.e
 			CheckOutput("methods/specified.pec");
 		}
 
+		[Test]
+		public void testVoidAsync()
+		{
+			CheckOutput("methods/voidAsync.pec");
+		}
+
 	}
 }
 

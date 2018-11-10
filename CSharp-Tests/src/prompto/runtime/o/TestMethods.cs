@@ -117,6 +117,12 @@ namespace prompto.runtime.o
 			CheckOutput("methods/specified.poc");
 		}
 
+		[Test]
+		public void testVoidAsync()
+		{
+			CheckOutput("methods/voidAsync.poc");
+		}
+
 	}
 }
 

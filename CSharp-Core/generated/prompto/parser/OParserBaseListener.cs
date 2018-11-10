@@ -956,6 +956,18 @@ public partial class OParserBaseListener : IOParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitMethod_call([NotNull] OParser.Method_callContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="OParser.method_call_statement"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterMethod_call_statement([NotNull] OParser.Method_call_statementContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="OParser.method_call_statement"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitMethod_call_statement([NotNull] OParser.Method_call_statementContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by the <c>MethodName</c>
 	/// labeled alternative in <see cref="OParser.method_selector"/>.
 	/// <para>The default implementation does nothing.</para>

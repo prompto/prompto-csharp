@@ -215,7 +215,7 @@ namespace prompto.parser
 		{
 			IExpression exp = GetNodeValue<IExpression> (ctx.exp);
 			ArgumentAssignmentList args = GetNodeValue<ArgumentAssignmentList> (ctx.args);
-			Object call = new UnresolvedCall (exp, args);
+			Object call = new UnresolvedCall (exp, args, null);
 			SetNodeValue (ctx, call);
 		}
 
@@ -928,7 +928,8 @@ namespace prompto.parser
 		{
 			IExpression exp = GetNodeValue<IExpression> (ctx.exp);
 			ArgumentAssignmentList args = GetNodeValue<ArgumentAssignmentList> (ctx.args);
-			SetNodeValue (ctx, new UnresolvedCall (exp, args));
+			StatementList stmts = GetNodeValue<StatementList> (ctx.stmts);
+			SetNodeValue (ctx, new UnresolvedCall (exp, args, stmts));
 		}
 
 

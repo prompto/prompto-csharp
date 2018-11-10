@@ -115,7 +115,7 @@ namespace prompto.expression
 					((UnresolvedIdentifier)resolvedParent).checkMember(context);
 					resolvedParent = ((UnresolvedIdentifier)resolvedParent).getResolved();
 				}
-				IExpression method = new UnresolvedCall(new MethodSelector(resolvedParent, name), null);
+				IExpression method = new UnresolvedCall(new MethodSelector(resolvedParent, name), null, null);
 				method.check(context);
 				return method;
 			}

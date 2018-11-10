@@ -680,6 +680,18 @@ public partial class MParserBaseListener : IMParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitMethod_call([NotNull] MParser.Method_callContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="MParser.method_call_statement"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterMethod_call_statement([NotNull] MParser.Method_call_statementContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="MParser.method_call_statement"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitMethod_call_statement([NotNull] MParser.Method_call_statementContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by the <c>MethodName</c>
 	/// labeled alternative in <see cref="MParser.method_selector"/>.
 	/// <para>The default implementation does nothing.</para>
