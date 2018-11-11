@@ -22,6 +22,12 @@ namespace prompto.runtime.m
 		}
 
 		[Test]
+		public void testTextAsync()
+		{
+			CheckOutput("methods/textAsync.pmc");
+		}
+
+		[Test]
 		public void testVoidAsync()
 		{
 			CheckOutput("methods/voidAsync.pmc");

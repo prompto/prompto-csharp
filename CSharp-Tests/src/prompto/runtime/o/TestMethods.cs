@@ -118,6 +118,12 @@ namespace prompto.runtime.o
 		}
 
 		[Test]
+		public void testTextAsync()
+		{
+			CheckOutput("methods/textAsync.poc");
+		}
+
+		[Test]
 		public void testVoidAsync()
 		{
 			CheckOutput("methods/voidAsync.poc");
