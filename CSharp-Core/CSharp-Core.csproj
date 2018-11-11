@@ -517,7 +517,7 @@
     <Compile Include="src\prompto\jsx\JsxClosing.cs" />
     <Compile Include="src\prompto\statement\FetchOneStatement.cs" />
     <Compile Include="src\prompto\statement\FetchManyStatement.cs" />
-    <Compile Include="src\prompto\statement\AsynchronousCall.cs" />
+    <Compile Include="src\prompto\statement\RemoteCall.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />

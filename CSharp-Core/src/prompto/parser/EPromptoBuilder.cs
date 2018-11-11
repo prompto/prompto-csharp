@@ -931,7 +931,7 @@ namespace prompto.parser
 			String resultName = GetNodeValue<String>(ctx.name);
 			StatementList stmts = GetNodeValue<StatementList> (ctx.stmts);
 			if(resultName!=null || stmts!=null)
-				SetNodeValue(ctx, new AsynchronousCall(exp, args, resultName, stmts));
+				SetNodeValue(ctx, new RemoteCall(exp, args, resultName, stmts));
 			else
 				SetNodeValue(ctx, new UnresolvedCall (exp, args));
 		}

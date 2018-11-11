@@ -10,20 +10,20 @@ using prompto.value;
 
 namespace prompto.statement {
 	
-	public class AsynchronousCall : UnresolvedCall
+	public class RemoteCall : UnresolvedCall
 	{
 
 		String resultName;
 		StatementList andThen;
 
-		public AsynchronousCall(UnresolvedCall call, String resultName, StatementList andThen)
+		public RemoteCall(UnresolvedCall call, String resultName, StatementList andThen)
 			: base(call)
 		{
             this.resultName = resultName;
 			this.andThen = andThen;
 		}
 
-		public AsynchronousCall(IExpression caller, ArgumentAssignmentList assignments, String resultName, StatementList andThen)
+		public RemoteCall(IExpression caller, ArgumentAssignmentList assignments, String resultName, StatementList andThen)
 			: base(caller, assignments)
 		{
 			this.resultName = resultName;
