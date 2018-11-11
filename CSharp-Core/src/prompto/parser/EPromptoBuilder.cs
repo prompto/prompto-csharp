@@ -215,7 +215,7 @@ namespace prompto.parser
 		{
 			IExpression exp = GetNodeValue<IExpression> (ctx.exp);
 			ArgumentAssignmentList args = GetNodeValue<ArgumentAssignmentList> (ctx.args);
-			Object call = new UnresolvedCall (exp, args, null);
+			Object call = new UnresolvedCall (exp, args);
 			SetNodeValue (ctx, call);
 		}
 
@@ -928,8 +928,12 @@ namespace prompto.parser
 		{
 			IExpression exp = GetNodeValue<IExpression> (ctx.exp);
 			ArgumentAssignmentList args = GetNodeValue<ArgumentAssignmentList> (ctx.args);
+			String resultName = GetNodeValue<String>(ctx.name);
 			StatementList stmts = GetNodeValue<StatementList> (ctx.stmts);
-			SetNodeValue (ctx, new UnresolvedCall (exp, args, stmts));
+			if(resultName!=null || stmts!=null)
+				SetNodeValue(ctx, new AsynchronousCall(exp, args, resultName, stmts));
+			else
+				SetNodeValue(ctx, new UnresolvedCall (exp, args));
 		}
 
 

@@ -17,37 +17,29 @@ namespace prompto.statement
 	public class UnresolvedCall : BaseStatement, IAssertion
 	{
 
-		IExpression resolved;
-		IExpression caller;
-		ArgumentAssignmentList assignments;
-		StatementList andThen;
+		protected IExpression resolved;
+		protected IExpression caller;
+		protected ArgumentAssignmentList assignments;
 
-		public UnresolvedCall(IExpression caller, ArgumentAssignmentList assignments, StatementList andThen)
+		public UnresolvedCall(UnresolvedCall call)
+			: this(call.caller, call.assignments)
+		{ 
+		}
+
+		public UnresolvedCall(IExpression caller, ArgumentAssignmentList assignments)
 		{
 			this.caller = caller;
 			this.assignments = assignments;
-			this.andThen = andThen;
 		}
 
 		public override bool IsSimple
 		{
 			get
 			{
-				return andThen==null;
+				return true;
 			}
 		}
 
-		public StatementList AndThen
-		{
-			get
-			{
-				return andThen;
-			}
-			set
-			{
-				andThen = value;
-			}
-		}
 
 		public IExpression getCaller()
 		{
@@ -66,58 +58,26 @@ namespace prompto.statement
 			{
 				resolve(writer.getContext());
 				resolved.ToDialect(writer);
-				andThenToDialect(writer);
 			}
 			catch (SyntaxError /*e*/)
 			{
 				caller.ToDialect(writer);
 				if (assignments != null)
 					assignments.ToDialect(writer);
-				andThenToDialect(writer);
 			}
 		}
 
-
-		private void andThenToDialect(CodeWriter writer)
-		{
-			if (andThen != null)
-			{
-				writer.append(" then");
-				if (writer.getDialect() == Dialect.O)
-					writer.append(" {");
-				else
-					writer.append(":");
-				writer = writer.newLine().indent();
-				andThen.ToDialect(writer);
-				writer = writer.dedent();
-				if (writer.getDialect() == Dialect.O)
-					writer.append("}");
-			}
-		}
 
 		public override IType check(Context context)
 		{
-			IType result = resolveAndCheck(context);
-			if(andThen==null)
-				return result;
-			else {
-				andThen.check(context, VoidType.Instance);
-				return VoidType.Instance;
-			}
+			return resolveAndCheck(context);
 		}
 
 
 		public override IValue interpret(Context context)
 		{
-			if (resolved == null)
-				resolveAndCheck(context);
-			IValue result = resolved.interpret(context);;
-			if(andThen==null)
-				return result;
-			else {
-				andThen.interpret(context);
-				return VoidResult.Instance;
-			}
+			resolve(context);
+			return resolved.interpret(context);;
 		}
 
 		public bool interpretAssert(Context context, TestMethodDeclaration testMethodDeclaration)
@@ -134,7 +94,7 @@ namespace prompto.statement
 			}
 		}
 
-		private IType resolveAndCheck(Context context)
+		protected IType resolveAndCheck(Context context)
 		{
 			resolve(context);
 			return resolved.check(context);

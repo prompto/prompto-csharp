@@ -854,16 +854,19 @@ namespace prompto.parser
 		{
 			IExpression method = GetNodeValue<IExpression>(ctx.method);
 			ArgumentAssignmentList args = GetNodeValue<ArgumentAssignmentList>(ctx.args);
-			SetNodeValue(ctx, new UnresolvedCall(method, args, null));
+			SetNodeValue(ctx, new UnresolvedCall(method, args));
 		}
 
 
 		public override void ExitMethod_call_statement(MParser.Method_call_statementContext ctx)
 		{
 			UnresolvedCall call = GetNodeValue<UnresolvedCall>(ctx.method);
+			String resultName = GetNodeValue<String>(ctx.name);
 			StatementList stmts = GetNodeValue<StatementList>(ctx.stmts);
-			call.AndThen = stmts;
-			SetNodeValue(ctx, call);
+			if (resultName != null || stmts != null)
+                SetNodeValue(ctx, new AsynchronousCall(call, resultName, stmts));
+			else
+				SetNodeValue(ctx, call);
 		}
 
 
