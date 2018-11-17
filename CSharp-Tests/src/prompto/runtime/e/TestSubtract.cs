@@ -6,7 +6,7 @@ namespace prompto.runtime.e
 {
 
 	[TestFixture]
-	public class TestSub : BaseEParserTest
+	public class TestSubtract : BaseEParserTest
 	{
 
 		[SetUp]
@@ -24,49 +24,61 @@ namespace prompto.runtime.e
 		[Test]
 		public void testSubDate()
 		{
-			CheckOutput("sub/subDate.pec");
+			CheckOutput("subtract/subDate.pec");
 		}
 
 		[Test]
 		public void testSubDateTime()
 		{
-			CheckOutput("sub/subDateTime.pec");
+			CheckOutput("subtract/subDateTime.pec");
 		}
 
 		[Test]
 		public void testSubDecimal()
 		{
-			CheckOutput("sub/subDecimal.pec");
+			CheckOutput("subtract/subDecimal.pec");
 		}
 
 		[Test]
 		public void testSubDecimalEnum()
 		{
-			CheckOutput("sub/subDecimalEnum.pec");
+			CheckOutput("subtract/subDecimalEnum.pec");
 		}
 
 		[Test]
 		public void testSubInteger()
 		{
-			CheckOutput("sub/subInteger.pec");
+			CheckOutput("subtract/subInteger.pec");
 		}
 
 		[Test]
 		public void testSubIntegerEnum()
 		{
-			CheckOutput("sub/subIntegerEnum.pec");
+			CheckOutput("subtract/subIntegerEnum.pec");
+		}
+
+		[Test]
+		public void testSubList()
+		{
+			CheckOutput("subtract/subList.pec");
 		}
 
 		[Test]
 		public void testSubPeriod()
 		{
-			CheckOutput("sub/subPeriod.pec");
+			CheckOutput("subtract/subPeriod.pec");
+		}
+
+		[Test]
+		public void testSubSet()
+		{
+			CheckOutput("subtract/subSet.pec");
 		}
 
 		[Test]
 		public void testSubTime()
 		{
-			CheckOutput("sub/subTime.pec");
+			CheckOutput("subtract/subTime.pec");
 		}
 
 	}

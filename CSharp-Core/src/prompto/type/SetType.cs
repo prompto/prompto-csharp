@@ -40,6 +40,13 @@ namespace prompto.type
 			return base.checkAdd (context, other, tryReverse);
 		}
 
+		public override IType checkSubstract(Context context, IType other)
+		{
+			if ((other is ListType || other is SetType)
+				&& this.GetItemType().Equals(((ContainerType)other).GetItemType()))
+				return this;
+			return base.checkSubstract (context, other);
+		}
 
 		public override IType checkMember(Context context, String name)
 		{

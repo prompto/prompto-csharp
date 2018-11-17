@@ -91,7 +91,6 @@
     <Compile Include="src\prompto\runtime\e\TestNative.cs" />
     <Compile Include="src\prompto\runtime\e\TestPatterns.cs" />
     <Compile Include="src\prompto\runtime\e\TestSlice.cs" />
-    <Compile Include="src\prompto\runtime\e\TestSub.cs" />
     <Compile Include="src\prompto\runtime\e\TestTuples.cs" />
     <Compile Include="src\prompto\runtime\o\TestAdd.cs" />
     <Compile Include="src\prompto\runtime\o\TestBuiltIns.cs" />
@@ -117,7 +116,6 @@
     <Compile Include="src\prompto\runtime\o\TestNative.cs" />
     <Compile Include="src\prompto\runtime\o\TestPatterns.cs" />
     <Compile Include="src\prompto\runtime\o\TestSlice.cs" />
-    <Compile Include="src\prompto\runtime\o\TestSub.cs" />
     <Compile Include="src\prompto\runtime\o\TestTuples.cs" />
     <Compile Include="src\prompto\parser\m\BaseMLexerTest.cs" />
     <Compile Include="src\prompto\parser\e\TestRuntime.cs" />
@@ -154,7 +152,6 @@
     <Compile Include="src\prompto\translate\eoe\TestResource.cs" />
     <Compile Include="src\prompto\translate\eoe\TestSetters.cs" />
     <Compile Include="src\prompto\translate\eoe\TestSlice.cs" />
-    <Compile Include="src\prompto\translate\eoe\TestSub.cs" />
     <Compile Include="src\prompto\translate\eoe\TestTuples.cs" />
     <Compile Include="src\prompto\translate\oeo\TestAdd.cs" />
     <Compile Include="src\prompto\translate\oeo\TestBuiltins.cs" />
@@ -183,7 +180,6 @@
     <Compile Include="src\prompto\translate\oeo\TestResource.cs" />
     <Compile Include="src\prompto\translate\oeo\TestSetters.cs" />
     <Compile Include="src\prompto\translate\oeo\TestSlice.cs" />
-    <Compile Include="src\prompto\translate\oeo\TestSub.cs" />
     <Compile Include="src\prompto\translate\oeo\TestTuples.cs" />
     <Compile Include="src\prompto\runtime\e\TestBuiltins.cs" />
     <Compile Include="src\prompto\runtime\e\TestCondition.cs" />
@@ -261,7 +257,6 @@
     <Compile Include="src\prompto\translate\eme\TestSlice.cs" />
     <Compile Include="src\prompto\translate\eme\TestSortList.cs" />
     <Compile Include="src\prompto\translate\eme\TestSortSet.cs" />
-    <Compile Include="src\prompto\translate\eme\TestSub.cs" />
     <Compile Include="src\prompto\translate\eme\TestTesting.cs" />
     <Compile Include="src\prompto\translate\eme\TestTuples.cs" />
     <Compile Include="src\prompto\translate\omo\TestAdd.cs" />
@@ -297,7 +292,6 @@
     <Compile Include="src\prompto\translate\omo\TestSlice.cs" />
     <Compile Include="src\prompto\translate\omo\TestSortList.cs" />
     <Compile Include="src\prompto\translate\omo\TestSortSet.cs" />
-    <Compile Include="src\prompto\translate\omo\TestSub.cs" />
     <Compile Include="src\prompto\translate\omo\TestTesting.cs" />
     <Compile Include="src\prompto\translate\omo\TestTuples.cs" />
     <Compile Include="src\prompto\runtime\e\TestMutability.cs" />
@@ -382,6 +376,12 @@
     <Compile Include="src\prompto\parser\m\TestParserJsx.cs" />
     <Compile Include="src\prompto\parser\o\TestParserJsx.cs" />
     <Compile Include="src\prompto\runtime\m\TestMethods.cs" />
+    <Compile Include="src\prompto\runtime\e\TestSubtract.cs" />
+    <Compile Include="src\prompto\runtime\o\TestSubtract.cs" />
+    <Compile Include="src\prompto\translate\eme\TestSubtract.cs" />
+    <Compile Include="src\prompto\translate\eoe\TestSubtract.cs" />
+    <Compile Include="src\prompto\translate\oeo\TestSubtract.cs" />
+    <Compile Include="src\prompto\translate\omo\TestSubtract.cs" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />

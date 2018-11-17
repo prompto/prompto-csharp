@@ -94,8 +94,7 @@ namespace prompto.value
 
 		public SetValue newInstance (IEnumerable<IValue> values)
 		{
-			IType itemType = ((SetType)type).GetItemType ();
-			SetValue result = new SetValue (itemType);
+			SetValue result = new SetValue (ItemType);
 			foreach(IValue value in values)
 				result.items.Add (value);
 			return result;
@@ -125,6 +124,30 @@ namespace prompto.value
 			else
 				throw new SyntaxError ("Illegal: " + this.type.GetTypeName () + " + " + value.GetType().Name);
 		}
+
+
+		public override IValue Subtract(Context context, IValue value)
+		{
+			if (value is ListValue)
+			{
+				SetValue set = new SetValue(this.ItemType);
+				value = set.Add(context, value);
+			}
+			if (value is SetValue)
+			{
+				HashSet<IValue> excluded = ((SetValue)value).items; 
+				HashSet<IValue> values = new HashSet<IValue>();
+				foreach (IValue item in items)
+				{
+					if (!excluded.Contains(item))
+						values.Add(item);
+				}
+				return new SetValue(ItemType, values);
+			}
+			else
+				throw new SyntaxError("Illegal : List - " + value.GetType().Name);
+		}
+
 
 		public SetValue merge (IEnumerable<IValue> items)
 		{

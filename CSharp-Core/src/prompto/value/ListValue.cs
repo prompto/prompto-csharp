@@ -193,6 +193,24 @@ namespace prompto.value
 		}
 
 
+		public IValue Subtract(Context context, IValue value)
+		{
+			if (value is ListValue) {
+				SetValue set = new SetValue(this.ItemType);
+				value = set.Add(context, value);
+			}
+			if (value is SetValue)
+			{
+				ListValue result = new ListValue(ItemType);
+				result.AddRange(this);
+				result.RemoveAll(item => ((SetValue)value).HasItem(context, item));
+				return result;
+			}
+			else
+				throw new SyntaxError("Illegal : List - " + value.GetType().Name);
+		}
+
+
 		public IValue Multiply(Context context, IValue value)
 		{
 			if (value is Integer)
@@ -211,11 +229,6 @@ namespace prompto.value
 			}
 			else
 				throw new SyntaxError("Illegal: List * " + value.GetType().Name);
-		}
-
-		public IValue Subtract(Context context, IValue value)
-		{
-			throw new NotSupportedException("Subtract not supported by " + this.GetType().Name);
 		}
 
 		public IValue Divide(Context context, IValue value)

@@ -44,6 +44,12 @@ namespace prompto.library.e
 		}
 
 		[Test]
+		public void testCloud()
+		{
+			CheckTests("core/cloud.pec");
+		}
+
+		[Test]
 		public void testError()
 		{
 			CheckTests("core/error.pec");

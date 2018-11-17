@@ -6,7 +6,7 @@ namespace prompto.runtime.o
 {
 
 	[TestFixture]
-	public class TestSub : BaseOParserTest
+	public class TestSubtract : BaseOParserTest
 	{
 
 		[SetUp]
@@ -24,37 +24,49 @@ namespace prompto.runtime.o
 		[Test]
 		public void testSubDate()
 		{
-			CheckOutput("sub/subDate.poc");
+			CheckOutput("subtract/subDate.poc");
 		}
 
 		[Test]
 		public void testSubDateTime()
 		{
-			CheckOutput("sub/subDateTime.poc");
+			CheckOutput("subtract/subDateTime.poc");
 		}
 
 		[Test]
 		public void testSubDecimal()
 		{
-			CheckOutput("sub/subDecimal.poc");
+			CheckOutput("subtract/subDecimal.poc");
 		}
 
 		[Test]
 		public void testSubInteger()
 		{
-			CheckOutput("sub/subInteger.poc");
+			CheckOutput("subtract/subInteger.poc");
+		}
+
+		[Test]
+		public void testSubList()
+		{
+			CheckOutput("subtract/subList.poc");
 		}
 
 		[Test]
 		public void testSubPeriod()
 		{
-			CheckOutput("sub/subPeriod.poc");
+			CheckOutput("subtract/subPeriod.poc");
+		}
+
+		[Test]
+		public void testSubSet()
+		{
+			CheckOutput("subtract/subSet.poc");
 		}
 
 		[Test]
 		public void testSubTime()
 		{
-			CheckOutput("sub/subTime.poc");
+			CheckOutput("subtract/subTime.poc");
 		}
 
 	}
