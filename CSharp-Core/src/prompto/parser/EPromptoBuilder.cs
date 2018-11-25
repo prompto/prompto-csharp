@@ -213,7 +213,7 @@ namespace prompto.parser
 		
 		public override void ExitMethodCallExpression (EParser.MethodCallExpressionContext ctx)
 		{
-			IExpression exp = GetNodeValue<IExpression> (ctx.exp);
+			IExpression exp = ctx.exp1!=null ? GetNodeValue<IExpression> (ctx.exp1) : GetNodeValue<IExpression> (ctx.exp2);
 			ArgumentAssignmentList args = GetNodeValue<ArgumentAssignmentList> (ctx.args);
 			Object call = new UnresolvedCall (exp, args);
 			SetNodeValue (ctx, call);
