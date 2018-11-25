@@ -23,7 +23,7 @@ namespace prompto.statement
 
 		public UnresolvedCall(UnresolvedCall call)
 			: this(call.caller, call.assignments)
-		{ 
+		{
 		}
 
 		public UnresolvedCall(IExpression caller, ArgumentAssignmentList assignments)
@@ -77,7 +77,7 @@ namespace prompto.statement
 		public override IValue interpret(Context context)
 		{
 			resolve(context);
-			return resolved.interpret(context);;
+			return resolved.interpret(context); ;
 		}
 
 		public bool interpretAssert(Context context, TestMethodDeclaration testMethodDeclaration)
@@ -107,10 +107,18 @@ namespace prompto.statement
 				return;
 			if (caller is UnresolvedIdentifier)
 				resolved = resolveUnresolvedIdentifier(context);
+			else if (caller is UnresolvedSelector)
+				resolved = resolveUnresolvedSelector(context);
 			else if (caller is MemberSelector)
 				resolved = resolveMember(context);
 		}
 
+		private IExpression resolveUnresolvedSelector(Context context)
+		{
+			UnresolvedSelector selector = (UnresolvedSelector)caller;
+			selector.resolveMethod(context, assignments);
+			return selector.getResolved();
+		}
 
 		private IExpression resolveUnresolvedIdentifier(Context context)
 		{

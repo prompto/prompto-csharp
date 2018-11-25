@@ -1,4 +1,6 @@
-﻿using prompto.error;
+using System;
+using prompto.error;
+using prompto.grammar;
 using prompto.runtime;
 using prompto.statement;
 using prompto.type;
@@ -39,12 +41,13 @@ namespace prompto.expression
 			{
 				resolve(writer.getContext(), false);
 			}
-			catch (SyntaxError )
+			catch (SyntaxError)
 			{
 			}
 			if (resolved != null)
 				resolved.ToDialect(writer);
-			else {
+			else
+			{
 				if (parent != null)
 				{
 					parent.ToDialect(writer);
@@ -82,16 +85,23 @@ namespace prompto.expression
 		{
 			if (resolved == null)
 			{
-				resolved = resolveMethod(context);
+				resolved = tryResolveMethod(context, null);
 				if (resolved == null)
-					resolved = resolveMember(context);
+					resolved = tryResolveMember(context);
 			}
 			if (resolved == null)
 				throw new SyntaxError("Unknown identifier:" + name);
 			return resolved;
 		}
 
-		private IExpression resolveMember(Context context)
+		public void resolveMethod(Context context, ArgumentAssignmentList assignments)
+		{
+			if (resolved == null)
+				resolved = tryResolveMethod(context, assignments);
+		}
+
+
+		private IExpression tryResolveMember(Context context)
 		{
 			try
 			{
@@ -105,7 +115,7 @@ namespace prompto.expression
 			}
 		}
 
-		private IExpression resolveMethod(Context context)
+		private IExpression tryResolveMethod(Context context, ArgumentAssignmentList assignments)
 		{
 			try
 			{
@@ -115,7 +125,7 @@ namespace prompto.expression
 					((UnresolvedIdentifier)resolvedParent).checkMember(context);
 					resolvedParent = ((UnresolvedIdentifier)resolvedParent).getResolved();
 				}
-				IExpression method = new UnresolvedCall(new MethodSelector(resolvedParent, name), null);
+				IExpression method = new UnresolvedCall(new MethodSelector(resolvedParent, name), assignments);
 				method.check(context);
 				return method;
 			}
@@ -124,8 +134,6 @@ namespace prompto.expression
 				return null;
 			}
 		}
-
-
 
 	}
 
