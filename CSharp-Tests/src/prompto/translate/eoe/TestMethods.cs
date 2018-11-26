@@ -45,6 +45,12 @@ namespace prompto.translate.eoe
 		}
 
 		[Test]
+		public void testExpressionMember()
+		{
+			compareResourceEOE("methods/expressionMember.pec");
+		}
+
+		[Test]
 		public void testExpressionWith()
 		{
 			compareResourceEOE("methods/expressionWith.pec");

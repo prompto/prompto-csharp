@@ -910,8 +910,7 @@ namespace prompto.parser
 
 		public override void ExitCallableRoot(MParser.CallableRootContext ctx)
 		{
-			IExpression name = GetNodeValue<IExpression>(ctx.name);
-			SetNodeValue(ctx, name);
+	        SetNodeValue(ctx, GetNodeValue<IExpression>(ctx.exp));
 		}
 
 

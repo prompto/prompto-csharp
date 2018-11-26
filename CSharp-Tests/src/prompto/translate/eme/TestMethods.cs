@@ -45,6 +45,12 @@ namespace prompto.translate.eme
 		}
 
 		[Test]
+		public void testExpressionMember()
+		{
+			compareResourceEME("methods/expressionMember.pec");
+		}
+
+		[Test]
 		public void testExpressionWith()
 		{
 			compareResourceEME("methods/expressionWith.pec");

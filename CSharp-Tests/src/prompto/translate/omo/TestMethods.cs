@@ -45,6 +45,12 @@ namespace prompto.translate.omo
 		}
 
 		[Test]
+		public void testExpressionMember()
+		{
+			compareResourceOMO("methods/expressionMember.poc");
+		}
+
+		[Test]
 		public void testExpressionWith()
 		{
 			compareResourceOMO("methods/expressionWith.poc");

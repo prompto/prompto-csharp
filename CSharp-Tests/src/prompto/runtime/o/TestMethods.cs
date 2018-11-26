@@ -58,6 +58,12 @@ namespace prompto.runtime.o
 		}
 
 		[Test]
+		public void testExpressionMember()
+		{
+			CheckOutput("methods/expressionMember.poc");
+		}
+
+		[Test]
 		public void testExpressionWith()
 		{
 			CheckOutput("methods/expressionWith.poc");

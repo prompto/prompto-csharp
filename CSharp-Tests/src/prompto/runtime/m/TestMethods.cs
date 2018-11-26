@@ -22,6 +22,12 @@ namespace prompto.runtime.m
 		}
 
 		[Test]
+		public void testExpressionMember()
+		{
+			CheckOutput("methods/expressionMember.pmc");
+		}
+
+		[Test]
 		public void testTextAsync()
 		{
 			CheckOutput("methods/textAsync.pmc");
