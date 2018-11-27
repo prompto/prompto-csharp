@@ -11570,11 +11570,11 @@ public partial class OParser : AbstractParser {
 			return GetRuleContext<Module_tokenContext>(0);
 		}
 		public ITerminalNode COLON() { return GetToken(OParser.COLON, 0); }
-		public IdentifierContext[] identifier() {
-			return GetRuleContexts<IdentifierContext>();
+		public Python_identifierContext[] python_identifier() {
+			return GetRuleContexts<Python_identifierContext>();
 		}
-		public IdentifierContext identifier(int i) {
-			return GetRuleContext<IdentifierContext>(i);
+		public Python_identifierContext python_identifier(int i) {
+			return GetRuleContext<Python_identifierContext>(i);
 		}
 		public ITerminalNode[] DOT() { return GetTokens(OParser.DOT); }
 		public ITerminalNode DOT(int i) {
@@ -11606,7 +11606,7 @@ public partial class OParser : AbstractParser {
 			State = 1837; Match(FROM);
 			State = 1838; module_token();
 			State = 1839; Match(COLON);
-			State = 1840; identifier();
+			State = 1840; python_identifier();
 			State = 1845;
 			ErrorHandler.Sync(this);
 			_la = TokenStream.LA(1);
@@ -11614,7 +11614,7 @@ public partial class OParser : AbstractParser {
 				{
 				{
 				State = 1841; Match(DOT);
-				State = 1842; identifier();
+				State = 1842; python_identifier();
 				}
 				}
 				State = 1847;
@@ -23768,9 +23768,9 @@ public partial class OParser : AbstractParser {
 		'\x2', '\x72D', '\x72E', '\x3', '\x2', '\x2', '\x2', '\x72E', '\xEF', 
 		'\x3', '\x2', '\x2', '\x2', '\x72F', '\x730', '\a', 'k', '\x2', '\x2', 
 		'\x730', '\x731', '\x5', '\x144', '\xA3', '\x2', '\x731', '\x732', '\a', 
-		'\r', '\x2', '\x2', '\x732', '\x737', '\x5', '\xCA', '\x66', '\x2', '\x733', 
-		'\x734', '\a', '\x11', '\x2', '\x2', '\x734', '\x736', '\x5', '\xCA', 
-		'\x66', '\x2', '\x735', '\x733', '\x3', '\x2', '\x2', '\x2', '\x736', 
+		'\r', '\x2', '\x2', '\x732', '\x737', '\x5', '\x18A', '\xC6', '\x2', '\x733', 
+		'\x734', '\a', '\x11', '\x2', '\x2', '\x734', '\x736', '\x5', '\x18A', 
+		'\xC6', '\x2', '\x735', '\x733', '\x3', '\x2', '\x2', '\x2', '\x736', 
 		'\x739', '\x3', '\x2', '\x2', '\x2', '\x737', '\x735', '\x3', '\x2', '\x2', 
 		'\x2', '\x737', '\x738', '\x3', '\x2', '\x2', '\x2', '\x738', '\xF1', 
 		'\x3', '\x2', '\x2', '\x2', '\x739', '\x737', '\x3', '\x2', '\x2', '\x2', 
