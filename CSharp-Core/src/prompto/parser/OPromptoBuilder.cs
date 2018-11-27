@@ -1517,7 +1517,7 @@ namespace prompto.parser
 		public override void ExitPython_module(OParser.Python_moduleContext ctx)
 		{
 			List<String> ids = new List<String>();
-			foreach (OParser.IdentifierContext ic in ctx.identifier())
+			foreach (OParser.Python_identifierContext ic in ctx.python_identifier())
 				ids.Add(ic.GetText());
 			PythonModule module = new PythonModule(ids);
 			SetNodeValue(ctx, module);
