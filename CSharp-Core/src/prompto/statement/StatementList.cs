@@ -127,12 +127,27 @@ namespace prompto.statement
 		}
 
 		public void ToDialect(CodeWriter writer) {
-			foreach(IStatement statement in this) {
-				statement.ToDialect(writer);
-				if(statement.IsSimple) {
-					if(writer.getDialect()==Dialect.O && !(statement is NativeCall))
-						writer.append(';');
-					writer.newLine();
+			if (this.Count == 0)
+			{
+				switch (writer.getDialect())
+				{
+					case Dialect.E:
+					case Dialect.M:
+						writer.append("pass").newLine();
+						break;
+				}
+			}
+			else
+			{
+				foreach (IStatement statement in this)
+				{
+					statement.ToDialect(writer);
+					if (statement.IsSimple)
+					{
+						if (writer.getDialect() == Dialect.O && !(statement is NativeCall))
+							writer.append(';');
+						writer.newLine();
+					}
 				}
 			}
 		}

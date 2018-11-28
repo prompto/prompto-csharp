@@ -46,12 +46,6 @@ namespace prompto.runtime.m
 		}
 
 		[Test]
-		public void testEmpty()
-		{
-			CheckOutput("jsx/empty.pmc");
-		}
-
-		[Test]
 		public void testEmptyAttribute()
 		{
 			CheckOutput("jsx/emptyAttribute.pmc");

@@ -46,12 +46,6 @@ namespace prompto.runtime.o
 		}
 
 		[Test]
-		public void testEmpty()
-		{
-			CheckOutput("jsx/empty.poc");
-		}
-
-		[Test]
 		public void testEmptyAttribute()
 		{
 			CheckOutput("jsx/emptyAttribute.poc");

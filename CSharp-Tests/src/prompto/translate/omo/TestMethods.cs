@@ -33,6 +33,12 @@ namespace prompto.translate.omo
 		}
 
 		[Test]
+		public void testEmpty()
+		{
+			compareResourceOMO("methods/empty.poc");
+		}
+
+		[Test]
 		public void testExplicit()
 		{
 			compareResourceOMO("methods/explicit.poc");

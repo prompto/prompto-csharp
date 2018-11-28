@@ -33,6 +33,12 @@ namespace prompto.translate.eoe
 		}
 
 		[Test]
+		public void testEmpty()
+		{
+			compareResourceEOE("methods/empty.pec");
+		}
+
+		[Test]
 		public void testExplicit()
 		{
 			compareResourceEOE("methods/explicit.pec");

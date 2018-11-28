@@ -33,6 +33,12 @@ namespace prompto.translate.eme
 		}
 
 		[Test]
+		public void testEmpty()
+		{
+			compareResourceEME("methods/empty.pec");
+		}
+
+		[Test]
 		public void testExplicit()
 		{
 			compareResourceEME("methods/explicit.pec");
