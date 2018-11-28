@@ -61,11 +61,11 @@ namespace prompto.statement
 			}
 			if(andThen!=null) {
 				if(writer.getDialect()==Dialect.O) {
-					writer.append("then {").newLine().indent();
+					writer.append(" then {").newLine().indent();
 					andThen.ToDialect(writer);
 					writer.dedent().append("}");
 				} else {
-					writer.append("then:").newLine().indent();
+					writer.append(" then:").newLine().indent();
 					andThen.ToDialect(writer);
 					writer.dedent();
 				}
