@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using prompto.error;
 using prompto.utils;
 using prompto.parser;
+using prompto.statement;
 
 namespace prompto.expression
 {
@@ -64,15 +65,16 @@ namespace prompto.expression
 					ToODialect(writer);
 					break;
 				case Dialect.M:
-					toPDialect(writer);
+					toMDialect(writer);
 					break;
 			}
 		}
 
-		private void toPDialect(CodeWriter writer)
+		private void toMDialect(CodeWriter writer)
 		{
+			IExpression expression = extractFromParenthesisIfPossible(this.expression);
 			expression.ToDialect(writer);
-			writer.append(" for ");
+			writer.append(" for each ");
 			writer.append(name.ToString());
 			writer.append(" in ");
 			source.ToDialect(writer);
@@ -80,6 +82,7 @@ namespace prompto.expression
 
 		private void ToODialect(CodeWriter writer)
 		{
+			IExpression expression = extractFromParenthesisIfPossible(this.expression);
 			expression.ToDialect(writer);
 			writer.append(" for each ( ");
 			writer.append(name.ToString());
@@ -90,6 +93,7 @@ namespace prompto.expression
 
 		private void ToEDialect(CodeWriter writer)
 		{
+			IExpression expression = encloseInParenthesisIfRequired(this.expression);
 			expression.ToDialect(writer);
 			writer.append(" for each ");
 			writer.append(name.ToString());
@@ -97,6 +101,28 @@ namespace prompto.expression
 			source.ToDialect(writer);
 		}
 
+		private static IExpression encloseInParenthesisIfRequired(IExpression expression)
+		{
+			if (mustBeEnclosedInParenthesis(expression))
+				return new ParenthesisExpression(expression);
+			else
+				return expression;
+		}
+
+		private static IExpression extractFromParenthesisIfPossible(IExpression expression)
+		{
+			if (expression is ParenthesisExpression) {
+				IExpression enclosed = ((ParenthesisExpression)expression).getExpression();
+				if (mustBeEnclosedInParenthesis(enclosed))
+					return enclosed;
+			}
+			return expression;
+		}
+
+		private static bool mustBeEnclosedInParenthesis(IExpression expression)
+		{
+			return expression is UnresolvedCall;
+		}
 
 	}
 }

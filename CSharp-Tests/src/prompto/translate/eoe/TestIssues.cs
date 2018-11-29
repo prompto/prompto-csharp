@@ -14,6 +14,12 @@ namespace prompto.translate.eoe
 			compareResourceEOE("issues/minimal.pec");
 		}
 
+		[Test]
+		public void testWidget()
+		{
+			compareResourceEOE("issues/widget.pec");
+		}
+
 	}
 }
 

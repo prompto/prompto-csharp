@@ -15,6 +15,12 @@ namespace prompto.translate.eoe
 		}
 
 		[Test]
+		public void testForEachExpression()
+		{
+			compareResourceEOE("iterate/forEachExpression.pec");
+		}
+
+		[Test]
 		public void testForEachIntegerList()
 		{
 			compareResourceEOE("iterate/forEachIntegerList.pec");

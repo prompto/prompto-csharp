@@ -19,6 +19,12 @@ namespace prompto.expression
             this.expression = expression;
         }
 
+
+		public IExpression getExpression()
+		{
+			return expression;
+		}
+
 		public override string ToString ()
 		{
 			return "(" + expression.ToString() + ")";

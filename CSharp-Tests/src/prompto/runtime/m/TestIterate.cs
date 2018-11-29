@@ -2,11 +2,11 @@ using NUnit.Framework;
 using prompto.parser;
 using prompto.utils;
 
-namespace prompto.runtime.o
+namespace prompto.runtime.m
 {
 
 	[TestFixture]
-	public class TestIterate : BaseOParserTest
+	public class TestIterate : BaseMParserTest
 	{
 
 		[SetUp]
@@ -24,13 +24,7 @@ namespace prompto.runtime.o
 		[Test]
 		public void testForEachExpression()
 		{
-			CheckOutput("iterate/forEachExpression.poc");
-		}
-
-		[Test]
-		public void testForEachIntegerList()
-		{
-			CheckOutput("iterate/forEachIntegerList.poc");
+			CheckOutput("iterate/forEachExpression.pmc");
 		}
 
 	}

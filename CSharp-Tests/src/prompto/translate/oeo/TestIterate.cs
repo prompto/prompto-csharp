@@ -9,6 +9,12 @@ namespace prompto.translate.oeo
 	{
 
 		[Test]
+		public void testForEachExpression()
+		{
+			compareResourceOEO("iterate/forEachExpression.poc");
+		}
+
+		[Test]
 		public void testForEachIntegerList()
 		{
 			compareResourceOEO("iterate/forEachIntegerList.poc");

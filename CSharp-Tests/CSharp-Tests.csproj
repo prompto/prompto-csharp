@@ -382,6 +382,8 @@
     <Compile Include="src\prompto\translate\eoe\TestSubtract.cs" />
     <Compile Include="src\prompto\translate\oeo\TestSubtract.cs" />
     <Compile Include="src\prompto\translate\omo\TestSubtract.cs" />
+    <Compile Include="src\prompto\runtime\m\TestIterate.cs" />
+    <Compile Include="src\prompto\runtime\m\TestTesting.cs" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />

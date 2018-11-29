@@ -9,6 +9,12 @@ namespace prompto.translate.omo
 	{
 
 		[Test]
+		public void testForEachExpression()
+		{
+			compareResourceOMO("iterate/forEachExpression.poc");
+		}
+
+		[Test]
 		public void testForEachIntegerList()
 		{
 			compareResourceOMO("iterate/forEachIntegerList.poc");
