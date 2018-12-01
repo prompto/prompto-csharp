@@ -10,6 +10,8 @@ namespace prompto.value
 
         public static Version Parse(String version)
         {
+			if (version[0]=='v')
+				version = version.Substring(1);
 			String[] parts = version.Split('.');
 			if(parts.Length<3)
 				throw new Exception("Version must be like 1.2.3!");

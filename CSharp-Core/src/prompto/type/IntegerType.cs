@@ -2,7 +2,6 @@ using System;
 using prompto.runtime;
 using prompto.value;
 using System.Collections.Generic;
-using Decimal = prompto.value.Decimal;
 using prompto.store;
 using prompto.declaration;
 using prompto.argument;
@@ -32,7 +31,7 @@ namespace prompto.type
 
 		public override Type ToCSharpType()
 		{
-			return typeof(Integer);
+			return typeof(Int64);
 		}
 
 

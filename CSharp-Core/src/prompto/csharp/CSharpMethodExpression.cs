@@ -52,8 +52,8 @@ namespace prompto.csharp
 			writer.append (')');
 		}
 
-		override
-    	public IType check (Context context)
+
+    	public override IType check (Context context)
 		{
 			MethodInfo method = findMethod (context);
 			if (method == null)
@@ -62,14 +62,15 @@ namespace prompto.csharp
 				return new CSharpClassType (method.ReturnType);
 		}
 
-		override
-    	public Object interpret (Context context)
+
+    	public override Object interpret (Context context)
 		{
 			Object instance = parent.interpret (context);
 			if (instance is NativeInstance)
 				instance = ((NativeInstance)instance).getInstance ();
 			MethodInfo method = findMethod (context, instance);
-			Object[] args = evaluate_arguments (context, method);
+			// if not found caller will raise exception anyway
+			Object[] args = interpret_arguments (context, method);
 			Type klass = instance is Type ? (Type)instance : instance.GetType (); 
 			if (instance == (Object)klass)
 				instance = null;
@@ -78,7 +79,7 @@ namespace prompto.csharp
 			return method.Invoke (instance, args);
 		}
 
-		Object[] evaluate_arguments (Context context, MethodInfo method)
+		Object[] interpret_arguments (Context context, MethodInfo method)
 		{
 			ParameterInfo[] parms = method.GetParameters ();
 			Object[] args = new Object[arguments.Count];
@@ -145,35 +146,48 @@ namespace prompto.csharp
 			foreach (MethodInfo m in methods) {
 				if (!name.Equals (m.Name))
 					continue;
-				if (validPrototype (context, m))
+				if (HasValidPrototype (context, m))
 					return m;
 			}
 			return null; 
 		}
 
-		bool validPrototype (Context context, MethodInfo method)
+		bool HasValidPrototype (Context context, MethodInfo method)
 		{
 			ParameterInfo[] parms = method.GetParameters ();
 			if (parms.Length != arguments.Count)
 				return false;
 			for (int i = 0; i < parms.Length; i++) {
-				if (!validArgument (context, parms [i].ParameterType, arguments [i]))
+				if (!IsValidArgument (context, parms [i].ParameterType, arguments [i]))
 					return false;
 			}
 			return true;
 		}
 
-		bool validArgument (Context context, Type klass, CSharpExpression argument)
+		bool IsValidArgument (Context context, Type klass, CSharpExpression argument)
 		{
 			Type type = argument.check (context).ToCSharpType ();
-			return validArgument (klass, type);
+			return IsValidArgument (klass, type);
 		}
 
-		bool validArgument (Type wanted, Type actual) {
-			if (wanted.IsAssignableFrom (actual))
-				return true;
+		bool IsValidArgument(Type wanted, Type actual)
+		{
+			return wanted == actual
+				|| wanted.IsAssignableFrom(actual)
+				|| (wanted == typeof(bool) && actual == typeof(System.Boolean))
+				|| (wanted == typeof(System.Boolean) && actual == typeof(bool))
+				|| (wanted == typeof(long) && actual == typeof(System.Int64))
+				|| (wanted == typeof(System.Int64) && actual == typeof(long))
+				|| (wanted == typeof(double) && actual == typeof(System.Double))
+				|| (wanted == typeof(System.Double) && actual == typeof(double))
+			    || IsValidGenericArgument(wanted, actual);
+		}
+
+		bool IsValidGenericArgument(Type wanted, Type actual)
+		{
 			// work around IsAssignableFrom nightmare, where IList<Object> is not assignable from IList<String>
-			// in our case, since values are immutable, it is safe to cast it to a broader type
+			// (valid reason for this behaviour is that one could insert a non String in the IList<Object>)
+			// in our case, since values are immutable, it is safe to cast exact type to a broader type
 			if (!wanted.IsGenericType)
 				return false;
 			Type wantedParent = wanted.GetGenericTypeDefinition ();
@@ -187,7 +201,7 @@ namespace prompto.csharp
 			if (wantedArgs.Length != actualArgs.Length)
 				return false;
 			for (int i = 0; i < wantedArgs.Length; i++) {
-				if (!validArgument (wantedArgs [i], actualArgs [i]))
+				if (!IsValidArgument (wantedArgs [i], actualArgs [i]))
 					return false;
 			}
 			return true;

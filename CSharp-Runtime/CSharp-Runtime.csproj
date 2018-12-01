@@ -39,6 +39,7 @@
     <Compile Include="src\prompto\reader\CSVReader.cs" />
     <Compile Include="src\prompto\io\Buffer.cs" />
     <Compile Include="src\prompto\reader\JSONReader.cs" />
+    <Compile Include="src\prompto\utils\Utils.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -48,6 +49,7 @@
     <Folder Include="src\prompto\runtime\" />
     <Folder Include="src\prompto\reader\" />
     <Folder Include="src\prompto\io\" />
+    <Folder Include="src\prompto\utils\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CSharp-Core\CSharp-Core.csproj">
