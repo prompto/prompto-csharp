@@ -38,8 +38,8 @@ namespace prompto.value
 		}
 
 
-        override
-        public Int32 CompareTo(Context context, IValue value)
+        
+        public override Int32 CompareTo(Context context, IValue value)
         {
             if (value is Version)
                 return this.CompareTo((Version)value);
@@ -48,8 +48,8 @@ namespace prompto.value
 
         }
 
-        override
-        public Object ConvertTo(Type type)
+        
+        public override Object ConvertTo(Type type)
         {
             return this;
         }
@@ -59,8 +59,8 @@ namespace prompto.value
 			return this.AsInt().CompareTo(other.AsInt());
         }
 
-        override
-        public bool Equals(object obj)
+        
+        public override bool Equals(object obj)
         {
 			if (obj is Version)
 				return this.AsInt() == ((Version)obj).AsInt();
@@ -68,14 +68,14 @@ namespace prompto.value
 				return false;
         }
 
-        override
-        public int GetHashCode()
+        
+        public override int GetHashCode()
         {
 			return ToString().GetHashCode();
         }
 
-        override
-        public string ToString()
+        
+        public override string ToString()
         {
 			return "" + major + "." + minor + "." + fix;
 			}

@@ -104,13 +104,13 @@ namespace prompto.csharp
 			if (parms.Length != args.Length)
 				return false;
 			for (int i = 0; i < parms.Length; i++) {
-				if (!validArgument (parms [i].ParameterType, args [i]))
+				if (!IsValidArgument (parms [i].ParameterType, args [i]))
 					return false;
 			}
 			return true;
 		}
 
-		bool validArgument (System.Type klass, Object value)
+		bool IsValidArgument (System.Type klass, Object value)
 		{
 			return value == null || klass.IsAssignableFrom (value.GetType ());
 		}
@@ -194,7 +194,7 @@ namespace prompto.csharp
 			if (!actual.IsGenericType)
 				return false;
 			Type actualParent = actual.GetGenericTypeDefinition ();
-			if (!validArgument (wantedParent, actualParent))
+			if (!IsValidArgument (wantedParent, actualParent))
 				return false;
 			Type[] wantedArgs = wanted.GetGenericArguments ();
 			Type[] actualArgs = actual.GetGenericArguments ();
