@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using prompto.value;
 
 namespace prompto.utils
 {
@@ -12,5 +14,16 @@ namespace prompto.utils
 			return parser.StringValue;
 
 		}
+
+		public static Character[] ToCharacterArray(String value)
+		{
+			char[] chars = value.ToCharArray();
+			List<Character> list = new List<Character>(chars.Length);
+			for (int i = 0; i < chars.Length; i++)
+				list.Add(new Character(chars[i]));
+			return list.ToArray();
+		}
+
+
 	}
 }

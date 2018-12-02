@@ -13,6 +13,8 @@ namespace prompto.expression
 
 		public IType check (Context context)
 		{
+			if (context is DocumentContext)
+				return DocumentType.Instance;
 			if (context != null && !(context is InstanceContext))
 				context = context.getParentContext ();
 			if (context is InstanceContext)
@@ -23,6 +25,8 @@ namespace prompto.expression
 
 		public IValue interpret (Context context)
 		{
+			if (context is DocumentContext)
+				return ((DocumentContext)context).getDocument();
 			if (context != null && !(context is InstanceContext))
 				context = context.getParentContext ();
 			if (context is InstanceContext)

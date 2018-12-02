@@ -99,6 +99,30 @@ namespace prompto.translate.omo
 		}
 
 		[Test]
+		public void testSortDocumentExpressions()
+		{
+			compareResourceOMO("sortList/sortDocumentExpressions.poc");
+		}
+
+		[Test]
+		public void testSortDocumentKeys()
+		{
+			compareResourceOMO("sortList/sortDocumentKeys.poc");
+		}
+
+		[Test]
+		public void testSortDocumentMethods()
+		{
+			compareResourceOMO("sortList/sortDocumentMethods.poc");
+		}
+
+		[Test]
+		public void testSortDocumentNames()
+		{
+			compareResourceOMO("sortList/sortDocumentNames.poc");
+		}
+
+		[Test]
 		public void testSortExpressions()
 		{
 			compareResourceOMO("sortList/sortExpressions.poc");

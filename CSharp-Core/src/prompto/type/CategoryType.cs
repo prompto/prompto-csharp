@@ -402,63 +402,56 @@ namespace prompto.type
 		}
 
 
-		class ConcreteInstanceComparer : ExpressionComparer<ConcreteInstance>
+		class InstanceExpressionComparer : ExpressionComparer<ConcreteInstance>
         {
-            CategoryType type;
-            Context context;
             IExpression key;
 
-            public ConcreteInstanceComparer(CategoryType type, Context context, IExpression key, bool descending)
+            public InstanceExpressionComparer(Context context, IExpression key, bool descending)
                 : base(context, descending)
             {
-                this.type = type;
-                this.context = context;
                 this.key = key;
             }
 
-            override
-            protected int DoCompare(ConcreteInstance o1, ConcreteInstance o2)
+            
+            protected override int DoCompare(ConcreteInstance o1, ConcreteInstance o2)
             {
                 Context co = context.newInstanceContext(o1, false);
-                Object key1 = key.interpret(co);
+				Object value1 = key.interpret(co);
                 co = context.newInstanceContext(o2, false);
-                Object key2 = key.interpret(co);
-                return type.compareKeys(key1, key2);
+				Object value2 = key.interpret(co);
+				return ObjectUtils.CompareValues(value1, value2);
             }
 
         }
+
 		private ListValue sortByExpression(Context context, IContainer list, IExpression key, bool descending)
         {
-			return this.doSort(context, list, new ConcreteInstanceComparer(this, context, key, descending));
+			return this.doSort(context, list, new InstanceExpressionComparer(context, key, descending));
         }
 
         public class InstanceAttributeComparer : ExpressionComparer<IInstance>
         {
-            CategoryType type;
-            Context context;
             String name;
 
-            public InstanceAttributeComparer(CategoryType type, Context context, String name, bool descending)
+            public InstanceAttributeComparer(Context context, String name, bool descending)
 				: base(context, descending)
             {
-                this.type = type;
-                this.context = context;
                 this.name = name;
             }
 
-            override
-            protected int DoCompare(IInstance o1, IInstance o2)
+            
+            protected override int DoCompare(IInstance o1, IInstance o2)
             {
-                Object key1 = o1.GetMember(context, name, false);
-                Object key2 = o2.GetMember(context, name, false);
-                return type.compareKeys(key1, key2);
+				Object value1 = o1.GetMember(context, name, false);
+				Object value2 = o2.GetMember(context, name, false);
+                return ObjectUtils.CompareValues(value1, value2);
             }
 
         }
 
 		private ListValue sortByAttribute(Context context, IContainer list, String name, bool descending)
         {
-			return this.doSort( context, list, new InstanceAttributeComparer(this, context, name, descending));
+			return this.doSort( context, list, new InstanceAttributeComparer(context, name, descending));
         }
 
 		private ListValue sortByClassMethod(Context context, IContainer list, String name, bool descending)
@@ -490,56 +483,35 @@ namespace prompto.type
             ArgumentAssignment arg = new ArgumentAssignment(null, exp);
             ArgumentAssignmentList args = new ArgumentAssignmentList();
             args.Add(arg);
-            MethodCall proto = new MethodCall(new MethodSelector(name), args);
-            MethodFinder finder = new MethodFinder(context, proto);
-            IMethodDeclaration method = finder.findMethod(true);
-			return sortByGlobalMethod(context, list, proto, method, descending);
+            MethodCall call = new MethodCall(new MethodSelector(name), args);
+    		return this.doSort(context, list, new InstanceGlobalMethodComparer(this, context, call, descending));
         }
 
         class InstanceGlobalMethodComparer : ExpressionComparer<IInstance>
         {
             CategoryType type;
-            Context context;
             MethodCall method;
 
             public InstanceGlobalMethodComparer(CategoryType type, Context context, MethodCall method, bool descending)
                 : base(context, descending)
             {
                 this.type = type;
-                this.context = context;
                 this.method = method;
             }
 
-            override
-            protected int DoCompare(IInstance o1, IInstance o2)
+            
+            protected override int DoCompare(IInstance o1, IInstance o2)
             {
                 ArgumentAssignment assignment = method.getAssignments()[0];
 				assignment.setExpression(new ExpressionValue(type, o1));
-                Object key1 = method.interpret(context);
+				Object value1 = method.interpret(context);
 				assignment.setExpression(new ExpressionValue(type, o2));
-                Object key2 = method.interpret(context);
-                return type.compareKeys(key1, key2);
+				Object value2 = method.interpret(context);
+                return ObjectUtils.CompareValues(value1, value2);
             }
 
         }
-		private ListValue sortByGlobalMethod(Context context, IContainer list, MethodCall method, IMethodDeclaration declaration, bool descending)
-        {
-			return this.doSort(context, list, new InstanceGlobalMethodComparer(this, context, method, descending));
-        }
 
-        private int compareKeys(Object key1, Object key2)
-        {
-            if (key1 == null && key2 == null)
-                return 0;
-            else if (key1 == null)
-                return -1;
-            else if (key2 == null)
-                return 1;
-            else if (key1 is IComparable && key2 is IComparable)
-                return ((IComparable)key1).CompareTo((IComparable)key2); 
-            else
-                return key1.ToString().CompareTo(key2.ToString());
-        }
 
     }
 

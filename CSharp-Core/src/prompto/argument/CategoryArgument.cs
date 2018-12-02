@@ -105,8 +105,8 @@ namespace prompto.argument
             if (!(obj is CategoryArgument))
                 return false;
             CategoryArgument other = (CategoryArgument)obj;
-            return ObjectUtils.equal(this.getType(), other.getType())
-				&& ObjectUtils.equal(this.GetName(), other.GetName());
+            return ObjectUtils.AreEqual(this.getType(), other.getType())
+				&& ObjectUtils.AreEqual(this.GetName(), other.GetName());
         }
 
         override

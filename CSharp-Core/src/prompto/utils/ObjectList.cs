@@ -29,7 +29,7 @@ namespace prompto.utils
 			IEnumerator<T> enumThis = this.GetEnumerator ();
 			IEnumerator<T> enumOther = other.GetEnumerator ();
 			while (enumThis.MoveNext () && enumOther.MoveNext ()) {
-				if (!ObjectUtils.equal (enumThis.Current, enumOther.Current))
+				if (!ObjectUtils.AreEqual (enumThis.Current, enumOther.Current))
 					return false;
 			}
 			return true;

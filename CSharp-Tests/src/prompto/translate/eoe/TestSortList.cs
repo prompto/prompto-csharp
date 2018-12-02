@@ -99,6 +99,30 @@ namespace prompto.translate.eoe
 		}
 
 		[Test]
+		public void testSortDocumentExpressions()
+		{
+			compareResourceEOE("sortList/sortDocumentExpressions.pec");
+		}
+
+		[Test]
+		public void testSortDocumentKeys()
+		{
+			compareResourceEOE("sortList/sortDocumentKeys.pec");
+		}
+
+		[Test]
+		public void testSortDocumentMethods()
+		{
+			compareResourceEOE("sortList/sortDocumentMethods.pec");
+		}
+
+		[Test]
+		public void testSortDocumentNames()
+		{
+			compareResourceEOE("sortList/sortDocumentNames.pec");
+		}
+
+		[Test]
 		public void testSortExpressions()
 		{
 			compareResourceEOE("sortList/sortExpressions.pec");

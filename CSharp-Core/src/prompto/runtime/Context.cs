@@ -621,6 +621,11 @@ namespace prompto.runtime
 			this.document = document;
 		}
 
+		internal IValue getDocument()
+		{
+			return this.document;
+		}
+
 		protected override Context contextForValue(String name)
 		{
 			// params and variables have precedence over members

@@ -52,7 +52,7 @@ namespace prompto.argument
             if (!(obj is AttributeArgument))
                 return false;
             AttributeArgument other = (AttributeArgument)obj;
-			return ObjectUtils.equal(this.GetName(), other.GetName());
+			return ObjectUtils.AreEqual(this.GetName(), other.GetName());
         }
 
         

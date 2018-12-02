@@ -112,6 +112,30 @@ namespace prompto.runtime.o
 		}
 
 		[Test]
+		public void testSortDocumentExpressions()
+		{
+			CheckOutput("sortList/sortDocumentExpressions.poc");
+		}
+
+		[Test]
+		public void testSortDocumentKeys()
+		{
+			CheckOutput("sortList/sortDocumentKeys.poc");
+		}
+
+		[Test]
+		public void testSortDocumentMethods()
+		{
+			CheckOutput("sortList/sortDocumentMethods.poc");
+		}
+
+		[Test]
+		public void testSortDocumentNames()
+		{
+			CheckOutput("sortList/sortDocumentNames.poc");
+		}
+
+		[Test]
 		public void testSortExpressions()
 		{
 			CheckOutput("sortList/sortExpressions.poc");

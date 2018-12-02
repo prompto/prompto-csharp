@@ -47,7 +47,7 @@ namespace prompto.argument
 			if (!(obj is MethodArgument))
 				return false;
 			MethodArgument other = (MethodArgument)obj;
-			return ObjectUtils.equal(this.GetName(), other.GetName());
+			return ObjectUtils.AreEqual(this.GetName(), other.GetName());
 		}
 
 

@@ -9,8 +9,8 @@ namespace prompto.runtime
 {
     public abstract class ExpressionComparer<T> : Comparer<Object> 
     {
-        Context context;
-		bool descending;
+        protected Context context;
+		protected bool descending;
 
         protected ExpressionComparer(Context context, bool descending)
         {

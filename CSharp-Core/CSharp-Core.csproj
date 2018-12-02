@@ -518,6 +518,7 @@
     <Compile Include="src\prompto\statement\FetchOneStatement.cs" />
     <Compile Include="src\prompto\statement\FetchManyStatement.cs" />
     <Compile Include="src\prompto\statement\RemoteCall.cs" />
+    <Compile Include="src\prompto\utils\DictionaryUtils.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />

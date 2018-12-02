@@ -99,6 +99,30 @@ namespace prompto.translate.eme
 		}
 
 		[Test]
+		public void testSortDocumentExpressions()
+		{
+			compareResourceEME("sortList/sortDocumentExpressions.pec");
+		}
+
+		[Test]
+		public void testSortDocumentKeys()
+		{
+			compareResourceEME("sortList/sortDocumentKeys.pec");
+		}
+
+		[Test]
+		public void testSortDocumentMethods()
+		{
+			compareResourceEME("sortList/sortDocumentMethods.pec");
+		}
+
+		[Test]
+		public void testSortDocumentNames()
+		{
+			compareResourceEME("sortList/sortDocumentNames.pec");
+		}
+
+		[Test]
 		public void testSortExpressions()
 		{
 			compareResourceEME("sortList/sortExpressions.pec");

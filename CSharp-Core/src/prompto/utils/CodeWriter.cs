@@ -9,41 +9,41 @@ namespace prompto.utils
 
 	public class CodeWriter
 	{
-	
+
 		public class Indenter
 		{
-		
+
 			public String indents = "";
 			public bool isStartOfLine = true;
 			public CodeWriter writer;
 
-			public Indenter (CodeWriter writer)
+			public Indenter(CodeWriter writer)
 			{
 				this.writer = writer;
 			}
 
-			public void appendTabsIfRequired (String s)
+			public void appendTabsIfRequired(String s)
 			{
-				appendTabsIfRequired (s [s.Length - 1]);
+				appendTabsIfRequired(s[s.Length - 1]);
 			}
 
-			public void appendTabsIfRequired (char c)
+			public void appendTabsIfRequired(char c)
 			{
 				if (isStartOfLine)
-					writer.sb.Append (indents);
+					writer.sb.Append(indents);
 				isStartOfLine = c == '\n';
 			}
 
-			public void indent ()
+			public void indent()
 			{
 				indents += '\t';
 			}
 
-			public void dedent ()
+			public void dedent()
 			{
 				if (indents.Length == 0)
-					throw new Exception ("Illegal dedent!");
-				indents = indents.Substring (1);
+					throw new Exception("Illegal dedent!");
+				indents = indents.Substring(1);
 			}
 		}
 
@@ -52,15 +52,15 @@ namespace prompto.utils
 		StringBuilder sb;
 		Indenter indenter;
 
-		public CodeWriter (Dialect dialect, Context context)
+		public CodeWriter(Dialect dialect, Context context)
 		{
 			this.dialect = dialect;
 			this.context = context;
-			this.sb = new StringBuilder ();
-			indenter = new Indenter (this);
+			this.sb = new StringBuilder();
+			indenter = new Indenter(this);
 		}
 
-		public CodeWriter (Dialect dialect, Context context, StringBuilder sb, Indenter indenter)
+		public CodeWriter(Dialect dialect, Context context, StringBuilder sb, Indenter indenter)
 		{
 			this.dialect = dialect;
 			this.context = context;
@@ -68,7 +68,7 @@ namespace prompto.utils
 			this.indenter = indenter;
 		}
 
-		public Context getContext ()
+		public Context getContext()
 		{
 			return context;
 		}
@@ -79,42 +79,42 @@ namespace prompto.utils
 			return this;
 		}
 
-		public CodeWriter append (String s)
+		public CodeWriter append(String s)
 		{
-			indenter.appendTabsIfRequired (s);
-			sb.Append (s);
+			indenter.appendTabsIfRequired(s);
+			sb.Append(s);
 			return this;
 		}
 
-		public CodeWriter append (char c)
+		public CodeWriter append(char c)
 		{
-			indenter.appendTabsIfRequired (c);
-			sb.Append (c);
+			indenter.appendTabsIfRequired(c);
+			sb.Append(c);
 			return this;
 		}
 
 
-		public CodeWriter trimLast (int count)
+		public CodeWriter trimLast(int count)
 		{
 			sb.Length -= count;
 			return this;
 		}
 
-		public CodeWriter indent ()
+		public CodeWriter indent()
 		{
-			indenter.indent ();
+			indenter.indent();
 			return this;
 		}
 
-		public CodeWriter dedent ()
+		public CodeWriter dedent()
 		{
-			indenter.dedent ();
+			indenter.dedent();
 			return this;
 		}
 
-		public CodeWriter newLine ()
+		public CodeWriter newLine()
 		{
-			append ('\n');
+			append('\n');
 			return this;
 		}
 
@@ -128,14 +128,14 @@ namespace prompto.utils
 			return dialect;
 		}
 
-		public bool isGlobalContext ()
+		public bool isGlobalContext()
 		{
-			return context.isGlobalContext ();
+			return context.isGlobalContext();
 		}
 
-		public CodeWriter newLocalWriter ()
+		public CodeWriter newLocalWriter()
 		{
-			return new CodeWriter (dialect, context.newLocalContext (), sb, indenter);
+			return new CodeWriter(dialect, context.newLocalContext(), sb, indenter);
 		}
 
 		public CodeWriter newChildWriter()
@@ -143,17 +143,24 @@ namespace prompto.utils
 			return new CodeWriter(dialect, context.newChildContext(), sb, indenter);
 		}
 
-		public CodeWriter newMemberWriter ()
+		public CodeWriter newMemberWriter()
 		{
-			Context ctx = this.context.newLocalContext ();
-			ctx.setParentContext (this.context);
-			return new CodeWriter (dialect, ctx, sb, indenter);
+			Context ctx = this.context.newLocalContext();
+			ctx.setParentContext(this.context);
+			return new CodeWriter(dialect, ctx, sb, indenter);
 		}
 
-		public CodeWriter newInstanceWriter(CategoryType type) 
+		public CodeWriter newInstanceWriter(CategoryType type)
 		{
 			return new CodeWriter(dialect, context.newInstanceContext(type, false), sb, indenter);
 		}
+
+		public CodeWriter newDocumentWriter()
+		{
+			return new CodeWriter(dialect, context.newDocumentContext(null, false), sb, indenter);
+		}
+
+
 	}
-	 
+
 }

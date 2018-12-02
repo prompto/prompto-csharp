@@ -95,9 +95,9 @@ namespace prompto.argument
 			if (!(obj is ExtendedArgument))
 				return false;
 			ExtendedArgument other = (ExtendedArgument)obj;
-			return ObjectUtils.equal(this.getType(), other.getType())
-				&& ObjectUtils.equal(this.GetName(), other.GetName())
-				&& ObjectUtils.equal(this.getAttributes(), other.getAttributes());
+			return ObjectUtils.AreEqual(this.getType(), other.getType())
+				&& ObjectUtils.AreEqual(this.GetName(), other.GetName())
+				&& ObjectUtils.AreEqual(this.getAttributes(), other.getAttributes());
 		}
 
 

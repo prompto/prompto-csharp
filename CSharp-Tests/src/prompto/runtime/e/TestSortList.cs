@@ -112,6 +112,30 @@ namespace prompto.runtime.e
 		}
 
 		[Test]
+		public void testSortDocumentExpressions()
+		{
+			CheckOutput("sortList/sortDocumentExpressions.pec");
+		}
+
+		[Test]
+		public void testSortDocumentKeys()
+		{
+			CheckOutput("sortList/sortDocumentKeys.pec");
+		}
+
+		[Test]
+		public void testSortDocumentMethods()
+		{
+			CheckOutput("sortList/sortDocumentMethods.pec");
+		}
+
+		[Test]
+		public void testSortDocumentNames()
+		{
+			CheckOutput("sortList/sortDocumentNames.pec");
+		}
+
+		[Test]
 		public void testSortExpressions()
 		{
 			CheckOutput("sortList/sortExpressions.pec");

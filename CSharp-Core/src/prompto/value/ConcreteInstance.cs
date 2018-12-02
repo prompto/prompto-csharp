@@ -225,7 +225,7 @@ namespace prompto.value
 		{
 			if (!(obj is ConcreteInstance))
 				return false;
-			return ObjectUtils.EqualDictionaries (this.values, ((ConcreteInstance)obj).values);
+			return DictionaryUtils.AreEqual (this.values, ((ConcreteInstance)obj).values);
 		}
 
 
