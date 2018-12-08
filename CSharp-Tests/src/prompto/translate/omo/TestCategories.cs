@@ -38,6 +38,12 @@ namespace prompto.translate.omo
 			compareResourceOMO("categories/copyFromDocument.poc");
 		}
 
+		[Test]
+		public void testCopyFromStored()
+		{
+			compareResourceOMO("categories/copyFromStored.poc");
+		}
+
 	}
 }
 

@@ -50,6 +50,12 @@ namespace prompto.translate.eoe
 			compareResourceEOE("categories/copyFromDocument.pec");
 		}
 
+		[Test]
+		public void testCopyFromStored()
+		{
+			compareResourceEOE("categories/copyFromStored.pec");
+		}
+
 	}
 }
 

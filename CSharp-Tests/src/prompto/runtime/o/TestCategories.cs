@@ -51,6 +51,12 @@ namespace prompto.runtime.o
 			CheckOutput("categories/copyFromDocument.poc");
 		}
 
+		[Test]
+		public void testCopyFromStored()
+		{
+			CheckOutput("categories/copyFromStored.poc");
+		}
+
 	}
 }
 

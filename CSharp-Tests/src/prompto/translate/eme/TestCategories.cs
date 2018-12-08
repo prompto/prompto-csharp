@@ -50,6 +50,12 @@ namespace prompto.translate.eme
 			compareResourceEME("categories/copyFromDocument.pec");
 		}
 
+		[Test]
+		public void testCopyFromStored()
+		{
+			compareResourceEME("categories/copyFromStored.pec");
+		}
+
 	}
 }
 

@@ -38,6 +38,12 @@ namespace prompto.translate.oeo
 			compareResourceOEO("categories/copyFromDocument.poc");
 		}
 
+		[Test]
+		public void testCopyFromStored()
+		{
+			compareResourceOEO("categories/copyFromStored.poc");
+		}
+
 	}
 }
 

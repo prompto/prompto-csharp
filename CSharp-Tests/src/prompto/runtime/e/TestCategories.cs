@@ -63,6 +63,12 @@ namespace prompto.runtime.e
 			CheckOutput("categories/copyFromDocument.pec");
 		}
 
+		[Test]
+		public void testCopyFromStored()
+		{
+			CheckOutput("categories/copyFromStored.pec");
+		}
+
 	}
 }
 
