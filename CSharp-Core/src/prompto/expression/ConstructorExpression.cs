@@ -166,7 +166,9 @@ namespace prompto.expression
 						IInstance copyInstance = (IInstance)copyObj;
 	                    foreach (String name in copyInstance.GetMemberNames())
 	                    {
-	                        if (cd.hasAttribute(context, name))
+							if (name == "dbId")
+								continue;
+	                        else if (cd.hasAttribute(context, name))
 							{
 								IValue value = copyInstance.GetMember(context, name, false);
 								if(value!=null && value.IsMutable() && !this.type.Mutable)
@@ -180,7 +182,9 @@ namespace prompto.expression
 						Document copyDoc = (Document)copyObj;
 						foreach (String name in copyDoc.GetMemberNames())
 						{
-							if (cd.hasAttribute(context, name))
+							if (name == "dbId")
+								continue;
+	            			else if (cd.hasAttribute(context, name))
 							{
 								IValue value = copyDoc.GetMember(context, name, false);
 								if(value!=null && value.IsMutable() && !this.type.Mutable)
