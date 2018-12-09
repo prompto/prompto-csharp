@@ -58,6 +58,8 @@ namespace prompto.expression
         public IType check(Context context)
         {
             INamed named = context.getRegistered(name);
+			if (named == null)
+				named = context.getRegisteredDeclaration<IDeclaration>(name);
             if (named == null)
                 throw new SyntaxError("Unknown identifier:" + name);
             else if (named is Variable) // local variable
