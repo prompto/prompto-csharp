@@ -2,11 +2,11 @@ using NUnit.Framework;
 using prompto.parser;
 using prompto.utils;
 
-namespace prompto.runtime.e
+namespace prompto.runtime.m
 {
 
 	[TestFixture]
-	public class TestRecord : BaseEParserTest
+	public class TestMember : BaseMParserTest
 	{
 
 		[SetUp]
@@ -22,9 +22,9 @@ namespace prompto.runtime.e
 		}
 
 		[Test]
-		public void testRecord()
+		public void testMemberAttribute()
 		{
-			CheckOutput("record/record.pec");
+			CheckOutput("member/memberAttribute.pmc");
 		}
 
 	}

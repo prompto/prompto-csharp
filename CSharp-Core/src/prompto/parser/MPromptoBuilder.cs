@@ -221,8 +221,11 @@ namespace prompto.parser
 		public override void ExitSelectorExpression(MParser.SelectorExpressionContext ctx)
 		{
 			IExpression parent = GetNodeValue<IExpression>(ctx.parent);
-			SelectorExpression selector = GetNodeValue<SelectorExpression>(ctx.selector);
-			selector.setParent(parent);
+			IExpression selector = GetNodeValue<IExpression>(ctx.selector);
+			if(selector is SelectorExpression)
+				((SelectorExpression)selector).setParent(parent);
+			else if(selector is UnresolvedCall)
+				((UnresolvedCall)selector).setParent(parent);
 			SetNodeValue(ctx, selector);
 		}
 
@@ -832,35 +835,20 @@ namespace prompto.parser
 		}
 
 
-
-		public override void ExitMethodName(MParser.MethodNameContext ctx)
+		public override void ExitMethod_call_expression(MParser.Method_call_expressionContext ctx)
 		{
 			String name = GetNodeValue<String>(ctx.name);
-			SetNodeValue(ctx, new UnresolvedIdentifier(name, Dialect.M));
-		}
-
-
-
-		public override void ExitMethodParent(MParser.MethodParentContext ctx)
-		{
-			IExpression parent = GetNodeValue<IExpression>(ctx.parent);
-			String name = GetNodeValue<String>(ctx.name);
-			SetNodeValue(ctx, new MethodSelector(parent, name));
-		}
-
-
-
-		public override void ExitMethod_call(MParser.Method_callContext ctx)
-		{
-			IExpression method = GetNodeValue<IExpression>(ctx.method);
+			IExpression caller = new UnresolvedIdentifier(name, Dialect.O);
 			ArgumentAssignmentList args = GetNodeValue<ArgumentAssignmentList>(ctx.args);
-			SetNodeValue(ctx, new UnresolvedCall(method, args));
+			SetNodeValue(ctx, new UnresolvedCall(caller, args));
 		}
 
 
 		public override void ExitMethod_call_statement(MParser.Method_call_statementContext ctx)
 		{
+			IExpression parent = GetNodeValue<IExpression>(ctx.parent);
 			UnresolvedCall call = GetNodeValue<UnresolvedCall>(ctx.method);
+			call.setParent(parent);
 			String resultName = GetNodeValue<String>(ctx.name);
 			StatementList stmts = GetNodeValue<StatementList>(ctx.stmts);
 			if (resultName != null || stmts != null)
@@ -905,35 +893,6 @@ namespace prompto.parser
 			ArgumentAssignmentList items = GetNodeValue<ArgumentAssignmentList>(ctx.items);
 			items.add(item);
 			SetNodeValue(ctx, items);
-		}
-
-
-		public override void ExitCallableRoot(MParser.CallableRootContext ctx)
-		{
-	        SetNodeValue(ctx, GetNodeValue<IExpression>(ctx.exp));
-		}
-
-
-		public override void ExitCallableSelector(MParser.CallableSelectorContext ctx)
-		{
-			IExpression parent = GetNodeValue<IExpression>(ctx.parent);
-			SelectorExpression select = GetNodeValue<SelectorExpression>(ctx.select);
-			select.setParent(parent);
-			SetNodeValue(ctx, select);
-		}
-
-
-		public override void ExitCallableMemberSelector(MParser.CallableMemberSelectorContext ctx)
-		{
-			String name = GetNodeValue<String>(ctx.name);
-			SetNodeValue(ctx, new MemberSelector(name));
-		}
-
-
-		public override void ExitCallableItemSelector(MParser.CallableItemSelectorContext ctx)
-		{
-			IExpression exp = GetNodeValue<IExpression>(ctx.exp);
-			SetNodeValue(ctx, new ItemSelector(exp));
 		}
 
 
@@ -1075,6 +1034,17 @@ namespace prompto.parser
 			SetNodeValue(ctx, stmt);
 		}
 
+
+		public override void ExitMethodSelector(MParser.MethodSelectorContext ctx)
+		{
+			UnresolvedCall call = this.GetNodeValue<UnresolvedCall>(ctx.method);
+			if (call.getCaller() is UnresolvedIdentifier)
+			{
+				String name = ((UnresolvedIdentifier)call.getCaller()).getName();
+				call.setCaller(new UnresolvedSelector(name));
+			}
+			SetNodeValue(ctx, call);
+		}
 
 		public override void ExitConstructorFrom(MParser.ConstructorFromContext ctx)
 		{
