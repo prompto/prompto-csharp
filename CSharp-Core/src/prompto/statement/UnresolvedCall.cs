@@ -46,6 +46,12 @@ namespace prompto.statement
 			return caller;
 		}
 
+
+		public void setCaller(IExpression caller)
+		{
+			this.caller = caller;
+		}
+
 		public ArgumentAssignmentList getAssignments()
 		{
 			return assignments;
@@ -176,5 +182,16 @@ namespace prompto.statement
 			return new MethodCall(new MethodSelector(parent, name), assignments);
 		}
 
+		public void setParent(IExpression parent)
+		{
+			if(parent!=null) {
+				if(caller is UnresolvedIdentifier)
+					caller = new MethodSelector(parent, ((UnresolvedIdentifier)caller).getName());
+				else if(caller is SelectorExpression)
+					((SelectorExpression)caller).setParent(parent);
+				else
+					throw new InvalidOperationException("Should never happen!");
+			}
+		}
 	}
 }

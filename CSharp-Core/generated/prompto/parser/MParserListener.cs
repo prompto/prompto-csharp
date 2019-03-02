@@ -566,15 +566,15 @@ public interface IMParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitStore_statement([NotNull] MParser.Store_statementContext context);
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="MParser.method_call"/>.
+	/// Enter a parse tree produced by <see cref="MParser.method_call_expression"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterMethod_call([NotNull] MParser.Method_callContext context);
+	void EnterMethod_call_expression([NotNull] MParser.Method_call_expressionContext context);
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="MParser.method_call"/>.
+	/// Exit a parse tree produced by <see cref="MParser.method_call_expression"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitMethod_call([NotNull] MParser.Method_callContext context);
+	void ExitMethod_call_expression([NotNull] MParser.Method_call_expressionContext context);
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="MParser.method_call_statement"/>.
 	/// </summary>
@@ -585,78 +585,6 @@ public interface IMParserListener : IParseTreeListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void ExitMethod_call_statement([NotNull] MParser.Method_call_statementContext context);
-	/// <summary>
-	/// Enter a parse tree produced by the <c>MethodName</c>
-	/// labeled alternative in <see cref="MParser.method_selector"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterMethodName([NotNull] MParser.MethodNameContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>MethodName</c>
-	/// labeled alternative in <see cref="MParser.method_selector"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitMethodName([NotNull] MParser.MethodNameContext context);
-	/// <summary>
-	/// Enter a parse tree produced by the <c>MethodParent</c>
-	/// labeled alternative in <see cref="MParser.method_selector"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterMethodParent([NotNull] MParser.MethodParentContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>MethodParent</c>
-	/// labeled alternative in <see cref="MParser.method_selector"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitMethodParent([NotNull] MParser.MethodParentContext context);
-	/// <summary>
-	/// Enter a parse tree produced by the <c>CallableSelector</c>
-	/// labeled alternative in <see cref="MParser.callable_parent"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterCallableSelector([NotNull] MParser.CallableSelectorContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>CallableSelector</c>
-	/// labeled alternative in <see cref="MParser.callable_parent"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitCallableSelector([NotNull] MParser.CallableSelectorContext context);
-	/// <summary>
-	/// Enter a parse tree produced by the <c>CallableRoot</c>
-	/// labeled alternative in <see cref="MParser.callable_parent"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterCallableRoot([NotNull] MParser.CallableRootContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>CallableRoot</c>
-	/// labeled alternative in <see cref="MParser.callable_parent"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitCallableRoot([NotNull] MParser.CallableRootContext context);
-	/// <summary>
-	/// Enter a parse tree produced by the <c>CallableMemberSelector</c>
-	/// labeled alternative in <see cref="MParser.callable_selector"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterCallableMemberSelector([NotNull] MParser.CallableMemberSelectorContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>CallableMemberSelector</c>
-	/// labeled alternative in <see cref="MParser.callable_selector"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitCallableMemberSelector([NotNull] MParser.CallableMemberSelectorContext context);
-	/// <summary>
-	/// Enter a parse tree produced by the <c>CallableItemSelector</c>
-	/// labeled alternative in <see cref="MParser.callable_selector"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterCallableItemSelector([NotNull] MParser.CallableItemSelectorContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>CallableItemSelector</c>
-	/// labeled alternative in <see cref="MParser.callable_selector"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitCallableItemSelector([NotNull] MParser.CallableItemSelectorContext context);
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="MParser.with_resource_statement"/>.
 	/// </summary>
@@ -1116,18 +1044,6 @@ public interface IMParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitExecuteExpression([NotNull] MParser.ExecuteExpressionContext context);
 	/// <summary>
-	/// Enter a parse tree produced by the <c>MethodExpression</c>
-	/// labeled alternative in <see cref="MParser.expression"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterMethodExpression([NotNull] MParser.MethodExpressionContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>MethodExpression</c>
-	/// labeled alternative in <see cref="MParser.expression"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitMethodExpression([NotNull] MParser.MethodExpressionContext context);
-	/// <summary>
 	/// Enter a parse tree produced by the <c>GreaterThanOrEqualExpression</c>
 	/// labeled alternative in <see cref="MParser.expression"/>.
 	/// </summary>
@@ -1318,6 +1234,66 @@ public interface IMParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitClosure_expression([NotNull] MParser.Closure_expressionContext context);
 	/// <summary>
+	/// Enter a parse tree produced by the <c>MethodExpression</c>
+	/// labeled alternative in <see cref="MParser.selectable_expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterMethodExpression([NotNull] MParser.MethodExpressionContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>MethodExpression</c>
+	/// labeled alternative in <see cref="MParser.selectable_expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitMethodExpression([NotNull] MParser.MethodExpressionContext context);
+	/// <summary>
+	/// Enter a parse tree produced by the <c>ParenthesisExpression</c>
+	/// labeled alternative in <see cref="MParser.selectable_expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterParenthesisExpression([NotNull] MParser.ParenthesisExpressionContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>ParenthesisExpression</c>
+	/// labeled alternative in <see cref="MParser.selectable_expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitParenthesisExpression([NotNull] MParser.ParenthesisExpressionContext context);
+	/// <summary>
+	/// Enter a parse tree produced by the <c>LiteralExpression</c>
+	/// labeled alternative in <see cref="MParser.selectable_expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterLiteralExpression([NotNull] MParser.LiteralExpressionContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>LiteralExpression</c>
+	/// labeled alternative in <see cref="MParser.selectable_expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitLiteralExpression([NotNull] MParser.LiteralExpressionContext context);
+	/// <summary>
+	/// Enter a parse tree produced by the <c>IdentifierExpression</c>
+	/// labeled alternative in <see cref="MParser.selectable_expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterIdentifierExpression([NotNull] MParser.IdentifierExpressionContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>IdentifierExpression</c>
+	/// labeled alternative in <see cref="MParser.selectable_expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitIdentifierExpression([NotNull] MParser.IdentifierExpressionContext context);
+	/// <summary>
+	/// Enter a parse tree produced by the <c>ThisExpression</c>
+	/// labeled alternative in <see cref="MParser.selectable_expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterThisExpression([NotNull] MParser.ThisExpressionContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>ThisExpression</c>
+	/// labeled alternative in <see cref="MParser.selectable_expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitThisExpression([NotNull] MParser.ThisExpressionContext context);
+	/// <summary>
 	/// Enter a parse tree produced by the <c>SelectorExpression</c>
 	/// labeled alternative in <see cref="MParser.instance_expression"/>.
 	/// </summary>
@@ -1363,6 +1339,18 @@ public interface IMParserListener : IParseTreeListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void ExitMemberSelector([NotNull] MParser.MemberSelectorContext context);
+	/// <summary>
+	/// Enter a parse tree produced by the <c>MethodSelector</c>
+	/// labeled alternative in <see cref="MParser.instance_selector"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterMethodSelector([NotNull] MParser.MethodSelectorContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>MethodSelector</c>
+	/// labeled alternative in <see cref="MParser.instance_selector"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitMethodSelector([NotNull] MParser.MethodSelectorContext context);
 	/// <summary>
 	/// Enter a parse tree produced by the <c>SliceSelector</c>
 	/// labeled alternative in <see cref="MParser.instance_selector"/>.
@@ -3031,54 +3019,6 @@ public interface IMParserListener : IParseTreeListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void ExitLiteral_list_literal([NotNull] MParser.Literal_list_literalContext context);
-	/// <summary>
-	/// Enter a parse tree produced by the <c>ParenthesisExpression</c>
-	/// labeled alternative in <see cref="MParser.selectable_expression"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterParenthesisExpression([NotNull] MParser.ParenthesisExpressionContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>ParenthesisExpression</c>
-	/// labeled alternative in <see cref="MParser.selectable_expression"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitParenthesisExpression([NotNull] MParser.ParenthesisExpressionContext context);
-	/// <summary>
-	/// Enter a parse tree produced by the <c>LiteralExpression</c>
-	/// labeled alternative in <see cref="MParser.selectable_expression"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterLiteralExpression([NotNull] MParser.LiteralExpressionContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>LiteralExpression</c>
-	/// labeled alternative in <see cref="MParser.selectable_expression"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitLiteralExpression([NotNull] MParser.LiteralExpressionContext context);
-	/// <summary>
-	/// Enter a parse tree produced by the <c>IdentifierExpression</c>
-	/// labeled alternative in <see cref="MParser.selectable_expression"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterIdentifierExpression([NotNull] MParser.IdentifierExpressionContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>IdentifierExpression</c>
-	/// labeled alternative in <see cref="MParser.selectable_expression"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitIdentifierExpression([NotNull] MParser.IdentifierExpressionContext context);
-	/// <summary>
-	/// Enter a parse tree produced by the <c>ThisExpression</c>
-	/// labeled alternative in <see cref="MParser.selectable_expression"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterThisExpression([NotNull] MParser.ThisExpressionContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>ThisExpression</c>
-	/// labeled alternative in <see cref="MParser.selectable_expression"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitThisExpression([NotNull] MParser.ThisExpressionContext context);
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="MParser.this_expression"/>.
 	/// </summary>

@@ -384,6 +384,14 @@
     <Compile Include="src\prompto\translate\omo\TestSubtract.cs" />
     <Compile Include="src\prompto\runtime\m\TestIterate.cs" />
     <Compile Include="src\prompto\runtime\m\TestTesting.cs" />
+    <Compile Include="src\prompto\runtime\e\TestMember.cs" />
+    <Compile Include="src\prompto\runtime\m\TestMember.cs" />
+    <Compile Include="src\prompto\runtime\o\TestMember.cs" />
+    <Compile Include="src\prompto\runtime\o\TestResource.cs" />
+    <Compile Include="src\prompto\translate\eme\TestMember.cs" />
+    <Compile Include="src\prompto\translate\eoe\TestMember.cs" />
+    <Compile Include="src\prompto\translate\oeo\TestMember.cs" />
+    <Compile Include="src\prompto\translate\omo\TestMember.cs" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />

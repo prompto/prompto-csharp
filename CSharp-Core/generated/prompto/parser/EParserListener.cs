@@ -1452,6 +1452,54 @@ public interface IEParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitInvocation_trailer([NotNull] EParser.Invocation_trailerContext context);
 	/// <summary>
+	/// Enter a parse tree produced by the <c>ParenthesisExpression</c>
+	/// labeled alternative in <see cref="EParser.selectable_expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterParenthesisExpression([NotNull] EParser.ParenthesisExpressionContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>ParenthesisExpression</c>
+	/// labeled alternative in <see cref="EParser.selectable_expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitParenthesisExpression([NotNull] EParser.ParenthesisExpressionContext context);
+	/// <summary>
+	/// Enter a parse tree produced by the <c>LiteralExpression</c>
+	/// labeled alternative in <see cref="EParser.selectable_expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterLiteralExpression([NotNull] EParser.LiteralExpressionContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>LiteralExpression</c>
+	/// labeled alternative in <see cref="EParser.selectable_expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitLiteralExpression([NotNull] EParser.LiteralExpressionContext context);
+	/// <summary>
+	/// Enter a parse tree produced by the <c>IdentifierExpression</c>
+	/// labeled alternative in <see cref="EParser.selectable_expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterIdentifierExpression([NotNull] EParser.IdentifierExpressionContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>IdentifierExpression</c>
+	/// labeled alternative in <see cref="EParser.selectable_expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitIdentifierExpression([NotNull] EParser.IdentifierExpressionContext context);
+	/// <summary>
+	/// Enter a parse tree produced by the <c>ThisExpression</c>
+	/// labeled alternative in <see cref="EParser.selectable_expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterThisExpression([NotNull] EParser.ThisExpressionContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>ThisExpression</c>
+	/// labeled alternative in <see cref="EParser.selectable_expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitThisExpression([NotNull] EParser.ThisExpressionContext context);
+	/// <summary>
 	/// Enter a parse tree produced by the <c>SelectorExpression</c>
 	/// labeled alternative in <see cref="EParser.instance_expression"/>.
 	/// </summary>
@@ -3167,54 +3215,6 @@ public interface IEParserListener : IParseTreeListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void ExitLiteral_list_literal([NotNull] EParser.Literal_list_literalContext context);
-	/// <summary>
-	/// Enter a parse tree produced by the <c>ParenthesisExpression</c>
-	/// labeled alternative in <see cref="EParser.selectable_expression"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterParenthesisExpression([NotNull] EParser.ParenthesisExpressionContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>ParenthesisExpression</c>
-	/// labeled alternative in <see cref="EParser.selectable_expression"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitParenthesisExpression([NotNull] EParser.ParenthesisExpressionContext context);
-	/// <summary>
-	/// Enter a parse tree produced by the <c>LiteralExpression</c>
-	/// labeled alternative in <see cref="EParser.selectable_expression"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterLiteralExpression([NotNull] EParser.LiteralExpressionContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>LiteralExpression</c>
-	/// labeled alternative in <see cref="EParser.selectable_expression"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitLiteralExpression([NotNull] EParser.LiteralExpressionContext context);
-	/// <summary>
-	/// Enter a parse tree produced by the <c>IdentifierExpression</c>
-	/// labeled alternative in <see cref="EParser.selectable_expression"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterIdentifierExpression([NotNull] EParser.IdentifierExpressionContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>IdentifierExpression</c>
-	/// labeled alternative in <see cref="EParser.selectable_expression"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitIdentifierExpression([NotNull] EParser.IdentifierExpressionContext context);
-	/// <summary>
-	/// Enter a parse tree produced by the <c>ThisExpression</c>
-	/// labeled alternative in <see cref="EParser.selectable_expression"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterThisExpression([NotNull] EParser.ThisExpressionContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>ThisExpression</c>
-	/// labeled alternative in <see cref="EParser.selectable_expression"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitThisExpression([NotNull] EParser.ThisExpressionContext context);
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="EParser.this_expression"/>.
 	/// </summary>
