@@ -76,6 +76,12 @@ namespace prompto.runtime.e
 		}
 
 		[Test]
+		public void testDateTimeDate()
+		{
+			CheckOutput("builtins/dateTimeDate.pec");
+		}
+
+		[Test]
 		public void testDateTimeDayOfMonth()
 		{
 			CheckOutput("builtins/dateTimeDayOfMonth.pec");
@@ -121,6 +127,12 @@ namespace prompto.runtime.e
 		public void testDateTimeText()
 		{
 			CheckOutput("builtins/dateTimeText.pec");
+		}
+
+		[Test]
+		public void testDateTimeTime()
+		{
+			CheckOutput("builtins/dateTimeTime.pec");
 		}
 
 		[Test]

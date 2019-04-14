@@ -22,7 +22,7 @@ namespace prompto.value
 
         System.DateTime value;
 
-        private Date(System.DateTime value)
+        public Date(System.DateTime value)
 			: base(DateType.Instance)
         {
             this.value = value;

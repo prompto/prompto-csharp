@@ -69,8 +69,8 @@ namespace prompto.value
 
         public DateTimeOffset Value { get { return value; } }
 
-        override
-        public IValue Add(Context context, IValue value)
+        
+        public override IValue Add(Context context, IValue value)
         {
             if (value is Period)
                 return this.plus((Period)value);
@@ -78,8 +78,8 @@ namespace prompto.value
                 throw new SyntaxError("Illegal: DateTime + " + value.GetType().Name);
         }
 
-        override
-        public IValue Subtract(Context context, IValue value)
+        
+        public override IValue Subtract(Context context, IValue value)
         {
             if (value is DateTime)
             {
@@ -94,8 +94,8 @@ namespace prompto.value
                 throw new SyntaxError("Illegal: DateTime - " + value.GetType().Name);
         }
 
-        override
-        public Int32 CompareTo(Context context, IValue value)
+        
+        public override Int32 CompareTo(Context context, IValue value)
         {
             if (value is DateTime)
                 return this.value.CompareTo(((DateTime)value).value);
@@ -104,8 +104,8 @@ namespace prompto.value
 
         }
 
-        override
-		public IValue GetMember(Context context, String name, bool autoCreate)
+        
+		public override IValue GetMember(Context context, String name, bool autoCreate)
         {
             if ("year" == name)
                 return new Integer(this.Year);
@@ -127,6 +127,10 @@ namespace prompto.value
                 return new Integer(this.TZOffset);
             else if ("tzName" == name)
                 return new Text(this.TZName);
+            else if ("date" == name)
+				return new Date(this.Date);
+            else if ("time" == name)
+				return new Time(this.Time);
             else
                 return base.GetMember(context, name, autoCreate);
         }
@@ -176,7 +180,11 @@ namespace prompto.value
 
         public string TZName { get { return TimeZone.StandardName; } }
 
-        public int CompareTo(DateTime other)
+		public System.DateTime Date { get { return value.Date; } }
+
+		public TimeSpan Time { get { return value.TimeOfDay; } }
+
+		public int CompareTo(DateTime other)
         {
             return this.value.CompareTo(other.value);
         }

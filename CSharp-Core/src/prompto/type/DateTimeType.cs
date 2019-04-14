@@ -71,6 +71,10 @@ namespace prompto.type
                 return IntegerType.Instance;
             else if ("tzName" == name)
                 return TextType.Instance;
+            else if ("date" == name)
+                return DateType.Instance;
+            else if ("time" == name)
+                return TimeType.Instance;
             else
                 return base.checkMember(context, name);
         }

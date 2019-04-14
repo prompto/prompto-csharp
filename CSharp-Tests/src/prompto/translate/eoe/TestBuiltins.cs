@@ -63,6 +63,12 @@ namespace prompto.translate.eoe
 		}
 
 		[Test]
+		public void testDateTimeDate()
+		{
+			compareResourceEOE("builtins/dateTimeDate.pec");
+		}
+
+		[Test]
 		public void testDateTimeDayOfMonth()
 		{
 			compareResourceEOE("builtins/dateTimeDayOfMonth.pec");
@@ -120,6 +126,12 @@ namespace prompto.translate.eoe
 		public void testDateTimeText()
 		{
 			compareResourceEOE("builtins/dateTimeText.pec");
+		}
+
+		[Test]
+		public void testDateTimeTime()
+		{
+			compareResourceEOE("builtins/dateTimeTime.pec");
 		}
 
 		[Test]

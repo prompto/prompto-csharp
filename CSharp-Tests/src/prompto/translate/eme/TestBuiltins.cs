@@ -63,6 +63,12 @@ namespace prompto.translate.eme
 		}
 
 		[Test]
+		public void testDateTimeDate()
+		{
+			compareResourceEME("builtins/dateTimeDate.pec");
+		}
+
+		[Test]
 		public void testDateTimeDayOfMonth()
 		{
 			compareResourceEME("builtins/dateTimeDayOfMonth.pec");
@@ -120,6 +126,12 @@ namespace prompto.translate.eme
 		public void testDateTimeText()
 		{
 			compareResourceEME("builtins/dateTimeText.pec");
+		}
+
+		[Test]
+		public void testDateTimeTime()
+		{
+			compareResourceEME("builtins/dateTimeTime.pec");
 		}
 
 		[Test]
