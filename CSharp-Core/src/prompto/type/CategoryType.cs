@@ -31,6 +31,13 @@ namespace prompto.type
 			this.typeName = typeName;
 		}
 
+		public CategoryType(CategoryType source, bool mutable)
+			: base(source.GetFamily())
+        {
+			this.typeName = source.typeName;
+			this.Mutable = mutable;
+		}
+
 		public bool Mutable { get; set; } 
 
 		public override void ToDialect(CodeWriter writer)

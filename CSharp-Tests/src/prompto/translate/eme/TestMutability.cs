@@ -57,9 +57,21 @@ namespace prompto.translate.eme
 		}
 
 		[Test]
+		public void testMutableChild()
+		{
+			compareResourceEME("mutability/mutableChild.pec");
+		}
+
+		[Test]
 		public void testMutableDict()
 		{
 			compareResourceEME("mutability/mutableDict.pec");
+		}
+
+		[Test]
+		public void testMutableInstance()
+		{
+			compareResourceEME("mutability/mutableInstance.pec");
 		}
 
 		[Test]

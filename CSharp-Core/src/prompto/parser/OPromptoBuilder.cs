@@ -2360,6 +2360,28 @@ namespace prompto.parser
 			SetNodeValue(ctx, typ);
 		}
 
+
+		public override void ExitMutableInstanceExpression(OParser.MutableInstanceExpressionContext ctx)
+		{
+			IExpression source = GetNodeValue<IExpression>(ctx.exp);
+			SetNodeValue(ctx, new MutableExpression(source));
+		}
+
+		public override void ExitMutableSelectableExpression(OParser.MutableSelectableExpressionContext ctx)
+		{
+		    SetNodeValue(ctx, GetNodeValue<InstanceExpression>(ctx.exp));
+		}
+
+
+		public override void ExitMutableSelectorExpression(OParser.MutableSelectorExpressionContext ctx)
+		{
+			IExpression parent = GetNodeValue<IExpression>(ctx.parent);
+			SelectorExpression selector = GetNodeValue<SelectorExpression>(ctx.selector);
+			selector.setParent(parent);
+			SetNodeValue(ctx, selector);
+		}
+
+
 		public override void ExitMinusExpression(OParser.MinusExpressionContext ctx)
 		{
 			IExpression exp = GetNodeValue<IExpression>(ctx.exp);

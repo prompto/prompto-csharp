@@ -1320,6 +1320,20 @@ public partial class EParserBaseListener : IEParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitInstanceExpression([NotNull] EParser.InstanceExpressionContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by the <c>MutableInstanceExpression</c>
+	/// labeled alternative in <see cref="EParser.expression"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterMutableInstanceExpression([NotNull] EParser.MutableInstanceExpressionContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by the <c>MutableInstanceExpression</c>
+	/// labeled alternative in <see cref="EParser.expression"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitMutableInstanceExpression([NotNull] EParser.MutableInstanceExpressionContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by the <c>ReadAllExpression</c>
 	/// labeled alternative in <see cref="EParser.expression"/>.
 	/// <para>The default implementation does nothing.</para>
@@ -1831,6 +1845,34 @@ public partial class EParserBaseListener : IEParserListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitItemSelector([NotNull] EParser.ItemSelectorContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by the <c>MutableSelectableExpression</c>
+	/// labeled alternative in <see cref="EParser.mutable_instance_expression"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterMutableSelectableExpression([NotNull] EParser.MutableSelectableExpressionContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by the <c>MutableSelectableExpression</c>
+	/// labeled alternative in <see cref="EParser.mutable_instance_expression"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitMutableSelectableExpression([NotNull] EParser.MutableSelectableExpressionContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by the <c>MutableSelectorExpression</c>
+	/// labeled alternative in <see cref="EParser.mutable_instance_expression"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterMutableSelectorExpression([NotNull] EParser.MutableSelectorExpressionContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by the <c>MutableSelectorExpression</c>
+	/// labeled alternative in <see cref="EParser.mutable_instance_expression"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitMutableSelectorExpression([NotNull] EParser.MutableSelectorExpressionContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="EParser.document_expression"/>.
 	/// <para>The default implementation does nothing.</para>

@@ -57,9 +57,21 @@ namespace prompto.translate.eoe
 		}
 
 		[Test]
+		public void testMutableChild()
+		{
+			compareResourceEOE("mutability/mutableChild.pec");
+		}
+
+		[Test]
 		public void testMutableDict()
 		{
 			compareResourceEOE("mutability/mutableDict.pec");
+		}
+
+		[Test]
+		public void testMutableInstance()
+		{
+			compareResourceEOE("mutability/mutableInstance.pec");
 		}
 
 		[Test]

@@ -70,9 +70,21 @@ namespace prompto.runtime.e
 		}
 
 		[Test]
+		public void testMutableChild()
+		{
+			CheckOutput("mutability/mutableChild.pec");
+		}
+
+		[Test]
 		public void testMutableDict()
 		{
 			CheckOutput("mutability/mutableDict.pec");
+		}
+
+		[Test]
+		public void testMutableInstance()
+		{
+			CheckOutput("mutability/mutableInstance.pec");
 		}
 
 		[Test]

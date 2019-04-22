@@ -1238,6 +1238,18 @@ public interface IOParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitInstanceExpression([NotNull] OParser.InstanceExpressionContext context);
 	/// <summary>
+	/// Enter a parse tree produced by the <c>MutableInstanceExpression</c>
+	/// labeled alternative in <see cref="OParser.expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterMutableInstanceExpression([NotNull] OParser.MutableInstanceExpressionContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>MutableInstanceExpression</c>
+	/// labeled alternative in <see cref="OParser.expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitMutableInstanceExpression([NotNull] OParser.MutableInstanceExpressionContext context);
+	/// <summary>
 	/// Enter a parse tree produced by the <c>CssExpression</c>
 	/// labeled alternative in <see cref="OParser.expression"/>.
 	/// </summary>
@@ -1401,6 +1413,30 @@ public interface IOParserListener : IParseTreeListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void ExitSelectableExpression([NotNull] OParser.SelectableExpressionContext context);
+	/// <summary>
+	/// Enter a parse tree produced by the <c>MutableSelectableExpression</c>
+	/// labeled alternative in <see cref="OParser.mutable_instance_expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterMutableSelectableExpression([NotNull] OParser.MutableSelectableExpressionContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>MutableSelectableExpression</c>
+	/// labeled alternative in <see cref="OParser.mutable_instance_expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitMutableSelectableExpression([NotNull] OParser.MutableSelectableExpressionContext context);
+	/// <summary>
+	/// Enter a parse tree produced by the <c>MutableSelectorExpression</c>
+	/// labeled alternative in <see cref="OParser.mutable_instance_expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterMutableSelectorExpression([NotNull] OParser.MutableSelectorExpressionContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>MutableSelectorExpression</c>
+	/// labeled alternative in <see cref="OParser.mutable_instance_expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitMutableSelectorExpression([NotNull] OParser.MutableSelectorExpressionContext context);
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="OParser.method_expression"/>.
 	/// </summary>
