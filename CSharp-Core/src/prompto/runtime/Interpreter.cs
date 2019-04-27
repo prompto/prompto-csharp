@@ -81,7 +81,7 @@ namespace prompto.runtime {
 					valueArgs[new Text(key)] = new Text(args[key]);
 				}
 				Dict dict = new Dict(TextType.Instance, false, valueArgs);
-				return new ExpressionValue(argsType, dict);
+				return new ValueExpression(argsType, dict);
             }
             catch (Exception )
             {

@@ -1,21 +1,18 @@
-using prompto.error;
-using prompto.grammar;
 using System;
-using prompto.parser;
 using prompto.type;
 using prompto.runtime;
-using prompto.expression;
+using prompto.value;
 using prompto.utils;
 
-namespace prompto.value
+namespace prompto.expression
 {
 
-	public class ExpressionValue : BaseValue, IExpression
+	public class ValueExpression : BaseValue, IExpression
     {
 
 		IValue value;
 
-		public ExpressionValue(IType type, IValue value)
+		public ValueExpression(IType type, IValue value)
 			: base(type)
         {
             this.value = value;

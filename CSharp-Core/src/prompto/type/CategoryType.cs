@@ -470,7 +470,7 @@ namespace prompto.type
         {
             try
             {
-				IExpression exp = new ExpressionValue(this, newInstance(context));
+				IExpression exp = new ValueExpression(this, newInstance(context));
                 ArgumentAssignment arg = new ArgumentAssignment(null, exp);
                 ArgumentAssignmentList args = new ArgumentAssignmentList();
 				args.Add(arg);
@@ -486,7 +486,7 @@ namespace prompto.type
 
 		private ListValue sortByGlobalMethod(Context context, IContainer list, String name, bool descending)
         {
-			IExpression exp = new ExpressionValue(this, newInstance(context));
+			IExpression exp = new ValueExpression(this, newInstance(context));
             ArgumentAssignment arg = new ArgumentAssignment(null, exp);
             ArgumentAssignmentList args = new ArgumentAssignmentList();
             args.Add(arg);
@@ -510,9 +510,9 @@ namespace prompto.type
             protected override int DoCompare(IInstance o1, IInstance o2)
             {
                 ArgumentAssignment assignment = method.getAssignments()[0];
-				assignment.setExpression(new ExpressionValue(type, o1));
+				assignment.setExpression(new ValueExpression(type, o1));
 				Object value1 = method.interpret(context);
-				assignment.setExpression(new ExpressionValue(type, o2));
+				assignment.setExpression(new ValueExpression(type, o2));
 				Object value2 = method.interpret(context);
                 return ObjectUtils.CompareValues(value1, value2);
             }

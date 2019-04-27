@@ -358,7 +358,6 @@
     <Compile Include="src\prompto\type\SetType.cs" />
     <Compile Include="src\prompto\utils\IValueEnumerable.cs" />
     <Compile Include="src\prompto\declaration\ClosureDeclaration.cs" />
-    <Compile Include="src\prompto\value\ExpressionValue.cs" />
     <Compile Include="src\prompto\expression\ThisExpression.cs" />
     <Compile Include="src\prompto\declaration\SingletonCategoryDeclaration.cs" />
     <Compile Include="src\prompto\statement\WithSingletonStatement.cs" />
@@ -520,6 +519,7 @@
     <Compile Include="src\prompto\statement\RemoteCall.cs" />
     <Compile Include="src\prompto\utils\DictionaryUtils.cs" />
     <Compile Include="src\prompto\expression\MutableExpression.cs" />
+    <Compile Include="src\prompto\expression\ValueExpression.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
