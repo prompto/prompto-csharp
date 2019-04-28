@@ -89,37 +89,36 @@ namespace prompto.type
             return base.checkRange(context, other);
         }
 
-        override
-        public IRange newRange(Object left, Object right)
+        
+        public override IRange newRange(Object left, Object right)
         {
             if (left is Time && right is Time)
                 return new TimeRange((Time)left, (Time)right);
             return base.newRange(left, right);
         }
 
-        override 
-		public ListValue sort(Context context, IContainer list, bool descending)
-        {
-            return this.doSort(context, list, new TimeComparer(context, descending));
-        }
-
-        override
-        public String ToString(Object value)
+         
+        public override String ToString(Object value)
         {
             return "'" + value.ToString() + "'";
         }
 
+		public override Comparer<IValue> getNativeComparer(bool descending)
+		{
+			return new TimeComparer(descending);
+		}
+
     }
 
-    class TimeComparer : ExpressionComparer<Time>
+    class TimeComparer : NativeComparer<Time>
     {
-        public TimeComparer(Context context, bool descending)
-            : base(context, descending)
+        public TimeComparer(bool descending)
+            : base(descending)
         {
         }
 
-        override
-        protected int DoCompare(Time o1, Time o2)
+        
+        protected override int DoCompare(Time o1, Time o2)
         {
             return o1.CompareTo(o2);
         }

@@ -78,28 +78,22 @@ namespace prompto.type
             return base.checkRange(context, other);
         }
 
-        override
-        public IRange newRange(Object left, Object right)
+        
+        public override IRange newRange(Object left, Object right)
         {
             if (left is Character && right is Character)
                 return new CharacterRange((Character)left, (Character)right);
             return base.newRange(left, right);
         }
 
-        override
-		public ListValue sort(Context context, IContainer list, bool descending)
-        {
-			return this.doSort(context, list, new CharacterComparer(context, descending));
-        }
-
-        override
-        public String ToString(Object value)
+        
+        public override String ToString(Object value)
         {
             return "'" + value.ToString() + "'";
         }
 
-        override
-        public IValue ConvertCSharpValueToIValue(Context context, Object value)
+        
+        public override IValue ConvertCSharpValueToIValue(Context context, Object value)
         {
             if (value is char)
                 return new Character((char)value);
@@ -111,15 +105,15 @@ namespace prompto.type
 
     }
 
-    class CharacterComparer : ExpressionComparer<Character>
+    class CharacterComparer : ValueComparer<Character>
     {
        public CharacterComparer(Context context, bool descending)
             : base(context, descending)
         {
         }
  
-        override
-        protected int DoCompare(Character o1, Character o2)
+        
+        protected override int DoCompare(Character o1, Character o2)
         {
             return o1.Value.CompareTo(o2.Value);
         }

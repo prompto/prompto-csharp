@@ -6,6 +6,7 @@ using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
 using prompto.store;
 using prompto.declaration;
+using prompto.expression;
 
 namespace prompto.type
 {
@@ -61,7 +62,7 @@ namespace prompto.type
 
 		bool isMoreSpecificThan (Context context, IType other);
 
-		ListValue sort (Context context, IContainer list, bool descending);
+		Comparer<IValue> getComparer(Context context, IExpression key, bool descending);
 
 		String ToString (Object value);
 

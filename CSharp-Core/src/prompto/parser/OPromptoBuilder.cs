@@ -55,6 +55,25 @@ namespace prompto.parser
 			}
 		}
 
+		protected String getHiddenTokensBefore(ITerminalNode node)
+		{
+			return getHiddenTokensBefore(node.Symbol);
+		}
+
+		protected String getHiddenTokensBefore(IToken token)
+		{
+			IList<IToken> hidden = input.GetHiddenTokensToLeft(token.TokenIndex);
+			if (hidden == null || hidden.Count == 0)
+				return null;
+			else
+			{
+				StringBuilder sb = new StringBuilder();
+				foreach (IToken t in hidden)
+					sb.Append(t.Text);
+				return sb.ToString();
+			}
+		}
+
 		public T GetNodeValue<T>(IParseTree node)
 		{
 			if (node == null)
@@ -830,13 +849,55 @@ namespace prompto.parser
 			SetNodeValue(ctx, items);
 		}
 
+		public override void ExitArrow_prefix(OParser.Arrow_prefixContext ctx)
+		{
+			IdentifierList args = GetNodeValue<IdentifierList>(ctx.arrow_args());
+			String argsSuite = getHiddenTokensBefore(ctx.EGT());
+			String arrowSuite = getHiddenTokensAfter(ctx.EGT());
+			SetNodeValue(ctx, new ArrowExpression(args, argsSuite, arrowSuite));
+		}
+
+		public override void ExitArrowExpression(OParser.ArrowExpressionContext ctx)
+		{
+			SetNodeValue(ctx, GetNodeValue<Object>(ctx.exp));
+		}
+
+		public override void ExitArrowExpressionBody(OParser.ArrowExpressionBodyContext ctx)
+		{
+			ArrowExpression arrow = GetNodeValue<ArrowExpression>(ctx.arrow_prefix());
+			IExpression exp = GetNodeValue<IExpression>(ctx.expression());
+			arrow.Expression = exp;
+			SetNodeValue(ctx, arrow);
+		}
+
+		public override void ExitArrowListArg(OParser.ArrowListArgContext ctx)
+		{
+			IdentifierList list = GetNodeValue<IdentifierList>(ctx.variable_identifier_list());
+			SetNodeValue(ctx, list);
+		}
+
+		public override void ExitArrowSingleArg(OParser.ArrowSingleArgContext ctx)
+		{
+			String arg = GetNodeValue<String>(ctx.variable_identifier());
+			SetNodeValue(ctx, new IdentifierList(arg));
+		}
+
+
+		public override void ExitArrowStatementsBody(OParser.ArrowStatementsBodyContext ctx)
+		{
+			ArrowExpression arrow = GetNodeValue<ArrowExpression>(ctx.arrow_prefix());
+			StatementList stmts = GetNodeValue<StatementList>(ctx.statement_list());
+			arrow.Statements = stmts;
+			SetNodeValue(ctx, arrow);
+		}
+
 		public override void ExitAddExpression(OParser.AddExpressionContext ctx)
 		{
 			IExpression left = GetNodeValue<IExpression>(ctx.left);
 			IExpression right = GetNodeValue<IExpression>(ctx.right);
 			IExpression exp = ctx.op.Type == OParser.PLUS ?
-			(IExpression)new PlusExpression(left, right)
-			: (IExpression)new SubtractExpression(left, right);
+					(IExpression)new PlusExpression(left, right)
+					: (IExpression)new SubtractExpression(left, right);
 			SetNodeValue(ctx, exp);
 		}
 
@@ -2433,6 +2494,12 @@ namespace prompto.parser
 			bool descending = ctx.DESC() != null;
 			IExpression key = GetNodeValue<IExpression>(ctx.key);
 			SetNodeValue(ctx, new SortedExpression(source, descending, key));
+		}
+
+		public override void ExitSorted_key(OParser.Sorted_keyContext ctx)
+		{
+			IExpression exp = GetNodeValue<IExpression>(ctx.GetChild(0));
+			SetNodeValue(ctx, exp);
 		}
 
 		public override void ExitDocument_expression(OParser.Document_expressionContext ctx)

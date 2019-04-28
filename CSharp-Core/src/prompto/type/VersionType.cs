@@ -1,7 +1,8 @@
 using prompto.value;
 using prompto.runtime;
-using System;
 using prompto.store;
+using System.Collections.Generic;
+using System;
 
 namespace prompto.type
 {
@@ -31,35 +32,35 @@ namespace prompto.type
         }
 
 
-        override
-        public IType checkCompare(Context context, IType other)
+        
+        public override IType checkCompare(Context context, IType other)
         {
             if (other is VersionType)
                 return BooleanType.Instance;
             return base.checkCompare(context, other);
         }
 
-        override
-		public ListValue sort(Context context, IContainer list, bool descending)
-        {
-			return this.doSort(context, list, new VersionComparer(context, descending));
-        }
-
-        override
-        public String ToString(Object value)
+        
+        public override String ToString(Object value)
         {
             return "'" + value.ToString() + "'";
         }
+
+		public override Comparer<IValue> getNativeComparer(bool descending)
+		{
+			return new VersionComparer(descending);
+		}
+
     }
 
-	class VersionComparer : ExpressionComparer<value.Version>
+	class VersionComparer : NativeComparer<value.Version>
     {
-        public VersionComparer(Context context, bool descending)
-            : base(context, descending)
+        public VersionComparer(bool descending)
+            : base(descending)
         {
         }
-        override
-        protected int DoCompare(value.Version o1, value.Version o2)
+        
+        protected override int DoCompare(value.Version o1, value.Version o2)
         {
             return o1.AsInt().CompareTo(o2.AsInt());
         }

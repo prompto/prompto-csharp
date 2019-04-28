@@ -13,6 +13,7 @@ using prompto.parser;
 using prompto.literal;
 using prompto.declaration;
 using prompto.utils;
+using prompto.type.document;
 
 namespace prompto.type
 {
@@ -108,31 +109,20 @@ namespace prompto.type
 			}
 		}
 
-
-		public ListValue sort(Context context, IContainer list, IExpression key, bool descending)
+		public override Comparer<IValue> getComparer(Context context, IExpression key, bool descending)
 		{
 			if (key == null)
 				key = new TextLiteral("\"key\"");
-			if (globalMethodExists(context, list, key.ToString()))
-				return sortByGlobalMethod(context, list, key.ToString(), descending);
+			if (globalMethodExists(context, key.ToString()))
+				return new GlobalMethodComparer(context, key.ToString(), descending);
 			else if (key is TextLiteral)
-				return sortByEntry(context, list, (TextLiteral)key, descending);
+				return new EntryComparer(context, (TextLiteral)key, descending);
 			else
-				return sortByExpression(context, list, key, descending);
+				return new ExpressionComparer(context, key, descending);
 		}
 
 
-		ListValue sortByEntry(Context context, IContainer list, TextLiteral key, bool descending)
-		{
-			return this.doSort(context, list, new DocumentEntryComparer(context, key.getValue().Value, descending));
-		}
-
-		ListValue sortByExpression(Context context, IContainer list, IExpression key, bool descending)
-		{
-			return this.doSort(context, list, new DocumentExpressionComparer(context, key, descending));
-		}
-
-		private bool globalMethodExists(Context context, IContainer list, String name)
+		private bool globalMethodExists(Context context, String name)
 		{
 			MethodDeclarationMap methods = context.getRegisteredDeclaration<MethodDeclarationMap>(name);
 			if (methods == null)
@@ -141,83 +131,82 @@ namespace prompto.type
 				return methods.ContainsKey(this.GetTypeName());
 		}
 
-		private ListValue sortByGlobalMethod(Context context, IContainer list, String name, bool descending)
+	}
+
+}
+
+namespace prompto.type.document {
+	
+	class GlobalMethodComparer : ValueComparer<Document>
+	{
+		MethodCall methodCall;
+
+		public GlobalMethodComparer(Context context, String methodName, bool descending)
+			: base(context, descending)
 		{
-			IExpression exp = new ValueExpression(this, new Document());
+			this.methodCall = buildMethodCall(methodName);
+		}
+
+		private MethodCall buildMethodCall(String methodName)
+		{
+			IExpression exp = new ValueExpression(DocumentType.Instance, new Document());
 			ArgumentAssignment arg = new ArgumentAssignment(null, exp);
 			ArgumentAssignmentList args = new ArgumentAssignmentList();
 			args.Add(arg);
-			MethodCall call = new MethodCall(new MethodSelector(name), args);
-			return this.doSort(context, list, new DocumentGlobalMethodComparer(context, call, descending));
+			return new MethodCall(new MethodSelector(methodName), args);
 		}
 
-
-		class DocumentGlobalMethodComparer : ExpressionComparer<Document>
+		protected override int DoCompare(Document o1, Document o2)
 		{
-			MethodCall method;
-
-			public DocumentGlobalMethodComparer(Context context, MethodCall method, bool descending)
-				: base(context, descending)
-			{
-				this.method = method;
-			}
-
-
-			protected override int DoCompare(Document o1, Document o2)
-			{
-				ArgumentAssignment assignment = method.getAssignments()[0];
-				assignment.setExpression(new ValueExpression(AnyType.Instance, o1));
-				Object value1 = method.interpret(context);
-				assignment.setExpression(new ValueExpression(AnyType.Instance, o2));
-				Object value2 = method.interpret(context);
-				return ObjectUtils.CompareValues(value1, value2);
-			}
-
+			ArgumentAssignment assignment = methodCall.getAssignments()[0];
+			assignment.setExpression(new ValueExpression(AnyType.Instance, o1));
+			Object value1 = methodCall.interpret(context);
+			assignment.setExpression(new ValueExpression(AnyType.Instance, o2));
+			Object value2 = methodCall.interpret(context);
+			return ObjectUtils.CompareValues(value1, value2);
 		}
-
-		class DocumentEntryComparer : ExpressionComparer<Document>
-		{
-			String name;
-
-			public DocumentEntryComparer(Context context, String name, bool descending)
-					: base(context, descending)
-			{
-				this.name = name;
-			}
-
-
-			protected override int DoCompare(Document o1, Document o2)
-			{
-				Object value1 = o1.GetMember(name);
-				Object value2 = o2.GetMember(name);
-				return ObjectUtils.CompareValues(value1, value2);
-			}
-		}
-
-		class DocumentExpressionComparer : ExpressionComparer<Document>
-		{
-			IExpression key;
-
-			public DocumentExpressionComparer(Context context, IExpression key, bool descending)
-					: base(context, descending)
-			{
-				this.key = key;
-			}
-
-
-			protected override int DoCompare(Document o1, Document o2)
-			{
-				Context co = context.newDocumentContext(o1, false);
-				Object value1 = key.interpret(co);
-				co = context.newDocumentContext(o2, false);
-				Object value2 = key.interpret(co);
-				return ObjectUtils.CompareValues(value1, value2);
-			}
-		}
-
 
 	}
 
+	class EntryComparer : ValueComparer<Document>
+	{
+		String name;
+
+		public EntryComparer(Context context, TextLiteral entry, bool descending)
+				: base(context, descending)
+		{
+			this.name = entry.getValue().Value;
+		}
+
+
+		protected override int DoCompare(Document o1, Document o2)
+		{
+			Object value1 = o1.GetMember(name);
+			Object value2 = o2.GetMember(name);
+			return ObjectUtils.CompareValues(value1, value2);
+		}
+	}
+
+	class ExpressionComparer : ValueComparer<Document>
+	{
+		IExpression key;
+
+		public ExpressionComparer(Context context, IExpression key, bool descending)
+				: base(context, descending)
+		{
+			this.key = key;
+		}
+
+
+		protected override int DoCompare(Document o1, Document o2)
+		{
+			Context co = context.newDocumentContext(o1, false);
+			Object value1 = key.interpret(co);
+			co = context.newDocumentContext(o2, false);
+			Object value2 = key.interpret(co);
+			return ObjectUtils.CompareValues(value1, value2);
+		}
+	}
 
 
 }

@@ -1104,6 +1104,20 @@ public partial class MParserBaseListener : IMParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitAndExpression([NotNull] MParser.AndExpressionContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by the <c>ArrowExpression</c>
+	/// labeled alternative in <see cref="MParser.expression"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterArrowExpression([NotNull] MParser.ArrowExpressionContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by the <c>ArrowExpression</c>
+	/// labeled alternative in <see cref="MParser.expression"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitArrowExpression([NotNull] MParser.ArrowExpressionContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by the <c>NotHasExpression</c>
 	/// labeled alternative in <see cref="MParser.expression"/>.
 	/// <para>The default implementation does nothing.</para>
@@ -1946,17 +1960,17 @@ public partial class MParserBaseListener : IMParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitLfp([NotNull] MParser.LfpContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="MParser.jsx_ws"/>.
+	/// Enter a parse tree produced by <see cref="MParser.ws_plus"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void EnterJsx_ws([NotNull] MParser.Jsx_wsContext context) { }
+	public virtual void EnterWs_plus([NotNull] MParser.Ws_plusContext context) { }
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="MParser.jsx_ws"/>.
+	/// Exit a parse tree produced by <see cref="MParser.ws_plus"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void ExitJsx_ws([NotNull] MParser.Jsx_wsContext context) { }
+	public virtual void ExitWs_plus([NotNull] MParser.Ws_plusContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="MParser.indent"/>.
 	/// <para>The default implementation does nothing.</para>
@@ -3857,6 +3871,86 @@ public partial class MParserBaseListener : IMParserListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitIsOtherExpression([NotNull] MParser.IsOtherExpressionContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by the <c>ArrowExpressionBody</c>
+	/// labeled alternative in <see cref="MParser.arrow_expression"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterArrowExpressionBody([NotNull] MParser.ArrowExpressionBodyContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by the <c>ArrowExpressionBody</c>
+	/// labeled alternative in <see cref="MParser.arrow_expression"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitArrowExpressionBody([NotNull] MParser.ArrowExpressionBodyContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by the <c>ArrowStatementsBody</c>
+	/// labeled alternative in <see cref="MParser.arrow_expression"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterArrowStatementsBody([NotNull] MParser.ArrowStatementsBodyContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by the <c>ArrowStatementsBody</c>
+	/// labeled alternative in <see cref="MParser.arrow_expression"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitArrowStatementsBody([NotNull] MParser.ArrowStatementsBodyContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="MParser.arrow_prefix"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterArrow_prefix([NotNull] MParser.Arrow_prefixContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="MParser.arrow_prefix"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitArrow_prefix([NotNull] MParser.Arrow_prefixContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by the <c>ArrowSingleArg</c>
+	/// labeled alternative in <see cref="MParser.arrow_args"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterArrowSingleArg([NotNull] MParser.ArrowSingleArgContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by the <c>ArrowSingleArg</c>
+	/// labeled alternative in <see cref="MParser.arrow_args"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitArrowSingleArg([NotNull] MParser.ArrowSingleArgContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by the <c>ArrowListArg</c>
+	/// labeled alternative in <see cref="MParser.arrow_args"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterArrowListArg([NotNull] MParser.ArrowListArgContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by the <c>ArrowListArg</c>
+	/// labeled alternative in <see cref="MParser.arrow_args"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitArrowListArg([NotNull] MParser.ArrowListArgContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="MParser.sorted_key"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterSorted_key([NotNull] MParser.Sorted_keyContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="MParser.sorted_key"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitSorted_key([NotNull] MParser.Sorted_keyContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="MParser.read_all_expression"/>.
 	/// <para>The default implementation does nothing.</para>

@@ -6,7 +6,7 @@ using prompto.type;
 using prompto.value;
 using prompto.utils;
 using prompto.grammar;
-
+using System.Collections.Generic;
 
 namespace prompto.expression
 {
@@ -55,29 +55,36 @@ namespace prompto.expression
 			source.ToDialect(writer);
 			if (key != null)
 			{
-				writer = contextualizeWriter(writer);
-				writer.append(" with ");
+				IType type = source.check(writer.getContext());
+				IType itemType = ((ContainerType)type).GetItemType();
+				CodeWriter local = contextualizeWriter(writer, itemType);
+				local.append(" with ");
 				IExpression keyExp = key;
 				if (keyExp is UnresolvedIdentifier) try
+				{
+					keyExp = ((UnresolvedIdentifier)keyExp).resolve(writer.getContext(), false);
+				}
+				catch (SyntaxError /*e*/)
+				{
+					// TODO add warning 
+				}
+				if(keyExp is ArrowExpression) {
+					foreach(String arg in ((ArrowExpression)keyExp).Arguments)
 					{
-						keyExp = ((UnresolvedIdentifier)keyExp).resolve(writer.getContext(), false);
+						Variable param = new Variable(arg, itemType);
+						local.getContext().registerValue(param);
 					}
-					catch (SyntaxError /*e*/)
-					{
-						// TODO add warning 
-					}
-				if (keyExp is InstanceExpression)
-					((InstanceExpression)keyExp).ToDialect(writer, false);
+					keyExp.ToDialect(local);
+				} else if (keyExp is InstanceExpression)
+					((InstanceExpression)keyExp).ToDialect(local, false);
 				else
-					keyExp.ToDialect(writer);
+					keyExp.ToDialect(local);
 				writer.append(" as key");
 			}
 		}
 
-		CodeWriter contextualizeWriter(CodeWriter writer)
+		CodeWriter contextualizeWriter(CodeWriter writer, IType itemType)
 		{
-			IType type = source.check(writer.getContext());
-			IType itemType = ((ContainerType)type).GetItemType();
 			if (itemType is CategoryType)
 				return writer.newInstanceWriter((CategoryType)itemType);
 			else if (itemType is DocumentType)
@@ -95,7 +102,9 @@ namespace prompto.expression
 			source.ToDialect(writer);
 			if (key != null)
 			{
-				writer = contextualizeWriter(writer);
+				IType type = source.check(writer.getContext());
+				IType itemType = ((ContainerType)type).GetItemType();
+				writer = contextualizeWriter(writer, itemType);
 				writer.append(", key = ");
 				key.ToDialect(writer);
 			}
@@ -120,18 +129,17 @@ namespace prompto.expression
 			IType type = source.check(context);
 			if (!(type is ListType || type is SetType))
 				throw new SyntaxError("Unsupported type: " + type);
-			IValue o = source.interpret(context);
-			if (o == null)
+			IValue values = source.interpret(context);
+			if (values == null)
 				throw new NullReferenceError();
-			if (!(o is IContainer))
-				throw new InternalError("Unexpected type:" + o.GetType().Name);
+			if (!(values is IContainer))
+				throw new InternalError("Unexpected type:" + values.GetType().Name);
 			IType itemType = ((ContainerType)type).GetItemType();
-			if (itemType is CategoryType)
-				return ((CategoryType)itemType).sort(context, (IContainer)o, key, descending);
-			else if (itemType is DocumentType)
-				return ((DocumentType)itemType).sort(context, (IContainer)o, key, descending);
-			else
-				return itemType.sort(context, (IContainer)o, descending);
+			Comparer<IValue> comparer = itemType.getComparer(context, key, descending);
+			ListValue result = new ListValue(itemType);
+			result.AddRange (((IContainer)values).GetEnumerable (context));
+			result.Sort (comparer);
+			return result;
 		}
 
 		public void setKey(IExpression key)

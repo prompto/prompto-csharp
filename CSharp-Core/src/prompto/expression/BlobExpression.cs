@@ -6,7 +6,6 @@ using System.IO;
 using prompto.error;
 using System.Collections.Generic;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using prompto.utils;
 using prompto.parser;
 using ICSharpCode.SharpZipLib.Zip;

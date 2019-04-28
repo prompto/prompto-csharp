@@ -930,6 +930,18 @@ public interface IEParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitAndExpression([NotNull] EParser.AndExpressionContext context);
 	/// <summary>
+	/// Enter a parse tree produced by the <c>ArrowExpression</c>
+	/// labeled alternative in <see cref="EParser.expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterArrowExpression([NotNull] EParser.ArrowExpressionContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>ArrowExpression</c>
+	/// labeled alternative in <see cref="EParser.expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitArrowExpression([NotNull] EParser.ArrowExpressionContext context);
+	/// <summary>
 	/// Enter a parse tree produced by the <c>MethodCallExpression</c>
 	/// labeled alternative in <see cref="EParser.expression"/>.
 	/// </summary>
@@ -1850,15 +1862,15 @@ public interface IEParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitLfp([NotNull] EParser.LfpContext context);
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="EParser.jsx_ws"/>.
+	/// Enter a parse tree produced by <see cref="EParser.ws_plus"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterJsx_ws([NotNull] EParser.Jsx_wsContext context);
+	void EnterWs_plus([NotNull] EParser.Ws_plusContext context);
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="EParser.jsx_ws"/>.
+	/// Exit a parse tree produced by <see cref="EParser.ws_plus"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitJsx_ws([NotNull] EParser.Jsx_wsContext context);
+	void ExitWs_plus([NotNull] EParser.Ws_plusContext context);
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="EParser.indent"/>.
 	/// </summary>
@@ -3469,6 +3481,74 @@ public interface IEParserListener : IParseTreeListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void ExitIsOtherExpression([NotNull] EParser.IsOtherExpressionContext context);
+	/// <summary>
+	/// Enter a parse tree produced by the <c>ArrowExpressionBody</c>
+	/// labeled alternative in <see cref="EParser.arrow_expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterArrowExpressionBody([NotNull] EParser.ArrowExpressionBodyContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>ArrowExpressionBody</c>
+	/// labeled alternative in <see cref="EParser.arrow_expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitArrowExpressionBody([NotNull] EParser.ArrowExpressionBodyContext context);
+	/// <summary>
+	/// Enter a parse tree produced by the <c>ArrowStatementsBody</c>
+	/// labeled alternative in <see cref="EParser.arrow_expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterArrowStatementsBody([NotNull] EParser.ArrowStatementsBodyContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>ArrowStatementsBody</c>
+	/// labeled alternative in <see cref="EParser.arrow_expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitArrowStatementsBody([NotNull] EParser.ArrowStatementsBodyContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="EParser.arrow_prefix"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterArrow_prefix([NotNull] EParser.Arrow_prefixContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="EParser.arrow_prefix"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitArrow_prefix([NotNull] EParser.Arrow_prefixContext context);
+	/// <summary>
+	/// Enter a parse tree produced by the <c>ArrowSingleArg</c>
+	/// labeled alternative in <see cref="EParser.arrow_args"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterArrowSingleArg([NotNull] EParser.ArrowSingleArgContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>ArrowSingleArg</c>
+	/// labeled alternative in <see cref="EParser.arrow_args"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitArrowSingleArg([NotNull] EParser.ArrowSingleArgContext context);
+	/// <summary>
+	/// Enter a parse tree produced by the <c>ArrowListArg</c>
+	/// labeled alternative in <see cref="EParser.arrow_args"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterArrowListArg([NotNull] EParser.ArrowListArgContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>ArrowListArg</c>
+	/// labeled alternative in <see cref="EParser.arrow_args"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitArrowListArg([NotNull] EParser.ArrowListArgContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="EParser.sorted_key"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterSorted_key([NotNull] EParser.Sorted_keyContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="EParser.sorted_key"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitSorted_key([NotNull] EParser.Sorted_keyContext context);
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="EParser.read_all_expression"/>.
 	/// </summary>

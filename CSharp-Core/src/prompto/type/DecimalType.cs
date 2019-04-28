@@ -3,6 +3,7 @@ using prompto.runtime;
 using Decimal = prompto.value.Decimal;
 using prompto.value;
 using prompto.store;
+using System.Collections.Generic;
 
 namespace prompto.type
 {
@@ -93,8 +94,8 @@ namespace prompto.type
 			return base.checkModulo(context, other);
 		}
 
-        override
-        public IType checkCompare(Context context, IType other)
+        
+        public override IType checkCompare(Context context, IType other)
         {
             if (other is IntegerType)
                 return BooleanType.Instance;
@@ -103,14 +104,8 @@ namespace prompto.type
             return base.checkCompare(context, other);
         }
 
-        override
-		public ListValue sort(Context context, IContainer list, bool descending)
-        {
-			return this.doSort(context, list, new DecimalComparer(context, descending));
-        }
-
-        override
-        public IValue ConvertCSharpValueToIValue(Context context, Object value)
+        
+        public override IValue ConvertCSharpValueToIValue(Context context, Object value)
         {
             if (value is float)
                 return new Decimal((float)value);
@@ -123,17 +118,23 @@ namespace prompto.type
             else
                 return (IValue)value; // TODO for now
         }
-    }
 
-    class DecimalComparer : ExpressionComparer<INumber>
+		public override Comparer<IValue> getNativeComparer(bool descending)
+		{
+			return new DecimalComparer(descending);
+		}
+
+	}
+
+    class DecimalComparer : NativeComparer<INumber>
     {
-        public DecimalComparer(Context context, bool descending)
-            : base(context, descending)
+        public DecimalComparer(bool descending)
+            : base(descending)
         {
         }
 
-        override
-        protected int DoCompare(INumber o1, INumber o2)
+        
+        protected override int DoCompare(INumber o1, INumber o2)
         {
             return o1.DecimalValue.CompareTo(o2.DecimalValue);
         }

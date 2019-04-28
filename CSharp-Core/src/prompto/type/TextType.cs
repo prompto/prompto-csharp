@@ -153,27 +153,21 @@ namespace prompto.type
 			return base.checkContains(context, other);
 		}
 
-		override
-		public IType checkContainsAllOrAny(Context context, IType other)
+
+		public override IType checkContainsAllOrAny(Context context, IType other)
 		{
 			return BooleanType.Instance;
 		}
 
-		override
-		public IType checkSlice(Context context)
+
+		public override IType checkSlice(Context context)
 		{
 			return this;
 		}
 
 
-		override
-		public ListValue sort(Context context, IContainer list, bool descending)
-		{
-			return this.doSort(context, list, new TextComparer(context, descending));
-		}
 
-		override
-		public String ToString(Object value)
+		public override String ToString(Object value)
 		{
 			if (value is Char)
 				return "'" + value.ToString() + "'";
@@ -181,8 +175,8 @@ namespace prompto.type
 				return "" + '"' + value + '"';
 		}
 
-		override
-		public IValue ConvertCSharpValueToIValue(Context context, Object value)
+
+		public override IValue ConvertCSharpValueToIValue(Context context, Object value)
 		{
 			if (value is String)
 				return new Text((String)value);
@@ -190,18 +184,22 @@ namespace prompto.type
 				return (IValue)value; // TODO for now
 		}
 
+		public override Comparer<IValue> getNativeComparer(bool descending)
+		{
+			return new TextComparer(descending);
+		}
 
 	}
 
-	class TextComparer : ExpressionComparer<Object>
+	class TextComparer : NativeComparer<IValue>
 	{
-		public TextComparer(Context context, bool descending)
-			: base(context, descending)
+		public TextComparer(bool descending)
+			: base(descending)
 		{
 		}
 
-		override
-		protected int DoCompare(Object o1, Object o2)
+
+		protected override int DoCompare(IValue o1, IValue o2)
 		{
 			return o1.ToString().CompareTo(o2.ToString());
 		}
