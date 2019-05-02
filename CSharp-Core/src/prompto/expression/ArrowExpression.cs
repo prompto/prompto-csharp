@@ -81,26 +81,26 @@ namespace prompto.expression
 			}
 		}
 
-		public Comparer<IValue> getNativeComparer(Context context, NativeType itemType, bool descending)
+		public Comparer<IValue> getComparer(Context context, IType itemType, bool descending)
 		{
 			switch(Arguments.Count) {
 			case 1:
-				return new NativeComparer1Arg(context, itemType, descending, this);
+				return new ArrowComparer1Arg(context, itemType, descending, this);
 			case 2:
-				return new NativeComparer2Args(context, itemType, descending, this);
+				return new ArrowComparer2Args(context, itemType, descending, this);
 			default:
 				throw new SyntaxError("Expecting 1 or 2 parameters only!"); 			
 			}
 		}
 
-		internal abstract class NativeComparer : Comparer<IValue>
+		internal abstract class ArrowComparer : Comparer<IValue>
 		{
 			protected Context context;
-			protected NativeType itemType;
+			protected IType itemType;
 			protected bool descending;
 			protected ArrowExpression arrow;
 
-			internal NativeComparer(Context context, NativeType itemType, bool descending, ArrowExpression arrow)
+			internal ArrowComparer(Context context, IType itemType, bool descending, ArrowExpression arrow)
 			{
 				this.context = context;
 				this.itemType = itemType;
@@ -116,9 +116,9 @@ namespace prompto.expression
 			}
 		}
 
-		internal class NativeComparer1Arg : NativeComparer
+		internal class ArrowComparer1Arg : ArrowComparer
 		{
-			internal NativeComparer1Arg(Context context, NativeType itemType, bool descending, ArrowExpression arrow)
+			internal ArrowComparer1Arg(Context context, IType itemType, bool descending, ArrowExpression arrow)
 				: base(context, itemType, descending, arrow)
 			{
 			}
@@ -135,9 +135,9 @@ namespace prompto.expression
 			}
 		}
 
-		internal class NativeComparer2Args : NativeComparer
+		internal class ArrowComparer2Args : ArrowComparer
 		{
-			internal NativeComparer2Args(Context context, NativeType itemType, bool descending, ArrowExpression arrow)
+			internal ArrowComparer2Args(Context context, IType itemType, bool descending, ArrowExpression arrow)
 				: base(context, itemType, descending, arrow)
 			{
 			}

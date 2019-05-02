@@ -9,27 +9,39 @@ namespace prompto.translate.oeo
 	{
 
 		[Test]
-		public void testSort1()
+		public void testSortCategory1Arg()
 		{
-			compareResourceOEO("arrow/sort1.poc");
+			compareResourceOEO("arrow/sortCategory1Arg.poc");
 		}
 
 		[Test]
-		public void testSort1_desc()
+		public void testSortCategory2Args()
 		{
-			compareResourceOEO("arrow/sort1_desc.poc");
+			compareResourceOEO("arrow/sortCategory2Args.poc");
 		}
 
 		[Test]
-		public void testSort2()
+		public void testSortText1Arg()
 		{
-			compareResourceOEO("arrow/sort2.poc");
+			compareResourceOEO("arrow/sortText1Arg.poc");
 		}
 
 		[Test]
-		public void testSort2_desc()
+		public void testSortText1ArgDesc()
 		{
-			compareResourceOEO("arrow/sort2_desc.poc");
+			compareResourceOEO("arrow/sortText1ArgDesc.poc");
+		}
+
+		[Test]
+		public void testSortText2Args()
+		{
+			compareResourceOEO("arrow/sortText2Args.poc");
+		}
+
+		[Test]
+		public void testSortText2ArgsDesc()
+		{
+			compareResourceOEO("arrow/sortText2ArgsDesc.poc");
 		}
 
 	}

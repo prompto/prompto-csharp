@@ -9,27 +9,39 @@ namespace prompto.translate.omo
 	{
 
 		[Test]
-		public void testSort1()
+		public void testSortCategory1Arg()
 		{
-			compareResourceOMO("arrow/sort1.poc");
+			compareResourceOMO("arrow/sortCategory1Arg.poc");
 		}
 
 		[Test]
-		public void testSort1_desc()
+		public void testSortCategory2Args()
 		{
-			compareResourceOMO("arrow/sort1_desc.poc");
+			compareResourceOMO("arrow/sortCategory2Args.poc");
 		}
 
 		[Test]
-		public void testSort2()
+		public void testSortText1Arg()
 		{
-			compareResourceOMO("arrow/sort2.poc");
+			compareResourceOMO("arrow/sortText1Arg.poc");
 		}
 
 		[Test]
-		public void testSort2_desc()
+		public void testSortText1ArgDesc()
 		{
-			compareResourceOMO("arrow/sort2_desc.poc");
+			compareResourceOMO("arrow/sortText1ArgDesc.poc");
+		}
+
+		[Test]
+		public void testSortText2Args()
+		{
+			compareResourceOMO("arrow/sortText2Args.poc");
+		}
+
+		[Test]
+		public void testSortText2ArgsDesc()
+		{
+			compareResourceOMO("arrow/sortText2ArgsDesc.poc");
 		}
 
 	}

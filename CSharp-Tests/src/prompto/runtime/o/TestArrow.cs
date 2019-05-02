@@ -22,27 +22,39 @@ namespace prompto.runtime.o
 		}
 
 		[Test]
-		public void testSort1()
+		public void testSortCategory1Arg()
 		{
-			CheckOutput("arrow/sort1.poc");
+			CheckOutput("arrow/sortCategory1Arg.poc");
 		}
 
 		[Test]
-		public void testSort1_desc()
+		public void testSortCategory2Args()
 		{
-			CheckOutput("arrow/sort1_desc.poc");
+			CheckOutput("arrow/sortCategory2Args.poc");
 		}
 
 		[Test]
-		public void testSort2()
+		public void testSortText1Arg()
 		{
-			CheckOutput("arrow/sort2.poc");
+			CheckOutput("arrow/sortText1Arg.poc");
 		}
 
 		[Test]
-		public void testSort2_desc()
+		public void testSortText1ArgDesc()
 		{
-			CheckOutput("arrow/sort2_desc.poc");
+			CheckOutput("arrow/sortText1ArgDesc.poc");
+		}
+
+		[Test]
+		public void testSortText2Args()
+		{
+			CheckOutput("arrow/sortText2Args.poc");
+		}
+
+		[Test]
+		public void testSortText2ArgsDesc()
+		{
+			CheckOutput("arrow/sortText2ArgsDesc.poc");
 		}
 
 	}

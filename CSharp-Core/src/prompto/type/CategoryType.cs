@@ -415,6 +415,8 @@ namespace prompto.type
 					return new CategoryMethodComparer(context, key.ToString(), descending);
 				else if (globalMethodExists(context, key.ToString())) // TODO support 2 args
 					return new GlobalMethodComparer(context, key.ToString(), descending, this);
+				else if(key is ArrowExpression)
+					return ((ArrowExpression)key).getComparer(context, this, descending);
 				else
 					return new ExpressionComparer(context, key, descending);
 			}
