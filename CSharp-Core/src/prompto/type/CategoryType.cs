@@ -415,8 +415,8 @@ namespace prompto.type
 					return new CategoryMethodComparer(context, key.ToString(), descending);
 				else if (globalMethodExists(context, key.ToString())) // TODO support 2 args
 					return new GlobalMethodComparer(context, key.ToString(), descending, this);
-				else if(key is ArrowExpression)
-					return ((ArrowExpression)key).getComparer(context, this, descending);
+				else if (key is ArrowExpression)
+					return ((ArrowExpression)key).GetComparer(context, this, descending);
 				else
 					return new ExpressionComparer(context, key, descending);
 			}
@@ -448,7 +448,7 @@ namespace prompto.type
 
 }
 
-namespace prompto.type.category 
+namespace prompto.type.category
 {
 
 	class AttributeComparer : ValueComparer<IInstance>
@@ -500,8 +500,8 @@ namespace prompto.type.category
 			: base(context, descending)
 		{
 			this.type = type;
-           	this.methodCall = buildMethodCall(methodName);
- 		}
+			this.methodCall = buildMethodCall(methodName);
+		}
 
 		private MethodCall buildMethodCall(String methodName)
 		{
@@ -509,7 +509,7 @@ namespace prompto.type.category
 			ArgumentAssignment arg = new ArgumentAssignment(null, exp);
 			ArgumentAssignmentList args = new ArgumentAssignmentList();
 			args.Add(arg);
-            return new MethodCall(new MethodSelector(methodName), args);
+			return new MethodCall(new MethodSelector(methodName), args);
 		}
 
 		protected override int DoCompare(IInstance o1, IInstance o2)

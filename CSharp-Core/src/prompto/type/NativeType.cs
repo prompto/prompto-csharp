@@ -84,7 +84,7 @@ namespace prompto.type
 		private Comparer<IValue> getExpressionComparer(Context context, IExpression key, bool descending)
 		{
 			if(key is ArrowExpression)
-				return ((ArrowExpression)key).getComparer(context, this, descending);
+				return ((ArrowExpression)key).GetComparer(context, this, descending);
 			else
 				throw new Exception("Comparing native types with non-arrow key is not supported!");
 		}

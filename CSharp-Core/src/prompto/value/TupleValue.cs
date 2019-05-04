@@ -14,7 +14,7 @@ using Newtonsoft.Json;
 namespace prompto.value
 {
 
-	public class TupleValue : List<IValue>, ISliceable, IContainer, IFilterable, IMultiplyable
+	public class TupleValue : List<IValue>, ISliceable, IContainer, IMultiplyable
 	{
 		List<Object> storables;
 		bool mutable = false;
@@ -258,21 +258,6 @@ namespace prompto.value
 				if (idx > li_)
 					break;
 				result.Add(e);
-			}
-			return result;
-		}
-
-		public IFilterable Filter(Context context, String itemName, IExpression filter)
-		{
-			TupleValue result = new TupleValue();
-			foreach (IValue o in this)
-			{
-				context.setValue(itemName, o);
-				Object test = filter.interpret(context);
-				if (!(test is Boolean))
-					throw new InternalError("Illegal test result: " + test);
-				if (((Boolean)test).Value)
-					result.Add(o);
 			}
 			return result;
 		}

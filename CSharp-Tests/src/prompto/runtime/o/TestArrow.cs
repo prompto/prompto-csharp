@@ -22,6 +22,18 @@ namespace prompto.runtime.o
 		}
 
 		[Test]
+		public void testFilterFromList()
+		{
+			CheckOutput("arrow/filterFromList.poc");
+		}
+
+		[Test]
+		public void testFilterFromSet()
+		{
+			CheckOutput("arrow/filterFromSet.poc");
+		}
+
+		[Test]
 		public void testSortCategory1Arg()
 		{
 			CheckOutput("arrow/sortCategory1Arg.poc");

@@ -9,6 +9,18 @@ namespace prompto.translate.omo
 	{
 
 		[Test]
+		public void testFilterFromList()
+		{
+			compareResourceOMO("arrow/filterFromList.poc");
+		}
+
+		[Test]
+		public void testFilterFromSet()
+		{
+			compareResourceOMO("arrow/filterFromSet.poc");
+		}
+
+		[Test]
 		public void testSortCategory1Arg()
 		{
 			compareResourceOMO("arrow/sortCategory1Arg.poc");

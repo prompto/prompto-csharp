@@ -9,6 +9,18 @@ namespace prompto.translate.oeo
 	{
 
 		[Test]
+		public void testFilterFromList()
+		{
+			compareResourceOEO("arrow/filterFromList.poc");
+		}
+
+		[Test]
+		public void testFilterFromSet()
+		{
+			compareResourceOEO("arrow/filterFromSet.poc");
+		}
+
+		[Test]
 		public void testSortCategory1Arg()
 		{
 			compareResourceOEO("arrow/sortCategory1Arg.poc");

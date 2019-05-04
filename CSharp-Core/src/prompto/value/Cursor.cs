@@ -138,9 +138,9 @@ namespace prompto.value
 				throw new InvalidDataError ("No such member:" + name);
 		}
 
-		public IFilterable Filter(Context context, String itemName, IExpression filter)
+		public IFilterable Filter(Predicate<IValue> filter)
 		{
-			return new FilteredCursor(this, context, itemName, filter);
+			return new FilteredCursor(this, filter);
 		}
 
 
@@ -148,16 +148,12 @@ namespace prompto.value
 
 	public class FilteredCursor : Cursor
 	{
-		Context context;
-		String itemName;
-		IExpression filter;
+		Predicate<IValue> filter;
 		IValue current;
 
-		public FilteredCursor(Cursor source, Context context, String itemName, IExpression filter)
+		public FilteredCursor(Cursor source, Predicate<IValue> filter)
 			: base(source)
 		{
-			this.context = context;
-			this.itemName = itemName;
 			this.filter = filter;
 		}
 
@@ -167,11 +163,7 @@ namespace prompto.value
 			while (base.MoveNext())
 			{
 				current = base.getCurrent();
-				context.setValue(itemName, current);
-				IValue test = filter.interpret(context);
-				if (!(test is Boolean))
-					throw new InternalError("Illegal test result: " + test);
-				if (((Boolean)test).Value)
+				if(filter.Invoke(current))
 					return true;
 
 			}

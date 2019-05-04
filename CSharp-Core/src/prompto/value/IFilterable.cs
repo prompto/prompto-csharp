@@ -7,6 +7,6 @@ namespace prompto.value
 {
 	public interface IFilterable : IValue
 	{
-		IFilterable Filter (Context context, String itemName, IExpression filter);
+		IFilterable Filter (Predicate<IValue> filter);
 	}
 }

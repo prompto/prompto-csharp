@@ -323,22 +323,11 @@ namespace prompto.value
 			return result;
 		}
 
-		public IFilterable Filter(Context context, String itemName, IExpression filter)
+		public IFilterable Filter(Predicate<IValue> filter)
 		{
-			ListValue result = new ListValue(type.GetItemType());
-			foreach (IValue o in this)
-			{
-				context.setValue(itemName, o);
-				Object test = filter.interpret(context);
-				if (!(test is Boolean))
-					throw new InternalError("Illegal test result: " + test);
-				if (((Boolean)test).Value)
-					result.Add(o);
-			}
-			return result;
+			List<IValue> items = FindAll(filter);
+			return new ListValue(type.GetItemType(), items);
 		}
-
-
 
 	}
 }
