@@ -159,18 +159,11 @@ namespace prompto.value
 			return newInstance (result);
 		}
 
-		public virtual IFilterable Filter(Context context, String itemName, IExpression filter)
+		public virtual IFilterable Filter(Predicate<IValue> filter)
 		{
-			HashSet<IValue> result = new HashSet<IValue>  ();
-			foreach (IValue o in this.items)
-			{
-				context.setValue(itemName, o);
-				Object test = filter.interpret(context);
-				if (!(test is Boolean))
-					throw new InternalError("Illegal test result: " + test);
-				if (((Boolean)test).Value)
-					result.Add(o);
-			}
+			List<IValue> list = new List<IValue>(items);
+			list = list.FindAll(filter);
+			HashSet<IValue> result = new HashSet<IValue>(list);
 			return newInstance (result);
 		}
 

@@ -108,29 +108,28 @@ namespace prompto.type
             return base.checkCompare(context, other);
         }
 
-        override
-		public ListValue sort(Context context, IContainer list, bool descending)
-        {
-			return this.doSort(context, list, new DateTimeComparer(context, descending));
-        }
-
-        override
-        public String ToString(Object value)
+        
+        public override String ToString(Object value)
         {
             return "'" + value.ToString() + "'";
         }
 
+		public override Comparer<IValue> getNativeComparer(bool descending)
+		{
+			return new DateTimeComparer(descending);
+		}
+
     }
 
-    class DateTimeComparer : ExpressionComparer<DateTime>
+    class DateTimeComparer : NativeComparer<DateTime>
     {
-        public DateTimeComparer(Context context, bool descending)
-            : base(context, descending)
+        public DateTimeComparer(bool descending)
+            : base(descending)
         {
         }
 
-        override
-        protected int DoCompare(DateTime o1, DateTime o2)
+        
+        protected override int DoCompare(DateTime o1, DateTime o2)
         {
             return o1.CompareTo(o2);
         }

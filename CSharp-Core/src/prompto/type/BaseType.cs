@@ -7,6 +7,7 @@ using prompto.utils;
 using Newtonsoft.Json.Linq;
 using prompto.store;
 using prompto.declaration;
+using prompto.expression;
 
 namespace prompto.type
 {
@@ -188,18 +189,9 @@ namespace prompto.type
 			return value.ToString ();
 		}
 
-		public virtual ListValue sort (Context context, IContainer list, bool descending)
+		public virtual Comparer<IValue> getComparer (Context context, IExpression key, bool descending)
 		{
 			throw new Exception ("Unsupported!");
-		}
-
-		protected virtual ListValue doSort<T> (Context context, IContainer list, ExpressionComparer<T> cmp)
-		{
-			IType itemType = ((IterableType)list.GetIType ()).GetItemType ();
-			ListValue result = new ListValue (itemType);
-			result.AddRange (list.GetEnumerable (context));
-			result.Sort (cmp);
-			return result;
 		}
 
 		public abstract Type ToCSharpType ();

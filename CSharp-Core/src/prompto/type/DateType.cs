@@ -39,16 +39,16 @@ namespace prompto.type
 			return base.isAssignableFrom(context, other) || other==DateTimeType.Instance;
         }
 
-        override
-		public IType checkAdd(Context context, IType other, bool tryReverse)
+        
+		public override IType checkAdd(Context context, IType other, bool tryReverse)
         {
             if (other is PeriodType)
                 return this; // ignore time section
 			return base.checkAdd(context, other, tryReverse);
         }
 
-        override
-        public IType checkSubstract(Context context, IType other)
+        
+        public override IType checkSubstract(Context context, IType other)
         {
             if (other is PeriodType)
                 return this; // ignore time section
@@ -58,8 +58,8 @@ namespace prompto.type
 				return base.checkSubstract(context, other);
         }
 
-        override
-        public IType checkCompare(Context context, IType other)
+        
+        public override IType checkCompare(Context context, IType other)
         {
             if (other is DateType)
                 return BooleanType.Instance;
@@ -68,8 +68,8 @@ namespace prompto.type
             return base.checkCompare(context, other);
         }
 
-        override
-        public IType checkRange(Context context, IType other)
+        
+        public override IType checkRange(Context context, IType other)
         {
             if (other is DateType)
                 return new RangeType(this);
@@ -91,35 +91,34 @@ namespace prompto.type
                 return base.checkMember(context, name);
         }
 
-        override
-        public IRange newRange(Object left, Object right)
+        
+        public override IRange newRange(Object left, Object right)
         {
             if (left is Date && right is Date)
                 return new DateRange((Date)left, (Date)right);
             return base.newRange(left, right);
         } 
 
-        override
-		public ListValue sort(Context context, IContainer list, bool descending)
-        {
-			return this.doSort(context, list, new DateComparer(context, descending));
-        }
-
-        override
-        public String ToString(Object value)
+        
+        public override String ToString(Object value)
         {
             return "'" + value.ToString() + "'";
         }
+
+		public override Comparer<IValue> getNativeComparer(bool descending)
+		{
+			return new DateComparer(descending);
+		}
     }
 
-    class DateComparer : ExpressionComparer<Date>
+    class DateComparer : NativeComparer<Date>
     {
-        public DateComparer(Context context, bool descending)
-            : base(context, descending)
+        public DateComparer(bool descending)
+            : base(descending)
         {
         }
-        override
-        protected int DoCompare(Date o1, Date o2)
+        
+        protected override int DoCompare(Date o1, Date o2)
         {
             return o1.getMillis().CompareTo(o2.getMillis());
         }

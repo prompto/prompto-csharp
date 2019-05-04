@@ -72,7 +72,7 @@ namespace prompto.parser
 			}
 		}
 
-		private String getJsxWhiteSpace(ParserRuleContext ctx)
+		private String getWhiteSpacePlus(ParserRuleContext ctx)
 		{
 			if (ctx.ChildCount == 0)
 				return null;
@@ -895,6 +895,48 @@ namespace prompto.parser
 			SetNodeValue(ctx, items);
 		}
 
+
+		public override void ExitArrow_prefix(MParser.Arrow_prefixContext ctx)
+		{
+			IdentifierList args = GetNodeValue<IdentifierList>(ctx.arrow_args());
+			String argsSuite = getHiddenTokensBefore(ctx.EGT());
+			String arrowSuite = getHiddenTokensAfter(ctx.EGT());
+			SetNodeValue(ctx, new ArrowExpression(args, argsSuite, arrowSuite));
+		}
+
+		public override void ExitArrowExpression(MParser.ArrowExpressionContext ctx)
+		{
+			SetNodeValue(ctx, GetNodeValue<Object>(ctx.exp));
+		}
+
+		public override void ExitArrowExpressionBody(MParser.ArrowExpressionBodyContext ctx)
+		{
+			ArrowExpression arrow = GetNodeValue<ArrowExpression>(ctx.arrow_prefix());
+			IExpression exp = GetNodeValue<IExpression>(ctx.expression());
+			arrow.Expression = exp;
+			SetNodeValue(ctx, arrow);
+		}
+
+		public override void ExitArrowListArg(MParser.ArrowListArgContext ctx)
+		{
+			IdentifierList list = GetNodeValue<IdentifierList>(ctx.variable_identifier_list());
+			SetNodeValue(ctx, list);
+		}
+
+		public override void ExitArrowSingleArg(MParser.ArrowSingleArgContext ctx)
+		{
+			String arg = GetNodeValue<String>(ctx.variable_identifier());
+			SetNodeValue(ctx, new IdentifierList(arg));
+		}
+
+
+		public override void ExitArrowStatementsBody(MParser.ArrowStatementsBodyContext ctx)
+		{
+			ArrowExpression arrow = GetNodeValue<ArrowExpression>(ctx.arrow_prefix());
+			StatementList stmts = GetNodeValue<StatementList>(ctx.statement_list());
+			arrow.Statements = stmts;
+			SetNodeValue(ctx, arrow);
+		}
 
 		public override void ExitAddExpression(MParser.AddExpressionContext ctx)
 		{
@@ -2363,6 +2405,12 @@ namespace prompto.parser
 		}
 
 
+		public override void ExitSorted_key(MParser.Sorted_keyContext ctx)
+		{
+			IExpression exp = GetNodeValue<IExpression>(ctx.GetChild(0));
+			SetNodeValue(ctx, exp);
+		}
+
 
 		public override void ExitDocument_expression(MParser.Document_expressionContext ctx)
 		{
@@ -3088,7 +3136,7 @@ namespace prompto.parser
 		{
 			String name = GetNodeValue<String>(ctx.name);
 			IJsxValue value = GetNodeValue<IJsxValue>(ctx.value);
-			String suite = getJsxWhiteSpace(ctx.jsx_ws());
+			String suite = getWhiteSpacePlus(ctx.ws_plus());
 			SetNodeValue(ctx, new JsxAttribute(name, value, suite));
 		}
 
@@ -3127,7 +3175,7 @@ namespace prompto.parser
 		public override void ExitJsx_opening(MParser.Jsx_openingContext ctx)
 		{
 			String name = GetNodeValue<String>(ctx.name);
-			String suite = getJsxWhiteSpace(ctx.jsx_ws());
+			String suite = getWhiteSpacePlus(ctx.ws_plus());
 			List<JsxAttribute> attributes = new List<JsxAttribute>();
 			foreach (ParserRuleContext child in ctx.jsx_attribute())
 				attributes.Add(GetNodeValue<JsxAttribute>(child));
@@ -3143,7 +3191,7 @@ namespace prompto.parser
 		public override void ExitJsx_self_closing(MParser.Jsx_self_closingContext ctx)
 		{
 			String name = GetNodeValue<String>(ctx.name);
-			String suite = getJsxWhiteSpace(ctx.jsx_ws());
+			String suite = getWhiteSpacePlus(ctx.ws_plus());
 			List<JsxAttribute> attributes = new List<JsxAttribute>();
 			foreach (ParserRuleContext child in ctx.jsx_attribute())
 				attributes.Add(GetNodeValue<JsxAttribute>(child));

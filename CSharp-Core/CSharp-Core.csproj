@@ -274,7 +274,7 @@
     <Compile Include="src\prompto\parser\Section.cs" />
     <Compile Include="src\prompto\value\ConcreteInstance.cs" />
     <Compile Include="src\prompto\runtime\Context.cs" />
-    <Compile Include="src\prompto\runtime\ExpressionComparer.cs" />
+    <Compile Include="src\prompto\runtime\ValueComparer.cs" />
     <Compile Include="src\prompto\value\ContextualExpression.cs" />
     <Compile Include="src\prompto\value\Document.cs" />
     <Compile Include="src\prompto\runtime\ErrorVariable.cs" />
@@ -520,6 +520,8 @@
     <Compile Include="src\prompto\utils\DictionaryUtils.cs" />
     <Compile Include="src\prompto\expression\MutableExpression.cs" />
     <Compile Include="src\prompto\expression\ValueExpression.cs" />
+    <Compile Include="src\prompto\expression\ArrowExpression.cs" />
+    <Compile Include="src\prompto\runtime\NativeComparer.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />

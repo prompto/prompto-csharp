@@ -122,20 +122,13 @@ namespace prompto.type
 			return base.checkRange(context, other);
 		}
 
-		override
-		public IRange newRange(Object left, Object right)
+
+		public override IRange newRange(Object left, Object right)
 		{
 			if (left is Integer && right is Integer)
 				return new IntegerRange((Integer)left, (Integer)right);
 			return base.newRange(left, right);
 		}
-
-		override
-		public ListValue sort(Context context, IContainer list, bool descending)
-		{
-			return this.doSort(context, list, new IntegerComparer(context, descending));
-		}
-
 
 		public override IValue ConvertCSharpValueToIValue(Context context, Object value)
 		{
@@ -190,6 +183,11 @@ namespace prompto.type
 			}
 		}
 
+		public override Comparer<IValue> getNativeComparer(bool descending)
+		{
+			return new IntegerComparer(descending);
+		}
+
 		internal static IArgument FORMAT_ARGUMENT = new CategoryArgument(TextType.Instance, "format", new TextLiteral("\"format\""));
 		internal static IMethodDeclaration FORMAT_METHOD = new FormatMethodDeclaration();
 	}
@@ -221,16 +219,16 @@ namespace prompto.type
 	};
 
 
-	class IntegerComparer : ExpressionComparer<INumber>
+	class IntegerComparer : NativeComparer<INumber>
 	{
 
-		public IntegerComparer(Context context, bool descending)
-			: base(context, descending)
+		public IntegerComparer(bool descending)
+			: base(descending)
 		{
 		}
 
-		override
-		protected int DoCompare(INumber o1, INumber o2)
+
+		protected override int DoCompare(INumber o1, INumber o2)
 		{
 			return o1.IntegerValue.CompareTo(o2.IntegerValue);
 		}

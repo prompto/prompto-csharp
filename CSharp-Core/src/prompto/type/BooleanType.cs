@@ -34,12 +34,6 @@ namespace prompto.type
         }
 
         
-		public override ListValue sort(Context context, IContainer list, bool descending)
-        {
-			return this.doSort(context, list, new BooleanComparer(context, descending));
-        }
-
-        
         public override IValue ConvertCSharpValueToIValue(Context context, Object value)
         {
             if (value is bool)
@@ -50,20 +44,23 @@ namespace prompto.type
                 return (IValue)value; // TODO for now
         }
 
+		public override Comparer<IValue> getNativeComparer(bool descending)
+		{
+			return new BooleanComparer(descending);
+		}
 
     }
 
-   class BooleanComparer : ExpressionComparer<Boolean>
+    class BooleanComparer : NativeComparer<Boolean>
     {
-        public BooleanComparer(Context context, bool descending)
-            : base(context, descending)
+        public BooleanComparer(bool descending)
+            : base(descending)
         {
         }
 
-        override
-        protected int DoCompare(Boolean o1, Boolean o2)
-        {
-            return o1.Value.CompareTo(o2.Value);
+		protected override int DoCompare(Boolean o1, Boolean o2)
+		{
+	        return o1.Value.CompareTo(o2.Value);
         }
     }
 

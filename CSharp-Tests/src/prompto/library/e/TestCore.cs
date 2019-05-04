@@ -26,6 +26,12 @@ namespace prompto.library.e
 		}
 
 		[Test]
+		public void testAbstract()
+		{
+			CheckTests("core/abstract.pec");
+		}
+
+		[Test]
 		public void testAny()
 		{
 			CheckTests("core/any.pec");
