@@ -1902,6 +1902,16 @@ public interface IEParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitNull_literal([NotNull] EParser.Null_literalContext context);
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="EParser.repl"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterRepl([NotNull] EParser.ReplContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="EParser.repl"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitRepl([NotNull] EParser.ReplContext context);
+	/// <summary>
 	/// Enter a parse tree produced by the <c>FullDeclarationList</c>
 	/// labeled alternative in <see cref="EParser.declaration_list"/>.
 	/// </summary>

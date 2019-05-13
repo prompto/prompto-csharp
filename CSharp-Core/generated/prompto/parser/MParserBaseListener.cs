@@ -2008,6 +2008,18 @@ public partial class MParserBaseListener : IMParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitNull_literal([NotNull] MParser.Null_literalContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="MParser.repl"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterRepl([NotNull] MParser.ReplContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="MParser.repl"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitRepl([NotNull] MParser.ReplContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by the <c>FullDeclarationList</c>
 	/// labeled alternative in <see cref="MParser.declaration_list"/>.
 	/// <para>The default implementation does nothing.</para>

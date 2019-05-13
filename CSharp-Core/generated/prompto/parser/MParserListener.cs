@@ -1706,6 +1706,16 @@ public interface IMParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitNull_literal([NotNull] MParser.Null_literalContext context);
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="MParser.repl"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterRepl([NotNull] MParser.ReplContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="MParser.repl"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitRepl([NotNull] MParser.ReplContext context);
+	/// <summary>
 	/// Enter a parse tree produced by the <c>FullDeclarationList</c>
 	/// labeled alternative in <see cref="MParser.declaration_list"/>.
 	/// </summary>

@@ -2058,6 +2058,18 @@ public partial class OParserBaseListener : IOParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitWs_plus([NotNull] OParser.Ws_plusContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="OParser.repl"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterRepl([NotNull] OParser.ReplContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="OParser.repl"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitRepl([NotNull] OParser.ReplContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by the <c>FullDeclarationList</c>
 	/// labeled alternative in <see cref="OParser.declaration_list"/>.
 	/// <para>The default implementation does nothing.</para>
