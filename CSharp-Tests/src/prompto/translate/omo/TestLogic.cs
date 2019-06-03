@@ -26,6 +26,12 @@ namespace prompto.translate.omo
 			compareResourceOMO("logic/orBoolean.poc");
 		}
 
+		[Test]
+		public void testRightSkipped()
+		{
+			compareResourceOMO("logic/rightSkipped.poc");
+		}
+
 	}
 }
 

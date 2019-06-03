@@ -73,28 +73,33 @@ namespace prompto.expression
 		public IValue interpret(Context context)
 		{
 			IValue lval = left.interpret (context);
+			if (!(lval is Boolean))
+				throw new SyntaxError("Illegal: " + lval.GetType().Name + " and ..., expected a Boolean");
+			if (!((Boolean)lval).Value)
+				return lval;
 			IValue rval = right.interpret (context);
-			return interpret (lval, rval);
+			if (!(rval is Boolean))
+	            throw new SyntaxError("Illegal: " + lval.GetType().Name + " and " + rval.GetType().Name);
+    		return rval;
 		}
-
-		public IValue interpret(IValue lval, IValue rval)
-		{
-			if (lval is Boolean && rval is Boolean)
-                return Boolean.ValueOf(((Boolean)lval).Value && ((Boolean)rval).Value);
-            else
-                throw new SyntaxError("Illegal: " + lval.GetType().Name + " + " + rval.GetType().Name);
-        }
 
 		public bool interpretAssert(Context context, TestMethodDeclaration test) {
 			IValue lval = left.interpret(context);
-			IValue rval = right.interpret(context);
-			IValue result = interpret(lval, rval);
-			if(result==Boolean.TRUE) 
+			if (!(lval is Boolean))
+				throw new SyntaxError("Illegal: " + lval.GetType().Name + " and ..., expected a Boolean");
+			IValue rval = lval;
+			if (((Boolean)lval).Value)
+			{
+				rval = right.interpret(context);
+				if (!(rval is Boolean))
+					throw new SyntaxError("Illegal: " + lval.GetType().Name + " and " + rval.GetType().Name);
+			}
+			if(rval==Boolean.TRUE) 
 				return true;
 			CodeWriter writer = new CodeWriter(test.Dialect, context);
 			this.ToDialect(writer);
 			String expected = writer.ToString();
-			String actual = lval.ToString() + operatorToDialect(test.Dialect) + rval.ToString();
+			String actual = lval + operatorToDialect(test.Dialect) + rval;
 			test.printAssertionFailed(context, expected, actual);
 			return false;
 		}
@@ -102,10 +107,10 @@ namespace prompto.expression
 		public void interpretQuery(Context context, IQueryBuilder builder)
 		{
 			if (!(left is IPredicateExpression))
-				throw new SyntaxError("Not a predicate: " + left.ToString());
+				throw new SyntaxError("Not a predicate: " + left);
 			((IPredicateExpression)left).interpretQuery(context, builder);
 			if (!(right is IPredicateExpression))
-				throw new SyntaxError("Not a predicate: " + right.ToString());
+				throw new SyntaxError("Not a predicate: " + right);
 			((IPredicateExpression)right).interpretQuery(context, builder);
 			builder.And();
 		}

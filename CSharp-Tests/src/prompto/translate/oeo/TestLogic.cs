@@ -26,6 +26,12 @@ namespace prompto.translate.oeo
 			compareResourceOEO("logic/orBoolean.poc");
 		}
 
+		[Test]
+		public void testRightSkipped()
+		{
+			compareResourceOEO("logic/rightSkipped.poc");
+		}
+
 	}
 }
 

@@ -26,6 +26,12 @@ namespace prompto.translate.eme
 			compareResourceEME("logic/orBoolean.pec");
 		}
 
+		[Test]
+		public void testRightSkipped()
+		{
+			compareResourceEME("logic/rightSkipped.pec");
+		}
+
 	}
 }
 

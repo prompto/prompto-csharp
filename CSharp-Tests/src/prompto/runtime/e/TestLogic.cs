@@ -39,6 +39,12 @@ namespace prompto.runtime.e
 			CheckOutput("logic/orBoolean.pec");
 		}
 
+		[Test]
+		public void testRightSkipped()
+		{
+			CheckOutput("logic/rightSkipped.pec");
+		}
+
 	}
 }
 
