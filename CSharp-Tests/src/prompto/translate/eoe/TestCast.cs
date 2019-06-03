@@ -87,9 +87,9 @@ namespace prompto.translate.eoe
 		}
 
 		[Test]
-		public void testNullisNotAText()
+		public void testNullIsNotAText()
 		{
-			compareResourceEOE("cast/nullisNotAText.pec");
+			compareResourceEOE("cast/nullIsNotAText.pec");
 		}
 
 	}

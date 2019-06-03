@@ -100,9 +100,9 @@ namespace prompto.runtime.e
 		}
 
 		[Test]
-		public void testNullisNotAText()
+		public void testNullIsNotAText()
 		{
-			CheckOutput("cast/nullisNotAText.pec");
+			CheckOutput("cast/nullIsNotAText.pec");
 		}
 
 	}
