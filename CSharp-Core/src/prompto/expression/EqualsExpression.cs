@@ -152,6 +152,8 @@ namespace prompto.expression
 		private bool isA(Context context, IValue lval, IValue rval) {
 			if(rval is TypeValue) {
 				IType actual = lval.GetIType();
+				if (actual == NullType.Instance)
+					return false;
 				IType toCheck = ((TypeValue)rval).GetValue();
 				return toCheck.isAssignableFrom(context, actual);
 			} else

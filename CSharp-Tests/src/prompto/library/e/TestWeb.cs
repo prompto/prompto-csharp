@@ -17,6 +17,7 @@ namespace prompto.library.e
 			Out.init();
 			coreContext = null;
 			LoadDependency("web");
+			LoadDependency("core");
 		}
 
 		[TearDown]

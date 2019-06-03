@@ -50,6 +50,12 @@ namespace prompto.translate.omo
 			compareResourceOMO("cast/isAText.poc");
 		}
 
+		[Test]
+		public void testNullIsNotAText()
+		{
+			compareResourceOMO("cast/nullIsNotAText.poc");
+		}
+
 	}
 }
 

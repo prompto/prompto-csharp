@@ -99,6 +99,12 @@ namespace prompto.runtime.e
 			CheckOutput("cast/isAText.pec");
 		}
 
+		[Test]
+		public void testNullisNotAText()
+		{
+			CheckOutput("cast/nullisNotAText.pec");
+		}
+
 	}
 }
 

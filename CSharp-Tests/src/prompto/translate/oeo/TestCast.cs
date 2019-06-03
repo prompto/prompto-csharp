@@ -50,6 +50,12 @@ namespace prompto.translate.oeo
 			compareResourceOEO("cast/isAText.poc");
 		}
 
+		[Test]
+		public void testNullIsNotAText()
+		{
+			compareResourceOEO("cast/nullIsNotAText.poc");
+		}
+
 	}
 }
 

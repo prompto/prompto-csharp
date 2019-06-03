@@ -86,6 +86,12 @@ namespace prompto.translate.eme
 			compareResourceEME("cast/isAText.pec");
 		}
 
+		[Test]
+		public void testNullisNotAText()
+		{
+			compareResourceEME("cast/nullisNotAText.pec");
+		}
+
 	}
 }
 

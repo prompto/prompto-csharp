@@ -63,6 +63,12 @@ namespace prompto.runtime.o
 			CheckOutput("cast/isAText.poc");
 		}
 
+		[Test]
+		public void testNullIsNotAText()
+		{
+			CheckOutput("cast/nullIsNotAText.poc");
+		}
+
 	}
 }
 
