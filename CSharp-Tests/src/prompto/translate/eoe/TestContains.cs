@@ -123,6 +123,12 @@ namespace prompto.translate.eoe
 		}
 
 		[Test]
+		public void testInTextEnum()
+		{
+			compareResourceEOE("contains/inTextEnum.pec");
+		}
+
+		[Test]
 		public void testInTimeRange()
 		{
 			compareResourceEOE("contains/inTimeRange.pec");

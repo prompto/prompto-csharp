@@ -112,6 +112,12 @@ namespace prompto.runtime.o
 		}
 
 		[Test]
+		public void testInTextEnum()
+		{
+			CheckOutput("contains/inTextEnum.poc");
+		}
+
+		[Test]
 		public void testInTimeRange()
 		{
 			CheckOutput("contains/inTimeRange.poc");

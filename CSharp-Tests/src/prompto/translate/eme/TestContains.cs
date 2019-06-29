@@ -123,6 +123,12 @@ namespace prompto.translate.eme
 		}
 
 		[Test]
+		public void testInTextEnum()
+		{
+			compareResourceEME("contains/inTextEnum.pec");
+		}
+
+		[Test]
 		public void testInTimeRange()
 		{
 			compareResourceEME("contains/inTimeRange.pec");
