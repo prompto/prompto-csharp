@@ -34,6 +34,8 @@ namespace prompto.expression
 					writer.append("fetch one ");
 					if (type != null)
 					{
+						if (type.Mutable)
+							writer.append("mutable ");
 						writer.append(type.GetTypeName().ToString());
 						writer.append(" ");
 					}
@@ -45,6 +47,8 @@ namespace prompto.expression
 					if (type != null)
 					{
 						writer.append("(");
+						if (type.Mutable)
+							writer.append("mutable ");
 						writer.append(type.GetTypeName().ToString());
 						writer.append(") ");
 					}
