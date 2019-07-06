@@ -374,7 +374,7 @@ namespace prompto.runtime
 				values[name] = value;
 		}
 
-		protected virtual Context contextForValue(String name)
+		public virtual Context contextForValue(String name)
 		{
 			// resolve upwards, since local names override global ones
 			INamed actual;
@@ -562,7 +562,7 @@ namespace prompto.runtime
 			return TypeUtils.downcast<T>(actual);
 		}
 
-		protected override Context contextForValue(String name)
+		public override Context contextForValue(String name)
 		{
 			// params and variables have precedence over members
 			// so first look in context values
@@ -626,7 +626,7 @@ namespace prompto.runtime
 			return this.document;
 		}
 
-		protected override Context contextForValue(String name)
+		public override Context contextForValue(String name)
 		{
 			// params and variables have precedence over members
 			// so first look in context values

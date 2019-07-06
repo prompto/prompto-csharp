@@ -95,8 +95,8 @@ namespace prompto.argument
 			type.ToDialect(writer);
 		}
 
-        override
-        public bool Equals(Object obj)
+        
+        override public bool Equals(Object obj)
         {
             if (obj == this)
                 return true;
@@ -109,11 +109,11 @@ namespace prompto.argument
 				&& ObjectUtils.AreEqual(this.GetName(), other.GetName());
         }
 
-        override
-        public void register(Context context)
+        
+        override public void register(Context context)
         {
-			INamed actual = context.getRegisteredValue<INamed>(name);
-            if (actual != null)
+			Context actual = context.contextForValue(name);
+            if (actual == context)
                 throw new SyntaxError("Duplicate argument: \"" + name + "\"");
             context.registerValue(this);
 			if (DefaultValue != null) {
