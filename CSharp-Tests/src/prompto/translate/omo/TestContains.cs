@@ -99,6 +99,12 @@ namespace prompto.translate.omo
 		}
 
 		[Test]
+		public void testInTextEnum()
+		{
+			compareResourceOMO("contains/inTextEnum.poc");
+		}
+
+		[Test]
 		public void testInTimeRange()
 		{
 			compareResourceOMO("contains/inTimeRange.poc");

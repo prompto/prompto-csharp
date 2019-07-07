@@ -29,6 +29,11 @@ namespace prompto.declaration
             return symbols;
         }
 
+		public NativeSymbol getSymbol(string name)
+		{
+			return (NativeSymbol)symbols.Find(s => name == ((NativeSymbol)s).GetName());
+		}
+
 		public void setSymbols(NativeSymbolList symbols)
 		{
 			this.symbols = symbols;

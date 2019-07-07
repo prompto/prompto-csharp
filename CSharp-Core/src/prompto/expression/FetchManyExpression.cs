@@ -62,7 +62,9 @@ namespace prompto.expression
 			writer.append("( ");
 			if (type != null)
 			{
-				writer.append(type.GetTypeName().ToString());
+				if (type.Mutable)
+					writer.append("mutable ");
+				writer.append(type.GetTypeName());
 				writer.append(" ");
 			}
 			writer.append(") ");
@@ -85,6 +87,8 @@ namespace prompto.expression
 			if (type != null)
 			{
 				writer.append("( ");
+				if (type.Mutable)
+					writer.append("mutable ");
 				writer.append(type.GetTypeName().ToString());
 				writer.append(" ) ");
 			}
@@ -115,6 +119,8 @@ namespace prompto.expression
 			if (type != null)
 			{
 				writer.append(" ");
+				if (type.Mutable)
+					writer.append("mutable ");
 				writer.append(type.GetTypeName());
 			}
 			if (first != null)
