@@ -2310,6 +2310,58 @@ public partial class EParserBaseListener : IEParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitAnnotation_identifier([NotNull] EParser.Annotation_identifierContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="EParser.annotation_argument"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterAnnotation_argument([NotNull] EParser.Annotation_argumentContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="EParser.annotation_argument"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitAnnotation_argument([NotNull] EParser.Annotation_argumentContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="EParser.annotation_argument_name"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterAnnotation_argument_name([NotNull] EParser.Annotation_argument_nameContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="EParser.annotation_argument_name"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitAnnotation_argument_name([NotNull] EParser.Annotation_argument_nameContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by the <c>AnnotationLiteralValue</c>
+	/// labeled alternative in <see cref="EParser.annotation_argument_value"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterAnnotationLiteralValue([NotNull] EParser.AnnotationLiteralValueContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by the <c>AnnotationLiteralValue</c>
+	/// labeled alternative in <see cref="EParser.annotation_argument_value"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitAnnotationLiteralValue([NotNull] EParser.AnnotationLiteralValueContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by the <c>AnnotationTypeValue</c>
+	/// labeled alternative in <see cref="EParser.annotation_argument_value"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterAnnotationTypeValue([NotNull] EParser.AnnotationTypeValueContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by the <c>AnnotationTypeValue</c>
+	/// labeled alternative in <see cref="EParser.annotation_argument_value"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitAnnotationTypeValue([NotNull] EParser.AnnotationTypeValueContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="EParser.resource_declaration"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>

@@ -2132,6 +2132,58 @@ public partial class OParserBaseListener : IOParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitAnnotation_identifier([NotNull] OParser.Annotation_identifierContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="OParser.annotation_argument"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterAnnotation_argument([NotNull] OParser.Annotation_argumentContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="OParser.annotation_argument"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitAnnotation_argument([NotNull] OParser.Annotation_argumentContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="OParser.annotation_argument_name"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterAnnotation_argument_name([NotNull] OParser.Annotation_argument_nameContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="OParser.annotation_argument_name"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitAnnotation_argument_name([NotNull] OParser.Annotation_argument_nameContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by the <c>AnnotationLiteralValue</c>
+	/// labeled alternative in <see cref="OParser.annotation_argument_value"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterAnnotationLiteralValue([NotNull] OParser.AnnotationLiteralValueContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by the <c>AnnotationLiteralValue</c>
+	/// labeled alternative in <see cref="OParser.annotation_argument_value"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitAnnotationLiteralValue([NotNull] OParser.AnnotationLiteralValueContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by the <c>AnnotationTypeValue</c>
+	/// labeled alternative in <see cref="OParser.annotation_argument_value"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterAnnotationTypeValue([NotNull] OParser.AnnotationTypeValueContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by the <c>AnnotationTypeValue</c>
+	/// labeled alternative in <see cref="OParser.annotation_argument_value"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitAnnotationTypeValue([NotNull] OParser.AnnotationTypeValueContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="OParser.resource_declaration"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>

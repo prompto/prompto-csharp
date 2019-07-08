@@ -9,6 +9,12 @@ namespace prompto.translate.oeo
 	{
 
 		[Test]
+		public void testWidgetField()
+		{
+			compareResourceOEO("annotations/WidgetField.poc");
+		}
+
+		[Test]
 		public void testCallback()
 		{
 			compareResourceOEO("annotations/callback.poc");

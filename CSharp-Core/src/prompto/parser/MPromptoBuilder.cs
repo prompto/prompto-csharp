@@ -2196,17 +2196,47 @@ namespace prompto.parser
 		public override void ExitAnnotation_constructor(MParser.Annotation_constructorContext ctx)
 		{
 			String name = GetNodeValue<String>(ctx.name);
+			DictEntryList args = new DictEntryList();
 			IExpression exp = GetNodeValue<IExpression>(ctx.exp);
-			SetNodeValue(ctx, new Annotation(name, exp));
+			if (exp != null)
+				args.add(new DictEntry(null, exp));
+			foreach (RuleContext argCtx in ctx.annotation_argument())
+			{
+				DictEntry arg = GetNodeValue<DictEntry>(argCtx);
+				args.add(arg);
+			}
+			SetNodeValue(ctx, new Annotation(name, args));
 		}
 
+		public override void ExitAnnotation_argument(MParser.Annotation_argumentContext ctx)
+		{
+			String name = GetNodeValue<String>(ctx.name);
+			IExpression exp = GetNodeValue<IExpression>(ctx.exp);
+			SetNodeValue(ctx, new DictEntry(new DictIdentifierKey(name), exp));
+		}
 
 		public override void ExitAnnotation_identifier(MParser.Annotation_identifierContext ctx)
 		{
-			String name = ctx.GetText();
-			SetNodeValue(ctx, name);
+			SetNodeValue(ctx, ctx.GetText());
 		}
 
+
+		public override void ExitAnnotation_argument_name(MParser.Annotation_argument_nameContext ctx)
+		{
+			SetNodeValue(ctx, ctx.GetText());
+		}
+
+		public override void ExitAnnotationLiteralValue(MParser.AnnotationLiteralValueContext ctx)
+		{
+			IExpression exp = GetNodeValue<IExpression>(ctx.exp);
+			SetNodeValue(ctx, exp);
+		}
+
+		public override void ExitAnnotationTypeValue(MParser.AnnotationTypeValueContext ctx)
+		{
+			IType type = GetNodeValue<IType>(ctx.typ);
+			SetNodeValue(ctx, new TypeExpression(type));
+		}
 
 		public override void ExitAndExpression(MParser.AndExpressionContext ctx)
 		{

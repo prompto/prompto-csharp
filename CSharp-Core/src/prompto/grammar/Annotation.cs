@@ -1,27 +1,38 @@
 ﻿using System;
 using prompto.expression;
+using prompto.literal;
 using prompto.utils;
 
 namespace prompto.grammar
 {
 	public class Annotation
 	{
-		IExpression expression;
 		string name;
+		DictEntryList arguments;
 
-		public Annotation(string name, IExpression expression)
+		public Annotation(string name, DictEntryList arguments)
 		{
 			this.name = name;
-           	this.expression = expression;
+           	this.arguments = arguments;
 		}
 
 		public void ToDialect(CodeWriter writer)
 		{
 			writer.append(name);
-			if (expression != null)
+			if (arguments != null && arguments.Count > 0)
 			{
 				writer.append("(");
-				expression.ToDialect(writer);
+				foreach (DictEntry entry in arguments)
+				{
+					if (entry.getKey() != null)
+					{
+						entry.getKey().ToDialect(writer);
+						writer.append(" = ");
+					}
+					entry.getValue().ToDialect(writer);
+					writer.append(", ");
+				}
+				writer.trimLast(", ".Length);
 				writer.append(")");
 			}
 			writer.newLine();

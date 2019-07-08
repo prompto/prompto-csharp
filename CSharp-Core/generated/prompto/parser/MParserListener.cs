@@ -1768,6 +1768,50 @@ public interface IMParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitAnnotation_identifier([NotNull] MParser.Annotation_identifierContext context);
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="MParser.annotation_argument"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterAnnotation_argument([NotNull] MParser.Annotation_argumentContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="MParser.annotation_argument"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitAnnotation_argument([NotNull] MParser.Annotation_argumentContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="MParser.annotation_argument_name"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterAnnotation_argument_name([NotNull] MParser.Annotation_argument_nameContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="MParser.annotation_argument_name"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitAnnotation_argument_name([NotNull] MParser.Annotation_argument_nameContext context);
+	/// <summary>
+	/// Enter a parse tree produced by the <c>AnnotationLiteralValue</c>
+	/// labeled alternative in <see cref="MParser.annotation_argument_value"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterAnnotationLiteralValue([NotNull] MParser.AnnotationLiteralValueContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>AnnotationLiteralValue</c>
+	/// labeled alternative in <see cref="MParser.annotation_argument_value"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitAnnotationLiteralValue([NotNull] MParser.AnnotationLiteralValueContext context);
+	/// <summary>
+	/// Enter a parse tree produced by the <c>AnnotationTypeValue</c>
+	/// labeled alternative in <see cref="MParser.annotation_argument_value"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterAnnotationTypeValue([NotNull] MParser.AnnotationTypeValueContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>AnnotationTypeValue</c>
+	/// labeled alternative in <see cref="MParser.annotation_argument_value"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitAnnotationTypeValue([NotNull] MParser.AnnotationTypeValueContext context);
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="MParser.resource_declaration"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>

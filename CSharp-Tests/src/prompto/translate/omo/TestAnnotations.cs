@@ -9,6 +9,12 @@ namespace prompto.translate.omo
 	{
 
 		[Test]
+		public void testWidgetField()
+		{
+			compareResourceOMO("annotations/WidgetField.poc");
+		}
+
+		[Test]
 		public void testCallback()
 		{
 			compareResourceOMO("annotations/callback.poc");
