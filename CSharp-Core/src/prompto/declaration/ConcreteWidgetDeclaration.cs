@@ -11,6 +11,10 @@ namespace prompto.declaration
 		{
 		}
 
+		public override bool IsAWidget(runtime.Context context)
+		{
+			return true;
+		}
 
 		protected override void categoryTypeToEDialect(CodeWriter writer)
 		{

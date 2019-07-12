@@ -149,6 +149,7 @@ namespace prompto.declaration
 		{
 			CategoryType type = (CategoryType)GetIType (writer.getContext ());
 			writer = writer.newInstanceWriter(type);
+			processAnnotations(writer.getContext(), true);
 			switch (writer.getDialect ()) {
 			case Dialect.E:
 				ToEDialect (writer);
@@ -161,6 +162,35 @@ namespace prompto.declaration
 				break;
 			}
 		}
+
+		protected void processAnnotations(Context context, bool processDerivedFrom)
+		{
+			if (processDerivedFrom)
+			{
+				IdentifierList derivedFrom = getDerivedFrom();
+				if (derivedFrom != null)
+				{
+					foreach (String name in derivedFrom)
+					{
+						CategoryDeclaration decl = context.getRegisteredDeclaration<CategoryDeclaration>(name);
+						decl.processAnnotations(context, true);
+					}
+				}
+				if (Annotations != null)
+				{
+					foreach (Annotation a in Annotations)
+					{
+						a.processCategory(context, this);
+					}
+				}
+			}
+		}
+
+
+		public virtual bool IsAWidget(Context context)
+		{
+			return false;
+		}	
 
 		protected abstract void ToEDialect (CodeWriter writer);
 

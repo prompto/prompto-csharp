@@ -84,10 +84,18 @@ namespace prompto.declaration
 			this.derivedFrom = derivedFrom;
 		}
 
-		override
-        public IdentifierList getDerivedFrom ()
+
+        public override IdentifierList getDerivedFrom ()
 		{
 			return derivedFrom;
+		}
+
+		public override bool IsAWidget(Context context)
+		{
+			if (derivedFrom == null || derivedFrom.Count != 1)
+				return false;
+			CategoryDeclaration parent = context.getRegisteredDeclaration<CategoryDeclaration>(derivedFrom[0]);
+			return parent.IsAWidget(context);
 		}
 
 		public void setMethods (MethodDeclarationList methods)
@@ -127,7 +135,10 @@ namespace prompto.declaration
 		{
 			if(this.Storable)
 				writer.append("storable ");
-			writer.append ("category");
+			if(this.IsAWidget(writer.getContext()))
+				writer.append("widget");
+			else
+				writer.append ("category");
 		}
 
 		protected override void categoryExtensionToODialect (CodeWriter writer)
@@ -240,6 +251,7 @@ namespace prompto.declaration
         public override IType check (Context context)
 		{
 			checkDerived (context);
+			processAnnotations(context, false);
 			checkMethods (context);
 			return base.check (context);
 		}

@@ -522,6 +522,8 @@
     <Compile Include="src\prompto\expression\ValueExpression.cs" />
     <Compile Include="src\prompto\expression\ArrowExpression.cs" />
     <Compile Include="src\prompto\runtime\NativeComparer.cs" />
+    <Compile Include="src\prompto\processor\AnnotationProcessor.cs" />
+    <Compile Include="src\prompto\processor\WidgetFieldProcessor.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -552,6 +554,7 @@
     <Folder Include="src\prompto\memstore\" />
     <Folder Include="src\prompto\jsx\" />
     <Folder Include="src\prompto\css\" />
+    <Folder Include="src\prompto\processor\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

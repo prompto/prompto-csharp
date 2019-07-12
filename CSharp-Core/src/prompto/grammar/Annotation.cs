@@ -1,6 +1,9 @@
 ﻿using System;
+using prompto.declaration;
 using prompto.expression;
 using prompto.literal;
+using prompto.processor;
+using prompto.runtime;
 using prompto.utils;
 
 namespace prompto.grammar
@@ -38,5 +41,26 @@ namespace prompto.grammar
 			writer.newLine();
 		}
 
+		public void processCategory(Context context, CategoryDeclaration declaration)
+		{
+			AnnotationProcessor processor = AnnotationProcessor.forName(name);
+			if (processor != null)
+				processor.processCategory(this, context, declaration);
+		}
+
+
+		public object GetArgument(string name)
+		{
+			if (arguments != null)
+			{
+				foreach (DictEntry argument in arguments)
+				{
+					string key = (string)argument.getKey().asText().GetStorableData();
+					if (key == name)
+						return argument.getValue();
+				}
+			}
+			return null;
+		}
 	}
 }

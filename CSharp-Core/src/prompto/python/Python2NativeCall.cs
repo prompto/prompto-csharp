@@ -1,4 +1,6 @@
-using prompto.utils;namespace prompto.python {
+using prompto.utils;
+
+namespace prompto.python {
 
     public class Python2NativeCall : PythonNativeCall
     {
