@@ -20,8 +20,16 @@ namespace prompto.declaration
         {
         }
 
-        override
-        protected IType fullCheck(Context context)
+        
+		protected override IType checkStatements(Context context)
+		{
+			if(returnType!=null)
+				return returnType;
+			else
+				return VoidType.Instance;
+		}
+    
+		protected override IType fullCheck(Context context)
         {
             if (context.isGlobalContext())
             {
@@ -34,8 +42,8 @@ namespace prompto.declaration
             return stmt.checkNative(context, returnType);
         }
 
-        override
-		public IValue interpret(Context context)
+        
+		public override IValue interpret(Context context)
         {
             context.enterMethod(this);
             try

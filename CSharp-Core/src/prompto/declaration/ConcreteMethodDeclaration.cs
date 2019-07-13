@@ -101,14 +101,8 @@ namespace prompto.declaration
             return statements;
         }
 
-		public virtual void check(ConcreteCategoryDeclaration declaration, Context context)
-		{
-			context = context.newInstanceContext((CategoryType)declaration.GetIType(context), false);
-	        checkChild(context);
-		}
-
-        override
-        public IType check(Context context)
+       
+        public override IType check(Context context)
         {
             if (canBeChecked(context))
                 return fullCheck(context);
@@ -123,6 +117,7 @@ namespace prompto.declaration
             else
                 return true;
         }
+
 		public override bool isTemplate()
         {
             // if at least one argument is 'Code'
@@ -136,8 +131,8 @@ namespace prompto.declaration
             return false;
         }
 
-        virtual
-        protected IType fullCheck(Context context)
+        
+        protected virtual IType fullCheck(Context context)
         {
             if (context.isGlobalContext())
             {
@@ -149,7 +144,7 @@ namespace prompto.declaration
 			return statements.check(context, returnType);
         }
 
-        public IType checkChild(Context context)
+        public override IType checkChild(Context context)
         {
             if (arguments != null)
                 arguments.check(context);
@@ -158,13 +153,13 @@ namespace prompto.declaration
 			return checkStatements(child);
         }
 
-		IType checkStatements(Context context)
+		protected virtual IType checkStatements(Context context)
 		{
  			return statements.check(context, returnType);
 		}
 
-		override
-		public IValue interpret(Context context)
+
+		public override IValue interpret(Context context)
         {
             context.enterMethod(this);
             try

@@ -23,9 +23,9 @@ namespace prompto.declaration
         bool isAbstract();
 		bool isTemplate();
 		bool isEligibleAsMain();
-		void check(CategoryDeclaration decl, Context context);
 		void setMemberOf (CategoryDeclaration declaration);
 		CategoryDeclaration getMemberOf ();
+		IType checkChild(Context context);
 	}
 }
 

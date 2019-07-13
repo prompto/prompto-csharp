@@ -86,12 +86,10 @@ namespace prompto.runtime
 			return calling;
 		}
 
-		public InstanceContext getClosestInstanceContext()
+		public virtual InstanceContext getClosestInstanceContext()
 		{
 			if (parent == null)
 				return null;
-			else if (parent is InstanceContext)
-					return (InstanceContext)parent;
 			else
 				return parent.getClosestInstanceContext();
 		}
@@ -509,6 +507,11 @@ namespace prompto.runtime
 			this.type = type;
 		}
 
+		public override InstanceContext getClosestInstanceContext()
+		{
+			return this;
+		}
+	
 		public IInstance getInstance()
 		{
 			return instance;
