@@ -11,7 +11,7 @@ using System.Text;
 namespace prompto.value
 {
 
-	public class IterableValue : BaseValue, IIterable, IEnumerable<IValue>, IEnumerator<IValue>
+	public class IterableValue : BaseValue, IIterable, IFilterable, IEnumerable<IValue>, IEnumerator<IValue>
 	{
 
 		IType itemType;
@@ -119,8 +119,16 @@ namespace prompto.value
 				return base.GetMember(context, name, autoCreate);
 		}
 
-
-
+		public IFilterable Filter(Predicate<IValue> filter)
+		{
+			List<IValue> items = new List<IValue>();
+			foreach (IValue item in this)
+			{
+				if (filter.Invoke(item))
+					items.Add(item);
+			}
+			return new ListValue(itemType, items);
+		}
 	}
 
 }

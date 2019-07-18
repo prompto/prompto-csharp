@@ -22,6 +22,12 @@ namespace prompto.runtime.o
 		}
 
 		[Test]
+		public void testFilterFromIterable()
+		{
+			CheckOutput("filter/filterFromIterable.poc");
+		}
+
+		[Test]
 		public void testFilterFromList()
 		{
 			CheckOutput("filter/filterFromList.poc");

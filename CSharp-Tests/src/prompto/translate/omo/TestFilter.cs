@@ -9,6 +9,12 @@ namespace prompto.translate.omo
 	{
 
 		[Test]
+		public void testFilterFromIterable()
+		{
+			compareResourceOMO("filter/filterFromIterable.poc");
+		}
+
+		[Test]
 		public void testFilterFromList()
 		{
 			compareResourceOMO("filter/filterFromList.poc");
