@@ -250,8 +250,9 @@ namespace prompto.declaration
 
         public override IType check (Context context)
 		{
+			context = context.newInstanceContext((CategoryType)GetIType(context), false);
 			checkDerived (context);
-			processAnnotations(context, false);
+			processAnnotations(context, true);
 			checkMethods (context);
 			return base.check (context);
 		}
@@ -260,7 +261,7 @@ namespace prompto.declaration
 		{
 			registerMethods (context);
 			foreach (IMethodDeclaration method in methods) {
-				method.check (this, context);
+				method.checkChild (context);
 			}
 		}
 

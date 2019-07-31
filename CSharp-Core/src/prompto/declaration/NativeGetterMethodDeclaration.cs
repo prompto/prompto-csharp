@@ -50,5 +50,10 @@ namespace prompto.declaration
 			return null;
 		}
 
+		public override type.IType checkChild(Context context)
+		{
+			return check(context);
+		}
+
 	}
 }

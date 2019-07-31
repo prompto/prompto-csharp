@@ -185,8 +185,11 @@ namespace prompto.declaration
             return Specificity.INCOMPATIBLE;
         }
 
-		public void check(CategoryDeclaration declaration, Context context)
+		public virtual IType checkChild(Context context)
 		{
+			if(arguments!=null)
+				arguments.check(context);
+			return returnType;
 		}
 
 		public virtual IValue interpret(Context context)

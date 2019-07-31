@@ -47,16 +47,11 @@ namespace prompto.declaration
 			writer.dedent();
 		}	
         
-		public override void check(ConcreteCategoryDeclaration category, Context context)
-        {
-            // TODO Auto-generated method stub
-
-        }
-
+	
 		public override IType check(Context context)
         {
-            // TODO Auto-generated method stub
-            return null;
+			AttributeDeclaration decl = context.getRegisteredDeclaration<AttributeDeclaration>(name);
+			return decl.getIType();
         }
 
 

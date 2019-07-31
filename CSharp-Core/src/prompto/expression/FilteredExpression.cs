@@ -80,9 +80,9 @@ namespace prompto.expression
 		public IType check(Context context)
 		{
 			IType sourceType = source.check(context);
-			if (!(sourceType is ContainerType))
-				throw new SyntaxError("Expecting a list type as data source !");
-			IType itemType = ((ContainerType)sourceType).GetItemType();
+			if (!(sourceType is IterableType))
+				throw new SyntaxError("Expecting an iterable type as data source !");
+			IType itemType = ((IterableType)sourceType).GetItemType();
 			if (itemName != null)
 			{
 				Context child = context.newChildContext();
@@ -103,9 +103,9 @@ namespace prompto.expression
 		public IValue interpret(Context context)
 		{
 			IType sourceType = source.check(context);
-			if (!(sourceType is ContainerType))
+			if (!(sourceType is IterableType))
 				throw new InternalError("Illegal source type: " + sourceType.GetTypeName());
-			IType itemType = ((ContainerType)sourceType).GetItemType();
+			IType itemType = ((IterableType)sourceType).GetItemType();
 			IValue value = source.interpret(context);
 			if (value == null)
 				throw new NullReferenceError();

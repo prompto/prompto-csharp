@@ -10,6 +10,11 @@ namespace prompto.declaration
 		{
 		}
 
+		public override type.IType checkChild(runtime.Context context)
+		{
+			return check(context);
+		}
+
 	}
 
 }

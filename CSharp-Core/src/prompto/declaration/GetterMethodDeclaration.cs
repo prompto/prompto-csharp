@@ -20,18 +20,11 @@ namespace prompto.declaration
         {
         }
 
-        override
-        public void check(ConcreteCategoryDeclaration category, Context context)
+        
+        public override IType check(Context context)
         {
-            // TODO Auto-generated method stub
-
-        }
-
-        override
-        public IType check(Context context)
-        {
-            // TODO Auto-generated method stub
-            return null;
+			AttributeDeclaration decl = context.getRegisteredDeclaration<AttributeDeclaration>(name);
+			return decl.getIType();
         }
 
 		protected override void ToODialect(CodeWriter writer) {

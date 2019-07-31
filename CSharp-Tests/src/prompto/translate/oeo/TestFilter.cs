@@ -9,6 +9,12 @@ namespace prompto.translate.oeo
 	{
 
 		[Test]
+		public void testFilterFromIterable()
+		{
+			compareResourceOEO("filter/filterFromIterable.poc");
+		}
+
+		[Test]
 		public void testFilterFromList()
 		{
 			compareResourceOEO("filter/filterFromList.poc");
