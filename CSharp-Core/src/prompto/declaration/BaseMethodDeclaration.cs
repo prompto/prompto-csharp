@@ -6,8 +6,7 @@ using prompto.error;
 using prompto.grammar;
 using prompto.type;
 using prompto.value;
-using prompto.utils;
-using prompto.argument;
+using prompto.param;
 
 
 namespace prompto.declaration
@@ -16,61 +15,63 @@ namespace prompto.declaration
     public abstract class BaseMethodDeclaration : BaseDeclaration, IMethodDeclaration
     {
 
-		CategoryDeclaration memberOf;
-		IMethodDeclaration closureOf;
-		protected ArgumentList arguments;
-		protected IType returnType;
+        CategoryDeclaration memberOf;
+        IMethodDeclaration closureOf;
+        protected ParameterList parameters;
+        protected IType returnType;
 
-        public BaseMethodDeclaration(String name, ArgumentList arguments)
+        public BaseMethodDeclaration(String name, ParameterList parameters)
             : base(name)
         {
-            this.arguments = arguments != null ? arguments : new ArgumentList();
+            this.parameters = parameters != null ? parameters : new ParameterList();
             this.returnType = null;
         }
 
-        public BaseMethodDeclaration(String name, ArgumentList arguments, IType returnType)
+        public BaseMethodDeclaration(String name, ParameterList parameters, IType returnType)
             : base(name)
         {
-            this.arguments = arguments != null ? arguments : new ArgumentList();
+            this.parameters = parameters != null ? parameters : new ParameterList();
             this.returnType = returnType;
         }
 
-		public void setMemberOf(CategoryDeclaration declaration) {
-			this.memberOf = declaration;
-		}
+        public void setMemberOf(CategoryDeclaration declaration)
+        {
+            this.memberOf = declaration;
+        }
 
-		public CategoryDeclaration getMemberOf() {
-			return memberOf;
-		}
+        public CategoryDeclaration getMemberOf()
+        {
+            return memberOf;
+        }
 
-		public new IMethodDeclaration ClosureOf
-		{
-			set
-			{
-				this.closureOf = value;
-			}
-			get
-			{
-				return closureOf;
-			}
-		}
+        public new IMethodDeclaration ClosureOf
+        {
+            set
+            {
+                this.closureOf = value;
+            }
+            get
+            {
+                return closureOf;
+            }
+        }
 
 
-		public IType getReturnType()
+        public IType getReturnType()
         {
             return this.returnType;
         }
 
         public String getSignature(Dialect dialect)
         {
-			StringBuilder sb = new StringBuilder(GetName());
+            StringBuilder sb = new StringBuilder(GetName());
             sb.Append('(');
-            foreach (IArgument arg in arguments)
+            foreach (IParameter arg in parameters)
             {
                 sb.Append(arg.getSignature(dialect));
                 sb.Append(", ");
             }
-            if (arguments.Count > 0)
+            if (parameters.Count > 0)
                 sb.Length = sb.Length - 2; // strip ", "
             sb.Append(')');
             return ToString();
@@ -79,13 +80,13 @@ namespace prompto.declaration
         override
         public String ToString()
         {
-			return GetName() + ":(" + arguments.ToString() + ')';
+            return GetName() + ":(" + parameters.ToString() + ')';
         }
 
         public String getProto()
         {
             StringBuilder sb = new StringBuilder();
-            foreach (IArgument arg in arguments)
+            foreach (IParameter arg in parameters)
             {
                 if (sb.Length > 0)
                     sb.Append('/');
@@ -94,9 +95,9 @@ namespace prompto.declaration
             return sb.ToString();
         }
 
-        public ArgumentList getArguments()
+        public ParameterList getParameters()
         {
-            return arguments;
+            return parameters;
         }
 
         override
@@ -105,10 +106,10 @@ namespace prompto.declaration
             context.registerDeclaration(this);
         }
 
-        public void registerArguments(Context context)
+        public void registerParameters(Context context)
         {
-            if (arguments != null)
-                arguments.register(context);
+            if (parameters != null)
+                parameters.register(context);
         }
 
         override
@@ -124,50 +125,50 @@ namespace prompto.declaration
             }
         }
 
-        public bool isAssignableTo(Context context, ArgumentAssignmentList assignments, bool useInstance)
+        public bool isAssignableTo(Context context, ArgumentList arguments, bool useInstance)
         {
             try
             {
                 Context local = context.newLocalContext();
-                registerArguments(local);
-                ArgumentAssignmentList assignmentsList = new ArgumentAssignmentList(assignments);
-                foreach (IArgument argument in arguments)
+                registerParameters(local);
+                ArgumentList argumentsList = new ArgumentList(arguments);
+                foreach (IParameter parameter in parameters)
                 {
-                    ArgumentAssignment assignment = assignmentsList.find(argument.GetName());
-					if (assignment == null)
-					{
-						if(argument.DefaultValue!=null)
-							assignment = new ArgumentAssignment(argument, argument.DefaultValue);
-					}
-                    if (assignment == null) // missing argument
+                    Argument argument = argumentsList.find(parameter.GetName());
+                    if (argument == null)
+                    {
+                        if (parameter.DefaultValue != null)
+                            argument = new Argument(parameter, parameter.DefaultValue);
+                    }
+                    if (argument == null) // missing argument
                         return false;
-                    assignmentsList.Remove(assignment);
-					if (!isAssignableTo(local, argument, assignment, useInstance))
+                    argumentsList.Remove(argument);
+                    if (!isAssignableTo(local, parameter, argument, useInstance))
                         return false;
                 }
-                return assignmentsList.Count == 0;
+                return argumentsList.Count == 0;
             }
-            catch (SyntaxError )
+            catch (SyntaxError)
             {
                 return false;
             }
         }
 
-		bool isAssignableTo(Context context, IArgument argument, ArgumentAssignment assignment, bool useInstance)
+        bool isAssignableTo(Context context, IParameter parameter, Argument argument, bool useInstance)
         {
-			return computeSpecificity(context, argument, assignment, useInstance) != Specificity.INCOMPATIBLE;
+            return computeSpecificity(context, parameter, argument, useInstance) != Specificity.INCOMPATIBLE;
         }
 
-		public Specificity? computeSpecificity(Context context, IArgument argument, ArgumentAssignment assignment, bool useInstance)
+        public Specificity? computeSpecificity(Context context, IParameter parameter, Argument argument, bool useInstance)
         {
             try
             {
-                IType required = argument.GetIType(context);
-                IType actual = assignment.getExpression().check(context);
+                IType required = parameter.GetIType(context);
+                IType actual = argument.getExpression().check(context);
                 // retrieve actual runtime type
-				if (useInstance && actual is CategoryType)
+                if (useInstance && actual is CategoryType)
                 {
-                    Object value = assignment.getExpression().interpret((Context)context.getCallingContext());
+                    Object value = argument.getExpression().interpret((Context)context.getCallingContext());
                     if (value is IInstance)
                         actual = ((IInstance)value).getType();
                 }
@@ -175,24 +176,24 @@ namespace prompto.declaration
                     return Specificity.EXACT;
                 if (required.isAssignableFrom(context, actual))
                     return Specificity.INHERITED;
-				actual = assignment.resolve(context, this, useInstance).check(context);
+                actual = argument.resolve(context, this, useInstance).check(context);
                 if (required.isAssignableFrom(context, actual))
                     return Specificity.RESOLVED;
             }
-            catch (PromptoError )
+            catch (PromptoError)
             {
             }
             return Specificity.INCOMPATIBLE;
         }
 
-		public virtual IType checkChild(Context context)
-		{
-			if(arguments!=null)
-				arguments.check(context);
-			return returnType;
-		}
+        public virtual IType checkChild(Context context)
+        {
+            if (parameters != null)
+                parameters.check(context);
+            return returnType;
+        }
 
-		public virtual IValue interpret(Context context)
+        public virtual IValue interpret(Context context)
         {
             throw new InternalError("Should never get there!");
         }
@@ -202,15 +203,15 @@ namespace prompto.declaration
             return false;
         }
 
-		public virtual bool isTemplate()
-		{
-			return false;
-		}
+        public virtual bool isTemplate()
+        {
+            return false;
+        }
 
-		public virtual bool isEligibleAsMain()
-		{
-			return false;
-		}
+        public virtual bool isEligibleAsMain()
+        {
+            return false;
+        }
     }
 }
 

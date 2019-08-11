@@ -15,14 +15,14 @@ namespace prompto.expression
     public class CategorySymbol : Symbol, IExpression
     {
 
-        ArgumentAssignmentList assignments;
+        ArgumentList arguments;
         EnumeratedCategoryType type;
 		IInstance instance;
 
-        public CategorySymbol(String name, ArgumentAssignmentList assignments)
+        public CategorySymbol(String name, ArgumentList arguments)
             : base(name)
         {
-            this.assignments = assignments;
+            this.arguments = arguments;
         }
 
 		public override void SetIType(IType type)
@@ -41,22 +41,22 @@ namespace prompto.expression
             return type;
         }
 
-        public void setAssignments(ArgumentAssignmentList assignments)
+        public void setArguments(ArgumentList arguments)
         {
-            this.assignments = assignments;
+            this.arguments = arguments;
         }
 
-        public ArgumentAssignmentList getAssignments()
+        public ArgumentList getArguments()
         {
-            return assignments;
+            return arguments;
         }
 
         
         public override String ToString()
         {
             StringBuilder sb = new StringBuilder();
-            if (assignments != null)
-                sb.Append(assignments.ToString());
+            if (arguments != null)
+                sb.Append(arguments.ToString());
             if (sb.Length == 0)
 				sb.Append(type.GetTypeName());
             return sb.ToString();
@@ -66,7 +66,7 @@ namespace prompto.expression
 		public override void ToDialect(CodeWriter writer) {
 			writer.append(symbol);
 			writer.append(" ");
-			assignments.ToDialect(writer);
+			arguments.ToDialect(writer);
 		}
 
         
@@ -75,14 +75,14 @@ namespace prompto.expression
 			EnumeratedCategoryDeclaration cd = context.getRegisteredDeclaration<EnumeratedCategoryDeclaration>(type.GetTypeName());
             if (cd == null)
 				throw new SyntaxError("Unknown category " + type.GetTypeName());
-            if (assignments != null)
+            if (arguments != null)
             {
 				context = context.newLocalContext ();
-                foreach (ArgumentAssignment assignment in assignments)
+                foreach (Argument argument in arguments)
                 {
-					if (!cd.hasAttribute(context, assignment.GetName()))
-						throw new SyntaxError("\"" + assignment.GetName() + "\" is not an attribute of " + type.GetTypeName());
-                    assignment.check(context);
+					if (!cd.hasAttribute(context, argument.GetName()))
+						throw new SyntaxError("\"" + argument.GetName() + "\" is not an attribute of " + type.GetTypeName());
+                    argument.check(context);
                 }
             }
             return type;
@@ -101,13 +101,13 @@ namespace prompto.expression
 			{
 				IInstance _instance = type.newInstance(context);
 				_instance.setMutable(true);
-				if (assignments != null)
+				if (arguments != null)
 				{
 					context = context.newLocalContext();
-					foreach (ArgumentAssignment assignment in assignments)
+					foreach (Argument argument in arguments)
 					{
-						IValue val = assignment.getExpression().interpret(context);
-						_instance.SetMember(context, assignment.GetName(), val);
+						IValue val = argument.getExpression().interpret(context);
+						_instance.SetMember(context, argument.GetName(), val);
 					}
 				}
 				_instance.SetMember(context, "name", new Text(this.GetName()));

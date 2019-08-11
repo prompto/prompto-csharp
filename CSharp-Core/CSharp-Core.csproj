@@ -99,8 +99,7 @@
     <Compile Include="src\prompto\python\PythonStatement.cs" />
     <Compile Include="src\prompto\python\PythonTextLiteral.cs" />
     <Compile Include="src\prompto\type\AnyType.cs" />
-    <Compile Include="src\prompto\grammar\ArgumentAssignment.cs" />
-    <Compile Include="src\prompto\grammar\ArgumentAssignmentList.cs" />
+    <Compile Include="src\prompto\grammar\Argument.cs" />
     <Compile Include="src\prompto\grammar\ArgumentList.cs" />
     <Compile Include="src\prompto\statement\AssignInstanceStatement.cs" />
     <Compile Include="src\prompto\statement\AssignTupleStatement.cs" />
@@ -405,16 +404,16 @@
     <Compile Include="src\prompto\type\IterableType.cs" />
     <Compile Include="src\prompto\value\IIterable.cs" />
     <Compile Include="src\prompto\javascript\JavaScriptNewExpression.cs" />
-    <Compile Include="src\prompto\argument\AttributeArgument.cs" />
-    <Compile Include="src\prompto\argument\BaseArgument.cs" />
-    <Compile Include="src\prompto\argument\CategoryArgument.cs" />
-    <Compile Include="src\prompto\argument\CodeArgument.cs" />
-    <Compile Include="src\prompto\argument\IArgument.cs" />
-    <Compile Include="src\prompto\argument\INamedArgument.cs" />
-    <Compile Include="src\prompto\argument\MethodArgument.cs" />
-    <Compile Include="src\prompto\argument\UnresolvedArgument.cs" />
-    <Compile Include="src\prompto\argument\ITypedArgument.cs" />
-    <Compile Include="src\prompto\argument\ExtendedArgument.cs" />
+    <Compile Include="src\prompto\param\AttributeParameter.cs" />
+    <Compile Include="src\prompto\param\BaseParameter.cs" />
+    <Compile Include="src\prompto\param\CategoryParameter.cs" />
+    <Compile Include="src\prompto\param\CodeParameter.cs" />
+    <Compile Include="src\prompto\param\IParameter.cs" />
+    <Compile Include="src\prompto\param\INamedParameter.cs" />
+    <Compile Include="src\prompto\param\MethodParameter.cs" />
+    <Compile Include="src\prompto\param\UnresolvedParameter.cs" />
+    <Compile Include="src\prompto\param\ITypedParameter.cs" />
+    <Compile Include="src\prompto\param\ExtendedParameter.cs" />
     <Compile Include="src\prompto\statement\DeclarationStatement.cs" />
     <Compile Include="src\prompto\declaration\NativeGetterMethodDeclaration.cs" />
     <Compile Include="src\prompto\declaration\NativeSetterMethodDeclaration.cs" />
@@ -524,17 +523,20 @@
     <Compile Include="src\prompto\runtime\NativeComparer.cs" />
     <Compile Include="src\prompto\processor\AnnotationProcessor.cs" />
     <Compile Include="src\prompto\processor\WidgetFieldProcessor.cs" />
+    <Compile Include="src\prompto\param\ParameterList.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="ICSharpCode.SharpZipLib" />
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Antlr4.Runtime.Standard">
       <HintPath>..\packages\Antlr4.Runtime.Standard.4.7.1.1\lib\net35\Antlr4.Runtime.Standard.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib">
+      <HintPath>..\packages\ICSharpCode.SharpZipLib.Patched.0.86.5.1\lib\net20\ICSharpCode.SharpZipLib.dll</HintPath>
     </Reference>
   </ItemGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
@@ -548,7 +550,7 @@
     <Folder Include="generated\prompto\parser\" />
     <Folder Include="src\prompto\javascript\" />
     <Folder Include="src\prompto\store\" />
-    <Folder Include="src\prompto\argument\" />
+    <Folder Include="src\prompto\param\" />
     <Folder Include="src\prompto\instance\" />
     <Folder Include="src\prompto\constraint\" />
     <Folder Include="src\prompto\memstore\" />

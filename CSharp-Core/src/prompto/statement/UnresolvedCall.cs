@@ -1,6 +1,5 @@
 using prompto.expression;
 using System;
-using prompto.parser;
 using prompto.type;
 using prompto.runtime;
 using prompto.declaration;
@@ -19,17 +18,17 @@ namespace prompto.statement
 
 		protected IExpression resolved;
 		protected IExpression caller;
-		protected ArgumentAssignmentList assignments;
+		protected ArgumentList arguments;
 
 		public UnresolvedCall(UnresolvedCall call)
-			: this(call.caller, call.assignments)
+			: this(call.caller, call.arguments)
 		{
 		}
 
-		public UnresolvedCall(IExpression caller, ArgumentAssignmentList assignments)
+		public UnresolvedCall(IExpression caller, ArgumentList arguments)
 		{
 			this.caller = caller;
-			this.assignments = assignments;
+			this.arguments = arguments;
 		}
 
 		public override bool IsSimple
@@ -52,9 +51,9 @@ namespace prompto.statement
 			this.caller = caller;
 		}
 
-		public ArgumentAssignmentList getAssignments()
+		public ArgumentList getArguments()
 		{
-			return assignments;
+			return arguments;
 		}
 
 
@@ -68,8 +67,8 @@ namespace prompto.statement
 			catch (SyntaxError /*e*/)
 			{
 				caller.ToDialect(writer);
-				if (assignments != null)
-					assignments.ToDialect(writer);
+				if (arguments != null)
+					arguments.ToDialect(writer);
 			}
 		}
 
@@ -122,7 +121,7 @@ namespace prompto.statement
 		private IExpression resolveUnresolvedSelector(Context context)
 		{
 			UnresolvedSelector selector = (UnresolvedSelector)caller;
-			selector.resolveMethod(context, assignments);
+			selector.resolveMethod(context, arguments);
 			return selector.getResolved();
 		}
 
@@ -137,7 +136,7 @@ namespace prompto.statement
 			{
 				decl = resolveUnresolvedMember(instance, name);
 				if (decl != null)
-					call = new MethodCall(new MethodSelector(name), assignments);
+					call = new MethodCall(new MethodSelector(name), arguments);
 			}
 			if (call == null)
 			{
@@ -147,7 +146,7 @@ namespace prompto.statement
 					IType type = named.GetIType(context);
 					if (type is MethodType)
 					{
-						call = new MethodCall(new MethodSelector(name), assignments);
+						call = new MethodCall(new MethodSelector(name), arguments);
 						((MethodCall)call).setVariableName(name);
 					}
 				}
@@ -158,9 +157,9 @@ namespace prompto.statement
 				if (decl == null)
 					throw new SyntaxError("Unknown name:" + name);
 				if (decl is CategoryDeclaration)
-					return new ConstructorExpression(new CategoryType(name), null, assignments, false);
+					return new ConstructorExpression(new CategoryType(name), null, arguments, false);
 				else
-					return new MethodCall(new MethodSelector(name), assignments);
+					return new MethodCall(new MethodSelector(name), arguments);
 			}
 			return call;
 		}
@@ -179,7 +178,7 @@ namespace prompto.statement
 		{
 			IExpression parent = ((MemberSelector)caller).getParent();
 			String name = ((MemberSelector)caller).getName();
-			return new MethodCall(new MethodSelector(parent, name), assignments);
+			return new MethodCall(new MethodSelector(parent, name), arguments);
 		}
 
 		public void setParent(IExpression parent)

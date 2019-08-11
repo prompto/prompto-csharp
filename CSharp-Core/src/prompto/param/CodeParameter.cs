@@ -6,13 +6,13 @@ using prompto.error;
 using prompto.type;
 using prompto.grammar;
 
-namespace prompto.argument
+namespace prompto.param
 {
 
-    public class CodeArgument : BaseArgument, ITypedArgument
+    public class CodeParameter : BaseParameter, ITypedParameter
     {
 
-        public CodeArgument(String name)
+        public CodeParameter(String name)
             : base(name)
         {
         }
@@ -49,9 +49,9 @@ namespace prompto.argument
                 return true;
             if (obj == null)
                 return false;
-            if (!(obj is CodeArgument))
+            if (!(obj is CodeParameter))
                 return false;
-            CodeArgument other = (CodeArgument)obj;
+            CodeParameter other = (CodeParameter)obj;
 			return ObjectUtils.AreEqual(this.GetName(), other.GetName());
         }
 

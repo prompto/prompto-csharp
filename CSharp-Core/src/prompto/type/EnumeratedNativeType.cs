@@ -6,7 +6,7 @@ using prompto.value;
 using prompto.error;
 using prompto.store;
 using System.Collections.Generic;
-using prompto.argument;
+using prompto.param;
 
 namespace prompto.type
 {
@@ -113,7 +113,7 @@ namespace prompto.type
 	class NativeSymbolOfMethodDeclaration : BuiltInMethodDeclaration
 	{
 
-		internal static IArgument NAME_ARGUMENT = new CategoryArgument(TextType.Instance, "name");
+		internal static IParameter NAME_ARGUMENT = new CategoryParameter(TextType.Instance, "name");
 
 		EnumeratedNativeType type;
 

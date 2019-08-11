@@ -8,7 +8,7 @@ using prompto.type;
 using prompto.declaration;
 using prompto.value;
 using prompto.utils;
-using prompto.argument;
+using prompto.param;
 
 
 namespace prompto.statement
@@ -115,7 +115,7 @@ namespace prompto.statement
         {
             // since we support implicit members, it's time to resolve them
             IExpression expression = getExpression();
-            IArgument argument = methodDeclaration.getArguments().find(name);
+            IParameter argument = methodDeclaration.getParameters().find(name);
             IType required = argument.GetIType(context);
             IType actual = expression.check((Context)context.getCallingContext());
             if (checkInstance && actual is CategoryType)

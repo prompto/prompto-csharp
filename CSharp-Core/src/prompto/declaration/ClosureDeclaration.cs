@@ -1,5 +1,3 @@
-using prompto.grammar;
-using System;
 using prompto.runtime;
 using prompto.value;
 
@@ -13,7 +11,7 @@ namespace prompto.declaration
 		ClosureValue method;
 
 		public ClosureDeclaration(ClosureValue method)
-			: base(method.getName(),method.getArguments(),method.getReturnType())
+			: base(method.getName(),method.getParameters(),method.getReturnType())
 		{
 			this.method = method;
 		}

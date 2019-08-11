@@ -11,7 +11,7 @@ using prompto.literal;
 using prompto.type;
 using Antlr4.Runtime;
 using Antlr4.Runtime.Tree;
-using prompto.argument;
+using prompto.param;
 
 namespace prompto.parser.e {
 
@@ -44,7 +44,7 @@ namespace prompto.parser.e {
 		    walker.Walk(builder, tree);
             CSharpStatement statement = builder.GetNodeValue<CSharpStatement>(tree);
             Context context = Context.newGlobalContext();
-            IArgument arg = new CategoryArgument(TextType.Instance, "value");
+            IParameter arg = new CategoryParameter(TextType.Instance, "value");
             arg.register(context);
             context.setValue("value", new prompto.value.Text("test")); // StringLiteral trims enclosing quotes
             Object result = statement.interpret(context, null);

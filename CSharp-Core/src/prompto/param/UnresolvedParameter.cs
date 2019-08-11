@@ -9,15 +9,15 @@ using prompto.expression;
 using prompto.value;
 using prompto.grammar;
 
-namespace prompto.argument
+namespace prompto.param
 {
 
-    public class UnresolvedArgument : BaseArgument, INamedArgument, IDialectElement
+    public class UnresolvedParameter : BaseParameter, INamedParameter, IDialectElement
     {
 
-        INamedArgument resolved = null;
+        INamedParameter resolved = null;
 
-        public UnresolvedArgument(String name)
+        public UnresolvedParameter(String name)
 			: base(name)
         {
         }
@@ -70,9 +70,9 @@ namespace prompto.argument
                 return;
             IDeclaration named = context.getRegisteredDeclaration<IDeclaration>(name);
             if (named is AttributeDeclaration)
-                resolved = new AttributeArgument(name);
+                resolved = new AttributeParameter(name);
             else if (named is MethodDeclarationMap)
-                resolved = new MethodArgument(name);
+                resolved = new MethodParameter(name);
             else
                 throw new SyntaxError("Unknown identifier:" + name);
         }

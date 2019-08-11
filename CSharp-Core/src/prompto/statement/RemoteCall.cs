@@ -23,8 +23,8 @@ namespace prompto.statement {
 			this.andThen = andThen;
 		}
 
-		public RemoteCall(IExpression caller, ArgumentAssignmentList assignments, String resultName, StatementList andThen)
-			: base(caller, assignments)
+		public RemoteCall(IExpression caller, ArgumentList arguments, String resultName, StatementList andThen)
+			: base(caller, arguments)
 		{
 			this.resultName = resultName;
 			this.andThen = andThen;

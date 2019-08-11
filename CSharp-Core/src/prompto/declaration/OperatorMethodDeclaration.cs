@@ -5,7 +5,7 @@ using prompto.expression;
 using prompto.statement;
 using prompto.runtime;
 using prompto.utils;
-using prompto.argument;
+using prompto.param;
 
 namespace prompto.declaration
 {
@@ -14,8 +14,8 @@ namespace prompto.declaration
 
 		Operator oper;
 
-		public OperatorMethodDeclaration(Operator oper, IArgument arg, IType returnType, StatementList stmts)
-			: base("operator_" + oper.ToString(), new ArgumentList(arg), returnType, stmts)
+		public OperatorMethodDeclaration(Operator oper, IParameter arg, IType returnType, StatementList stmts)
+			: base("operator_" + oper.ToString(), new ParameterList(arg), returnType, stmts)
 		{
 			this.oper = oper;
 		}
@@ -25,7 +25,7 @@ namespace prompto.declaration
 			writer.append("def operator ");
 			writer.append(Enums.OperatorToString(oper));
 			writer.append(" (");
-			arguments.ToDialect(writer);
+			parameters.ToDialect(writer);
 			writer.append(")");
 			if(returnType!=null && returnType!=VoidType.Instance) {
 				writer.append("->");
@@ -41,7 +41,7 @@ namespace prompto.declaration
 			writer.append("define ");
 			writer.append(Enums.OperatorToString(oper));
 			writer.append(" as operator ");
-			arguments.ToDialect(writer);
+			parameters.ToDialect(writer);
 			if(returnType!=null && returnType!=VoidType.Instance) {
 				writer.append("returning ");
 				returnType.ToDialect(writer);
@@ -61,7 +61,7 @@ namespace prompto.declaration
 			writer.append("operator ");
 			writer.append(Enums.OperatorToString(oper));
 			writer.append(" (");
-			arguments.ToDialect(writer);
+			parameters.ToDialect(writer);
 			writer.append(") {\n");
 			writer.indent();
 			statements.ToDialect(writer);

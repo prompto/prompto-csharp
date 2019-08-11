@@ -9,10 +9,11 @@ using prompto.expression;
 using prompto.statement;
 using prompto.type;
 using prompto.literal;
-using prompto.argument;
+using prompto.param;
 
 
-namespace prompto.runtime {
+namespace prompto.runtime
+{
 
 
     public class Interpreter
@@ -24,19 +25,22 @@ namespace prompto.runtime {
         {
         }
 
-		public static void InterpretTests(Context context) {
-			foreach(TestMethodDeclaration test in context.getTests()) {
-				Context local = context.newLocalContext();
-				test.interpret(local);
-			}
+        public static void InterpretTests(Context context)
+        {
+            foreach (TestMethodDeclaration test in context.getTests())
+            {
+                Context local = context.newLocalContext();
+                test.interpret(local);
+            }
 
-		}
+        }
 
-		public static void InterpretTest(Context context, String testName) {
-			TestMethodDeclaration test = context.getTest(testName);
-			Context local = context.newLocalContext();
-			test.interpret(local);
-		}
+        public static void InterpretTest(Context context, String testName)
+        {
+            TestMethodDeclaration test = context.getTest(testName);
+            Context local = context.newLocalContext();
+            test.interpret(local);
+        }
 
         public static void InterpretMainNoArgs(Context context)
         {
@@ -48,8 +52,8 @@ namespace prompto.runtime {
             try
             {
                 IMethodDeclaration method = locateMethod(context, methodName, cmdLineArgs);
-                ArgumentAssignmentList assignments = buildAssignments(method, cmdLineArgs);
-                MethodCall call = new MethodCall(new MethodSelector(methodName), assignments);
+                ArgumentList arguments = buildArguments(method, cmdLineArgs);
+                MethodCall call = new MethodCall(new MethodSelector(methodName), arguments);
                 call.interpret(context);
             }
             finally
@@ -58,32 +62,32 @@ namespace prompto.runtime {
             }
         }
 
-        private static ArgumentAssignmentList buildAssignments(IMethodDeclaration method, String cmdLineArgs)
+        private static ArgumentList buildArguments(IMethodDeclaration method, String cmdLineArgs)
         {
-            ArgumentAssignmentList assignments = new ArgumentAssignmentList();
-            if (method.getArguments().Count == 1)
+            ArgumentList arguments = new ArgumentList();
+            if (method.getParameters().Count == 1)
             {
-                String name = method.getArguments()[0].GetName();
+                String name = method.getParameters()[0].GetName();
                 IExpression value = parseCmdLineArgs(cmdLineArgs);
-                assignments.Add(new ArgumentAssignment(new UnresolvedArgument(name), value));
+                arguments.Add(new Argument(new UnresolvedParameter(name), value));
             }
-            return assignments;
+            return arguments;
         }
 
         private static IExpression parseCmdLineArgs(String cmdLineArgs)
         {
             try
             {
-				Dictionary<String, String> args = CmdLineParser.parse(cmdLineArgs);
-				Dictionary<Text, IValue> valueArgs = new Dictionary<Text, IValue>();
-				foreach (String key in args.Keys)
-				{
-					valueArgs[new Text(key)] = new Text(args[key]);
-				}
-				Dict dict = new Dict(TextType.Instance, false, valueArgs);
-				return new ValueExpression(argsType, dict);
+                Dictionary<String, String> args = CmdLineParser.parse(cmdLineArgs);
+                Dictionary<Text, IValue> valueArgs = new Dictionary<Text, IValue>();
+                foreach (String key in args.Keys)
+                {
+                    valueArgs[new Text(key)] = new Text(args[key]);
+                }
+                Dict dict = new Dict(TextType.Instance, false, valueArgs);
+                return new ValueExpression(argsType, dict);
             }
-            catch (Exception )
+            catch (Exception)
             {
                 // TODO
                 return new DictLiteral(false);
@@ -100,52 +104,56 @@ namespace prompto.runtime {
 
         private static IMethodDeclaration locateMethod(MethodDeclarationMap map, String cmdLineArgs)
         {
-            if(cmdLineArgs==null)
+            if (cmdLineArgs == null)
                 return locateMethod(map);
             else
-                return locateMethod(map, new DictType(TextType.Instance)); 
+                return locateMethod(map, new DictType(TextType.Instance));
         }
 
-        private static IMethodDeclaration locateMethod(MethodDeclarationMap map, params IType[] argTypes) {
-           // try exact match first
-           foreach(IMethodDeclaration method in map.Values) {
-               if(identicalArguments(method.getArguments(), argTypes))
-                   return method;
-           }
-           // match Text{} argument, will pass null 
-           if(argTypes.Length==0) foreach(IMethodDeclaration method in map.Values) {
-               if(isSingleTextDictArgument(method.getArguments()))
-                   return method;
-           }
-           // match no argument, will ignore options
-           foreach(IMethodDeclaration method in map.Values) {
-               if(method.getArguments().Count==0)
-                   return method;
-           }
-			throw new SyntaxError("Could not find a compatible \"" + map.GetName() + "\" method.");
-       } 
+        private static IMethodDeclaration locateMethod(MethodDeclarationMap map, params IType[] argTypes)
+        {
+            // try exact match first
+            foreach (IMethodDeclaration method in map.Values)
+            {
+                if (identicalArguments(method.getParameters(), argTypes))
+                    return method;
+            }
+            // match Text{} argument, will pass null 
+            if (argTypes.Length == 0) foreach (IMethodDeclaration method in map.Values)
+                {
+                    if (isSingleTextDictArgument(method.getParameters()))
+                        return method;
+                }
+            // match no argument, will ignore options
+            foreach (IMethodDeclaration method in map.Values)
+            {
+                if (method.getParameters().Count == 0)
+                    return method;
+            }
+            throw new SyntaxError("Could not find a compatible \"" + map.GetName() + "\" method.");
+        }
 
-        private static bool isSingleTextDictArgument(ArgumentList arguments)
+        private static bool isSingleTextDictArgument(ParameterList arguments)
         {
             if (arguments.Count != 1)
                 return false;
-            IArgument arg = arguments[0];
-            if (!(arg is ITypedArgument))
+            IParameter arg = arguments[0];
+            if (!(arg is ITypedParameter))
                 return false;
-            return ((ITypedArgument)arg).getType().Equals(argsType);
+            return ((ITypedParameter)arg).getType().Equals(argsType);
         }
 
-        private static bool identicalArguments(ArgumentList arguments, IType[] argTypes)
+        private static bool identicalArguments(ParameterList arguments, IType[] argTypes)
         {
             if (arguments.Count != argTypes.Length)
                 return false;
             int idx = 0;
-            foreach (IArgument argument in arguments)
+            foreach (IParameter argument in arguments)
             {
-                if (!(argument is ITypedArgument))
+                if (!(argument is ITypedParameter))
                     return false;
                 IType argType = argTypes[idx++];
-                if (!argType.Equals(((ITypedArgument)argument).getType()))
+                if (!argType.Equals(((ITypedParameter)argument).getType()))
                     return false;
             }
             return true;

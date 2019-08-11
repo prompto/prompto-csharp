@@ -1,7 +1,6 @@
 ﻿
-using prompto.argument;
+using prompto.param;
 using prompto.error;
-using prompto.grammar;
 using prompto.runtime;
 using prompto.value;
 
@@ -16,8 +15,8 @@ namespace prompto.declaration
 
 		}
 
-		public BuiltInMethodDeclaration(string name, params IArgument[] arguments)
-			: base(name, new ArgumentList(arguments))
+		public BuiltInMethodDeclaration(string name, params IParameter[] parameters)
+			: base(name, new ParameterList(parameters))
 		{
 
 		}

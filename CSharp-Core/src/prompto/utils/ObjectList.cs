@@ -13,8 +13,8 @@ namespace prompto.utils
 		{
 		}
 
-		public ObjectList (ObjectList<T> assignments)
-			: base (assignments)
+		public ObjectList (ObjectList<T> items)
+			: base (items)
 		{
 		}
 

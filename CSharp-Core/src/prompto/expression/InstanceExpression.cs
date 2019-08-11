@@ -7,7 +7,7 @@ using prompto.grammar;
 using prompto.declaration;
 using prompto.utils;
 using prompto.value;
-using prompto.argument;
+using prompto.param;
 using System.Collections.Generic;
 
 namespace prompto.expression
@@ -66,7 +66,7 @@ namespace prompto.expression
                 return named.GetIType(context);
 			else if(named is LinkedVariable) // local variable
 				return named.GetIType(context);
-           else if (named is IArgument) // named argument
+           else if (named is IParameter) // named argument
                 return named.GetIType(context);
             else if (named is CategoryDeclaration) // any p with x
                 return named.GetIType(context);

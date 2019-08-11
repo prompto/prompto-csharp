@@ -94,10 +94,10 @@ namespace prompto.expression
 			return resolved;
 		}
 
-		public void resolveMethod(Context context, ArgumentAssignmentList assignments)
+		public void resolveMethod(Context context, ArgumentList arguments)
 		{
 			if (resolved == null)
-				resolved = tryResolveMethod(context, assignments);
+				resolved = tryResolveMethod(context, arguments);
 		}
 
 
@@ -115,7 +115,7 @@ namespace prompto.expression
 			}
 		}
 
-		private IExpression tryResolveMethod(Context context, ArgumentAssignmentList assignments)
+		private IExpression tryResolveMethod(Context context, ArgumentList arguments)
 		{
 			try
 			{
@@ -125,7 +125,7 @@ namespace prompto.expression
 					((UnresolvedIdentifier)resolvedParent).checkMember(context);
 					resolvedParent = ((UnresolvedIdentifier)resolvedParent).getResolved();
 				}
-				IExpression method = new UnresolvedCall(new MethodSelector(resolvedParent, name), assignments);
+				IExpression method = new UnresolvedCall(new MethodSelector(resolvedParent, name), arguments);
 				method.check(context);
 				return method;
 			}

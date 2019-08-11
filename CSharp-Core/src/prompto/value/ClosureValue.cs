@@ -2,7 +2,7 @@
 using prompto.runtime;
 using prompto.type;
 using System;
-using prompto.grammar;
+using prompto.param;
 
 namespace prompto.value
 {
@@ -41,9 +41,9 @@ namespace prompto.value
 			return Method.GetName ();
 		}
 
-		public ArgumentList getArguments ()
+		public ParameterList getParameters ()
 		{
-			return Method.getArguments ();
+			return Method.getParameters ();
 		}
 
 		public IType getReturnType ()

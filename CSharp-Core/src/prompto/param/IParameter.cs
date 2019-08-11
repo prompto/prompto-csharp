@@ -6,10 +6,10 @@ using prompto.value;
 using prompto.grammar;
 
 
-namespace prompto.argument
+namespace prompto.param
 {
 
-    public interface IArgument : INamed, IDialectElement
+    public interface IParameter : INamed, IDialectElement
     {
 
         String getProto();

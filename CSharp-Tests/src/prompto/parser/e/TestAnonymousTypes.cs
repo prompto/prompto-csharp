@@ -4,7 +4,7 @@ using prompto.grammar;
 using prompto.declaration;
 using prompto.runtime;
 using prompto.type;
-using prompto.argument;
+using prompto.param;
 
 
 namespace prompto.parser.e
@@ -17,7 +17,7 @@ namespace prompto.parser.e
         [SetUp]
         public void register()
         {
-			context = Context.newGlobalContext();
+            context = Context.newGlobalContext();
             DeclarationList stmts = parseString("define id as Integer attribute\r\n" +
                     "define name as String attribute\r\n" +
                     "define other as String attribute\r\n" +
@@ -32,7 +32,7 @@ namespace prompto.parser.e
         public void testAnonymousAnyType()
         {
             // any x
-            IArgument argument = new CategoryArgument(AnyType.Instance, "x");
+            IParameter argument = new CategoryParameter(AnyType.Instance, "x");
             argument.register(context);
             IType st = argument.GetIType(context);
             Assert.IsTrue(st is AnyType);
@@ -42,7 +42,7 @@ namespace prompto.parser.e
             Assert.IsTrue(st.isAssignableFrom(context, TextType.Instance));
             Assert.IsTrue(st.isAssignableFrom(context, DateType.Instance));
             Assert.IsTrue(st.isAssignableFrom(context, DateTimeType.Instance));
-            Assert.IsTrue(st.isAssignableFrom(context, MissingType.Instance)); 
+            Assert.IsTrue(st.isAssignableFrom(context, MissingType.Instance));
             Assert.IsTrue(st.isAssignableFrom(context, AnyType.Instance));
             Assert.IsTrue(st.isAssignableFrom(context, new CategoryType("Simple")));
             Assert.IsTrue(st.isAssignableFrom(context, new CategoryType("Root")));
@@ -55,7 +55,7 @@ namespace prompto.parser.e
         {
             // any x with attribute name
             IdentifierList list = new IdentifierList("name");
-			IArgument argument = new ExtendedArgument(AnyType.Instance, "x", list);
+            IParameter argument = new ExtendedParameter(AnyType.Instance, "x", list);
             argument.register(context);
             IType st = argument.GetIType(context);
             Assert.IsTrue(st is CategoryType);
@@ -65,7 +65,7 @@ namespace prompto.parser.e
             Assert.IsFalse(st.isAssignableFrom(context, TextType.Instance));
             Assert.IsFalse(st.isAssignableFrom(context, DateType.Instance));
             Assert.IsFalse(st.isAssignableFrom(context, DateTimeType.Instance));
-            Assert.IsFalse(st.isAssignableFrom(context, MissingType.Instance)); 
+            Assert.IsFalse(st.isAssignableFrom(context, MissingType.Instance));
             Assert.IsFalse(st.isAssignableFrom(context, AnyType.Instance)); // any type never compatible
             Assert.IsTrue(st.isAssignableFrom(context, new CategoryType("Simple"))); // since Simple has a name
             Assert.IsFalse(st.isAssignableFrom(context, new CategoryType("Root"))); // since Root has no name
@@ -77,7 +77,7 @@ namespace prompto.parser.e
         public void testAnonymousCategoryType()
         {
             // Root x
-            IArgument argument = new CategoryArgument(new CategoryType("Root"), "x");
+            IParameter argument = new CategoryParameter(new CategoryType("Root"), "x");
             argument.register(context);
             IType st = argument.GetIType(context);
             Assert.IsTrue(st is CategoryType);
@@ -87,7 +87,7 @@ namespace prompto.parser.e
             Assert.IsFalse(st.isAssignableFrom(context, TextType.Instance));
             Assert.IsFalse(st.isAssignableFrom(context, DateType.Instance));
             Assert.IsFalse(st.isAssignableFrom(context, DateTimeType.Instance));
-            Assert.IsFalse(st.isAssignableFrom(context, MissingType.Instance)); 
+            Assert.IsFalse(st.isAssignableFrom(context, MissingType.Instance));
             Assert.IsFalse(st.isAssignableFrom(context, AnyType.Instance)); // any type never compatible
             Assert.IsFalse(st.isAssignableFrom(context, new CategoryType("Simple")));  // since Simple does not extend Root
             Assert.IsTrue(st.isAssignableFrom(context, new CategoryType("Root"))); // since Root is Root
@@ -100,7 +100,7 @@ namespace prompto.parser.e
         {
             // Root x with attribute name
             IdentifierList list = new IdentifierList("name");
-			IArgument argument = new ExtendedArgument(new CategoryType("Root"), "test", list);
+            IParameter argument = new ExtendedParameter(new CategoryType("Root"), "test", list);
             argument.register(context);
             IType st = argument.GetIType(context);
             Assert.IsTrue(st is CategoryType);
@@ -110,7 +110,7 @@ namespace prompto.parser.e
             Assert.IsFalse(st.isAssignableFrom(context, TextType.Instance));
             Assert.IsFalse(st.isAssignableFrom(context, DateType.Instance));
             Assert.IsFalse(st.isAssignableFrom(context, DateTimeType.Instance));
-            Assert.IsFalse(st.isAssignableFrom(context, MissingType.Instance)); 
+            Assert.IsFalse(st.isAssignableFrom(context, MissingType.Instance));
             Assert.IsFalse(st.isAssignableFrom(context, AnyType.Instance)); // any type never compatible
             Assert.IsFalse(st.isAssignableFrom(context, new CategoryType("Simple")));  // since Simple does not extend Root
             Assert.IsFalse(st.isAssignableFrom(context, new CategoryType("Root"))); // since Root has no name

@@ -7,16 +7,16 @@ using prompto.utils;
 using prompto.expression;
 using prompto.value;
 
-namespace prompto.argument
+namespace prompto.param
 {
 
-    public abstract class BaseArgument : IArgument
+    public abstract class BaseParameter : IParameter
     {
 
         protected String name;
 		protected bool mutable;
 
-        protected BaseArgument(String name)
+        protected BaseParameter(String name)
         {
             this.name = name;
         }

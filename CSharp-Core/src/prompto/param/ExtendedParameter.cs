@@ -7,18 +7,18 @@ using prompto.error;
 using prompto.declaration;
 using prompto.value;
 
-namespace prompto.argument
+namespace prompto.param
 {
-	public class ExtendedArgument : CategoryArgument
+	public class ExtendedParameter : CategoryParameter
 	{
 		IdentifierList attributes;
 
-		public ExtendedArgument (IType type, String name)
+		public ExtendedParameter (IType type, String name)
 			: base (type, name)
 		{
 		}
 
-		public ExtendedArgument (IType type, String name, IdentifierList attributes)
+		public ExtendedParameter (IType type, String name, IdentifierList attributes)
 			: base (type, name)
 		{
 			this.attributes = attributes;
@@ -92,9 +92,9 @@ namespace prompto.argument
 				return true;
 			if (obj == null)
 				return false;
-			if (!(obj is ExtendedArgument))
+			if (!(obj is ExtendedParameter))
 				return false;
-			ExtendedArgument other = (ExtendedArgument)obj;
+			ExtendedParameter other = (ExtendedParameter)obj;
 			return ObjectUtils.AreEqual(this.getType(), other.getType())
 				&& ObjectUtils.AreEqual(this.GetName(), other.GetName())
 				&& ObjectUtils.AreEqual(this.getAttributes(), other.getAttributes());

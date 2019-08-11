@@ -4,7 +4,7 @@ using System;
 using prompto.grammar;
 using prompto.type;
 using prompto.value;
-using prompto.argument;
+using prompto.param;
 
 namespace prompto.declaration
 {
@@ -14,12 +14,12 @@ namespace prompto.declaration
 
 		String getProto();
 		IType getReturnType();
-        ArgumentList getArguments();
+        ParameterList getParameters();
         String getSignature(Dialect dialect);
-        Specificity? computeSpecificity(Context context, IArgument argument, ArgumentAssignment assignment, bool checkInstance);
+        Specificity? computeSpecificity(Context context, IParameter parameter, Argument argument, bool checkInstance);
 		IValue interpret(Context local);
-        bool isAssignableTo(Context context, ArgumentAssignmentList assignments, bool useInstance);
-        void registerArguments(Context local);
+        bool isAssignableTo(Context context, ArgumentList arguments, bool useInstance);
+        void registerParameters(Context local);
         bool isAbstract();
 		bool isTemplate();
 		bool isEligibleAsMain();

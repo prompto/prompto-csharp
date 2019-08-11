@@ -13,7 +13,7 @@ using Antlr4.Runtime;
 using Antlr4.Runtime.Tree;
 using prompto.utils;
 using prompto.runtime;
-using prompto.argument;
+using prompto.param;
 using prompto.instance;
 
 namespace prompto.parser
@@ -28,13 +28,13 @@ namespace prompto.parser
         {
             String statement = "(1,\"John\",'12:12:12')";
             ETestParser parser = new ETestParser(statement, false);
-			TupleLiteral literal = parser.parse_tuple_literal();
-			Assert.IsNotNull(literal);
-			ExpressionList list = ((TupleLiteral)literal).Expressions;
+            TupleLiteral literal = parser.parse_tuple_literal();
+            Assert.IsNotNull(literal);
+            ExpressionList list = ((TupleLiteral)literal).Expressions;
             Assert.AreEqual("1", list[0].ToString());
-			Assert.AreEqual("\"John\"", list[1].ToString());
-			Assert.AreEqual("'12:12:12'", list[2].ToString());
-			Assert.AreEqual("1, \"John\", '12:12:12'", list.ToString());
+            Assert.AreEqual("\"John\"", list[1].ToString());
+            Assert.AreEqual("'12:12:12'", list[2].ToString());
+            Assert.AreEqual("1, \"John\", '12:12:12'", list.ToString());
         }
 
         [Test]
@@ -46,7 +46,7 @@ namespace prompto.parser
             Assert.IsNotNull(rl);
             Assert.AreEqual("1", rl.getFirst().ToString());
             Assert.AreEqual("100", rl.getLast().ToString());
-			Assert.AreEqual("[1..100]", generate(rl));
+            Assert.AreEqual("[1..100]", generate(rl));
         }
 
         [Test]
@@ -67,8 +67,8 @@ namespace prompto.parser
             ETestParser parser = new ETestParser(statement, false);
             AttributeDeclaration ad = parser.parse_attribute_declaration();
             Assert.IsNotNull(ad);
-			Assert.AreEqual("id", ad.GetName());
-			Assert.AreEqual("Integer[]", ad.getIType().GetTypeName());
+            Assert.AreEqual("id", ad.GetName());
+            Assert.AreEqual("Integer[]", ad.getIType().GetTypeName());
         }
 
         [Test]
@@ -78,7 +78,7 @@ namespace prompto.parser
             ETestParser parser = new ETestParser(statement, false);
             CategoryDeclaration cd = parser.parse_category_declaration();
             Assert.IsNotNull(cd);
-			Assert.AreEqual("Person", cd.GetName());
+            Assert.AreEqual("Person", cd.GetName());
             Assert.IsNull(cd.getDerivedFrom());
             Assert.IsNotNull(cd.getAttributes());
             Assert.IsTrue(cd.getAttributes().Contains("id"));
@@ -91,7 +91,7 @@ namespace prompto.parser
             ETestParser parser = new ETestParser(statement, false);
             CategoryDeclaration cd = parser.parse_category_declaration();
             Assert.IsNotNull(cd);
-			Assert.AreEqual("Person", cd.GetName());
+            Assert.AreEqual("Person", cd.GetName());
             Assert.IsNull(cd.getDerivedFrom());
             Assert.IsNotNull(cd.getAttributes());
             Assert.IsTrue(cd.getAttributes().Contains("id"));
@@ -105,7 +105,7 @@ namespace prompto.parser
             ETestParser parser = new ETestParser(statement, false);
             CategoryDeclaration cd = parser.parse_category_declaration();
             Assert.IsNotNull(cd);
-			Assert.AreEqual("Employee", cd.GetName());
+            Assert.AreEqual("Employee", cd.GetName());
             Assert.IsNotNull(cd.getDerivedFrom());
             Assert.IsTrue(cd.getDerivedFrom().Contains("Person"));
             Assert.IsNotNull(cd.getAttributes());
@@ -119,7 +119,7 @@ namespace prompto.parser
             ETestParser parser = new ETestParser(statement, false);
             CategoryDeclaration cd = parser.parse_category_declaration();
             Assert.IsNotNull(cd);
-			Assert.AreEqual("Entrepreneur", cd.GetName());
+            Assert.AreEqual("Entrepreneur", cd.GetName());
             Assert.IsNotNull(cd.getDerivedFrom());
             Assert.IsTrue(cd.getDerivedFrom().Contains("Person"));
             Assert.IsTrue(cd.getDerivedFrom().Contains("Company"));
@@ -145,9 +145,9 @@ namespace prompto.parser
         {
             String statement = "Person p";
             ETestParser parser = new ETestParser(statement, false);
-            ITypedArgument a = parser.parse_typed_argument();
+            ITypedParameter a = parser.parse_typed_argument();
             Assert.IsNotNull(a);
-			Assert.AreEqual("Person", a.getType().GetTypeName());
+            Assert.AreEqual("Person", a.getType().GetTypeName());
             Assert.AreEqual("p", a.GetName());
         }
 
@@ -156,7 +156,7 @@ namespace prompto.parser
         {
             String statement = "Person p";
             ETestParser parser = new ETestParser(statement, false);
-            ArgumentList l = parser.parse_argument_list();
+            ParameterList l = parser.parse_argument_list();
             Assert.IsNotNull(l);
             Assert.AreEqual(1, l.Count);
         }
@@ -166,7 +166,7 @@ namespace prompto.parser
         {
             String statement = "Person p, Employee e";
             ETestParser parser = new ETestParser(statement, false);
-            ArgumentList l = parser.parse_argument_list();
+            ParameterList l = parser.parse_argument_list();
             Assert.IsNotNull(l);
             Assert.AreEqual(2, l.Count);
         }
@@ -176,7 +176,7 @@ namespace prompto.parser
         {
             String statement = "Person p and Employee e";
             ETestParser parser = new ETestParser(statement, false);
-            ArgumentList l = parser.parse_argument_list();
+            ParameterList l = parser.parse_argument_list();
             Assert.IsNotNull(l);
             Assert.AreEqual(2, l.Count);
         }
@@ -195,11 +195,11 @@ namespace prompto.parser
         {
             String statement = "p.name as value";
             ETestParser parser = new ETestParser(statement, false);
-            ArgumentAssignment ars = parser.parse_argument_assignment();
-			Assert.AreEqual("value", ars.GetName());
+            Argument ars = parser.parse_argument_assignment();
+            Assert.AreEqual("value", ars.GetName());
             IExpression exp = ars.getExpression();
             Assert.IsNotNull(exp);
-			Assert.AreEqual("p.name as value", generate(ars));
+            Assert.AreEqual("p.name as value", generate(ars));
         }
 
         [Test]
@@ -207,11 +207,11 @@ namespace prompto.parser
         {
             String statement = "\"person\" + p.name as value";
             ETestParser parser = new ETestParser(statement, false);
-            ArgumentAssignment ars = parser.parse_argument_assignment();
-			Assert.AreEqual("value", ars.GetName());
+            Argument ars = parser.parse_argument_assignment();
+            Assert.AreEqual("value", ars.GetName());
             IExpression exp = ars.getExpression();
             Assert.IsTrue(exp is PlusExpression);
-			Assert.AreEqual("\"person\" + p.name as value", generate(ars));
+            Assert.AreEqual("\"person\" + p.name as value", generate(ars));
         }
 
         [Test]
@@ -219,12 +219,12 @@ namespace prompto.parser
         {
             String statement = "with \"person\" + p.name as value";
             ETestParser parser = new ETestParser(statement, false);
-            ArgumentAssignmentList ls = parser.parse_argument_assignment_list();
-            ArgumentAssignment ars = ls[0];
-			Assert.AreEqual("value", ars.GetName());
+            ArgumentList ls = parser.parse_argument_assignment_list();
+            Argument ars = ls[0];
+            Assert.AreEqual("value", ars.GetName());
             IExpression exp = ars.getExpression();
             Assert.IsTrue(exp is PlusExpression);
-			Assert.AreEqual("\"person\" + p.name as value", generate(ars));
+            Assert.AreEqual("\"person\" + p.name as value", generate(ars));
 
         }
 
@@ -236,12 +236,12 @@ namespace prompto.parser
             UnresolvedCall mc = parser.parse_method_call();
             Assert.IsNotNull(mc);
             Assert.AreEqual("print", mc.getCaller().ToString());
-            Assert.IsNotNull(mc.getAssignments());
-            ArgumentAssignment ars = mc.getAssignments()[0];
-			Assert.AreEqual("value", ars.GetName());
+            Assert.IsNotNull(mc.getArguments());
+            Argument ars = mc.getArguments()[0];
+            Assert.AreEqual("value", ars.GetName());
             IExpression exp = ars.getExpression();
             Assert.IsTrue(exp is PlusExpression);
-			Assert.AreEqual("print with \"person\" + p.name as value", generate(mc));
+            Assert.AreEqual("print with \"person\" + p.name as value", generate(mc));
 
         }
 
@@ -253,9 +253,9 @@ namespace prompto.parser
             ETestParser parser = new ETestParser(statement, false);
             ConcreteMethodDeclaration ad = parser.parse_concrete_method_declaration();
             Assert.IsNotNull(ad);
-			Assert.AreEqual("printName", ad.GetName());
-            Assert.IsNotNull(ad.getArguments());
-            Assert.IsTrue(ad.getArguments().Contains(new CategoryArgument(new CategoryType("Person"), "p")));
+            Assert.AreEqual("printName", ad.GetName());
+            Assert.IsNotNull(ad.getParameters());
+            Assert.IsTrue(ad.getParameters().Contains(new CategoryParameter(new CategoryType("Person"), "p")));
             Assert.IsNotNull(ad.getStatements());
             Assert.AreEqual("print with \"person\" + p.name as value", generate(ad.getStatements()[0]));
 
@@ -269,12 +269,12 @@ namespace prompto.parser
             ETestParser parser = new ETestParser(statement, false);
             ConcreteMethodDeclaration ad = parser.parse_concrete_method_declaration();
             Assert.IsNotNull(ad);
-			Assert.AreEqual("printName", ad.GetName());
-            Assert.IsNotNull(ad.getArguments());
-			IArgument expected = new ExtendedArgument(new CategoryType("Object"), "o", new IdentifierList("name"));
-            Assert.IsTrue(ad.getArguments().Contains(expected));
+            Assert.AreEqual("printName", ad.GetName());
+            Assert.IsNotNull(ad.getParameters());
+            IParameter expected = new ExtendedParameter(new CategoryType("Object"), "o", new IdentifierList("name"));
+            Assert.IsTrue(ad.getParameters().Contains(expected));
             Assert.IsNotNull(ad.getStatements());
-			Assert.AreEqual("print with \"object\" + o.name as value", generate(ad.getStatements()[0]));
+            Assert.AreEqual("print with \"object\" + o.name as value", generate(ad.getStatements()[0]));
 
         }
 
@@ -286,10 +286,10 @@ namespace prompto.parser
             ETestParser parser = new ETestParser(statement, false);
             ConcreteMethodDeclaration ad = parser.parse_concrete_method_declaration();
             Assert.IsNotNull(ad);
-			Assert.AreEqual("printName", ad.GetName());
-            Assert.IsNotNull(ad.getArguments());
-            IArgument expected = new CategoryArgument(new ListType(new CategoryType("Option")), "options");
-            Assert.IsTrue(ad.getArguments().Contains(expected));
+            Assert.AreEqual("printName", ad.GetName());
+            Assert.IsNotNull(ad.getParameters());
+            IParameter expected = new CategoryParameter(new ListType(new CategoryType("Option")), "options");
+            Assert.IsTrue(ad.getParameters().Contains(expected));
             Assert.IsNotNull(ad.getStatements());
             Assert.AreEqual("print with \"array\" + args as value", generate(ad.getStatements()[0]));
 
@@ -320,18 +320,18 @@ namespace prompto.parser
             ETestParser parser = new ETestParser(statement, false);
             ConstructorExpression c = parser.parse_constructor_expression();
             Assert.IsNotNull(c);
-            ArgumentAssignmentList l = c.getAssignments();
+            ArgumentList l = c.getArguments();
             Assert.IsNotNull(l);
             Assert.AreEqual(2, l.Count);
-            ArgumentAssignment a = l[0];
+            Argument a = l[0];
             Assert.IsNotNull(a);
-			Assert.AreEqual("id", a.GetName());
+            Assert.AreEqual("id", a.GetName());
             IExpression e = a.getExpression();
             Assert.IsNotNull(e);
             Assert.IsTrue(e is IntegerLiteral);
             a = l[1];
             Assert.IsNotNull(a);
-			Assert.AreEqual("name", a.GetName());
+            Assert.AreEqual("name", a.GetName());
             e = a.getExpression();
             Assert.IsNotNull(e);
             Assert.IsTrue(e is TextLiteral);
@@ -344,18 +344,18 @@ namespace prompto.parser
             ETestParser parser = new ETestParser(statement, false);
             ConstructorExpression c = parser.parse_constructor_expression();
             Assert.IsNotNull(c);
-            ArgumentAssignmentList l = c.getAssignments();
+            ArgumentList l = c.getArguments();
             Assert.IsNotNull(l);
             Assert.AreEqual(2, l.Count);
-            ArgumentAssignment a = l[0];
+            Argument a = l[0];
             Assert.IsNotNull(a);
-			Assert.AreEqual("id", a.GetName());
+            Assert.AreEqual("id", a.GetName());
             IExpression e = a.getExpression();
             Assert.IsNotNull(e);
             Assert.IsTrue(e is IntegerLiteral);
             a = l[1];
             Assert.IsNotNull(a);
-			Assert.AreEqual("name", a.GetName());
+            Assert.AreEqual("name", a.GetName());
             e = a.getExpression();
             Assert.IsNotNull(e);
             Assert.IsTrue(e is TextLiteral);
@@ -431,7 +431,7 @@ namespace prompto.parser
             IExpression literal = parser.parse_literal_expression();
             Assert.IsNotNull(literal);
             Assert.IsTrue(literal is TextLiteral);
-			Assert.AreEqual("\"hello\"", generate(literal));
+            Assert.AreEqual("\"hello\"", generate(literal));
             Assert.AreEqual("hello", ((TextLiteral)literal).getValue().Value);
         }
 
@@ -461,7 +461,7 @@ namespace prompto.parser
             IExpression literal = parser.parse_literal_expression();
             Assert.IsNotNull(literal);
             Assert.IsTrue(literal is HexaLiteral);
-			Assert.AreEqual("0x0A11", generate(literal));
+            Assert.AreEqual("0x0A11", generate(literal));
             Assert.AreEqual(0x0A11, ((HexaLiteral)literal).getValue().IntegerValue);
         }
 
@@ -473,7 +473,7 @@ namespace prompto.parser
             IExpression literal = parser.parse_literal_expression();
             Assert.IsNotNull(literal);
             Assert.IsTrue(literal is DecimalLiteral);
-			Assert.AreEqual("1234.13", generate(literal));
+            Assert.AreEqual("1234.13", generate(literal));
             Assert.AreEqual(1234.13, ((DecimalLiteral)literal).getValue().DecimalValue, 0.0000001);
         }
 
@@ -498,8 +498,8 @@ namespace prompto.parser
             Assert.IsNotNull(literal);
             Assert.AreEqual("[john, 123]", literal.ToString());
             Assert.IsTrue(literal is ListLiteral);
-			ExpressionList list = ((ListLiteral)literal).Expressions;
-			Assert.AreEqual(2, list.Count);
+            ExpressionList list = ((ListLiteral)literal).Expressions;
+            Assert.AreEqual(2, list.Count);
             Assert.IsTrue(list[0] is UnresolvedIdentifier);
             Assert.IsTrue(list[1] is IntegerLiteral);
         }
@@ -523,7 +523,7 @@ namespace prompto.parser
             IExpression literal = parser.parse_literal_expression();
             Assert.IsNotNull(literal);
             Assert.IsTrue(literal is DictLiteral);
-			Assert.AreEqual("<\"john\":1234, eric:5678>", generate(literal));
+            Assert.AreEqual("<\"john\":1234, eric:5678>", generate(literal));
         }
 
         [Test]
@@ -597,7 +597,7 @@ namespace prompto.parser
             IExpression literal = parser.parse_literal_expression();
             Assert.IsNotNull(literal);
             Assert.IsTrue(literal is PeriodLiteral);
-			Assert.AreEqual("'P3Y'", generate(literal));
+            Assert.AreEqual("'P3Y'", generate(literal));
             Assert.AreEqual(3, ((PeriodLiteral)literal).getValue().Years);
         }
 
@@ -609,7 +609,7 @@ namespace prompto.parser
             IExpression symbol = parser.parse_native_symbol();
             Assert.IsNotNull(symbol);
             Assert.IsTrue(symbol is NativeSymbol);
-			Assert.AreEqual(statement, generate(symbol));
+            Assert.AreEqual(statement, generate(symbol));
         }
 
         [Test]
@@ -628,195 +628,217 @@ namespace prompto.parser
             ETestParser parser = new ETestParser(statement, false);
             IStatement stmt = parser.parse_statement();
             Assert.IsNotNull(stmt);
-			Assert.AreEqual(statement, generate(stmt));
+            Assert.AreEqual(statement, generate(stmt));
         }
 
-		public String generate(IDialectElement elem) {
-			Context context = Context.newGlobalContext ();
-			CodeWriter writer = new CodeWriter (Dialect.E, context);
-			elem.ToDialect (writer);
-			return writer.ToString ();
-		}
-	}
+        public String generate(IDialectElement elem)
+        {
+            Context context = Context.newGlobalContext();
+            CodeWriter writer = new CodeWriter(Dialect.E, context);
+            elem.ToDialect(writer);
+            return writer.ToString();
+        }
+    }
 
 
-    class ETestParser : ECleverParser {
-		
-		public ETestParser(String code, bool addLF) 
-    		: base(code)
-	    {
+    class ETestParser : ECleverParser
+    {
+
+        public ETestParser(String code, bool addLF)
+            : base(code)
+        {
             ITokenStream stream = (ITokenStream)this.InputStream;
             EIndentingLexer lexer = (EIndentingLexer)stream.TokenSource;
             lexer.AddLF = addLF;
-		}
+        }
 
-		public IAssignableInstance parse_assignable() {
-			IParseTree tree = assignable_instance();
-			EPromptoBuilder builder = new EPromptoBuilder(this);
-			ParseTreeWalker walker = new ParseTreeWalker();
-			walker.Walk(builder, tree);
-			return builder.GetNodeValue<IAssignableInstance>(tree);
-		}
-
-		public IntegerLiteral parse_atomic_literal() {
-			IParseTree tree = atomic_literal();
-			EPromptoBuilder builder = new EPromptoBuilder(this);
-			ParseTreeWalker walker = new ParseTreeWalker();
+        public IAssignableInstance parse_assignable()
+        {
+            IParseTree tree = assignable_instance();
+            EPromptoBuilder builder = new EPromptoBuilder(this);
+            ParseTreeWalker walker = new ParseTreeWalker();
             walker.Walk(builder, tree);
-			return builder.GetNodeValue<IntegerLiteral>(tree);
-		}
+            return builder.GetNodeValue<IAssignableInstance>(tree);
+        }
 
-		public ArgumentAssignmentList parse_argument_assignment_list() {
-			IParseTree tree = argument_assignment_list();
-			EPromptoBuilder builder = new EPromptoBuilder(this);
-			ParseTreeWalker walker = new ParseTreeWalker();
-			walker.Walk(builder, tree);
-			return builder.GetNodeValue<ArgumentAssignmentList>(tree);
-		}
+        public IntegerLiteral parse_atomic_literal()
+        {
+            IParseTree tree = atomic_literal();
+            EPromptoBuilder builder = new EPromptoBuilder(this);
+            ParseTreeWalker walker = new ParseTreeWalker();
+            walker.Walk(builder, tree);
+            return builder.GetNodeValue<IntegerLiteral>(tree);
+        }
 
-		public ArgumentAssignment parse_argument_assignment() {
-			IParseTree tree = argument_assignment();
-			EPromptoBuilder builder = new EPromptoBuilder(this);
-			ParseTreeWalker walker = new ParseTreeWalker();
-			walker.Walk(builder, tree);
-			return builder.GetNodeValue<ArgumentAssignment>(tree);
-		}
+        public ArgumentList parse_argument_assignment_list()
+        {
+            IParseTree tree = argument_assignment_list();
+            EPromptoBuilder builder = new EPromptoBuilder(this);
+            ParseTreeWalker walker = new ParseTreeWalker();
+            walker.Walk(builder, tree);
+            return builder.GetNodeValue<ArgumentList>(tree);
+        }
 
-		public IExpression parse_instance_expression() {
-			IParseTree tree = instance_expression();
-			EPromptoBuilder builder = new EPromptoBuilder(this);
-			ParseTreeWalker walker = new ParseTreeWalker();
-			walker.Walk(builder, tree);
-			return builder.GetNodeValue<IExpression>(tree);
-		}
+        public Argument parse_argument_assignment()
+        {
+            IParseTree tree = argument_assignment();
+            EPromptoBuilder builder = new EPromptoBuilder(this);
+            ParseTreeWalker walker = new ParseTreeWalker();
+            walker.Walk(builder, tree);
+            return builder.GetNodeValue<Argument>(tree);
+        }
 
-		public RangeLiteral parse_range_literal() {
-			IParseTree tree = range_literal();
-			EPromptoBuilder builder = new EPromptoBuilder(this);
-			ParseTreeWalker walker = new ParseTreeWalker();
-			walker.Walk(builder, tree);
-			return builder.GetNodeValue<RangeLiteral>(tree);
-		}
-		
-		public TupleLiteral parse_tuple_literal() {
-			IParseTree tree = tuple_literal();
-			EPromptoBuilder builder = new EPromptoBuilder(this);
-			ParseTreeWalker walker = new ParseTreeWalker();
-			walker.Walk(builder, tree);
-			return builder.GetNodeValue<TupleLiteral>(tree);
-		}
+        public IExpression parse_instance_expression()
+        {
+            IParseTree tree = instance_expression();
+            EPromptoBuilder builder = new EPromptoBuilder(this);
+            ParseTreeWalker walker = new ParseTreeWalker();
+            walker.Walk(builder, tree);
+            return builder.GetNodeValue<IExpression>(tree);
+        }
 
-		public AttributeDeclaration parse_attribute_declaration() {
-			IParseTree tree = attribute_declaration();
-			EPromptoBuilder builder = new EPromptoBuilder(this);
-			ParseTreeWalker walker = new ParseTreeWalker();
-			walker.Walk(builder, tree);
-			return builder.GetNodeValue<AttributeDeclaration>(tree);
-		}
+        public RangeLiteral parse_range_literal()
+        {
+            IParseTree tree = range_literal();
+            EPromptoBuilder builder = new EPromptoBuilder(this);
+            ParseTreeWalker walker = new ParseTreeWalker();
+            walker.Walk(builder, tree);
+            return builder.GetNodeValue<RangeLiteral>(tree);
+        }
 
-		public CategoryDeclaration parse_category_declaration() {
-			IParseTree tree = category_declaration();
-			EPromptoBuilder builder = new EPromptoBuilder(this);
-			ParseTreeWalker walker = new ParseTreeWalker();
-			walker.Walk(builder, tree);
-			return builder.GetNodeValue<CategoryDeclaration>(tree);
-		}
+        public TupleLiteral parse_tuple_literal()
+        {
+            IParseTree tree = tuple_literal();
+            EPromptoBuilder builder = new EPromptoBuilder(this);
+            ParseTreeWalker walker = new ParseTreeWalker();
+            walker.Walk(builder, tree);
+            return builder.GetNodeValue<TupleLiteral>(tree);
+        }
 
-		public ITypedArgument parse_typed_argument() {
-			IParseTree tree = typed_argument();
-			EPromptoBuilder builder = new EPromptoBuilder(this);
-			ParseTreeWalker walker = new ParseTreeWalker();
-			walker.Walk(builder, tree);
-			return builder.GetNodeValue<ITypedArgument>(tree);
-		}
+        public AttributeDeclaration parse_attribute_declaration()
+        {
+            IParseTree tree = attribute_declaration();
+            EPromptoBuilder builder = new EPromptoBuilder(this);
+            ParseTreeWalker walker = new ParseTreeWalker();
+            walker.Walk(builder, tree);
+            return builder.GetNodeValue<AttributeDeclaration>(tree);
+        }
 
-		public ArgumentList parse_argument_list() {
-			IParseTree tree = full_argument_list();
-			EPromptoBuilder builder = new EPromptoBuilder(this);
-			ParseTreeWalker walker = new ParseTreeWalker();
-			walker.Walk(builder, tree);
-			return builder.GetNodeValue<ArgumentList>(tree);
-		}
+        public CategoryDeclaration parse_category_declaration()
+        {
+            IParseTree tree = category_declaration();
+            EPromptoBuilder builder = new EPromptoBuilder(this);
+            ParseTreeWalker walker = new ParseTreeWalker();
+            walker.Walk(builder, tree);
+            return builder.GetNodeValue<CategoryDeclaration>(tree);
+        }
+
+        public ITypedParameter parse_typed_argument()
+        {
+            IParseTree tree = typed_argument();
+            EPromptoBuilder builder = new EPromptoBuilder(this);
+            ParseTreeWalker walker = new ParseTreeWalker();
+            walker.Walk(builder, tree);
+            return builder.GetNodeValue<ITypedParameter>(tree);
+        }
+
+        public ParameterList parse_argument_list()
+        {
+            IParseTree tree = full_argument_list();
+            EPromptoBuilder builder = new EPromptoBuilder(this);
+            ParseTreeWalker walker = new ParseTreeWalker();
+            walker.Walk(builder, tree);
+            return builder.GetNodeValue<ParameterList>(tree);
+        }
 
         public UnresolvedCall parse_method_call()
         {
-			IParseTree tree = method_call_statement();
-			EPromptoBuilder builder = new EPromptoBuilder(this);
-			ParseTreeWalker walker = new ParseTreeWalker();
-			walker.Walk(builder, tree);
+            IParseTree tree = method_call_statement();
+            EPromptoBuilder builder = new EPromptoBuilder(this);
+            ParseTreeWalker walker = new ParseTreeWalker();
+            walker.Walk(builder, tree);
             return builder.GetNodeValue<UnresolvedCall>(tree);
-		}
+        }
 
-		public NativeMethodDeclaration parse_native_method_declaration() {
-			IParseTree tree = native_method_declaration();
-			EPromptoBuilder builder = new EPromptoBuilder(this);
-			ParseTreeWalker walker = new ParseTreeWalker();
-			walker.Walk(builder, tree);
-			return builder.GetNodeValue<NativeMethodDeclaration>(tree);
-		}
+        public NativeMethodDeclaration parse_native_method_declaration()
+        {
+            IParseTree tree = native_method_declaration();
+            EPromptoBuilder builder = new EPromptoBuilder(this);
+            ParseTreeWalker walker = new ParseTreeWalker();
+            walker.Walk(builder, tree);
+            return builder.GetNodeValue<NativeMethodDeclaration>(tree);
+        }
 
-		public ConcreteMethodDeclaration parse_concrete_method_declaration() {
-			IParseTree tree = concrete_method_declaration();
-			EPromptoBuilder builder = new EPromptoBuilder(this);
-			ParseTreeWalker walker = new ParseTreeWalker();
-			walker.Walk(builder, tree);
-			return builder.GetNodeValue<ConcreteMethodDeclaration>(tree);
-		}
+        public ConcreteMethodDeclaration parse_concrete_method_declaration()
+        {
+            IParseTree tree = concrete_method_declaration();
+            EPromptoBuilder builder = new EPromptoBuilder(this);
+            ParseTreeWalker walker = new ParseTreeWalker();
+            walker.Walk(builder, tree);
+            return builder.GetNodeValue<ConcreteMethodDeclaration>(tree);
+        }
 
-		public ConstructorExpression parse_constructor_expression() {
-			IParseTree tree = constructor_expression();
-			EPromptoBuilder builder = new EPromptoBuilder(this);
-			ParseTreeWalker walker = new ParseTreeWalker();
-			walker.Walk(builder, tree);
-			return builder.GetNodeValue<ConstructorExpression>(tree);
-		}
+        public ConstructorExpression parse_constructor_expression()
+        {
+            IParseTree tree = constructor_expression();
+            EPromptoBuilder builder = new EPromptoBuilder(this);
+            ParseTreeWalker walker = new ParseTreeWalker();
+            walker.Walk(builder, tree);
+            return builder.GetNodeValue<ConstructorExpression>(tree);
+        }
 
-		public AssignInstanceStatement parse_assign_instance_statement() {
-			IParseTree tree = assign_instance_statement();
-			EPromptoBuilder builder = new EPromptoBuilder(this);
-			ParseTreeWalker walker = new ParseTreeWalker();
-			walker.Walk(builder, tree);
-			return builder.GetNodeValue<AssignInstanceStatement>(tree);
-		}
+        public AssignInstanceStatement parse_assign_instance_statement()
+        {
+            IParseTree tree = assign_instance_statement();
+            EPromptoBuilder builder = new EPromptoBuilder(this);
+            ParseTreeWalker walker = new ParseTreeWalker();
+            walker.Walk(builder, tree);
+            return builder.GetNodeValue<AssignInstanceStatement>(tree);
+        }
 
-		public NativeCall parse_native_statement() {
-			IParseTree tree = native_statement();
-			EPromptoBuilder builder = new EPromptoBuilder(this);
-			ParseTreeWalker walker = new ParseTreeWalker();
-			walker.Walk(builder, tree);
-			return builder.GetNodeValue<NativeCall>(tree);
-		}
+        public NativeCall parse_native_statement()
+        {
+            IParseTree tree = native_statement();
+            EPromptoBuilder builder = new EPromptoBuilder(this);
+            ParseTreeWalker walker = new ParseTreeWalker();
+            walker.Walk(builder, tree);
+            return builder.GetNodeValue<NativeCall>(tree);
+        }
 
-		public IExpression parse_literal_expression() {
-			IParseTree tree = literal_expression();
-			EPromptoBuilder builder = new EPromptoBuilder(this);
-			ParseTreeWalker walker = new ParseTreeWalker();
-			walker.Walk(builder, tree);
-			return builder.GetNodeValue<IExpression>(tree);
-		}
+        public IExpression parse_literal_expression()
+        {
+            IParseTree tree = literal_expression();
+            EPromptoBuilder builder = new EPromptoBuilder(this);
+            ParseTreeWalker walker = new ParseTreeWalker();
+            walker.Walk(builder, tree);
+            return builder.GetNodeValue<IExpression>(tree);
+        }
 
-        public IExpression parse_native_symbol() {
-			IParseTree tree = native_symbol();
-			EPromptoBuilder builder = new EPromptoBuilder(this);
-			ParseTreeWalker walker = new ParseTreeWalker();
-			walker.Walk(builder, tree);
-			return builder.GetNodeValue<IExpression>(tree);
-		}
+        public IExpression parse_native_symbol()
+        {
+            IParseTree tree = native_symbol();
+            EPromptoBuilder builder = new EPromptoBuilder(this);
+            ParseTreeWalker walker = new ParseTreeWalker();
+            walker.Walk(builder, tree);
+            return builder.GetNodeValue<IExpression>(tree);
+        }
 
-		public IStatement parse_statement() {
-			IParseTree tree = statement();
-			EPromptoBuilder builder = new EPromptoBuilder(this);
-			ParseTreeWalker walker = new ParseTreeWalker();
-			walker.Walk(builder, tree);
-			return builder.GetNodeValue<IStatement>(tree);
-		}
+        public IStatement parse_statement()
+        {
+            IParseTree tree = statement();
+            EPromptoBuilder builder = new EPromptoBuilder(this);
+            ParseTreeWalker walker = new ParseTreeWalker();
+            walker.Walk(builder, tree);
+            return builder.GetNodeValue<IStatement>(tree);
+        }
 
-		public IExpression parse_expression() {
-			IParseTree tree = expression();
-			EPromptoBuilder builder = new EPromptoBuilder(this);
-			ParseTreeWalker walker = new ParseTreeWalker();
-			walker.Walk(builder, tree);
-			return builder.GetNodeValue<IExpression>(tree);
-		}
-	}
+        public IExpression parse_expression()
+        {
+            IParseTree tree = expression();
+            EPromptoBuilder builder = new EPromptoBuilder(this);
+            ParseTreeWalker walker = new ParseTreeWalker();
+            walker.Walk(builder, tree);
+            return builder.GetNodeValue<IExpression>(tree);
+        }
+    }
 }

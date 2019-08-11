@@ -8,13 +8,13 @@ using prompto.declaration;
 using prompto.grammar;
 using System.Collections.Generic;
 
-namespace prompto.argument
+namespace prompto.param
 {
 
-	public class MethodArgument : BaseArgument, INamedArgument
+	public class MethodParameter : BaseParameter, INamedParameter
 	{
 
-		public MethodArgument(String name)
+		public MethodParameter(String name)
 			: base(name)
 		{
 		}
@@ -44,9 +44,9 @@ namespace prompto.argument
 				return true;
 			if (obj == null)
 				return false;
-			if (!(obj is MethodArgument))
+			if (!(obj is MethodParameter))
 				return false;
-			MethodArgument other = (MethodArgument)obj;
+			MethodParameter other = (MethodParameter)obj;
 			return ObjectUtils.AreEqual(this.GetName(), other.GetName());
 		}
 

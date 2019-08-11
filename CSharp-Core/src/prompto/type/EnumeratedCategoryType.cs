@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using prompto.argument;
+using prompto.param;
 using prompto.declaration;
 using prompto.error;
 using prompto.expression;
@@ -57,7 +57,7 @@ namespace prompto.type
 	class CategorySymbolOfMethodDeclaration : BuiltInMethodDeclaration
 	{
 
-		internal static IArgument NAME_ARGUMENT = new CategoryArgument(TextType.Instance, "name");
+		internal static IParameter NAME_ARGUMENT = new CategoryParameter(TextType.Instance, "name");
 
 		EnumeratedCategoryType type;
 

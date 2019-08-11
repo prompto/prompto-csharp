@@ -9,13 +9,13 @@ using prompto.value;
 using prompto.expression;
 
 
-namespace prompto.argument
+namespace prompto.param
 {
 
-    public class AttributeArgument : BaseArgument, INamedArgument
+    public class AttributeParameter : BaseParameter, INamedParameter
     {
 
-        public AttributeArgument(String name)
+        public AttributeParameter(String name)
             : base(name)
         {
         }
@@ -49,9 +49,9 @@ namespace prompto.argument
                 return true;
             if (obj == null)
                 return false;
-            if (!(obj is AttributeArgument))
+            if (!(obj is AttributeParameter))
                 return false;
-            AttributeArgument other = (AttributeArgument)obj;
+            AttributeParameter other = (AttributeParameter)obj;
 			return ObjectUtils.AreEqual(this.GetName(), other.GetName());
         }
 

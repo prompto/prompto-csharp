@@ -22,9 +22,9 @@ namespace prompto.value
 			return v;
         }
 
-		Int16 major;
-		Int16 minor;
-		Int16 fix;
+        Int32 major;
+        Int32 minor;
+        Int32 fix;
 
 
 		public Version()

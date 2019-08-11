@@ -5,7 +5,7 @@ using prompto.expression;
 using prompto.value;
 using prompto.literal;
 using prompto.type;
-using prompto.argument;
+using prompto.param;
 
 namespace prompto.error {
 
@@ -23,9 +23,9 @@ public abstract class ExecutionError : PromptoError {
 	public IValue interpret(Context context, String errorName) {
 			IExpression exp = this.getExpression(context);
 			if(exp==null) {
-				ArgumentAssignmentList args = new ArgumentAssignmentList();
-				args.Add(new ArgumentAssignment(new UnresolvedArgument("name"), new TextLiteral(this.GetType().Name)));
-				args.Add(new ArgumentAssignment(new UnresolvedArgument("text"), new TextLiteral(this.Message)));
+				ArgumentList args = new ArgumentList();
+				args.Add(new Argument(new UnresolvedParameter("name"), new TextLiteral(this.GetType().Name)));
+				args.Add(new Argument(new UnresolvedParameter("text"), new TextLiteral(this.Message)));
 				exp = new ConstructorExpression(new CategoryType("Error"), null, args, true);
 			}
 			if(context.getRegisteredValue<INamed>(errorName)==null)

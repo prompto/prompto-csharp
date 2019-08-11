@@ -8,117 +8,122 @@ using prompto.declaration;
 using prompto.type;
 using prompto.utils;
 using prompto.value;
-using prompto.argument;
+using prompto.param;
 
 
 namespace prompto.statement
 {
 
-	public class MethodCall : SimpleStatement, IAssertion
+    public class MethodCall : SimpleStatement, IAssertion
     {
 
-		MethodSelector selector;
-        ArgumentAssignmentList assignments;
-		String variableName;
+        MethodSelector selector;
+        ArgumentList arguments;
+        String variableName;
 
         public MethodCall(MethodSelector method)
         {
             this.selector = method;
         }
 
-        public MethodCall(MethodSelector selector, ArgumentAssignmentList assignments)
+        public MethodCall(MethodSelector selector, ArgumentList arguments)
         {
             this.selector = selector;
-            this.assignments = assignments;
+            this.arguments = arguments;
         }
 
-		public void setVariableName(String variableName)
-		{
-			this.variableName = variableName;
-		}
+        public void setVariableName(String variableName)
+        {
+            this.variableName = variableName;
+        }
 
-		public override string ToString ()
-		{
-			return selector.ToString() + (assignments != null ? assignments.ToString() : "");
-		}
+        public override string ToString()
+        {
+            return selector.ToString() + (arguments != null ? arguments.ToString() : "");
+        }
 
         public MethodSelector getSelector()
         {
             return selector;
         }
 
-        public ArgumentAssignmentList getAssignments()
+        public ArgumentList getArguments()
         {
-            return assignments;
+            return arguments;
         }
 
-		override
-		public void ToDialect(CodeWriter writer) {
-			if (requiresInvoke(writer))
-				writer.append("invoke: ");
-			selector.ToDialect(writer);
-			if (assignments != null)
-				assignments.ToDialect(writer);
-			else if (writer.getDialect() != Dialect.E)
-				writer.append("()");
-		}
+        override
+        public void ToDialect(CodeWriter writer)
+        {
+            if (requiresInvoke(writer))
+                writer.append("invoke: ");
+            selector.ToDialect(writer);
+            if (arguments != null)
+                arguments.ToDialect(writer);
+            else if (writer.getDialect() != Dialect.E)
+                writer.append("()");
+        }
 
-		private bool requiresInvoke(CodeWriter writer) {
-			if (writer.getDialect() != Dialect.E || (assignments!=null && assignments.Count>0))
-				return false;
-			try {
-				MethodFinder finder = new MethodFinder(writer.getContext(), this);
-				IMethodDeclaration method = finder.findMethod(false);
-				/* if method is a reference */
-				return method is AbstractMethodDeclaration || method.ClosureOf != null;
-			} catch(SyntaxError /*e*/) {
-				// ok
-			}
-			return false;
-		}
+        private bool requiresInvoke(CodeWriter writer)
+        {
+            if (writer.getDialect() != Dialect.E || (arguments != null && arguments.Count > 0))
+                return false;
+            try
+            {
+                MethodFinder finder = new MethodFinder(writer.getContext(), this);
+                IMethodDeclaration method = finder.findMethod(false);
+                /* if method is a reference */
+                return method is AbstractMethodDeclaration || method.ClosureOf != null;
+            }
+            catch (SyntaxError /*e*/)
+            {
+                // ok
+            }
+            return false;
+        }
         override
         public IType check(Context context)
         {
             MethodFinder finder = new MethodFinder(context, this);
             IMethodDeclaration declaration = finder.findMethod(false);
-			Context local = IsLocalClosure(context) ? context : selector.newLocalCheckContext(context, declaration);
-			return check(declaration, context, local);
+            Context local = IsLocalClosure(context) ? context : selector.newLocalCheckContext(context, declaration);
+            return check(declaration, context, local);
         }
 
 
-		private bool IsLocalClosure(Context context)
-		{
-			if (this.selector.getParent() != null)
-				return false;
-			IDeclaration decl = context.getLocalDeclaration<IDeclaration>(this.selector.getName());
-			return decl is MethodDeclarationMap;
-		}
+        private bool IsLocalClosure(Context context)
+        {
+            if (this.selector.getParent() != null)
+                return false;
+            IDeclaration decl = context.getLocalDeclaration<IDeclaration>(this.selector.getName());
+            return decl is MethodDeclarationMap;
+        }
 
-		private IType check(IMethodDeclaration declaration, Context parent, Context local)
+        private IType check(IMethodDeclaration declaration, Context parent, Context local)
         {
             if (declaration.isTemplate())
-				return fullCheck((ConcreteMethodDeclaration)declaration, parent, local);
+                return fullCheck((ConcreteMethodDeclaration)declaration, parent, local);
             else
-				return lightCheck(declaration, parent, local);
+                return lightCheck(declaration, parent, local);
         }
 
-		private IType lightCheck(IMethodDeclaration declaration,  Context parent, Context local)
+        private IType lightCheck(IMethodDeclaration declaration, Context parent, Context local)
         {
-            declaration.registerArguments(local);
+            declaration.registerParameters(local);
             return declaration.check(local);
         }
 
-		private IType fullCheck(ConcreteMethodDeclaration declaration,  Context parent, Context local)
+        private IType fullCheck(ConcreteMethodDeclaration declaration, Context parent, Context local)
         {
             try
             {
-				ArgumentAssignmentList assignments = makeAssignments(parent, declaration);
-			 	declaration.registerArguments(local);
-                foreach (ArgumentAssignment assignment in assignments)
+                ArgumentList arguments = makeArguments(parent, declaration);
+                declaration.registerParameters(local);
+                foreach (Argument argument in arguments)
                 {
-                    IExpression expression = assignment.resolve(local, declaration, true);
-					IValue value = assignment.getArgument().checkValue(parent, expression);
-					local.setValue(assignment.GetName(), value);
+                    IExpression expression = argument.resolve(local, declaration, true);
+                    IValue value = argument.getParameter().checkValue(parent, expression);
+                    local.setValue(argument.GetName(), value);
                 }
                 return declaration.check(local);
             }
@@ -128,12 +133,12 @@ namespace prompto.statement
             }
         }
 
-        public ArgumentAssignmentList makeAssignments(Context context, IMethodDeclaration declaration)
+        public ArgumentList makeArguments(Context context, IMethodDeclaration declaration)
         {
-            if (assignments == null)
-                return new ArgumentAssignmentList();
+            if (arguments == null)
+                return new ArgumentList();
             else
-                return assignments.makeAssignments(context, declaration);
+                return arguments.makeArguments(context, declaration);
         }
 
         override
@@ -141,38 +146,40 @@ namespace prompto.statement
         {
             IMethodDeclaration declaration = findDeclaration(context);
             Context local = selector.newLocalContext(context, declaration);
-            declaration.registerArguments(local);
-            ArgumentAssignmentList assignments = makeAssignments(context, declaration);
-            foreach (ArgumentAssignment assignment in assignments)
+            declaration.registerParameters(local);
+            ArgumentList arguments = makeArguments(context, declaration);
+            foreach (Argument argument in arguments)
             {
-                IExpression expression = assignment.resolve(local, declaration, true);
-				IArgument arg = assignment.getArgument ();
+                IExpression expression = argument.resolve(local, declaration, true);
+                IParameter arg = argument.getParameter();
                 IValue value = arg.checkValue(context, expression);
-				if (value != null && arg.isMutable () && !value.IsMutable ())
-					throw new NotMutableError ();
-				local.setValue(assignment.GetName(), value);
+                if (value != null && arg.isMutable() && !value.IsMutable())
+                    throw new NotMutableError();
+                local.setValue(argument.GetName(), value);
             }
             return declaration.interpret(local);
         }
 
-		public bool interpretAssert(Context context, TestMethodDeclaration testMethodDeclaration) {
-			IValue value = this.interpret(context);
-			if(value is prompto.value.Boolean)
-				return ((prompto.value.Boolean)value).Value;
-			else {
-				CodeWriter writer = new CodeWriter(this.Dialect, context);
-				this.ToDialect(writer);
-				throw new SyntaxError("Cannot test '" + writer.ToString() + "'");
-			}
-		}
+        public bool interpretAssert(Context context, TestMethodDeclaration testMethodDeclaration)
+        {
+            IValue value = this.interpret(context);
+            if (value is prompto.value.Boolean)
+                return ((prompto.value.Boolean)value).Value;
+            else
+            {
+                CodeWriter writer = new CodeWriter(this.Dialect, context);
+                this.ToDialect(writer);
+                throw new SyntaxError("Cannot test '" + writer.ToString() + "'");
+            }
+        }
 
         private IMethodDeclaration findDeclaration(Context context)
         {
             try
             {
                 Object o = context.getValue(selector.getName());
-				if (o is ClosureValue)
-					return new ClosureDeclaration((ClosureValue)o);
+                if (o is ClosureValue)
+                    return new ClosureDeclaration((ClosureValue)o);
             }
             catch (PromptoError)
             {

@@ -4,26 +4,24 @@ using prompto.runtime;
 using prompto.utils;
 using prompto.error;
 using prompto.type;
-using prompto.declaration;
 using prompto.value;
-using prompto.grammar;
 using prompto.expression;
 
-namespace prompto.argument
+namespace prompto.param
 {
 
-    public class CategoryArgument : BaseArgument, ITypedArgument
+    public class CategoryParameter : BaseParameter, ITypedParameter
     {
 
         protected IType type;
 
-        public CategoryArgument(IType type, String name)
+        public CategoryParameter(IType type, String name)
             : base(name)
         {
             this.type = type;
         }
 
-		public CategoryArgument(IType type, String name, IExpression defaultValue)
+		public CategoryParameter(IType type, String name, IExpression defaultValue)
 			: base(name)
 		{
 			this.type = type;
@@ -102,9 +100,9 @@ namespace prompto.argument
                 return true;
             if (obj == null)
                 return false;
-            if (!(obj is CategoryArgument))
+            if (!(obj is CategoryParameter))
                 return false;
-            CategoryArgument other = (CategoryArgument)obj;
+            CategoryParameter other = (CategoryParameter)obj;
             return ObjectUtils.AreEqual(this.getType(), other.getType())
 				&& ObjectUtils.AreEqual(this.GetName(), other.GetName());
         }

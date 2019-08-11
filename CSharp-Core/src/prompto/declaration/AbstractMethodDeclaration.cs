@@ -2,10 +2,10 @@ using prompto.runtime;
 using System;
 using prompto.error;
 using prompto.type;
-using prompto.grammar;
 using prompto.utils;
 using prompto.parser;
 using prompto.value;
+using prompto.param;
 
 namespace prompto.declaration
 {
@@ -14,7 +14,7 @@ namespace prompto.declaration
     {
 
    
-        public AbstractMethodDeclaration(String name, ArgumentList arguments, IType returnType)
+        public AbstractMethodDeclaration(String name, ParameterList arguments, IType returnType)
 			: base(name, arguments)
         {
 			this.returnType = returnType!=null ? returnType : VoidType.Instance;
@@ -23,10 +23,10 @@ namespace prompto.declaration
         
 		public override IType check(Context context)
         {
-            if (arguments != null)
-                arguments.check(context);
+            if (parameters != null)
+                parameters.check(context);
             Context local = context.newLocalContext();
-            registerArguments(local);
+            registerParameters(local);
             return returnType;
         }
 
@@ -62,7 +62,7 @@ namespace prompto.declaration
 			writer.append("abstract def ");
 			writer.append(name);
 			writer.append(" (");
-			arguments.ToDialect(writer);
+			parameters.ToDialect(writer);
 			writer.append(")");
 			if(returnType!=null && returnType!=VoidType.Instance) {
 				writer.append("->");
@@ -74,7 +74,7 @@ namespace prompto.declaration
 			writer.append("define ");
 			writer.append(name);
 			writer.append(" as abstract method ");
-			arguments.ToDialect(writer);
+			parameters.ToDialect(writer);
 			if(returnType!=null && returnType!=VoidType.Instance) {
 				writer.append("returning ");
 				returnType.ToDialect(writer);
@@ -90,7 +90,7 @@ namespace prompto.declaration
 			writer.append("method ");
 			writer.append(name);
 			writer.append(" (");
-			arguments.ToDialect(writer);
+			parameters.ToDialect(writer);
 			writer.append(");");
 		}
 

@@ -2,11 +2,10 @@ using prompto.runtime;
 using prompto.csharp;
 using System;
 using prompto.statement;
-using prompto.grammar;
 using prompto.type;
 using prompto.utils;
 using prompto.value;
-
+using prompto.param;
 
 namespace prompto.declaration
 {
@@ -14,8 +13,8 @@ namespace prompto.declaration
     public class NativeMethodDeclaration : ConcreteMethodDeclaration
     {
 
-        public NativeMethodDeclaration(String name, ArgumentList arguments, IType returnType, StatementList statements)
-            : base(name, arguments, returnType, statements)
+        public NativeMethodDeclaration(String name, ParameterList parameters, IType returnType, StatementList statements)
+            : base(name, parameters, returnType, statements)
         
         {
         }
@@ -34,10 +33,10 @@ namespace prompto.declaration
             if (context.isGlobalContext())
             {
                 context = context.newLocalContext();
-                registerArguments(context);
+                registerParameters(context);
             }
-            if (arguments != null)
-                arguments.check(context);
+            if (parameters != null)
+                parameters.check(context);
 			CSharpNativeCall stmt = FindStatement();
             return stmt.checkNative(context, returnType);
         }
@@ -75,7 +74,7 @@ namespace prompto.declaration
 				writer.append("native ");
 			writer.append(name);
 			writer.append(" (");
-			arguments.ToDialect(writer);
+			parameters.ToDialect(writer);
 			writer.append(")");
 			if(returnType!=null && returnType!=VoidType.Instance) {
 				writer.append("->");
@@ -98,7 +97,7 @@ namespace prompto.declaration
 			writer.append("method ");
 			writer.append(name);
 			writer.append(" (");
-			arguments.ToDialect(writer);
+			parameters.ToDialect(writer);
 			writer.append(") {\n");
 			writer.indent();
 			foreach(IStatement statement in statements) {
@@ -117,7 +116,7 @@ namespace prompto.declaration
 			if (this.getMemberOf() == null)
 				writer.append("native ");
 			writer.append("method ");
-			arguments.ToDialect(writer);
+			parameters.ToDialect(writer);
 			if(returnType!=null && returnType!=VoidType.Instance) {
 				writer.append("returning ");
 				returnType.ToDialect(writer);

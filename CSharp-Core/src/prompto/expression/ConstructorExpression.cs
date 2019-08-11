@@ -7,7 +7,7 @@ using prompto.declaration;
 using prompto.error;
 using prompto.value;
 using prompto.utils;
-using prompto.argument;
+using prompto.param;
 
 namespace prompto.expression
 {
@@ -17,15 +17,15 @@ namespace prompto.expression
 
         CategoryType type;
         IExpression copyFrom;
-        ArgumentAssignmentList assignments;
-		bool xchecked;
+        ArgumentList arguments;
+        bool xchecked;
 
-        public ConstructorExpression(CategoryType type, IExpression copyFrom, ArgumentAssignmentList assignments, bool xchecked)
+        public ConstructorExpression(CategoryType type, IExpression copyFrom, ArgumentList arguments, bool xchecked)
         {
             this.type = type;
-			this.copyFrom = copyFrom;
-			this.assignments = assignments;
-			this.xchecked = xchecked;
+            this.copyFrom = copyFrom;
+            this.arguments = arguments;
+            this.xchecked = xchecked;
         }
 
         public CategoryType getType()
@@ -33,9 +33,9 @@ namespace prompto.expression
             return type;
         }
 
-       public ArgumentAssignmentList getAssignments()
+        public ArgumentList getArguments()
         {
-            return assignments;
+            return arguments;
         }
 
         public void setCopyFrom(IExpression copyFrom)
@@ -50,98 +50,105 @@ namespace prompto.expression
 
         public void ToDialect(CodeWriter writer)
         {
-			Context context = writer.getContext();
-			CategoryDeclaration cd = context.getRegisteredDeclaration<CategoryDeclaration>(this.type.GetTypeName());
-			if(cd==null)
-				throw new SyntaxError("Unknown category " + this.type.GetTypeName());
-			checkFirstHomonym(context, cd);
-			switch(writer.getDialect()) {
-			case Dialect.E:
-				ToEDialect(writer);
-				break;
-			case Dialect.O:
-				ToODialect(writer);
-				break;
-			case Dialect.M:
-				toPDialect(writer);
-				break;
-			}
-		}
+            Context context = writer.getContext();
+            CategoryDeclaration cd = context.getRegisteredDeclaration<CategoryDeclaration>(this.type.GetTypeName());
+            if (cd == null)
+                throw new SyntaxError("Unknown category " + this.type.GetTypeName());
+            checkFirstHomonym(context, cd);
+            switch (writer.getDialect())
+            {
+                case Dialect.E:
+                    ToEDialect(writer);
+                    break;
+                case Dialect.O:
+                    ToODialect(writer);
+                    break;
+                case Dialect.M:
+                    toPDialect(writer);
+                    break;
+            }
+        }
 
-		void checkFirstHomonym(Context context,  CategoryDeclaration decl)
-		{
-			if (xchecked)
-				return;
-			if(assignments!=null && assignments.Count>0)
-            	checkFirstHomonym(context, decl, assignments[0]);
-			xchecked = true;
-		}
+        void checkFirstHomonym(Context context, CategoryDeclaration decl)
+        {
+            if (xchecked)
+                return;
+            if (arguments != null && arguments.Count > 0)
+                checkFirstHomonym(context, decl, arguments[0]);
+            xchecked = true;
+        }
 
-		void checkFirstHomonym(Context context, CategoryDeclaration decl, ArgumentAssignment assignment)
-		{
-			if(assignment.getArgument()==null) {
-				IExpression exp = assignment.getExpression();
-				// when coming from UnresolvedCall, could be an homonym
-				string name = null;
-				if(exp is UnresolvedIdentifier) 
-					name = ((UnresolvedIdentifier)exp).getName();
-				else if(exp is InstanceExpression)
-					name = ((InstanceExpression)exp).getName();
-				if(name!=null && decl.hasAttribute(context, name)) {
-					// convert expression to name to avoid translation issues
-					assignment.setArgument(new AttributeArgument(name));
-					assignment.setExpression(null);
-				}
-			}
-		}
+        void checkFirstHomonym(Context context, CategoryDeclaration decl, Argument argument)
+        {
+            if (argument.getParameter() == null)
+            {
+                IExpression exp = argument.getExpression();
+                // when coming from UnresolvedCall, could be an homonym
+                string name = null;
+                if (exp is UnresolvedIdentifier)
+                    name = ((UnresolvedIdentifier)exp).getName();
+                else if (exp is InstanceExpression)
+                    name = ((InstanceExpression)exp).getName();
+                if (name != null && decl.hasAttribute(context, name))
+                {
+                    // convert expression to name to avoid translation issues
+                    argument.setParameter(new AttributeParameter(name));
+                    argument.setExpression(null);
+                }
+            }
+        }
 
-		private void toPDialect(CodeWriter writer) {
-			ToODialect(writer);
-		}
+        private void toPDialect(CodeWriter writer)
+        {
+            ToODialect(writer);
+        }
 
-		private void ToODialect(CodeWriter writer) {
-			type.ToDialect (writer);
-			ArgumentAssignmentList assignments = new ArgumentAssignmentList();
-			if (copyFrom != null)
-				assignments.Add(new ArgumentAssignment(new AttributeArgument("from"), copyFrom));
-			if(this.assignments!=null)
-				assignments.AddRange(this.assignments);
-			assignments.ToDialect(writer);
-		}
+        private void ToODialect(CodeWriter writer)
+        {
+            type.ToDialect(writer);
+            ArgumentList arguments = new ArgumentList();
+            if (copyFrom != null)
+                arguments.Add(new Argument(new AttributeParameter("from"), copyFrom));
+            if (this.arguments != null)
+                arguments.AddRange(this.arguments);
+            arguments.ToDialect(writer);
+        }
 
-		private void ToEDialect(CodeWriter writer) {
-			type.ToDialect (writer);
-			if (copyFrom != null) {
-				writer.append(" from ");
-				writer.append(copyFrom.ToString());
-				if (assignments != null && assignments.Count>0)
-					writer.append(",");
-			}
-			if (assignments != null)
-				assignments.ToDialect(writer);
-		}
+        private void ToEDialect(CodeWriter writer)
+        {
+            type.ToDialect(writer);
+            if (copyFrom != null)
+            {
+                writer.append(" from ");
+                writer.append(copyFrom.ToString());
+                if (arguments != null && arguments.Count > 0)
+                    writer.append(",");
+            }
+            if (arguments != null)
+                arguments.ToDialect(writer);
+        }
 
         public IType check(Context context)
         {
-			CategoryDeclaration cd = context.getRegisteredDeclaration<CategoryDeclaration>(this.type.GetTypeName());
+            CategoryDeclaration cd = context.getRegisteredDeclaration<CategoryDeclaration>(this.type.GetTypeName());
             if (cd == null)
-				throw new SyntaxError("Unknown category " + this.type.GetTypeName());
+                throw new SyntaxError("Unknown category " + this.type.GetTypeName());
             checkFirstHomonym(context, cd);
-	        cd.checkConstructorContext(context);
+            cd.checkConstructorContext(context);
             if (copyFrom != null)
             {
                 IType cft = copyFrom.check(context);
-				if (!(cft is CategoryType) && (cft!=DocumentType.Instance))
-					throw new SyntaxError("Cannot copy from " + cft.GetTypeName());
+                if (!(cft is CategoryType) && (cft != DocumentType.Instance))
+                    throw new SyntaxError("Cannot copy from " + cft.GetTypeName());
             }
-            if (assignments != null)
+            if (arguments != null)
             {
-                foreach (ArgumentAssignment assignment in assignments)
+                foreach (Argument argument in arguments)
                 {
-					if (!cd.hasAttribute(context, assignment.GetName()))
-						throw new SyntaxError("\"" + assignment.GetName() +
-							"\" is not an attribute of " + type.GetTypeName());
-                    assignment.check(context);
+                    if (!cd.hasAttribute(context, argument.GetName()))
+                        throw new SyntaxError("\"" + argument.GetName() +
+                            "\" is not an attribute of " + type.GetTypeName());
+                    argument.check(context);
                 }
             }
             return cd.GetIType(context);
@@ -149,65 +156,67 @@ namespace prompto.expression
 
         public IValue interpret(Context context)
         {
-			CategoryDeclaration cd = context.getRegisteredDeclaration<CategoryDeclaration>(this.type.GetTypeName());
+            CategoryDeclaration cd = context.getRegisteredDeclaration<CategoryDeclaration>(this.type.GetTypeName());
             if (cd == null)
-				throw new SyntaxError("Unknown category " + this.type.GetTypeName());
+                throw new SyntaxError("Unknown category " + this.type.GetTypeName());
             checkFirstHomonym(context, cd);
-	        IInstance instance = type.newInstance(context);
-			instance.setMutable (true);
-			try
-			{
-	            if (copyFrom != null)
-	            {
-	                Object copyObj = copyFrom.interpret(context);
-	                if (copyObj is IInstance)
-	                {
-						IInstance copyInstance = (IInstance)copyObj;
-	                    foreach (String name in copyInstance.GetMemberNames())
-	                    {
-							if (name == "dbId")
-								continue;
-	                        else if (cd.hasAttribute(context, name))
-							{
-								IValue value = copyInstance.GetMember(context, name, false);
-								if(value!=null && value.IsMutable() && !this.type.Mutable)
-									throw new NotMutableError();
-								instance.SetMember(context, name, value);
-							}
-	                    }
-	                }
-					else if (copyObj is Document) 
-					{
-						Document copyDoc = (Document)copyObj;
-						foreach (String name in copyDoc.GetMemberNames())
-						{
-							if (name == "dbId")
-								continue;
-	            			else if (cd.hasAttribute(context, name))
-							{
-								IValue value = copyDoc.GetMember(context, name, false);
-								if(value!=null && value.IsMutable() && !this.type.Mutable)
-									throw new NotMutableError();
-								// TODO convert to attribute type, see Java version
-								instance.SetMember(context, name, value);
-							}
-						}
-					}
-	            }
-	            if (assignments != null)
-	            {
-	                foreach (ArgumentAssignment assignment in assignments)
-	                {
-	                    IValue value = assignment.getExpression().interpret(context);
-						if(value!=null && value.IsMutable() && !this.type.Mutable)
-							throw new NotMutableError();
-						instance.SetMember(context, assignment.GetName(), value);
-	                }
-	            }
-			} finally {
-				instance.setMutable (this.type.Mutable);
-			}
-			return instance;
+            IInstance instance = type.newInstance(context);
+            instance.setMutable(true);
+            try
+            {
+                if (copyFrom != null)
+                {
+                    Object copyObj = copyFrom.interpret(context);
+                    if (copyObj is IInstance)
+                    {
+                        IInstance copyInstance = (IInstance)copyObj;
+                        foreach (String name in copyInstance.GetMemberNames())
+                        {
+                            if (name == "dbId")
+                                continue;
+                            else if (cd.hasAttribute(context, name))
+                            {
+                                IValue value = copyInstance.GetMember(context, name, false);
+                                if (value != null && value.IsMutable() && !this.type.Mutable)
+                                    throw new NotMutableError();
+                                instance.SetMember(context, name, value);
+                            }
+                        }
+                    }
+                    else if (copyObj is Document)
+                    {
+                        Document copyDoc = (Document)copyObj;
+                        foreach (String name in copyDoc.GetMemberNames())
+                        {
+                            if (name == "dbId")
+                                continue;
+                            else if (cd.hasAttribute(context, name))
+                            {
+                                IValue value = copyDoc.GetMember(context, name, false);
+                                if (value != null && value.IsMutable() && !this.type.Mutable)
+                                    throw new NotMutableError();
+                                // TODO convert to attribute type, see Java version
+                                instance.SetMember(context, name, value);
+                            }
+                        }
+                    }
+                }
+                if (arguments != null)
+                {
+                    foreach (Argument argument in arguments)
+                    {
+                        IValue value = argument.getExpression().interpret(context);
+                        if (value != null && value.IsMutable() && !this.type.Mutable)
+                            throw new NotMutableError();
+                        instance.SetMember(context, argument.GetName(), value);
+                    }
+                }
+            }
+            finally
+            {
+                instance.setMutable(this.type.Mutable);
+            }
+            return instance;
         }
 
     }

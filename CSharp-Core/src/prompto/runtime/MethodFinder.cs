@@ -6,7 +6,7 @@ using prompto.statement;
 using prompto.declaration;
 using prompto.type;
 using prompto.value;
-using prompto.argument;
+using prompto.param;
 
 
 namespace prompto.runtime
@@ -26,8 +26,8 @@ namespace prompto.runtime
 
         public IMethodDeclaration findMethod(bool useInstance)
         {
-			ICollection<IMethodDeclaration> candidates = methodCall.getSelector().getCandidates(context, useInstance);
-			List<IMethodDeclaration> compatibles = filterCompatible(candidates, useInstance);
+            ICollection<IMethodDeclaration> candidates = methodCall.getSelector().getCandidates(context, useInstance);
+            List<IMethodDeclaration> compatibles = filterCompatible(candidates, useInstance);
             switch (compatibles.Count)
             {
                 case 0:
@@ -36,11 +36,11 @@ namespace prompto.runtime
                 case 1:
                     return compatibles[0];
                 default:
-					return findMostSpecific(compatibles, useInstance);
+                    return findMostSpecific(compatibles, useInstance);
             }
         }
 
-		IMethodDeclaration findMostSpecific(List<IMethodDeclaration> candidates, bool useInstance)
+        IMethodDeclaration findMostSpecific(List<IMethodDeclaration> candidates, bool useInstance)
         {
             IMethodDeclaration candidate = null;
             List<IMethodDeclaration> ambiguous = new List<IMethodDeclaration>();
@@ -50,7 +50,7 @@ namespace prompto.runtime
                     candidate = declaration;
                 else
                 {
-					Score score = scoreMostSpecific(candidate, declaration, useInstance);
+                    Score score = scoreMostSpecific(candidate, declaration, useInstance);
                     switch (score)
                     {
                         case Score.WORSE:
@@ -70,29 +70,29 @@ namespace prompto.runtime
             return candidate;
         }
 
-		Score scoreMostSpecific(IMethodDeclaration d1, IMethodDeclaration d2, bool useInstance)
+        Score scoreMostSpecific(IMethodDeclaration d1, IMethodDeclaration d2, bool useInstance)
         {
             try
             {
                 Context s1 = context.newLocalContext();
-                d1.registerArguments(s1);
+                d1.registerParameters(s1);
                 Context s2 = context.newLocalContext();
-                d2.registerArguments(s2);
-                IEnumerator<ArgumentAssignment> it1 = methodCall.makeAssignments(context, d1).GetEnumerator();
-                IEnumerator<ArgumentAssignment> it2 = methodCall.makeAssignments(context, d2).GetEnumerator();
+                d2.registerParameters(s2);
+                IEnumerator<Argument> it1 = methodCall.makeArguments(context, d1).GetEnumerator();
+                IEnumerator<Argument> it2 = methodCall.makeArguments(context, d2).GetEnumerator();
                 while (it1.MoveNext() && it2.MoveNext())
                 {
-                    ArgumentAssignment as1 = it1.Current;
-                    ArgumentAssignment as2 = it2.Current;
-					IArgument ar1 = d1.getArguments().find(as1.GetName());
-					IArgument ar2 = d2.getArguments().find(as2.GetName());
-					if (as1.GetName().Equals(as2.GetName()))
+                    Argument as1 = it1.Current;
+                    Argument as2 = it2.Current;
+                    IParameter ar1 = d1.getParameters().find(as1.GetName());
+                    IParameter ar2 = d2.getParameters().find(as2.GetName());
+                    if (as1.GetName().Equals(as2.GetName()))
                     {
                         // the general case with named arguments
                         IType t1 = ar1.GetIType(s1);
                         IType t2 = ar2.GetIType(s2);
                         // try resolving runtime type
-						if (useInstance && t1 is CategoryType && t2 is CategoryType)
+                        if (useInstance && t1 is CategoryType && t2 is CategoryType)
                         {
                             Object value = as1.getExpression().interpret(context); // in the named case as1==as2, so only interpret 1
                             if (value is IInstance)
@@ -111,8 +111,8 @@ namespace prompto.runtime
                     else
                     {
                         // specific case for single anonymous argument
-						Specificity? sp1 = d1.computeSpecificity(s1, ar1, as1, useInstance);
-						Specificity? sp2 = d2.computeSpecificity(s2, ar2, as2, useInstance);
+                        Specificity? sp1 = d1.computeSpecificity(s1, ar1, as1, useInstance);
+                        Specificity? sp2 = d2.computeSpecificity(s2, ar2, as2, useInstance);
                         if (sp1 > sp2)
                             return Score.BETTER;
                         if (sp2 > sp1)
@@ -126,15 +126,15 @@ namespace prompto.runtime
             return Score.SIMILAR;
         }
 
-		List<IMethodDeclaration> filterCompatible(ICollection<IMethodDeclaration> candidates, bool useInstance)
+        List<IMethodDeclaration> filterCompatible(ICollection<IMethodDeclaration> candidates, bool useInstance)
         {
             List<IMethodDeclaration> compatibles = new List<IMethodDeclaration>();
             foreach (IMethodDeclaration declaration in candidates)
             {
                 try
                 {
-                    ArgumentAssignmentList args = methodCall.makeAssignments(context, declaration);
-					if (declaration.isAssignableTo(context, args, useInstance))
+                    ArgumentList args = methodCall.makeArguments(context, declaration);
+                    if (declaration.isAssignableTo(context, args, useInstance))
                         compatibles.Add(declaration);
                 }
                 catch (SyntaxError)
