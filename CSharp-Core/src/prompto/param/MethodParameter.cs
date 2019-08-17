@@ -7,6 +7,8 @@ using prompto.type;
 using prompto.declaration;
 using prompto.grammar;
 using System.Collections.Generic;
+using prompto.expression;
+using prompto.value;
 
 namespace prompto.param
 {
@@ -68,7 +70,21 @@ namespace prompto.param
 		}
 
 
-		public override IType GetIType(Context context)
+        public override IValue checkValue(Context context, IExpression expression)
+        {
+            bool isArrow = expression is ContextualExpression && ((ContextualExpression)expression).Expression is ArrowExpression;
+            if (isArrow)
+                return checkArrowValue(context, (ContextualExpression)expression);
+            else
+                return base.checkValue(context, expression);
+        }
+
+        private IValue checkArrowValue(Context context, ContextualExpression expression)
+        {
+            return new ArrowValue(getDeclaration(context), expression.Calling, (ArrowExpression)expression.Expression); // TODO check
+        }
+
+        public override IType GetIType(Context context)
 		{
 			IMethodDeclaration actual = getDeclaration(context);
 			return new MethodType(actual);

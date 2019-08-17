@@ -33,10 +33,29 @@ namespace prompto.expression
 
 		public IValue interpret(Context context)
 		{
-			return this.Statements.interpret(context);
+			return Statements.interpret(context);
 		}
 
-		public void ToDialect(CodeWriter writer)
+        public override string ToString()
+        {
+            return ToString(Context.newGlobalContext());
+        }
+
+        public String ToString(Context context)
+        {
+            try
+            {
+                CodeWriter writer = new CodeWriter(Dialect.E, context);
+                ToDialect(writer);
+                return writer.ToString();
+            }
+            catch (Exception)
+            {
+                return "";
+            }
+        }
+
+        public void ToDialect(CodeWriter writer)
 		{
 			ArgsToDialect(writer);
 			writer.append(ArgsSuite);

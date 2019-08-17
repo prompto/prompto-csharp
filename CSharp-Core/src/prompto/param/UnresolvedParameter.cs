@@ -22,6 +22,11 @@ namespace prompto.param
         {
         }
 
+        public override string ToString()
+        {
+            return GetName();
+        }
+
         public override String getSignature(Dialect dialect)
         {
 			return GetName();

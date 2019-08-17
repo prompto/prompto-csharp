@@ -16,45 +16,29 @@ namespace prompto.grammar
     public class Argument : IDialectElement
     {
 
-        IParameter parameter;
-        IExpression expression;
+        public IParameter Parameter { get; set; }
+        public IExpression Expression { get; set; }
 
         public Argument(IParameter parameter, IExpression expression)
         {
-            this.parameter = parameter;
-            this.expression = expression;
+            this.Parameter = parameter;
+            this.Expression = expression;
         }
 
         public override string ToString()
         {
-            return (parameter == null ? "" : parameter.ToString() + " ") + expression.ToString();
+            return (Parameter == null ? "" : Parameter.ToString() + " ") + Expression.ToString();
         }
 
-
-        public void setParameter(IParameter parameter)
-        {
-            this.parameter = parameter;
-        }
-
-
-        public IParameter getParameter()
-        {
-            return parameter;
-        }
 
         public String GetName()
         {
-            return parameter.GetName();
+            return Parameter.GetName();
         }
 
         public IExpression getExpression()
         {
-            return expression != null ? expression : new InstanceExpression(parameter.GetName());
-        }
-
-        public void setExpression(IExpression expression)
-        {
-            this.expression = expression;
+            return Expression != null ? Expression : new InstanceExpression(Parameter.GetName());
         }
 
         public void ToDialect(CodeWriter writer)
@@ -75,46 +59,46 @@ namespace prompto.grammar
 
         private void ToODialect(CodeWriter writer)
         {
-            if (expression == null)
-                writer.append(parameter.GetName());
+            if (Expression == null)
+                writer.append(Parameter.GetName());
             else
             {
-                if (parameter != null)
+                if (Parameter != null)
                 {
-                    writer.append(parameter.GetName());
+                    writer.append(Parameter.GetName());
                     writer.append(" = ");
                 }
-                expression.ToDialect(writer);
+                Expression.ToDialect(writer);
             }
         }
 
 
         private void toPDialect(CodeWriter writer)
         {
-            if (expression == null)
-                writer.append(parameter.GetName());
+            if (Expression == null)
+                writer.append(Parameter.GetName());
             else
             {
-                if (parameter != null)
+                if (Parameter != null)
                 {
-                    writer.append(parameter.GetName());
+                    writer.append(Parameter.GetName());
                     writer.append(" = ");
                 }
-                expression.ToDialect(writer);
+                Expression.ToDialect(writer);
             }
         }
 
         private void ToEDialect(CodeWriter writer)
         {
-            if (expression == null)
-                writer.append(parameter.GetName());
+            if (Expression == null)
+                writer.append(Parameter.GetName());
             else
             {
-                expression.ToDialect(writer);
-                if (parameter != null)
+                Expression.ToDialect(writer);
+                if (Parameter != null)
                 {
                     writer.append(" as ");
-                    writer.append(parameter.GetName());
+                    writer.append(Parameter.GetName());
                 }
             }
         }
@@ -129,17 +113,17 @@ namespace prompto.grammar
             if (!(obj is Argument))
                 return false;
             Argument other = (Argument)obj;
-            return this.getParameter().Equals(other.getParameter())
+            return this.Parameter.Equals(other.Parameter)
                     && this.getExpression().Equals(other.getExpression());
         }
 
         public IType check(Context context)
         {
-            INamed actual = context.getRegisteredValue<INamed>(parameter.GetName());
+            INamed actual = context.getRegisteredValue<INamed>(Parameter.GetName());
             if (actual == null)
             {
                 IType actualType = getExpression().check(context);
-                context.registerValue(new Variable(parameter.GetName(), actualType));
+                context.registerValue(new Variable(Parameter.GetName(), actualType));
             }
             else
             {
@@ -154,25 +138,26 @@ namespace prompto.grammar
         public IExpression resolve(Context context, IMethodDeclaration methodDeclaration, bool useInstance)
         {
             // since we support implicit members, it's time to resolve them
-            String name = this.parameter.GetName();
-            IExpression expression = getExpression();
-            IParameter parameter = methodDeclaration.getParameters().find(name);
-            IType required = parameter.GetIType(context);
-            IType actual = expression.check((Context)context.getCallingContext());
-            if (useInstance && actual is CategoryType)
+            String name = this.Parameter.GetName();
+            IExpression exp = getExpression();
+            IParameter param = methodDeclaration.getParameters().find(name);
+            IType requiredType = param.GetIType(context);
+            bool checkArrow = requiredType is MethodType && exp is ContextualExpression && ((ContextualExpression)exp).Expression is ArrowExpression;
+            IType actualType = checkArrow ? ((MethodType)requiredType).checkArrowExpression((ContextualExpression)exp) : exp.check(context.getCallingContext());
+            if (useInstance && actualType is CategoryType)
             {
-                Object value = expression.interpret((Context)context.getCallingContext());
+                Object value = exp.interpret((Context)context.getCallingContext());
                 if (value is IInstance)
-                    actual = ((IInstance)value).getType();
+                    actualType = ((IInstance)value).getType();
             }
-            if (!required.isAssignableFrom(context, actual) && (actual is CategoryType))
-                expression = new MemberSelector(expression, name);
-            return expression;
+            if (!requiredType.isAssignableFrom(context, actualType) && (actualType is CategoryType))
+                exp = new MemberSelector(exp, name);
+            return exp;
         }
 
         public Argument makeArgument(Context context, IMethodDeclaration declaration)
         {
-            IParameter parameter = this.parameter;
+            IParameter parameter = Parameter;
             // when 1st argument, can be unnamed
             if (parameter == null)
             {

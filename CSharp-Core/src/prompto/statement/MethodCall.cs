@@ -81,8 +81,8 @@ namespace prompto.statement
             }
             return false;
         }
-        override
-        public IType check(Context context)
+        
+        public override IType check(Context context)
         {
             MethodFinder finder = new MethodFinder(context, this);
             IMethodDeclaration declaration = finder.findMethod(false);
@@ -122,7 +122,7 @@ namespace prompto.statement
                 foreach (Argument argument in arguments)
                 {
                     IExpression expression = argument.resolve(local, declaration, true);
-                    IValue value = argument.getParameter().checkValue(parent, expression);
+                    IValue value = argument.Parameter.checkValue(parent, expression);
                     local.setValue(argument.GetName(), value);
                 }
                 return declaration.check(local);
@@ -141,23 +141,28 @@ namespace prompto.statement
                 return arguments.makeArguments(context, declaration);
         }
 
-        override
-        public IValue interpret(Context context)
+        
+        public override IValue interpret(Context context)
         {
             IMethodDeclaration declaration = findDeclaration(context);
             Context local = selector.newLocalContext(context, declaration);
             declaration.registerParameters(local);
+            registerArguments(context, local, declaration);
+            return declaration.interpret(local);
+        }
+
+        private void registerArguments(Context context, Context local, IMethodDeclaration declaration)
+        {
             ArgumentList arguments = makeArguments(context, declaration);
             foreach (Argument argument in arguments)
             {
                 IExpression expression = argument.resolve(local, declaration, true);
-                IParameter arg = argument.getParameter();
-                IValue value = arg.checkValue(context, expression);
-                if (value != null && arg.isMutable() && !value.IsMutable())
+                IParameter parameter = argument.Parameter;
+                IValue value = parameter.checkValue(context, expression);
+                if (value != null && parameter.isMutable() && !value.IsMutable())
                     throw new NotMutableError();
                 local.setValue(argument.GetName(), value);
             }
-            return declaration.interpret(local);
         }
 
         public bool interpretAssert(Context context, TestMethodDeclaration testMethodDeclaration)
@@ -180,6 +185,8 @@ namespace prompto.statement
                 Object o = context.getValue(selector.getName());
                 if (o is ClosureValue)
                     return new ClosureDeclaration((ClosureValue)o);
+                else if (o is ArrowValue)
+                    return new ArrowDeclaration((ArrowValue)o);
             }
             catch (PromptoError)
             {

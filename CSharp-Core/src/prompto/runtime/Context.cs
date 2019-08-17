@@ -43,6 +43,14 @@ namespace prompto.runtime
 		{
 		}
 
+        public IContext Calling
+        {
+            get
+            {
+                return calling;
+            }
+        }
+
 		public bool isGlobalContext()
 		{
 			return this == globals;
@@ -81,7 +89,7 @@ namespace prompto.runtime
 			return sb.ToString();
 		}
 
-		public IContext getCallingContext()
+		public Context getCallingContext()
 		{
 			return calling;
 		}
@@ -362,8 +370,6 @@ namespace prompto.runtime
 
 		protected virtual void writeValue(String name, IValue value)
 		{
-			if (value is IExpression)
-				value = ((IExpression)value).interpret(this);
 			IValue current;
 			values.TryGetValue(name, out current);
 			if (current is LinkedValue)

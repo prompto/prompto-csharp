@@ -160,9 +160,9 @@ namespace prompto.type.document
         protected override int DoCompare(Document o1, Document o2)
         {
             Argument argument = methodCall.getArguments()[0];
-            argument.setExpression(new ValueExpression(AnyType.Instance, o1));
+            argument.Expression = new ValueExpression(AnyType.Instance, o1);
             Object value1 = methodCall.interpret(context);
-            argument.setExpression(new ValueExpression(AnyType.Instance, o2));
+            argument.Expression = new ValueExpression(AnyType.Instance, o2);
             Object value2 = methodCall.interpret(context);
             return ObjectUtils.CompareValues(value1, value2);
         }

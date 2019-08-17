@@ -13,35 +13,36 @@ namespace prompto.value
 	public class ContextualExpression : BaseValue, IExpression
 	{
 
-		Context calling;
-		IExpression expression;
+        public IExpression Expression { get; set; }
+        public Context Calling { get; set; }
 
-		public ContextualExpression (Context calling, IExpression expression)
+        public ContextualExpression (Context calling, IExpression expression)
 			: base (null) // TODO check that this is not a problem
 		{
-			this.calling = calling;
-			this.expression = expression;
+			this.Calling = calling;
+			this.Expression = expression;
 		}
 
-		override
-        public String ToString ()
+		
+        public override String ToString ()
 		{
-			return expression.ToString ();
+			return Expression.ToString ();
 		}
 
 		public void ToDialect (CodeWriter writer)
 		{
-			expression.ToDialect (writer);
+            Expression.ToDialect (writer);
 		}
 
-		public IType check (Context context)
+
+        public IType check (Context context)
 		{
-			return expression.check (this.calling);
+			return Expression.check (Calling);
 		}
 
-		public IValue interpret (Context context)
+		public virtual IValue interpret (Context context)
 		{
-			return expression.interpret (calling);
+			return Expression.interpret (Calling);
 		}
 
 	}

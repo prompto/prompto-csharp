@@ -515,9 +515,9 @@ namespace prompto.type.category
         protected override int DoCompare(IInstance o1, IInstance o2)
         {
             Argument argument = methodCall.getArguments()[0];
-            argument.setExpression(new ValueExpression(type, o1));
+            argument.Expression = new ValueExpression(type, o1);
             Object value1 = methodCall.interpret(context);
-            argument.setExpression(new ValueExpression(type, o2));
+            argument.Expression = new ValueExpression(type, o2);
             Object value2 = methodCall.interpret(context);
             return ObjectUtils.CompareValues(value1, value2);
         }

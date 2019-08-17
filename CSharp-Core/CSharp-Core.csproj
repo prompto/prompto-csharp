@@ -524,6 +524,8 @@
     <Compile Include="src\prompto\processor\AnnotationProcessor.cs" />
     <Compile Include="src\prompto\processor\WidgetFieldProcessor.cs" />
     <Compile Include="src\prompto\param\ParameterList.cs" />
+    <Compile Include="src\prompto\value\ArrowValue.cs" />
+    <Compile Include="src\prompto\declaration\ArrowDeclaration.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />

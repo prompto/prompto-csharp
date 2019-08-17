@@ -22,6 +22,12 @@ namespace prompto.runtime.o
 		}
 
 		[Test]
+		public void testArrowArgument()
+		{
+			CheckOutput("arrow/arrowArgument.poc");
+		}
+
+		[Test]
 		public void testFilterFromList()
 		{
 			CheckOutput("arrow/filterFromList.poc");

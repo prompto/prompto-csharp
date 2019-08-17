@@ -80,7 +80,7 @@ namespace prompto.expression
 
         void checkFirstHomonym(Context context, CategoryDeclaration decl, Argument argument)
         {
-            if (argument.getParameter() == null)
+            if (argument.Parameter == null)
             {
                 IExpression exp = argument.getExpression();
                 // when coming from UnresolvedCall, could be an homonym
@@ -92,8 +92,8 @@ namespace prompto.expression
                 if (name != null && decl.hasAttribute(context, name))
                 {
                     // convert expression to name to avoid translation issues
-                    argument.setParameter(new AttributeParameter(name));
-                    argument.setExpression(null);
+                    argument.Parameter = new AttributeParameter(name);
+                    argument.Expression = null;
                 }
             }
         }

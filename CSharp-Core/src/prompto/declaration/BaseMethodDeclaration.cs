@@ -7,7 +7,7 @@ using prompto.grammar;
 using prompto.type;
 using prompto.value;
 using prompto.param;
-
+using prompto.expression;
 
 namespace prompto.declaration
 {
@@ -163,21 +163,23 @@ namespace prompto.declaration
         {
             try
             {
-                IType required = parameter.GetIType(context);
-                IType actual = argument.getExpression().check(context);
+                IType requiredType = parameter.GetIType(context);
+                IExpression expression = argument.getExpression();
+                bool checkArrow = requiredType is MethodType && expression is ContextualExpression && ((ContextualExpression)expression).Expression is ArrowExpression;
+                IType actualType = checkArrow ? ((MethodType)requiredType).checkArrowExpression((ContextualExpression)expression) : expression.check(context);
                 // retrieve actual runtime type
-                if (useInstance && actual is CategoryType)
+                if (useInstance && actualType is CategoryType)
                 {
                     Object value = argument.getExpression().interpret((Context)context.getCallingContext());
                     if (value is IInstance)
-                        actual = ((IInstance)value).getType();
+                        actualType = ((IInstance)value).getType();
                 }
-                if (actual.Equals(required))
+                if (actualType.Equals(requiredType))
                     return Specificity.EXACT;
-                if (required.isAssignableFrom(context, actual))
+                if (requiredType.isAssignableFrom(context, actualType))
                     return Specificity.INHERITED;
-                actual = argument.resolve(context, this, useInstance).check(context);
-                if (required.isAssignableFrom(context, actual))
+                actualType = argument.resolve(context, this, useInstance).check(context);
+                if (requiredType.isAssignableFrom(context, actualType))
                     return Specificity.RESOLVED;
             }
             catch (PromptoError)

@@ -27,7 +27,7 @@ namespace prompto.grammar
 		public void CheckLastAnd()
 		{
 			Argument argument = this[this.Count - 1];
-			if(argument!=null && argument.getParameter()!=null && argument.getExpression() is AndExpression) 
+			if(argument!=null && argument.Parameter!=null && argument.getExpression() is AndExpression) 
 			{
 				AndExpression and = (AndExpression)argument.getExpression();
 				if(and.Left is UnresolvedIdentifier) 
@@ -41,7 +41,7 @@ namespace prompto.grammar
 						Argument attribute = new Argument(parameter, null);
 						this.Add(attribute);
                         // fix last argument
-                        argument.setExpression(and.Right);
+                        argument.Expression = and.Right;
 						this.Add(argument);
 					}
 				}
@@ -98,7 +98,7 @@ namespace prompto.grammar
 		private void ToEDialect(CodeWriter writer) {
 			int idx = 0;
 			// anonymous argument before 'with'
-			if(this.Count>0 && this[0].getParameter()==null) {
+			if(this.Count>0 && this[0].Parameter==null) {
 				writer.append(' ');
 				this[idx++].ToDialect(writer);
 			}

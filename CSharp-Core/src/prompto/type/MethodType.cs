@@ -4,6 +4,7 @@ using System;
 using System.Reflection;
 using prompto.declaration;
 using prompto.store;
+using prompto.value;
 
 namespace prompto.type
 {
@@ -70,6 +71,11 @@ namespace prompto.type
             return false;
         }
 
+        internal IType checkArrowExpression(ContextualExpression expression)
+        {
+            // TODO Auto-generated method stub
+            return this;
+        }
     }
 
 }

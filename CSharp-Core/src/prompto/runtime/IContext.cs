@@ -4,7 +4,7 @@ namespace prompto.runtime
     public interface IContext
     {
 
-        IContext getCallingContext();
+        IContext Calling { get; }
 
     }
 
