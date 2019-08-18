@@ -16,7 +16,6 @@ namespace prompto.java
             this.parent = parent;
         }
 
-		public abstract void ToDialect (CodeWriter writer);
      }
 
 }

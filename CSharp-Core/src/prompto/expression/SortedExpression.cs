@@ -11,7 +11,7 @@ using System.Collections.Generic;
 namespace prompto.expression
 {
 
-	public class SortedExpression : IExpression
+	public class SortedExpression : BaseExpression, IExpression
 	{
 
 		IExpression source;
@@ -31,7 +31,7 @@ namespace prompto.expression
 			this.key = key;
 		}
 
-		public void ToDialect(CodeWriter writer)
+		public override void ToDialect(CodeWriter writer)
 		{
 			switch (writer.getDialect())
 			{
@@ -116,7 +116,7 @@ namespace prompto.expression
 			ToODialect(writer);
 		}
 
-		public IType check(Context context)
+		public override IType check(Context context)
 		{
 			IType type = source.check(context);
 			if (!(type is ListType || type is SetType))
@@ -124,7 +124,7 @@ namespace prompto.expression
 			return type;
 		}
 
-		public IValue interpret(Context context)
+		public override IValue interpret(Context context)
 		{
 			IType type = source.check(context);
 			if (!(type is ListType || type is SetType))

@@ -11,7 +11,7 @@ using prompto.value;
 namespace prompto.expression
 {
 
-    public class ExecuteExpression : Section, IExpression, ISection
+    public class ExecuteExpression : BaseExpression, IExpression, ISection
     {
 
         String name;
@@ -26,7 +26,7 @@ namespace prompto.expression
             return name;
         }
 
-		public void ToDialect(CodeWriter writer) {
+		public override void ToDialect(CodeWriter writer) {
 			switch(writer.getDialect()) {
 			case Dialect.E:
 				writer.append("execute: ");
@@ -41,7 +41,7 @@ namespace prompto.expression
 			}
 		}
 
-        public IType check(Context context)
+        public override IType check(Context context)
         {
             try
             {
@@ -57,7 +57,7 @@ namespace prompto.expression
             }
         }
 
-		public IValue interpret(Context context)
+		public override IValue interpret(Context context)
         {
 			IValue value = context.getValue(name);
 			if(value is CodeValue)

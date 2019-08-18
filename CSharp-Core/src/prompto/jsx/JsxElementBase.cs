@@ -40,5 +40,10 @@ namespace prompto.jsx
 
 		public abstract void ToDialect(CodeWriter writer);
 
-	}
+        public void ParentToDialect(CodeWriter writer)
+        {
+            ToDialect(writer);
+        }
+
+    }
 }

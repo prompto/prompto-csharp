@@ -264,7 +264,7 @@ namespace prompto.parser
 
         public override void ExitBooleanLiteral(MParser.BooleanLiteralContext ctx)
         {
-            SetNodeValue(ctx, new BooleanLiteral(ctx.t.Text));
+            SetNodeValue(ctx, new BooleanLiteral(ctx.GetText()));
         }
 
 
@@ -288,37 +288,37 @@ namespace prompto.parser
 
         public override void ExitIntegerLiteral(MParser.IntegerLiteralContext ctx)
         {
-            SetNodeValue(ctx, new IntegerLiteral(ctx.t.Text));
+            SetNodeValue(ctx, new IntegerLiteral(ctx.GetText()));
         }
 
 
         public override void ExitDecimalLiteral(MParser.DecimalLiteralContext ctx)
         {
-            SetNodeValue(ctx, new DecimalLiteral(ctx.t.Text));
+            SetNodeValue(ctx, new DecimalLiteral(ctx.GetText()));
         }
 
 
         public override void ExitHexadecimalLiteral(MParser.HexadecimalLiteralContext ctx)
         {
-            SetNodeValue(ctx, new HexaLiteral(ctx.t.Text));
+            SetNodeValue(ctx, new HexaLiteral(ctx.GetText()));
         }
 
 
         public override void ExitCharacterLiteral(MParser.CharacterLiteralContext ctx)
         {
-            SetNodeValue(ctx, new CharacterLiteral(ctx.t.Text));
+            SetNodeValue(ctx, new CharacterLiteral(ctx.GetText()));
         }
 
 
         public override void ExitDateLiteral(MParser.DateLiteralContext ctx)
         {
-            SetNodeValue(ctx, new DateLiteral(ctx.t.Text));
+            SetNodeValue(ctx, new DateLiteral(ctx.GetText()));
         }
 
 
         public override void ExitDateTimeLiteral(MParser.DateTimeLiteralContext ctx)
         {
-            SetNodeValue(ctx, new DateTimeLiteral(ctx.t.Text));
+            SetNodeValue(ctx, new DateTimeLiteral(ctx.GetText()));
         }
 
         public override void ExitTernaryExpression(MParser.TernaryExpressionContext ctx)
@@ -343,19 +343,19 @@ namespace prompto.parser
 
         public override void ExitTextLiteral(MParser.TextLiteralContext ctx)
         {
-            SetNodeValue(ctx, new TextLiteral(ctx.t.Text));
+            SetNodeValue(ctx, new TextLiteral(ctx.GetText()));
         }
 
 
         public override void ExitTimeLiteral(MParser.TimeLiteralContext ctx)
         {
-            SetNodeValue(ctx, new TimeLiteral(ctx.t.Text));
+            SetNodeValue(ctx, new TimeLiteral(ctx.GetText()));
         }
 
 
         public override void ExitPeriodLiteral(MParser.PeriodLiteralContext ctx)
         {
-            SetNodeValue(ctx, new PeriodLiteral(ctx.t.Text));
+            SetNodeValue(ctx, new PeriodLiteral(ctx.GetText()));
         }
 
 
@@ -367,7 +367,7 @@ namespace prompto.parser
 
         public override void ExitVersionLiteral(MParser.VersionLiteralContext ctx)
         {
-            SetNodeValue(ctx, new VersionLiteral(ctx.t.Text));
+            SetNodeValue(ctx, new VersionLiteral(ctx.GetText()));
         }
 
 
@@ -385,7 +385,7 @@ namespace prompto.parser
 
         public override void ExitUUIDLiteral(MParser.UUIDLiteralContext ctx)
         {
-            SetNodeValue(ctx, new UUIDLiteral(ctx.t.Text));
+            SetNodeValue(ctx, new UUIDLiteral(ctx.GetText()));
         }
 
 
@@ -534,6 +534,21 @@ namespace prompto.parser
             String name = GetNodeValue<String>(ctx.type_identifier());
             SetNodeValue(ctx, new UnresolvedIdentifier(name, Dialect.M));
         }
+
+
+        public override void ExitTypeLiteral(MParser.TypeLiteralContext ctx)
+        {
+            TypeLiteral type = GetNodeValue<TypeLiteral>(ctx.type_literal());
+            SetNodeValue(ctx, type);
+        }
+
+
+        public override void ExitType_literal(MParser.Type_literalContext ctx)
+        {
+            IType type = GetNodeValue<IType>(ctx.typedef());
+            SetNodeValue(ctx, new TypeLiteral(type));
+        }
+
 
 
         public override void ExitSymbolIdentifier(MParser.SymbolIdentifierContext ctx)

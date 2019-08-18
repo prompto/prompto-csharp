@@ -12,7 +12,7 @@ using prompto.param;
 namespace prompto.expression
 {
 
-    public class ConstructorExpression : IExpression
+    public class ConstructorExpression : BaseExpression, IExpression
     {
 
         CategoryType type;
@@ -48,7 +48,7 @@ namespace prompto.expression
             return copyFrom;
         }
 
-        public void ToDialect(CodeWriter writer)
+        public override void ToDialect(CodeWriter writer)
         {
             Context context = writer.getContext();
             CategoryDeclaration cd = context.getRegisteredDeclaration<CategoryDeclaration>(this.type.GetTypeName());
@@ -128,7 +128,7 @@ namespace prompto.expression
                 arguments.ToDialect(writer);
         }
 
-        public IType check(Context context)
+        public override IType check(Context context)
         {
             CategoryDeclaration cd = context.getRegisteredDeclaration<CategoryDeclaration>(this.type.GetTypeName());
             if (cd == null)
@@ -154,7 +154,7 @@ namespace prompto.expression
             return cd.GetIType(context);
         }
 
-        public IValue interpret(Context context)
+        public override IValue interpret(Context context)
         {
             CategoryDeclaration cd = context.getRegisteredDeclaration<CategoryDeclaration>(this.type.GetTypeName());
             if (cd == null)

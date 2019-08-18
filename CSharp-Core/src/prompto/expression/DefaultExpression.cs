@@ -6,7 +6,7 @@ using prompto.utils;
 namespace prompto.expression
 {
 
-	public class DefaultExpression : IExpression
+	public class DefaultExpression : BaseExpression, IExpression
 	{
 
 		IExpression expression;
@@ -17,19 +17,19 @@ namespace prompto.expression
 			this.expression = expression;
 		}
 
-		public IType check (Context context)
+		public override IType check (Context context)
 		{
 			return expression.check (context);
 		}
 
-		public IValue interpret (Context context)
+		public override IValue interpret (Context context)
 		{
 			if (value == null)
 				value = expression.interpret (context);
 			return value;
 		}
 
-		public void ToDialect (CodeWriter writer)
+		public override void ToDialect (CodeWriter writer)
 		{
 			expression.ToDialect (writer);
 		}

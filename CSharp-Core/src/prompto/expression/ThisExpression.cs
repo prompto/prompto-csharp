@@ -8,10 +8,10 @@ using prompto.parser;
 namespace prompto.expression
 {
 
-	public class ThisExpression : IExpression
+	public class ThisExpression : BaseExpression, IExpression
 	{
 
-		public IType check (Context context)
+		public override IType check (Context context)
 		{
 			if (context is DocumentContext)
 				return DocumentType.Instance;
@@ -23,7 +23,7 @@ namespace prompto.expression
 				throw new SyntaxError ("Not in an instance context!");
 		}
 
-		public IValue interpret (Context context)
+		public override IValue interpret (Context context)
 		{
 			if (context is DocumentContext)
 				return ((DocumentContext)context).getDocument();
@@ -35,7 +35,7 @@ namespace prompto.expression
 				throw new SyntaxError ("Not in an instance context!");
 		}
 
-		public void ToDialect (CodeWriter writer)
+		public override void ToDialect (CodeWriter writer)
 		{
 			if (writer.getDialect () == Dialect.O)
 				writer.append ("this");

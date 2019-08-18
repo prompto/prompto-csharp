@@ -1996,6 +1996,18 @@ public partial class MParserBaseListener : IMParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitDedent([NotNull] MParser.DedentContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="MParser.type_literal"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterType_literal([NotNull] MParser.Type_literalContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="MParser.type_literal"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitType_literal([NotNull] MParser.Type_literalContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="MParser.null_literal"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
@@ -3651,6 +3663,20 @@ public partial class MParserBaseListener : IMParserListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitUUIDLiteral([NotNull] MParser.UUIDLiteralContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by the <c>TypeLiteral</c>
+	/// labeled alternative in <see cref="MParser.atomic_literal"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterTypeLiteral([NotNull] MParser.TypeLiteralContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by the <c>TypeLiteral</c>
+	/// labeled alternative in <see cref="MParser.atomic_literal"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitTypeLiteral([NotNull] MParser.TypeLiteralContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by the <c>NullLiteral</c>
 	/// labeled alternative in <see cref="MParser.atomic_literal"/>.

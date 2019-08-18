@@ -12,7 +12,7 @@ using prompto.statement;
 namespace prompto.expression
 {
 
-	public class IteratorExpression : IExpression
+	public class IteratorExpression : BaseExpression, IExpression
 	{
 
 		String name;
@@ -26,7 +26,7 @@ namespace prompto.expression
 			this.expression = exp;
 		}
 
-		public IType check(Context context)
+		public override IType check(Context context)
 		{
 			IType elemType = source.check(context).checkIterator(context);
 			Context child = context.newChildContext();
@@ -35,7 +35,7 @@ namespace prompto.expression
 			return new IteratorType(itemType);
 		}
 
-		public IValue interpret(Context context)
+		public override IValue interpret(Context context)
 		{
 			IType elemType = source.check(context).checkIterator(context);
 			IValue items = source.interpret(context);
@@ -54,7 +54,7 @@ namespace prompto.expression
 				throw new InternalError("Should never get there!");
 		}
 
-		public void ToDialect(CodeWriter writer)
+		public override void ToDialect(CodeWriter writer)
 		{
 			switch (writer.getDialect())
 			{

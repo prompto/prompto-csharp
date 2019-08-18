@@ -13,7 +13,11 @@ namespace prompto.statement
         public abstract IType check(runtime.Context context);
         public abstract IValue interpret(runtime.Context context);
         public abstract void ToDialect(CodeWriter writer);
-		public virtual bool CanReturn { get { return false; } }
+        public virtual void ParentToDialect(CodeWriter writer)
+        {
+            ToDialect(writer);
+        }
+        public virtual bool CanReturn { get { return false; } }
 		public virtual bool IsSimple { get { return false; } }
 
     }

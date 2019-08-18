@@ -154,5 +154,5 @@ namespace prompto.utils
 			return typeToITypedict[type];
 		}
 
-	}
+    }
 }

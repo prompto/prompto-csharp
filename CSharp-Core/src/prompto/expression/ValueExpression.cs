@@ -28,8 +28,8 @@ namespace prompto.expression
             return value;
         }
 
-        override
-        public String ToString()
+        
+        public override String ToString()
         {
             return type.ToString(value);
         }
@@ -39,7 +39,10 @@ namespace prompto.expression
 			writer.append(value.ToString()); // value has no dialect
         }
 
-
+        public void ParentToDialect(CodeWriter writer)
+        {
+            ToDialect(writer);
+        }
     }
 
 }

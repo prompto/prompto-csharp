@@ -11,7 +11,7 @@ using prompto.value;
 
 namespace prompto.expression
 {
-	public class ArrowExpression : IExpression
+	public class ArrowExpression : BaseExpression, IExpression
 	{
 
 		public ArrowExpression(IdentifierList args, String argsSuite, String arrowSuite)
@@ -26,12 +26,12 @@ namespace prompto.expression
 		public String ArrowSuite { get; set; }
 		public StatementList Statements { get; set; }
 
-		public IType check(Context context)
+		public override IType check(Context context)
 		{
 			throw new NotSupportedException();
 		}
 
-		public IValue interpret(Context context)
+		public override IValue interpret(Context context)
 		{
 			return Statements.interpret(context);
 		}
@@ -55,7 +55,7 @@ namespace prompto.expression
             }
         }
 
-        public void ToDialect(CodeWriter writer)
+        public override void ToDialect(CodeWriter writer)
 		{
 			ArgsToDialect(writer);
 			writer.append(ArgsSuite);

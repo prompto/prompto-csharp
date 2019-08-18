@@ -149,25 +149,25 @@ namespace prompto.type
         }
 
 
-        public override IType checkMember(Context context, String name)
+        public override IType checkStaticMember(Context context, String name)
         {
             if (name == "min")
                 return this;
             else if (name == "max")
                 return this;
             else
-                return base.checkMember(context, name);
+                return base.checkStaticMember(context, name);
         }
 
 
-        public override IValue getMemberValue(Context context, String name)
+        public override IValue getStaticMemberValue(Context context, String name)
         {
             if (name == "min")
                 return new Integer(Int64.MinValue);
             else if (name == "max")
                 return new Integer(Int64.MaxValue);
             else
-                return base.getMemberValue(context, name);
+                return base.getStaticMemberValue(context, name);
         }
 
         public override ISet<IMethodDeclaration> getMemberMethods(Context context, string name)

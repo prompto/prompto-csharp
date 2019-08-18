@@ -12,7 +12,7 @@ using System.Collections.Generic;
 namespace prompto.expression
 {
 
-    public class MethodExpression : IExpression
+    public class MethodExpression : BaseExpression, IExpression
     {
 
         String name;
@@ -32,13 +32,13 @@ namespace prompto.expression
             return name;
         }
 
-		public void ToDialect(CodeWriter writer) {
+		public override void ToDialect(CodeWriter writer) {
 			if(writer.getDialect()==Dialect.E)
 				writer.append("Method: ");
 			writer.append(name);
 		}
 
-        public IType check(Context context)
+        public override IType check(Context context)
         {
             IMethodDeclaration declaration = getDeclaration(context);
             if (declaration!=null)
@@ -56,7 +56,7 @@ namespace prompto.expression
 				return null;
 		}
 
-        public IValue interpret(Context context)
+        public override IValue interpret(Context context)
         {
 			if (context.hasValue(name))
 				return context.getValue(name);

@@ -12,7 +12,7 @@ using ICSharpCode.SharpZipLib.Zip;
 
 namespace prompto.expression
 {
-	public class BlobExpression : IExpression
+	public class BlobExpression : BaseExpression, IExpression
 	{
 		IExpression source;
 
@@ -21,13 +21,13 @@ namespace prompto.expression
 			this.source = source;
 		}
 
-		public IType check(Context context)
+		public override IType check(Context context)
 		{
 			source.check (context);
 			return BlobType.Instance;
 		}
 
-		public void ToDialect(CodeWriter writer) {
+		public override void ToDialect(CodeWriter writer) {
 			writer.append("Blob");
 			switch(writer.getDialect()) {
 			case Dialect.E:
@@ -43,7 +43,7 @@ namespace prompto.expression
 			}
 		}
 
-		public IValue interpret(Context context)
+		public override IValue interpret(Context context)
 		{
 			IValue value = source.interpret (context);
 			try {

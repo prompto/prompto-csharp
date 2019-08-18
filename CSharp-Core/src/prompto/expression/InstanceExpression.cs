@@ -13,7 +13,7 @@ using System.Collections.Generic;
 namespace prompto.expression
 {
 
-    public class InstanceExpression : IExpression
+    public class InstanceExpression : BaseExpression, IExpression
     {
 
         String name;
@@ -28,13 +28,13 @@ namespace prompto.expression
             return name;
         }
 
-        override
-        public String ToString()
+        
+        public override String ToString()
         {
             return name;
         }
 
-		public void ToDialect(CodeWriter writer)
+		public override void ToDialect(CodeWriter writer)
 		{
 			ToDialect (writer, true);
 		}
@@ -55,7 +55,7 @@ namespace prompto.expression
 			return false;
 		}
 
-        public IType check(Context context)
+        public override IType check(Context context)
         {
             INamed named = context.getRegistered(name);
 			if (named == null)
@@ -80,7 +80,7 @@ namespace prompto.expression
                 throw new SyntaxError(name + "  is not a value or method:" + named.GetType().Name);
         }
 
-        public IValue interpret(Context context)
+        public override IValue interpret(Context context)
         {
     		if (context.hasValue(name))
 				return context.getValue(name);

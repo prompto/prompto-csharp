@@ -16,9 +16,6 @@ namespace prompto.csharp
             this.parent = parent;
         }
 
-		public abstract IType check(Context context);
-		public abstract object interpret(Context context);
-		public abstract void ToDialect(CodeWriter writer);
 
     }
 }

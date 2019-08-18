@@ -46,13 +46,17 @@ namespace prompto.type
 
 		IType checkMember (Context context, String name);
 
-		IRange newRange (Object left, Object right);
+        IType checkStaticMember(Context context, String name);
 
-		IValue getMemberValue (Context context, String name);
+        IRange newRange (Object left, Object right);
 
 		ISet<IMethodDeclaration> getMemberMethods(Context context, String name);
 
-		void checkUnique (Context context);
+        ISet<IMethodDeclaration> getStaticMemberMethods(Context context, String name);
+
+        IValue getStaticMemberValue(Context context, string name);
+
+        void checkUnique (Context context);
 
 		void checkExists (Context context);
 
@@ -73,6 +77,6 @@ namespace prompto.type
 		IValue ConvertCSharpValueToIValue (Context context, Object value);
 
 		IValue ReadJSONValue (Context context, JToken json, Dictionary<String, byte[]> parts);
-}
+     }
  
 }

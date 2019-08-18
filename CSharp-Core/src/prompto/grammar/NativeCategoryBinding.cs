@@ -8,7 +8,11 @@ namespace prompto.grammar
 
     public abstract class NativeCategoryBinding : IDialectElement
     {
-		public abstract void ToDialect (CodeWriter writer);
-    }
+        public abstract void ToDialect (CodeWriter writer);
+        public virtual void ParentToDialect(CodeWriter writer)
+        {
+            ToDialect(writer);
+        }
+   }
 
 }

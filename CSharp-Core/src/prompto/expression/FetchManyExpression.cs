@@ -11,7 +11,7 @@ using prompto.grammar;
 namespace prompto.expression
 {
 
-	public class FetchManyExpression : Section, IExpression
+	public class FetchManyExpression : BaseExpression, IExpression
 	{
 
 		protected CategoryType type;
@@ -30,7 +30,7 @@ namespace prompto.expression
 		}
 
 
-		public virtual void ToDialect(CodeWriter writer)
+		public override void ToDialect(CodeWriter writer)
 		{
 			switch (writer.getDialect())
 			{
@@ -142,7 +142,7 @@ namespace prompto.expression
 			}
 		}
 
-		public virtual IType check(Context context)
+		public override IType check(Context context)
 		{
 			IType type = this.type;
 			if(type==null)
@@ -179,7 +179,7 @@ namespace prompto.expression
 				throw new SyntaxError("Filtering expresion must return a boolean !");
 		}
 
-		public virtual IValue interpret(Context context)
+		public override IValue interpret(Context context)
 		{
 			IStore store = DataStore.Instance;
 			IQuery query = buildFetchManyQuery(context, store);

@@ -55,46 +55,87 @@ namespace prompto.type
 
         public override IType checkMember(Context context, String name)
         {
-            IDeclaration dd = context.getRegisteredDeclaration<IDeclaration>(GetTypeName());
-            if (dd == null)
+            IDeclaration decl = context.getRegisteredDeclaration<IDeclaration>(GetTypeName());
+            if (decl == null)
                 throw new SyntaxError("Unknown category:" + GetTypeName());
-            if (dd is EnumeratedNativeDeclaration)
-                return dd.GetIType(context).checkMember(context, name);
-            else if (dd is CategoryDeclaration)
-            {
-                CategoryDeclaration cd = (CategoryDeclaration)dd;
-                if (cd.Storable && "dbId" == name)
-                    return AnyType.Instance;
-                else if (cd.hasAttribute(context, name))
-                {
-                    AttributeDeclaration ad = context.getRegisteredDeclaration<AttributeDeclaration>(name);
-                    if (ad == null)
-                        throw new SyntaxError("Unknown atttribute:" + name);
-                    else
-                        return ad.GetIType(context);
-                }
-                else if ("text" == name)
-                    return TextType.Instance;
-                else if (cd.hasMethod(context, name))
-                {
-                    IMethodDeclaration method = cd.getMemberMethods(context, name).GetFirst();
-                    return new MethodType(method);
-                }
-                else
-                    throw new SyntaxError("No attribute:" + name + " in category:" + GetTypeName());
-            }
+            if (decl is EnumeratedNativeDeclaration)
+                return decl.GetIType(context).checkMember(context, name);
+            else if (decl is CategoryDeclaration)
+                return checkMember(context, (CategoryDeclaration)decl, name);
             else
                 throw new SyntaxError("Not a category:" + GetTypeName());
         }
 
-        override
-        public Type ToCSharpType()
+        public IType checkMember(Context context, CategoryDeclaration decl, String name)
+        {
+            if (decl.Storable && "dbId" == name)
+                return AnyType.Instance;
+            else if (decl.hasAttribute(context, name))
+            {
+                AttributeDeclaration ad = context.getRegisteredDeclaration<AttributeDeclaration>(name);
+                if (ad == null)
+                    throw new SyntaxError("Unknown atttribute:" + name);
+                else
+                    return ad.GetIType(context);
+            }
+            else if ("text" == name)
+                return TextType.Instance;
+            else if (decl.hasMethod(context, name))
+            {
+                IMethodDeclaration method = decl.getMemberMethods(context, name).GetFirst();
+                return new MethodType(method);
+            }
+            else
+                throw new SyntaxError("No attribute:" + name + " in category:" + GetTypeName());
+
+        }
+
+        public override IType checkStaticMember(Context context, String name)
+        {
+            IDeclaration decl = context.getRegisteredDeclaration<IDeclaration>(GetTypeName());
+            if(decl==null) 
+                throw new SyntaxError("Not a category:" + GetTypeName());
+            if(decl is EnumeratedCategoryDeclaration || decl is EnumeratedNativeDeclaration)
+    	        return decl.GetIType(context).checkStaticMember(context, name);
+            if(decl is SingletonCategoryDeclaration)
+    	        return checkMember(context, (SingletonCategoryDeclaration) decl, name);
+            throw new SyntaxError("No attribute:" + name + " in category:" + GetTypeName());
+            
+ 	    }
+
+
+
+ 	    public override ISet<IMethodDeclaration> getStaticMemberMethods(Context context, String name)
+        {
+            IDeclaration decl = getDeclaration(context);
+            if (decl is EnumeratedCategoryDeclaration || decl is EnumeratedNativeDeclaration)
+                return decl.GetIType(context).getStaticMemberMethods(context, name);
+		    else if(decl is SingletonCategoryDeclaration)
+			    return decl.GetIType(context).getMemberMethods(context, name);
+		    else
+			    return base.getStaticMemberMethods(context, name);
+        }
+
+        public override IValue getStaticMemberValue(Context context, String name) 
+        {
+            IDeclaration decl = getDeclaration(context);
+            if (decl is EnumeratedCategoryDeclaration || decl is EnumeratedNativeDeclaration)
+                return decl.GetIType(context).getStaticMemberValue(context, name);
+		    else if(decl is SingletonCategoryDeclaration) {
+                ConcreteInstance singleton = context.loadSingleton(this);
+                return singleton.GetMember(context, name, false);
+            } else
+			    return base.getStaticMemberValue(context, name);
+        }
+
+
+        public override Type ToCSharpType()
         {
             return typeof(Object);
         }
 
-        override
-        public bool Equals(Object obj)
+        
+        public override bool Equals(Object obj)
         {
             if (obj == this)
                 return true;
@@ -106,15 +147,15 @@ namespace prompto.type
             return this.GetTypeName().Equals(other.GetTypeName());
         }
 
-        override
-        public void checkUnique(Context context)
+        
+        public override void checkUnique(Context context)
         {
             IDeclaration actual = context.getRegisteredDeclaration<IDeclaration>(typeName);
             if (actual != null)
                 throw new SyntaxError("Duplicate name: \"" + typeName + "\"");
         }
 
-        IDeclaration getDeclaration(Context context)
+        public IDeclaration getDeclaration(Context context)
         {
             IDeclaration actual = context.getRegisteredDeclaration<CategoryDeclaration>(typeName);
             if (actual == null)

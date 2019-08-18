@@ -17,17 +17,17 @@ namespace prompto.csharp
             this.expression = expression;
         }
 
-        public IType check(Context context)
+        public override IType check(Context context)
         {
             return expression.check(context);
         }
 
-        public Object interpret(Context context)
+        public override Object interpret(Context context)
         {
             return expression.interpret(context);
         }
 
-		public void ToDialect(CodeWriter writer) {
+		public override void ToDialect(CodeWriter writer) {
 			writer.append('(');
 			expression.ToDialect(writer);
 			writer.append(')');

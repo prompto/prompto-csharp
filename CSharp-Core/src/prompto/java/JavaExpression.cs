@@ -1,15 +1,15 @@
-using System;
-using prompto.runtime;
-using prompto.parser;
 using prompto.grammar;
 using prompto.utils;
-using prompto.type;
-
 
 namespace prompto.java
 {
 
-    public interface JavaExpression : IDialectElement
+    public abstract class JavaExpression : IDialectElement
     {
+        public abstract void ToDialect(CodeWriter writer);
+        public virtual void ParentToDialect(CodeWriter writer)
+        {
+            ToDialect(writer);
+        }
     }
 }

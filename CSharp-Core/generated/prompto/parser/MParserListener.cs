@@ -1696,6 +1696,16 @@ public interface IMParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitDedent([NotNull] MParser.DedentContext context);
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="MParser.type_literal"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterType_literal([NotNull] MParser.Type_literalContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="MParser.type_literal"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitType_literal([NotNull] MParser.Type_literalContext context);
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="MParser.null_literal"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
@@ -3099,6 +3109,18 @@ public interface IMParserListener : IParseTreeListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void ExitUUIDLiteral([NotNull] MParser.UUIDLiteralContext context);
+	/// <summary>
+	/// Enter a parse tree produced by the <c>TypeLiteral</c>
+	/// labeled alternative in <see cref="MParser.atomic_literal"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterTypeLiteral([NotNull] MParser.TypeLiteralContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>TypeLiteral</c>
+	/// labeled alternative in <see cref="MParser.atomic_literal"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitTypeLiteral([NotNull] MParser.TypeLiteralContext context);
 	/// <summary>
 	/// Enter a parse tree produced by the <c>NullLiteral</c>
 	/// labeled alternative in <see cref="MParser.atomic_literal"/>.

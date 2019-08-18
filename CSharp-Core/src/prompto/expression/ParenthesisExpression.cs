@@ -9,7 +9,7 @@ using prompto.value;
 namespace prompto.expression
 {
 
-    public class ParenthesisExpression : IExpression
+    public class ParenthesisExpression : BaseExpression, IExpression
     {
 
         IExpression expression;
@@ -30,19 +30,19 @@ namespace prompto.expression
 			return "(" + expression.ToString() + ")";
 		}
 
-        public void ToDialect(CodeWriter writer)
+        public override void ToDialect(CodeWriter writer)
         {
 			writer.append("(");
 			expression.ToDialect(writer);
 			writer.append(")");
         }
 
-        public IType check(Context context)
+        public override IType check(Context context)
         {
             return expression.check(context);
         }
 
-		public IValue interpret(Context context)
+		public override IValue interpret(Context context)
         {
             return expression.interpret(context);
         }

@@ -33,5 +33,11 @@ namespace prompto.jsx
 			writer.append(text);
 		}
 
-	}
+        public void ParentToDialect(CodeWriter writer)
+        {
+            ToDialect(writer);
+        }
+
+
+    }
 }

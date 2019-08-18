@@ -52,8 +52,8 @@ namespace prompto.java
             return identifier;
         }
 
-        override
-        public String ToString()
+        
+        public override String ToString()
         {
             if (parent == null)
                 return identifier;
@@ -61,7 +61,7 @@ namespace prompto.java
                 return parent.ToString() + (isChildClass ? '$' : '.') + identifier;
         }
 
-		public void ToDialect(CodeWriter writer) {
+		public override void ToDialect(CodeWriter writer) {
 			if(parent!=null) {
 				parent.ToDialect(writer);
 				writer.append(isChildClass ? '$' : '.');

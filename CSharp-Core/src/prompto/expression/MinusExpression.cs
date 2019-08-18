@@ -10,7 +10,7 @@ using prompto.utils;
 namespace prompto.expression
 {
 
-    public class MinusExpression : IUnaryExpression
+    public class MinusExpression : BaseExpression, IUnaryExpression
     {
 
         IExpression expression;
@@ -25,13 +25,13 @@ namespace prompto.expression
 			return "-" + expression.ToString();
 		}
 
-        public void ToDialect(CodeWriter writer)
+        public override void ToDialect(CodeWriter writer)
         {
 			writer.append("-");
 			expression.ToDialect(writer);
         }
   
-        public IType check(Context context)
+        public override IType check(Context context)
         {
             IType type = expression.check(context);
             if (type is IntegerType || type is DecimalType || type is PeriodType)
@@ -40,7 +40,7 @@ namespace prompto.expression
 				throw new SyntaxError("Cannot negate " + type.GetTypeName());
         }
 
-        public IValue interpret(Context context)
+        public override IValue interpret(Context context)
         {
 			IValue val = expression.interpret(context);
             if (val is Integer)

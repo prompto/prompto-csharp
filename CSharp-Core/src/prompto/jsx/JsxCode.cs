@@ -28,12 +28,18 @@ namespace prompto.jsx
 			return new JsxValue(this);
 		}
 
-		public void ToDialect(CodeWriter writer)
+        public void ToDialect(CodeWriter writer)
 		{
 			writer.append("{");
 			expression.ToDialect(writer);
 			writer.append("}");
 		}
 
-	}
+        public void ParentToDialect(CodeWriter writer)
+        {
+            ToDialect(writer);
+        }
+
+
+    }
 }

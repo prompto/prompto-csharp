@@ -1,3 +1,4 @@
+using prompto.runtime;
 using prompto.type;
 namespace prompto.value
 {
@@ -8,7 +9,7 @@ namespace prompto.value
         IType value;
 
 		public TypeValue(IType value)
-			: base(null)
+			: base(new TypeType(value))
         {
 			this.value = value;
         }
@@ -17,5 +18,9 @@ namespace prompto.value
 			return value;
 		}
 
+        public override IValue GetMember(Context context, string name, bool autoCreate)
+        {
+            return value.getStaticMemberValue(context, name);
+        }
     }
 }

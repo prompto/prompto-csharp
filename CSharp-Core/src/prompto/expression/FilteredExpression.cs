@@ -10,7 +10,7 @@ using prompto.grammar;
 namespace prompto.expression
 {
 
-	public class FilteredExpression : Section, IExpression
+	public class FilteredExpression : BaseExpression, IExpression
 	{
 
 		String itemName;
@@ -38,7 +38,7 @@ namespace prompto.expression
 		}
 
 
-		public void ToDialect(CodeWriter writer)
+		public override void ToDialect(CodeWriter writer)
 		{
 			if (itemName != null)
 				ToDialectExplicit(writer);
@@ -77,7 +77,7 @@ namespace prompto.expression
 			}
 		}
 
-		public IType check(Context context)
+		public override IType check(Context context)
 		{
 			IType sourceType = source.check(context);
 			if (!(sourceType is IterableType))
@@ -100,7 +100,7 @@ namespace prompto.expression
 			return sourceType;
 		}
 
-		public IValue interpret(Context context)
+		public override IValue interpret(Context context)
 		{
 			IType sourceType = source.check(context);
 			if (!(sourceType is IterableType))

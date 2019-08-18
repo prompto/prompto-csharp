@@ -12,7 +12,7 @@ using System.Collections.Generic;
 namespace prompto.expression
 {
 
-	public class FetchOneExpression : Section, IExpression
+	public class FetchOneExpression : BaseExpression, IExpression
 	{
 
 		protected CategoryType type;
@@ -25,7 +25,7 @@ namespace prompto.expression
 		}
 
 
-		public virtual void ToDialect(CodeWriter writer)
+		public override void ToDialect(CodeWriter writer)
 		{
 			switch (writer.getDialect())
 			{
@@ -59,7 +59,7 @@ namespace prompto.expression
 			}
 		}
 
-		public virtual IType check(Context context)
+		public override IType check(Context context)
 		{
 			if (!(predicate is IPredicateExpression))
 				throw new SyntaxError("Filtering expression must be a predicate !");
@@ -79,7 +79,7 @@ namespace prompto.expression
 				return AnyType.Instance;
 		}
 
-		public virtual IValue interpret(Context context)
+		public override IValue interpret(Context context)
 		{
 			IStore store = DataStore.Instance;
 			IQuery query = buildFetchOneQuery(context, store);

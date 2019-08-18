@@ -12,7 +12,7 @@ using prompto.store;
 namespace prompto.expression
 {
 
-	public class ContainsExpression : IPredicateExpression, IAssertion
+	public class ContainsExpression : BaseExpression, IPredicateExpression, IAssertion
 	{
 
 		IExpression left;
@@ -26,7 +26,7 @@ namespace prompto.expression
 			this.right = right;
 		}
 
-		public void ToDialect(CodeWriter writer)
+		public override void ToDialect(CodeWriter writer)
 		{
 			left.ToDialect(writer);
 			writer.append(" ");
@@ -41,7 +41,7 @@ namespace prompto.expression
 		}
 
 
-		public IType check(Context context)
+		public override IType check(Context context)
 		{
 			IType lt = left.check(context);
 			IType rt = right.check(context);
@@ -58,7 +58,7 @@ namespace prompto.expression
 			}
 		}
 
-		public IValue interpret(Context context)
+		public override IValue interpret(Context context)
 		{
 			IValue lval = left.interpret(context);
 			IValue rval = right.interpret(context);

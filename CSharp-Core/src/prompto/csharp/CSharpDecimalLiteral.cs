@@ -17,19 +17,19 @@ namespace prompto.csharp
 			this.value = Double.Parse(text, CultureInfo.InvariantCulture);
         }
 
-		override
-	    public IType check(Context context) {
+		
+	    public override IType check(Context context) {
 			return new CSharpClassType(typeof(Double));
 	    }
 
-		override
-        public object interpret(Context context)
+		
+        public override object interpret(Context context)
         {
             return value;
         }
 
-        override
-        public String ToString()
+        
+        public override String ToString()
         {
             return value.ToString();
         }

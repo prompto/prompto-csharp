@@ -57,6 +57,11 @@ namespace prompto.grammar
             }
         }
 
+        public void ParentToDialect(CodeWriter writer)
+        {
+            ToDialect(writer);
+        }
+
         private void ToODialect(CodeWriter writer)
         {
             if (Expression == null)

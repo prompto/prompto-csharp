@@ -14,7 +14,7 @@ using ICSharpCode.SharpZipLib.Zip;
 namespace prompto.expression
 {
 
-    public class DocumentExpression : IExpression
+    public class DocumentExpression : BaseExpression, IExpression
     {
 		IExpression source;
 
@@ -23,14 +23,14 @@ namespace prompto.expression
 			this.source = source;
 		}
 
-        public IType check(Context context)
+        public override IType check(Context context)
         {
 			if (source != null)
 				source.check (context);
             return DocumentType.Instance;
         }
 
-		public IValue interpret(Context context)
+		public override IValue interpret(Context context)
         {
 			if (source == null)
 				return new Document ();
@@ -100,7 +100,7 @@ namespace prompto.expression
 				throw new InvalidDataException("Expecting a JSON object!");
 		}
 
-        public void ToDialect(CodeWriter writer)
+        public override void ToDialect(CodeWriter writer)
         {
 			writer.append("Document");
 			switch(writer.getDialect()) {

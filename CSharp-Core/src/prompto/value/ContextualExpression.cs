@@ -45,6 +45,10 @@ namespace prompto.value
 			return Expression.interpret (Calling);
 		}
 
-	}
+        public void ParentToDialect(CodeWriter writer)
+        {
+            ToDialect(writer);
+        }
+    }
 
 }

@@ -22,15 +22,21 @@ namespace prompto.type
 
 		public override IType checkMember(Context context, String name)
 		{
-			if ("symbols" == name)
-				return new ListType(this);
-			else if ("name" == name)
+			if ("name" == name)
 				return TextType.Instance;
 			else
 				return base.checkMember(context, name);
 		}
 
-		public override IValue getMemberValue(Context context, String name)
+        public override IType checkStaticMember(Context context, String name)
+        {
+            if ("symbols" == name)
+                return new ListType(this);
+            else
+                return base.checkStaticMember(context, name);
+        }
+
+        public override IValue getStaticMemberValue(Context context, String name)
 		{
 			IDeclaration decl = context.getRegisteredDeclaration<IDeclaration>(GetTypeName());
 			if (!(decl is IEnumeratedDeclaration<CategorySymbol>))
@@ -38,10 +44,10 @@ namespace prompto.type
 			if ("symbols" == name)
 				return ((IEnumeratedDeclaration<CategorySymbol>)decl).getSymbols();
 			else
-				throw new SyntaxError("No such member:" + name);
+				return base.getStaticMemberValue(context, name);
 		}
 
-		public override ISet<IMethodDeclaration> getMemberMethods(Context context, string name)
+		public override ISet<IMethodDeclaration> getStaticMemberMethods(Context context, string name)
 		{
 			if ("symbolOf" == name)
 			{
@@ -50,7 +56,7 @@ namespace prompto.type
 				return list;
 			}
 			else
-				return base.getMemberMethods(context, name);
+				return new HashSet<IMethodDeclaration>();
 		}
 	}
 

@@ -10,7 +10,7 @@ using prompto.utils;
 namespace prompto.expression
 {
 
-    public class ReadAllExpression : IExpression
+    public class ReadAllExpression : BaseExpression, IExpression
     {
 
         IExpression resource;
@@ -21,13 +21,13 @@ namespace prompto.expression
         }
 
 
-        public void ToDialect(CodeWriter writer)
+        public override void ToDialect(CodeWriter writer)
         {
 			writer.append("read all from ");
 			resource.ToDialect(writer);
         }
 
-        public IType check(Context context)
+        public override IType check(Context context)
         {
 			context = context.newResourceContext();
 			IType sourceType = resource.check(context);
@@ -36,7 +36,7 @@ namespace prompto.expression
             return TextType.Instance;
         }
 
-		public IValue interpret(Context context)
+		public override IValue interpret(Context context)
         {
 			context = context.newResourceContext();
 			IValue o = resource.interpret(context);

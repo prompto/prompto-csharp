@@ -17,28 +17,24 @@ namespace prompto.csharp
             this.item = item;
         }
 
-		override
-        public IType check(Context context)
+		public override IType check(Context context)
         {
             // TODO Auto-generated method stub
             return null;
         }
 
-		override
-        public Object interpret(Context context)
+		public override Object interpret(Context context)
         {
             // TODO Auto-generated method stub
             return null;
         }
 
-        override
-        public String ToString()
+        public override String ToString()
         {
             return parent.ToString() + "[" + item.ToString() + "]";
         }
 
-		override
-		public void ToDialect(CodeWriter writer) {
+		public override void ToDialect(CodeWriter writer) {
 			parent.ToDialect(writer);
 			writer.append('[');
 			item.ToDialect(writer);

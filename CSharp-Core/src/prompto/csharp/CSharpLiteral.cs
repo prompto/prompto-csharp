@@ -15,10 +15,7 @@ namespace prompto.csharp
 			this.text = text;
 		}
 
-		public abstract IType check(Context context);
-		public abstract object interpret(Context context);
-
-		public virtual void ToDialect(CodeWriter writer) 
+		public override void ToDialect(CodeWriter writer) 
 		{
 			writer.append(text);
 		}

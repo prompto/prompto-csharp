@@ -15,13 +15,13 @@ namespace prompto.java
 			this.text = text;
 		}
 
-		override
-		public String ToString()
+		
+		public override String ToString()
 		{
 			return text;
 		}
 
-		public void ToDialect(CodeWriter writer) {
+		public override void ToDialect(CodeWriter writer) {
 			writer.append(text);
 		}
 

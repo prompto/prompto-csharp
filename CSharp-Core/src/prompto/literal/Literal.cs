@@ -33,8 +33,12 @@ namespace prompto.literal
 			writer.append (text);
 		}
 
+        public virtual void ParentToDialect(CodeWriter writer)
+        {
+            ToDialect(writer);
+        }
 
-		public override bool Equals (Object obj)
+        public override bool Equals (Object obj)
 		{
 			if (obj is Literal<T>)
 				return value.Equals (((Literal<T>)obj).value);

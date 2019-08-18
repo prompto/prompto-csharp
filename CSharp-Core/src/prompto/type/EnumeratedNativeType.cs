@@ -30,11 +30,17 @@ namespace prompto.type
 		}
 
 
-		public override IType checkMember(Context context, String name)
+        public override IType checkStaticMember(Context context, String name)
+        {
+            if ("symbols" == name)
+                return new ListType(this);
+            else
+                return base.checkStaticMember(context, name);
+        }
+
+        public override IType checkMember(Context context, String name)
 		{
-			if ("symbols" == name)
-				return new ListType(this);
-			else if ("value" == name)
+		    if ("value" == name)
 				return this.derivedFrom;
 			else if ("name" == name)
 				return TextType.Instance;
@@ -43,7 +49,7 @@ namespace prompto.type
 		}
 
 
-		public override IValue getMemberValue(Context context, String name)
+		public override IValue getStaticMemberValue(Context context, String name)
 		{
 			IDeclaration decl = context.getRegisteredDeclaration<IDeclaration>(this.typeName);
 			if (!(decl is EnumeratedNativeDeclaration))
@@ -94,7 +100,7 @@ namespace prompto.type
 			return false;
 		}
 
-		public override ISet<IMethodDeclaration> getMemberMethods(Context context, string name)
+		public override ISet<IMethodDeclaration> getStaticMemberMethods(Context context, string name)
 		{
 			if ("symbolOf" == name)
 			{
@@ -103,7 +109,7 @@ namespace prompto.type
 				return list;
 			}
 			else
-				return base.getMemberMethods(context, name);
+				return base.getStaticMemberMethods(context, name);
 		}
 
 

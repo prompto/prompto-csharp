@@ -10,7 +10,7 @@ using prompto.value;
 namespace prompto.literal
 {
 
-    public class RangeLiteral : IExpression
+    public class RangeLiteral : BaseExpression, IExpression
     {
 
         IExpression first;
@@ -22,12 +22,12 @@ namespace prompto.literal
             this.last = last;
         }
 
-		override
-		public String ToString() {
+		
+		public override String ToString() {
 			return "[" + first.ToString() + ".." + last.ToString() + "]";
 		}
 
-        public void ToDialect(CodeWriter writer)
+        public override void ToDialect(CodeWriter writer)
         {
 			writer.append("[");
 			first.ToDialect(writer);
@@ -46,14 +46,14 @@ namespace prompto.literal
             return last;
         }
 
-        public IType check(Context context)
+        public override IType check(Context context)
         {
             IType firstType = first.check(context);
             IType lastType = last.check(context);
             return firstType.checkRange(context, lastType);
         }
 
-		public IValue interpret(Context context)
+		public override IValue interpret(Context context)
         {
             IType type = first.check(context);
 			if ("IntegerLimits".Equals(type.GetTypeName()))

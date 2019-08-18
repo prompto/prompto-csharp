@@ -10,7 +10,7 @@ using prompto.utils;
 namespace prompto.expression
 {
 
-    public class ModuloExpression : IExpression
+    public class ModuloExpression : BaseExpression, IExpression
     {
 
         IExpression left;
@@ -22,20 +22,20 @@ namespace prompto.expression
             this.right = right;
         }
 
-		public void ToDialect(CodeWriter writer) {
+		public override void ToDialect(CodeWriter writer) {
 			left.ToDialect(writer);
 			writer.append(" % ");
 			right.ToDialect(writer);
 		}
   
-        public IType check(Context context)
+        public override IType check(Context context)
         {
             IType lt = left.check(context);
             IType rt = right.check(context);
             return lt.checkModulo(context, rt);
         }
 
-		public IValue interpret(Context context)
+		public override IValue interpret(Context context)
         {
 			IValue lval = left.interpret(context);
 			IValue rval = right.interpret(context);

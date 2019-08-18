@@ -1730,6 +1730,16 @@ public interface IOParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitAssign_tuple_statement([NotNull] OParser.Assign_tuple_statementContext context);
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="OParser.type_literal"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterType_literal([NotNull] OParser.Type_literalContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="OParser.type_literal"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitType_literal([NotNull] OParser.Type_literalContext context);
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="OParser.null_literal"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
@@ -3143,6 +3153,18 @@ public interface IOParserListener : IParseTreeListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void ExitUUIDLiteral([NotNull] OParser.UUIDLiteralContext context);
+	/// <summary>
+	/// Enter a parse tree produced by the <c>TypeLiteral</c>
+	/// labeled alternative in <see cref="OParser.atomic_literal"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterTypeLiteral([NotNull] OParser.TypeLiteralContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>TypeLiteral</c>
+	/// labeled alternative in <see cref="OParser.atomic_literal"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitTypeLiteral([NotNull] OParser.TypeLiteralContext context);
 	/// <summary>
 	/// Enter a parse tree produced by the <c>NullLiteral</c>
 	/// labeled alternative in <see cref="OParser.atomic_literal"/>.

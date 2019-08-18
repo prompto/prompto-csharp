@@ -1,7 +1,6 @@
 using prompto.type;
 using System;
 using prompto.runtime;
-using prompto.parser;
 using prompto.value;
 using prompto.utils;
 
@@ -9,7 +8,7 @@ using prompto.utils;
 namespace prompto.expression
 {
 
-    public class TypeExpression : IExpression
+    public class TypeExpression : BaseExpression, IExpression
     {
 
         IType type;
@@ -29,24 +28,24 @@ namespace prompto.expression
 			return type.ToString ();
 		}
 
-        public void ToDialect(CodeWriter writer)
+        public override void ToDialect(CodeWriter writer)
         {
 			type.ToDialect(writer);
         }
 
-          public IType check(Context context)
+          public override IType check(Context context)
         {
-            return this.type;
+            return new TypeType(type);
         }
 
-		public IValue interpret(Context context)
+		public override IValue interpret(Context context)
         {
             return new TypeValue(type);
         }
 
 		public IValue getMember(Context context, String name)
         {
-            return type.getMemberValue(context, name);
+            return type.getStaticMemberValue(context, name);
         }
     }
 }

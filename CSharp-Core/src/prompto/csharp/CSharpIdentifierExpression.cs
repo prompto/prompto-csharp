@@ -46,8 +46,8 @@ namespace prompto.csharp
             return identifier;
         }
 
-        override
-        public String ToString()
+        
+        public override String ToString()
         {
             if (parent == null)
                 return identifier;
@@ -55,7 +55,7 @@ namespace prompto.csharp
                 return parent.ToString() + "." + identifier;
         }
 
-		public void ToDialect(CodeWriter writer) {
+		public override void ToDialect(CodeWriter writer) {
 			if(parent!=null) {
 				parent.ToDialect(writer);
 				writer.append('.');
@@ -63,7 +63,7 @@ namespace prompto.csharp
 			writer.append(identifier);
 		}
 
-		public Object interpret(Context context)
+		public override Object interpret(Context context)
         {
             if (parent == null)
                 return interpret_root(context);
@@ -176,7 +176,7 @@ namespace prompto.csharp
             return null;
         }
 
-        public IType check(Context context)
+        public override IType check(Context context)
         {
             if (parent == null)
                 return check_root(context);

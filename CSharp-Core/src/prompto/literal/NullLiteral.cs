@@ -8,7 +8,7 @@ using prompto.parser;
 namespace prompto.literal
 {
 
-	public class NullLiteral : IExpression
+	public class NullLiteral : BaseExpression, IExpression
 	{
 
 		static NullLiteral instance_ = new NullLiteral ();
@@ -23,17 +23,17 @@ namespace prompto.literal
 		{
 		}
 
-		public IType check (Context context)
+		public override IType check (Context context)
 		{
 			return NullType.Instance;
 		}
 
-		public IValue interpret (Context context)
+		public override IValue interpret (Context context)
 		{
 			return NullValue.Instance;
 		}
 
-		public void ToDialect (CodeWriter writer)
+		public override void ToDialect (CodeWriter writer)
 		{
 			switch (writer.getDialect ()) {
 			case Dialect.E:

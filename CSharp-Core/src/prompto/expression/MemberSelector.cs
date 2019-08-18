@@ -83,7 +83,7 @@ namespace prompto.expression
 				writer.append(')');
 			}
 			else
-				parent.ToDialect(writer);
+				parent.ParentToDialect(writer);
 		}
 
 		void parentToOMDialect(CodeWriter writer)
@@ -101,60 +101,23 @@ namespace prompto.expression
 		}
 
 
-		override
-		public IType check(Context context)
+		
+		public override IType check(Context context)
 		{
 			IType parentType = checkParent(context);
 			return parentType.checkMember(context, name);
 		}
 
-		override
-		public IValue interpret(Context context)
+		
+		public override IValue interpret(Context context)
 		{
 			// resolve parent to keep clarity
 			IExpression parent = resolveParent(context);
-			// special case for singletons 
-			IValue value = interpretSingleton(context, parent);
-			if (value != null)
-				return value;
-			// special case for 'static' type members (like Enum.symbols, Type.name etc...)
-			value = interpretTypeMember(context, parent);
-			if (value != null)
-				return value;
-			// finally resolve instance member
-			return interpretInstanceMember(context, parent);
-		}
-
-		private IValue interpretInstanceMember(Context context, IExpression parent)
-		{
 			IValue instance = parent.interpret(context);
 			if (instance == null || instance == NullValue.Instance)
 				throw new NullReferenceError();
 			else
 				return instance.GetMember(context, name, true);
-		}
-
-		private IValue interpretTypeMember(Context context, IExpression parent)
-		{
-			if (parent is TypeExpression)
-				return ((TypeExpression)parent).getMember(context, name);
-			else
-				return null;
-		}
-
-		private IValue interpretSingleton(Context context, IExpression parent)
-		{
-			if (parent is TypeExpression)
-			{
-				IType type = ((TypeExpression)parent).getType();
-				if (type is CategoryType && !(type is EnumeratedCategoryType))
-				{
-					ConcreteInstance instance = context.loadSingleton(context, (CategoryType)type);
-					if (instance != null)
-						return instance.GetMember(context, name, false);
-				}
-			}
-			return null;
 		}
 
 		private IExpression resolveParent(Context context)

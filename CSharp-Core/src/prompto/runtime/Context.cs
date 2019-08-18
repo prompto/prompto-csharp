@@ -422,7 +422,7 @@ namespace prompto.runtime
 				debugger.whenTerminated();
 		}
 
-		public ConcreteInstance loadSingleton(Context context, CategoryType type)
+		public ConcreteInstance loadSingleton(CategoryType type)
 		{
 			if (this == globals)
 			{
@@ -433,7 +433,7 @@ namespace prompto.runtime
 					IDeclaration decl = declarations[type.GetTypeName()];
 					if (!(decl is ConcreteCategoryDeclaration))
 						throw new InternalError("No such singleton:" + type.GetTypeName());
-					value = new ConcreteInstance(context, (ConcreteCategoryDeclaration)decl);
+					value = new ConcreteInstance(this, (ConcreteCategoryDeclaration)decl);
 					((IInstance)value).setMutable(true); // a singleton is protected by "with x do", so always mutable in that context
 					values[type.GetTypeName()] = value;
 				}
@@ -443,7 +443,7 @@ namespace prompto.runtime
 					throw new InternalError("Not a concrete instance:" + value.GetType().Name);
 			}
 			else
-				return this.globals.loadSingleton(context, type);
+				return this.globals.loadSingleton(type);
 		}
 
 		public void registerNativeBinding(Type type, NativeCategoryDeclaration declaration)

@@ -26,12 +26,12 @@ namespace prompto.processor
 			Object fieldType = annotation.GetArgument("type");
 			if (!(fieldName is TextLiteral))
 				throw new SyntaxError("WidgetField requires a Text value for argument 'name'");
-			else if (!(fieldType is TypeExpression))
+			else if (!(fieldType is TypeLiteral || fieldType is TypeExpression))
 				throw new SyntaxError("WidgetField requires a Type value for argument 'type'");
 			else 
 			{
 				String name = ((TextLiteral)fieldName).ToString();
-				IType type = ((TypeExpression)fieldType).getType();
+				IType type = fieldType is TypeLiteral ? ((TypeLiteral)fieldType).getType() : ((TypeExpression)fieldType).getType();
 				context.registerValue(new Variable(name.Substring(1, name.Length - 2), type), false);
 			}
 		}

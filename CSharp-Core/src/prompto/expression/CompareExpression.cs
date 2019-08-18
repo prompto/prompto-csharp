@@ -2,10 +2,7 @@ using prompto.runtime;
 using System;
 using prompto.error;
 using prompto.value;
-using Decimal = prompto.value.Decimal;
 using Boolean = prompto.value.Boolean;
-using DateTime = prompto.value.DateTime;
-using prompto.parser;
 using prompto.type;
 using prompto.grammar;
 using prompto.utils;
@@ -15,7 +12,7 @@ using prompto.store;
 namespace prompto.expression
 {
 
-	public class CompareExpression : IPredicateExpression, IAssertion
+	public class CompareExpression : BaseExpression, IPredicateExpression, IAssertion
 	{
 
 		IExpression left;
@@ -29,7 +26,7 @@ namespace prompto.expression
 			this.right = right;
 		}
 
-		public void ToDialect(CodeWriter writer)
+		public override void ToDialect(CodeWriter writer)
 		{
 			left.ToDialect(writer);
 			writer.append(" ");
@@ -58,14 +55,14 @@ namespace prompto.expression
 		}
 
 
-		public IType check(Context context)
+		public override IType check(Context context)
 		{
 			IType lt = left.check(context);
 			IType rt = right.check(context);
 			return lt.checkCompare(context, rt);
 		}
 
-		public IValue interpret(Context context)
+		public override IValue interpret(Context context)
 		{
 			IValue lval = left.interpret(context);
 			IValue rval = right.interpret(context);

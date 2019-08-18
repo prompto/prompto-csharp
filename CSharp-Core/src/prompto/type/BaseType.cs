@@ -155,7 +155,12 @@ namespace prompto.type
 			throw new SyntaxError (this.GetTypeName () + " has no member support for:" + name);
 		}
 
-		public abstract void checkUnique (Context context);
+        public virtual IType checkStaticMember(Context context, String name)
+        {
+            throw new SyntaxError(this.GetTypeName() + " has no static member support for:" + name);
+        }
+
+        public abstract void checkUnique (Context context);
 
 		public abstract void checkExists (Context context);
 
@@ -201,7 +206,7 @@ namespace prompto.type
 			return (IValue)value; // TODO for now
 		}
 
-		public virtual IValue getMemberValue (Context context, String name)
+		public virtual IValue getStaticMemberValue (Context context, String name)
 		{
 			throw new SyntaxError ("Cannot read member from " + this.GetTypeName ());
 		}
@@ -211,7 +216,12 @@ namespace prompto.type
 			return new HashSet<IMethodDeclaration>();
 		}
 
-		public virtual IValue ReadJSONValue (Context context, JToken json, Dictionary<String, byte[]> parts)
+        public virtual ISet<IMethodDeclaration> getStaticMemberMethods(Context context, String name)
+        {
+            return new HashSet<IMethodDeclaration>();
+        }
+
+        public virtual IValue ReadJSONValue (Context context, JToken json, Dictionary<String, byte[]> parts)
 		{
 			throw new SyntaxError ("Cannot read JSON value from " + this.GetTypeName ());
 		}

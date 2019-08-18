@@ -61,6 +61,11 @@ namespace prompto.declaration
 
 		public abstract void ToDialect (CodeWriter writer);
 
+        public virtual void ParentToDialect(CodeWriter writer)
+        {
+            ToDialect(writer);
+        }
+
 		public IMethodDeclaration ClosureOf {
 			get
 			{

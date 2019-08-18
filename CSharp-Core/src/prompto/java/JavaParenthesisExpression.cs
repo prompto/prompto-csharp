@@ -16,7 +16,7 @@ namespace prompto.java
             this.expression = expression;
         }
 
-		public void ToDialect(CodeWriter writer) {
+		public override void ToDialect(CodeWriter writer) {
 			writer.append('(');
 			expression.ToDialect(writer);
 			writer.append(')');

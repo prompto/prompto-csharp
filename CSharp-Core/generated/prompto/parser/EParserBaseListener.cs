@@ -2224,6 +2224,18 @@ public partial class EParserBaseListener : IEParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitDedent([NotNull] EParser.DedentContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="EParser.type_literal"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterType_literal([NotNull] EParser.Type_literalContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="EParser.type_literal"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitType_literal([NotNull] EParser.Type_literalContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="EParser.null_literal"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
@@ -3879,6 +3891,20 @@ public partial class EParserBaseListener : IEParserListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitUUIDLiteral([NotNull] EParser.UUIDLiteralContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by the <c>TypeLiteral</c>
+	/// labeled alternative in <see cref="EParser.atomic_literal"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterTypeLiteral([NotNull] EParser.TypeLiteralContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by the <c>TypeLiteral</c>
+	/// labeled alternative in <see cref="EParser.atomic_literal"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitTypeLiteral([NotNull] EParser.TypeLiteralContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by the <c>NullLiteral</c>
 	/// labeled alternative in <see cref="EParser.atomic_literal"/>.

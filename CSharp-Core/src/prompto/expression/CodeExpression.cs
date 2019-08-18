@@ -8,7 +8,7 @@ using prompto.value;
 namespace prompto.expression
 {
 
-	public class CodeExpression : IExpression
+	public class CodeExpression : BaseExpression, IExpression
 	{
 
 		IExpression expression;
@@ -18,7 +18,7 @@ namespace prompto.expression
 			this.expression = expression;
 		}
 
-		public void ToDialect (CodeWriter writer)
+		public override void ToDialect (CodeWriter writer)
 		{
 			switch (writer.getDialect ()) {
 			case Dialect.E:
@@ -34,12 +34,12 @@ namespace prompto.expression
 			}
 		}
 
-		public IType check (Context context)
+		public override IType check (Context context)
 		{
 			return CodeType.Instance;
 		}
 
-		public IValue interpret (Context context)
+		public override IValue interpret (Context context)
 		{
 			return new CodeValue(this);
 		}

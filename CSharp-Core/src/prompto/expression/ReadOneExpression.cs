@@ -10,7 +10,7 @@ using prompto.utils;
 namespace prompto.expression
 {
 
-    public class ReadOneExpression : IExpression
+    public class ReadOneExpression : BaseExpression, IExpression
     {
 
         IExpression resource;
@@ -21,13 +21,13 @@ namespace prompto.expression
         }
 
 
-        public void ToDialect(CodeWriter writer)
+        public override void ToDialect(CodeWriter writer)
         {
 			writer.append("read one from ");
 			resource.ToDialect(writer);
         }
 
-        public IType check(Context context)
+        public override IType check(Context context)
         {
 			if(!(context is ResourceContext))
 				throw new SyntaxError("Not a resource context!");
@@ -37,7 +37,7 @@ namespace prompto.expression
             return TextType.Instance;
         }
 
-		public IValue interpret(Context context)
+		public override IValue interpret(Context context)
 		{
 			if (!(context is ResourceContext))
 				throw new SyntaxError("Not a resource context!");

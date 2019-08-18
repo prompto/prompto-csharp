@@ -14,7 +14,7 @@ using prompto.value;
 namespace prompto.expression
 {
 
-    public class UnresolvedIdentifier : IExpression
+    public class UnresolvedIdentifier : BaseExpression, IExpression
     {
 
 		Dialect dialect;
@@ -37,13 +37,13 @@ namespace prompto.expression
             return resolved;
         }
 
-        override
-        public String ToString()
+        
+        public override String ToString()
         {
             return name;
         }
 
-        public void ToDialect(CodeWriter writer)
+        public override void ToDialect(CodeWriter writer)
         {
 			try {
 				resolve(writer.getContext(), false);
@@ -56,7 +56,7 @@ namespace prompto.expression
         }
 
 
-        public IType check(Context context)
+        public override IType check(Context context)
         {
             return resolveAndCheck(context, false);
         }
@@ -66,7 +66,7 @@ namespace prompto.expression
             return resolveAndCheck(context, true);
         }
 
-		public IValue interpret(Context context)
+		public override IValue interpret(Context context)
         {
             if (resolved == null)
                 resolveAndCheck(context, false);

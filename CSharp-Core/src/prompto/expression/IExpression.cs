@@ -10,11 +10,10 @@ using prompto.value;
 namespace prompto.expression
 {
 
-public interface IExpression : IDialectElement {
-	
-	IType check(Context context);
-	IValue interpret(Context context);
-	
-}
+    public interface IExpression : IDialectElement {
+	    IType check(Context context);
+	    IValue interpret(Context context);
+        void ParentToDialect(CodeWriter writer);
+    }
 
 }

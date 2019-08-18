@@ -111,23 +111,22 @@ namespace prompto.statement
 			if (resolved != null)
 				return;
 			if (caller is UnresolvedIdentifier)
-				resolved = resolveUnresolvedIdentifier(context);
+				resolved = resolveUnresolvedIdentifier(context, (UnresolvedIdentifier)caller);
 			else if (caller is UnresolvedSelector)
-				resolved = resolveUnresolvedSelector(context);
+				resolved = resolveUnresolvedSelector(context, (UnresolvedSelector)caller);
 			else if (caller is MemberSelector)
-				resolved = resolveMember(context);
+				resolved = resolveMemberSelector(context, (MemberSelector)caller);
 		}
 
-		private IExpression resolveUnresolvedSelector(Context context)
+		private IExpression resolveUnresolvedSelector(Context context, UnresolvedSelector caller)
 		{
-			UnresolvedSelector selector = (UnresolvedSelector)caller;
-			selector.resolveMethod(context, arguments);
-			return selector.getResolved();
+            caller.resolveMethod(context, arguments);
+			return caller.getResolved();
 		}
 
-		private IExpression resolveUnresolvedIdentifier(Context context)
+		private IExpression resolveUnresolvedIdentifier(Context context, UnresolvedIdentifier caller)
 		{
-			String name = ((UnresolvedIdentifier)caller).getName();
+			String name = caller.getName();
 			IExpression call = null;
 			IDeclaration decl = null;
 			// if this happens in the context of a member method, then we need to check for category members first
@@ -174,10 +173,10 @@ namespace prompto.statement
 				return null;
 		}
 
-		private IExpression resolveMember(Context context)
+		private IExpression resolveMemberSelector(Context context, MemberSelector caller)
 		{
-			IExpression parent = ((MemberSelector)caller).getParent();
-			String name = ((MemberSelector)caller).getName();
+			IExpression parent = caller.getParent();
+			String name = caller.getName();
 			return new MethodCall(new MethodSelector(parent, name), arguments);
 		}
 

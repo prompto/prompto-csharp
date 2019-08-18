@@ -29,7 +29,7 @@ namespace prompto.statement
 		public override IValue interpret (Context context)
 		{
 			// TODO synchronize
-			ConcreteInstance instance = context.loadSingleton (context, type);
+			ConcreteInstance instance = context.loadSingleton (type);
 			Context instanceContext = context.newInstanceContext (instance, true);
 			Context childContext = instanceContext.newChildContext ();
 			return statements.interpret (childContext);

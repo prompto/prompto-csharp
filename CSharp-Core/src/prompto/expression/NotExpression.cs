@@ -12,7 +12,7 @@ using prompto.store;
 namespace prompto.expression
 {
 
-	public class NotExpression : IUnaryExpression, IPredicateExpression, IAssertion
+	public class NotExpression : BaseExpression, IUnaryExpression, IPredicateExpression, IAssertion
     {
 
         IExpression expression;
@@ -22,7 +22,7 @@ namespace prompto.expression
             this.expression = expression;
         }
 
-        public IType check(Context context)
+        public override IType check(Context context)
         {
             IType type = expression.check(context);
             if (!(type is BooleanType))
@@ -30,7 +30,7 @@ namespace prompto.expression
             return BooleanType.Instance;
         }
 
-        public void ToDialect(CodeWriter writer)
+        public override void ToDialect(CodeWriter writer)
         {
 			writer.append(operatorToDialect(writer.getDialect()));
 			expression.ToDialect(writer);
@@ -48,7 +48,7 @@ namespace prompto.expression
 			}
 		}
 
-		public IValue interpret(Context context)
+		public override IValue interpret(Context context)
 		{
 			IValue val = expression.interpret (context);
 			return interpret (val);

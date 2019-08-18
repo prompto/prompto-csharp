@@ -157,10 +157,20 @@ namespace prompto.expression
 			IValue value = parent.interpret(context);
 			if(value==null || value==NullValue.Instance)
 				throw new NullReferenceError();
-			IType type = value is TypeValue ? ((TypeValue)value).GetValue() : null;
-			if(type is CategoryType)
-				value = context.loadSingleton(context, (CategoryType)type);
-			if (value is ConcreteInstance)
+            if (value is TypeValue) {
+                IType type = ((TypeValue)value).GetValue();
+                if (type is CategoryType) {
+                    IDeclaration decl = ((CategoryType)type).getDeclaration(context);
+                    if (decl is SingletonCategoryDeclaration) {
+                        value = context.loadSingleton((CategoryType)type);
+                    }
+                }
+            }
+            if (value is TypeValue)
+            {
+                return context.newChildContext();
+            }
+            else if (value is ConcreteInstance)
 			{
 				context = context.newInstanceContext((ConcreteInstance)value, false);
 				return context.newChildContext();

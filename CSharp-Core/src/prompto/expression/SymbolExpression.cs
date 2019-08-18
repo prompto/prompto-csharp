@@ -10,7 +10,7 @@ using prompto.utils;
 namespace prompto.expression
 {
 
-    public class SymbolExpression : IExpression
+    public class SymbolExpression : BaseExpression, IExpression
     {
 
         String name;
@@ -26,19 +26,19 @@ namespace prompto.expression
             return name;
         }
 
-        override
-        public String ToString()
+        
+        public override String ToString()
         {
             return name;
         }
 
-        public void ToDialect(CodeWriter writer)
+        public override void ToDialect(CodeWriter writer)
         {
 			writer.append(name);
        }
        
 
-        public IType check(Context context)
+        public override IType check(Context context)
         {
             Symbol symbol = context.getRegisteredValue<Symbol>(name);
             if (symbol == null)
@@ -46,7 +46,7 @@ namespace prompto.expression
             return symbol.check(context);
         }
 
-        public IValue interpret(Context context)
+        public override IValue interpret(Context context)
         {
             Symbol symbol = context.getRegisteredValue<Symbol>(name);
             if (symbol == null)

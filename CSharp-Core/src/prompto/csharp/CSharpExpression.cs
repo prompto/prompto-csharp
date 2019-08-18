@@ -9,12 +9,16 @@ using prompto.utils;
 namespace prompto.csharp
 {
 
-	public interface CSharpExpression : IDialectElement
+	public abstract class CSharpExpression : IDialectElement
 	{
+        public abstract IType check (Context context);
+        public abstract Object interpret (Context context);
+        public abstract void ToDialect(CodeWriter writer);
+        public void ParentToDialect(CodeWriter writer)
+        {
+            ToDialect(writer);
+        }
 
-		IType check (Context context);
-		Object interpret (Context context);
-
-	}
+    }
 
 }

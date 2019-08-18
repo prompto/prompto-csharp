@@ -2034,6 +2034,18 @@ public partial class OParserBaseListener : IOParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitAssign_tuple_statement([NotNull] OParser.Assign_tuple_statementContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="OParser.type_literal"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterType_literal([NotNull] OParser.Type_literalContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="OParser.type_literal"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitType_literal([NotNull] OParser.Type_literalContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="OParser.null_literal"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
@@ -3701,6 +3713,20 @@ public partial class OParserBaseListener : IOParserListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitUUIDLiteral([NotNull] OParser.UUIDLiteralContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by the <c>TypeLiteral</c>
+	/// labeled alternative in <see cref="OParser.atomic_literal"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterTypeLiteral([NotNull] OParser.TypeLiteralContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by the <c>TypeLiteral</c>
+	/// labeled alternative in <see cref="OParser.atomic_literal"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitTypeLiteral([NotNull] OParser.TypeLiteralContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by the <c>NullLiteral</c>
 	/// labeled alternative in <see cref="OParser.atomic_literal"/>.

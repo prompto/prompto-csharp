@@ -9,7 +9,7 @@ using prompto.declaration;
 
 namespace prompto.expression {
 
-	public class CastExpression : IExpression {
+	public class CastExpression : BaseExpression, IExpression {
 
 	public static IType anyfy(IType type)
 	{
@@ -27,7 +27,7 @@ namespace prompto.expression {
 			this.type = type;
 		}
 
-		public IType check(Context context) {
+		public override IType check(Context context) {
 			IType actual = anyfy(expression.check(context));
 			IType target = getTargetType(context, type);
 			// check any
@@ -72,7 +72,7 @@ namespace prompto.expression {
 		}
 
 
-		public IValue interpret(Context context) {
+		public override IValue interpret(Context context) {
 			IValue value = expression.interpret(context);
 			if (value != null)
 			{
@@ -87,7 +87,7 @@ namespace prompto.expression {
 			return value;
 		}
 
-		public void ToDialect(CodeWriter writer) {
+		public override void ToDialect(CodeWriter writer) {
 			switch(writer.getDialect()) {
 			case Dialect.E:
 			case Dialect.M:

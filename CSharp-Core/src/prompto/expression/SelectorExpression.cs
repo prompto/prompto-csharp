@@ -9,7 +9,7 @@ using prompto.grammar;
 namespace prompto.expression
 {
 
-    public abstract class SelectorExpression : IExpression
+    public abstract class SelectorExpression : BaseExpression, IExpression
     {
 
         protected IExpression parent;
@@ -32,12 +32,6 @@ namespace prompto.expression
         {
             this.parent = parent;
         }
-
-        public abstract IType check(runtime.Context context);
-  
-		public abstract IValue interpret(runtime.Context context);
-
-        public abstract void ToDialect(CodeWriter writer);
 
 		public IType checkParent(runtime.Context context) {
 			if (parent is UnresolvedIdentifier)

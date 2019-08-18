@@ -213,6 +213,20 @@ namespace prompto.parser
         }
 
 
+        public override void ExitTypeLiteral([NotNull] EParser.TypeLiteralContext ctx)
+        {
+            TypeLiteral type = GetNodeValue<TypeLiteral>(ctx.type_literal());
+            SetNodeValue(ctx, type);
+        }
+
+
+        public override void ExitType_literal([NotNull] EParser.Type_literalContext ctx)
+        {
+            IType type = GetNodeValue<IType>(ctx.typedef());
+            SetNodeValue(ctx, new TypeLiteral(type));
+        }
+
+
         public override void ExitMethodCallExpression(EParser.MethodCallExpressionContext ctx)
         {
             IExpression exp = ctx.exp1 != null ? GetNodeValue<IExpression>(ctx.exp1) : GetNodeValue<IExpression>(ctx.exp2);
@@ -254,7 +268,7 @@ namespace prompto.parser
 
         public override void ExitUUIDLiteral(EParser.UUIDLiteralContext ctx)
         {
-            SetNodeValue(ctx, new UUIDLiteral(ctx.t.Text));
+            SetNodeValue(ctx, new UUIDLiteral(ctx.GetText()));
         }
 
 
@@ -283,7 +297,7 @@ namespace prompto.parser
 
         public override void ExitBooleanLiteral(EParser.BooleanLiteralContext ctx)
         {
-            SetNodeValue(ctx, new BooleanLiteral(ctx.t.Text));
+            SetNodeValue(ctx, new BooleanLiteral(ctx.GetText()));
         }
 
 
@@ -307,37 +321,37 @@ namespace prompto.parser
 
         public override void ExitIntegerLiteral(EParser.IntegerLiteralContext ctx)
         {
-            SetNodeValue(ctx, new IntegerLiteral(ctx.t.Text));
+            SetNodeValue(ctx, new IntegerLiteral(ctx.GetText()));
         }
 
 
         public override void ExitDecimalLiteral(EParser.DecimalLiteralContext ctx)
         {
-            SetNodeValue(ctx, new DecimalLiteral(ctx.t.Text));
+            SetNodeValue(ctx, new DecimalLiteral(ctx.GetText()));
         }
 
 
         public override void ExitHexadecimalLiteral(EParser.HexadecimalLiteralContext ctx)
         {
-            SetNodeValue(ctx, new HexaLiteral(ctx.t.Text));
+            SetNodeValue(ctx, new HexaLiteral(ctx.GetText()));
         }
 
 
         public override void ExitCharacterLiteral(EParser.CharacterLiteralContext ctx)
         {
-            SetNodeValue(ctx, new CharacterLiteral(ctx.t.Text));
+            SetNodeValue(ctx, new CharacterLiteral(ctx.GetText()));
         }
 
 
         public override void ExitDateLiteral(EParser.DateLiteralContext ctx)
         {
-            SetNodeValue(ctx, new DateLiteral(ctx.t.Text));
+            SetNodeValue(ctx, new DateLiteral(ctx.GetText()));
         }
 
 
         public override void ExitDateTimeLiteral(EParser.DateTimeLiteralContext ctx)
         {
-            SetNodeValue(ctx, new DateTimeLiteral(ctx.t.Text));
+            SetNodeValue(ctx, new DateTimeLiteral(ctx.GetText()));
         }
 
         public override void ExitTernaryExpression(EParser.TernaryExpressionContext ctx)
@@ -362,19 +376,19 @@ namespace prompto.parser
 
         public override void ExitTextLiteral(EParser.TextLiteralContext ctx)
         {
-            SetNodeValue(ctx, new TextLiteral(ctx.t.Text));
+            SetNodeValue(ctx, new TextLiteral(ctx.GetText()));
         }
 
 
         public override void ExitTimeLiteral(EParser.TimeLiteralContext ctx)
         {
-            SetNodeValue(ctx, new TimeLiteral(ctx.t.Text));
+            SetNodeValue(ctx, new TimeLiteral(ctx.GetText()));
         }
 
 
         public override void ExitPeriodLiteral(EParser.PeriodLiteralContext ctx)
         {
-            SetNodeValue(ctx, new PeriodLiteral(ctx.t.Text));
+            SetNodeValue(ctx, new PeriodLiteral(ctx.GetText()));
         }
 
 
@@ -386,7 +400,7 @@ namespace prompto.parser
 
         public override void ExitVersionLiteral(EParser.VersionLiteralContext ctx)
         {
-            SetNodeValue(ctx, new VersionLiteral(ctx.t.Text));
+            SetNodeValue(ctx, new VersionLiteral(ctx.GetText()));
         }
 
 
@@ -1128,6 +1142,10 @@ namespace prompto.parser
                 if (args == null)
                     args = new ArgumentList();
                 args.add(arg);
+            }
+            else if(args!=null)
+            {
+                args.CheckLastAnd();
             }
             SetNodeValue(ctx, new ConstructorExpression(type, copyFrom, args, true));
         }

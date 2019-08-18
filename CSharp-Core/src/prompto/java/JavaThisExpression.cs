@@ -10,7 +10,7 @@ namespace prompto.java
 	public class JavaThisExpression : JavaExpression
 	{
 
-		public void ToDialect(CodeWriter writer) {
+		public override void ToDialect(CodeWriter writer) {
 			writer.append("this");
 		}
 

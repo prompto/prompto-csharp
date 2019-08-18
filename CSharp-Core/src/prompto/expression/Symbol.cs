@@ -45,7 +45,12 @@ namespace prompto.expression
 		}
 
 		public abstract void ToDialect (CodeWriter writer);
-  
+
+        public virtual void ParentToDialect(CodeWriter writer)
+        {
+            ToDialect(writer);
+        }
+
         public void register(Context context)
         {
             context.registerValue(this);
@@ -152,6 +157,8 @@ namespace prompto.expression
 		{
 			// nothing to do;
 		}
-	}
+
+        
+    }
 
 }
