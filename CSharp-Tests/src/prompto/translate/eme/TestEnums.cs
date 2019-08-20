@@ -7,12 +7,12 @@ namespace prompto.translate.eme
 	[TestFixture]
 	public class TestEnums : BaseEParserTest
 	{
-        [Test]
+
+		[Test]
 		public void testCategoryEnum()
 		{
 			compareResourceEME("enums/categoryEnum.pec");
 		}
-        
 
 		[Test]
 		public void testIntegerEnum()

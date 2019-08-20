@@ -395,6 +395,9 @@
     <Compile Include="src\prompto\runtime\o\TestArrow.cs" />
     <Compile Include="src\prompto\translate\oeo\TestArrow.cs" />
     <Compile Include="src\prompto\translate\omo\TestArrow.cs" />
+    <Compile Include="src\prompto\runtime\o\TestTypes.cs" />
+    <Compile Include="src\prompto\translate\oeo\TestTypes.cs" />
+    <Compile Include="src\prompto\translate\omo\TestTypes.cs" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />

@@ -21,12 +21,11 @@ namespace prompto.runtime.e
 			Out.restore();
 		}
 
-        [Test]
+		[Test]
 		public void testCategoryEnum()
 		{
 			CheckOutput("enums/categoryEnum.pec");
 		}
-        
 
 		[Test]
 		public void testIntegerEnum()

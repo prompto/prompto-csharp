@@ -7,12 +7,13 @@ namespace prompto.translate.eoe
 	[TestFixture]
 	public class TestEnums : BaseEParserTest
 	{
-        [Test]
+
+		[Test]
 		public void testCategoryEnum()
 		{
 			compareResourceEOE("enums/categoryEnum.pec");
 		}
-        
+
 		[Test]
 		public void testIntegerEnum()
 		{

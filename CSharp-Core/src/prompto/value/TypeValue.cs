@@ -22,5 +22,10 @@ namespace prompto.value
         {
             return value.getStaticMemberValue(context, name);
         }
+
+        public override string ToString()
+        {
+            return value.GetTypeName();
+        }
     }
 }
