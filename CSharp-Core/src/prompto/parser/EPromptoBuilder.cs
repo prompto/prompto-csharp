@@ -1162,6 +1162,10 @@ namespace prompto.parser
                     args = new ArgumentList();
                 args.add(arg);
             }
+            else if (args != null)
+            {
+                args.CheckLastAnd();
+            }
             SetNodeValue(ctx, new ConstructorExpression(type, null, args, true));
         }
 
