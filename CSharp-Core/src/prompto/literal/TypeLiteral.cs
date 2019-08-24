@@ -38,7 +38,7 @@ namespace prompto.literal
         public void ToDialect(CodeWriter writer)
         {
             if (writer.getDialect() == Dialect.E)
-                writer.append("type: ");
+                writer.append("Type: ");
             type.ToDialect(writer);
         }
 
