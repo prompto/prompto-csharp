@@ -484,7 +484,7 @@
     <Compile Include="src\prompto\literal\VersionLiteral.cs" />
     <Compile Include="src\prompto\jsx\IJsxExpression.cs" />
     <Compile Include="src\prompto\jsx\IJsxValue.cs" />
-    <Compile Include="src\prompto\jsx\JsxAttribute.cs" />
+    <Compile Include="src\prompto\jsx\JsxProperty.cs" />
     <Compile Include="src\prompto\jsx\JsxCode.cs" />
     <Compile Include="src\prompto\jsx\JsxElement.cs" />
     <Compile Include="src\prompto\jsx\JsxElementBase.cs" />

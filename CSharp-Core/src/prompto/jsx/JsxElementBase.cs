@@ -12,22 +12,22 @@ namespace prompto.jsx
 	{
 
 		protected String name;
-		protected List<JsxAttribute> attributes;
+		protected List<JsxProperty> properties;
 
 
-		public JsxElementBase(String name, List<JsxAttribute> attributes)
+		public JsxElementBase(String name, List<JsxProperty> properties)
 		{
 			this.name = name;
-			this.attributes = attributes;
+			this.properties = properties;
 		}
 
 		public IType check(Context context)
 		{
-			if (attributes != null)
+			if (properties != null)
 			{
-				foreach (JsxAttribute attr in attributes)
+				foreach (JsxProperty prop in properties)
 				{
-					attr.check(context);
+					prop.check(context);
 				}
 			}
 			return JsxType.Instance;

@@ -3182,7 +3182,7 @@ namespace prompto.parser
             String name = GetNodeValue<String>(ctx.name);
             IJsxValue value = GetNodeValue<IJsxValue>(ctx.value);
             String suite = getWhiteSpacePlus(ctx.ws_plus());
-            SetNodeValue(ctx, new JsxAttribute(name, value, suite));
+            SetNodeValue(ctx, new JsxProperty(name, value, suite));
         }
 
 
@@ -3221,9 +3221,9 @@ namespace prompto.parser
         {
             String name = GetNodeValue<String>(ctx.name);
             String suite = getWhiteSpacePlus(ctx.ws_plus());
-            List<JsxAttribute> attributes = new List<JsxAttribute>();
+            List<JsxProperty> attributes = new List<JsxProperty>();
             foreach (ParserRuleContext child in ctx.jsx_attribute())
-                attributes.Add(GetNodeValue<JsxAttribute>(child));
+                attributes.Add(GetNodeValue<JsxProperty>(child));
             SetNodeValue(ctx, new JsxElement(name, suite, attributes, null));
         }
 
@@ -3237,9 +3237,9 @@ namespace prompto.parser
         {
             String name = GetNodeValue<String>(ctx.name);
             String suite = getWhiteSpacePlus(ctx.ws_plus());
-            List<JsxAttribute> attributes = new List<JsxAttribute>();
+            List<JsxProperty> attributes = new List<JsxProperty>();
             foreach (ParserRuleContext child in ctx.jsx_attribute())
-                attributes.Add(GetNodeValue<JsxAttribute>(child));
+                attributes.Add(GetNodeValue<JsxProperty>(child));
             SetNodeValue(ctx, new JsxSelfClosing(name, suite, attributes, null));
         }
 

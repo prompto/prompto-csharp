@@ -4,14 +4,14 @@ using prompto.utils;
 
 namespace prompto.jsx {
 
-	public class JsxAttribute
+	public class JsxProperty
 	{
 
 		String name;
 		IJsxValue value;
 		String suite;
 
-		public JsxAttribute(String name, IJsxValue value, String suite)
+		public JsxProperty(String name, IJsxValue value, String suite)
 		{
 			this.name = name;
 			this.value = value;

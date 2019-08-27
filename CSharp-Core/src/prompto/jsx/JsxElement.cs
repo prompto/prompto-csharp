@@ -13,7 +13,7 @@ namespace prompto.jsx
 		List<IJsxExpression> children;
 		JsxClosing closing;
 
-		public JsxElement(String name, String nameSuite, List<JsxAttribute> attributes, String openingSuite)
+		public JsxElement(String name, String nameSuite, List<JsxProperty> attributes, String openingSuite)
 		: base(name, attributes)
 		{
             this.nameSuite = nameSuite;
@@ -35,9 +35,9 @@ namespace prompto.jsx
 			writer.append("<").append(name);
 			if(nameSuite!=null)
 				writer.appendRaw(nameSuite);
-			else if(attributes.Count>0)
+			else if(properties.Count>0)
 				writer.append(" ");
-			foreach(JsxAttribute attr in attributes) {
+			foreach(JsxProperty attr in properties) {
 				attr.ToDialect(writer);
 			}
 			writer.append(">");

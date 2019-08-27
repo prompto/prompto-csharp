@@ -1863,7 +1863,7 @@ namespace prompto.parser
             IJsxValue value = GetNodeValue<IJsxValue>(ctx.value);
             IToken stop = value != null ? ctx.value.Stop : ctx.name.Stop;
             String suite = getHiddenTokensAfter(stop);
-            SetNodeValue(ctx, new JsxAttribute(name, value, suite));
+            SetNodeValue(ctx, new JsxProperty(name, value, suite));
         }
 
 
@@ -1902,9 +1902,9 @@ namespace prompto.parser
         {
             String name = GetNodeValue<String>(ctx.name);
             String nameSuite = getHiddenTokensAfter(ctx.name.Stop);
-            List<JsxAttribute> attributes = new List<JsxAttribute>();
+            List<JsxProperty> attributes = new List<JsxProperty>();
             foreach (ParserRuleContext child in ctx.jsx_attribute())
-                attributes.Add(GetNodeValue<JsxAttribute>(child));
+                attributes.Add(GetNodeValue<JsxProperty>(child));
             String openingSuite = getHiddenTokensAfter(ctx.GT());
             SetNodeValue(ctx, new JsxElement(name, nameSuite, attributes, openingSuite));
         }
@@ -1921,9 +1921,9 @@ namespace prompto.parser
         {
             String name = GetNodeValue<String>(ctx.name);
             String nameSuite = getHiddenTokensAfter(ctx.name.Stop);
-            List<JsxAttribute> attributes = new List<JsxAttribute>();
+            List<JsxProperty> attributes = new List<JsxProperty>();
             foreach (ParserRuleContext child in ctx.jsx_attribute())
-                attributes.Add(GetNodeValue<JsxAttribute>(child));
+                attributes.Add(GetNodeValue<JsxProperty>(child));
             String openingSuite = getHiddenTokensAfter(ctx.GT());
             SetNodeValue(ctx, new JsxSelfClosing(name, nameSuite, attributes, openingSuite));
         }

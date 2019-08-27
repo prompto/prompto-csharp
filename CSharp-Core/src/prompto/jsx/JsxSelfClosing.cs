@@ -11,7 +11,7 @@ namespace prompto.jsx
 		String nameSuite;
 		String openingSuite;
 
-		public JsxSelfClosing(String name, String nameSuite, List<JsxAttribute> attributes, String openingSuite)
+		public JsxSelfClosing(String name, String nameSuite, List<JsxProperty> attributes, String openingSuite)
 		: base(name, attributes)
 		{
 	        this.nameSuite = nameSuite;
@@ -23,9 +23,9 @@ namespace prompto.jsx
 			writer.append("<").append(name);
 			if(nameSuite!=null)
 				writer.appendRaw(nameSuite);
-			else if(attributes.Count>0)
+			else if(properties.Count>0)
 				writer.append(" ");
-			foreach(JsxAttribute attribute in attributes)
+			foreach(JsxProperty attribute in properties)
 				attribute.ToDialect(writer);
 			writer.append("/>");
 			if(openingSuite!=null)
