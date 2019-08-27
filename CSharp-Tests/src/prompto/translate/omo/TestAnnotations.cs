@@ -9,9 +9,33 @@ namespace prompto.translate.omo
 	{
 
 		[Test]
+		public void testReactWidgetProps1()
+		{
+			compareResourceOMO("annotations/ReactWidgetProps1.poc");
+		}
+
+		[Test]
+		public void testReactWidgetProps2()
+		{
+			compareResourceOMO("annotations/ReactWidgetProps2.poc");
+		}
+
+		[Test]
 		public void testWidgetField()
 		{
 			compareResourceOMO("annotations/WidgetField.poc");
+		}
+
+		[Test]
+		public void testWidgetProps1()
+		{
+			compareResourceOMO("annotations/WidgetProps1.poc");
+		}
+
+		[Test]
+		public void testWidgetProps2()
+		{
+			compareResourceOMO("annotations/WidgetProps2.poc");
 		}
 
 		[Test]
