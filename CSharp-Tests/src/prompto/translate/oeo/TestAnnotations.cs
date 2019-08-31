@@ -21,6 +21,18 @@ namespace prompto.translate.oeo
 		}
 
 		[Test]
+		public void testWidgetChildProps1()
+		{
+			compareResourceOEO("annotations/WidgetChildProps1.poc");
+		}
+
+		[Test]
+		public void testWidgetChildProps2()
+		{
+			compareResourceOEO("annotations/WidgetChildProps2.poc");
+		}
+
+		[Test]
 		public void testWidgetField()
 		{
 			compareResourceOEO("annotations/WidgetField.poc");
@@ -36,6 +48,18 @@ namespace prompto.translate.oeo
 		public void testWidgetProps2()
 		{
 			compareResourceOEO("annotations/WidgetProps2.poc");
+		}
+
+		[Test]
+		public void testWidgetProps3()
+		{
+			compareResourceOEO("annotations/WidgetProps3.poc");
+		}
+
+		[Test]
+		public void testWidgetProps4()
+		{
+			compareResourceOEO("annotations/WidgetProps4.poc");
 		}
 
 		[Test]
