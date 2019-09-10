@@ -8648,8 +8648,8 @@ public partial class EParser : AbstractParser {
 	public partial class Type_literalContext : ParserRuleContext {
 		public ITerminalNode TYPE() { return GetToken(EParser.TYPE, 0); }
 		public ITerminalNode COLON() { return GetToken(EParser.COLON, 0); }
-		public TypedefContext typedef() {
-			return GetRuleContext<TypedefContext>(0);
+		public Category_or_any_typeContext category_or_any_type() {
+			return GetRuleContext<Category_or_any_typeContext>(0);
 		}
 		public Type_literalContext(ParserRuleContext parent, int invokingState)
 			: base(parent, invokingState)
@@ -8675,7 +8675,7 @@ public partial class EParser : AbstractParser {
 			{
 			State = 1623; Match(TYPE);
 			State = 1624; Match(COLON);
-			State = 1625; typedef(0);
+			State = 1625; category_or_any_type();
 			}
 		}
 		catch (RecognitionException re) {
@@ -25076,9 +25076,9 @@ public partial class EParser : AbstractParser {
 		'\x2', '\x2', '\x2', '\x656', '\x654', '\x3', '\x2', '\x2', '\x2', '\x657', 
 		'\x658', '\a', '\x4', '\x2', '\x2', '\x658', '\x95', '\x3', '\x2', '\x2', 
 		'\x2', '\x659', '\x65A', '\a', 'I', '\x2', '\x2', '\x65A', '\x65B', '\a', 
-		'\x11', '\x2', '\x2', '\x65B', '\x65C', '\x5', '\xC0', '\x61', '\x2', 
-		'\x65C', '\x97', '\x3', '\x2', '\x2', '\x2', '\x65D', '\x65E', '\a', '\x81', 
-		'\x2', '\x2', '\x65E', '\x99', '\x3', '\x2', '\x2', '\x2', '\x65F', '\x663', 
+		'\x11', '\x2', '\x2', '\x65B', '\x65C', '\x5', '\xF0', 'y', '\x2', '\x65C', 
+		'\x97', '\x3', '\x2', '\x2', '\x2', '\x65D', '\x65E', '\a', '\x81', '\x2', 
+		'\x2', '\x65E', '\x99', '\x3', '\x2', '\x2', '\x2', '\x65F', '\x663', 
 		'\x5', '\xA0', 'Q', '\x2', '\x660', '\x663', '\x5', '\x38', '\x1D', '\x2', 
 		'\x661', '\x663', '\x5', '\\', '/', '\x2', '\x662', '\x65F', '\x3', '\x2', 
 		'\x2', '\x2', '\x662', '\x660', '\x3', '\x2', '\x2', '\x2', '\x662', '\x661', 

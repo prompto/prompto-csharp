@@ -545,7 +545,7 @@ namespace prompto.parser
 
         public override void ExitType_literal(MParser.Type_literalContext ctx)
         {
-            IType type = GetNodeValue<IType>(ctx.typedef());
+            IType type = GetNodeValue<IType>(ctx.category_or_any_type());
             SetNodeValue(ctx, new TypeLiteral(type));
         }
 
