@@ -59,7 +59,7 @@ public class SetLiteral : Literal<SetValue> {
 			return item;
 	}
 
-	public void toDialect(CodeWriter writer) {
+	public override void ToDialect(CodeWriter writer) {
 		if(expressions!=null) {
 			writer.append('<');
 			expressions.toDialect(writer);
