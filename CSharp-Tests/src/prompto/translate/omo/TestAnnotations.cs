@@ -45,6 +45,12 @@ namespace prompto.translate.omo
 		}
 
 		[Test]
+		public void testWidgetProps10()
+		{
+			compareResourceOMO("annotations/WidgetProps10.poc");
+		}
+
+		[Test]
 		public void testWidgetProps2()
 		{
 			compareResourceOMO("annotations/WidgetProps2.poc");
@@ -60,6 +66,36 @@ namespace prompto.translate.omo
 		public void testWidgetProps4()
 		{
 			compareResourceOMO("annotations/WidgetProps4.poc");
+		}
+
+		[Test]
+		public void testWidgetProps5()
+		{
+			compareResourceOMO("annotations/WidgetProps5.poc");
+		}
+
+		[Test]
+		public void testWidgetProps6()
+		{
+			compareResourceOMO("annotations/WidgetProps6.poc");
+		}
+
+		[Test]
+		public void testWidgetProps7()
+		{
+			compareResourceOMO("annotations/WidgetProps7.poc");
+		}
+
+		[Test]
+		public void testWidgetProps8()
+		{
+			compareResourceOMO("annotations/WidgetProps8.poc");
+		}
+
+		[Test]
+		public void testWidgetProps9()
+		{
+			compareResourceOMO("annotations/WidgetProps9.poc");
 		}
 
 		[Test]
