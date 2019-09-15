@@ -51,6 +51,18 @@ namespace prompto.translate.oeo
 		}
 
 		[Test]
+		public void testWidgetProps11()
+		{
+			compareResourceOEO("annotations/WidgetProps11.poc");
+		}
+
+		[Test]
+		public void testWidgetProps12()
+		{
+			compareResourceOEO("annotations/WidgetProps12.poc");
+		}
+
+		[Test]
 		public void testWidgetProps2()
 		{
 			compareResourceOEO("annotations/WidgetProps2.poc");

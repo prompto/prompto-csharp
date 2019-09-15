@@ -51,6 +51,18 @@ namespace prompto.translate.omo
 		}
 
 		[Test]
+		public void testWidgetProps11()
+		{
+			compareResourceOMO("annotations/WidgetProps11.poc");
+		}
+
+		[Test]
+		public void testWidgetProps12()
+		{
+			compareResourceOMO("annotations/WidgetProps12.poc");
+		}
+
+		[Test]
 		public void testWidgetProps2()
 		{
 			compareResourceOMO("annotations/WidgetProps2.poc");

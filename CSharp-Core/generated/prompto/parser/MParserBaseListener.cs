@@ -2450,6 +2450,20 @@ public partial class MParserBaseListener : IMParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitBooleanType([NotNull] MParser.BooleanTypeContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by the <c>CssType</c>
+	/// labeled alternative in <see cref="MParser.native_type"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterCssType([NotNull] MParser.CssTypeContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by the <c>CssType</c>
+	/// labeled alternative in <see cref="MParser.native_type"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitCssType([NotNull] MParser.CssTypeContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by the <c>CharacterType</c>
 	/// labeled alternative in <see cref="MParser.native_type"/>.
 	/// <para>The default implementation does nothing.</para>

@@ -2124,6 +2124,18 @@ public interface IOParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitBooleanType([NotNull] OParser.BooleanTypeContext context);
 	/// <summary>
+	/// Enter a parse tree produced by the <c>CssType</c>
+	/// labeled alternative in <see cref="OParser.native_type"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterCssType([NotNull] OParser.CssTypeContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>CssType</c>
+	/// labeled alternative in <see cref="OParser.native_type"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitCssType([NotNull] OParser.CssTypeContext context);
+	/// <summary>
 	/// Enter a parse tree produced by the <c>CharacterType</c>
 	/// labeled alternative in <see cref="OParser.native_type"/>.
 	/// </summary>

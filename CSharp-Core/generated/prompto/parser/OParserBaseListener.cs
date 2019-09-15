@@ -2500,6 +2500,20 @@ public partial class OParserBaseListener : IOParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitBooleanType([NotNull] OParser.BooleanTypeContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by the <c>CssType</c>
+	/// labeled alternative in <see cref="OParser.native_type"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterCssType([NotNull] OParser.CssTypeContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by the <c>CssType</c>
+	/// labeled alternative in <see cref="OParser.native_type"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitCssType([NotNull] OParser.CssTypeContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by the <c>CharacterType</c>
 	/// labeled alternative in <see cref="OParser.native_type"/>.
 	/// <para>The default implementation does nothing.</para>

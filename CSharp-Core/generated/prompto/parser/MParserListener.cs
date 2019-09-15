@@ -2080,6 +2080,18 @@ public interface IMParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitBooleanType([NotNull] MParser.BooleanTypeContext context);
 	/// <summary>
+	/// Enter a parse tree produced by the <c>CssType</c>
+	/// labeled alternative in <see cref="MParser.native_type"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterCssType([NotNull] MParser.CssTypeContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>CssType</c>
+	/// labeled alternative in <see cref="MParser.native_type"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitCssType([NotNull] MParser.CssTypeContext context);
+	/// <summary>
 	/// Enter a parse tree produced by the <c>CharacterType</c>
 	/// labeled alternative in <see cref="MParser.native_type"/>.
 	/// </summary>

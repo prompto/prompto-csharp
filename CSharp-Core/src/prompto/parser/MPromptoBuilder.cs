@@ -2128,6 +2128,12 @@ namespace prompto.parser
         }
 
 
+        public override void ExitCssType(MParser.CssTypeContext ctx)
+        {
+            SetNodeValue(ctx, CssType.Instance);
+        }
+
+
         public override void ExitHasExpression(MParser.HasExpressionContext ctx)
         {
             IExpression left = GetNodeValue<IExpression>(ctx.left);

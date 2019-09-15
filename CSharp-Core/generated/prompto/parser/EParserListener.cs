@@ -2276,6 +2276,18 @@ public interface IEParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitBooleanType([NotNull] EParser.BooleanTypeContext context);
 	/// <summary>
+	/// Enter a parse tree produced by the <c>CssType</c>
+	/// labeled alternative in <see cref="EParser.native_type"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterCssType([NotNull] EParser.CssTypeContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>CssType</c>
+	/// labeled alternative in <see cref="EParser.native_type"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitCssType([NotNull] EParser.CssTypeContext context);
+	/// <summary>
 	/// Enter a parse tree produced by the <c>CharacterType</c>
 	/// labeled alternative in <see cref="EParser.native_type"/>.
 	/// </summary>

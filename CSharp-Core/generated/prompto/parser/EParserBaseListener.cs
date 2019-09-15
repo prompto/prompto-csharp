@@ -2678,6 +2678,20 @@ public partial class EParserBaseListener : IEParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitBooleanType([NotNull] EParser.BooleanTypeContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by the <c>CssType</c>
+	/// labeled alternative in <see cref="EParser.native_type"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterCssType([NotNull] EParser.CssTypeContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by the <c>CssType</c>
+	/// labeled alternative in <see cref="EParser.native_type"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitCssType([NotNull] EParser.CssTypeContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by the <c>CharacterType</c>
 	/// labeled alternative in <see cref="EParser.native_type"/>.
 	/// <para>The default implementation does nothing.</para>
