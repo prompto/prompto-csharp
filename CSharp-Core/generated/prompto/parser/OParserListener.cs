@@ -2520,16 +2520,6 @@ public interface IOParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitSymbol_identifier([NotNull] OParser.Symbol_identifierContext context);
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="OParser.any_identifier"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterAny_identifier([NotNull] OParser.Any_identifierContext context);
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="OParser.any_identifier"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitAny_identifier([NotNull] OParser.Any_identifierContext context);
-	/// <summary>
 	/// Enter a parse tree produced by <see cref="OParser.argument_list"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>

@@ -3144,18 +3144,6 @@ public partial class EParserBaseListener : IEParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitSymbol_identifier([NotNull] EParser.Symbol_identifierContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="EParser.any_identifier"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void EnterAny_identifier([NotNull] EParser.Any_identifierContext context) { }
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="EParser.any_identifier"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void ExitAny_identifier([NotNull] EParser.Any_identifierContext context) { }
-	/// <summary>
 	/// Enter a parse tree produced by <see cref="EParser.argument_list"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
