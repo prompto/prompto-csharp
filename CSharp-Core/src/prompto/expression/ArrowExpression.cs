@@ -58,9 +58,11 @@ namespace prompto.expression
         public override void ToDialect(CodeWriter writer)
 		{
 			ArgsToDialect(writer);
-			writer.append(ArgsSuite);
+            if(ArgsSuite!=null)
+			    writer.append(ArgsSuite);
 			writer.append("=>");
-			writer.append(ArrowSuite);
+            if(ArrowSuite!=null)
+			    writer.append(ArrowSuite);
 			BodyToDialect(writer);
 		}
 
