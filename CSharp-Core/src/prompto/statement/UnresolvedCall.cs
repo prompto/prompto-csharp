@@ -62,7 +62,8 @@ namespace prompto.statement
 			try
 			{
 				resolve(writer.getContext());
-				resolved.ToDialect(writer);
+				if(resolved!=null)
+                    resolved.ToDialect(writer);
 			}
 			catch (SyntaxError /*e*/)
 			{
