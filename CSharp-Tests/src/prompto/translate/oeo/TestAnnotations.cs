@@ -51,7 +51,8 @@ namespace prompto.translate.oeo
 		}
 
 		[Test]
-		public void testWidgetProps11()
+        [Ignore("Until we implement WidgetPropertiesProcessor")]
+        public void testWidgetProps11()
 		{
 			compareResourceOEO("annotations/WidgetProps11.poc");
 		}
