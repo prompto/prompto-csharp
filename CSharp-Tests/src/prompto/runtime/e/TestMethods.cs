@@ -22,6 +22,12 @@ namespace prompto.runtime.e
 		}
 
 		[Test]
+		public void testAbstractMember()
+		{
+			CheckOutput("methods/abstractMember.pec");
+		}
+
+		[Test]
 		public void testAnonymous()
 		{
 			CheckOutput("methods/anonymous.pec");

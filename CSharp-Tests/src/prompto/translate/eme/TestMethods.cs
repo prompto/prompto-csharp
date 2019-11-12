@@ -9,6 +9,12 @@ namespace prompto.translate.eme
 	{
 
 		[Test]
+		public void testAbstractMember()
+		{
+			compareResourceEME("methods/abstractMember.pec");
+		}
+
+		[Test]
 		public void testAnonymous()
 		{
 			compareResourceEME("methods/anonymous.pec");

@@ -9,6 +9,12 @@ namespace prompto.translate.eoe
 	{
 
 		[Test]
+		public void testAbstractMember()
+		{
+			compareResourceEOE("methods/abstractMember.pec");
+		}
+
+		[Test]
 		public void testAnonymous()
 		{
 			compareResourceEOE("methods/anonymous.pec");

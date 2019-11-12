@@ -9,6 +9,12 @@ namespace prompto.translate.oeo
 	{
 
 		[Test]
+		public void testAbstractMember()
+		{
+			compareResourceOEO("methods/abstractMember.poc");
+		}
+
+		[Test]
 		public void testAnonymous()
 		{
 			compareResourceOEO("methods/anonymous.poc");
