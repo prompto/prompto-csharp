@@ -47,5 +47,12 @@ namespace prompto.value
 			source.Dispose ();
 		}
 
-	}
+        public IValue ToListValue()
+        {
+            ListValue values = new ListValue(((IteratorType)this.GetIType()).GetItemType());
+            while(source.MoveNext())
+                 values.Add(source.Current);
+            return values;
+        }
+    }
 }

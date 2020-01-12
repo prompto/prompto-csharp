@@ -168,8 +168,8 @@ namespace prompto.statement
         public bool interpretAssert(Context context, TestMethodDeclaration testMethodDeclaration)
         {
             IValue value = this.interpret(context);
-            if (value is prompto.value.Boolean)
-                return ((prompto.value.Boolean)value).Value;
+            if (value is prompto.value.BooleanValue)
+                return ((prompto.value.BooleanValue)value).Value;
             else
             {
                 CodeWriter writer = new CodeWriter(this.Dialect, context);

@@ -52,6 +52,12 @@ namespace prompto.runtime.e
 		}
 
 		[Test]
+		public void testFragment()
+		{
+			CheckOutput("jsx/fragment.pec");
+		}
+
+		[Test]
 		public void testHyphenName()
 		{
 			CheckOutput("jsx/hyphenName.pec");

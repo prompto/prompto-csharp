@@ -31,6 +31,7 @@ namespace prompto.declaration
             this.methods = methods != null ? methods : new MethodDeclarationList();
         }
 
+
         internal List<string> CollectCategories(Context context)
         {
             HashSet<String> set = new HashSet<String>();
@@ -100,12 +101,12 @@ namespace prompto.declaration
             return parent.IsAWidget(context);
         }
 
-        public void setMethods(MethodDeclarationList methods)
+        public void SetLocalMethods(MethodDeclarationList methods)
         {
             this.methods = methods;
         }
 
-        public MethodDeclarationList getMethods()
+        public override MethodDeclarationList GetLocalMethods()
         {
             return methods;
         }

@@ -1,5 +1,5 @@
 using System;
-using Boolean = prompto.value.Boolean;
+using BooleanValue = prompto.value.BooleanValue;
 using prompto.runtime;
 using System.Collections.Generic;
 using prompto.value;
@@ -37,9 +37,9 @@ namespace prompto.type
         public override IValue ConvertCSharpValueToIValue(Context context, Object value)
         {
             if (value is bool)
-                return Boolean.ValueOf((bool)value);
+                return BooleanValue.ValueOf((bool)value);
             else if (value is bool?)
-                return Boolean.ValueOf(((bool?)value).Value);
+                return BooleanValue.ValueOf(((bool?)value).Value);
             else
                 return (IValue)value; // TODO for now
         }
@@ -51,14 +51,14 @@ namespace prompto.type
 
     }
 
-    class BooleanComparer : NativeComparer<Boolean>
+    class BooleanComparer : NativeComparer<BooleanValue>
     {
         public BooleanComparer(bool descending)
             : base(descending)
         {
         }
 
-		protected override int DoCompare(Boolean o1, Boolean o2)
+		protected override int DoCompare(BooleanValue o1, BooleanValue o2)
 		{
 	        return o1.Value.CompareTo(o2.Value);
         }

@@ -176,10 +176,10 @@ namespace prompto.expression
                                 continue;
                             else if (cd.hasAttribute(context, name))
                             {
-                                IValue value = copyInstance.GetMember(context, name, false);
+                                IValue value = copyInstance.GetMemberValue(context, name, false);
                                 if (value != null && value.IsMutable() && !this.type.Mutable)
                                     throw new NotMutableError();
-                                instance.SetMember(context, name, value);
+                                instance.SetMemberValue(context, name, value);
                             }
                         }
                     }
@@ -192,11 +192,11 @@ namespace prompto.expression
                                 continue;
                             else if (cd.hasAttribute(context, name))
                             {
-                                IValue value = copyDoc.GetMember(context, name, false);
+                                IValue value = copyDoc.GetMemberValue(context, name, false);
                                 if (value != null && value.IsMutable() && !this.type.Mutable)
                                     throw new NotMutableError();
                                 // TODO convert to attribute type, see Java version
-                                instance.SetMember(context, name, value);
+                                instance.SetMemberValue(context, name, value);
                             }
                         }
                     }
@@ -208,7 +208,7 @@ namespace prompto.expression
                         IValue value = argument.getExpression().interpret(context);
                         if (value != null && value.IsMutable() && !this.type.Mutable)
                             throw new NotMutableError();
-                        instance.SetMember(context, argument.GetName(), value);
+                        instance.SetMemberValue(context, argument.GetName(), value);
                     }
                 }
             }

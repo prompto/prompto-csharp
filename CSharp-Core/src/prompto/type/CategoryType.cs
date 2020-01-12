@@ -19,6 +19,7 @@ namespace prompto.type
     {
 
         String typeName;
+        IType resolved;
 
         public CategoryType(String typeName)
             : base(TypeFamily.CATEGORY)
@@ -55,6 +56,8 @@ namespace prompto.type
 
         public override IType checkMember(Context context, String name)
         {
+            if ("category" == name)
+                return new CategoryType("Category");
             IDeclaration decl = context.getRegisteredDeclaration<IDeclaration>(GetTypeName());
             if (decl == null)
                 throw new SyntaxError("Unknown category:" + GetTypeName());
@@ -123,7 +126,7 @@ namespace prompto.type
                 return decl.GetIType(context).getStaticMemberValue(context, name);
 		    else if(decl is SingletonCategoryDeclaration) {
                 ConcreteInstance singleton = context.loadSingleton(this);
-                return singleton.GetMember(context, name, false);
+                return singleton.GetMemberValue(context, name, false);
             } else
 			    return base.getStaticMemberValue(context, name);
         }
@@ -260,10 +263,27 @@ namespace prompto.type
 
         public override bool isAssignableFrom(Context context, IType other)
         {
-            return base.isAssignableFrom(context, other)
-                       || (other is CategoryType
-                           && isAssignableFrom(context, (CategoryType)other));
+            IType actual = Resolve(context);
+            other = other.Resolve(context);
+            if (actual == this)
+                return base.isAssignableFrom(context, other)
+                           || (other is CategoryType
+                               && isAssignableFrom(context, (CategoryType)other));
+            else
+                return actual.isAssignableFrom(context, other);
         }
+
+
+        public override IType Resolve(Context context)
+        {
+            if (resolved == null)
+            {
+                IDeclaration decl = getDeclaration(context);
+                resolved = decl == null || decl.GetIType(context).GetType() == this.GetType() ? this : decl.GetIType(context);
+            }
+            return resolved;
+        }
+
 
         public bool isAssignableFrom(Context context, CategoryType other)
         {
@@ -505,8 +525,8 @@ namespace prompto.type.category
 
         protected override int DoCompare(IInstance o1, IInstance o2)
         {
-            Object value1 = o1.GetMember(context, name, false);
-            Object value2 = o2.GetMember(context, name, false);
+            Object value1 = o1.GetMemberValue(context, name, false);
+            Object value2 = o2.GetMemberValue(context, name, false);
             return ObjectUtils.CompareValues(value1, value2);
         }
 

@@ -1,7 +1,7 @@
 using prompto.runtime;
 using System;
 using prompto.error;
-using Boolean = prompto.value.Boolean;
+using BooleanValue = prompto.value.BooleanValue;
 using prompto.parser;
 using prompto.type;
 using prompto.utils;
@@ -56,8 +56,8 @@ namespace prompto.expression
 
 		public IValue interpret(IValue val)
 		{
-            if (val is Boolean)
-                return ((Boolean)val).Not;
+            if (val is BooleanValue)
+                return ((BooleanValue)val).Not;
             else
                 throw new SyntaxError("Illegal: not " + val.GetType().Name);
         }
@@ -65,7 +65,7 @@ namespace prompto.expression
 		public bool interpretAssert(Context context, TestMethodDeclaration test) {
 			IValue val = expression.interpret(context);
 			IValue result = interpret(val);
-			if(result==Boolean.TRUE) 
+			if(result==BooleanValue.TRUE) 
 				return true;
 			CodeWriter writer = new CodeWriter(test.Dialect, context);
 			this.ToDialect(writer);

@@ -48,7 +48,7 @@ namespace prompto.literal
 			List<IType> types = new List<IType>();
 			foreach (DictEntry e in entries)
 			{
-				types.Add(e.getValue().check(context));
+				types.Add(e.GetValue().check(context));
 			}
 			return TypeUtils.InferElementType(context, types);
 		}
@@ -60,8 +60,8 @@ namespace prompto.literal
 				check (context); // to compute itemType
 				Dictionary<Text, IValue> dict = new Dictionary<Text, IValue> ();
 				foreach (DictEntry e in entries) {
-					Text key = e.getKey ().asText ();
-					IValue val = e.getValue ().interpret (context);
+					Text key = e.GetKey ().asText ();
+					IValue val = e.GetValue ().interpret (context);
 					dict [key] = val;
 				}
 				return new Dict (itemType, mutable, dict);

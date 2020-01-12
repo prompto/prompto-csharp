@@ -18,7 +18,7 @@ namespace prompto.value
 			return value;
 		}
 
-        public override IValue GetMember(Context context, string name, bool autoCreate)
+        public override IValue GetMemberValue(Context context, string name, bool autoCreate)
         {
             return value.getStaticMemberValue(context, name);
         }

@@ -501,6 +501,7 @@ namespace prompto.runtime
 	{
 		IInstance instance;
 		CategoryType type;
+		Dictionary<String, WidgetField> widgetFields = null; // only used for widgets at this point
 
 		internal InstanceContext(IInstance instance)
 		{
@@ -530,6 +531,12 @@ namespace prompto.runtime
 
 		public override INamed getRegistered(string name)
 		{
+			if (widgetFields != null)
+			{
+				WidgetField field = null;
+                if(widgetFields.TryGetValue(name, out field))
+					return field;
+			}
 			INamed actual = base.getRegistered(name);
 			if (actual != null)
 				return actual;
@@ -599,7 +606,7 @@ namespace prompto.runtime
 			ConcreteCategoryDeclaration decl = getDeclaration();
 			if (decl.hasAttribute(this, name))
 			{
-				IValue value = instance.GetMember(calling, name, false);
+				IValue value = instance.GetMemberValue(calling, name, false);
 				return value != null ? value : supplier.Invoke();
 			}
 			else if (decl.hasMethod(this, name))
@@ -616,9 +623,19 @@ namespace prompto.runtime
 		{
 			if (value is IExpression)
 				value = ((IExpression)value).interpret(this);
-			instance.SetMember(calling, name, (IValue)value);
+			instance.SetMemberValue(calling, name, (IValue)value);
 		}
-	}
+
+        public void RegisterWidgetField(String name, IType type, bool force)
+        {
+			if (widgetFields == null)
+				widgetFields = new Dictionary<String, WidgetField>();
+			if (force || !widgetFields.ContainsKey(name)) 	
+				widgetFields[name] = new WidgetField(name, type);
+			else
+                throw new SyntaxError("Duplicate widget field " + name);
+        }
+    }
 
 	public class DocumentContext : Context
 	{
@@ -650,12 +667,12 @@ namespace prompto.runtime
 
 		protected override IValue readValue(String name, Func<IValue> supplier)
 		{
-			return document.GetMember(calling, name, false);
+			return document.GetMemberValue(calling, name, false);
 		}
 
 		protected override void writeValue(String name, IValue value)
 		{
-			document.SetMember(calling, name, value);
+			document.SetMemberValue(calling, name, value);
 		}
 
 	}

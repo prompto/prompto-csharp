@@ -24,7 +24,7 @@ namespace prompto.literal
 		}
 
 
-		public override IValue GetMember(Context context, String name, bool autoCreate)
+		public override IValue GetMemberValue(Context context, String name, bool autoCreate)
 		{
 			if ("key" == name)
 				return key.asText();
@@ -34,7 +34,7 @@ namespace prompto.literal
 				throw new NotSupportedException("No such member:" + name);
 		}
 
-		public DictKey getKey()
+		public DictKey GetKey()
 		{
 			return key;
 		}
@@ -46,7 +46,7 @@ namespace prompto.literal
 			value.ToDialect(writer);
 		}
 
-		public IExpression getValue()
+		public IExpression GetValue()
 		{
 			return value;
 		}

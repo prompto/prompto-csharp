@@ -114,12 +114,12 @@ namespace prompto.grammar
 			throw new NotSupportedException("Compare not supported by " + this.GetType().Name);
 		}
 
-		public virtual IValue GetMember(Context context, String name, bool autoCreate)
+		public virtual IValue GetMemberValue(Context context, String name, bool autoCreate)
 		{
 			throw new NotSupportedException("No member support for " + this.GetType().Name);
 		}
 
-		public virtual void SetMember(Context context, String name, IValue value)
+		public virtual void SetMemberValue(Context context, String name, IValue value)
 		{
 			throw new NotSupportedException("No member support for " + this.GetType().Name);
 		}

@@ -80,8 +80,8 @@ namespace prompto.parser
             Assert.IsNotNull(cd);
             Assert.AreEqual("Person", cd.GetName());
             Assert.IsNull(cd.getDerivedFrom());
-            Assert.IsNotNull(cd.getAttributes());
-            Assert.IsTrue(cd.getAttributes().Contains("id"));
+            Assert.IsNotNull(cd.GetLocalAttributes());
+            Assert.IsTrue(cd.GetLocalAttributes().Contains("id"));
         }
 
         [Test]
@@ -93,9 +93,9 @@ namespace prompto.parser
             Assert.IsNotNull(cd);
             Assert.AreEqual("Person", cd.GetName());
             Assert.IsNull(cd.getDerivedFrom());
-            Assert.IsNotNull(cd.getAttributes());
-            Assert.IsTrue(cd.getAttributes().Contains("id"));
-            Assert.IsTrue(cd.getAttributes().Contains("name"));
+            Assert.IsNotNull(cd.GetLocalAttributes());
+            Assert.IsTrue(cd.GetLocalAttributes().Contains("id"));
+            Assert.IsTrue(cd.GetLocalAttributes().Contains("name"));
         }
 
         [Test]
@@ -108,8 +108,8 @@ namespace prompto.parser
             Assert.AreEqual("Employee", cd.GetName());
             Assert.IsNotNull(cd.getDerivedFrom());
             Assert.IsTrue(cd.getDerivedFrom().Contains("Person"));
-            Assert.IsNotNull(cd.getAttributes());
-            Assert.IsTrue(cd.getAttributes().Contains("company"));
+            Assert.IsNotNull(cd.GetLocalAttributes());
+            Assert.IsTrue(cd.GetLocalAttributes().Contains("company"));
         }
 
         [Test]
@@ -123,7 +123,7 @@ namespace prompto.parser
             Assert.IsNotNull(cd.getDerivedFrom());
             Assert.IsTrue(cd.getDerivedFrom().Contains("Person"));
             Assert.IsTrue(cd.getDerivedFrom().Contains("Company"));
-            Assert.IsNull(cd.getAttributes());
+            Assert.IsNull(cd.GetLocalAttributes());
         }
 
         [Test]

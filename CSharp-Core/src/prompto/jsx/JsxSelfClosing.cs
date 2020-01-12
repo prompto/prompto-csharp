@@ -9,13 +9,13 @@ namespace prompto.jsx
 	{
 
 		String nameSuite;
-		String openingSuite;
+		String elementSuite;
 
-		public JsxSelfClosing(String name, String nameSuite, List<JsxProperty> attributes, String openingSuite)
+		public JsxSelfClosing(String name, String nameSuite, List<JsxProperty> attributes, String elementSuite)
 		: base(name, attributes)
 		{
 	        this.nameSuite = nameSuite;
-			this.openingSuite = openingSuite;
+			this.elementSuite = elementSuite;
 		}
 
 		public override void ToDialect(CodeWriter writer)
@@ -28,8 +28,8 @@ namespace prompto.jsx
 			foreach(JsxProperty attribute in properties)
 				attribute.ToDialect(writer);
 			writer.append("/>");
-			if(openingSuite!=null)
-				writer.appendRaw(openingSuite);
+			if(elementSuite!=null)
+				writer.appendRaw(elementSuite);
 		}
 
 	}

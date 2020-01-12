@@ -2492,6 +2492,16 @@ public interface IOParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitSymbolIdentifier([NotNull] OParser.SymbolIdentifierContext context);
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="OParser.member_identifier"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterMember_identifier([NotNull] OParser.Member_identifierContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="OParser.member_identifier"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitMember_identifier([NotNull] OParser.Member_identifierContext context);
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="OParser.variable_identifier"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
@@ -3155,6 +3165,18 @@ public interface IOParserListener : IParseTreeListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void ExitUUIDLiteral([NotNull] OParser.UUIDLiteralContext context);
+	/// <summary>
+	/// Enter a parse tree produced by the <c>SymbolLiteral</c>
+	/// labeled alternative in <see cref="OParser.atomic_literal"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterSymbolLiteral([NotNull] OParser.SymbolLiteralContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>SymbolLiteral</c>
+	/// labeled alternative in <see cref="OParser.atomic_literal"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitSymbolLiteral([NotNull] OParser.SymbolLiteralContext context);
 	/// <summary>
 	/// Enter a parse tree produced by the <c>TypeLiteral</c>
 	/// labeled alternative in <see cref="OParser.atomic_literal"/>.

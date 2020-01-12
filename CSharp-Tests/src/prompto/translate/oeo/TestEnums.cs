@@ -21,6 +21,12 @@ namespace prompto.translate.oeo
 		}
 
 		[Test]
+		public void testSwitchEnum()
+		{
+			compareResourceOEO("enums/switchEnum.poc");
+		}
+
+		[Test]
 		public void testTextEnum()
 		{
 			compareResourceOEO("enums/textEnum.poc");

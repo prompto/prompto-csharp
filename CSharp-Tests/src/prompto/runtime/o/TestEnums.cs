@@ -34,6 +34,12 @@ namespace prompto.runtime.o
 		}
 
 		[Test]
+		public void testSwitchEnum()
+		{
+			CheckOutput("enums/switchEnum.poc");
+		}
+
+		[Test]
 		public void testTextEnum()
 		{
 			CheckOutput("enums/textEnum.poc");

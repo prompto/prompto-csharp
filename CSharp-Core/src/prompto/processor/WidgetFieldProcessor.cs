@@ -12,7 +12,7 @@ namespace prompto.processor
 	public class WidgetFieldProcessor : AnnotationProcessor
 	{
 
-		public override void processCategory(Annotation annotation, Context context, CategoryDeclaration declaration)
+		public override void ProcessCategory(Annotation annotation, Context context, CategoryDeclaration declaration)
 		{
 			if (declaration.IsAWidget(context))
 				doProcessCategory(annotation, context, declaration);

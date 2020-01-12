@@ -27,7 +27,7 @@ namespace prompto.reader
 			if (node == null)
 				return NullValue.Instance;
 			else if (node is bool)
-				return value.Boolean.ValueOf((bool)node);
+				return value.BooleanValue.ValueOf((bool)node);
 			else if (node is int)
 				return new value.Integer((int)node);
 			else if (node is long)
@@ -57,7 +57,7 @@ namespace prompto.reader
 					case JTokenType.Null:
 						return NullValue.Instance;
 					case JTokenType.Boolean:
-						return value.Boolean.ValueOf(node.Value<bool>());
+						return value.BooleanValue.ValueOf(node.Value<bool>());
 					case JTokenType.Integer:
 						return new value.Integer(node.Value<long>());
 					case JTokenType.Float:

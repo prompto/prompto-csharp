@@ -1,13 +1,13 @@
 using prompto.runtime;
 using System;
-using Boolean = prompto.value.Boolean;
+using BooleanValue = prompto.value.BooleanValue;
 using prompto.type;
 namespace prompto.literal {
 
-public class BooleanLiteral : Literal<Boolean> {
+public class BooleanLiteral : Literal<BooleanValue> {
 
 	public BooleanLiteral(String text) 
-		: base(text, Boolean.Parse(text))
+		: base(text, BooleanValue.Parse(text))
     {
 	}
 	

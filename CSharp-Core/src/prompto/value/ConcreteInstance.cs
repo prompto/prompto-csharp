@@ -140,21 +140,29 @@ namespace prompto.value
         ThreadLocal<Dictionary<String, Context>> activeGetters = new ThreadLocal<Dictionary<String, Context>>(Factory);
 
 
-        public override IValue GetMember(Context context, String attrName, bool autoCreate)
+        public override IValue GetMemberValue(Context context, String name, bool autoCreate)
         {
-            Context stacked;
-            bool first = !activeGetters.Value.TryGetValue(attrName, out stacked);
+            if ("category" == name)
+                return GetCategory(context);
+            Context stacked = null;
+            bool first = !activeGetters.Value.TryGetValue(name, out stacked);
             if (first)
-                activeGetters.Value[attrName] = context;
+                activeGetters.Value[name] = context;
             try
             {
-                return GetMemberAllowGetter(context, attrName, stacked == null);
+                return GetMemberAllowGetter(context, name, stacked == null);
             }
             finally
             {
                 if (first)
-                    activeGetters.Value[attrName] = null;
+                    activeGetters.Value[name] = null;
             }
+        }
+
+        private IValue GetCategory(Context context)
+        {
+            NativeCategoryDeclaration decl = context.getRegisteredDeclaration<NativeCategoryDeclaration>("Category");
+		    return new NativeInstance(decl, declaration);
         }
 
         protected IValue GetMemberAllowGetter(Context context, String attrName, bool allowGetter)
@@ -183,7 +191,7 @@ namespace prompto.value
         // don't call setters from setters, so register them
         ThreadLocal<Dictionary<String, Context>> activeSetters = new ThreadLocal<Dictionary<String, Context>>(Factory);
 
-        public override void SetMember(Context context, String attrName, IValue value)
+        public override void SetMemberValue(Context context, String attrName, IValue value)
         {
             if (!mutable)
                 throw new NotMutableError();
@@ -193,7 +201,7 @@ namespace prompto.value
                 activeSetters.Value[attrName] = context;
             try
             {
-                SetMember(context, attrName, value, stacked == null);
+                SetMemberValue(context, attrName, value, stacked == null);
             }
             finally
             {
@@ -202,7 +210,7 @@ namespace prompto.value
             }
         }
 
-        public void SetMember(Context context, String attrName, IValue value, bool allowSetter)
+        public void SetMemberValue(Context context, String attrName, IValue value, bool allowSetter)
         {
             AttributeDeclaration decl = context.getRegisteredDeclaration<AttributeDeclaration>(attrName);
             SetterMethodDeclaration setter = allowSetter ? declaration.findSetter(context, attrName) : null;

@@ -540,6 +540,13 @@ namespace prompto.parser
         }
 
 
+        public override void ExitSymbolLiteral([NotNull] EParser.SymbolLiteralContext ctx)
+        {
+            String name = ctx.GetText();
+            SetNodeValue(ctx, new SymbolExpression(name));
+        }
+
+
         public override void ExitBooleanType(EParser.BooleanTypeContext ctx)
         {
             SetNodeValue(ctx, BooleanType.Instance);
@@ -816,6 +823,14 @@ namespace prompto.parser
             SetLiteral set = items == null ? new SetLiteral() : new SetLiteral(items);
             SetNodeValue(ctx, set);
         }
+
+
+        public override void ExitMember_identifier(EParser.Member_identifierContext ctx)
+        {
+            String name = ctx.GetText();
+            SetNodeValue(ctx, name);
+        }
+
 
         public override void ExitMemberSelector(EParser.MemberSelectorContext ctx)
         {
@@ -3256,7 +3271,7 @@ namespace prompto.parser
         public override void ExitJsxCode(EParser.JsxCodeContext ctx)
         {
             IExpression exp = GetNodeValue<IExpression>(ctx.exp);
-            SetNodeValue(ctx, new JsxCode(exp));
+            SetNodeValue(ctx, new JsxCode(exp, null));
         }
 
 
@@ -3275,6 +3290,7 @@ namespace prompto.parser
             element.setChildren(children);
             SetNodeValue(ctx, element);
         }
+
 
         public override void ExitJsxSelfClosing(EParser.JsxSelfClosingContext ctx)
         {
@@ -3322,6 +3338,17 @@ namespace prompto.parser
         {
             SetNodeValue(ctx, GetNodeValue<Object>(ctx.GetChild(0)));
         }
+
+
+        public override void ExitJsx_fragment(EParser.Jsx_fragmentContext ctx)
+        {
+            String suite = getWhiteSpacePlus(ctx.ws_plus(0));
+            JsxFragment fragment = new JsxFragment(suite);
+            List<IJsxExpression> children = GetNodeValue<List<IJsxExpression>>(ctx.children_);
+            fragment.setChildren(children);
+            SetNodeValue(ctx, fragment);
+        }
+
 
         public override void ExitJsx_identifier(EParser.Jsx_identifierContext ctx)
         {

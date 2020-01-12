@@ -165,15 +165,7 @@ namespace prompto.declaration
             {
                 IType requiredType = parameter.GetIType(context);
                 IExpression expression = argument.getExpression();
-                bool checkArrow = requiredType is MethodType && expression is ContextualExpression && ((ContextualExpression)expression).Expression is ArrowExpression;
-                IType actualType = checkArrow ? ((MethodType)requiredType).checkArrowExpression((ContextualExpression)expression) : expression.check(context);
-                // retrieve actual runtime type
-                if (useInstance && actualType is CategoryType)
-                {
-                    Object value = argument.getExpression().interpret((Context)context.getCallingContext());
-                    if (value is IInstance)
-                        actualType = ((IInstance)value).getType();
-                }
+                IType actualType = argument.checkActualType(context, requiredType, expression, useInstance);
                 if (actualType.Equals(requiredType))
                     return Specificity.EXACT;
                 if (requiredType.isAssignableFrom(context, actualType))

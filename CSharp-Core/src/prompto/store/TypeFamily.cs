@@ -34,6 +34,7 @@ namespace prompto.store
 		METHOD,
 		CURSOR,
 		ITERATOR,
+		PROPERTIES,
 		CLASS,
 		TYPE,
 		CODE,

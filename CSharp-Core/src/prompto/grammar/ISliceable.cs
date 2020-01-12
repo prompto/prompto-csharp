@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using prompto.runtime;
 using prompto.value;
-using Boolean = prompto.value.Boolean;
+using Boolean = prompto.value.BooleanValue;
 
 namespace prompto.grammar
 {

@@ -45,8 +45,8 @@ namespace prompto.value
 
         DateTimeOffset value;
 
-		public DateTime(DateTimeOffset value)
-			: base(DateTimeType.Instance)
+        public DateTime(DateTimeOffset value)
+            : base(DateTimeType.Instance)
         {
             this.value = value;
         }
@@ -62,14 +62,14 @@ namespace prompto.value
         }
 
         public DateTime(int year, int month, int day, int hour, int minute, int second, int milli, TimeSpan offset)
-			: base(DateTimeType.Instance)
-		{
+            : base(DateTimeType.Instance)
+        {
             this.value = new DateTimeOffset(year, month, day, hour, minute, second, milli, offset);
         }
 
         public DateTimeOffset Value { get { return value; } }
 
-        
+
         public override IValue Add(Context context, IValue value)
         {
             if (value is Period)
@@ -78,7 +78,7 @@ namespace prompto.value
                 throw new SyntaxError("Illegal: DateTime + " + value.GetType().Name);
         }
 
-        
+
         public override IValue Subtract(Context context, IValue value)
         {
             if (value is DateTime)
@@ -94,7 +94,7 @@ namespace prompto.value
                 throw new SyntaxError("Illegal: DateTime - " + value.GetType().Name);
         }
 
-        
+
         public override Int32 CompareTo(Context context, IValue value)
         {
             if (value is DateTime)
@@ -104,8 +104,8 @@ namespace prompto.value
 
         }
 
-        
-		public override IValue GetMember(Context context, String name, bool autoCreate)
+
+        public override IValue GetMemberValue(Context context, String name, bool autoCreate)
         {
             if ("year" == name)
                 return new Integer(this.Year);
@@ -128,11 +128,11 @@ namespace prompto.value
             else if ("tzName" == name)
                 return new Text(this.TZName);
             else if ("date" == name)
-				return new Date(this.Date);
+                return new Date(this.Date);
             else if ("time" == name)
-				return new Time(this.Time);
+                return new Time(this.Time);
             else
-                return base.GetMember(context, name, autoCreate);
+                return base.GetMemberValue(context, name, autoCreate);
         }
 
         override
@@ -140,7 +140,7 @@ namespace prompto.value
         {
             return value;
         }
- 
+
         public DateTime minus(Period period)
         {
             return new DateTime(this.value.AddYears(-period.Years).AddMonths(-period.Months).AddDays(-period.Weeks * 7).AddDays(-period.Days)
@@ -180,11 +180,11 @@ namespace prompto.value
 
         public string TZName { get { return TimeZone.StandardName; } }
 
-		public System.DateTime Date { get { return value.Date; } }
+        public System.DateTime Date { get { return value.Date; } }
 
-		public TimeSpan Time { get { return value.TimeOfDay; } }
+        public TimeSpan Time { get { return value.TimeOfDay; } }
 
-		public int CompareTo(DateTime other)
+        public int CompareTo(DateTime other)
         {
             return this.value.CompareTo(other.value);
         }

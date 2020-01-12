@@ -10,14 +10,22 @@ namespace prompto.grammar
 {
 	public class Annotation
 	{
-		string name;
+		String name;
 		DictEntryList arguments;
 
-		public Annotation(string name, DictEntryList arguments)
+		public Annotation(String name, DictEntryList arguments)
 		{
 			this.name = name;
-           	this.arguments = arguments;
+			this.arguments = arguments;
 		}
+
+		public String Name
+        {
+            get
+            {
+                return name;
+            }
+        }
 
 		public void ToDialect(CodeWriter writer)
 		{
@@ -27,12 +35,12 @@ namespace prompto.grammar
 				writer.append("(");
 				foreach (DictEntry entry in arguments)
 				{
-					if (entry.getKey() != null)
+					if (entry.GetKey() != null)
 					{
-						entry.getKey().ToDialect(writer);
+						entry.GetKey().ToDialect(writer);
 						writer.append(" = ");
 					}
-					entry.getValue().ToDialect(writer);
+					entry.GetValue().ToDialect(writer);
 					writer.append(", ");
 				}
 				writer.trimLast(", ".Length);
@@ -45,7 +53,7 @@ namespace prompto.grammar
 		{
 			AnnotationProcessor processor = AnnotationProcessor.forName(name);
 			if (processor != null)
-				processor.processCategory(this, context, declaration);
+				processor.ProcessCategory(this, context, declaration);
 		}
 
 
@@ -55,12 +63,24 @@ namespace prompto.grammar
 			{
 				foreach (DictEntry argument in arguments)
 				{
-					string key = (string)argument.getKey().asText().GetStorableData();
+					string key = (string)argument.GetKey().asText().GetStorableData();
 					if (key == name)
-						return argument.getValue();
+						return argument.GetValue();
 				}
 			}
 			return null;
 		}
+
+		public object GetDefaultArgument()
+        {
+			if (arguments != null && arguments.Count == 1)
+				return arguments[0].GetValue();
+			else
+				return null;
+
+		}
+
+			
+
 	}
 }

@@ -167,12 +167,12 @@ namespace prompto.value
 			return newInstance (result);
 		}
 
-		public override IValue GetMember(Context context, String name, bool autoCreate)
+		public override IValue GetMemberValue(Context context, String name, bool autoCreate)
 		{
 			if ("count" == name)
 				return new Integer(this.Length());
 			else
-				return base.GetMember(context, name, autoCreate);
+				return base.GetMemberValue(context, name, autoCreate);
 		}
 	}
 }

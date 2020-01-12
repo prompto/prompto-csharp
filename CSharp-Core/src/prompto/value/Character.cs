@@ -31,12 +31,12 @@ namespace prompto.value
 			return new Text (value.ToString ());
 		}
 
-		public override IValue GetMember(Context context, String name, bool autoCreate)
+		public override IValue GetMemberValue(Context context, String name, bool autoCreate)
 		{
 			if ("codePoint" == name)
 				return new Integer((int)value);
 			else
-				return base.GetMember(context, name, autoCreate);
+				return base.GetMemberValue(context, name, autoCreate);
 		}
 
 		override

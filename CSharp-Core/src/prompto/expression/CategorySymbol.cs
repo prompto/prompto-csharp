@@ -107,10 +107,10 @@ namespace prompto.expression
 					foreach (Argument argument in arguments)
 					{
 						IValue val = argument.getExpression().interpret(context);
-						_instance.SetMember(context, argument.GetName(), val);
+						_instance.SetMemberValue(context, argument.GetName(), val);
 					}
 				}
-				_instance.SetMember(context, "name", new Text(this.GetName()));
+				_instance.SetMemberValue(context, "name", new Text(this.GetName()));
 				_instance.setMutable(false);
 				instance = _instance;
 			}
@@ -118,10 +118,10 @@ namespace prompto.expression
         }
 
 
-		public override IValue GetMember(Context context, String name, bool autoCreate) 
+		public override IValue GetMemberValue(Context context, String name, bool autoCreate) 
 		{
 			makeInstance(context);
-			return instance.GetMember(context, name, autoCreate);
+			return instance.GetMemberValue(context, name, autoCreate);
 		}
 	
 

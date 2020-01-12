@@ -1,7 +1,7 @@
 using prompto.runtime;
 using prompto.error;
 using System;
-using Boolean = prompto.value.Boolean;
+using BooleanValue = prompto.value.BooleanValue;
 using prompto.parser;
 using prompto.type;
 using prompto.utils;
@@ -73,28 +73,28 @@ namespace prompto.expression
 		public override IValue interpret(Context context)
 		{
 			IValue lval = left.interpret (context);
-			if (!(lval is Boolean))
+			if (!(lval is BooleanValue))
 				throw new SyntaxError("Illegal: " + lval.GetType().Name + " and ..., expected a Boolean");
-			if (!((Boolean)lval).Value)
+			if (!((BooleanValue)lval).Value)
 				return lval;
 			IValue rval = right.interpret (context);
-			if (!(rval is Boolean))
+			if (!(rval is BooleanValue))
 	            throw new SyntaxError("Illegal: " + lval.GetType().Name + " and " + rval.GetType().Name);
     		return rval;
 		}
 
 		public bool interpretAssert(Context context, TestMethodDeclaration test) {
 			IValue lval = left.interpret(context);
-			if (!(lval is Boolean))
+			if (!(lval is BooleanValue))
 				throw new SyntaxError("Illegal: " + lval.GetType().Name + " and ..., expected a Boolean");
 			IValue rval = lval;
-			if (((Boolean)lval).Value)
+			if (((BooleanValue)lval).Value)
 			{
 				rval = right.interpret(context);
-				if (!(rval is Boolean))
+				if (!(rval is BooleanValue))
 					throw new SyntaxError("Illegal: " + lval.GetType().Name + " and " + rval.GetType().Name);
 			}
-			if(rval==Boolean.TRUE) 
+			if(rval==BooleanValue.TRUE) 
 				return true;
 			CodeWriter writer = new CodeWriter(test.Dialect, context);
 			this.ToDialect(writer);

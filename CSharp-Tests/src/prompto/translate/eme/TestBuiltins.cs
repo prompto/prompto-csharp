@@ -15,6 +15,12 @@ namespace prompto.translate.eme
 		}
 
 		[Test]
+		public void testCategoryCategory()
+		{
+			compareResourceEME("builtins/categoryCategory.pec");
+		}
+
+		[Test]
 		public void testCategoryText()
 		{
 			compareResourceEME("builtins/categoryText.pec");

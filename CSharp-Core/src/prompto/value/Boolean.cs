@@ -8,31 +8,31 @@ using prompto.type;
 
 namespace prompto.value
 {
-    public class Boolean : BaseValue
+    public class BooleanValue : BaseValue
     {
-        public static readonly Boolean TRUE = new Boolean(true);
-        public static readonly Boolean FALSE = new Boolean(false);
+        public static readonly BooleanValue TRUE = new BooleanValue(true);
+        public static readonly BooleanValue FALSE = new BooleanValue(false);
 
-        static Boolean()
+        static BooleanValue()
         {
             TRUE.not = FALSE;
             FALSE.not = TRUE;
         }
 
-        public static Boolean Parse(string text)
+        public static BooleanValue Parse(string text)
         {
             return ValueOf( bool.Parse(text));
         }
 
-        public static Boolean ValueOf(bool value)
+        public static BooleanValue ValueOf(bool value)
         {
             return value ? TRUE : FALSE;
         }
         
         bool value;
-        Boolean not;
+        BooleanValue not;
 
-        private Boolean(bool value)
+        private BooleanValue(bool value)
 			: base(BooleanType.Instance)
         {
             this.value = value;
@@ -40,7 +40,7 @@ namespace prompto.value
 
         public bool Value { get { return value; } }
 
-        public Boolean Not { get { return not; } }
+        public BooleanValue Not { get { return not; } }
 
 		public override object GetStorableData()
 		{
@@ -49,8 +49,8 @@ namespace prompto.value
 
        public override Int32 CompareTo(Context context, IValue value)
         {
-            if (value is Boolean)
-                return this.value.CompareTo(((Boolean)value).value);
+            if (value is BooleanValue)
+                return this.value.CompareTo(((BooleanValue)value).value);
             else
                 throw new SyntaxError("Illegal comparison: Boolean + " + value.GetType().Name);
  
@@ -71,8 +71,8 @@ namespace prompto.value
         
         public override bool Equals(object obj)
         {
-            if (obj is Boolean)
-                return value.Equals(((Boolean)obj).value);
+            if (obj is BooleanValue)
+                return value.Equals(((BooleanValue)obj).value);
             else
                 return value.Equals(obj);
         }

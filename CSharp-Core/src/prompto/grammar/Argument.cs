@@ -140,25 +140,61 @@ namespace prompto.grammar
             return VoidType.Instance;
         }
 
-        public IExpression resolve(Context context, IMethodDeclaration methodDeclaration, bool useInstance)
+        public IExpression resolve(Context context, IMethodDeclaration methodDeclaration, bool checkInstance)
+        {
+            IParameter parameter = findParameter(methodDeclaration);
+            return resolve(context, parameter, checkInstance);
+        }
+
+        private IParameter findParameter(IMethodDeclaration methodDeclaration)
+        {
+            String name = this.Parameter.GetName();
+            return methodDeclaration.getParameters().find(name);
+        }
+
+        public IExpression resolve(Context context, IParameter parameter, bool checkInstance)
         {
             // since we support implicit members, it's time to resolve them
-            String name = this.Parameter.GetName();
-            IExpression exp = getExpression();
-            IParameter param = methodDeclaration.getParameters().find(name);
-            IType requiredType = param.GetIType(context);
-            bool checkArrow = requiredType is MethodType && exp is ContextualExpression && ((ContextualExpression)exp).Expression is ArrowExpression;
-            IType actualType = checkArrow ? ((MethodType)requiredType).checkArrowExpression((ContextualExpression)exp) : exp.check(context.getCallingContext());
-            if (useInstance && actualType is CategoryType)
-            {
-                Object value = exp.interpret((Context)context.getCallingContext());
+            IExpression expression = getExpression();
+            IType requiredType = parameter.GetIType(context);
+            IType actualType = checkActualType(context, requiredType, expression, checkInstance);
+            bool assignable = requiredType.isAssignableFrom(context, actualType);
+            // try passing category member
+            if (!assignable && (actualType is CategoryType)) 
+			expression = new MemberSelector(expression, parameter.GetName());
+            return expression;
+       }
+
+        public IType checkActualType(Context context, IType requiredType, IExpression expression, bool checkInstance)
+        {
+            bool isArrow = isArrowExpression(requiredType, expression);
+            IType actualType = isArrow ? checkArrowExpression(context, (MethodType)requiredType, expression) : expression.check(context.getCallingContext());
+            if (checkInstance && actualType is CategoryType) {
+                Object value = expression.interpret(context.getCallingContext());
                 if (value is IInstance)
-                    actualType = ((IInstance)value).getType();
+				    actualType = ((IInstance)value).getType();
             }
-            if (!requiredType.isAssignableFrom(context, actualType) && (actualType is CategoryType))
-                exp = new MemberSelector(exp, name);
-            return exp;
+            return actualType;
         }
+
+        private IType checkArrowExpression(Context context, MethodType requiredType, IExpression expression)
+        {
+            context = expression is ContextualExpression ? ((ContextualExpression)expression).Calling : context.getCallingContext();
+            ArrowExpression arrow = (ArrowExpression)(expression is ArrowExpression ? expression: ((ContextualExpression)expression).Expression);
+            return requiredType.checkArrowExpression(context, arrow);
+        }
+
+
+        private bool isArrowExpression(IType requiredType, IExpression expression)
+        {
+            if (!(requiredType is MethodType))
+			    return false;
+            if (expression is ContextualExpression)
+                expression = ((ContextualExpression)expression).Expression;
+            return expression is ArrowExpression;
+        }
+
+
 
         public Argument makeArgument(Context context, IMethodDeclaration declaration)
         {

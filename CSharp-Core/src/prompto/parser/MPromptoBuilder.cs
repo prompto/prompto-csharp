@@ -19,6 +19,7 @@ using prompto.instance;
 using prompto.jsx;
 using prompto.css;
 using System.Text;
+using Antlr4.Runtime.Misc;
 
 namespace prompto.parser
 {
@@ -558,6 +559,12 @@ namespace prompto.parser
         }
 
 
+        public override void ExitSymbolLiteral(MParser.SymbolLiteralContext ctx)
+        {
+            String name = ctx.GetText();
+            SetNodeValue(ctx, new SymbolExpression(name));
+        }
+
 
         public override void ExitBooleanType(MParser.BooleanTypeContext ctx)
         {
@@ -763,6 +770,12 @@ namespace prompto.parser
             SetNodeValue(ctx, items);
         }
 
+
+        public override void ExitMember_identifier(MParser.Member_identifierContext ctx)
+        {
+            String name = ctx.GetText();
+            SetNodeValue(ctx, name);
+        }
 
 
         public override void ExitMemberSelector(MParser.MemberSelectorContext ctx)
@@ -3144,7 +3157,7 @@ namespace prompto.parser
         public override void ExitJsxCode(MParser.JsxCodeContext ctx)
         {
             IExpression exp = GetNodeValue<IExpression>(ctx.exp);
-            SetNodeValue(ctx, new JsxCode(exp));
+            SetNodeValue(ctx, new JsxCode(exp, null));
         }
 
 
@@ -3216,6 +3229,17 @@ namespace prompto.parser
             String name = ctx.GetText();
             SetNodeValue(ctx, name);
         }
+
+
+        public override void ExitJsx_fragment(MParser.Jsx_fragmentContext ctx)
+        {
+            String suite = getWhiteSpacePlus(ctx.ws_plus(0));
+            JsxFragment fragment = new JsxFragment(suite);
+            List<IJsxExpression> children = GetNodeValue<List<IJsxExpression>>(ctx.children_);
+            fragment.setChildren(children);
+            SetNodeValue(ctx, fragment);
+        }
+
 
         public override void ExitJsxLiteral(MParser.JsxLiteralContext ctx)
         {

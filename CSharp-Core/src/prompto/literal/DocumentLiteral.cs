@@ -27,6 +27,11 @@ namespace prompto.literal
 		}
 
 
+        public DocEntryList GetEntries()
+        {
+			return entries;
+        }
+
 		public override IType check(Context context)
 		{
 			return DocumentType.Instance;
@@ -41,8 +46,8 @@ namespace prompto.literal
 				Document doc = new Document();
 				foreach (DictEntry e in entries)
 				{
-					Text key = e.getKey().asText();
-					IValue val = e.getValue().interpret(context);
+					Text key = e.GetKey().asText();
+					IValue val = e.GetValue().interpret(context);
 					doc.SetMember(key.Value, val);
 				}
 				return doc;

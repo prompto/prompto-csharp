@@ -18,6 +18,8 @@ namespace prompto.type
 
 		TypeFamily GetFamily();
 
+		IType Resolve(Context context);
+
 		IType checkAdd (Context context, IType other, bool tryReverse);
 
 		IType checkSubstract (Context context, IType other);

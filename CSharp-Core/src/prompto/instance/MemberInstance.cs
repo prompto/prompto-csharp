@@ -66,13 +66,13 @@ namespace prompto.instance {
 			if(!root.IsMutable())
 				throw new NotMutableError();
             IValue value = expression.interpret(context);
-			root.SetMember(context, name, value);
+			root.SetMemberValue(context, name, value);
         }
 
 		public IValue interpret(Context context)
         {
 			IValue root = parent.interpret(context);
-            return root.GetMember(context, name, true);
+            return root.GetMemberValue(context, name, true);
         }
 
     }

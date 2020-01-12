@@ -1,4 +1,4 @@
-using Boolean = prompto.value.Boolean;
+using Boolean = prompto.value.BooleanValue;
 using System;
 
 namespace prompto.python {

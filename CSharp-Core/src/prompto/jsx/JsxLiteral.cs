@@ -22,10 +22,21 @@ namespace prompto.jsx
 			return TextType.Instance;
 		}
 
-		public void ToDialect(CodeWriter writer)
+        public IType checkProto(Context context, MethodType type)
+        {
+			return VoidType.Instance;
+		}
+
+        public bool IsLiteral()
+        {
+            return true;
+        }
+
+        public void ToDialect(CodeWriter writer)
 		{
 			writer.append(text);
 		}
+
 
 	}
 }

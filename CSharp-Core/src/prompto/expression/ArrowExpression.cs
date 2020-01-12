@@ -28,7 +28,12 @@ namespace prompto.expression
 
 		public override IType check(Context context)
 		{
-			throw new NotSupportedException();
+			return check(context, null);
+		}
+
+		public IType check(Context context, IType returnType)
+		{
+			return Statements.check(context, returnType);
 		}
 
 		public override IValue interpret(Context context)
@@ -135,8 +140,8 @@ namespace prompto.expression
 			{
 				context.setValue(Arguments[0], o);
 				IValue result = Statements.interpret(context);
-				if (result is value.Boolean)
-					return ((value.Boolean)result).Value;
+				if (result is value.BooleanValue)
+					return ((value.BooleanValue)result).Value;
 				else
 					throw new SyntaxError("Expecting a Boolean result!");
 			};

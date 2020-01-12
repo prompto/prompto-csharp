@@ -1,5 +1,6 @@
 using System;
 using prompto.runtime;
+using prompto.type;
 using prompto.utils;
 
 namespace prompto.jsx {
@@ -18,13 +19,26 @@ namespace prompto.jsx {
         	this.suite = (suite != null && suite.Length>0) ? suite : null;
 		}
 
+        public IJsxValue GetValue()
+        {
+			return value;
+        }
 
-		public void check(Context context)
+		public IType check(Context context)
 		{
 			if (value != null)
-				value.check(context);
+				return value.check(context);
+			else
+				return VoidType.Instance;
 		}
 
+		public IType checkProto(Context context, MethodType type)
+		{
+			if (value != null)
+				return value.checkProto(context, type);
+			else
+				return VoidType.Instance;
+		}
 
 		public void ToDialect(CodeWriter writer)
 		{

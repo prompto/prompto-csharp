@@ -1,4 +1,5 @@
 using prompto.expression;
+using prompto.literal;
 using prompto.runtime;
 using prompto.type;
 using prompto.utils;
@@ -22,6 +23,20 @@ namespace prompto.jsx
 			return expression.check(context);
 		}
 
+		public IType checkProto(Context context, MethodType type)
+		{
+			if (expression is ArrowExpression)
+			    return type.checkArrowExpression(context, (ArrowExpression)expression);
+		    else
+				return expression.check(context);
+		}
+
+		public bool IsLiteral()
+		{
+			return expression.GetType().GetGenericTypeDefinition()==typeof(Literal<>);
+		}
+
+
 		public IValue interpret(Context context)
 		{
 			return new JsxValue(this);
@@ -39,7 +54,6 @@ namespace prompto.jsx
             ToDialect(writer);
         }
 
-
-    }
+      }
 
 }

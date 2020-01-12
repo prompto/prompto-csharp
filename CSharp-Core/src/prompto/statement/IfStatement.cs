@@ -2,7 +2,7 @@ using prompto.error;
 using prompto.runtime;
 using System.Collections.Generic;
 using System;
-using Boolean = prompto.value.Boolean;
+using BooleanValue = prompto.value.BooleanValue;
 using prompto.parser;
 using prompto.type;
 using prompto.expression;
@@ -16,15 +16,15 @@ namespace prompto.statement
     {
 
         IfElementList elements = new IfElementList();
- 
-		public IfStatement(IExpression condition, StatementList statements)
+
+        public IfStatement(IExpression condition, StatementList statements)
         {
-			elements.Add(new IfElement(condition, statements));
+            elements.Add(new IfElement(condition, statements));
         }
 
-		public IfStatement(IExpression condition, StatementList statements, IfElementList elseIfs, StatementList elseStmts)
+        public IfStatement(IExpression condition, StatementList statements, IfElementList elseIfs, StatementList elseStmts)
         {
-			elements.Add(new IfElement(condition, statements));
+            elements.Add(new IfElement(condition, statements));
             if (elseIfs != null)
                 elements.AddRange(elseIfs);
             if (elseStmts != null)
@@ -34,59 +34,67 @@ namespace prompto.statement
         override
         public void ToDialect(CodeWriter writer)
         {
-			switch(writer.getDialect()) {
-			case Dialect.E:
-				ToEDialect(writer);
-				break;
-			case Dialect.O:
-				ToODialect(writer);
-				break;
-			case Dialect.M:
-				toPDialect(writer);
-				break;
-			}
-		}
+            switch (writer.getDialect())
+            {
+                case Dialect.E:
+                    ToEDialect(writer);
+                    break;
+                case Dialect.O:
+                    ToODialect(writer);
+                    break;
+                case Dialect.M:
+                    toPDialect(writer);
+                    break;
+            }
+        }
 
 
-		private void toPDialect(CodeWriter writer) {
-			bool first = true;
-			foreach(IfElement elem in elements) {
-				if(!first)
-					writer.append("else ");
-				elem.ToDialect(writer);
-				first = false;
-			}
-			writer.newLine();
-		}
+        private void toPDialect(CodeWriter writer)
+        {
+            bool first = true;
+            foreach (IfElement elem in elements)
+            {
+                if (!first)
+                    writer.append("else ");
+                elem.ToDialect(writer);
+                first = false;
+            }
+            writer.newLine();
+        }
 
 
-		private void ToODialect(CodeWriter writer) {
-			bool first = true;
-			bool curly = false;
-			foreach(IfElement elem in elements) {
-				if(!first) {
-					if(curly)
-						writer.append(" ");
-					writer.append("else ");
-				}
-				curly = elem.statements.Count>1;
-				elem.ToDialect(writer);
-				first = false;
-			}
-			writer.newLine();
-		}
+        private void ToODialect(CodeWriter writer)
+        {
+            bool first = true;
+            bool curly = false;
+            foreach (IfElement elem in elements)
+            {
+                if (!first)
+                {
+                    if (curly)
+                        writer.append(" ");
+                    writer.append("else ");
+                }
+                curly = elem.statements.Count > 1;
+                elem.ToDialect(writer);
+                first = false;
+            }
+            writer.newLine();
+        }
 
 
-		private void ToEDialect(CodeWriter writer) {
-			bool first = true;
-			foreach(IfElement elem in elements) {
-				if(!first)
-					writer.append("else ");
-				elem.ToDialect(writer);
-				first = false;
-			}
-			writer.newLine();
-		}
+        private void ToEDialect(CodeWriter writer)
+        {
+            bool first = true;
+            foreach (IfElement elem in elements)
+            {
+                if (!first)
+                    writer.append("else ");
+                elem.ToDialect(writer);
+                first = false;
+            }
+            writer.newLine();
+        }
         public void addAdditional(IExpression condition, StatementList instructions)
         {
             elements.Add(new IfElement(condition, instructions));
@@ -97,33 +105,40 @@ namespace prompto.statement
             elements.Add(new IfElement(null, instructions));
         }
 
-        override
-        public IType check(Context context)
+
+        public override IType check(Context context)
         {
-            return elements[0].check(context);
+            List<IType> types = new List<IType>();
+            foreach (IfElement element in elements)
+            {
+                types.Add(element.check(context));
+            }
             // TODO check consistency with additional elements
+            return types[0];
         }
 
-        override
-		public IValue interpret(Context context) {
-		foreach(IfElement element in elements) {
-			IExpression condition = element.getCondition();
-			IValue test = condition==null ? Boolean.TRUE : condition.interpret(context);
-			if(test == Boolean.TRUE)
-				return element.interpret(context);
-		}
-		return null;
-	}
+
+        public override IValue interpret(Context context)
+        {
+            foreach (IfElement element in elements)
+            {
+                IExpression condition = element.getCondition();
+                IValue test = condition == null ? BooleanValue.TRUE : condition.interpret(context);
+                if (test == BooleanValue.TRUE)
+                    return element.interpret(context);
+            }
+            return null;
+        }
 
 
-		public override bool CanReturn
-		{
-			get
-			{
-				return true;
-			}
-		}
-   
+        public override bool CanReturn
+        {
+            get
+            {
+                return true;
+            }
+        }
+
 
     }
 
@@ -133,61 +148,66 @@ namespace prompto.statement
         IExpression condition;
         public StatementList statements;
 
-		public IfElement(IExpression condition, StatementList statements)
+        public IfElement(IExpression condition, StatementList statements)
         {
             this.condition = condition;
-			this.statements = statements;
+            this.statements = statements;
         }
 
         override
         public void ToDialect(CodeWriter writer)
         {
-			switch(writer.getDialect()) {
-			case Dialect.E:
-				ToEDialect(writer);
-				break;
-			case Dialect.O:
-				ToODialect(writer);
-				break;
-			case Dialect.M:
-				toPDialect(writer);
-				break;
-			}
-		}
+            switch (writer.getDialect())
+            {
+                case Dialect.E:
+                    ToEDialect(writer);
+                    break;
+                case Dialect.O:
+                    ToODialect(writer);
+                    break;
+                case Dialect.M:
+                    toPDialect(writer);
+                    break;
+            }
+        }
 
-		public void toPDialect(CodeWriter writer) {
-			ToEDialect(writer);
-		}
+        public void toPDialect(CodeWriter writer)
+        {
+            ToEDialect(writer);
+        }
 
-		public void ToEDialect(CodeWriter writer) {
-			if(condition!=null) {
-				writer.append("if ");
-				condition.ToDialect(writer);
-			}
-			writer.append(":\n");
-			writer.indent();
-			statements.ToDialect(writer);
-			writer.dedent();	
-		}
+        public void ToEDialect(CodeWriter writer)
+        {
+            if (condition != null)
+            {
+                writer.append("if ");
+                condition.ToDialect(writer);
+            }
+            writer.append(":\n");
+            writer.indent();
+            statements.ToDialect(writer);
+            writer.dedent();
+        }
 
-		public void ToODialect(CodeWriter writer) {
-			if(condition!=null)
-			{
-				writer.append("if (");
-				condition.ToDialect(writer);
-				writer.append(") ");
-			}
-			bool curly = statements!=null && statements.Count>1;
-			if(curly) 
-				writer.append("{\n");
-			else 
-				writer.newLine();
-			writer.indent();
-			statements.ToDialect(writer);
-			writer.dedent();
-			if(curly) 
-				writer.append("}");
-		}        
+        public void ToODialect(CodeWriter writer)
+        {
+            if (condition != null)
+            {
+                writer.append("if (");
+                condition.ToDialect(writer);
+                writer.append(") ");
+            }
+            bool curly = statements != null && statements.Count > 1;
+            if (curly)
+                writer.append("{\n");
+            else
+                writer.newLine();
+            writer.indent();
+            statements.ToDialect(writer);
+            writer.dedent();
+            if (curly)
+                writer.append("}");
+        }
         public IExpression getCondition()
         {
             return condition;
@@ -201,41 +221,48 @@ namespace prompto.statement
         override
         public IType check(Context context)
         {
-            IType cond = condition.check(context);
-            if (cond != BooleanType.Instance)
-                throw new SyntaxError("Expected a bool condition!");
-			context = downCast(context, false);
-			return statements.check(context, null);
+            if (condition != null)
+            {
+                IType cond = condition.check(context);
+                if (cond != BooleanType.Instance)
+                    throw new SyntaxError("Expected a bool condition!");
+            }
+            context = downCast(context, false);
+            return statements.check(context, null);
         }
 
         override
         public IValue interpret(Context context)
         {
-			context = downCast(context, true);
-			return statements.interpret(context);
-		}
+            context = downCast(context, true);
+            return statements.interpret(context);
+        }
 
-		private Context downCast(Context context, bool setValue) {
-			Context parent = context;
-			if(condition is EqualsExpression)
-				context = ((EqualsExpression)condition).downCast(context, setValue);
-			context = parent!=context ? context : context.newChildContext();
-			return context;
-		}
+        private Context downCast(Context context, bool setValue)
+        {
+            Context parent = context;
+            if (condition is EqualsExpression)
+                context = ((EqualsExpression)condition).downCast(context, setValue);
+            context = parent != context ? context : context.newChildContext();
+            return context;
+        }
 
-	}
+    }
 
-    	public class IfElementList : List<IfElement> {
+    public class IfElementList : List<IfElement>
+    {
 
-		public IfElementList() {
-			
-		}
-		
-		public IfElementList(IfElement elem) {
-			this.Add(elem);
-		}
+        public IfElementList()
+        {
 
-		
-	}
+        }
+
+        public IfElementList(IfElement elem)
+        {
+            this.Add(elem);
+        }
+
+
+    }
 
 }

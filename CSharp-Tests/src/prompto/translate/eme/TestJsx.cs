@@ -45,6 +45,12 @@ namespace prompto.translate.eme
 		}
 
 		[Test]
+		public void testFragment()
+		{
+			compareResourceEME("jsx/fragment.pec");
+		}
+
+		[Test]
 		public void testHyphenName()
 		{
 			compareResourceEME("jsx/hyphenName.pec");

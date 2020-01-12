@@ -45,6 +45,12 @@ namespace prompto.translate.omo
 		}
 
 		[Test]
+		public void testFragment()
+		{
+			compareResourceOMO("jsx/fragment.poc");
+		}
+
+		[Test]
 		public void testHyphenName()
 		{
 			compareResourceOMO("jsx/hyphenName.poc");

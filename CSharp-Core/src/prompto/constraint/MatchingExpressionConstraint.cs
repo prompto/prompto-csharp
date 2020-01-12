@@ -1,7 +1,7 @@
 using prompto.runtime;
 using System;
 using prompto.error;
-using Boolean = prompto.value.Boolean;
+using BooleanValue = prompto.value.BooleanValue;
 using prompto.expression;
 using prompto.type;
 using prompto.utils;
@@ -26,7 +26,7 @@ namespace prompto.constraint
 			child.registerValue (new Variable ("value", AnyType.Instance));
 			child.setValue ("value", value);
 			IValue test = expression.interpret (child);
-			if (test != Boolean.TRUE)
+			if (test != BooleanValue.TRUE)
 				throw new InvalidDataError ((value == null ? "null" : value.ToString ()) + " does not match:" + expression.ToString ());
 		}
 

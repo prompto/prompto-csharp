@@ -21,6 +21,12 @@ namespace prompto.translate.omo
 		}
 
 		[Test]
+		public void testSwitchEnum()
+		{
+			compareResourceOMO("enums/switchEnum.poc");
+		}
+
+		[Test]
 		public void testTextEnum()
 		{
 			compareResourceOMO("enums/textEnum.poc");

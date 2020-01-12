@@ -14,7 +14,7 @@ namespace prompto.value
         string value;
 
         public Text(string value)
-			: base(TextType.Instance)
+            : base(TextType.Instance)
         {
             this.value = value;
         }
@@ -22,18 +22,18 @@ namespace prompto.value
         public string Value { get { return value; } }
 
 
-		public override object GetStorableData()
-		{
-			return value;
-		}
-    
+        public override object GetStorableData()
+        {
+            return value;
+        }
+
 
         public override IValue Add(Context context, IValue value)
         {
             return new Text(this.value + value.ToString());
         }
 
-        
+
         public override IValue Multiply(Context context, IValue value)
         {
             if (value is Integer)
@@ -54,7 +54,7 @@ namespace prompto.value
             else
                 throw new SyntaxError("Illegal: Chararacter * " + value.GetType().Name);
         }
-        
+
         public int CompareTo(Text obj)
         {
             return value.CompareTo(obj.Value);
@@ -69,9 +69,10 @@ namespace prompto.value
                 throw new SyntaxError("Illegal comparison: Text + " + value.GetType().Name);
         }
 
-		public IType ItemType {
-			get { return CharacterType.Instance; }
-		}
+        public IType ItemType
+        {
+            get { return CharacterType.Instance; }
+        }
 
         public bool HasItem(Context context, IValue value)
         {
@@ -83,30 +84,30 @@ namespace prompto.value
                 throw new SyntaxError("Illegal contain: Text + " + value.GetType().Name);
         }
 
-  
+
         public IEnumerable<IValue> GetEnumerable(Context context)
         {
-			return (IEnumerable<IValue>)this; 
+            return (IEnumerable<IValue>)this;
         }
 
-		public bool Empty()
-		{
-			return Length() == 0;
-		}
+        public bool Empty()
+        {
+            return Length() == 0;
+        }
 
-		public long Length()
-		{
-			return value.Length;
-		}
+        public long Length()
+        {
+            return value.Length;
+        }
 
 
-        
-		public override IValue GetMember(Context context, String name, bool autoCreate)
+
+        public override IValue GetMemberValue(Context context, String name, bool autoCreate)
         {
             if ("count" == name)
                 return new Integer(value.Length);
-           else
-                return base.GetMember(context, name, autoCreate);
+            else
+                return base.GetMemberValue(context, name, autoCreate);
         }
 
         public override IValue GetItem(Context context, IValue index)
@@ -122,15 +123,15 @@ namespace prompto.value
             {
                 throw new IndexOutOfRangeError();
             }
-   
-       }
+
+        }
 
         override
        public Object ConvertTo(Type type)
         {
             return value;
         }
-        
+
         public ISliceable Slice(Context context, Integer fi, Integer li)
         {
             int first = checkFirst(fi);
@@ -156,24 +157,24 @@ namespace prompto.value
             return value;
         }
 
- 
+
         override
         public String ToString()
         {
             return value;
         }
 
-       IEnumerator IEnumerable.GetEnumerator()
+        IEnumerator IEnumerable.GetEnumerator()
         {
             return new CharacterEnumerator(value);
         }
 
         public IEnumerator<IValue> GetEnumerator()
         {
-			return (IEnumerator<IValue>)new CharacterEnumerator(value);
+            return (IEnumerator<IValue>)new CharacterEnumerator(value);
         }
 
-         
+
         public override bool Equals(object obj)
         {
             if (obj is Text)
@@ -183,25 +184,25 @@ namespace prompto.value
         }
 
 
-		public override bool Roughly(Context context, IValue obj)
-		{
-			if (obj is Character || obj is Text) 
-			{
-				return string.Compare(value, obj.ToString(), true)==0;
-			}
-			else
-				return value.Equals(obj);
-		}
+        public override bool Roughly(Context context, IValue obj)
+        {
+            if (obj is Character || obj is Text)
+            {
+                return string.Compare(value, obj.ToString(), true) == 0;
+            }
+            else
+                return value.Equals(obj);
+        }
 
-		public override bool Contains(Context context, IValue obj)
-		{
-			if (obj is Text)
-				return value.Contains(((Text)obj).Value);
-			else if (obj is Character)
-				return value.IndexOf(((Character)obj).Value) >= 0;
-			else
-				return false;
-		}
+        public override bool Contains(Context context, IValue obj)
+        {
+            if (obj is Text)
+                return value.Contains(((Text)obj).Value);
+            else if (obj is Character)
+                return value.IndexOf(((Character)obj).Value) >= 0;
+            else
+                return false;
+        }
 
 
         public override int GetHashCode()
@@ -209,10 +210,10 @@ namespace prompto.value
             return value.GetHashCode();
         }
 
-		public override void ToJson (Context context, JsonWriter generator, object instanceId, String fieldName, bool withType, Dictionary<string, byte[]> binaries)
-		{
-			generator.WriteValue (value);
-		}
+        public override void ToJson(Context context, JsonWriter generator, object instanceId, String fieldName, bool withType, Dictionary<string, byte[]> binaries)
+        {
+            generator.WriteValue(value);
+        }
     }
 
     class CharacterEnumerator : IEnumerator<Character>
@@ -235,15 +236,15 @@ namespace prompto.value
             return ++idx < chars.Length;
         }
 
-		object IEnumerator.Current
-		{
-			get
-			{
-				return new Character(chars[idx]);
-			}
-		}
+        object IEnumerator.Current
+        {
+            get
+            {
+                return new Character(chars[idx]);
+            }
+        }
 
-		Character IEnumerator<Character>.Current
+        Character IEnumerator<Character>.Current
         {
             get
             {

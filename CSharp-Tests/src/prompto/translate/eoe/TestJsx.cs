@@ -45,6 +45,12 @@ namespace prompto.translate.eoe
 		}
 
 		[Test]
+		public void testFragment()
+		{
+			compareResourceEOE("jsx/fragment.pec");
+		}
+
+		[Test]
 		public void testHyphenName()
 		{
 			compareResourceEOE("jsx/hyphenName.pec");

@@ -33,6 +33,12 @@ namespace prompto.type
 		}
 
 
+        public virtual IType Resolve(Context context)
+        {
+			return this;
+        }
+
+
         public override bool Equals (Object obj)
 		{
 			if (this == obj)

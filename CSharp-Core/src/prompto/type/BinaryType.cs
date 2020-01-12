@@ -16,9 +16,9 @@ namespace prompto.type
 	
 		public override IType checkMember (Context context, String name)
 		{
-			if ("name" == name)
+			if ("mimeType" == name)
 				return TextType.Instance;
-			else if ("format" == name)
+			else if ("url" == name)
 				return TextType.Instance;
 			else
 				return base.checkMember (context, name);

@@ -240,7 +240,7 @@ namespace prompto.memstore
 		class StorableDocumentEnumerator : IStoredEnumerator
 		{
 			List<StorableDocument> docs;
-			long totalCount;
+            readonly long totalCount;
 			IEnumerator<StorableDocument> iter;
 
 			public StorableDocumentEnumerator(List<StorableDocument> docs, long totalCount)

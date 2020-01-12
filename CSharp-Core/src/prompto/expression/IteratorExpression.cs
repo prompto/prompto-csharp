@@ -39,7 +39,7 @@ namespace prompto.expression
 		{
 			IType elemType = source.check(context).checkIterator(context);
 			IValue items = source.interpret(context);
-			Integer length = (Integer)items.GetMember(context, "count", false);
+			Integer length = (Integer)items.GetMemberValue(context, "count", false);
 			IEnumerator<IValue> iterator = getEnumerator(context, items);
 			return new IterableValue(context, name, elemType, iterator, length, expression);
 		}

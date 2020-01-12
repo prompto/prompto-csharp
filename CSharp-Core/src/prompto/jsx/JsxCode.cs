@@ -1,3 +1,4 @@
+using System;
 using prompto.expression;
 using prompto.runtime;
 using prompto.type;
@@ -10,10 +11,12 @@ namespace prompto.jsx
 	{
 
 		IExpression expression;
+        string suite;
 
-		public JsxCode(IExpression expression)
+		public JsxCode(IExpression expression, String suite)
 		{
 			this.expression = expression;
+            this.suite = suite;
 		}
 
 
@@ -33,6 +36,8 @@ namespace prompto.jsx
 			writer.append("{");
 			expression.ToDialect(writer);
 			writer.append("}");
+            if (suite != null)
+                writer.appendRaw(suite);
 		}
 
         public void ParentToDialect(CodeWriter writer)

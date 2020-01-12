@@ -117,7 +117,7 @@ namespace prompto.expression
 			if (instance == null || instance == NullValue.Instance)
 				throw new NullReferenceError();
 			else
-				return instance.GetMember(context, name, true);
+				return instance.GetMemberValue(context, name, true);
 		}
 
 		private IExpression resolveParent(Context context)

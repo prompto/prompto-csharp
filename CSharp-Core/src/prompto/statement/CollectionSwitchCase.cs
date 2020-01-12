@@ -1,7 +1,7 @@
 using prompto.runtime;
 using prompto.error;
 using System;
-using Boolean = prompto.value.Boolean;
+using Boolean = prompto.value.BooleanValue;
 using prompto.value;
 using prompto.statement;
 using prompto.expression;

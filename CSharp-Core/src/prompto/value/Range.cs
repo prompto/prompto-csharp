@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System;
 using System.Collections;
 using prompto.value;
-using Boolean = prompto.value.Boolean;
+using Boolean = prompto.value.BooleanValue;
 using prompto.grammar;
 using prompto.expression;
 using prompto.type;

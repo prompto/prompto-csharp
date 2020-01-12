@@ -2,7 +2,7 @@ using prompto.runtime;
 using System;
 using prompto.error;
 using prompto.value;
-using Boolean = prompto.value.Boolean;
+using BooleanValue = prompto.value.BooleanValue;
 using prompto.type;
 using prompto.grammar;
 using prompto.utils;
@@ -69,19 +69,19 @@ namespace prompto.expression
 			return compare(context, lval, rval);
 		}
 
-		private Boolean compare(Context context, IValue lval, IValue rval)
+		private BooleanValue compare(Context context, IValue lval, IValue rval)
 		{
 			Int32 cmp = lval.CompareTo(context, rval);
 			switch (oper)
 			{
 				case CmpOp.GT:
-					return Boolean.ValueOf(cmp > 0);
+					return BooleanValue.ValueOf(cmp > 0);
 				case CmpOp.LT:
-					return Boolean.ValueOf(cmp < 0);
+					return BooleanValue.ValueOf(cmp < 0);
 				case CmpOp.GTE:
-					return Boolean.ValueOf(cmp >= 0);
+					return BooleanValue.ValueOf(cmp >= 0);
 				case CmpOp.LTE:
-					return Boolean.ValueOf(cmp <= 0);
+					return BooleanValue.ValueOf(cmp <= 0);
 				default:
 					throw new SyntaxError("Illegal compare operand: " + oper.ToString());
 			}
@@ -92,7 +92,7 @@ namespace prompto.expression
 			IValue lval = left.interpret(context);
 			IValue rval = right.interpret(context);
 			IValue result = compare(context, lval, rval);
-			if (result == Boolean.TRUE)
+			if (result == BooleanValue.TRUE)
 				return true;
 			CodeWriter writer = new CodeWriter(test.Dialect, context);
 			this.ToDialect(writer);
@@ -132,7 +132,7 @@ namespace prompto.expression
 				AttributeDeclaration decl = context.findAttribute(name);
 				AttributeInfo info = decl == null ? null : decl.getAttributeInfo();
 				if (value is IInstance)
-					value = ((IInstance)value).GetMember(context, "dbId", false);
+					value = ((IInstance)value).GetMemberValue(context, "dbId", false);
 				MatchOp matchOp = getMatchOp();
 				builder.Verify(info, matchOp, value == null ? null : value.GetStorableData());
 				switch (oper)

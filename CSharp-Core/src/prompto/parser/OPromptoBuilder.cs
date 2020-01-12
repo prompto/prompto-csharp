@@ -500,6 +500,13 @@ namespace prompto.parser
         }
 
 
+        public override void ExitSymbolLiteral(OParser.SymbolLiteralContext ctx)
+        {
+            String name = ctx.GetText();
+            SetNodeValue(ctx, new SymbolExpression(name));
+        }
+
+
         public override void ExitBooleanType(OParser.BooleanTypeContext ctx)
         {
             SetNodeValue(ctx, BooleanType.Instance);
@@ -709,6 +716,13 @@ namespace prompto.parser
                 items.Add(item);
             }
             SetNodeValue(ctx, items);
+        }
+
+
+        public override void ExitMember_identifier(OParser.Member_identifierContext ctx)
+        {
+            String name = ctx.GetText();
+            SetNodeValue(ctx, name);
         }
 
 
@@ -1818,7 +1832,8 @@ namespace prompto.parser
         public override void ExitJsxCode(OParser.JsxCodeContext ctx)
         {
             IExpression exp = GetNodeValue<IExpression>(ctx.exp);
-            SetNodeValue(ctx, new JsxCode(exp));
+            String suite = getHiddenTokensAfter(ctx.RCURL());
+            SetNodeValue(ctx, new JsxCode(exp, suite));
         }
 
 
@@ -1886,6 +1901,17 @@ namespace prompto.parser
             SetNodeValue(ctx, GetNodeValue<Object>(ctx.GetChild(0)));
         }
 
+
+        public override void ExitJsx_fragment(OParser.Jsx_fragmentContext ctx)
+        {
+            String suite = getHiddenTokensAfter(ctx.jsx_fragment_start().Stop);
+            JsxFragment fragment = new JsxFragment(suite);
+            List<IJsxExpression> children = GetNodeValue<List<IJsxExpression>>(ctx.children_);
+            fragment.setChildren(children);
+            SetNodeValue(ctx, fragment);
+        }
+
+
         public override void ExitJsx_identifier(OParser.Jsx_identifierContext ctx)
         {
             String name = ctx.GetText();
@@ -1924,8 +1950,8 @@ namespace prompto.parser
             List<JsxProperty> attributes = new List<JsxProperty>();
             foreach (ParserRuleContext child in ctx.jsx_attribute())
                 attributes.Add(GetNodeValue<JsxProperty>(child));
-            String openingSuite = getHiddenTokensAfter(ctx.GT());
-            SetNodeValue(ctx, new JsxSelfClosing(name, nameSuite, attributes, openingSuite));
+            String suite = getHiddenTokensAfter(ctx.GT());
+            SetNodeValue(ctx, new JsxSelfClosing(name, nameSuite, attributes, suite));
         }
 
 

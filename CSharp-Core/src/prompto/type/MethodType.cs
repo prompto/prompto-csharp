@@ -5,6 +5,7 @@ using System.Reflection;
 using prompto.declaration;
 using prompto.store;
 using prompto.value;
+using prompto.expression;
 
 namespace prompto.type
 {
@@ -71,9 +72,11 @@ namespace prompto.type
             return false;
         }
 
-        internal IType checkArrowExpression(ContextualExpression expression)
+        public IType checkArrowExpression(Context context, ArrowExpression expression)
         {
-            // TODO Auto-generated method stub
+            context = context.newChildContext();
+            this.method.registerParameters(context);
+            expression.check(context, this.method.getReturnType());
             return this;
         }
     }

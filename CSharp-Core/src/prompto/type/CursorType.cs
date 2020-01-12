@@ -59,13 +59,13 @@ namespace prompto.type
 		}
 
 
-		public override ISet<declaration.IMethodDeclaration> getMemberMethods(Context context, string name)
+		public override ISet<IMethodDeclaration> getMemberMethods(Context context, string name)
 		{
 			ISet<IMethodDeclaration> list = new HashSet<IMethodDeclaration>();
 			switch (name)
 			{
 				case "toList":
-					list.Add(new ToListMethodDeclaration(GetItemType()));
+					list.Add(new CursorToListMethodDeclaration(GetItemType()));
 					return list;
 				default:
 					return base.getMemberMethods(context, name);
@@ -75,12 +75,12 @@ namespace prompto.type
 
 	}
 
-	class ToListMethodDeclaration : BuiltInMethodDeclaration
+	class CursorToListMethodDeclaration : BuiltInMethodDeclaration
 	{
 
 		IType itemType;
 
-		public ToListMethodDeclaration(IType itemType)
+		public CursorToListMethodDeclaration(IType itemType)
 		: base("toList")
 		{ 
 			this.itemType = itemType;

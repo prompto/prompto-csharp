@@ -219,7 +219,7 @@ namespace prompto.type
             string value = (String)getValue(context).GetStorableData();
             string find = (String)context.getValue("value").GetStorableData();
             bool test = value.StartsWith(find);
-            return prompto.value.Boolean.ValueOf(test);
+            return prompto.value.BooleanValue.ValueOf(test);
         }
 
 
@@ -243,7 +243,7 @@ namespace prompto.type
             string value = (String)getValue(context).GetStorableData();
             string find = (String)context.getValue("value").GetStorableData();
             bool test = value.EndsWith(find);
-            return prompto.value.Boolean.ValueOf(test);
+            return prompto.value.BooleanValue.ValueOf(test);
         }
 
 

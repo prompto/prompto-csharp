@@ -24,13 +24,13 @@ namespace prompto.value
         TimeSpan value;
 
         public Time(TimeSpan value)
-			: base(TimeType.Instance)
+            : base(TimeType.Instance)
         {
             this.value = value;
         }
 
         public Time(int hours, int minutes, int seconds, int millis)
-			: base(TimeType.Instance)
+            : base(TimeType.Instance)
         {
             this.value = new TimeSpan(0, hours, minutes, seconds, millis);
         }
@@ -73,7 +73,7 @@ namespace prompto.value
         }
 
         override
-		public IValue GetMember(Context context, String name, bool autoCreate)
+        public IValue GetMemberValue(Context context, String name, bool autoCreate)
         {
             if ("hour" == name)
                 return new Integer(this.HourOfDay);
@@ -84,7 +84,7 @@ namespace prompto.value
             else if ("millisecond" == name)
                 return new Integer(this.MillisOfSecond);
             else
-                return base.GetMember(context, name, autoCreate);
+                return base.GetMemberValue(context, name, autoCreate);
         }
 
         override
@@ -92,7 +92,7 @@ namespace prompto.value
         {
             return value;
         }
- 
+
         public Time minus(Period period)
         {
             TimeSpan p = new TimeSpan(0, period.Hours, period.Minutes, period.Seconds, period.Millis);

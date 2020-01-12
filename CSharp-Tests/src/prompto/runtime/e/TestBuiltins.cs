@@ -28,6 +28,12 @@ namespace prompto.runtime.e
 		}
 
 		[Test]
+		public void testCategoryCategory()
+		{
+			CheckOutput("builtins/categoryCategory.pec");
+		}
+
+		[Test]
 		public void testCategoryText()
 		{
 			CheckOutput("builtins/categoryText.pec");

@@ -4,7 +4,7 @@ using System;
 using prompto.parser;
 using prompto.type;
 using prompto.utils;
-using Boolean = prompto.value.Boolean;
+using BooleanValue = prompto.value.BooleanValue;
 using prompto.value;
 
 namespace prompto.expression
@@ -28,16 +28,16 @@ namespace prompto.expression
             IType type = condition.check(context);
             if (!(type is BooleanType))
 				throw new SyntaxError("Cannot test condition on " + type.GetTypeName());
-            IType trueType = ifTrue.check(context);
-            // IType falseType = ifFalse.check(context);
-            // TODO check compatibility
-            return trueType;
+            TypeMap types = new TypeMap();
+            types["true"] = ifTrue.check(context);
+            types["false"] = ifFalse.check(context);
+            return types.inferType(context);
         }
 
         public override IValue interpret(Context context)
 		{
 			IValue test = condition.interpret(context);
-			if(test == Boolean.TRUE)
+			if(test == BooleanValue.TRUE)
 				return ifTrue.interpret(context);
 			else
 				return ifFalse.interpret(context);

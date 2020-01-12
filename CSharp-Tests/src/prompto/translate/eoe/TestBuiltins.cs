@@ -15,6 +15,12 @@ namespace prompto.translate.eoe
 		}
 
 		[Test]
+		public void testCategoryCategory()
+		{
+			compareResourceEOE("builtins/categoryCategory.pec");
+		}
+
+		[Test]
 		public void testCategoryText()
 		{
 			compareResourceEOE("builtins/categoryText.pec");

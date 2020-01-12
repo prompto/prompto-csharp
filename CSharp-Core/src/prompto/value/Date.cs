@@ -23,13 +23,13 @@ namespace prompto.value
         System.DateTime value;
 
         public Date(System.DateTime value)
-			: base(DateType.Instance)
+            : base(DateType.Instance)
         {
             this.value = value;
 
         }
         public Date(int year, int month, int day)
-			: base(DateType.Instance)
+            : base(DateType.Instance)
         {
             value = new System.DateTime(year, month, day);
         }
@@ -72,7 +72,7 @@ namespace prompto.value
         }
 
         override
-		public IValue GetMember(Context context, String name, bool autoCreate)
+        public IValue GetMemberValue(Context context, String name, bool autoCreate)
         {
             if ("year" == name)
                 return new Integer(this.Year);
@@ -83,7 +83,7 @@ namespace prompto.value
             else if ("dayOfYear" == name)
                 return new Integer(this.DayOfYear);
             else
-                return base.GetMember(context, name, autoCreate);
+                return base.GetMemberValue(context, name, autoCreate);
         }
 
         override
@@ -91,7 +91,7 @@ namespace prompto.value
         {
             return value;
         }
-        
+
         public Date minus(Period period)
         {
             return new Date(this.value.AddYears(-period.Years).AddMonths(-period.Months).AddDays(-period.Weeks * 7).AddDays(-period.Days));

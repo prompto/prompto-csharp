@@ -1,7 +1,7 @@
 using prompto.runtime;
 using prompto.error;
 using System;
-using Boolean = prompto.value.Boolean;
+using BooleanValue = prompto.value.BooleanValue;
 using prompto.parser;
 using prompto.type;
 using prompto.expression;
@@ -99,9 +99,9 @@ namespace prompto.statement
 		bool interpretCondition(Context context)
 		{
 			IValue value = condition.interpret(context);
-			if (!(value is Boolean))
+			if (!(value is BooleanValue))
 				throw new InvalidDataError("Expected a Boolean, got:" + value.GetType().Name);
-			return value == Boolean.TRUE;
+			return value == BooleanValue.TRUE;
 		}
 
 		public override bool CanReturn

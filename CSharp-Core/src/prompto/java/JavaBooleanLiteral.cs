@@ -1,5 +1,5 @@
 using System;
-using Boolean = prompto.value.Boolean;
+using Boolean = prompto.value.BooleanValue;
 
 namespace prompto.java
 {

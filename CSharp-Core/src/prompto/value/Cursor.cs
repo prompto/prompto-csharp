@@ -128,7 +128,7 @@ namespace prompto.value
 			throw new Exception ("Unsupported!");
 		}
 
-		public override IValue GetMember (Context context, string name, bool autoCreate)
+		public override IValue GetMemberValue (Context context, string name, bool autoCreate)
 		{
 			if ("count".Equals (name))
 				return new Integer (Length ());

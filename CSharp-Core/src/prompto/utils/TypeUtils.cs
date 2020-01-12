@@ -72,6 +72,8 @@ namespace prompto.utils
 		{
 			if (type1 is CategoryType && type2 is CategoryType)
 				return inferCommonRootType(context, (CategoryType)type1, (CategoryType)type2, true);
+			else if (type1 is NativeType || type2 is NativeType)
+			    return AnyType.Instance;
 			else
 				return null;
 		}

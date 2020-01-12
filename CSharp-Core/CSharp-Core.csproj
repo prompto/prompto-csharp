@@ -529,6 +529,21 @@
     <Compile Include="src\prompto\expression\BaseExpression.cs" />
     <Compile Include="src\prompto\type\TypeType.cs" />
     <Compile Include="src\prompto\literal\TypeLiteral.cs" />
+    <Compile Include="src\prompto\jsx\JsxFragment.cs" />
+    <Compile Include="src\prompto\processor\WidgetPropertiesProcessor.cs" />
+    <Compile Include="src\prompto\declaration\WrappingWidgetDeclaration.cs" />
+    <Compile Include="src\prompto\property\PropertyMap.cs" />
+    <Compile Include="src\prompto\property\Property.cs" />
+    <Compile Include="src\prompto\property\IPropertyValidator.cs" />
+    <Compile Include="src\prompto\property\AlwaysValidator.cs" />
+    <Compile Include="src\prompto\property\TypeValidator.cs" />
+    <Compile Include="src\prompto\type\PropertiesType.cs" />
+    <Compile Include="src\prompto\property\RequiredValidator.cs" />
+    <Compile Include="src\prompto\property\RequiredForAccessibilityValidator.cs" />
+    <Compile Include="src\prompto\runtime\WidgetField.cs" />
+    <Compile Include="src\prompto\property\TypeSetValidator.cs" />
+    <Compile Include="src\prompto\property\BasePropertyValidator.cs" />
+    <Compile Include="src\prompto\property\ValueSetValidator.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -562,6 +577,7 @@
     <Folder Include="src\prompto\jsx\" />
     <Folder Include="src\prompto\css\" />
     <Folder Include="src\prompto\processor\" />
+    <Folder Include="src\prompto\property\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

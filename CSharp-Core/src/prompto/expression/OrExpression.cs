@@ -1,7 +1,7 @@
 using prompto.runtime;
 using System;
 using prompto.error;
-using Boolean = prompto.value.Boolean;
+using BooleanValue = prompto.value.BooleanValue;
 using prompto.parser;
 using prompto.type;
 using prompto.utils;
@@ -63,8 +63,8 @@ namespace prompto.expression
 
 		public IValue interpret(IValue lval, IValue rval)
 		{
-			if (lval is Boolean && rval is Boolean)
-				return Boolean.ValueOf (((Boolean)lval).Value || ((Boolean)rval).Value);
+			if (lval is BooleanValue && rval is BooleanValue)
+				return BooleanValue.ValueOf (((BooleanValue)lval).Value || ((BooleanValue)rval).Value);
 			else
 				throw new SyntaxError ("Illegal: " + lval.GetType ().Name + " + " + rval.GetType ().Name);
 		}
@@ -74,7 +74,7 @@ namespace prompto.expression
 			IValue lval = left.interpret(context);
 			IValue rval = right.interpret(context);
 			IValue result = interpret(lval, rval);
-			if(result==Boolean.TRUE) 
+			if(result==BooleanValue.TRUE) 
 				return true;
 			CodeWriter writer = new CodeWriter(test.Dialect, context);
 			this.ToDialect(writer);

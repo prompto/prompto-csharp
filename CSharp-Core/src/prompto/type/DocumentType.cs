@@ -81,7 +81,7 @@ namespace prompto.type
             foreach (KeyValuePair<String, JToken> prop in obj)
             {
                 IValue item = ReadJSONField(context, prop.Value, parts);
-                instance.SetMember(context, prop.Key, item);
+                instance.SetMemberValue(context, prop.Key, item);
             }
             return instance;
         }
@@ -93,7 +93,7 @@ namespace prompto.type
                 case JTokenType.Null:
                     return NullValue.Instance;
                 case JTokenType.Boolean:
-                    return prompto.value.Boolean.ValueOf(fieldData.Value<bool>());
+                    return prompto.value.BooleanValue.ValueOf(fieldData.Value<bool>());
                 case JTokenType.Integer:
                     return new prompto.value.Integer(fieldData.Value<long>());
                 case JTokenType.Float:

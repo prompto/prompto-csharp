@@ -46,7 +46,7 @@ namespace prompto.value
 			return values.ContainsKey (name);
 		}
 
-		public override IValue GetMember(Context context, String name, bool autoCreate)
+		public override IValue GetMemberValue(Context context, String name, bool autoCreate)
 		{
 			return GetMember (name, autoCreate);
 		}
@@ -79,7 +79,7 @@ namespace prompto.value
 			values[name] = value;
 		}
 
-		public override void SetMember(Context context, String name, IValue value)
+		public override void SetMemberValue(Context context, String name, IValue value)
         {
             values[name] = value;
         }

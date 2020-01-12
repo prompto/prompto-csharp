@@ -2882,6 +2882,18 @@ public partial class MParserBaseListener : IMParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitSymbolIdentifier([NotNull] MParser.SymbolIdentifierContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="MParser.member_identifier"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterMember_identifier([NotNull] MParser.Member_identifierContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="MParser.member_identifier"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitMember_identifier([NotNull] MParser.Member_identifierContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="MParser.variable_identifier"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
@@ -3665,6 +3677,20 @@ public partial class MParserBaseListener : IMParserListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitUUIDLiteral([NotNull] MParser.UUIDLiteralContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by the <c>SymbolLiteral</c>
+	/// labeled alternative in <see cref="MParser.atomic_literal"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterSymbolLiteral([NotNull] MParser.SymbolLiteralContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by the <c>SymbolLiteral</c>
+	/// labeled alternative in <see cref="MParser.atomic_literal"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitSymbolLiteral([NotNull] MParser.SymbolLiteralContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by the <c>TypeLiteral</c>
 	/// labeled alternative in <see cref="MParser.atomic_literal"/>.
