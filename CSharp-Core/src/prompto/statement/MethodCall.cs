@@ -180,7 +180,19 @@ namespace prompto.statement
 
         private IMethodDeclaration findDeclaration(Context context)
         {
-            try
+            IMethodDeclaration method = findRegistered(context);
+            if (method != null)
+                return method;
+            else
+            {
+                MethodFinder finder = new MethodFinder(context, this);
+                return finder.findMethod(true);
+            }
+        }
+
+        private IMethodDeclaration findRegistered(Context context)
+        {
+            if(selector.getParent()==null) try
             {
                 Object o = context.getValue(selector.getName());
                 if (o is ClosureValue)
@@ -191,10 +203,7 @@ namespace prompto.statement
             catch (PromptoError)
             {
             }
-            MethodFinder finder = new MethodFinder(context, this);
-            return finder.findMethod(true);
+            return null;
         }
-
-
     }
 }

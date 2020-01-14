@@ -7,6 +7,7 @@ using prompto.error;
 using prompto.utils;
 using prompto.value;
 using prompto.grammar;
+using prompto.parser;
 
 
 namespace prompto.statement
@@ -70,6 +71,8 @@ namespace prompto.statement
 				caller.ToDialect(writer);
 				if (arguments != null)
 					arguments.ToDialect(writer);
+				else if (writer.getDialect() != Dialect.E)
+					writer.append("()");
 			}
 		}
 
@@ -117,6 +120,8 @@ namespace prompto.statement
 				resolved = resolveUnresolvedSelector(context, (UnresolvedSelector)caller);
 			else if (caller is MemberSelector)
 				resolved = resolveMemberSelector(context, (MemberSelector)caller);
+			if (resolved == null)
+				throw new SyntaxError("Unknown method: " + this.ToString());
 		}
 
 		private IExpression resolveUnresolvedSelector(Context context, UnresolvedSelector caller)

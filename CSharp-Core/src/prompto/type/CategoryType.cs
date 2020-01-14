@@ -54,6 +54,17 @@ namespace prompto.type
             return typeName;
         }
 
+        public CategoryType getSuperType(Context context)
+        {
+            IDeclaration decl = getDeclaration(context);
+            if (decl is CategoryDeclaration) {
+                IdentifierList derived = ((CategoryDeclaration)decl).getDerivedFrom();
+                if (derived != null && derived.Count > 0)
+                    return new CategoryType(derived[0]);
+            }
+            throw new SyntaxError("No super type for:" + GetTypeName());
+        }
+
         public override IType checkMember(Context context, String name)
         {
             if ("category" == name)

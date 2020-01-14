@@ -60,7 +60,7 @@ namespace prompto.statement
 		}
 
 		override
-		protected void toPDialect(CodeWriter writer) {
+		protected void toMDialect(CodeWriter writer) {
 			ToEDialect(writer);
 		}
         override

@@ -544,6 +544,7 @@
     <Compile Include="src\prompto\property\TypeSetValidator.cs" />
     <Compile Include="src\prompto\property\BasePropertyValidator.cs" />
     <Compile Include="src\prompto\property\ValueSetValidator.cs" />
+    <Compile Include="src\prompto\expression\SuperExpression.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />

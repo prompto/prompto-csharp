@@ -963,7 +963,7 @@ namespace prompto.parser
 
         public override void ExitUnresolvedWithArgsStatement(EParser.UnresolvedWithArgsStatementContext ctx)
         {
-            IExpression exp = GetNodeValue<IExpression>(ctx.exp);
+            IExpression exp = ctx.exp1!=null ? GetNodeValue<IExpression>(ctx.exp1) : GetNodeValue<IExpression>(ctx.exp2);
             ArgumentList args = GetNodeValue<ArgumentList>(ctx.args);
             String resultName = GetNodeValue<String>(ctx.name);
             StatementList stmts = GetNodeValue<StatementList>(ctx.stmts);
@@ -2126,6 +2126,12 @@ namespace prompto.parser
         {
             IStatement stmt = GetNodeValue<IStatement>(ctx.stmt);
             SetNodeValue(ctx, stmt);
+        }
+
+
+        public override void ExitSuperExpression(EParser.SuperExpressionContext ctx)
+        {
+            SetNodeValue(ctx, new SuperExpression());
         }
 
 

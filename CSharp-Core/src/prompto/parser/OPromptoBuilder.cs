@@ -2078,6 +2078,13 @@ namespace prompto.parser
             SetNodeValue(ctx, stmt);
         }
 
+
+        public override void ExitSuperExpression(OParser.SuperExpressionContext ctx)
+        {
+            SetNodeValue(ctx, new SuperExpression());
+        }
+
+
         public override void ExitSwitchStatement(OParser.SwitchStatementContext ctx)
         {
             IStatement stmt = GetNodeValue<IStatement>(ctx.stmt);

@@ -140,7 +140,12 @@ namespace prompto.utils
 
 		public CodeWriter newChildWriter()
 		{
-			return new CodeWriter(dialect, context.newChildContext(), sb, indenter);
+			return newChildWriter(context.newChildContext());
+		}
+
+		public CodeWriter newChildWriter(Context context)
+		{
+			return new CodeWriter(dialect, context, sb, indenter);
 		}
 
 		public CodeWriter newMemberWriter()

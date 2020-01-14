@@ -1927,6 +1927,12 @@ namespace prompto.parser
         }
 
 
+        public override void ExitSuperExpression(MParser.SuperExpressionContext ctx)
+        {
+            SetNodeValue(ctx, new SuperExpression());
+        }
+
+
         public override void ExitSwitchStatement(MParser.SwitchStatementContext ctx)
         {
             IStatement stmt = GetNodeValue<IStatement>(ctx.stmt);

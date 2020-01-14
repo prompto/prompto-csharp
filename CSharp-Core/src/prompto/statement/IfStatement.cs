@@ -178,10 +178,14 @@ namespace prompto.statement
 
         public void ToEDialect(CodeWriter writer)
         {
+            Context context = writer.getContext();
             if (condition != null)
             {
                 writer.append("if ");
                 condition.ToDialect(writer);
+                context = downCast(context, false);
+                if (context != writer.getContext())
+                    writer = writer.newChildWriter(context);
             }
             writer.append(":\n");
             writer.indent();
