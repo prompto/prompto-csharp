@@ -1648,6 +1648,20 @@ public partial class OParserBaseListener : IOParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitThisExpression([NotNull] OParser.ThisExpressionContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by the <c>SuperExpression</c>
+	/// labeled alternative in <see cref="OParser.selectable_expression"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterSuperExpression([NotNull] OParser.SuperExpressionContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by the <c>SuperExpression</c>
+	/// labeled alternative in <see cref="OParser.selectable_expression"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitSuperExpression([NotNull] OParser.SuperExpressionContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by the <c>SelectorExpression</c>
 	/// labeled alternative in <see cref="OParser.instance_expression"/>.
 	/// <para>The default implementation does nothing.</para>
@@ -3793,6 +3807,18 @@ public partial class OParserBaseListener : IOParserListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitThis_expression([NotNull] OParser.This_expressionContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="OParser.super_expression"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterSuper_expression([NotNull] OParser.Super_expressionContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="OParser.super_expression"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitSuper_expression([NotNull] OParser.Super_expressionContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="OParser.parenthesis_expression"/>.
 	/// <para>The default implementation does nothing.</para>

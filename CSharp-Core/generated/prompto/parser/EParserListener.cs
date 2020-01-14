@@ -1524,6 +1524,18 @@ public interface IEParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitThisExpression([NotNull] EParser.ThisExpressionContext context);
 	/// <summary>
+	/// Enter a parse tree produced by the <c>SuperExpression</c>
+	/// labeled alternative in <see cref="EParser.selectable_expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterSuperExpression([NotNull] EParser.SuperExpressionContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>SuperExpression</c>
+	/// labeled alternative in <see cref="EParser.selectable_expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitSuperExpression([NotNull] EParser.SuperExpressionContext context);
+	/// <summary>
 	/// Enter a parse tree produced by the <c>SelectorExpression</c>
 	/// labeled alternative in <see cref="EParser.instance_expression"/>.
 	/// </summary>
@@ -3373,6 +3385,16 @@ public interface IEParserListener : IParseTreeListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void ExitThis_expression([NotNull] EParser.This_expressionContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="EParser.super_expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterSuper_expression([NotNull] EParser.Super_expressionContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="EParser.super_expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitSuper_expression([NotNull] EParser.Super_expressionContext context);
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="EParser.parenthesis_expression"/>.
 	/// </summary>

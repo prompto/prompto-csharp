@@ -1790,6 +1790,20 @@ public partial class EParserBaseListener : IEParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitThisExpression([NotNull] EParser.ThisExpressionContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by the <c>SuperExpression</c>
+	/// labeled alternative in <see cref="EParser.selectable_expression"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterSuperExpression([NotNull] EParser.SuperExpressionContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by the <c>SuperExpression</c>
+	/// labeled alternative in <see cref="EParser.selectable_expression"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitSuperExpression([NotNull] EParser.SuperExpressionContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by the <c>SelectorExpression</c>
 	/// labeled alternative in <see cref="EParser.instance_expression"/>.
 	/// <para>The default implementation does nothing.</para>
@@ -3971,6 +3985,18 @@ public partial class EParserBaseListener : IEParserListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitThis_expression([NotNull] EParser.This_expressionContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="EParser.super_expression"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterSuper_expression([NotNull] EParser.Super_expressionContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="EParser.super_expression"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitSuper_expression([NotNull] EParser.Super_expressionContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="EParser.parenthesis_expression"/>.
 	/// <para>The default implementation does nothing.</para>
