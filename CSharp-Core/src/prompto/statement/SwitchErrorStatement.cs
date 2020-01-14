@@ -76,8 +76,8 @@ namespace prompto.statement
             writer.newLine();
         }
 
-        override
-        protected void toPDialect(CodeWriter writer)
+        
+        protected override void toMDialect(CodeWriter writer)
         {
             writer.append("try ");
             writer.append(errorName);
@@ -104,8 +104,8 @@ namespace prompto.statement
             writer.newLine();
         }
 
-        override
-        protected void ToEDialect(CodeWriter writer)
+        
+        protected override void ToEDialect(CodeWriter writer)
         {
             writer.append("switch on ");
             writer.append(errorName);
@@ -130,22 +130,22 @@ namespace prompto.statement
                 writer.dedent();
             }
         }
-        override
-        protected void checkSwitchCasesType(Context context)
+        
+        protected override void checkSwitchCasesType(Context context)
         {
             Context local = context.newLocalContext();
             local.registerValue(new ErrorVariable(errorName));
             base.checkSwitchCasesType(local);
         }
 
-        override
-        protected IType checkSwitchType(Context context)
+        
+        protected override IType checkSwitchType(Context context)
         {
             return new EnumeratedCategoryType("Error");
         }
 
-        override
-        protected void collectReturnTypes(Context context, TypeMap types)
+        
+        protected override void collectReturnTypes(Context context, TypeMap types)
         {
             IType type = statements.check(context, null);
             if (type != VoidType.Instance)
@@ -161,8 +161,8 @@ namespace prompto.statement
             }
         }
 
-        override
-        public IValue interpret(Context context)
+        
+        public override IValue interpret(Context context)
         {
             IValue result = null;
             try
