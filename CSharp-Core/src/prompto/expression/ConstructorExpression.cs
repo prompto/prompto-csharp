@@ -64,7 +64,7 @@ namespace prompto.expression
                     ToODialect(writer);
                     break;
                 case Dialect.M:
-                    toPDialect(writer);
+                    ToMDialect(writer);
                     break;
             }
         }
@@ -98,7 +98,7 @@ namespace prompto.expression
             }
         }
 
-        private void toPDialect(CodeWriter writer)
+        private void ToMDialect(CodeWriter writer)
         {
             ToODialect(writer);
         }

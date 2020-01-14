@@ -33,12 +33,12 @@ namespace prompto.statement
 				ToODialect(writer);
 				break;
 			case Dialect.M:
-				toPDialect(writer);
+				ToMDialect(writer);
 				break;
 			}
 		}
 
-		private void toPDialect(CodeWriter writer) {
+		private void ToMDialect(CodeWriter writer) {
 			ToEDialect(writer);
 		}
 

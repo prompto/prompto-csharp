@@ -90,7 +90,7 @@ namespace prompto.grammar
 				ToODialect(writer);
 				break;
 			case Dialect.M:
-				toPDialect(writer);
+				ToMDialect(writer);
 				break;
 			}
 		}
@@ -129,7 +129,7 @@ namespace prompto.grammar
 			writer.append(")");
 		}
 
-		private void toPDialect(CodeWriter writer) {
+		private void ToMDialect(CodeWriter writer) {
 			writer.append("(");
 			foreach(Argument argument in this) {
 				argument.ToDialect(writer);

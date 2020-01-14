@@ -53,12 +53,12 @@ namespace prompto.declaration
 				ToODialect(writer);
 				break;
 			case Dialect.M:
-				toPDialect(writer);
+				ToMDialect(writer);
 				break;
 			}
 		}
 
-		private void toPDialect(CodeWriter writer) {
+		private void ToMDialect(CodeWriter writer) {
 			writer.append("abstract def ");
 			writer.append(name);
 			writer.append(" (");

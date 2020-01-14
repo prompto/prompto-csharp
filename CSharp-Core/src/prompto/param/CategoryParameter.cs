@@ -59,7 +59,7 @@ namespace prompto.param
 				ToODialect(writer);
 				break;
 			case Dialect.M:
-				toPDialect(writer);
+				ToMDialect(writer);
 				break;
 			}
 			if(DefaultValue!=null) {
@@ -87,7 +87,7 @@ namespace prompto.param
 			writer.append(name);
 		}
 
-		protected virtual void toPDialect(CodeWriter writer) {
+		protected virtual void ToMDialect(CodeWriter writer) {
 			writer.append(name);
 			writer.append(':');
 			type.ToDialect(writer);

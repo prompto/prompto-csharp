@@ -35,7 +35,7 @@ namespace prompto.statement
         }
 
 		override
-		public void caseToPDialect(CodeWriter writer) {
+		public void caseToMDialect(CodeWriter writer) {
 			caseToEDialect(writer);
 		}
 
@@ -71,7 +71,7 @@ namespace prompto.statement
 		}
 
 		override
-		public void catchToPDialect(CodeWriter writer) {
+		public void catchToMDialect(CodeWriter writer) {
 			writer.append("except ");
 			expression.ToDialect(writer);
 			writer.append(":\n");

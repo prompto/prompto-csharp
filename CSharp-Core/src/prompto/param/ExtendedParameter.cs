@@ -74,7 +74,7 @@ namespace prompto.param
 			writer.append(name);
 		}
 
-		protected override void toPDialect(CodeWriter writer) {
+		protected override void ToMDialect(CodeWriter writer) {
 			writer.append(name);
 			writer.append(':');
 			type.ToDialect(writer);

@@ -40,10 +40,10 @@ namespace prompto.statement
 
 		public abstract void caseToEDialect(CodeWriter writer);
 		public abstract void caseToODialect(CodeWriter writer);
-		public abstract void caseToPDialect(CodeWriter writer);
+		public abstract void caseToMDialect(CodeWriter writer);
 		public abstract void catchToEDialect(CodeWriter writer);
 		public abstract void catchToODialect(CodeWriter writer);
-		public abstract void catchToPDialect(CodeWriter writer);
+		public abstract void catchToMDialect(CodeWriter writer);
 
     }
 

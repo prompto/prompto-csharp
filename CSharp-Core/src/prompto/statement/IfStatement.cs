@@ -43,13 +43,13 @@ namespace prompto.statement
                     ToODialect(writer);
                     break;
                 case Dialect.M:
-                    toPDialect(writer);
+                    toMDialect(writer);
                     break;
             }
         }
 
 
-        private void toPDialect(CodeWriter writer)
+        private void toMDialect(CodeWriter writer)
         {
             bool first = true;
             foreach (IfElement elem in elements)
@@ -195,11 +195,15 @@ namespace prompto.statement
 
         public void ToODialect(CodeWriter writer)
         {
+            Context context = writer.getContext();
             if (condition != null)
             {
                 writer.append("if (");
                 condition.ToDialect(writer);
                 writer.append(") ");
+                context = downCast(context, false);
+                if (context != writer.getContext())
+                    writer = writer.newChildWriter(context);
             }
             bool curly = statements != null && statements.Count > 1;
             if (curly)

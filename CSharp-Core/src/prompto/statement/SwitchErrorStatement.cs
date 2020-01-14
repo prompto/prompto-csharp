@@ -86,7 +86,7 @@ namespace prompto.statement
             statements.ToDialect(writer);
             writer.dedent();
             foreach (SwitchCase sc in switchCases)
-                sc.catchToPDialect(writer);
+                sc.catchToMDialect(writer);
             if (defaultCase != null)
             {
                 writer.append("except:\n");
