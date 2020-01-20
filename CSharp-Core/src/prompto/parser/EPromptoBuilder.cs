@@ -1057,6 +1057,12 @@ namespace prompto.parser
         }
 
 
+        public override void ExitSetType(EParser.SetTypeContext ctx)
+        {
+            IType type = GetNodeValue<IType>(ctx.s);
+            SetNodeValue(ctx, new SetType(type));
+        }
+
         public override void ExitGetter_method_declaration(EParser.Getter_method_declarationContext ctx)
         {
             String name = GetNodeValue<String>(ctx.name);
