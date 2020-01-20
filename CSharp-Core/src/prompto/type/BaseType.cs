@@ -33,6 +33,12 @@ namespace prompto.type
 		}
 
 
+        public virtual IType Anyfy()
+        {
+			return this;
+        }
+
+
         public virtual IType Resolve(Context context)
         {
 			return this;

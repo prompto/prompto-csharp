@@ -18,7 +18,9 @@ namespace prompto.type
 
 		TypeFamily GetFamily();
 
-		IType Resolve(Context context);
+		IType Anyfy();
+
+        IType Resolve(Context context);
 
 		IType checkAdd (Context context, IType other, bool tryReverse);
 

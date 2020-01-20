@@ -285,12 +285,37 @@ namespace prompto.type
         }
 
 
+        public override IType Anyfy()
+        {
+            if ("Any" == GetTypeName())
+                return AnyType.Instance;
+            else
+                return this;
+        }
+
+     
         public override IType Resolve(Context context)
         {
             if (resolved == null)
             {
-                IDeclaration decl = getDeclaration(context);
-                resolved = decl == null || decl.GetIType(context).GetType() == this.GetType() ? this : decl.GetIType(context);
+                IType type = Anyfy();
+                if (type is NativeType)
+                    resolved = type;
+                else
+                {
+                    IDeclaration decl = context.getRegisteredDeclaration<IDeclaration>(typeName);
+                    if (decl == null)
+                        throw new SyntaxError("Unknown type:" + typeName);
+                    else if(decl is MethodDeclarationMap)
+                    {
+                        resolved = new MethodType(((MethodDeclarationMap)decl).GetFirst());
+                    }
+                    else
+                    {
+                        IType found = decl.GetIType(context);
+                        resolved = found.GetType() == type.GetType() ? type : found;
+                    }
+                }
             }
             return resolved;
         }

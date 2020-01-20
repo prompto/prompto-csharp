@@ -53,13 +53,7 @@ namespace prompto.type
             return true;
         }
 
-        public static IType Anyfy(IType type)
-        {
-            if (type is CategoryType && "Any" == type.GetTypeName())
-                return AnyType.Instance;
-            else
-                return type;
-        }
+        
     }
 
 }

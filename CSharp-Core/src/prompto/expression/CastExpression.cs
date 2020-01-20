@@ -11,14 +11,6 @@ namespace prompto.expression {
 
 	public class CastExpression : BaseExpression, IExpression {
 
-	public static IType anyfy(IType type)
-	{
-		if (type is CategoryType && "Any".Equals(((CategoryType)type).GetTypeName()))
-			return AnyType.Instance;	
-		else
-			return type;
-	}
-
 		IExpression expression;
 		IType type;
 
@@ -28,7 +20,7 @@ namespace prompto.expression {
 		}
 
 		public override IType check(Context context) {
-			IType actual = anyfy(expression.check(context));
+			IType actual = expression.check(context).Anyfy();
 			IType target = getTargetType(context, type);
 			// check any
 			if (actual == AnyType.Instance)

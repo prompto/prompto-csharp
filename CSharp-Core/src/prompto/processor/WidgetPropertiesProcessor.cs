@@ -228,7 +228,7 @@ namespace prompto.processor
 
     private IType resolveType(Annotation annotation, Context context, IType type)
     {
-	    type = AnyType.Anyfy(type);
+	    type = type.Anyfy();
 	    if (type is NativeType)
 			return type;
 		else
