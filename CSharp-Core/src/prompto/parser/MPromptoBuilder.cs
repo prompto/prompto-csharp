@@ -3312,7 +3312,7 @@ namespace prompto.parser
 
         public override void ExitCssText(MParser.CssTextContext ctx)
         {
-            String text = ctx.text.GetText();
+            String text = input.GetText(ctx.text.Start, ctx.text.Stop);
             SetNodeValue(ctx, new CssText(text));
         }
 
