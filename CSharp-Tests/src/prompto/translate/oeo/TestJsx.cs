@@ -63,6 +63,12 @@ namespace prompto.translate.oeo
 		}
 
 		[Test]
+		public void testNonAsciiTextElement()
+		{
+			compareResourceOEO("jsx/nonAsciiTextElement.poc");
+		}
+
+		[Test]
 		public void testSelfClosingDiv()
 		{
 			compareResourceOEO("jsx/selfClosingDiv.poc");

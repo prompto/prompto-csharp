@@ -6164,6 +6164,18 @@ public partial class EParserBaseListener : IEParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitJsx_text([NotNull] EParser.Jsx_textContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="EParser.jsx_char"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterJsx_char([NotNull] EParser.Jsx_charContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="EParser.jsx_char"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitJsx_char([NotNull] EParser.Jsx_charContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="EParser.css_expression"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>

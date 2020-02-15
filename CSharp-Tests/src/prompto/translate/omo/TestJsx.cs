@@ -63,6 +63,12 @@ namespace prompto.translate.omo
 		}
 
 		[Test]
+		public void testNonAsciiTextElement()
+		{
+			compareResourceOMO("jsx/nonAsciiTextElement.poc");
+		}
+
+		[Test]
 		public void testSelfClosingDiv()
 		{
 			compareResourceOMO("jsx/selfClosingDiv.poc");

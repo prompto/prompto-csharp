@@ -5038,6 +5038,16 @@ public interface IMParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitJsx_text([NotNull] MParser.Jsx_textContext context);
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="MParser.jsx_char"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterJsx_char([NotNull] MParser.Jsx_charContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="MParser.jsx_char"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitJsx_char([NotNull] MParser.Jsx_charContext context);
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="MParser.css_expression"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>

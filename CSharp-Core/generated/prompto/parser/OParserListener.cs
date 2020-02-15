@@ -5102,6 +5102,16 @@ public interface IOParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitJsx_text([NotNull] OParser.Jsx_textContext context);
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="OParser.jsx_char"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterJsx_char([NotNull] OParser.Jsx_charContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="OParser.jsx_char"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitJsx_char([NotNull] OParser.Jsx_charContext context);
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="OParser.css_expression"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>

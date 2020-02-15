@@ -70,6 +70,12 @@ namespace prompto.runtime.o
 		}
 
 		[Test]
+		public void testNonAsciiTextElement()
+		{
+			CheckOutput("jsx/nonAsciiTextElement.poc");
+		}
+
+		[Test]
 		public void testSelfClosingDiv()
 		{
 			CheckOutput("jsx/selfClosingDiv.poc");

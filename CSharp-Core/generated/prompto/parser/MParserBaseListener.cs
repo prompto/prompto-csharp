@@ -5936,6 +5936,18 @@ public partial class MParserBaseListener : IMParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitJsx_text([NotNull] MParser.Jsx_textContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="MParser.jsx_char"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterJsx_char([NotNull] MParser.Jsx_charContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="MParser.jsx_char"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitJsx_char([NotNull] MParser.Jsx_charContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="MParser.css_expression"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>

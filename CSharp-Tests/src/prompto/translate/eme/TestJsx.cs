@@ -63,6 +63,12 @@ namespace prompto.translate.eme
 		}
 
 		[Test]
+		public void testNonAsciiTextElement()
+		{
+			compareResourceEME("jsx/nonAsciiTextElement.pec");
+		}
+
+		[Test]
 		public void testSelfClosingDiv()
 		{
 			compareResourceEME("jsx/selfClosingDiv.pec");

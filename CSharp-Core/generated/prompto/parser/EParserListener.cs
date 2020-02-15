@@ -5234,6 +5234,16 @@ public interface IEParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitJsx_text([NotNull] EParser.Jsx_textContext context);
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="EParser.jsx_char"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterJsx_char([NotNull] EParser.Jsx_charContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="EParser.jsx_char"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitJsx_char([NotNull] EParser.Jsx_charContext context);
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="EParser.css_expression"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
