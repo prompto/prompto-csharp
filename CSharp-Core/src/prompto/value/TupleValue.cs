@@ -187,9 +187,9 @@ namespace prompto.value
         public IValue GetMemberValue(Context context, String name, bool autoCreate)
         {
             if ("count" == name)
-                return new Integer(this.Count);
+                return new IntegerValue(this.Count);
             else if ("text" == name)
-                return new Text(this.ToString());
+                return new TextValue(this.ToString());
             else
                 throw new NotSupportedException("No such member " + name);
         }
@@ -207,11 +207,11 @@ namespace prompto.value
 
         public IValue GetItem(Context context, IValue index)
         {
-            if (index is Integer)
+            if (index is IntegerValue)
             {
                 try
                 {
-                    return this[(int)((Integer)index).IntegerValue - 1];
+                    return this[(int)((IntegerValue)index).LongValue - 1];
                 }
                 catch (ArgumentOutOfRangeException)
                 {
@@ -226,9 +226,9 @@ namespace prompto.value
 
         public void SetItem(Context context, IValue item, IValue value)
         {
-            if (!(item is Integer))
+            if (!(item is IntegerValue))
                 throw new InvalidDataError("No such item:" + item.ToString());
-            int index = (int)((Integer)item).IntegerValue;
+            int index = (int)((IntegerValue)item).LongValue;
             try
             {
                 this[index - 1] = value;
@@ -239,12 +239,12 @@ namespace prompto.value
             }
         }
 
-        public ISliceable Slice(Context context, Integer fi, Integer li)
+        public ISliceable Slice(Context context, IntegerValue fi, IntegerValue li)
         {
-            long fi_ = (fi == null) ? 1L : fi.IntegerValue;
+            long fi_ = (fi == null) ? 1L : fi.LongValue;
             if (fi_ < 0)
                 throw new IndexOutOfRangeError();
-            long li_ = (li == null) ? (long)Count : li.IntegerValue;
+            long li_ = (li == null) ? (long)Count : li.LongValue;
             if (li_ < 0)
                 li_ = Count + 1 + li_;
             else if (li_ > Count)

@@ -43,10 +43,10 @@ namespace prompto.param
 		public virtual IValue checkValue(Context context, IExpression expression)
         {
 			IValue value = expression.interpret(context);
-			if (value is Integer && GetIType(context) == DecimalType.Instance )
-				return new value.Decimal(((Integer)value).DecimalValue); 
-			else if (value is value.Decimal && GetIType(context) == IntegerType.Instance )
-				return new Integer(((value.Decimal)value).IntegerValue); 
+			if (value is IntegerValue && GetIType(context) == DecimalType.Instance )
+				return new value.DecimalValue(((IntegerValue)value).DoubleValue); 
+			else if (value is value.DecimalValue && GetIType(context) == IntegerType.Instance )
+				return new IntegerValue(((value.DecimalValue)value).LongValue); 
 			else
 				return value;
 		}

@@ -10,12 +10,12 @@ namespace prompto.java
     public class JavaIntegerLiteral : JavaLiteral
     {
 
-        Integer value;
+        IntegerValue value;
 
         public JavaIntegerLiteral(String text)
 			: base(text)
         {
-            this.value = Integer.Parse(text);
+            this.value = IntegerValue.Parse(text);
         }
 
  

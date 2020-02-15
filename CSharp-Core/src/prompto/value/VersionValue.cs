@@ -5,17 +5,17 @@ using prompto.type;
 
 namespace prompto.value
 {
-    public class Version : BaseValue, IComparable<Version>
+    public class VersionValue : BaseValue, IComparable<VersionValue>
     {
 
-        public static Version Parse(String version)
+        public static VersionValue Parse(String version)
         {
 			if (version[0]=='v')
 				version = version.Substring(1);
 			String[] parts = version.Split('.');
 			if(parts.Length<3)
 				throw new Exception("Version must be like 1.2.3!");
-			Version v = new Version();
+			VersionValue v = new VersionValue();
 			v.major = Int16.Parse(parts[0]);
 			v.minor = Int16.Parse(parts[1]);
 			v.fix = Int16.Parse(parts[2]);
@@ -27,7 +27,7 @@ namespace prompto.value
         Int32 fix;
 
 
-		public Version()
+		public VersionValue()
 			: base(VersionType.Instance)
 		{
 		}
@@ -41,8 +41,8 @@ namespace prompto.value
         
         public override Int32 CompareTo(Context context, IValue value)
         {
-            if (value is Version)
-                return this.CompareTo((Version)value);
+            if (value is VersionValue)
+                return this.CompareTo((VersionValue)value);
             else
                 throw new SyntaxError("Illegal comparison: Version - " + value.GetType().Name);
 
@@ -54,7 +54,7 @@ namespace prompto.value
             return this;
         }
         
-        public int CompareTo(Version other)
+        public int CompareTo(VersionValue other)
         {
 			return this.AsInt().CompareTo(other.AsInt());
         }
@@ -62,8 +62,8 @@ namespace prompto.value
         
         public override bool Equals(object obj)
         {
-			if (obj is Version)
-				return this.AsInt() == ((Version)obj).AsInt();
+			if (obj is VersionValue)
+				return this.AsInt() == ((VersionValue)obj).AsInt();
 			else
 				return false;
         }

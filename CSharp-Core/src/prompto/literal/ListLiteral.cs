@@ -66,9 +66,9 @@ namespace prompto.literal
 			if(item==null)
 				return item;
 			if(DecimalType.Instance==itemType && item.GetIType()==IntegerType.Instance)
-				return new prompto.value.Decimal(((prompto.value.Integer)item).DecimalValue);
+				return new prompto.value.DecimalValue(((prompto.value.IntegerValue)item).DoubleValue);
 			else if(TextType.Instance==itemType && item.GetIType()==CharacterType.Instance)
-				return ((Character)item).AsText();
+				return ((CharacterValue)item).AsText();
 			else
 				return item;
 		}

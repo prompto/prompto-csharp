@@ -9,12 +9,12 @@ namespace prompto.csharp
     public class CSharpCharacterLiteral : CSharpLiteral
     {
 
-        Character value;
+        CharacterValue value;
 
         public CSharpCharacterLiteral(String text)
 			: base(text)
         {
-            value = new Character(text[1]);
+            value = new CharacterValue(text[1]);
         }
 
 		override

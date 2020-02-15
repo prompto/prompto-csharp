@@ -9,32 +9,32 @@ using prompto.type;
 
 namespace prompto.value
 {
-    public class Decimal : BaseValue, INumber, IComparable<INumber>, IMultiplyable
+    public class DecimalValue : BaseValue, INumber, IComparable<INumber>, IMultiplyable
     {
-        public static Decimal Parse(String text)
+        public static DecimalValue Parse(String text)
         {
-            return new Decimal(Double.Parse(text, CultureInfo.InvariantCulture));
+            return new DecimalValue(Double.Parse(text, CultureInfo.InvariantCulture));
         }
 
         Double value;
 
-        public Decimal(Double value)
+        public DecimalValue(Double value)
 			: base(DecimalType.Instance)
         {
             this.value = value;
         }
 
-        public Int64 IntegerValue { get { return (Int64)value; } }
+        public Int64 LongValue { get { return (Int64)value; } }
         
-        public Double DecimalValue { get { return value; } }
+        public Double DoubleValue { get { return value; } }
 
         override
         public IValue Add(Context context, IValue value)
         {
-            if (value is Integer)
-                return new Decimal(this.value + ((Integer)value).IntegerValue);
-            else if (value is Decimal)
-                return new Decimal(this.value + ((Decimal)value).DecimalValue);
+            if (value is IntegerValue)
+                return new DecimalValue(this.value + ((IntegerValue)value).LongValue);
+            else if (value is DecimalValue)
+                return new DecimalValue(this.value + ((DecimalValue)value).DoubleValue);
             else
                 throw new SyntaxError("Illegal: Decimal + " + value.GetType().Name);
         }
@@ -42,10 +42,10 @@ namespace prompto.value
         override
         public IValue Subtract(Context context, IValue value)
         {
-            if (value is Integer)
-                return new Decimal(this.value - ((Integer)value).IntegerValue);
-            else if (value is Decimal)
-                return new Decimal(this.value - ((Decimal)value).DecimalValue);
+            if (value is IntegerValue)
+                return new DecimalValue(this.value - ((IntegerValue)value).LongValue);
+            else if (value is DecimalValue)
+                return new DecimalValue(this.value - ((DecimalValue)value).DoubleValue);
             else
                 throw new SyntaxError("Illegal: Decimal - " + value.GetType().Name);
         }
@@ -53,10 +53,10 @@ namespace prompto.value
         override
         public IValue Multiply(Context context, IValue value)
         {
-             if (value is Integer)
-                 return new Decimal(this.DecimalValue * ((Integer)value).IntegerValue);
-            else if (value is Decimal)
-                 return new Decimal(this.DecimalValue * ((Decimal)value).DecimalValue);
+             if (value is IntegerValue)
+                 return new DecimalValue(this.DoubleValue * ((IntegerValue)value).LongValue);
+            else if (value is DecimalValue)
+                 return new DecimalValue(this.DoubleValue * ((DecimalValue)value).DoubleValue);
             else
                 throw new SyntaxError("Illegal: Decimal * " + value.GetType().Name);
        }
@@ -66,45 +66,45 @@ namespace prompto.value
         {
             if (value is INumber)
             {
-                if(((INumber)value).DecimalValue == 0.0)
+                if(((INumber)value).DoubleValue == 0.0)
                     throw new DivideByZeroError();
                 else
-                    return new Decimal(this.DecimalValue / ((INumber)value).DecimalValue);
+                    return new DecimalValue(this.DoubleValue / ((INumber)value).DoubleValue);
              }
             else
                 throw new SyntaxError("Illegal: Decimal / " + value.GetType().Name);
         }
 
 		public override IValue IntDivide(Context context, IValue value) {
-			if (value is Integer) {
-				if (((Integer) value).IntegerValue == 0)
+			if (value is IntegerValue) {
+				if (((IntegerValue) value).LongValue == 0)
 					throw new DivideByZeroError();
 				else
-					return new Integer(this.IntegerValue / ((Integer) value).IntegerValue);
+					return new IntegerValue(this.LongValue / ((IntegerValue) value).LongValue);
 			} else
 				throw new SyntaxError("Illegal: Decimal \\ " + value.GetType().Name);
 		}
 
 		public override IValue Modulo(Context context, IValue value) {
 			if (value is INumber) {
-				if (((INumber) value).DecimalValue == 0.0)
+				if (((INumber) value).DoubleValue == 0.0)
 					throw new DivideByZeroError();
 				else
-					return new Decimal(this.DecimalValue % ((INumber) value).DecimalValue);
+					return new DecimalValue(this.DoubleValue % ((INumber) value).DoubleValue);
 			} else
 				throw new SyntaxError("Illegal: Decimal % " + value.GetType().Name);
 		}
 
         public int CompareTo(INumber obj)
         {
-            return value.CompareTo(obj.DecimalValue);
+            return value.CompareTo(obj.DoubleValue);
         }
 
         override
         public Int32 CompareTo(Context context, IValue value)
         {
             if (value is INumber)
-                return this.value.CompareTo(((INumber)value).DecimalValue);
+                return this.value.CompareTo(((INumber)value).DoubleValue);
             else
                 throw new SyntaxError("Illegal comparison: Decimal and " + value.GetType().Name);
 
@@ -125,10 +125,10 @@ namespace prompto.value
          override
         public bool Equals(object obj)
         {
-			if (obj is Decimal)
-				return value == ((Decimal)obj).value;
-			else if (obj is Integer)
-				return value == ((Integer)obj).IntegerValue;
+			if (obj is DecimalValue)
+				return value == ((DecimalValue)obj).value;
+			else if (obj is IntegerValue)
+				return value == ((IntegerValue)obj).LongValue;
 			else
 				return value.Equals(obj);
         }

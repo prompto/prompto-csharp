@@ -74,12 +74,12 @@ namespace prompto.expression
             if (o is ISliceable)
             {
 				IValue fi = first != null ? first.interpret(context) : null;
-                if (fi != null && !(fi is Integer))
+                if (fi != null && !(fi is IntegerValue))
                     throw new SyntaxError("Illegal sliced type: " + fi);
 				IValue li = last != null ? last.interpret(context) : null;
-                if (li != null && !(li is Integer))
+                if (li != null && !(li is IntegerValue))
                     throw new SyntaxError("Illegal sliced type: " + li);
-                return ((ISliceable)o).Slice(context, (Integer)fi, (Integer)li);
+                return ((ISliceable)o).Slice(context, (IntegerValue)fi, (IntegerValue)li);
             }
             else
                 throw new SyntaxError("Illegal sliced object: " + parent);

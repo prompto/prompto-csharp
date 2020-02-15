@@ -69,7 +69,7 @@ namespace prompto.type
 
         public override Type ToCSharpType()
         {
-            return typeof(Document);
+            return typeof(DocumentValue);
         }
 
         public override IValue ReadJSONValue(Context context, JToken value, Dictionary<String, byte[]> parts)
@@ -77,7 +77,7 @@ namespace prompto.type
             if (!(value is JObject))
                 throw new InvalidDataException("Expecting a JSON object!");
             JObject obj = (JObject)value;
-            Document instance = new Document();
+            DocumentValue instance = new DocumentValue();
             foreach (KeyValuePair<String, JToken> prop in obj)
             {
                 IValue item = ReadJSONField(context, prop.Value, parts);
@@ -95,11 +95,11 @@ namespace prompto.type
                 case JTokenType.Boolean:
                     return prompto.value.BooleanValue.ValueOf(fieldData.Value<bool>());
                 case JTokenType.Integer:
-                    return new prompto.value.Integer(fieldData.Value<long>());
+                    return new prompto.value.IntegerValue(fieldData.Value<long>());
                 case JTokenType.Float:
-                    return new prompto.value.Decimal(fieldData.Value<double>());
+                    return new prompto.value.DecimalValue(fieldData.Value<double>());
                 case JTokenType.String:
-                    return new prompto.value.Text(fieldData.Value<String>());
+                    return new prompto.value.TextValue(fieldData.Value<String>());
                 case JTokenType.Array:
                     throw new NotSupportedException("Array");
                 case JTokenType.Object:
@@ -138,7 +138,7 @@ namespace prompto.type
 namespace prompto.type.document
 {
 
-    class GlobalMethodComparer : ValueComparer<Document>
+    class GlobalMethodComparer : ValueComparer<DocumentValue>
     {
         MethodCall methodCall;
 
@@ -150,14 +150,14 @@ namespace prompto.type.document
 
         private MethodCall buildMethodCall(String methodName)
         {
-            IExpression exp = new ValueExpression(DocumentType.Instance, new Document());
+            IExpression exp = new ValueExpression(DocumentType.Instance, new DocumentValue());
             Argument arg = new Argument(null, exp);
             ArgumentList args = new ArgumentList();
             args.Add(arg);
             return new MethodCall(new MethodSelector(methodName), args);
         }
 
-        protected override int DoCompare(Document o1, Document o2)
+        protected override int DoCompare(DocumentValue o1, DocumentValue o2)
         {
             Argument argument = methodCall.getArguments()[0];
             argument.Expression = new ValueExpression(AnyType.Instance, o1);
@@ -169,7 +169,7 @@ namespace prompto.type.document
 
     }
 
-    class EntryComparer : ValueComparer<Document>
+    class EntryComparer : ValueComparer<DocumentValue>
     {
         String name;
 
@@ -180,7 +180,7 @@ namespace prompto.type.document
         }
 
 
-        protected override int DoCompare(Document o1, Document o2)
+        protected override int DoCompare(DocumentValue o1, DocumentValue o2)
         {
             Object value1 = o1.GetMember(name);
             Object value2 = o2.GetMember(name);
@@ -188,7 +188,7 @@ namespace prompto.type.document
         }
     }
 
-    class ExpressionComparer : ValueComparer<Document>
+    class ExpressionComparer : ValueComparer<DocumentValue>
     {
         IExpression key;
 
@@ -199,7 +199,7 @@ namespace prompto.type.document
         }
 
 
-        protected override int DoCompare(Document o1, Document o2)
+        protected override int DoCompare(DocumentValue o1, DocumentValue o2)
         {
             Context co = context.newDocumentContext(o1, false);
             Object value1 = key.interpret(co);

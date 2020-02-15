@@ -9,13 +9,13 @@ using prompto.type;
 
 namespace prompto.value
 {
-    public class Period : BaseValue, IMultiplyable
+    public class PeriodValue : BaseValue, IMultiplyable
     {
-        static Period zero = new Period(0, 0, 0, 0, 0, 0, 0, 0);
+        static PeriodValue zero = new PeriodValue(0, 0, 0, 0, 0, 0, 0, 0);
 
-        public static Period ZERO { get { return zero; } }
-        
-        public static Period Parse(String text)
+        public static PeriodValue ZERO { get { return zero; } }
+
+        public static PeriodValue Parse(String text)
         {
             try
             {
@@ -76,7 +76,7 @@ namespace prompto.value
                     {
                         if (value.HasValue)
                             throw new Exception();
-                        if(isNeg || inMillis)
+                        if (isNeg || inMillis)
                             throw new Exception();
                         isNeg = true;
                     }
@@ -98,18 +98,18 @@ namespace prompto.value
                     }
                 }
                 // must terminate by a value type
-                if(value!=null)
-                    throw new Exception(); 
-                return new Period(data);
+                if (value != null)
+                    throw new Exception();
+                return new PeriodValue(data);
             }
             catch (Exception)
             {
-                throw new InvalidDataError("\"" + text + "\" is not a valid ISO 8601 period!"); 
+                throw new InvalidDataError("\"" + text + "\" is not a valid ISO 8601 period!");
             }
         }
 
-        public Period(int years, int months, int weeks, int days, int hours, int minutes, int seconds, int millis)
-			: base(PeriodType.Instance)
+        public PeriodValue(int years, int months, int weeks, int days, int hours, int minutes, int seconds, int millis)
+            : base(PeriodType.Instance)
         {
             this.Years = years;
             this.Months = months;
@@ -121,7 +121,7 @@ namespace prompto.value
             this.Millis = millis;
         }
 
-        private Period(int[] data)
+        private PeriodValue(int[] data)
             : this(data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7])
         {
         }
@@ -145,8 +145,8 @@ namespace prompto.value
         override
         public IValue Add(Context context, IValue value)
         {
-            if (value is Period)
-                return this.plus((Period)value);
+            if (value is PeriodValue)
+                return this.plus((PeriodValue)value);
             else
                 throw new SyntaxError("Illegal: Period + " + value.GetType().Name);
         }
@@ -154,8 +154,8 @@ namespace prompto.value
         override
         public IValue Subtract(Context context, IValue value)
         {
-            if (value is Period)
-                return this.minus((Period)value);
+            if (value is PeriodValue)
+                return this.minus((PeriodValue)value);
             else
                 throw new SyntaxError("Illegal: Period - " + value.GetType().Name);
         }
@@ -163,13 +163,13 @@ namespace prompto.value
         override
         public IValue Multiply(Context context, IValue value)
         {
-            if (value is Integer)
+            if (value is IntegerValue)
             {
-                int count = (int)((Integer)value).IntegerValue;
+                int count = (int)((IntegerValue)value).LongValue;
                 if (count < 0)
                     throw new SyntaxError("Negative repeat count:" + count);
                 if (count == 0)
-                    return Period.ZERO;
+                    return PeriodValue.ZERO;
                 if (count == 1)
                     return this;
                 return this.times(count); ;
@@ -183,13 +183,13 @@ namespace prompto.value
         {
             return this; // TODO convert to TimeSpan
         }
- 
-        public Period minus(Period period)
+
+        public PeriodValue minus(PeriodValue period)
         {
             double seconds = (double)(this.Seconds - period.Seconds) + (((double)(this.Millis - period.Millis)) / 1000.0);
             double millis_d = Math.Round(seconds * 1000, 0);
             int millis = Math.Abs((int)millis_d % 1000);
-            return new Period( 
+            return new PeriodValue(
                     this.Years - period.Years,
                     this.Months - period.Months,
                     this.Weeks - period.Weeks,
@@ -201,13 +201,13 @@ namespace prompto.value
         }
 
 
-   
-        public Period plus(Period period)
+
+        public PeriodValue plus(PeriodValue period)
         {
-            double seconds = (double)(this.Seconds + period.Seconds) + (((double)(this.Millis + period.Millis))/1000.0);
+            double seconds = (double)(this.Seconds + period.Seconds) + (((double)(this.Millis + period.Millis)) / 1000.0);
             double millis_d = Math.Round(seconds * 1000, 0);
             int millis = Math.Abs((int)millis_d % 1000);
-            return new Period(
+            return new PeriodValue(
                    this.Years + period.Years,
                    this.Months + period.Months,
                    this.Weeks + period.Weeks,
@@ -218,22 +218,22 @@ namespace prompto.value
                    millis);
         }
 
-        public Period times(int count)
+        public PeriodValue times(int count)
         {
-            double seconds = (double)(this.Seconds + ((double)(this.Millis)/1000.0))* count;
+            double seconds = (double)(this.Seconds + ((double)(this.Millis) / 1000.0)) * count;
             double millis_d = Math.Round(seconds * 1000, 0);
             int millis = Math.Abs((int)millis_d % 1000);
-            return new Period(
+            return new PeriodValue(
                   this.Years * count,
                   this.Months * count,
                   this.Weeks * count,
                   this.Days * count,
                   this.Hours * count,
                   this.Minutes * count,
-				(int)seconds,
-				millis);
+                (int)seconds,
+                millis);
         }
- 
+
         override
         public String ToString()
         {
@@ -258,7 +258,7 @@ namespace prompto.value
                 sb.Append(Days.ToString());
                 sb.Append("D");
             }
-            if (Hours != 0 || Minutes != 0 || Seconds != 0 || Millis!=0)
+            if (Hours != 0 || Minutes != 0 || Seconds != 0 || Millis != 0)
                 sb.Append("T");
             if (Hours != 0)
             {
@@ -282,21 +282,22 @@ namespace prompto.value
             }
             return sb.ToString();
         }
- 
+
         override
         public bool Equals(object obj)
         {
-            if (obj is Period) {
-                Period period = (Period)obj;
-                  return this.Years == period.Years
-                       && this.Months == period.Months
-                       && this.Weeks == period.Weeks
-                       && this.Days == period.Days
-                       && this.Hours == period.Hours
-                       && this.Minutes == period.Minutes
-                       && this.Seconds == period.Seconds
-                       && this.Millis == period.Millis;
-             } 
+            if (obj is PeriodValue)
+            {
+                PeriodValue period = (PeriodValue)obj;
+                return this.Years == period.Years
+                     && this.Months == period.Months
+                     && this.Weeks == period.Weeks
+                     && this.Days == period.Days
+                     && this.Hours == period.Hours
+                     && this.Minutes == period.Minutes
+                     && this.Seconds == period.Seconds
+                     && this.Millis == period.Millis;
+            }
             else
                 return false;
         }

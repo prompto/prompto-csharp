@@ -1,6 +1,6 @@
 using System;
 using prompto.runtime;
-using Character = prompto.value.Character;
+using Character = prompto.value.CharacterValue;
 using prompto.value;
 using prompto.type;
 

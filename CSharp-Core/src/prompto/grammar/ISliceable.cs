@@ -10,6 +10,6 @@ namespace prompto.grammar
 {
     public interface ISliceable : IContainer
     {
-        ISliceable Slice(Context context, Integer fi, Integer li);
+        ISliceable Slice(Context context, IntegerValue fi, IntegerValue li);
     }
 }

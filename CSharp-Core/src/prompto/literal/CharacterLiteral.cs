@@ -8,11 +8,11 @@ using prompto.type;
 namespace prompto.literal
 {
 
-    public class CharacterLiteral : Literal<Character>
+    public class CharacterLiteral : Literal<CharacterValue>
     {
 
         public CharacterLiteral(String text)
-            : base(text, new Character(Unescape(text)))
+            : base(text, new CharacterValue(Unescape(text)))
         {
         }
 

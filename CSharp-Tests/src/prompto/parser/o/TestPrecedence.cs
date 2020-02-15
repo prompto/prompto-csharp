@@ -32,8 +32,8 @@ namespace prompto.parser.o {
         {
             IExpression exp = parse_expression("1-2-3-4");
             Context context = Context.newGlobalContext();
-            Integer value = (Integer)exp.interpret(context);
-            Assert.AreEqual(-8L, value.IntegerValue);
+            IntegerValue value = (IntegerValue)exp.interpret(context);
+            Assert.AreEqual(-8L, value.LongValue);
         }
 
         [Test]
@@ -41,8 +41,8 @@ namespace prompto.parser.o {
         {
             IExpression exp = parse_expression("1+2-3+4-5-6");
             Context context = Context.newGlobalContext();
-            Integer value = (Integer)exp.interpret(context);
-            Assert.AreEqual(-7L, value.IntegerValue);
+            IntegerValue value = (IntegerValue)exp.interpret(context);
+            Assert.AreEqual(-7L, value.LongValue);
         }
 
         [Test]
@@ -50,8 +50,8 @@ namespace prompto.parser.o {
         {
             IExpression exp = parse_expression("1*2+3");
             Context context = Context.newGlobalContext();
-            Integer value = (Integer)exp.interpret(context);
-            Assert.AreEqual(5L, value.IntegerValue);
+            IntegerValue value = (IntegerValue)exp.interpret(context);
+            Assert.AreEqual(5L, value.LongValue);
         }
 
         IExpression parse_expression(String code)

@@ -2,7 +2,7 @@ using System;
 using prompto.runtime;
 using prompto.error;
 using prompto.value;
-using Decimal = prompto.value.Decimal;
+using DecimalValue = prompto.value.DecimalValue;
 using prompto.parser;
 using prompto.type;
 using prompto.utils;
@@ -43,14 +43,14 @@ namespace prompto.expression
         public override IValue interpret(Context context)
         {
 			IValue val = expression.interpret(context);
-            if (val is Integer)
-                return new Integer(-((Integer)val).IntegerValue);
-            else if (val is Decimal)
-                return new Decimal(-((Decimal)val).DecimalValue);
-            else if (val is Period)
+            if (val is IntegerValue)
+                return new IntegerValue(-((IntegerValue)val).LongValue);
+            else if (val is DecimalValue)
+                return new DecimalValue(-((DecimalValue)val).DoubleValue);
+            else if (val is PeriodValue)
             {
-                Period p = (Period)val;
-                return new Period(-p.Years, -p.Months, -p.Weeks, -p.Days, -p.Hours,
+                PeriodValue p = (PeriodValue)val;
+                return new PeriodValue(-p.Years, -p.Months, -p.Weeks, -p.Days, -p.Hours,
                         -p.Minutes, -p.Seconds, -p.Millis);
             }
             else

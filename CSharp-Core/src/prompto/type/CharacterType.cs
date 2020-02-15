@@ -81,8 +81,8 @@ namespace prompto.type
         
         public override IRange newRange(Object left, Object right)
         {
-            if (left is Character && right is Character)
-                return new CharacterRange((Character)left, (Character)right);
+            if (left is CharacterValue && right is CharacterValue)
+                return new CharacterRange((CharacterValue)left, (CharacterValue)right);
             return base.newRange(left, right);
         }
 
@@ -96,16 +96,16 @@ namespace prompto.type
         public override IValue ConvertCSharpValueToIValue(Context context, Object value)
         {
             if (value is char)
-                return new Character((char)value);
+                return new CharacterValue((char)value);
             else if (value is char?)
-                return new Character(((char?)value).Value);
+                return new CharacterValue(((char?)value).Value);
             else
                 return (IValue)value; // TODO for now
         }
 
     }
 
-    class CharacterComparer : ValueComparer<Character>
+    class CharacterComparer : ValueComparer<CharacterValue>
     {
        public CharacterComparer(Context context, bool descending)
             : base(context, descending)
@@ -113,7 +113,7 @@ namespace prompto.type
         }
  
         
-        protected override int DoCompare(Character o1, Character o2)
+        protected override int DoCompare(CharacterValue o1, CharacterValue o2)
         {
             return o1.Value.CompareTo(o2.Value);
         }

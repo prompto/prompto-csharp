@@ -5,7 +5,7 @@ using prompto.type;
 namespace prompto.literal
 {
 
-    public class HexaLiteral : Literal<Integer>
+    public class HexaLiteral : Literal<IntegerValue>
     {
 
 
@@ -20,7 +20,7 @@ namespace prompto.literal
             return IntegerType.Instance;
         }
 
-        static public Integer parseHexa(String text)
+        static public IntegerValue parseHexa(String text)
         {
             long value = 0;
             foreach (char c in text.Substring(2).ToCharArray())
@@ -35,7 +35,7 @@ namespace prompto.literal
                 else
                     throw new Exception(text + " is not a valid hexadecimal number");
             }
-            return new Integer(value);
+            return new IntegerValue(value);
         }
     }
 }

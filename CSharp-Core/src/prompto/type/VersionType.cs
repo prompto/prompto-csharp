@@ -28,7 +28,7 @@ namespace prompto.type
         
         public override Type ToCSharpType()
         {
-            return typeof(value.Version);
+            return typeof(value.VersionValue);
         }
 
 
@@ -53,14 +53,14 @@ namespace prompto.type
 
     }
 
-	class VersionComparer : NativeComparer<value.Version>
+	class VersionComparer : NativeComparer<value.VersionValue>
     {
         public VersionComparer(bool descending)
             : base(descending)
         {
         }
         
-        protected override int DoCompare(value.Version o1, value.Version o2)
+        protected override int DoCompare(value.VersionValue o1, value.VersionValue o2)
         {
             return o1.AsInt().CompareTo(o2.AsInt());
         }

@@ -3,9 +3,9 @@ using prompto.type;
 
 namespace prompto.value
 {
-	public class Any : BaseValue
+	public class AnyValue : BaseValue
 	{
-		public Any()
+		public AnyValue()
 			: base(AnyType.Instance)
 		{
 		}

@@ -10,13 +10,13 @@ using prompto.expression;
 namespace prompto.value
 {
 
-	public class Cursor : BaseValue, IIterable, IEnumerable<IValue>, IEnumerator<IValue>, IFilterable
+	public class CursorValue : BaseValue, IIterable, IEnumerable<IValue>, IEnumerator<IValue>, IFilterable
 	{
 
 		Context context;
 		IStoredEnumerator enumerator;
 
-		public Cursor (Context context, IType itemType, IStoredEnumerable documents)
+		public CursorValue (Context context, IType itemType, IStoredEnumerable documents)
 			: base (new CursorType (itemType))
 		{
 			this.context = context;
@@ -24,7 +24,7 @@ namespace prompto.value
 			this.Mutable = itemType is CategoryType ? ((CategoryType)itemType).Mutable : false;
 		}
 
-		protected Cursor(Cursor source)
+		protected CursorValue(CursorValue source)
 			: base(source.GetIType())
 		{
 			this.context = source.context;
@@ -131,9 +131,9 @@ namespace prompto.value
 		public override IValue GetMemberValue (Context context, string name, bool autoCreate)
 		{
 			if ("count".Equals (name))
-				return new Integer (Length ());
+				return new IntegerValue (Length ());
 			else if ("totalCount".Equals(name))
-				return new Integer(TotalLength());
+				return new IntegerValue(TotalLength());
 			else
 				throw new InvalidDataError ("No such member:" + name);
 		}
@@ -146,12 +146,12 @@ namespace prompto.value
 
 	}
 
-	public class FilteredCursor : Cursor
+	public class FilteredCursor : CursorValue
 	{
 		Predicate<IValue> filter;
 		IValue current;
 
-		public FilteredCursor(Cursor source, Predicate<IValue> filter)
+		public FilteredCursor(CursorValue source, Predicate<IValue> filter)
 			: base(source)
 		{
 			this.filter = filter;

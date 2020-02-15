@@ -6,7 +6,7 @@ using prompto.type;
 namespace prompto.literal
 {
 
-	public class DocumentLiteral : Literal<Document>
+	public class DocumentLiteral : Literal<DocumentValue>
 	{
 
 		// we can only compute keys by evaluating key expressions
@@ -15,13 +15,13 @@ namespace prompto.literal
 		DocEntryList entries;
 
 		public DocumentLiteral()
-			: base("{}", new Document())
+			: base("{}", new DocumentValue())
 		{
 			this.entries = new DocEntryList();
 		}
 
 		public DocumentLiteral(DocEntryList entries)
-			: base(entries.ToString(), new Document())
+			: base(entries.ToString(), new DocumentValue())
 		{
 			this.entries = entries;
 		}
@@ -43,10 +43,10 @@ namespace prompto.literal
 			if (entries.Count > 0)
 			{
 				check(context); // to compute itemType
-				Document doc = new Document();
+				DocumentValue doc = new DocumentValue();
 				foreach (DictEntry e in entries)
 				{
-					Text key = e.GetKey().asText();
+					TextValue key = e.GetKey().asText();
 					IValue val = e.GetValue().interpret(context);
 					doc.SetMember(key.Value, val);
 				}

@@ -1,13 +1,13 @@
 using prompto.runtime;
 using System;
 using prompto.value;
-using DateTime = prompto.value.DateTime;
+using DateTimeValue = prompto.value.DateTimeValue;
 using prompto.type;
 
 namespace prompto.literal
 {
 
-public class DateTimeLiteral : Literal<DateTime> {
+public class DateTimeLiteral : Literal<DateTimeValue> {
 
 	public DateTimeLiteral(String text) 
     	: base(text,parseDateTime(text.Substring(1,text.Length-2)))
@@ -19,9 +19,9 @@ public class DateTimeLiteral : Literal<DateTime> {
 		return DateTimeType.Instance;
 	}
 
-    public static DateTime parseDateTime(String text)
+    public static DateTimeValue parseDateTime(String text)
     {
-        return DateTime.Parse(text);
+        return DateTimeValue.Parse(text);
 	}
 	
 }

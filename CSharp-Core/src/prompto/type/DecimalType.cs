@@ -1,6 +1,6 @@
 using System;
 using prompto.runtime;
-using Decimal = prompto.value.Decimal;
+using DecimalValue = prompto.value.DecimalValue;
 using prompto.value;
 using prompto.store;
 using System.Collections.Generic;
@@ -108,13 +108,13 @@ namespace prompto.type
         public override IValue ConvertCSharpValueToIValue(Context context, Object value)
         {
             if (value is float)
-                return new Decimal((float)value);
+                return new DecimalValue((float)value);
             else if (value is float?)
-                return new Decimal(((float?)value).Value);
+                return new DecimalValue(((float?)value).Value);
             else if (value is double)
-                return new Decimal((double)value);
+                return new DecimalValue((double)value);
             else if (value is double?)
-                return new Decimal(((double?)value).Value);
+                return new DecimalValue(((double?)value).Value);
             else
                 return (IValue)value; // TODO for now
         }
@@ -136,7 +136,7 @@ namespace prompto.type
         
         protected override int DoCompare(INumber o1, INumber o2)
         {
-            return o1.DecimalValue.CompareTo(o2.DecimalValue);
+            return o1.DoubleValue.CompareTo(o2.DoubleValue);
         }
     }
 

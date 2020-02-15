@@ -29,7 +29,7 @@ namespace prompto.type
         override 
         public System.Type ToCSharpType()
         {
-            return typeof(Time);
+            return typeof(TimeValue);
         }
 
 
@@ -92,8 +92,8 @@ namespace prompto.type
         
         public override IRange newRange(Object left, Object right)
         {
-            if (left is Time && right is Time)
-                return new TimeRange((Time)left, (Time)right);
+            if (left is TimeValue && right is TimeValue)
+                return new TimeRange((TimeValue)left, (TimeValue)right);
             return base.newRange(left, right);
         }
 
@@ -110,7 +110,7 @@ namespace prompto.type
 
     }
 
-    class TimeComparer : NativeComparer<Time>
+    class TimeComparer : NativeComparer<TimeValue>
     {
         public TimeComparer(bool descending)
             : base(descending)
@@ -118,7 +118,7 @@ namespace prompto.type
         }
 
         
-        protected override int DoCompare(Time o1, Time o2)
+        protected override int DoCompare(TimeValue o1, TimeValue o2)
         {
             return o1.CompareTo(o2);
         }

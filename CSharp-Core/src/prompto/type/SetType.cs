@@ -3,6 +3,7 @@ using prompto.value;
 using System;
 using System.Collections.Generic;
 using prompto.store;
+using prompto.declaration;
 
 namespace prompto.type
 {
@@ -69,10 +70,35 @@ namespace prompto.type
 			return BooleanType.Instance;
 		}
 
+		public override ISet<IMethodDeclaration> getMemberMethods(Context context, string name)
+		{
+			ISet<IMethodDeclaration> list = new HashSet<IMethodDeclaration>();
+			switch (name)
+			{
+				case "join":
+					list.Add(JOIN_METHOD);
+					return list;
+				default:
+					return base.getMemberMethods(context, name);
+			}
+		}
+
 		public override System.Type ToCSharpType ()
 		{
 			return typeof(HashSet<Object>);
 		}
 
+		static IMethodDeclaration JOIN_METHOD = new JoinSetMethod();
 	}
+
+	class JoinSetMethod : BaseJoinMethod
+	{
+
+		protected override IEnumerable<IValue> getItems(Context context)
+		{
+			SetValue set = (SetValue)getValue(context);
+			return set.GetEnumerable(context);
+		}
+	}
+
 }

@@ -183,9 +183,9 @@ namespace prompto.expression
                             }
                         }
                     }
-                    else if (copyObj is Document)
+                    else if (copyObj is DocumentValue)
                     {
-                        Document copyDoc = (Document)copyObj;
+                        DocumentValue copyDoc = (DocumentValue)copyObj;
                         foreach (String name in copyDoc.GetMemberNames())
                         {
                             if (name == "dbId")

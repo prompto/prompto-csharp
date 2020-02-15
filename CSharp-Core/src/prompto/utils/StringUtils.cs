@@ -15,12 +15,12 @@ namespace prompto.utils
 
 		}
 
-		public static Character[] ToCharacterArray(String value)
+		public static CharacterValue[] ToCharacterArray(String value)
 		{
 			char[] chars = value.ToCharArray();
-			List<Character> list = new List<Character>(chars.Length);
+			List<CharacterValue> list = new List<CharacterValue>(chars.Length);
 			for (int i = 0; i < chars.Length; i++)
-				list.Add(new Character(chars[i]));
+				list.Add(new CharacterValue(chars[i]));
 			return list.ToArray();
 		}
 

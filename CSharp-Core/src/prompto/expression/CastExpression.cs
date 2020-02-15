@@ -69,10 +69,10 @@ namespace prompto.expression {
 			if (value != null)
 			{
 				IType target = getTargetType(context, type);
-				if (target == DecimalType.Instance && value is Integer)
-					value = new value.Decimal(((Integer)value).DecimalValue);
-				else if (target == IntegerType.Instance && value is value.Decimal)
-					value = new Integer(((value.Decimal)value).IntegerValue);
+				if (target == DecimalType.Instance && value is IntegerValue)
+					value = new value.DecimalValue(((IntegerValue)value).DoubleValue);
+				else if (target == IntegerType.Instance && value is value.DecimalValue)
+					value = new IntegerValue(((value.DecimalValue)value).LongValue);
 				else if (target.isMoreSpecificThan(context, value.GetIType()))
 					value.SetIType(type);
 			}

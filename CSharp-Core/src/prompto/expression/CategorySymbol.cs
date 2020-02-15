@@ -110,7 +110,7 @@ namespace prompto.expression
 						_instance.SetMemberValue(context, argument.GetName(), val);
 					}
 				}
-				_instance.SetMemberValue(context, "name", new Text(this.GetName()));
+				_instance.SetMemberValue(context, "name", new TextValue(this.GetName()));
 				_instance.setMutable(false);
 				instance = _instance;
 			}

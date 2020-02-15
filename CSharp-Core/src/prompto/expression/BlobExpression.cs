@@ -49,7 +49,7 @@ namespace prompto.expression
 			try {
 				Dictionary<String, byte[]> datas = CollectData(context, value);
 				byte[] zipped = ZipData(datas);
-				return new Blob("application/zip", zipped);
+				return new BlobValue("application/zip", zipped);
 			} catch(IOException e) {
 				throw new ReadWriteError(e.Message);
 			}

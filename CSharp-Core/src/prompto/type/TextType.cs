@@ -179,7 +179,7 @@ namespace prompto.type
         public override IValue ConvertCSharpValueToIValue(Context context, Object value)
         {
             if (value is String)
-                return new Text((String)value);
+                return new TextValue((String)value);
             else
                 return (IValue)value; // TODO for now
         }
@@ -270,7 +270,7 @@ namespace prompto.type
             String[] parts = value.Split(sep[0]);
             List<IValue> list = new List<IValue>();
             foreach (String part in parts)
-                list.Add(new Text(part));
+                list.Add(new TextValue(part));
             return new ListValue(TextType.Instance, list, false);
         }
 
@@ -300,7 +300,7 @@ namespace prompto.type
                 return ivalue;
             string replaceWith = (String)context.getValue("replaceWith").GetStorableData();
             text = text.Substring(0, idx) + replaceWith + text.Substring(idx + toReplace.Length);
-            return new Text(text);
+            return new TextValue(text);
         }
 
         public override IType check(Context context)
@@ -323,7 +323,7 @@ namespace prompto.type
             string toReplace = (String)context.getValue("toReplace").GetStorableData();
             string replaceWith = (String)context.getValue("replaceWith").GetStorableData();
             text = text.Replace(toReplace, replaceWith);
-            return new Text(text);
+            return new TextValue(text);
         }
 
 
@@ -348,7 +348,7 @@ namespace prompto.type
         {
             string value = (String)getValue(context).GetStorableData();
             String lower = value.ToLower();
-            return new Text(lower);
+            return new TextValue(lower);
         }
 
         public override IType check(Context context)
@@ -370,7 +370,7 @@ namespace prompto.type
         {
             string value = (String)getValue(context).GetStorableData();
             String upper = value.ToUpper();
-            return new Text(upper);
+            return new TextValue(upper);
         }
 
         public override IType check(Context context)
@@ -392,7 +392,7 @@ namespace prompto.type
         {
             string value = (String)getValue(context).GetStorableData();
             String trim = value.Trim();
-            return new Text(trim);
+            return new TextValue(trim);
         }
 
         public override IType check(Context context)
@@ -417,7 +417,7 @@ namespace prompto.type
             CultureInfo cultureInfo = Thread.CurrentThread.CurrentCulture;
             TextInfo textInfo = cultureInfo.TextInfo;
             string result = textInfo.ToTitleCase(value);
-            return new Text(result);
+            return new TextValue(result);
         }
 
         public override IType check(Context context)
@@ -440,7 +440,7 @@ namespace prompto.type
             string value = (String)getValue(context).GetStorableData();
             string find = (String)context.getValue("value").GetStorableData();
             int indexOf = value.IndexOf(find);
-            return new prompto.value.Integer(indexOf + 1);
+            return new prompto.value.IntegerValue(indexOf + 1);
         }
 
 

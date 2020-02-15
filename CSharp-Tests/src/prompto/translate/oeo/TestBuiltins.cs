@@ -123,9 +123,21 @@ namespace prompto.translate.oeo
 		}
 
 		[Test]
+		public void testListJoin()
+		{
+			compareResourceOEO("builtins/listJoin.poc");
+		}
+
+		[Test]
 		public void testSetCount()
 		{
 			compareResourceOEO("builtins/setCount.poc");
+		}
+
+		[Test]
+		public void testSetJoin()
+		{
+			compareResourceOEO("builtins/setJoin.poc");
 		}
 
 		[Test]
@@ -204,6 +216,12 @@ namespace prompto.translate.oeo
 		public void testTupleCount()
 		{
 			compareResourceOEO("builtins/tupleCount.poc");
+		}
+
+		[Test]
+		public void testTupleJoin()
+		{
+			compareResourceOEO("builtins/tupleJoin.poc");
 		}
 
 	}

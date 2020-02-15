@@ -7,10 +7,10 @@ using prompto.type;
 namespace prompto.value
 {
 
-    public class DateRange : Range<Date>
+    public class DateRange : Range<DateValue>
     {
 
-        public DateRange(Date left, Date right)
+        public DateRange(DateValue left, DateValue right)
             : base(DateType.Instance, left, right)
         {
         }
@@ -24,22 +24,22 @@ namespace prompto.value
         }
 
         override
-        public int compare(Date o1, Date o2)
+        public int compare(DateValue o1, DateValue o2)
         {
             return o1.CompareTo(o2);
         }
 
         override
-		public IValue Item(Integer index)
+		public IValue Item(IntegerValue index)
         {
-            Date result = low.plusDays(index.IntegerValue - 1);
+            DateValue result = low.plusDays(index.LongValue - 1);
             if (result.isAfter(high))
                 throw new IndexOutOfRangeError();
             return result;
         }
 
         override
-        public Range<Date> newInstance(Date left, Date right)
+        public Range<DateValue> newInstance(DateValue left, DateValue right)
         {
             return new DateRange(left, right);
         }

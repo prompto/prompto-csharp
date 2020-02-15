@@ -2,8 +2,6 @@ using System;
 
 using prompto.error;
 using prompto.runtime;
-using System.Text;
-using prompto.parser;
 using prompto.grammar;
 using prompto.value;
 using prompto.csharp;

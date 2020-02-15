@@ -6,10 +6,10 @@ using prompto.type;
 namespace prompto.value
 {
 
-    public class CharacterRange : Range<Character>
+    public class CharacterRange : Range<CharacterValue>
     {
 
-        public CharacterRange(Character left, Character right)
+        public CharacterRange(CharacterValue left, CharacterValue right)
 			:  base(CharacterType.Instance, left, right)
         {
         }
@@ -19,20 +19,20 @@ namespace prompto.value
             return 1 + high.Value - low.Value;
         }
 
-        override public int compare(Character o1, Character o2)
+        override public int compare(CharacterValue o1, CharacterValue o2)
         {
             return o1.Value.CompareTo(o2.Value);
         }
 
-		override public IValue Item(Integer index)
+		override public IValue Item(IntegerValue index)
         {
-            Char result = (char)(low.Value + index.IntegerValue - 1);
+            Char result = (char)(low.Value + index.LongValue - 1);
             if (result > high.Value)
                 throw new IndexOutOfRangeError();
-            return new Character(result);
+            return new CharacterValue(result);
         }
 
-        override public Range<Character> newInstance(Character left, Character right)
+        override public Range<CharacterValue> newInstance(CharacterValue left, CharacterValue right)
         {
             return new CharacterRange(left, right);
         }

@@ -15,9 +15,9 @@ namespace prompto.value
 
         public Guid Value { get { return value; } }
 
-		public Text AsText()
+		public TextValue AsText()
 		{
-			return new Text (value.ToString ());
+			return new TextValue (value.ToString ());
 		}
 
         

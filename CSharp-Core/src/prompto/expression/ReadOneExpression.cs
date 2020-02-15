@@ -49,7 +49,7 @@ namespace prompto.expression
 			IResource res = (IResource)o;
 			if (!res.isReadable())
 				throw new InvalidResourceError("Not readable");
-			return new Text(res.readLine());
+			return new TextValue(res.readLine());
 		}
     }
 

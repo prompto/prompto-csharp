@@ -29,15 +29,15 @@ namespace prompto.reader
 			else if (node is bool)
 				return value.BooleanValue.ValueOf((bool)node);
 			else if (node is int)
-				return new value.Integer((int)node);
+				return new value.IntegerValue((int)node);
 			else if (node is long)
-				return new value.Integer((long)node);
+				return new value.IntegerValue((long)node);
 			else if (node is float)
-				return new value.Decimal((float)node);
+				return new value.DecimalValue((float)node);
 			else if (node is double)
-				return new value.Decimal((double)node);
+				return new value.DecimalValue((double)node);
 			else if (node is string)
-				return new value.Text((string)node);
+				return new value.TextValue((string)node);
 			else if (node is JObject)
 				return nodeToDocument((JObject)node);
 			else if (node is JArray)
@@ -59,11 +59,11 @@ namespace prompto.reader
 					case JTokenType.Boolean:
 						return value.BooleanValue.ValueOf(node.Value<bool>());
 					case JTokenType.Integer:
-						return new value.Integer(node.Value<long>());
+						return new value.IntegerValue(node.Value<long>());
 					case JTokenType.Float:
-						return new value.Decimal(node.Value<double>());
+						return new value.DecimalValue(node.Value<double>());
 					case JTokenType.String:
-						return new value.Text(node.Value<string>());
+						return new value.TextValue(node.Value<string>());
 					case JTokenType.Array:
 						return nodeToList(node.Value<JArray>());
 					case JTokenType.Object:
@@ -74,14 +74,14 @@ namespace prompto.reader
 
 		}
 
-		private static value.Document nodeToDocument(JObject node)
+		private static value.DocumentValue nodeToDocument(JObject node)
 		{
 			Dictionary<String, IValue> values = new Dictionary<String, IValue>();
 			foreach (JProperty prop in node.Properties())
 			{
 				values.Add(prop.Name, nodeToValue(prop.Value));
 			}
-			return new Document(values);
+			return new DocumentValue(values);
 		}
 
 

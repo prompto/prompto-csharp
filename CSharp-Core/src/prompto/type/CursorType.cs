@@ -24,7 +24,7 @@ namespace prompto.type
 
 		public override Type ToCSharpType ()
 		{
-			return typeof(Cursor);
+			return typeof(CursorValue);
 		}
 
 		public override bool isAssignableFrom(Context context, IType other)
@@ -88,7 +88,7 @@ namespace prompto.type
 
 		public override IValue interpret(Context context)
 		{
-			Cursor value = (Cursor)getValue(context);
+			CursorValue value = (CursorValue)getValue(context);
 			return value.ToListValue();
 		}
 

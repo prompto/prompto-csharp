@@ -6,7 +6,7 @@ using prompto.type;
 namespace prompto.literal
 {
 
-    public class TimeLiteral : Literal<Time>
+    public class TimeLiteral : Literal<TimeValue>
     {
 
         public TimeLiteral(String text)
@@ -19,9 +19,9 @@ namespace prompto.literal
             return TimeType.Instance;
         }
 
-        public static Time parseTime(String text)
+        public static TimeValue parseTime(String text)
         {
-            return Time.Parse(text);
+            return TimeValue.Parse(text);
         }
 
 

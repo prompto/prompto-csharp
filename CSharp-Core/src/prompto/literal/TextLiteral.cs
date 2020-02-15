@@ -9,10 +9,10 @@ using prompto.parser;
 namespace prompto.literal
 {
 
-    public class TextLiteral : Literal<Text>
+    public class TextLiteral : Literal<TextValue>
     {
 		public TextLiteral(String text)
-			: base(text, new Text(StringUtils.Unescape(text)))
+			: base(text, new TextValue(StringUtils.Unescape(text)))
         {
         }
 

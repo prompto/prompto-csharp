@@ -8,12 +8,12 @@ namespace prompto.csharp
     public class CSharpIntegerLiteral : CSharpLiteral
     {
 
-        Integer value;
+        IntegerValue value;
 
         public CSharpIntegerLiteral(String text)
 			: base(text)
         {
-            this.value = Integer.Parse(text);
+            this.value = IntegerValue.Parse(text);
         }
 
 		override

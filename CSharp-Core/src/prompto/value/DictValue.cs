@@ -14,18 +14,18 @@ using prompto.store;
 namespace prompto.value
 {
 
-    public class Dict : Dictionary<Text, IValue>, IContainer, IEnumerable<IValue>
+    public class DictValue : Dictionary<TextValue, IValue>, IContainer, IEnumerable<IValue>
     {
         ContainerType type;
         bool mutable = false;
 
-        public Dict(IType itemType, bool mutable)
+        public DictValue(IType itemType, bool mutable)
         {
             this.type = new DictType(itemType);
             this.mutable = mutable;
         }
 
-        public Dict(IType itemType, bool mutable, IDictionary<Text, IValue> from)
+        public DictValue(IType itemType, bool mutable, IDictionary<TextValue, IValue> from)
             : base(from)
         {
             this.type = new DictType(itemType);
@@ -75,8 +75,8 @@ namespace prompto.value
 
         public IValue Add(Context context, IValue value)
         {
-            if (value is Dict)
-                return Dict.merge(this, (Dict)value);
+            if (value is DictValue)
+                return DictValue.merge(this, (DictValue)value);
             else
                 throw new SyntaxError("Illegal: Dict + " + value.GetType().Name);
         }
@@ -123,8 +123,8 @@ namespace prompto.value
 
         public virtual bool HasItem(Context context, IValue value)
         {
-            if (value is Text)
-                return this.ContainsKey((Text)value);
+            if (value is TextValue)
+                return this.ContainsKey((TextValue)value);
             else
                 throw new SyntaxError("Only Text key is supported by " + this.GetType().Name);
         }
@@ -132,11 +132,11 @@ namespace prompto.value
         public virtual IValue GetMemberValue(Context context, String name, bool autoCreate)
         {
             if ("count" == name)
-                return new Integer(this.Count);
+                return new IntegerValue(this.Count);
             else if ("keys" == name)
             {
                 HashSet<IValue> items = new HashSet<IValue>();
-                foreach (Text item in this.Keys)
+                foreach (TextValue item in this.Keys)
                     items.Add(item);
                 return new SetValue(TextType.Instance, items);
             }
@@ -147,7 +147,7 @@ namespace prompto.value
                 return list;
             }
             else if ("text" == name)
-                return new Text(this.ToString());
+                return new TextValue(this.ToString());
             else
                 throw new NotSupportedException("No such member " + name);
         }
@@ -159,10 +159,10 @@ namespace prompto.value
 
         public virtual IValue GetItem(Context context, IValue index)
         {
-            if (index is Text)
+            if (index is TextValue)
             {
                 IValue value;
-                if (TryGetValue((Text)index, out value))
+                if (TryGetValue((TextValue)index, out value))
                     return value;
                 else
                     return NullValue.Instance;
@@ -173,15 +173,15 @@ namespace prompto.value
 
         public virtual void SetItem(Context context, IValue item, IValue value)
         {
-            if (!(item is Text))
+            if (!(item is TextValue))
                 throw new InvalidDataError("No such item:" + item.ToString());
-            this[(Text)item] = value;
+            this[(TextValue)item] = value;
         }
 
         public virtual Object ConvertTo(Type type)
         {
             Dictionary<String, Object> dict = new Dictionary<string, object>();
-            foreach (KeyValuePair<Text, IValue> kvp in ((Dictionary<Text, IValue>)this))
+            foreach (KeyValuePair<TextValue, IValue> kvp in ((Dictionary<TextValue, IValue>)this))
             {
                 string key = (string)kvp.Key.ConvertTo(typeof(String));
                 object value = kvp.Value.ConvertTo(typeof(Object));
@@ -190,10 +190,10 @@ namespace prompto.value
             return dict;
         }
 
-        public static Dict merge(Dict dict1, Dict dict2)
+        public static DictValue merge(DictValue dict1, DictValue dict2)
         {
-            Dict dict = new Dict(dict1.type.GetItemType(), false, dict1); // TODO check type fungibility
-            foreach (KeyValuePair<Text, IValue> kvp in ((Dictionary<Text, IValue>)dict2))
+            DictValue dict = new DictValue(dict1.type.GetItemType(), false, dict1); // TODO check type fungibility
+            foreach (KeyValuePair<TextValue, IValue> kvp in ((Dictionary<TextValue, IValue>)dict2))
                 dict[kvp.Key] = kvp.Value;
             return dict;
         }
@@ -203,7 +203,7 @@ namespace prompto.value
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("<");
-            foreach (KeyValuePair<Text, IValue> kvp in ((Dictionary<Text, IValue>)this))
+            foreach (KeyValuePair<TextValue, IValue> kvp in ((Dictionary<TextValue, IValue>)this))
             {
                 sb.Append('"');
                 sb.Append(kvp.Key.ToString());
@@ -222,12 +222,12 @@ namespace prompto.value
 
         public bool Equals(Context context, IValue rval)
         {
-            if (!(rval is Dict))
+            if (!(rval is DictValue))
                 return false;
-            Dict dict = (Dict)rval;
+            DictValue dict = (DictValue)rval;
             if (this.Count != dict.Count)
                 return false;
-            foreach (Text key in this.Keys)
+            foreach (TextValue key in this.Keys)
             {
                 if (!dict.ContainsKey(key))
                     return false;
@@ -268,9 +268,9 @@ namespace prompto.value
 
     public class KVPValue : BaseValue
     {
-        KeyValuePair<Text, IValue> kvp;
+        KeyValuePair<TextValue, IValue> kvp;
 
-        public KVPValue(KeyValuePair<Text, IValue> kvp)
+        public KVPValue(KeyValuePair<TextValue, IValue> kvp)
             : base(null) // TODO check that this is safe
         {
             this.kvp = kvp;
@@ -291,11 +291,11 @@ namespace prompto.value
     class KVPEnumerator : IEnumerator<IValue>
     {
         KVPValue current = null;
-        IEnumerator<KeyValuePair<Text, IValue>> src;
+        IEnumerator<KeyValuePair<TextValue, IValue>> src;
 
-        public KVPEnumerator(Dict dict)
+        public KVPEnumerator(DictValue dict)
         {
-            this.src = ((Dictionary<Text, IValue>)dict).GetEnumerator();
+            this.src = ((Dictionary<TextValue, IValue>)dict).GetEnumerator();
         }
 
         public object Current { get { return current; } }

@@ -7,9 +7,9 @@ namespace prompto.literal
 {
 	public abstract class DictKey
 	{
-		public Text asText()
+		public TextValue asText()
 		{
-			return new Text(this.asKey());
+			return new TextValue(this.asKey());
 		}
 
 		internal abstract string asKey();

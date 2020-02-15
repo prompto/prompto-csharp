@@ -3,6 +3,8 @@ using prompto.runtime;
 using System;
 using prompto.value;
 using prompto.store;
+using System.Collections.Generic;
+using prompto.declaration;
 
 namespace prompto.type
 {
@@ -76,12 +78,35 @@ namespace prompto.type
             return BooleanType.Instance;
         }
 
-        override
-        public IType checkContainsAllOrAny(Context context, IType other)
+        
+        public override IType checkContainsAllOrAny(Context context, IType other)
         {
             return BooleanType.Instance;
         }
 
+        public override ISet<IMethodDeclaration> getMemberMethods(Context context, string name)
+        {
+            ISet<IMethodDeclaration> list = new HashSet<IMethodDeclaration>();
+            switch (name)
+            {
+                case "join":
+                    list.Add(JOIN_METHOD);
+                    return list;
+                default:
+                    return base.getMemberMethods(context, name);
+            }
+        }
+
+        static IMethodDeclaration JOIN_METHOD = new JoinTupleMethod();
     }
 
+    class JoinTupleMethod : BaseJoinMethod
+    {
+
+        protected override IEnumerable<IValue> getItems(Context context)
+        {
+            TupleValue tuple = (TupleValue)getValue(context);
+            return tuple.GetEnumerable(context);
+        }
+    }
 }

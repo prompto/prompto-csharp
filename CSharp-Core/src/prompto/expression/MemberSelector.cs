@@ -3,7 +3,7 @@ using System;
 using prompto.runtime;
 using prompto.error;
 using prompto.value;
-using DateTime = prompto.value.DateTime;
+using DateTime = prompto.value.DateTimeValue;
 using prompto.parser;
 using prompto.grammar;
 using prompto.type;

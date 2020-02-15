@@ -2,7 +2,7 @@ using NUnit.Framework;
 using System;
 using prompto.grammar;
 using prompto.value;
-using DateTime = prompto.value.DateTime;
+using DateTimeValue = prompto.value.DateTimeValue;
 using prompto.parser;
 using prompto.literal;
 using prompto.declaration;
@@ -368,13 +368,13 @@ namespace prompto.parser
             Assert.IsNotNull(literal);
             Assert.IsTrue(literal is IntegerLiteral);
             Assert.AreEqual("1234", literal.ToString());
-            Assert.AreEqual(1234, ((IntegerLiteral)literal).getValue().IntegerValue);
+            Assert.AreEqual(1234, ((IntegerLiteral)literal).getValue().LongValue);
         }
 
         [Test]
         public void testParseHexa()
         {
-            Assert.AreEqual(0x0A11, HexaLiteral.parseHexa("0x0A11").IntegerValue);
+            Assert.AreEqual(0x0A11, HexaLiteral.parseHexa("0x0A11").LongValue);
         }
 
         [Test]
@@ -386,7 +386,7 @@ namespace prompto.parser
             Assert.IsNotNull(literal);
             Assert.IsTrue(literal is HexaLiteral);
             Assert.AreEqual("0x0A11", generate(literal));
-            Assert.AreEqual(0x0A11, ((HexaLiteral)literal).getValue().IntegerValue);
+            Assert.AreEqual(0x0A11, ((HexaLiteral)literal).getValue().LongValue);
         }
 
         [Test]
@@ -398,7 +398,7 @@ namespace prompto.parser
             Assert.IsNotNull(literal);
             Assert.IsTrue(literal is DecimalLiteral);
             Assert.AreEqual("1234.13", generate(literal));
-            Assert.AreEqual(1234.13, ((DecimalLiteral)literal).getValue().DecimalValue, 0.0000001);
+            Assert.AreEqual(1234.13, ((DecimalLiteral)literal).getValue().DoubleValue, 0.0000001);
         }
 
         [Test]
@@ -459,7 +459,7 @@ namespace prompto.parser
             Assert.IsNotNull(literal);
             Assert.IsTrue(literal is DateLiteral);
             Assert.AreEqual("'2012-10-09'", generate(literal));
-            Assert.AreEqual(new Date(2012, 10, 9), ((DateLiteral)literal).getValue());
+            Assert.AreEqual(new DateValue(2012, 10, 9), ((DateLiteral)literal).getValue());
         }
 
         [Test]
@@ -471,7 +471,7 @@ namespace prompto.parser
             Assert.IsNotNull(literal);
             Assert.IsTrue(literal is TimeLiteral);
             Assert.AreEqual("'15:03:10'", literal.ToString());
-            Assert.AreEqual(new Time(15, 03, 10, 0), ((TimeLiteral)literal).getValue());
+            Assert.AreEqual(new TimeValue(15, 03, 10, 0), ((TimeLiteral)literal).getValue());
         }
 
         [Test]
@@ -483,7 +483,7 @@ namespace prompto.parser
             Assert.IsNotNull(literal);
             Assert.IsTrue(literal is DateTimeLiteral);
             Assert.AreEqual("'2012-10-09T15:18:17Z'", literal.ToString());
-            Assert.AreEqual(new DateTime(2012, 10, 9, 15, 18, 17), ((DateTimeLiteral)literal).getValue());
+            Assert.AreEqual(new DateTimeValue(2012, 10, 9, 15, 18, 17), ((DateTimeLiteral)literal).getValue());
         }
 
         [Test]
@@ -495,7 +495,7 @@ namespace prompto.parser
             Assert.IsNotNull(literal);
             Assert.IsTrue(literal is DateTimeLiteral);
             Assert.AreEqual("'2012-10-09T15:18:17.487Z'", literal.ToString());
-            Assert.AreEqual(new DateTime(2012, 10, 9, 15, 18, 17, 487), ((DateTimeLiteral)literal).getValue());
+            Assert.AreEqual(new DateTimeValue(2012, 10, 9, 15, 18, 17, 487), ((DateTimeLiteral)literal).getValue());
         }
 
         [Test]
@@ -508,8 +508,8 @@ namespace prompto.parser
             Assert.IsTrue(literal is DateTimeLiteral);
             Assert.AreEqual("'2012-10-09T15:18:17+02:00'", literal.ToString());
             TimeSpan offset = new TimeSpan(2, 0, 0);
-            DateTime expected = new DateTime(2012, 10, 9, 15, 18, 17, 0, offset);
-            DateTime actual = ((DateTimeLiteral)literal).getValue();
+            DateTimeValue expected = new DateTimeValue(2012, 10, 9, 15, 18, 17, 0, offset);
+            DateTimeValue actual = ((DateTimeLiteral)literal).getValue();
             Assert.IsTrue(expected.Equals(actual));
         }
 

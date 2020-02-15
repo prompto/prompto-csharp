@@ -16,13 +16,13 @@ namespace prompto.value
 
 		IType itemType;
 		Context context;
-		Integer length;
+		IntegerValue length;
 		String name;
 		IEnumerator<IValue> source;
 		IExpression expression;
 
 		public IterableValue (Context context, String name, IType itemType, 
-			IEnumerator<IValue> source, Integer length, IExpression expression)
+			IEnumerator<IValue> source, IntegerValue length, IExpression expression)
 			: base (new IteratorType (itemType))
 		{
 			this.itemType = itemType;
@@ -53,7 +53,7 @@ namespace prompto.value
 
 		public long Length ()
 		{
-			return length.IntegerValue;
+			return length.LongValue;
 		}
 
 		public IEnumerable<IValue> GetEnumerable (Context context)
@@ -114,7 +114,7 @@ namespace prompto.value
 		public override IValue GetMemberValue (Context context, string name, bool autoCreate)
 		{
 			if ("count" == name)
-				return new Integer(Length());
+				return new IntegerValue(Length());
 			else
 				return base.GetMemberValue(context, name, autoCreate);
 		}

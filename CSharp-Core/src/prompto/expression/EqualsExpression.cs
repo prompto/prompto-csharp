@@ -2,7 +2,7 @@ using prompto.runtime;
 using System;
 using System.Collections.Generic;
 using prompto.value;
-using Decimal = prompto.value.Decimal;
+using Decimal = prompto.value.DecimalValue;
 using BooleanValue = prompto.value.BooleanValue;
 using prompto.parser;
 using prompto.type;

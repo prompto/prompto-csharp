@@ -5,7 +5,7 @@ using prompto.type;
 namespace prompto.literal
 {
 
-    public class DateLiteral : Literal<Date>
+    public class DateLiteral : Literal<DateValue>
     {
 
         public DateLiteral(String text)
@@ -19,9 +19,9 @@ namespace prompto.literal
             return DateType.Instance;
         }
 
-        public static Date parseDate(String text)
+        public static DateValue parseDate(String text)
         {
-            return Date.Parse(text);
+            return DateValue.Parse(text);
         }
 
     }

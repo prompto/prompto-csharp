@@ -6,10 +6,10 @@ using prompto.type;
 namespace prompto.value
 {
 
-    public class TimeRange : Range<Time>
+    public class TimeRange : Range<TimeValue>
     {
 
-        public TimeRange(Time left, Time right)
+        public TimeRange(TimeValue left, TimeValue right)
             : base(TimeType.Instance, left, right)
         {
         }
@@ -22,22 +22,22 @@ namespace prompto.value
         }
 
         override
-        public int compare(Time o1, Time o2)
+        public int compare(TimeValue o1, TimeValue o2)
         {
             return o1.CompareTo(o2);
         }
 
         override
-		public IValue Item(Integer index)
+		public IValue Item(IntegerValue index)
         {
-            Time result = low.plusSeconds(index.IntegerValue - 1);
+            TimeValue result = low.plusSeconds(index.LongValue - 1);
             if (result.isAfter(high))
                 throw new IndexOutOfRangeError();
             return result;
         }
 
         override
-        public Range<Time> newInstance(Time left, Time right)
+        public Range<TimeValue> newInstance(TimeValue left, TimeValue right)
         {
             return new TimeRange(left, right);
         }

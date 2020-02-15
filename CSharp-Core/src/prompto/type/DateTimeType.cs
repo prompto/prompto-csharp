@@ -2,7 +2,7 @@ using prompto.value;
 using prompto.runtime;
 using System;
 using System.Collections.Generic;
-using DateTime = prompto.value.DateTime;
+using DateTimeValue = prompto.value.DateTimeValue;
 using prompto.store;
 
 namespace prompto.type
@@ -34,16 +34,16 @@ namespace prompto.type
         
         public override Type ToCSharpType()
         {
-            return typeof(DateTime);
+            return typeof(DateTimeValue);
         }
 
 
 		public override IValue ConvertCSharpValueToIValue(Context context, Object value)
 		{
 			if (value is System.DateTimeOffset)
-				return new DateTime((System.DateTimeOffset)value);
+				return new DateTimeValue((System.DateTimeOffset)value);
 			else if (value is System.DateTime?)
-				return new DateTime(((System.DateTimeOffset?)value).Value);
+				return new DateTimeValue(((System.DateTimeOffset?)value).Value);
 			else
 				return base.ConvertCSharpValueToIValue(context, value);
 		}
@@ -121,7 +121,7 @@ namespace prompto.type
 
     }
 
-    class DateTimeComparer : NativeComparer<DateTime>
+    class DateTimeComparer : NativeComparer<DateTimeValue>
     {
         public DateTimeComparer(bool descending)
             : base(descending)
@@ -129,7 +129,7 @@ namespace prompto.type
         }
 
         
-        protected override int DoCompare(DateTime o1, DateTime o2)
+        protected override int DoCompare(DateTimeValue o1, DateTimeValue o2)
         {
             return o1.CompareTo(o2);
         }

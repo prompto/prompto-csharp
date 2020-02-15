@@ -125,25 +125,25 @@ namespace prompto.type
 
         public override IRange newRange(Object left, Object right)
         {
-            if (left is Integer && right is Integer)
-                return new IntegerRange((Integer)left, (Integer)right);
+            if (left is IntegerValue && right is IntegerValue)
+                return new IntegerRange((IntegerValue)left, (IntegerValue)right);
             return base.newRange(left, right);
         }
 
         public override IValue ConvertCSharpValueToIValue(Context context, Object value)
         {
             if (value is Int16)
-                return new Integer((Int16)value);
+                return new IntegerValue((Int16)value);
             else if (value is Int16?)
-                return new Integer(((Int16?)value).Value);
+                return new IntegerValue(((Int16?)value).Value);
             else if (value is Int32)
-                return new Integer((Int32)value);
+                return new IntegerValue((Int32)value);
             else if (value is Int32?)
-                return new Integer(((Int32?)value).Value);
+                return new IntegerValue(((Int32?)value).Value);
             else if (value is Int64)
-                return new Integer((Int64)value);
+                return new IntegerValue((Int64)value);
             else if (value is Int64?)
-                return new Integer(((Int64?)value).Value);
+                return new IntegerValue(((Int64?)value).Value);
             else
                 return (IValue)value; // TODO for now
         }
@@ -163,9 +163,9 @@ namespace prompto.type
         public override IValue getStaticMemberValue(Context context, String name)
         {
             if (name == "min")
-                return new Integer(Int64.MinValue);
+                return new IntegerValue(Int64.MinValue);
             else if (name == "max")
-                return new Integer(Int64.MaxValue);
+                return new IntegerValue(Int64.MaxValue);
             else
                 return base.getStaticMemberValue(context, name);
         }
@@ -204,7 +204,7 @@ namespace prompto.type
             Int64 value = (Int64)getValue(context).GetStorableData();
             string format = (String)context.getValue("format").GetStorableData();
             string result = value.ToString(format);
-            return new Text(result);
+            return new TextValue(result);
         }
 
 
@@ -230,7 +230,7 @@ namespace prompto.type
 
         protected override int DoCompare(INumber o1, INumber o2)
         {
-            return o1.IntegerValue.CompareTo(o2.IntegerValue);
+            return o1.LongValue.CompareTo(o2.LongValue);
         }
 
     }

@@ -9,7 +9,7 @@ using prompto.utils;
 namespace prompto.literal
 {
 
-	public class DictLiteral : Literal<Dict>
+	public class DictLiteral : Literal<DictValue>
 	{
 
 		// we can only compute keys by evaluating key expressions
@@ -20,14 +20,14 @@ namespace prompto.literal
 		IType itemType = null;
 
 		public DictLiteral (bool mutable)
-			: base ("<:>", new Dict (MissingType.Instance, mutable))
+			: base ("<:>", new DictValue (MissingType.Instance, mutable))
 		{
 			this.entries = new DictEntryList ();
 			this.mutable = mutable;
 		}
 
 		public DictLiteral (DictEntryList entries, bool mutable)
-			: base (entries.ToString (), new Dict (MissingType.Instance, mutable))
+			: base (entries.ToString (), new DictValue (MissingType.Instance, mutable))
 		{
 			this.entries = entries;
 			this.mutable = mutable;
@@ -58,13 +58,13 @@ namespace prompto.literal
 		{
 			if (entries.Count > 0) {
 				check (context); // to compute itemType
-				Dictionary<Text, IValue> dict = new Dictionary<Text, IValue> ();
+				Dictionary<TextValue, IValue> dict = new Dictionary<TextValue, IValue> ();
 				foreach (DictEntry e in entries) {
-					Text key = e.GetKey ().asText ();
+					TextValue key = e.GetKey ().asText ();
 					IValue val = e.GetValue ().interpret (context);
 					dict [key] = val;
 				}
-				return new Dict (itemType, mutable, dict);
+				return new DictValue (itemType, mutable, dict);
 			} else
 				return value;
 		}

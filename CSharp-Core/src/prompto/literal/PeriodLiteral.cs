@@ -5,7 +5,7 @@ using prompto.type;
 namespace prompto.literal
 {
 
-    public class PeriodLiteral : Literal<Period>
+    public class PeriodLiteral : Literal<PeriodValue>
     {
 
         public PeriodLiteral(String text)
@@ -19,9 +19,9 @@ namespace prompto.literal
             return PeriodType.Instance;
         }
 
-        public static Period parsePeriod(String text)
+        public static PeriodValue parsePeriod(String text)
         {
-            return Period.Parse(text);
+            return PeriodValue.Parse(text);
         }
 
     }

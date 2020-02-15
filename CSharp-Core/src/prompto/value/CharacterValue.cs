@@ -9,11 +9,11 @@ using prompto.type;
 
 namespace prompto.value
 {
-    public class Character : BaseValue, IComparable<Character>, IMultiplyable
+    public class CharacterValue : BaseValue, IComparable<CharacterValue>, IMultiplyable
     {
         char value;
 
-        public Character(char value)
+        public CharacterValue(char value)
 			: base(CharacterType.Instance)
         {
             this.value = value;
@@ -26,15 +26,15 @@ namespace prompto.value
 			return value;
 		}
 
-		public Text AsText()
+		public TextValue AsText()
 		{
-			return new Text (value.ToString ());
+			return new TextValue (value.ToString ());
 		}
 
 		public override IValue GetMemberValue(Context context, String name, bool autoCreate)
 		{
 			if ("codePoint" == name)
-				return new Integer((int)value);
+				return new IntegerValue((int)value);
 			else
 				return base.GetMemberValue(context, name, autoCreate);
 		}
@@ -42,31 +42,31 @@ namespace prompto.value
 		override
         public IValue Add(Context context, IValue value)
         {
-            return new Text(this.value.ToString() + value.ToString());
+            return new TextValue(this.value.ToString() + value.ToString());
         }
 
         override
         public IValue Multiply(Context context, IValue value)
         {
-            if (value is Integer)
+            if (value is IntegerValue)
             {
-                int count = (int)((Integer)value).IntegerValue;
+                int count = (int)((IntegerValue)value).LongValue;
                 if (count < 0)
                     throw new SyntaxError("Negative repeat count:" + count);
                 if (count == 0)
-                    return new Text("");
+                    return new TextValue("");
                 if (count == 1)
-                    return new Text(this.value.ToString());
+                    return new TextValue(this.value.ToString());
                 char[] cc = new char[count];
                 for (int i = 0; i < count; i++)
                     cc[i] = this.value;
-                return new Text(new String(cc));
+                return new TextValue(new String(cc));
           }
             else
                throw new SyntaxError("Illegal: Chararacter * " + value.GetType().Name);
          }
 
-        public int CompareTo(Character obj)
+        public int CompareTo(CharacterValue obj)
         {
             return value.CompareTo(obj.Value);
         }
@@ -74,8 +74,8 @@ namespace prompto.value
         override
         public Int32 CompareTo(Context context, IValue value)
         {
-            if (value is Character)
-                return this.value.CompareTo(((Character)value).value);
+            if (value is CharacterValue)
+                return this.value.CompareTo(((CharacterValue)value).value);
             else
                 throw new SyntaxError("Illegal comparison: Character + " + value.GetType().Name);
 
@@ -97,8 +97,8 @@ namespace prompto.value
         override
         public bool Equals(object obj)
         {
-            if (obj is Character)
-                return value.Equals(((Character)obj).value);
+            if (obj is CharacterValue)
+                return value.Equals(((CharacterValue)obj).value);
             else
                 return value.Equals(obj);
         }
@@ -106,7 +106,7 @@ namespace prompto.value
 		override
 		public bool Roughly(Context context, IValue obj)
 		{
-			if (obj is Character || obj is Text) 
+			if (obj is CharacterValue || obj is TextValue) 
 			{
 				return string.Compare(value.ToString(), obj.ToString(), true)==0;
 			}

@@ -2,7 +2,7 @@ using prompto.runtime;
 using System;
 using prompto.error;
 using prompto.value;
-using Decimal = prompto.value.Decimal;
+using Decimal = prompto.value.DecimalValue;
 using prompto.parser;
 using prompto.type;
 using prompto.utils;

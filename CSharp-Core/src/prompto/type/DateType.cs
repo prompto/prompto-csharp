@@ -29,7 +29,7 @@ namespace prompto.type
         
         public override Type ToCSharpType()
         {
-            return typeof(Date);
+            return typeof(DateValue);
         }
 
 
@@ -94,8 +94,8 @@ namespace prompto.type
         
         public override IRange newRange(Object left, Object right)
         {
-            if (left is Date && right is Date)
-                return new DateRange((Date)left, (Date)right);
+            if (left is DateValue && right is DateValue)
+                return new DateRange((DateValue)left, (DateValue)right);
             return base.newRange(left, right);
         } 
 
@@ -111,14 +111,14 @@ namespace prompto.type
 		}
     }
 
-    class DateComparer : NativeComparer<Date>
+    class DateComparer : NativeComparer<DateValue>
     {
         public DateComparer(bool descending)
             : base(descending)
         {
         }
         
-        protected override int DoCompare(Date o1, Date o2)
+        protected override int DoCompare(DateValue o1, DateValue o2)
         {
             return o1.getMillis().CompareTo(o2.getMillis());
         }

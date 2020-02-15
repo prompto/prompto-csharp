@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using prompto.value;
 using System.Collections;
 using prompto.store;
+using prompto.declaration;
 
 namespace prompto.type
 {
@@ -113,6 +114,20 @@ namespace prompto.type
 			return itemType;
 		}
 
+
+		public override ISet<IMethodDeclaration> getMemberMethods(Context context, string name)
+		{
+			ISet<IMethodDeclaration> list = new HashSet<IMethodDeclaration>();
+			switch (name)
+			{
+				case "join":
+					list.Add(JOIN_METHOD);
+					return list;
+				default:
+					return base.getMemberMethods(context, name);
+			}
+		}
+
 		public override IValue ConvertCSharpValueToIValue(Context context, Object value)
 		{
 			if (value is ICollection)
@@ -126,6 +141,16 @@ namespace prompto.type
 				return base.ConvertCSharpValueToIValue(context, value);
 		}
 
+		static IMethodDeclaration JOIN_METHOD = new JoinListMethod();
+
 	}
 
+    class JoinListMethod : BaseJoinMethod {
+
+		protected override IEnumerable<IValue> getItems(Context context)
+		{
+			ListValue list = (ListValue)getValue(context);
+			return list.GetEnumerable(context);
+		}
+	}
 }

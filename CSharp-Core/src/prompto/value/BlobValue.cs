@@ -3,14 +3,14 @@ using prompto.type;
 
 namespace prompto.value
 {
-	public class Blob : BinaryValue
+	public class BlobValue : BinaryValue
 	{
-		public Blob ()
+		public BlobValue ()
 			: base(BlobType.Instance)
 		{
 		}
 
-		public Blob (String mimeType, byte[] data)
+		public BlobValue (String mimeType, byte[] data)
 			: base(BlobType.Instance, mimeType, data)
 		{
 		}

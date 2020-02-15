@@ -25,7 +25,7 @@ namespace prompto.type
         override
         public System.Type ToCSharpType()
         {
-            return typeof(Period);
+            return typeof(PeriodValue);
         }
 
 

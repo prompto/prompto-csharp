@@ -1,16 +1,16 @@
 using System;
 using prompto.runtime;
-using Decimal = prompto.value.Decimal;
+using DecimalValue = prompto.value.DecimalValue;
 using prompto.type;
 
 namespace prompto.literal
 {
 
-    public class DecimalLiteral : Literal<Decimal>
+    public class DecimalLiteral : Literal<DecimalValue>
     {
 
         public DecimalLiteral(String text)
-            : base(text, Decimal.Parse(text))
+            : base(text, DecimalValue.Parse(text))
         {
         }
 

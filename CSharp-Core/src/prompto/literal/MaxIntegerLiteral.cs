@@ -6,7 +6,7 @@ namespace prompto.literal
 	public class MaxIntegerLiteral : IntegerLiteral {
 
 		public MaxIntegerLiteral()
-			: base("MAX_INTEGER", new Integer(Int64.MaxValue))
+			: base("MAX_INTEGER", new IntegerValue(Int64.MaxValue))
 		{
 
 		}

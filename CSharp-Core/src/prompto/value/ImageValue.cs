@@ -3,9 +3,9 @@ using prompto.type;
 
 namespace prompto.value
 {
-	public class Image : BinaryValue
+	public class ImageValue : BinaryValue
 	{
-		public Image ()
+		public ImageValue ()
 			: base(ImageType.Instance)
 		{
 		}

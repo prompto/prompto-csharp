@@ -79,12 +79,12 @@ namespace prompto.runtime
             try
             {
                 Dictionary<String, String> args = CmdLineParser.parse(cmdLineArgs);
-                Dictionary<Text, IValue> valueArgs = new Dictionary<Text, IValue>();
+                Dictionary<TextValue, IValue> valueArgs = new Dictionary<TextValue, IValue>();
                 foreach (String key in args.Keys)
                 {
-                    valueArgs[new Text(key)] = new Text(args[key]);
+                    valueArgs[new TextValue(key)] = new TextValue(args[key]);
                 }
-                Dict dict = new Dict(TextType.Instance, false, valueArgs);
+                DictValue dict = new DictValue(TextType.Instance, false, valueArgs);
                 return new ValueExpression(argsType, dict);
             }
             catch (Exception)

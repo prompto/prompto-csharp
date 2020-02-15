@@ -7,7 +7,7 @@ namespace prompto.value
 {
     public interface INumber : IValue
     {
-        long IntegerValue { get; }
-        double DecimalValue { get; }
+        long LongValue { get; }
+        double DoubleValue { get; }
     }
 }

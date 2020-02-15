@@ -1,6 +1,6 @@
 using System;
 using prompto.runtime;
-using Decimal = prompto.value.Decimal;
+using DecimalValue = prompto.value.DecimalValue;
 
 namespace prompto.java
 {
@@ -8,12 +8,12 @@ namespace prompto.java
     public class JavaDecimalLiteral : JavaLiteral
     {
 
-        Decimal value;
+        DecimalValue value;
 
         public JavaDecimalLiteral(String text)
 			: base(text)
         {
-            this.value = Decimal.Parse(text);
+            this.value = DecimalValue.Parse(text);
         }
 
         override

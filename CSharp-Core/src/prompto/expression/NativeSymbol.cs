@@ -98,7 +98,7 @@ namespace prompto.expression
 	public override IValue GetMemberValue(Context context, String name, bool autoCreate) 
 	{
 		if("name".Equals(name))
-			return new Text(this.GetName());
+			return new TextValue(this.GetName());
 		else if("value".Equals(name))
 			return expression.interpret(context);
 		else

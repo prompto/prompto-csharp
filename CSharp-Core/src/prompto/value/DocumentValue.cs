@@ -10,17 +10,17 @@ using System.IO;
 namespace prompto.value
 {
 
-    public class Document : BaseValue
+    public class DocumentValue : BaseValue
     {
 		Dictionary<String, IValue> values;
 
-		public Document()
+		public DocumentValue()
 			: base (DocumentType.Instance)
 		{
 			values = new Dictionary<String, IValue>();
 		}
 
-		public Document(Dictionary<String, IValue> values)
+		public DocumentValue(Dictionary<String, IValue> values)
 			: base(DocumentType.Instance)
 		{
 			this.values = values;
@@ -62,10 +62,10 @@ namespace prompto.value
 			if (values.TryGetValue(name, out result))
 				return result;
 			else if ("text" == name)
-				return new Text(this.ToString());
+				return new TextValue(this.ToString());
 			else if (autoCreate)
 			{
-				result = new Document();
+				result = new DocumentValue();
 				values[name] = result; 
 				return result;
 			} else
@@ -87,7 +87,7 @@ namespace prompto.value
 
 		public override IValue GetItem (Context context, IValue index)
 		{
-			if (index is Text) {
+			if (index is TextValue) {
 				IValue result;
 				if (values.TryGetValue (index.ToString(), out result))
 					return result;
@@ -99,7 +99,7 @@ namespace prompto.value
 
 		public override void SetItem (Context context, IValue item, IValue value)
 		{
-			if (!(item is Text))
+			if (!(item is TextValue))
 				throw new InvalidDataError ("No such item:" + item.ToString ());
 			values[item.ToString ()] = value;
 		}

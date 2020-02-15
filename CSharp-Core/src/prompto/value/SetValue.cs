@@ -58,8 +58,8 @@ namespace prompto.value
 
 		public override IValue GetItem (Context context, IValue index)
 		{
-			if (index is Integer) {
-				int idx = (int)((Integer)index).IntegerValue - 1;
+			if (index is IntegerValue) {
+				int idx = (int)((IntegerValue)index).LongValue - 1;
 				return getNthItem (idx);
 			} else
 				throw new SyntaxError ("No such item:" + index.ToString ());
@@ -170,7 +170,7 @@ namespace prompto.value
 		public override IValue GetMemberValue(Context context, String name, bool autoCreate)
 		{
 			if ("count" == name)
-				return new Integer(this.Length());
+				return new IntegerValue(this.Length());
 			else
 				return base.GetMemberValue(context, name, autoCreate);
 		}

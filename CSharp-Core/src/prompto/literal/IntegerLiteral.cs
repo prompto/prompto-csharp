@@ -6,19 +6,19 @@ using prompto.type;
 namespace prompto.literal
 {
 
-    public class IntegerLiteral : Literal<Integer>
+    public class IntegerLiteral : Literal<IntegerValue>
     {
         public IntegerLiteral(String text)
-            : base(text, Integer.Parse(text))
+            : base(text, IntegerValue.Parse(text))
         {
         }
 
         public IntegerLiteral(Int64 value)
-            : base(value.ToString(), new Integer(value))
+            : base(value.ToString(), new IntegerValue(value))
         {
         }
 
-		public IntegerLiteral(String text, Integer value)
+		public IntegerLiteral(String text, IntegerValue value)
 			: base(text, value)
 		{
 		}

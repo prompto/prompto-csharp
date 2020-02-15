@@ -162,7 +162,7 @@ namespace prompto.value
         private IValue GetCategory(Context context)
         {
             NativeCategoryDeclaration decl = context.getRegisteredDeclaration<NativeCategoryDeclaration>("Category");
-		    return new NativeInstance(decl, declaration);
+            return new NativeInstance(decl, declaration);
         }
 
         protected IValue GetMemberAllowGetter(Context context, String attrName, bool allowGetter)
@@ -182,7 +182,7 @@ namespace prompto.value
                     return NullValue.Instance;
             }
             else if ("text" == attrName)
-                return new Text(this.ToString());
+                return new TextValue(this.ToString());
             else
                 return NullValue.Instance;
         }
@@ -233,8 +233,8 @@ namespace prompto.value
 
         private IValue autocast(AttributeDeclaration decl, IValue value)
         {
-            if (value != null && value is prompto.value.Integer && decl.getIType() == DecimalType.Instance)
-                value = new Decimal(((prompto.value.Integer)value).DecimalValue);
+            if (value != null && value is prompto.value.IntegerValue && decl.getIType() == DecimalType.Instance)
+                value = new DecimalValue(((prompto.value.IntegerValue)value).DoubleValue);
             return value;
         }
 

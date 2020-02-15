@@ -46,7 +46,7 @@ namespace prompto.parser.e {
             Context context = Context.newGlobalContext();
             IParameter arg = new CategoryParameter(TextType.Instance, "value");
             arg.register(context);
-            context.setValue("value", new prompto.value.Text("test")); // StringLiteral trims enclosing quotes
+            context.setValue("value", new prompto.value.TextValue("test")); // StringLiteral trims enclosing quotes
             Object result = statement.interpret(context, null);
             Assert.IsNull(result);
             Assert.AreEqual("test", Out.read());

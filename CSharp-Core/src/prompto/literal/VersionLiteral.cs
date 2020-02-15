@@ -5,7 +5,7 @@ using prompto.type;
 namespace prompto.literal
 {
 
-    public class VersionLiteral : Literal<value.Version>
+    public class VersionLiteral : Literal<value.VersionValue>
     {
 
         public VersionLiteral(String text)
@@ -19,9 +19,9 @@ namespace prompto.literal
             return VersionType.Instance;
         }
 
-        public static value.Version parseVersion(String text)
+        public static value.VersionValue parseVersion(String text)
         {
-            return prompto.value.Version.Parse(text);
+            return prompto.value.VersionValue.Parse(text);
         }
 
     }

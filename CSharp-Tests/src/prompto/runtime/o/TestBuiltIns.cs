@@ -124,9 +124,21 @@ namespace prompto.runtime.o
 		}
 
 		[Test]
+		public void testListJoin()
+		{
+			CheckOutput("builtins/listJoin.poc");
+		}
+
+		[Test]
 		public void testSetCount()
 		{
 			CheckOutput("builtins/setCount.poc");
+		}
+
+		[Test]
+		public void testSetJoin()
+		{
+			CheckOutput("builtins/setJoin.poc");
 		}
 
 		[Test]
@@ -205,6 +217,12 @@ namespace prompto.runtime.o
 		public void testTupleCount()
 		{
 			CheckOutput("builtins/tupleCount.poc");
+		}
+
+		[Test]
+		public void testTupleJoin()
+		{
+			CheckOutput("builtins/tupleJoin.poc");
 		}
 
 	}

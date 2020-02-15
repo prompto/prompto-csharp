@@ -26,7 +26,7 @@ namespace prompto.utils
 
         private void TestOne(String s)
         {
-            Period period = Period.Parse(s);
+            PeriodValue period = PeriodValue.Parse(s);
             Assert.AreEqual(s, period.ToString());
         }
 

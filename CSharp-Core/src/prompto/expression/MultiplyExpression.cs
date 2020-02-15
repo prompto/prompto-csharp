@@ -3,7 +3,7 @@ using System;
 using prompto.value;
 using prompto.error;
 using System.Text;
-using Decimal = prompto.value.Decimal;
+using Decimal = prompto.value.DecimalValue;
 using prompto.parser;
 using prompto.type;
 using prompto.utils;

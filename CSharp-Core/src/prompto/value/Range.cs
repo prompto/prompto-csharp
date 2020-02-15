@@ -34,11 +34,11 @@ namespace prompto.value
 
     public override IValue GetItem(Context context, IValue index)
     {
-        if (index is Integer)
+        if (index is IntegerValue)
         {
             try
             {
-                Object value = this.Item((Integer)index);
+                Object value = this.Item((IntegerValue)index);
                 if (value is IExpression)
                     value = ((IExpression)value).interpret(context);
                 if (value is IValue)
@@ -93,17 +93,17 @@ namespace prompto.value
 		return compare(val,low)>=0 && compare(high,val)>=0;
 	}
 
-   public ISliceable Slice(Context context, Integer fi, Integer li)
+   public ISliceable Slice(Context context, IntegerValue fi, IntegerValue li)
     {
 		if (fi==null)
-            fi = new Integer(1L);
-        if (fi.IntegerValue < 0)
+            fi = new IntegerValue(1L);
+        if (fi.LongValue < 0)
 			throw new IndexOutOfRangeError();
         if (li == null)
             li = size();
-        if (li.IntegerValue < 0)
-            li = new Integer(size().IntegerValue + 1 + li.IntegerValue);
-        else if (li.IntegerValue > size().IntegerValue)
+        if (li.LongValue < 0)
+            li = new IntegerValue(size().LongValue + 1 + li.LongValue);
+        else if (li.LongValue > size().LongValue)
 			throw new IndexOutOfRangeError();
         return newInstance((T)Item(fi), (T)Item(li));
 	}
@@ -124,12 +124,12 @@ namespace prompto.value
 
 		public abstract long Length ();
 
-		public Integer size()
+		public IntegerValue size()
 		{
-			return new Integer(Length());
+			return new IntegerValue(Length());
 		}
 
-    public abstract IValue Item(Integer index);
+    public abstract IValue Item(IntegerValue index);
 	public abstract int compare(T o1,T o2);
 	public abstract Range<T> newInstance(T left,T right);
 
@@ -150,12 +150,12 @@ namespace prompto.value
 
     object Current
     {
-        get { return range.Item(new Integer(index)); }
+        get { return range.Item(new IntegerValue(index)); }
     }
 
     public bool MoveNext()
     {
-        long size = range.size().IntegerValue;
+        long size = range.size().LongValue;
         return ++index <= size;
     }
 
@@ -169,13 +169,13 @@ namespace prompto.value
     {
         get
         {
-            return range.Item(new Integer(index));
+            return range.Item(new IntegerValue(index));
         }
     }
 
 		IValue IEnumerator<IValue>.Current
     {
-        get { return (T)range.Item(new Integer(index)); }
+        get { return (T)range.Item(new IntegerValue(index)); }
     }
 
 

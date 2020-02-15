@@ -33,21 +33,21 @@ namespace prompto.expression
 		public override IValue interpret(Context context)
         {
 			if (source == null)
-				return new Document ();
+				return new DocumentValue ();
 			else {
 				IValue value = source.interpret (context);
 				return documentFromValue (context, value);
 			}
         }
 
-		private Document documentFromValue(Context context, IValue value) {
-			if(value is Blob)
-				return documentFromBlob(context, (Blob)value);
+		private DocumentValue documentFromValue(Context context, IValue value) {
+			if(value is BlobValue)
+				return documentFromBlob(context, (BlobValue)value);
 			else
 				throw new NotSupportedException();
 		}
 
-		private Document documentFromBlob(Context context, Blob blob) {
+		private DocumentValue documentFromBlob(Context context, BlobValue blob) {
 			if("application/zip"!=blob.MimeType)
 				throw new NotSupportedException();
 			try {
@@ -61,7 +61,7 @@ namespace prompto.expression
 					throw new InvalidDataException("Expecting a Document type!");
 				if(!value.TryGetValue("value", out token))
 					throw new InvalidDataException("Expecting a 'value' field!");
-				return (Document)type.ReadJSONValue(context, token, parts);
+				return (DocumentValue)type.ReadJSONValue(context, token, parts);
 			} catch(Exception e) {
 				throw new ReadWriteError(e.Message);
 			}
