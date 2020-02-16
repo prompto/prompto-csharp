@@ -86,6 +86,7 @@ namespace prompto.type
         internal static IParameter TO_REPLACE_ARGUMENT = new CategoryParameter(TextType.Instance, "toReplace");
         internal static IParameter REPLACE_WITH_ARGUMENT = new CategoryParameter(TextType.Instance, "replaceWith");
         internal static IParameter VALUE_ARGUMENT = new CategoryParameter(TextType.Instance, "value");
+        internal static IParameter FROM_INDEX_ARGUMENT = new CategoryParameter(IntegerType.Instance, "fromIndex", new IntegerLiteral("1"));
 
         internal static IMethodDeclaration STARTS_WITH_METHOD = new StartsWithMethodDeclaration();
         internal static IMethodDeclaration ENDS_WITH_METHOD = new EndsWithMethodDeclaration();
@@ -431,15 +432,16 @@ namespace prompto.type
     {
 
         public IndexOfMethodDeclaration()
-            : base("indexOf", TextType.VALUE_ARGUMENT)
+            : base("indexOf", TextType.VALUE_ARGUMENT, TextType.FROM_INDEX_ARGUMENT)
         {
         }
 
         public override IValue interpret(Context context)
         {
             string value = (String)getValue(context).GetStorableData();
-            string find = (String)context.getValue("value").GetStorableData();
-            int indexOf = value.IndexOf(find);
+            string toFind = (String)context.getValue("value").GetStorableData();
+            long fromIndex = (long)context.getValue("fromIndex").GetStorableData();
+            int indexOf = value.IndexOf(toFind, (Int32)fromIndex - 1);
             return new prompto.value.IntegerValue(indexOf + 1);
         }
 
