@@ -166,20 +166,17 @@ namespace prompto.expression
                     }
                 }
             }
+			if (value is CategorySymbol)
+				value = ((CategorySymbol)value).interpret(context);
             if (value is TypeValue)
             {
                 return context.newChildContext();
             }
-            else if (value is ConcreteInstance)
+            else if (value is IInstance)
 			{
-				context = context.newInstanceContext((ConcreteInstance)value, false);
+				context = context.newInstanceContext((IInstance)value, false);
 				return context.newChildContext();
 			} 
-			else if(value is NativeInstance) 
-			{
-				context = context.newInstanceContext((NativeInstance)value, false);
-				return context.newChildContext();
-			}
 			else
 			{
 				context = context.newBuiltInContext(value);
