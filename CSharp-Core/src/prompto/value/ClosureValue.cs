@@ -19,13 +19,25 @@ namespace prompto.value
 			this.context = context;
 		}
 
-		public IValue interpret (Context context)
+		public IValue interpret(Context context)
 		{
-			Context parentMost = this.context.getParentMostContext ();
-			parentMost.setParentContext (context);
-			IValue result = Method.interpret (this.context);
-			parentMost.setParentContext (null);
-			return result;
+			Context parentMost = this.context.getParentMostContext();
+			Context savedParent = parentMost.getParentContext();
+			parentMost.setParentContext(context);
+			Context local = this.context.newChildContext();
+			try
+			{
+				return doInterpret(local);
+			}
+			finally
+			{
+				parentMost.setParentContext(savedParent);
+			}
+		}
+
+		private IValue doInterpret(Context local)
+		{
+            return Method.interpret (local);
 		}
 
 		private IMethodDeclaration Method
