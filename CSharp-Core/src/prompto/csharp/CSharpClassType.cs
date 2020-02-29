@@ -37,6 +37,7 @@ namespace prompto.csharp
             typeToPromptoMap[typeof(Guid)] = UUIDType.Instance;
             typeToPromptoMap[typeof(DocumentValue)] = DocumentType.Instance; // TODO until we have a compiler
             typeToPromptoMap[typeof(object)] = AnyType.Instance;
+            typeToPromptoMap[typeof(IValue)] = AnyType.Instance;
         }
 
         internal Type type;
@@ -76,15 +77,25 @@ namespace prompto.csharp
                 return null;
         }
 
+        Type GetGenericType(Type type)
+        {
+            if (type == null)
+                return null;
+            else if (type.IsGenericType)
+                return type;
+            else 
+                return GetGenericType(type.BaseType);
+         }
+
         public IType GetITypeFromCollectionType(Context context, Type type)
         {
-
-            if (!type.IsGenericType)
+            type = GetGenericType(type);
+            if (type==null)
                 return null;
             Type parent = type.GetGenericTypeDefinition();
             Type item = type.GetGenericArguments()[0];
             IType itemType = ConvertCSharpTypeToPromptoType(context, item, null);
-            if (parent == typeof(List<>))
+            if (typeof(IList).IsAssignableFrom(parent))
                 return new ListType(itemType);
             else if (parent == typeof(IEnumerator<>))
                 return new IteratorType(itemType);

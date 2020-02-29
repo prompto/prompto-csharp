@@ -124,6 +124,25 @@ namespace prompto.value
         }
 
 
+        public override bool Equals(object rval)
+        {
+            if (!(rval is ListValue))
+                return false;
+            ListValue list = (ListValue)rval;
+            if (this.Count != list.Count)
+                return false;
+            IEnumerator<Object> li = this.GetEnumerator();
+            IEnumerator<Object> ri = list.GetEnumerator();
+            while (li.MoveNext() && ri.MoveNext())
+            {
+                Object lival = li.Current;
+                Object rival = ri.Current;
+                if (!lival.Equals(rival))
+                    return false;
+            }
+            return true;
+        }
+
         public bool Equals(Context context, IValue rval)
         {
             if (!(rval is ListValue))

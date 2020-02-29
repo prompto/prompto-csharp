@@ -31,6 +31,9 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="YamlDotNet">
+      <HintPath>..\packages\YamlDotNet.8.1.0\lib\net35\YamlDotNet.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -40,6 +43,8 @@
     <Compile Include="src\prompto\io\Buffer.cs" />
     <Compile Include="src\prompto\reader\JSONReader.cs" />
     <Compile Include="src\prompto\utils\Utils.cs" />
+    <Compile Include="src\prompto\reader\YAMLReader.cs" />
+    <Compile Include="src\prompto\writer\YAMLWriter.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -50,6 +55,7 @@
     <Folder Include="src\prompto\reader\" />
     <Folder Include="src\prompto\io\" />
     <Folder Include="src\prompto\utils\" />
+    <Folder Include="src\prompto\writer\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CSharp-Core\CSharp-Core.csproj">

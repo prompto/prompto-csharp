@@ -220,6 +220,25 @@ namespace prompto.value
             return sb.ToString();
         }
 
+        public override bool Equals(object rval)
+        {
+            if (!(rval is DictValue))
+                return false;
+            DictValue dict = (DictValue)rval;
+            if (this.Count != dict.Count)
+                return false;
+            foreach (TextValue key in this.Keys)
+            {
+                if (!dict.ContainsKey(key))
+                    return false;
+                Object lival = this[key];
+                Object rival = dict[key];
+                if (!lival.Equals(rival))
+                    return false;
+            }
+            return true;
+        }
+
         public bool Equals(Context context, IValue rval)
         {
             if (!(rval is DictValue))

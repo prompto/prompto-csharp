@@ -49,6 +49,9 @@
     <Reference Include="Antlr4.Runtime.Standard">
       <HintPath>..\packages\Antlr4.Runtime.Standard.4.7.1.1\lib\net35\Antlr4.Runtime.Standard.dll</HintPath>
     </Reference>
+    <Reference Include="YamlDotNet">
+      <HintPath>..\packages\YamlDotNet.8.1.0\lib\net35\YamlDotNet.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -398,6 +401,7 @@
     <Compile Include="src\prompto\runtime\o\TestTypes.cs" />
     <Compile Include="src\prompto\translate\oeo\TestTypes.cs" />
     <Compile Include="src\prompto\translate\omo\TestTypes.cs" />
+    <Compile Include="src\prompto\library\TestYAMLReader.cs" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />

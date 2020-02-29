@@ -12,7 +12,7 @@ namespace prompto.value
 
     public class DocumentValue : BaseValue
     {
-		Dictionary<String, IValue> values;
+		IDictionary<String, IValue> values;
 
 		public DocumentValue()
 			: base (DocumentType.Instance)
@@ -20,7 +20,7 @@ namespace prompto.value
 			values = new Dictionary<String, IValue>();
 		}
 
-		public DocumentValue(Dictionary<String, IValue> values)
+		public DocumentValue(IDictionary<String, IValue> values)
 			: base(DocumentType.Instance)
 		{
 			this.values = values;
@@ -34,6 +34,25 @@ namespace prompto.value
 		public override object GetStorableData()
 		{
 			return values;
+		}
+
+		public override bool Equals(object rval)
+		{
+			if (!(rval is DocumentValue))
+				return false;
+			DocumentValue doc = (DocumentValue)rval;
+			if (values.Count != doc.values.Count)
+				return false;
+			foreach (string key in values.Keys)
+			{
+				if (!doc.values.ContainsKey(key))
+					return false;
+				Object lival = values[key];
+				Object rival = doc.values[key];
+				if (!lival.Equals(rival))
+					return false;
+			}
+			return true;
 		}
 
 		public ICollection<String> GetMemberNames()

@@ -31,8 +31,8 @@ namespace prompto.expression
             return item;
         }
 
-        override
-        public void ToDialect(CodeWriter writer)
+        
+        public override void ToDialect(CodeWriter writer)
         {
 			parent.ToDialect (writer);
 			writer.append ("[");
@@ -40,16 +40,18 @@ namespace prompto.expression
 			writer.append("]");
         }
 
-        override
-        public IType check(Context context)
+        
+        public override IType check(Context context)
         {
             IType parentType = parent.check(context);
+            if (parentType == null)
+                throw new SyntaxError("Unknown parent: " + parent.ToString());
             IType itemType = item.check(context);
             return parentType.checkItem(context, itemType);
         }
 
-        override
-		public IValue interpret(Context context)
+        
+		public override IValue interpret(Context context)
         {
 			IValue o = parent.interpret(context);
 			if (o == null || o == NullValue.Instance)

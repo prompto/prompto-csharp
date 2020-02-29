@@ -38,6 +38,12 @@ namespace prompto.library.e
 			CheckTests("reader/reader.pec");
 		}
 
+		[Test]
+		public void testYaml()
+		{
+			CheckTests("reader/yaml.pec");
+		}
+
 	}
 }
 
