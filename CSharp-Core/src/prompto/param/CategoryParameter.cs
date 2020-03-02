@@ -14,11 +14,13 @@ namespace prompto.param
     {
 
         protected IType type;
+        protected IType resolved;
 
         public CategoryParameter(IType type, String name)
             : base(name)
         {
             this.type = type;
+            this.resolved = null;
         }
 
 		public CategoryParameter(IType type, String name, IExpression defaultValue)
@@ -34,8 +36,8 @@ namespace prompto.param
             return type;
         }
 
-        override
-        public String getSignature(Dialect dialect)
+        
+        public override String getSignature(Dialect dialect)
         {
             return getProto();
         }
@@ -120,14 +122,21 @@ namespace prompto.param
 			}
         }
 
-        override
-        public void check(Context context)
+
+        public override void check(Context context)
         {
-            type.checkExists(context);
+            resolve(context);
+            resolved.checkExists(context);
         }
 
-        override
-        public IType GetIType(Context context)
+
+        private void resolve(Context context)
+        {
+            if (resolved == null)
+                resolved = type.Resolve(context);
+        }
+
+        public override IType GetIType(Context context)
         {
             return type;
         }
