@@ -63,7 +63,10 @@ namespace prompto.type
 
         public override IType checkMember(Context context, String name)
         {
-            return AnyType.Instance;
+            if (name == "text")
+                return TextType.Instance;
+            else
+                return AnyType.Instance;
         }
 
 
