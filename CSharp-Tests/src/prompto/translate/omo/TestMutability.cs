@@ -69,12 +69,6 @@ namespace prompto.translate.omo
 		}
 
 		[Test]
-		public void testMutableMember()
-		{
-			compareResourceOMO("mutability/mutableMember.poc");
-		}
-
-		[Test]
 		public void testMutableTuple()
 		{
 			compareResourceOMO("mutability/mutableTuple.poc");

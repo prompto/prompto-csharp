@@ -94,12 +94,6 @@ namespace prompto.runtime.e
 		}
 
 		[Test]
-		public void testMutableMember()
-		{
-			CheckOutput("mutability/mutableMember.pec");
-		}
-
-		[Test]
 		public void testMutableTuple()
 		{
 			CheckOutput("mutability/mutableTuple.pec");

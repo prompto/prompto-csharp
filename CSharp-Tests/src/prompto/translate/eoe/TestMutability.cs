@@ -81,12 +81,6 @@ namespace prompto.translate.eoe
 		}
 
 		[Test]
-		public void testMutableMember()
-		{
-			compareResourceEOE("mutability/mutableMember.pec");
-		}
-
-		[Test]
 		public void testMutableTuple()
 		{
 			compareResourceEOE("mutability/mutableTuple.pec");

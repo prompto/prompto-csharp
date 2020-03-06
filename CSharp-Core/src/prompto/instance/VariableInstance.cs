@@ -56,15 +56,24 @@ namespace prompto.instance
 			return valueType;
         }
 
-		public IType checkAssignMember(Context context, String memberName, IType valueType)
+        public IType checkAssignMember(Context context, String memberName, IType valueType)
         {
-			INamed actual = context.getRegisteredValue<INamed>(name);
-			if(actual==null) 
-				throw new SyntaxError("Unknown variable:" + this.name);
-			IType parentType = actual.GetIType(context);
-			return parentType.checkMember(context, memberName);
-		}
-
+            INamed actual = context.getRegisteredValue<INamed>(name);
+            if (actual == null)
+                throw new SyntaxError("Unknown variable:" + this.name);
+            IType thisType = actual.GetIType(context);
+            if (thisType is DocumentType)
+                return valueType;
+            else
+            {
+                if (thisType is CategoryType && !((CategoryType)thisType).Mutable)
+                    throw new SyntaxError("Not mutable:" + this.name);
+                IType requiredType = thisType.checkMember(context, memberName);
+                if (requiredType != null && !requiredType.isAssignableFrom(context, valueType))
+                    throw new SyntaxError("Incompatible types:" + requiredType.GetTypeName() + " and " + valueType.GetTypeName());
+                return valueType;
+            }
+        }
 
 
 		public IType checkAssignItem(Context context, IType itemType, IType valueType)

@@ -78,6 +78,8 @@ namespace prompto.param
                 resolved = new AttributeParameter(name);
             else if (named is MethodDeclarationMap)
                 resolved = new MethodParameter(name);
+            if (resolved != null)
+                resolved.setMutable(this.isMutable());
             else
                 throw new SyntaxError("Unknown identifier:" + name);
         }

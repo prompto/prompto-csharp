@@ -81,12 +81,6 @@ namespace prompto.translate.eme
 		}
 
 		[Test]
-		public void testMutableMember()
-		{
-			compareResourceEME("mutability/mutableMember.pec");
-		}
-
-		[Test]
 		public void testMutableTuple()
 		{
 			compareResourceEME("mutability/mutableTuple.pec");

@@ -48,8 +48,15 @@ namespace prompto.param
             return type.GetTypeName();
         }
 
-        override
-       	public void ToDialect(CodeWriter writer)
+
+        public override bool setMutable(bool mutable)
+        {
+            if (type is CategoryType)
+                ((CategoryType)type).Mutable = mutable;
+            return base.setMutable(mutable);
+        }
+
+        public override void ToDialect(CodeWriter writer)
         {
 			if(this.mutable)
 				writer.append("mutable ");
@@ -72,7 +79,7 @@ namespace prompto.param
 
 		protected virtual void ToEDialect(CodeWriter writer) {
 			bool anonymous = "any"==type.GetTypeName();
-			type.ToDialect(writer);
+			type.ToDialect(writer, true);
 			if(anonymous) {
 				writer.append(' ');
 				writer.append(name);
@@ -84,7 +91,7 @@ namespace prompto.param
 		}
 
 		protected virtual void ToODialect(CodeWriter writer) {
-			type.ToDialect(writer);
+			type.ToDialect(writer, true);
 			writer.append(' ');
 			writer.append(name);
 		}
@@ -92,7 +99,7 @@ namespace prompto.param
 		protected virtual void ToMDialect(CodeWriter writer) {
 			writer.append(name);
 			writer.append(':');
-			type.ToDialect(writer);
+			type.ToDialect(writer, true);
 		}
 
         

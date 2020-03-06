@@ -42,9 +42,9 @@ namespace prompto.type
 
         public bool Mutable { get; set; }
 
-        public override void ToDialect(CodeWriter writer)
+        public override void ToDialect(CodeWriter writer, bool skipMutable)
         {
-            if (Mutable)
+            if (Mutable && !skipMutable)
                 writer.append("mutable ");
             writer.append(typeName);
         }

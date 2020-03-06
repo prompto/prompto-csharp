@@ -74,7 +74,9 @@ namespace prompto.type
 
 		String ToString (Object value);
 
-		void ToDialect (CodeWriter writer);
+		void ToDialect(CodeWriter writer);
+
+		void ToDialect (CodeWriter writer, bool skipMutable);
 
 		Type ToCSharpType ();
 

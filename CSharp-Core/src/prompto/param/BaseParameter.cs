@@ -26,7 +26,7 @@ namespace prompto.param
             return name;
         }
 
-		public bool setMutable(bool set)
+		public virtual bool setMutable(bool set)
 		{
 			bool result = this.mutable;
 			this.mutable = set;

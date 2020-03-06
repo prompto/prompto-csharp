@@ -17,7 +17,7 @@ namespace prompto.type
 
 		TypeFamily family;
 
-		protected BaseType (TypeFamily family)
+		protected BaseType(TypeFamily family)
 		{
 			this.family = family;
 		}
@@ -27,25 +27,25 @@ namespace prompto.type
 			return family;
 		}
 
-		public virtual String GetTypeName ()
+		public virtual String GetTypeName()
 		{
 			return family.ToString()[0] + family.ToString().Substring(1).ToLower();
 		}
 
 
-        public virtual IType Anyfy()
-        {
+		public virtual IType Anyfy()
+		{
 			return this;
-        }
+		}
 
 
-        public virtual IType Resolve(Context context)
-        {
+		public virtual IType Resolve(Context context)
+		{
 			return this;
-        }
+		}
 
 
-        public override bool Equals (Object obj)
+		public override bool Equals(Object obj)
 		{
 			if (this == obj)
 				return true;
@@ -54,16 +54,22 @@ namespace prompto.type
 			if (!(obj is IType))
 				return false;
 			IType type = (IType)obj;
-			return this.GetTypeName ().Equals (type.GetTypeName ());
+			return this.GetTypeName().Equals(type.GetTypeName());
 		}
 
 
-        public override String ToString ()
+		public override String ToString()
 		{
 			return GetTypeName();
 		}
 
-		public virtual void ToDialect (CodeWriter writer)
+		public virtual void ToDialect(CodeWriter writer)
+		{
+			ToDialect(writer, false);
+
+		}
+
+        public virtual void ToDialect (CodeWriter writer, bool skipMutable)
 		{
 			writer.append (GetTypeName());
 		}
