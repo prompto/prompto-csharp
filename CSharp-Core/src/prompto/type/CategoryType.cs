@@ -42,6 +42,18 @@ namespace prompto.type
 
         public bool Mutable { get; set; }
 
+        public IType AsMutable(bool mutable)
+        {
+            if (mutable == this.Mutable)
+                return this;
+            else
+            {
+                CategoryType result = new CategoryType(typeName);
+                result.Mutable = mutable;
+                return result;
+            }
+        }
+
         public override void ToDialect(CodeWriter writer, bool skipMutable)
         {
             if (Mutable && !skipMutable)

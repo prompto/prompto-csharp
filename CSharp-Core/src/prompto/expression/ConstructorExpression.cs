@@ -151,7 +151,7 @@ namespace prompto.expression
                     argument.check(context);
                 }
             }
-            return cd.GetIType(context);
+            return cd.GetIType(context).AsMutable(type.Mutable);
         }
 
         public override IValue interpret(Context context)

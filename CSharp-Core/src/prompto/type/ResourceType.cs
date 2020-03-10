@@ -13,7 +13,16 @@ namespace prompto.type
         {
         }
 
-        
+
+        public override IType AsMutable(bool mutable)
+        {
+            if (mutable)
+            {
+                // TODO throw ?
+            }
+            return this;
+        }
+
         public override bool Equals(Object obj)
         {
             if (obj == this)

@@ -19,6 +19,14 @@ namespace prompto.type
 		{
 		}
 
+		public override IType AsMutable(bool mutable)
+		{
+			if (mutable)
+            {
+				// TODO throw ?
+			}
+			return this;
+		}
 
 		public override IType checkMember(Context context, String name)
 		{
