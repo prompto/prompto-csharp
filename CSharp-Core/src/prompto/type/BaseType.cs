@@ -39,6 +39,14 @@ namespace prompto.type
 		}
 
 
+		public virtual IType AsMutable(Context context, bool mutable)
+		{
+			if (mutable)
+				throw new SyntaxError("Mutable not supported for " + this.GetTypeName());
+			else
+				return this;
+		}
+
 		public virtual IType Resolve(Context context)
 		{
 			return this;

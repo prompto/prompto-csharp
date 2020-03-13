@@ -151,7 +151,7 @@ namespace prompto.expression
                     argument.check(context);
                 }
             }
-            return ((CategoryType)cd.GetIType(context)).AsMutable(type.Mutable);
+            return ((CategoryType)cd.GetIType(context)).AsMutable(context, type.Mutable);
         }
 
         public override IValue interpret(Context context)

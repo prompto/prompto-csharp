@@ -2681,7 +2681,7 @@ namespace prompto.parser
         {
             IExpression left = GetNodeValue<IExpression>(ctx.left);
             IType type = GetNodeValue<IType>(ctx.right);
-            SetNodeValue(ctx, new CastExpression(left, type));
+            SetNodeValue(ctx, new CastExpression(left, type, ctx.MUTABLE() != null));
         }
 
         public override void ExitCatchAtomicStatement(MParser.CatchAtomicStatementContext ctx)

@@ -19,7 +19,7 @@ namespace prompto.type
 		{
 		}
 
-		public override IType AsMutable(bool mutable)
+		public override IType AsMutable(Context context, bool mutable)
 		{
 			if (mutable)
             {

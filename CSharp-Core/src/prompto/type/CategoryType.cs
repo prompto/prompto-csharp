@@ -42,7 +42,7 @@ namespace prompto.type
 
         public bool Mutable { get; set; }
 
-        public virtual IType AsMutable(bool mutable)
+        public override IType AsMutable(Context context, bool mutable)
         {
             if (mutable == this.Mutable)
                 return this;
