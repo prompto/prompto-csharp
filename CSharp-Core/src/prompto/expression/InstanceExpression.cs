@@ -9,11 +9,13 @@ using prompto.utils;
 using prompto.value;
 using prompto.param;
 using System.Collections.Generic;
+using prompto.store;
+using prompto.literal;
 
 namespace prompto.expression
 {
 
-    public class InstanceExpression : BaseExpression, IExpression
+    public class InstanceExpression : BaseExpression, IPredicateExpression
     {
 
         String name;
@@ -94,8 +96,26 @@ namespace prompto.expression
 				else
 					throw new SyntaxError("No value or method with name:" + name);
 			}
-    }
+        }
 
-    }
+        private IPredicateExpression ToPredicate(Context context)
+        {
+            AttributeDeclaration decl = context.findAttribute(name);
+            if (decl == null)
+                throw new SyntaxError("Unknown identifier:" + name);
+            else if (decl.GetIType(context) != BooleanType.Instance)
+                throw new SyntaxError("Expected a Boolean, got:" + decl.GetIType(context).GetTypeName());
+            else
+                return new EqualsExpression(this, EqOp.EQUALS, new BooleanLiteral("true"));
+        }
+
+        public void interpretQuery(Context context, IQueryBuilder builder)
+        {
+            IPredicateExpression predicate = ToPredicate(context);
+            if(predicate!=null)
+                predicate.interpretQuery(context, builder);
+        }
+
+     }
 
 }

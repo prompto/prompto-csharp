@@ -5,16 +5,16 @@ using System;
 using prompto.error;
 using prompto.parser;
 using prompto.type;
-using prompto.expression;
 using prompto.statement;
 using prompto.declaration;
 using prompto.utils;
 using prompto.value;
+using prompto.store;
 
 namespace prompto.expression
 {
 
-    public class UnresolvedIdentifier : BaseExpression, IExpression
+    public class UnresolvedIdentifier : BaseExpression, IPredicateExpression
     {
 
 		Dialect dialect;
@@ -185,6 +185,15 @@ namespace prompto.expression
                 return null;
         }
 
+        public void interpretQuery(Context context, IQueryBuilder builder)
+        {
+            if (resolved == null)
+                resolveAndCheck(context, false);
+            if(resolved is IPredicateExpression)
+                ((IPredicateExpression)resolved).interpretQuery(context, builder);
+            else
+                throw new SyntaxError("Filtering expression must be a predicate !");
+        }
     }
 
 }

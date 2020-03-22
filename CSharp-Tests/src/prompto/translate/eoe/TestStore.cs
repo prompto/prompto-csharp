@@ -33,6 +33,30 @@ namespace prompto.translate.eoe
 		}
 
 		[Test]
+		public void testFetchAnd()
+		{
+			compareResourceEOE("store/fetchAnd.pec");
+		}
+
+		[Test]
+		public void testFetchBoolean()
+		{
+			compareResourceEOE("store/fetchBoolean.pec");
+		}
+
+		[Test]
+		public void testFetchNotBoolean()
+		{
+			compareResourceEOE("store/fetchNotBoolean.pec");
+		}
+
+		[Test]
+		public void testFetchOr()
+		{
+			compareResourceEOE("store/fetchOr.pec");
+		}
+
+		[Test]
 		public void testFlush()
 		{
 			compareResourceEOE("store/flush.pec");

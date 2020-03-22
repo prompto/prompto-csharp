@@ -33,6 +33,30 @@ namespace prompto.translate.eme
 		}
 
 		[Test]
+		public void testFetchAnd()
+		{
+			compareResourceEME("store/fetchAnd.pec");
+		}
+
+		[Test]
+		public void testFetchBoolean()
+		{
+			compareResourceEME("store/fetchBoolean.pec");
+		}
+
+		[Test]
+		public void testFetchNotBoolean()
+		{
+			compareResourceEME("store/fetchNotBoolean.pec");
+		}
+
+		[Test]
+		public void testFetchOr()
+		{
+			compareResourceEME("store/fetchOr.pec");
+		}
+
+		[Test]
 		public void testFlush()
 		{
 			compareResourceEME("store/flush.pec");

@@ -62,6 +62,12 @@ namespace prompto.library.e
 		}
 
 		[Test]
+		public void testConfig()
+		{
+			CheckTests("core/config.pec");
+		}
+
+		[Test]
 		public void testError()
 		{
 			CheckTests("core/error.pec");

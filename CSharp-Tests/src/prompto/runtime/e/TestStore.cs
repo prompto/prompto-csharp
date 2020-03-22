@@ -46,6 +46,30 @@ namespace prompto.runtime.e
 		}
 
 		[Test]
+		public void testFetchAnd()
+		{
+			CheckOutput("store/fetchAnd.pec");
+		}
+
+		[Test]
+		public void testFetchBoolean()
+		{
+			CheckOutput("store/fetchBoolean.pec");
+		}
+
+		[Test]
+		public void testFetchNotBoolean()
+		{
+			CheckOutput("store/fetchNotBoolean.pec");
+		}
+
+		[Test]
+		public void testFetchOr()
+		{
+			CheckOutput("store/fetchOr.pec");
+		}
+
+		[Test]
 		public void testFlush()
 		{
 			CheckOutput("store/flush.pec");
