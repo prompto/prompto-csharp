@@ -2,6 +2,7 @@
 using System.Net;
 using System;
 using System.IO;
+using prompto.intrinsic;
 
 namespace prompto.internet
 {
@@ -54,6 +55,18 @@ namespace prompto.internet
 			{
 				client.Dispose();
 				client = null;
+			}
+		}
+
+		public Binary readBinary()
+		{
+			using (WebClient client = new WebClient())
+			{
+                byte[] data = client.DownloadData(url);
+				string mimeType = client.ResponseHeaders.Get(HttpResponseHeader.ContentType.ToString());
+				if (mimeType.IndexOf(";") > 0)
+					mimeType = mimeType.Substring(0, mimeType.IndexOf(";"));
+				return new Binary(mimeType, data);
 			}
 		}
 

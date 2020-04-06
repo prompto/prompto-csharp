@@ -545,6 +545,8 @@
     <Compile Include="src\prompto\property\BasePropertyValidator.cs" />
     <Compile Include="src\prompto\property\ValueSetValidator.cs" />
     <Compile Include="src\prompto\expression\SuperExpression.cs" />
+    <Compile Include="src\prompto\expression\ReadBlobExpression.cs" />
+    <Compile Include="src\prompto\intrinsic\Binary.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -579,6 +581,7 @@
     <Folder Include="src\prompto\css\" />
     <Folder Include="src\prompto\processor\" />
     <Folder Include="src\prompto\property\" />
+    <Folder Include="src\prompto\intrinsic\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

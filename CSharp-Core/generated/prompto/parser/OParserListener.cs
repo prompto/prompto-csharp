@@ -3520,6 +3520,16 @@ public interface IOParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitSorted_key([NotNull] OParser.Sorted_keyContext context);
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="OParser.read_blob_expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterRead_blob_expression([NotNull] OParser.Read_blob_expressionContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="OParser.read_blob_expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitRead_blob_expression([NotNull] OParser.Read_blob_expressionContext context);
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="OParser.read_all_expression"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>

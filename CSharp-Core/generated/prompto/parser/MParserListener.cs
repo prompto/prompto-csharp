@@ -3476,6 +3476,16 @@ public interface IMParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitSorted_key([NotNull] MParser.Sorted_keyContext context);
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="MParser.read_blob_expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterRead_blob_expression([NotNull] MParser.Read_blob_expressionContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="MParser.read_blob_expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitRead_blob_expression([NotNull] MParser.Read_blob_expressionContext context);
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="MParser.read_all_expression"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>

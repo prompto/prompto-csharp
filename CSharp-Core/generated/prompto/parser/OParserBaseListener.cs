@@ -4146,6 +4146,18 @@ public partial class OParserBaseListener : IOParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitSorted_key([NotNull] OParser.Sorted_keyContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="OParser.read_blob_expression"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterRead_blob_expression([NotNull] OParser.Read_blob_expressionContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="OParser.read_blob_expression"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitRead_blob_expression([NotNull] OParser.Read_blob_expressionContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="OParser.read_all_expression"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>

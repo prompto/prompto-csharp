@@ -1558,6 +1558,20 @@ public partial class EParserBaseListener : IEParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitConstructorExpression([NotNull] EParser.ConstructorExpressionContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by the <c>ReadBlobExpression</c>
+	/// labeled alternative in <see cref="EParser.expression"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterReadBlobExpression([NotNull] EParser.ReadBlobExpressionContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by the <c>ReadBlobExpression</c>
+	/// labeled alternative in <see cref="EParser.expression"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitReadBlobExpression([NotNull] EParser.ReadBlobExpressionContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by the <c>MultiplyExpression</c>
 	/// labeled alternative in <see cref="EParser.expression"/>.
 	/// <para>The default implementation does nothing.</para>
@@ -4323,6 +4337,18 @@ public partial class EParserBaseListener : IEParserListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitSorted_key([NotNull] EParser.Sorted_keyContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="EParser.read_blob_expression"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterRead_blob_expression([NotNull] EParser.Read_blob_expressionContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="EParser.read_blob_expression"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitRead_blob_expression([NotNull] EParser.Read_blob_expressionContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="EParser.read_all_expression"/>.
 	/// <para>The default implementation does nothing.</para>

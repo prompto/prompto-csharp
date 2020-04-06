@@ -1,4 +1,6 @@
 using System;
+using prompto.intrinsic;
+
 namespace prompto.value
 {
 
@@ -7,6 +9,7 @@ namespace prompto.value
 
         bool isReadable();
         bool isWritable();
+        Binary readBinary();
         String readFully();
         void writeFully(String data);
 		String readLine();

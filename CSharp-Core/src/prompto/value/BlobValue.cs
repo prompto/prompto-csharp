@@ -1,4 +1,5 @@
 ﻿using System;
+using prompto.intrinsic;
 using prompto.type;
 
 namespace prompto.value
@@ -7,6 +8,11 @@ namespace prompto.value
 	{
 		public BlobValue ()
 			: base(BlobType.Instance)
+		{
+		}
+
+		public BlobValue(Binary binary)
+			: base(BlobType.Instance, binary)
 		{
 		}
 

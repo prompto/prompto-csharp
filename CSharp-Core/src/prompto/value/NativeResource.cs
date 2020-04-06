@@ -1,6 +1,7 @@
 using prompto.grammar;
 using System;
 using prompto.declaration;
+using prompto.intrinsic;
 
 namespace prompto.value
 {
@@ -21,6 +22,11 @@ namespace prompto.value
         public bool isWritable()
         {
             return ((IResource)instance).isWritable();
+        }
+
+        public Binary readBinary()
+        {
+            return ((IResource)instance).readBinary();
         }
 
         public String readFully()

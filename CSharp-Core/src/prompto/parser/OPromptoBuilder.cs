@@ -2721,6 +2721,14 @@ namespace prompto.parser
             SetNodeValue(ctx, new ReadAllExpression(source));
         }
 
+
+        public override void ExitRead_blob_expression(OParser.Read_blob_expressionContext ctx)
+        {
+            IExpression source = GetNodeValue<IExpression>(ctx.source);
+            SetNodeValue(ctx, new ReadBlobExpression(source));
+        }
+
+
         public override void ExitRead_one_expression(OParser.Read_one_expressionContext ctx)
         {
             IExpression source = GetNodeValue<IExpression>(ctx.source);

@@ -49,12 +49,12 @@ namespace prompto.reader
 
 		private static IValue convertInteger(string value)
 		{
-			try
-			{
+            try
+            {
 				return IntegerValue.Parse(value);
 			}
-			catch (FormatException e)
-			{
+			catch (FormatException)
+            {
 				return convertDouble(value);
 			}
 		}
@@ -65,7 +65,7 @@ namespace prompto.reader
             {
 				return DecimalValue.Parse(value);
             }
-            catch(FormatException e)
+            catch(FormatException)
             {
 				return convertBoolean(value);
             }
@@ -78,7 +78,7 @@ namespace prompto.reader
 			{
 				return BooleanValue.Parse(value);
 			}
-			catch (FormatException e)
+			catch (FormatException)
 			{
 				return convertText(value);
 			}
