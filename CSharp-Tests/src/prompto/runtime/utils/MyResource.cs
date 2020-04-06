@@ -3,6 +3,8 @@ using prompto.runtime;
 using prompto.value;
 using System.Collections.Generic;
 using System.IO;
+using prompto.intrinsic;
+using System.Text;
 
 namespace prompto.runtime.utils
 {
@@ -50,6 +52,12 @@ namespace prompto.runtime.utils
 				reader.Close();
 				reader = null;
 			}
+        }
+
+        public Binary readBinary()
+        {
+			byte[] data = Encoding.UTF8.GetBytes(content);
+			return new Binary("text/plain", data);
         }
 
         public String readFully()
