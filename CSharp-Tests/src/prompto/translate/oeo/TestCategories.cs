@@ -44,6 +44,12 @@ namespace prompto.translate.oeo
 			compareResourceOEO("categories/copyFromStored.poc");
 		}
 
+		[Test]
+		public void testPopulateFalse()
+		{
+			compareResourceOEO("categories/populateFalse.poc");
+		}
+
 	}
 }
 

@@ -28,8 +28,13 @@ namespace prompto.value
         
         public Double DoubleValue { get { return value; } }
 
-        override
-        public IValue Add(Context context, IValue value)
+        public override object GetStorableData()
+        {
+            return value;
+        }
+
+        
+        public override IValue Add(Context context, IValue value)
         {
             if (value is IntegerValue)
                 return new DecimalValue(this.value + ((IntegerValue)value).LongValue);
@@ -39,8 +44,8 @@ namespace prompto.value
                 throw new SyntaxError("Illegal: Decimal + " + value.GetType().Name);
         }
 
-        override
-        public IValue Subtract(Context context, IValue value)
+        
+        public override IValue Subtract(Context context, IValue value)
         {
             if (value is IntegerValue)
                 return new DecimalValue(this.value - ((IntegerValue)value).LongValue);
@@ -50,8 +55,8 @@ namespace prompto.value
                 throw new SyntaxError("Illegal: Decimal - " + value.GetType().Name);
         }
 
-        override
-        public IValue Multiply(Context context, IValue value)
+        
+        public override IValue Multiply(Context context, IValue value)
         {
              if (value is IntegerValue)
                  return new DecimalValue(this.DoubleValue * ((IntegerValue)value).LongValue);
@@ -61,8 +66,8 @@ namespace prompto.value
                 throw new SyntaxError("Illegal: Decimal * " + value.GetType().Name);
        }
 
-        override
-        public IValue Divide(Context context, IValue value)
+        
+        public override IValue Divide(Context context, IValue value)
         {
             if (value is INumber)
             {
@@ -100,8 +105,8 @@ namespace prompto.value
             return value.CompareTo(obj.DoubleValue);
         }
 
-        override
-        public Int32 CompareTo(Context context, IValue value)
+        
+        public override Int32 CompareTo(Context context, IValue value)
         {
             if (value is INumber)
                 return this.value.CompareTo(((INumber)value).DoubleValue);
@@ -110,20 +115,20 @@ namespace prompto.value
 
         }
 
-        override
-        public Object ConvertTo(Type type)
+        
+        public override Object ConvertTo(Type type)
         {
             return value;
         }
  
-        override
-        public String ToString()
+        
+        public override String ToString()
         {
             return value.ToString("0.0######", CultureInfo.InvariantCulture);
         }
 
-         override
-        public bool Equals(object obj)
+         
+        public override bool Equals(object obj)
         {
 			if (obj is DecimalValue)
 				return value == ((DecimalValue)obj).value;
@@ -133,8 +138,8 @@ namespace prompto.value
 				return value.Equals(obj);
         }
 
-        override
-        public int GetHashCode()
+        
+        public override int GetHashCode()
         {
             return value.GetHashCode();
         }

@@ -57,6 +57,12 @@ namespace prompto.runtime.o
 			CheckOutput("categories/copyFromStored.poc");
 		}
 
+		[Test]
+		public void testPopulateFalse()
+		{
+			CheckOutput("categories/populateFalse.poc");
+		}
+
 	}
 }
 
