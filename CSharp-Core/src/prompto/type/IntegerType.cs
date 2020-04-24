@@ -209,7 +209,7 @@ namespace prompto.type
 
 
 
-        public override IType check(Context context)
+        public override IType check(Context context, ContextFlags flags)
         {
             return TextType.Instance;
         }

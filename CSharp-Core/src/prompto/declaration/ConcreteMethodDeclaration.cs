@@ -109,17 +109,17 @@ namespace prompto.declaration
         }
 
 
-        public override IType check(Context context)
+        public override IType check(Context context, ContextFlags flags)
         {
-            if (canBeChecked(context))
-                return fullCheck(context);
+            if (canBeChecked(context, flags))
+                return fullCheck(context, flags);
             else
                 return VoidType.Instance;
         }
 
-        private bool canBeChecked(Context context)
+        private bool canBeChecked(Context context, ContextFlags flags)
         {
-            if (context.isGlobalContext())
+            if (flags.Start)
                 return !isTemplate();
             else
                 return true;
@@ -139,9 +139,9 @@ namespace prompto.declaration
         }
 
 
-        protected virtual IType fullCheck(Context context)
+        protected virtual IType fullCheck(Context context, ContextFlags flags)
         {
-            if (context.isGlobalContext())
+            if (flags.Start)
             {
                 context = context.newLocalContext();
                 registerParameters(context);

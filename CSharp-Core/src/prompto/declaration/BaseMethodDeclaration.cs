@@ -44,6 +44,14 @@ namespace prompto.declaration
             return memberOf;
         }
 
+
+        public override IType check(Context context)
+        {
+            return check(context, ContextFlags.NONE);
+        }
+
+        public abstract IType check(Context context, ContextFlags flags);
+
         public new IMethodDeclaration ClosureOf
         {
             set

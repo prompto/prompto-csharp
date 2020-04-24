@@ -11,8 +11,8 @@ namespace prompto.declaration
 
     public interface IMethodDeclaration : IDeclaration
     {
-
-		String getProto();
+        IType check(Context context, ContextFlags flags);
+        String getProto();
 		IType getReturnType();
         ParameterList getParameters();
         String getSignature(Dialect dialect);
