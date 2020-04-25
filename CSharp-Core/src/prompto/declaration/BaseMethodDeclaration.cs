@@ -47,10 +47,10 @@ namespace prompto.declaration
 
         public override IType check(Context context)
         {
-            return check(context, ContextFlags.NONE);
+            return check(context, false);
         }
 
-        public abstract IType check(Context context, ContextFlags flags);
+        public abstract IType check(Context context, bool isStart);
 
         public new IMethodDeclaration ClosureOf
         {

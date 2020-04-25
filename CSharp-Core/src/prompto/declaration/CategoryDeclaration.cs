@@ -190,7 +190,6 @@ namespace prompto.declaration
         {
             CategoryType type = (CategoryType)GetIType(writer.getContext());
             writer = writer.newInstanceWriter(type);
-            processAnnotations(writer.getContext(), true);
             switch (writer.getDialect())
             {
                 case Dialect.E:
@@ -205,7 +204,7 @@ namespace prompto.declaration
             }
         }
 
-        protected void processAnnotations(Context context, bool processDerivedFrom)
+        public void processAnnotations(Context context, bool processDerivedFrom)
         {
             if (processDerivedFrom)
             {
@@ -215,7 +214,8 @@ namespace prompto.declaration
                     foreach (String name in derivedFrom)
                     {
                         CategoryDeclaration decl = context.getRegisteredDeclaration<CategoryDeclaration>(name);
-                        decl.processAnnotations(context, true);
+                        if(decl!=null)
+                            decl.processAnnotations(context, true);
                     }
                 }
                 if (Annotations != null)

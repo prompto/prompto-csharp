@@ -78,7 +78,7 @@ namespace prompto.declaration
             foreach (IDeclaration declaration in this)
             {
 				if (declaration is IMethodDeclaration)
-					((IMethodDeclaration)declaration).check(context, ContextFlags.START);
+					((IMethodDeclaration)declaration).check(context, true);
                 else
 					declaration.check(context);
             }

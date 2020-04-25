@@ -225,7 +225,7 @@ namespace prompto.type
 
 
 
-        public override IType check(Context context, ContextFlags flags)
+        public override IType check(Context context)
         {
             return BooleanType.Instance;
         }
@@ -249,7 +249,7 @@ namespace prompto.type
 
 
 
-        public override IType check(Context context, ContextFlags flags)
+        public override IType check(Context context)
         {
             return BooleanType.Instance;
         }
@@ -277,7 +277,7 @@ namespace prompto.type
 
 
 
-        public override IType check(Context context, ContextFlags flags)
+        public override IType check(Context context)
         {
             return new ListType(TextType.Instance);
         }
@@ -304,7 +304,7 @@ namespace prompto.type
             return new TextValue(text);
         }
 
-        public override IType check(Context context, ContextFlags flags)
+        public override IType check(Context context)
         {
             return TextType.Instance;
         }
@@ -329,7 +329,7 @@ namespace prompto.type
 
 
 
-        public override IType check(Context context, ContextFlags flags)
+        public override IType check(Context context)
         {
             return TextType.Instance;
         }
@@ -352,7 +352,7 @@ namespace prompto.type
             return new TextValue(lower);
         }
 
-        public override IType check(Context context, ContextFlags flags)
+        public override IType check(Context context)
         {
             return TextType.Instance;
         }
@@ -374,7 +374,7 @@ namespace prompto.type
             return new TextValue(upper);
         }
 
-        public override IType check(Context context, ContextFlags flags)
+        public override IType check(Context context)
         {
             return TextType.Instance;
         }
@@ -396,7 +396,7 @@ namespace prompto.type
             return new TextValue(trim);
         }
 
-        public override IType check(Context context, ContextFlags flags)
+        public override IType check(Context context)
         {
             return TextType.Instance;
         }
@@ -421,7 +421,7 @@ namespace prompto.type
             return new TextValue(result);
         }
 
-        public override IType check(Context context, ContextFlags flags)
+        public override IType check(Context context)
         {
             return TextType.Instance;
         }
@@ -446,7 +446,7 @@ namespace prompto.type
         }
 
 
-        public override IType check(Context context, ContextFlags flags)
+        public override IType check(Context context)
         {
             return IntegerType.Instance;
         }

@@ -147,12 +147,18 @@ namespace prompto.runtime
 
         public Context newInstanceContext(CategoryType type, bool isChild)
         {
-            return initInstanceContext(new InstanceContext(type), isChild);
+            InstanceContext context = initInstanceContext(new InstanceContext(type), isChild);
+            CategoryDeclaration decl = context.getDeclaration();
+            decl.processAnnotations(context, true);
+            return context;
         }
 
         public Context newInstanceContext(IInstance instance, bool isChild)
         {
-            return initInstanceContext(new InstanceContext(instance), isChild);
+            InstanceContext context = initInstanceContext(new InstanceContext(instance), isChild);
+            CategoryDeclaration decl = context.getDeclaration();
+            decl.processAnnotations(context, true);
+            return context;
         }
 
         public Context newDocumentContext(DocumentValue document, bool isChild)
@@ -160,7 +166,7 @@ namespace prompto.runtime
             return initInstanceContext(new DocumentContext(document), isChild);
         }
 
-        private Context initInstanceContext(Context context, bool isChild)
+        private T initInstanceContext<T>(T context, bool isChild) where T : Context
         {
             context.globals = this.globals;
             context.calling = isChild ? this.calling : this;
@@ -594,7 +600,7 @@ namespace prompto.runtime
                 return null;
         }
 
-        private ConcreteCategoryDeclaration getDeclaration()
+        internal ConcreteCategoryDeclaration getDeclaration()
         {
             if (instance != null)
                 return instance.getDeclaration();

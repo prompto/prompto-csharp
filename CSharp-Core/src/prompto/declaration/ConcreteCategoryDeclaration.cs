@@ -259,7 +259,6 @@ namespace prompto.declaration
         {
             context = context.newInstanceContext((CategoryType)GetIType(context), false);
             checkDerived(context);
-            processAnnotations(context, true);
             checkMethods(context);
             return base.check(context);
         }

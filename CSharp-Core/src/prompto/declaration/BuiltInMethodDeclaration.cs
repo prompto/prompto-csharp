@@ -3,6 +3,7 @@ using prompto.param;
 using prompto.error;
 using prompto.runtime;
 using prompto.value;
+using prompto.type;
 
 namespace prompto.declaration
 {
@@ -20,6 +21,11 @@ namespace prompto.declaration
 		{
 
 		}
+
+        public override IType check(Context context, bool isStart)
+        {
+			return check(context);
+        }
 
 		public override bool isAbstract()
 		{

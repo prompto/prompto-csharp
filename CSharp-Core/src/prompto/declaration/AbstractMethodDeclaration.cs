@@ -21,7 +21,7 @@ namespace prompto.declaration
         }
 
         
-		public override IType check(Context context, ContextFlags flags)
+		public override IType check(Context context, bool isStart)
         {
             if (parameters != null)
                 parameters.check(context);

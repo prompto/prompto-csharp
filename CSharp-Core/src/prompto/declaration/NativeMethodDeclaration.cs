@@ -28,9 +28,9 @@ namespace prompto.declaration
 				return VoidType.Instance;
 		}
     
-		protected override IType fullCheck(Context context, ContextFlags flags)
+		protected override IType fullCheck(Context context, bool isStart)
         {
-            if (flags.Start)
+            if (isStart)
             {
                 context = context.newLocalContext();
                 registerParameters(context);

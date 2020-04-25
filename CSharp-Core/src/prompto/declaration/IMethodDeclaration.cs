@@ -11,7 +11,7 @@ namespace prompto.declaration
 
     public interface IMethodDeclaration : IDeclaration
     {
-        IType check(Context context, ContextFlags flags);
+        IType check(Context context, bool isStart);
         String getProto();
 		IType getReturnType();
         ParameterList getParameters();
