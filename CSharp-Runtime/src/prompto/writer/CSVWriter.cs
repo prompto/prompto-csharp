@@ -1,74 +1,91 @@
-package prompto.writer;
 
-import java.io.IOException;
-import java.io.StringWriter;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
+using prompto.value;
+using System;
+using System.IO;
+using System.Collections.Generic;
+using System.Linq;
 
-import prompto.intrinsic.PromptoDict;
-import prompto.intrinsic.PromptoDocument;
-import prompto.intrinsic.PromptoList;
+namespace prompto.writer {
 
-public class CSVWriter {
+    public class CSVWriter {
 
-	public static String write(PromptoList<PromptoDocument<String, Object>> docs, PromptoList<String> headers, PromptoDict<String, String> mappings, Character separator, Character encloser) throws IOException {
-		CSVWriter writer = new CSVWriter(headers, mappings, separator, encloser);
-		return writer.write(docs);
-	}
+	    public static String write(ListValue docsValue, ListValue headersValue, IDictionary<String, Object> mappings, char? separator, char? encloser)
+        {
+			IList<String> headers = ListValueToStringList(headersValue);
+            CSVWriter writer = new CSVWriter(headers, mappings, separator, encloser);
+			IList<IDictionary<String, String>> docs = ListValueToDictionaryList(docsValue);
+			return writer.write(docs);
+	    }
+
+        private static IList<IDictionary<String, String>> ListValueToDictionaryList(ListValue listValue)
+        {
+			IList<Object> objs = (IList<Object>)listValue.GetStorableData();
+			return objs.Where(val => val is IDictionary<String, IValue>).Select(val => ValueDictToStringDict((IDictionary<String, IValue>)val)).ToList();
+        }
+
+        private static IDictionary<String, String> ValueDictToStringDict(IDictionary<string, IValue> val)
+        {
+            return val.ToDictionary(kvp => kvp.Key, kvp => kvp.Value.ToString());
+        }
+
+        private static IList<string> ListValueToStringList(ListValue listValue)
+        {
+			IList<Object> objs = (IList<Object>)listValue.GetStorableData();
+			return objs.Select(val => val.ToString()).ToList();
+	    }
+
+        IList<String> headers;
+		IDictionary<String, Object> mappings;
+	    String separator;
+	    String encloser;
 	
-	List<String> headers;
-	Map<String, String> mappings;
-	String separator;
-	String encloser;
-	
-	public CSVWriter(List<String> headers, Map<String, String> mappings, Character separator, Character encloser) {
-		this.headers = headers;
-		this.mappings = mappings;
-		this.separator = separator==null ? "," : separator.toString();
-		this.encloser = encloser==null ? "\"" : encloser.toString();
-	}
+	    public CSVWriter(IList<String> headers, IDictionary<String, Object> mappings, char? separator, char? encloser) {
+		    this.headers = headers;
+		    this.mappings = mappings;
+		    this.separator = separator==null ? "," : separator.ToString();
+		    this.encloser = encloser==null ? "\"" : encloser.ToString();
+	    }
 
-	private String write(List<? extends Map<String, Object>> docs) throws IOException {
-		try(StringWriter writer = new StringWriter()) {
-			write(writer, docs);
-			return writer.toString();
+	    private String write(IList<IDictionary<String, String>> docs) {
+			StringWriter writer = new StringWriter();
+        	write(writer, docs);
+			return writer.ToString();
 		}
-	}
 
-	private void write(StringWriter writer, List<? extends Map<String, Object>> docs) {
-		List<String> headers = this.headers;
-		if(mappings!=null)
-			headers = headers.stream().map(s->mappings.getOrDefault(s, s)).collect(Collectors.toList());
-		writeRow(writer, headers);
-		for(Map<String, Object> doc : docs)
-			writeRecord(writer, doc);
+	    private void write(StringWriter writer, IList<IDictionary<String, String>> docs) {
+		    IList<String> headers = this.headers;
+		    if(mappings!=null)
+			    headers = headers.Select(val => mappings.ContainsKey(val) ? mappings[val].ToString() : val).ToList();
+            writeRow(writer, headers);
+		    foreach(IDictionary<String, String> doc in docs)
+			    writeRecord(writer, doc);
 		
-	}
+	    }
 
-	private void writeRecord(StringWriter writer, Map<String, Object> doc) {
-		List<String> values = headers.stream()
-				.map(doc::get)
-				.map(v->v==null?"":v.toString())
-				.collect(Collectors.toList());
-		writeRow(writer, values);
-	}
+	    private void writeRecord(StringWriter writer, IDictionary<String, String> doc) {
+			List<String> values = headers
+					.Select(header => doc.ContainsKey(header) ? doc[header] : "")
+					.ToList();
+		    writeRow(writer, values);
+	    }
 
-	private void writeRow(StringWriter writer, List<String> values) {
-		String row = values.stream()
-				.map(this::escapeIfRequired)
-				.map(this::encloseIfRequired)
-				.collect(Collectors.joining(separator));
-		writer.write(row);
-		writer.write("\n");
-	}
+	    private void writeRow(StringWriter writer, IList<String> values) {
+		    String row = String.Join(separator, values
+					.Select(value => escapeIfRequired(value))
+				    .Select(value => encloseIfRequired(value))
+				    .ToList());
+		    writer.Write(row);
+		    writer.Write("\n");
+	    }
 	
-	private String escapeIfRequired(String value) {
-		return value.replaceAll(separator, "\\" + separator);
-	}
+	    private String escapeIfRequired(String value) {
+		    return value.Replace(separator, "\\" + separator);
+	    }
 
-	private String encloseIfRequired(String value) {
-		return value.contains("\n") ? encloser + value.replaceAll(encloser, "\\" + encloser) + encloser : value;
-	}
+	    private String encloseIfRequired(String value) {
+		    return value.Contains("\n") ? encloser + value.Replace(encloser, "\\" + encloser) + encloser : value;
+	    }
+
+    }
 
 }

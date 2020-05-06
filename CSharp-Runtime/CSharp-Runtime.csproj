@@ -45,6 +45,7 @@
     <Compile Include="src\prompto\utils\Utils.cs" />
     <Compile Include="src\prompto\reader\YAMLReader.cs" />
     <Compile Include="src\prompto\writer\YAMLWriter.cs" />
+    <Compile Include="src\prompto\writer\CSVWriter.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
