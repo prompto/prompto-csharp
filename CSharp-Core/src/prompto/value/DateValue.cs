@@ -36,8 +36,12 @@ namespace prompto.value
 
         public System.DateTime Value { get { return value; } }
 
-        override
-        public IValue Add(Context context, IValue value)
+        public override object GetStorableData()
+        {
+            return value;
+        }
+
+        public override IValue Add(Context context, IValue value)
         {
             if (value is PeriodValue)
                 return this.plus((PeriodValue)value);
@@ -45,8 +49,8 @@ namespace prompto.value
                 throw new SyntaxError("Illegal: Date + " + value.GetType().Name);
         }
 
-        override
-        public IValue Subtract(Context context, IValue value)
+        
+        public override IValue Subtract(Context context, IValue value)
         {
             if (value is DateValue)
             {
