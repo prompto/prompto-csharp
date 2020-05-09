@@ -32,6 +32,14 @@ namespace prompto.value
 		}
 	}
 
+    public override IValue GetMemberValue(Context context, string name, bool autoCreate)
+    {
+        if (name == "count")
+            return new IntegerValue(Length());
+        else
+            return base.GetMemberValue(context, name, autoCreate);
+    }
+
     public override IValue GetItem(Context context, IValue index)
     {
         if (index is IntegerValue)

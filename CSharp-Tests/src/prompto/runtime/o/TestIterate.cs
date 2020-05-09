@@ -33,6 +33,12 @@ namespace prompto.runtime.o
 			CheckOutput("iterate/forEachIntegerList.poc");
 		}
 
+		[Test]
+		public void testForEachIntegerRange()
+		{
+			CheckOutput("iterate/forEachIntegerRange.poc");
+		}
+
 	}
 }
 
