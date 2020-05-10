@@ -142,8 +142,8 @@ namespace prompto.value
 
         public int Millis { get; set; }
 
-        override
-        public IValue Add(Context context, IValue value)
+        
+        public override IValue Add(Context context, IValue value)
         {
             if (value is PeriodValue)
                 return this.plus((PeriodValue)value);
@@ -151,8 +151,8 @@ namespace prompto.value
                 throw new SyntaxError("Illegal: Period + " + value.GetType().Name);
         }
 
-        override
-        public IValue Subtract(Context context, IValue value)
+        
+        public override IValue Subtract(Context context, IValue value)
         {
             if (value is PeriodValue)
                 return this.minus((PeriodValue)value);
@@ -160,8 +160,8 @@ namespace prompto.value
                 throw new SyntaxError("Illegal: Period - " + value.GetType().Name);
         }
 
-        override
-        public IValue Multiply(Context context, IValue value)
+        
+        public override IValue Multiply(Context context, IValue value)
         {
             if (value is IntegerValue)
             {
@@ -178,8 +178,8 @@ namespace prompto.value
                 throw new SyntaxError("Illegal: Period * " + value.GetType().Name);
         }
 
-        override
-        public Object ConvertTo(Type type)
+        
+        public override Object ConvertTo(Type type)
         {
             return this; // TODO convert to TimeSpan
         }
@@ -234,8 +234,8 @@ namespace prompto.value
                 millis);
         }
 
-        override
-        public String ToString()
+        
+        public override String ToString()
         {
             StringBuilder sb = new StringBuilder("P");
             if (Years != 0)
@@ -283,8 +283,8 @@ namespace prompto.value
             return sb.ToString();
         }
 
-        override
-        public bool Equals(object obj)
+        
+        public override bool Equals(object obj)
         {
             if (obj is PeriodValue)
             {
@@ -302,10 +302,15 @@ namespace prompto.value
                 return false;
         }
 
-        override
-        public int GetHashCode()
+        
+        public override int GetHashCode()
         {
             return ToString().GetHashCode();
+        }
+
+        public override IValue ToDocumentValue(Context context)
+        {
+            return new TextValue(ToString());
         }
 
 

@@ -37,8 +37,8 @@ namespace prompto.value
 
         public TimeSpan Value { get { return value; } }
 
-        override
-        public IValue Add(Context context, IValue value)
+        
+        public override IValue Add(Context context, IValue value)
         {
             if (value is PeriodValue)
                 return this.plus((PeriodValue)value);
@@ -46,8 +46,8 @@ namespace prompto.value
                 throw new SyntaxError("Illegal: Time + " + value.GetType().Name);
         }
 
-        override
-        public IValue Subtract(Context context, IValue value)
+        
+        public override IValue Subtract(Context context, IValue value)
         {
             if (value is TimeValue)
             {
@@ -63,8 +63,8 @@ namespace prompto.value
         }
 
 
-        override
-         public Int32 CompareTo(Context context, IValue value)
+        
+        public override Int32 CompareTo(Context context, IValue value)
         {
             if (value is TimeValue)
                 return this.value.CompareTo(((TimeValue)value).value);
@@ -72,8 +72,8 @@ namespace prompto.value
                 throw new SyntaxError("Illegal comparison: Time + " + value.GetType().Name);
         }
 
-        override
-        public IValue GetMemberValue(Context context, String name, bool autoCreate)
+        
+        public override IValue GetMemberValue(Context context, String name, bool autoCreate)
         {
             if ("hour" == name)
                 return new IntegerValue(this.HourOfDay);
@@ -87,8 +87,8 @@ namespace prompto.value
                 return base.GetMemberValue(context, name, autoCreate);
         }
 
-        override
-        public Object ConvertTo(Type type)
+        
+        public override Object ConvertTo(Type type)
         {
             return value;
         }
@@ -135,8 +135,8 @@ namespace prompto.value
             return value.CompareTo(other.value) > 0;
         }
 
-        override
-        public bool Equals(object obj)
+        
+        public override bool Equals(object obj)
         {
             if (obj is TimeValue)
                 return value.Equals(((TimeValue)obj).value);
@@ -144,14 +144,14 @@ namespace prompto.value
                 return value.Equals(obj);
         }
 
-        override
-        public int GetHashCode()
+        
+        public override int GetHashCode()
         {
             return value.GetHashCode();
         }
 
-        override
-        public string ToString()
+        
+        public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
             sb.Append(value.Hours.ToString("00"));
@@ -164,6 +164,10 @@ namespace prompto.value
             return sb.ToString();
         }
 
+        public override IValue ToDocumentValue(Context context)
+        {
+            return new TextValue(ToString());
+        }
 
     }
 }

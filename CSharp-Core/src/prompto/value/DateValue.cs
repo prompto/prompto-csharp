@@ -140,8 +140,8 @@ namespace prompto.value
             return new DateValue(value);
         }
 
-        override
-        public bool Equals(object obj)
+        
+        public override bool Equals(object obj)
         {
             if (obj is DateValue)
                 return value.Equals(((DateValue)obj).value);
@@ -149,16 +149,21 @@ namespace prompto.value
                 return value.Equals(obj);
         }
 
-        override
-        public int GetHashCode()
+        
+        public override int GetHashCode()
         {
             return value.GetHashCode();
         }
 
-        override
-        public string ToString()
+        
+        public override string ToString()
         {
             return value.ToString("yyyy-MM-dd");
+        }
+
+        public override IValue ToDocumentValue(Context context)
+        {
+            return new TextValue(ToString());
         }
     }
 }

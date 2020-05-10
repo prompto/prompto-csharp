@@ -198,14 +198,14 @@ namespace prompto.value
                 return value.Equals(obj);
         }
 
-        override
-        public int GetHashCode()
+        
+        public override int GetHashCode()
         {
             return value.GetHashCode();
         }
 
-        override
-        public string ToString()
+        
+        public override string ToString()
         {
             return value.ToString("yyyy-MM-ddTHH:mm:ss.fffzzz").Replace("+00:00", "Z");
         }
@@ -224,5 +224,9 @@ namespace prompto.value
             return null;
         }
 
+        public override IValue ToDocumentValue(Context context)
+        {
+            return new TextValue(ToString());
+        }
     }
 }
