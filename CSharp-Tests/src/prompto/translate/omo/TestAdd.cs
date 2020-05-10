@@ -39,6 +39,12 @@ namespace prompto.translate.omo
 		}
 
 		[Test]
+		public void testAddDocument()
+		{
+			compareResourceOMO("add/addDocument.poc");
+		}
+
+		[Test]
 		public void testAddInteger()
 		{
 			compareResourceOMO("add/addInteger.poc");

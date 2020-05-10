@@ -39,6 +39,12 @@ namespace prompto.translate.oeo
 		}
 
 		[Test]
+		public void testAddDocument()
+		{
+			compareResourceOEO("add/addDocument.poc");
+		}
+
+		[Test]
 		public void testAddInteger()
 		{
 			compareResourceOEO("add/addInteger.poc");

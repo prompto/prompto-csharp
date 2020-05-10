@@ -52,6 +52,12 @@ namespace prompto.runtime.o
 		}
 
 		[Test]
+		public void testAddDocument()
+		{
+			CheckOutput("add/addDocument.poc");
+		}
+
+		[Test]
 		public void testAddInteger()
 		{
 			CheckOutput("add/addInteger.poc");

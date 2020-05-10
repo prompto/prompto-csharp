@@ -70,6 +70,14 @@ namespace prompto.type
         }
 
 
+        public override IType checkAdd(Context context, IType other, bool tryReverse)
+        {
+            if (other == this)
+                return this;
+            else
+                return base.checkAdd(context, other, tryReverse);
+        }
+
         public override Type ToCSharpType()
         {
             return typeof(DocumentValue);

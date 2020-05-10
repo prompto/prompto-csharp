@@ -123,8 +123,28 @@ namespace prompto.value
 			values[item.ToString ()] = value;
 		}
 
+        public override IValue Add(Context context, IValue value)
+        {
+			if (value is DocumentValue)
+			{
+				Dictionary<String, IValue> result = new Dictionary<String, IValue>();
+				foreach (string key in values.Keys)
+				{
+					result[key] = values[key];
+				}
+				IDictionary<String, IValue> other = ((DocumentValue)value).values;
+				foreach (string key in other.Keys)
+				{
+					result[key] = other[key];
+				}
+				return new DocumentValue(result);
+			}
+			else
+			    return base.Add(context, value);
+        }
 
-		public override string ToString()
+
+        public override string ToString()
 		{
 			Dictionary<String, byte[]> binaries = new Dictionary<String, byte[]>();
 			// create textual data
