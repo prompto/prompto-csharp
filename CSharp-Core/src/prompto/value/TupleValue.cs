@@ -322,6 +322,16 @@ namespace prompto.value
             else
                 return 0;
         }
+
+        public IValue ToDocumentValue(Context context)
+        {
+            List<IValue> items = new List<IValue>();
+            foreach (IValue item in this)
+            {
+                items.Add(item.ToDocumentValue(context));
+            }
+            return new ListValue(AnyType.Instance, items);
+        }
     }
 
 }

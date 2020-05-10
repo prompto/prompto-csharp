@@ -21,6 +21,12 @@ namespace prompto.translate.oeo
 		}
 
 		[Test]
+		public void testInstance()
+		{
+			compareResourceOEO("documents/instance.poc");
+		}
+
+		[Test]
 		public void testItem()
 		{
 			compareResourceOEO("documents/item.poc");

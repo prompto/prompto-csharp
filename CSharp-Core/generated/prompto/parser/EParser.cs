@@ -7099,6 +7099,7 @@ public partial class EParser : AbstractParser {
 	}
 
 	public partial class Document_expressionContext : ParserRuleContext {
+		public ExpressionContext exp;
 		public ITerminalNode DOCUMENT() { return GetToken(EParser.DOCUMENT, 0); }
 		public ITerminalNode FROM() { return GetToken(EParser.FROM, 0); }
 		public ExpressionContext expression() {
@@ -7133,7 +7134,7 @@ public partial class EParser : AbstractParser {
 			case 1:
 				{
 				State = 1406; Match(FROM);
-				State = 1407; expression(0);
+				State = 1407; _localctx.exp = expression(0);
 				}
 				break;
 			}

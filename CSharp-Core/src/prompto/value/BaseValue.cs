@@ -124,5 +124,10 @@ namespace prompto.value
 			throw new NotSupportedException("No ToJson support for " + this.GetType().Name);
 		}
 
+        public virtual IValue ToDocumentValue(Context context)
+        {
+			return this;
+        }
+
 	}
 }

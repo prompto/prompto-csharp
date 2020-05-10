@@ -27,6 +27,12 @@ namespace prompto.translate.eme
 		}
 
 		[Test]
+		public void testInstance()
+		{
+			compareResourceEME("documents/instance.pec");
+		}
+
+		[Test]
 		public void testItem()
 		{
 			compareResourceEME("documents/item.pec");

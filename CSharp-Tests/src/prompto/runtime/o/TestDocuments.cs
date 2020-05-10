@@ -34,6 +34,12 @@ namespace prompto.runtime.o
 		}
 
 		[Test]
+		public void testInstance()
+		{
+			CheckOutput("documents/instance.poc");
+		}
+
+		[Test]
 		public void testItem()
 		{
 			CheckOutput("documents/item.poc");

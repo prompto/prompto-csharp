@@ -21,6 +21,12 @@ namespace prompto.translate.omo
 		}
 
 		[Test]
+		public void testInstance()
+		{
+			compareResourceOMO("documents/instance.poc");
+		}
+
+		[Test]
 		public void testItem()
 		{
 			compareResourceOMO("documents/item.poc");

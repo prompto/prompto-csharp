@@ -357,6 +357,21 @@ namespace prompto.value
             return decl.interpret(context);
         }
 
+        public override IValue ToDocumentValue(Context context)
+        {
+            DocumentValue doc = new DocumentValue();
+            foreach(String key in values.Keys)
+            {
+                IValue value = null;
+                if (!values.TryGetValue(key, out value))
+                    value = NullValue.Instance;
+
+                doc.SetMemberValue(context, key, value.ToDocumentValue(context));
+                
+            }
+            return doc;
+        }
+
     }
 
 }

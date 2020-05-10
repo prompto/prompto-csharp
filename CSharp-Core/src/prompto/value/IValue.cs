@@ -30,7 +30,8 @@ namespace prompto.value
 		bool Roughly(Context context, IValue value);
 		bool Contains(Context context, IValue value);
 		void ToJson(Context context, JsonWriter generator, Object instanceId, String fieldName, bool withType, Dictionary<String, byte[]> binaries);
-		object GetStorableData();
+        IValue ToDocumentValue(Context context);
+        object GetStorableData();
 		void CollectStorables(List<IStorable> storables);
 
 	}

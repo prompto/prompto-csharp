@@ -2595,7 +2595,7 @@ namespace prompto.parser
 
         public override void ExitDocument_expression(OParser.Document_expressionContext ctx)
         {
-            IExpression exp = GetNodeValue<IExpression>(ctx.expression());
+            IExpression exp = GetNodeValue<IExpression>(ctx.exp);
             SetNodeValue(ctx, new DocumentExpression(exp));
         }
 

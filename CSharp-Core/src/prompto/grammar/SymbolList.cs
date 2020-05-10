@@ -175,6 +175,11 @@ namespace prompto.grammar
 		{
 			throw new NotSupportedException();
 		}
+
+        public IValue ToDocumentValue(Context context)
+        {
+			throw new NotSupportedException("Yet!"); 
+		}
 	}
 
 }

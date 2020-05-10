@@ -158,6 +158,10 @@ namespace prompto.expression
 			// nothing to do;
 		}
 
+        public IValue ToDocumentValue(Context context)
+        {
+			return new TextValue(symbol);
+        }
         
     }
 

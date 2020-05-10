@@ -283,6 +283,11 @@ namespace prompto.value
             throw new NotSupportedException("No ToJson support for " + this.GetType().Name);
         }
 
+        public IValue ToDocumentValue(Context context)
+        {
+            throw new NotSupportedException("Yet!"); 
+        }
+
     }
 
     public class KVPValue : BaseValue

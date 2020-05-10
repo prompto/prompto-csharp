@@ -41,8 +41,10 @@ namespace prompto.expression
         }
 
 		private DocumentValue documentFromValue(Context context, IValue value) {
-			if(value is BlobValue)
+			if (value is BlobValue)
 				return documentFromBlob(context, (BlobValue)value);
+			else if (value is ConcreteInstance)
+				return (DocumentValue)value.ToDocumentValue(context);
 			else
 				throw new NotSupportedException();
 		}
@@ -113,8 +115,11 @@ namespace prompto.expression
 			case Dialect.O:
 			case Dialect.M:
 				writer.append('(');
-				if(source!=null)
-					source.ToDialect(writer);
+					if (source != null)
+					{
+						writer.append(" from = ");
+						source.ToDialect(writer);
+					}
 				writer.append(')');
 				break;
 			}

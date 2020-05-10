@@ -349,5 +349,15 @@ namespace prompto.value
             return new ListValue(type.GetItemType(), items);
         }
 
+        public IValue ToDocumentValue(Context context)
+        {
+            List<IValue> items = new List<IValue>();
+            foreach (IValue item in this)
+            {
+                items.Add(item.ToDocumentValue(context));
+            }
+            return new ListValue(AnyType.Instance, items);
+        }
+
     }
 }

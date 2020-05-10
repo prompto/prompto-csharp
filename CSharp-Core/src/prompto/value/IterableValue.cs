@@ -129,6 +129,16 @@ namespace prompto.value
 			}
 			return new ListValue(itemType, items);
 		}
-	}
+
+        public override IValue ToDocumentValue(Context context)
+        {
+			List<IValue> items = new List<IValue>();
+			foreach (IValue item in this)
+			{
+				items.Add(item.ToDocumentValue(context));
+			}
+			return new ListValue(itemType, items);
+	    }
+    }
 
 }
