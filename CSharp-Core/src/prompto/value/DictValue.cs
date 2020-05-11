@@ -73,6 +73,20 @@ namespace prompto.value
             throw new NotSupportedException("GetStorableData not supported by " + this.GetType().Name);
         }
 
+        public IValue Swap(Context context)
+        {
+            DictValue swapped = new DictValue(TextType.Instance, true);
+            foreach(KeyValuePair<TextValue, IValue> kvp in (Dictionary<TextValue, IValue>)this)
+            {
+                IValue key = kvp.Value;
+                if (!(key is TextValue))
+                    key = new TextValue(key.ToString());
+                swapped[(TextValue)key] = kvp.Key;
+            }
+            swapped.mutable = false;
+            return swapped;
+        }
+
         public IValue Add(Context context, IValue value)
         {
             if (value is DictValue)
@@ -116,7 +130,7 @@ namespace prompto.value
             return new KVPEnumerator(this);
         }
 
-        public virtual Int32 CompareTo(Context context, IValue value)
+       public virtual Int32 CompareTo(Context context, IValue value)
         {
             throw new NotSupportedException("Compare not supported by " + this.GetType().Name);
         }
@@ -203,7 +217,7 @@ namespace prompto.value
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("<");
-            foreach (KeyValuePair<TextValue, IValue> kvp in ((Dictionary<TextValue, IValue>)this))
+            foreach (KeyValuePair<TextValue, IValue> kvp in (Dictionary<TextValue, IValue>)this)
             {
                 sb.Append('"');
                 sb.Append(kvp.Key.ToString());

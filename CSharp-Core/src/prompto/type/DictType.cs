@@ -3,6 +3,7 @@ using System;
 using prompto.value;
 using System.Collections.Generic;
 using prompto.store;
+using prompto.declaration;
 
 namespace prompto.type
 {
@@ -50,6 +51,18 @@ namespace prompto.type
 				return base.checkMember (context, name);
 		}
 
+        public override ISet<IMethodDeclaration> getMemberMethods(Context context, string name)
+        {
+            if(name=="swap")
+            {
+				ISet<IMethodDeclaration> methods = new HashSet<IMethodDeclaration>();
+				methods.Add(SWAP_METHOD);
+				return methods;
+			} else
+                return base.getMemberMethods(context, name);
+        }
+
+		internal static IMethodDeclaration SWAP_METHOD = new SwapMethodDeclaration();
 
 		public override bool Equals (Object obj)
 		{
@@ -103,5 +116,27 @@ namespace prompto.type
 		}
 	
 	}
+
+	class SwapMethodDeclaration : BuiltInMethodDeclaration
+	{
+
+		public SwapMethodDeclaration()
+		: base("swap")
+		{ }
+
+		public override IValue interpret(Context context)
+		{
+			DictValue dict = (DictValue)getValue(context);
+			return dict.Swap(context);
+		}
+
+
+
+		public override IType check(Context context)
+		{
+			return new DictType(TextType.Instance);
+		}
+
+	};
 
 }

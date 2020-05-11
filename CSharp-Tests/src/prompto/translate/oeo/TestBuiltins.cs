@@ -93,6 +93,12 @@ namespace prompto.translate.oeo
 		}
 
 		[Test]
+		public void testDictSwap()
+		{
+			compareResourceOEO("builtins/dictSwap.poc");
+		}
+
+		[Test]
 		public void testEnumName()
 		{
 			compareResourceOEO("builtins/enumName.poc");

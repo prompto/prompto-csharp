@@ -94,6 +94,12 @@ namespace prompto.runtime.o
 		}
 
 		[Test]
+		public void testDictSwap()
+		{
+			CheckOutput("builtins/dictSwap.poc");
+		}
+
+		[Test]
 		public void testEnumName()
 		{
 			CheckOutput("builtins/enumName.poc");
