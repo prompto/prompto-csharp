@@ -3,12 +3,22 @@ using System.Collections.Generic;
 using System;
 using System.IO;
 using System.Text;
+using System.Linq;
 
 namespace prompto.reader
 {
 
     public abstract class CSVReader
     {
+
+        public static List<String> readHeaders(String data, char? separator, char? encloser)
+        {
+            char sep = separator.GetValueOrDefault(',');
+            char quote = encloser.GetValueOrDefault('"');
+            StringReader reader = data == null ? null : new StringReader(data);
+            CsvDocumentIterator iterator = new CsvDocumentIterator(reader, null, sep, quote);
+            return iterator.ReadHeaders();
+        }
 
         public static List<DocumentValue> read(String data, IDictionary<String, Object> columns, char? separator, char? encloser)
         {
@@ -60,6 +70,15 @@ namespace prompto.reader
             this.columns = columns;
             this.sep = sep;
             this.quote = quote;
+        }
+
+        public List<String> ReadHeaders()
+        {
+            if (nextChar == 0)
+                FetchChar(true);
+            if (headers == null)
+                ParseHeaders();
+            return headers!=null ? headers : new List<String>();
         }
 
         public object Current
