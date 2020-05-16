@@ -106,6 +106,12 @@ namespace prompto.runtime.o
 		}
 
 		[Test]
+		public void testIsABoolean()
+		{
+			CheckOutput("equals/isABoolean.poc");
+		}
+
+		[Test]
 		public void testIsBoolean()
 		{
 			CheckOutput("equals/isBoolean.poc");
@@ -115,6 +121,12 @@ namespace prompto.runtime.o
 		public void testIsInstance()
 		{
 			CheckOutput("equals/isInstance.poc");
+		}
+
+		[Test]
+		public void testIsNotABoolean()
+		{
+			CheckOutput("equals/isNotABoolean.poc");
 		}
 
 		[Test]

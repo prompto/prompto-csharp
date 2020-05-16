@@ -93,6 +93,12 @@ namespace prompto.translate.omo
 		}
 
 		[Test]
+		public void testIsABoolean()
+		{
+			compareResourceOMO("equals/isABoolean.poc");
+		}
+
+		[Test]
 		public void testIsBoolean()
 		{
 			compareResourceOMO("equals/isBoolean.poc");
@@ -102,6 +108,12 @@ namespace prompto.translate.omo
 		public void testIsInstance()
 		{
 			compareResourceOMO("equals/isInstance.poc");
+		}
+
+		[Test]
+		public void testIsNotABoolean()
+		{
+			compareResourceOMO("equals/isNotABoolean.poc");
 		}
 
 		[Test]
