@@ -145,26 +145,36 @@ namespace prompto.value
 
         public virtual IValue GetMemberValue(Context context, String name, bool autoCreate)
         {
-            if ("count" == name)
-                return new IntegerValue(this.Count);
-            else if ("keys" == name)
+            switch (name)
             {
-                HashSet<IValue> items = new HashSet<IValue>();
-                foreach (TextValue item in this.Keys)
-                    items.Add(item);
-                return new SetValue(TextType.Instance, items);
+                case "count":
+                    return new IntegerValue(this.Count);
+                case "keys":
+                    return GetKeys();
+                case "values":
+                    return GetValues();
+                case "text":
+                    return new TextValue(this.ToString());
+                default:
+                    throw new NotSupportedException("No such member " + name);
             }
-            else if ("values" == name)
-            {
-                ListValue list = new ListValue(type.GetItemType());
-                list.AddRange(this.Values);
-                return list;
-            }
-            else if ("text" == name)
-                return new TextValue(this.ToString());
-            else
-                throw new NotSupportedException("No such member " + name);
         }
+
+        private IValue GetValues()
+        {
+            ListValue list = new ListValue(type.GetItemType());
+            list.AddRange(this.Values);
+            return list;
+        }
+
+        private IValue GetKeys()
+        {
+            HashSet<IValue> items = new HashSet<IValue>();
+            foreach (TextValue item in this.Keys)
+                items.Add(item);
+            return new SetValue(TextType.Instance, items);
+        }
+
 
         public virtual void SetMemberValue(Context context, String name, IValue value)
         {

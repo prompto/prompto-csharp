@@ -67,12 +67,32 @@ namespace prompto.value
 
 		public override IValue GetMemberValue(Context context, String name, bool autoCreate)
 		{
-			return GetMember (name, autoCreate);
+			switch (name)
+			{
+				case "count":
+					return new IntegerValue(this.values.Count);
+				case "keys":
+					return GetKeys();
+				case "values":
+					return GetValues();
+				default:
+					return GetMember(name, autoCreate);
+			}
 		}
 
-		public IValue GetMember(String name)
+		private IValue GetValues()
 		{
-			return GetMember (name, false);
+			ListValue list = new ListValue(AnyType.Instance);
+			list.AddRange(this.values.Values);
+			return list;
+		}
+
+		private IValue GetKeys()
+		{
+			HashSet<IValue> items = new HashSet<IValue>();
+			foreach (String item in this.values.Keys)
+				items.Add(new TextValue(item));
+			return new SetValue(TextType.Instance, items);
 		}
 
 		public IValue GetMember(String name, bool autoCreate)

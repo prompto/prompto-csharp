@@ -183,9 +183,27 @@ namespace prompto.translate.eme
 		}
 
 		[Test]
+		public void testDocumentCount()
+		{
+			compareResourceEME("builtins/documentCount.pec");
+		}
+
+		[Test]
+		public void testDocumentKeys()
+		{
+			compareResourceEME("builtins/documentKeys.pec");
+		}
+
+		[Test]
 		public void testDocumentText()
 		{
 			compareResourceEME("builtins/documentText.pec");
+		}
+
+		[Test]
+		public void testDocumentValues()
+		{
+			compareResourceEME("builtins/documentValues.pec");
 		}
 
 		[Test]

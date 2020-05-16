@@ -63,10 +63,19 @@ namespace prompto.type
 
         public override IType checkMember(Context context, String name)
         {
-            if (name == "text")
-                return TextType.Instance;
-            else
-                return AnyType.Instance;
+            switch (name)
+            {
+                case "count":
+                    return IntegerType.Instance;
+                case "keys":
+                    return new SetType(TextType.Instance);
+                case "values":
+                    return new ListType(AnyType.Instance);
+                case "text":
+                    return TextType.Instance;
+                default:
+                    return AnyType.Instance;
+            }
         }
 
 
@@ -193,8 +202,8 @@ namespace prompto.type.document
 
         protected override int DoCompare(DocumentValue o1, DocumentValue o2)
         {
-            Object value1 = o1.GetMember(name);
-            Object value2 = o2.GetMember(name);
+            Object value1 = o1.GetMember(name, false);
+            Object value2 = o2.GetMember(name, false);
             return ObjectUtils.CompareValues(value1, value2);
         }
     }

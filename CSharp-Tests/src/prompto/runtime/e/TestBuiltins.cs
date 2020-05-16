@@ -184,9 +184,27 @@ namespace prompto.runtime.e
 		}
 
 		[Test]
+		public void testDocumentCount()
+		{
+			CheckOutput("builtins/documentCount.pec");
+		}
+
+		[Test]
+		public void testDocumentKeys()
+		{
+			CheckOutput("builtins/documentKeys.pec");
+		}
+
+		[Test]
 		public void testDocumentText()
 		{
 			CheckOutput("builtins/documentText.pec");
+		}
+
+		[Test]
+		public void testDocumentValues()
+		{
+			CheckOutput("builtins/documentValues.pec");
 		}
 
 		[Test]

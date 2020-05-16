@@ -33,13 +33,13 @@ namespace prompto.reader
             Assert.IsTrue(iter.MoveNext());
             DocumentValue doc = iter.Current;
             Assert.IsNotNull(doc);
-            Assert.AreEqual(doc.GetMember("id"), "1");
-            Assert.AreEqual(doc.GetMember("name"), "John");
+            Assert.AreEqual(doc.GetMember("id", false), "1");
+            Assert.AreEqual(doc.GetMember("name", false), "John");
             Assert.IsTrue(iter.MoveNext());
             doc = iter.Current;
             Assert.IsNotNull(doc);
-            Assert.AreEqual(doc.GetMember("id"), "2");
-            Assert.AreEqual(doc.GetMember("name"), "Sylvie");
+            Assert.AreEqual(doc.GetMember("id", false), "2");
+            Assert.AreEqual(doc.GetMember("name", false), "Sylvie");
         }
 
         [Test]
@@ -50,13 +50,13 @@ namespace prompto.reader
             Assert.IsTrue(iter.MoveNext());
             DocumentValue doc = iter.Current;
             Assert.IsNotNull(doc);
-            Assert.AreEqual(doc.GetMember("id"), "1");
-            Assert.AreEqual(doc.GetMember("name"), "John");
+            Assert.AreEqual(doc.GetMember("id", false), "1");
+            Assert.AreEqual(doc.GetMember("name", false), "John");
             Assert.IsTrue(iter.MoveNext());
             doc = iter.Current;
             Assert.IsNotNull(doc);
-            Assert.AreEqual(doc.GetMember("id"), "2");
-            Assert.AreEqual(doc.GetMember("name"), "Riou, Sylvie");
+            Assert.AreEqual(doc.GetMember("id", false), "2");
+            Assert.AreEqual(doc.GetMember("name", false), "Riou, Sylvie");
         }
 
         [Test]
@@ -68,14 +68,14 @@ namespace prompto.reader
             DocumentValue doc = iter.Current;
             Assert.IsNotNull(doc);
             Assert.IsNotNull(doc);
-            Assert.AreEqual(doc.GetMember("id"), "1");
-            Assert.AreEqual(doc.GetMember("name"), "John");
+            Assert.AreEqual(doc.GetMember("id", false), "1");
+            Assert.AreEqual(doc.GetMember("name", false), "John");
             Assert.IsTrue(iter.MoveNext());
             doc = iter.Current;
             Assert.IsNotNull(doc);
             Assert.IsNotNull(doc);
-            Assert.AreEqual(doc.GetMember("id"), "2");
-            Assert.AreEqual(doc.GetMember("name"), "Sylvie");
+            Assert.AreEqual(doc.GetMember("id", false), "2");
+            Assert.AreEqual(doc.GetMember("name", false), "Sylvie");
         }
 
 
@@ -87,13 +87,13 @@ namespace prompto.reader
             Assert.IsTrue(iter.MoveNext());
             DocumentValue doc = iter.Current;
             Assert.IsNotNull(doc);
-            Assert.AreEqual(doc.GetMember("id"), NullValue.Instance);
-            Assert.AreEqual(doc.GetMember("name"), "John");
+            Assert.AreEqual(doc.GetMember("id", false), NullValue.Instance);
+            Assert.AreEqual(doc.GetMember("name", false), "John");
             Assert.IsTrue(iter.MoveNext());
             doc = iter.Current;
             Assert.IsNotNull(doc);
-            Assert.AreEqual(doc.GetMember("id"), "2");
-            Assert.AreEqual(doc.GetMember("name"), NullValue.Instance);
+            Assert.AreEqual(doc.GetMember("id", false), "2");
+            Assert.AreEqual(doc.GetMember("name", false), NullValue.Instance);
         }
 
         [Test]
@@ -104,13 +104,13 @@ namespace prompto.reader
             Assert.IsTrue(iter.MoveNext());
             DocumentValue doc = iter.Current;
             Assert.IsNotNull(doc);
-            Assert.AreEqual(doc.GetMember("id"), "1");
-            Assert.AreEqual(doc.GetMember("name"), NullValue.Instance);
+            Assert.AreEqual(doc.GetMember("id", false), "1");
+            Assert.AreEqual(doc.GetMember("name", false), NullValue.Instance);
             Assert.IsTrue(iter.MoveNext());
             doc = iter.Current;
             Assert.IsNotNull(doc);
-            Assert.AreEqual(doc.GetMember("id"), "2");
-            Assert.AreEqual(doc.GetMember("name"), "Sylvie");
+            Assert.AreEqual(doc.GetMember("id", false), "2");
+            Assert.AreEqual(doc.GetMember("name", false), "Sylvie");
         }
 
         [Test]
@@ -121,13 +121,13 @@ namespace prompto.reader
             Assert.IsTrue(iter.MoveNext());
             DocumentValue doc = iter.Current;
             Assert.IsNotNull(doc);
-            Assert.AreEqual(doc.GetMember("id"), "1");
-            Assert.AreEqual(doc.GetMember("name"), "John");
+            Assert.AreEqual(doc.GetMember("id", false), "1");
+            Assert.AreEqual(doc.GetMember("name", false), "John");
             Assert.IsTrue(iter.MoveNext());
             doc = iter.Current;
             Assert.IsNotNull(doc);
-            Assert.AreEqual(doc.GetMember("id"), "2");
-            Assert.AreEqual(doc.GetMember("name"), "Sylvie");
+            Assert.AreEqual(doc.GetMember("id", false), "2");
+            Assert.AreEqual(doc.GetMember("name", false), "Sylvie");
         }
 
         [Test]
@@ -138,13 +138,13 @@ namespace prompto.reader
             Assert.IsTrue(iter.MoveNext());
             DocumentValue doc = iter.Current;
             Assert.IsNotNull(doc);
-            Assert.AreEqual(doc.GetMember("id"), "1");
-            Assert.AreEqual(doc.GetMember("name"), "Jo\"hn");
+            Assert.AreEqual(doc.GetMember("id", false), "1");
+            Assert.AreEqual(doc.GetMember("name", false), "Jo\"hn");
             Assert.IsTrue(iter.MoveNext());
             doc = iter.Current;
             Assert.IsNotNull(doc);
-            Assert.AreEqual(doc.GetMember("id"), "2");
-            Assert.AreEqual(doc.GetMember("name"), "Sylvie");
+            Assert.AreEqual(doc.GetMember("id", false), "2");
+            Assert.AreEqual(doc.GetMember("name", false), "Sylvie");
         }
 
         [Test]
@@ -155,13 +155,13 @@ namespace prompto.reader
             Assert.IsTrue(iter.MoveNext());
             DocumentValue doc = iter.Current;
             Assert.IsNotNull(doc);
-            Assert.AreEqual(doc.GetMember("id"), "1");
-            Assert.AreEqual(doc.GetMember("name"), "Jo\"hn");
+            Assert.AreEqual(doc.GetMember("id", false), "1");
+            Assert.AreEqual(doc.GetMember("name", false), "Jo\"hn");
             Assert.IsTrue(iter.MoveNext());
             doc = iter.Current;
             Assert.IsNotNull(doc);
-            Assert.AreEqual(doc.GetMember("id"), "2");
-            Assert.AreEqual(doc.GetMember("name"), "Sylvie");
+            Assert.AreEqual(doc.GetMember("id", false), "2");
+            Assert.AreEqual(doc.GetMember("name", false), "Sylvie");
         }
 
 
@@ -173,13 +173,13 @@ namespace prompto.reader
             Assert.IsTrue(iter.MoveNext());
             DocumentValue doc = iter.Current;
             Assert.IsNotNull(doc);
-            Assert.AreEqual(doc.GetMember("id"), "1");
-            Assert.AreEqual(doc.GetMember("name"), "Jo\nhn");
+            Assert.AreEqual(doc.GetMember("id", false), "1");
+            Assert.AreEqual(doc.GetMember("name", false), "Jo\nhn");
             Assert.IsTrue(iter.MoveNext());
             doc = iter.Current;
             Assert.IsNotNull(doc);
-            Assert.AreEqual(doc.GetMember("id"), "2");
-            Assert.AreEqual(doc.GetMember("name"), "Sylvie");
+            Assert.AreEqual(doc.GetMember("id", false), "2");
+            Assert.AreEqual(doc.GetMember("name", false), "Sylvie");
         }
 
     }

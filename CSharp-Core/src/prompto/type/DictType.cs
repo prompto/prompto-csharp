@@ -41,14 +41,17 @@ namespace prompto.type
     
 		public override IType checkMember (Context context, String name)
 		{
-			if ("count" == name)
-				return IntegerType.Instance;
-			else if ("keys" == name)
-				return new SetType (TextType.Instance);
-			else if ("values" == name)
-				return new ListType (GetItemType ());
-			else
-				return base.checkMember (context, name);
+			switch (name)
+			{
+				case "count":
+					return IntegerType.Instance;
+				case "keys":
+					return new SetType(TextType.Instance);
+				case "values":
+					return new ListType(GetItemType());
+				default:
+					return base.checkMember(context, name);
+			}
 		}
 
         public override ISet<IMethodDeclaration> getMemberMethods(Context context, string name)

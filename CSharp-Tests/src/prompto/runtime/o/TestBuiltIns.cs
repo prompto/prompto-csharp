@@ -100,6 +100,12 @@ namespace prompto.runtime.o
 		}
 
 		[Test]
+		public void testDocumentCount()
+		{
+			CheckOutput("builtins/documentCount.poc");
+		}
+
+		[Test]
 		public void testEnumName()
 		{
 			CheckOutput("builtins/enumName.poc");

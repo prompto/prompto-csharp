@@ -99,6 +99,12 @@ namespace prompto.translate.omo
 		}
 
 		[Test]
+		public void testDocumentCount()
+		{
+			compareResourceOMO("builtins/documentCount.poc");
+		}
+
+		[Test]
 		public void testEnumName()
 		{
 			compareResourceOMO("builtins/enumName.poc");

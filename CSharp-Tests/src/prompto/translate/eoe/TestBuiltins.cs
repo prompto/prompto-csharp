@@ -183,9 +183,27 @@ namespace prompto.translate.eoe
 		}
 
 		[Test]
+		public void testDocumentCount()
+		{
+			compareResourceEOE("builtins/documentCount.pec");
+		}
+
+		[Test]
+		public void testDocumentKeys()
+		{
+			compareResourceEOE("builtins/documentKeys.pec");
+		}
+
+		[Test]
 		public void testDocumentText()
 		{
 			compareResourceEOE("builtins/documentText.pec");
+		}
+
+		[Test]
+		public void testDocumentValues()
+		{
+			compareResourceEOE("builtins/documentValues.pec");
 		}
 
 		[Test]
