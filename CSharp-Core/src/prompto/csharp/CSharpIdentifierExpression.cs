@@ -6,6 +6,7 @@ using prompto.type;
 using prompto.grammar;
 using prompto.utils;
 using System.Collections.Generic;
+using prompto.store;
 
 namespace prompto.csharp
 {
@@ -46,7 +47,7 @@ namespace prompto.csharp
             return identifier;
         }
 
-        
+
         public override String ToString()
         {
             if (parent == null)
@@ -55,15 +56,17 @@ namespace prompto.csharp
                 return parent.ToString() + "." + identifier;
         }
 
-		public override void ToDialect(CodeWriter writer) {
-			if(parent!=null) {
-				parent.ToDialect(writer);
-				writer.append('.');
-			}
-			writer.append(identifier);
-		}
+        public override void ToDialect(CodeWriter writer)
+        {
+            if (parent != null)
+            {
+                parent.ToDialect(writer);
+                writer.append('.');
+            }
+            writer.append(identifier);
+        }
 
-		public override Object interpret(Context context)
+        public override Object interpret(Context context)
         {
             if (parent == null)
                 return interpret_root(context);
@@ -73,9 +76,9 @@ namespace prompto.csharp
 
         Object interpret_root(Context context)
         {
-			Object o = interpret_presto (context);
-			if (o != null)
-				return o;
+            Object o = interpret_presto(context);
+            if (o != null)
+                return o;
             o = interpret_instance(context);
             if (o != null)
                 return o;
@@ -83,14 +86,17 @@ namespace prompto.csharp
                 return interpret_type(); // as an instance for static field/method
         }
 
-		Object interpret_presto(Context context)
-		{
-			switch (identifier) {
-			case "$context":
-				return context;
-			}
-			return null;
-		}
+        Object interpret_presto(Context context)
+        {
+            switch (identifier)
+            {
+                case "$context":
+                    return context;
+                case "$store":
+                    return DataStore.Instance;
+            }
+            return null;
+        }
 
         Object interpret_instance(Context context)
         {
@@ -104,49 +110,55 @@ namespace prompto.csharp
             }
         }
 
-		public Type interpret_type()
+        public Type interpret_type()
         {
             String fullName = this.ToString();
             Type klass = Type.GetType(fullName, false);
             if (klass != null)
                 return klass;
-			HashSet<Assembly> assemblies = GetAllAssemblies ();
-			foreach (Assembly asm in assemblies) {
-				klass = asm.GetType (fullName, false);
-				if (klass != null)
-					return klass;
-			}
+            HashSet<Assembly> assemblies = GetAllAssemblies();
+            foreach (Assembly asm in assemblies)
+            {
+                klass = asm.GetType(fullName, false);
+                if (klass != null)
+                    return klass;
+            }
             return null;
-         }
+        }
 
-		static HashSet<Assembly> allAssemblies = null;
+        static HashSet<Assembly> allAssemblies = null;
 
-		HashSet<Assembly> GetAllAssemblies() 
-		{
-			if (allAssemblies == null) {
-				allAssemblies = new HashSet<Assembly> ();
-				AddAll (Assembly.GetEntryAssembly ());
-				AddAll (Assembly.GetCallingAssembly ());
-				AddAll (Assembly.GetExecutingAssembly ());
-				foreach (Assembly asm in AppDomain.CurrentDomain.GetAssemblies())
-					AddAll (asm);
-			}
-			return allAssemblies;
-		}
+        HashSet<Assembly> GetAllAssemblies()
+        {
+            if (allAssemblies == null)
+            {
+                allAssemblies = new HashSet<Assembly>();
+                AddAll(Assembly.GetEntryAssembly());
+                AddAll(Assembly.GetCallingAssembly());
+                AddAll(Assembly.GetExecutingAssembly());
+                foreach (Assembly asm in AppDomain.CurrentDomain.GetAssemblies())
+                    AddAll(asm);
+            }
+            return allAssemblies;
+        }
 
-		void AddAll(Assembly asm) 
-		{
-			if(asm==null || allAssemblies.Contains(asm))
-				return;
-			allAssemblies.Add(asm);
-			foreach (AssemblyName name in asm.GetReferencedAssemblies()) {
-				try {
-					AddAll (Assembly.Load (name));
-				} catch (Exception) {
-					// ok
-				}
-			}
-		}
+        void AddAll(Assembly asm)
+        {
+            if (asm == null || allAssemblies.Contains(asm))
+                return;
+            allAssemblies.Add(asm);
+            foreach (AssemblyName name in asm.GetReferencedAssemblies())
+            {
+                try
+                {
+                    AddAll(Assembly.Load(name));
+                }
+                catch (Exception)
+                {
+                    // ok
+                }
+            }
+        }
 
         Object interpret_child(Context context)
         {
@@ -186,24 +198,27 @@ namespace prompto.csharp
 
         IType check_root(Context context)
         {
-			IType t = check_prompto (context);
-			if (t != null)
-				return t;
-			t = check_instance(context);
+            IType t = check_prompto(context);
+            if (t != null)
+                return t;
+            t = check_instance(context);
             if (t != null)
                 return t;
             else
                 return check_class(); // as an instance for accessing static field/method
         }
 
-		IType check_prompto(Context context)
-		{
-			switch (identifier) {
-			case "$context":
-				return new CSharpClassType (context.GetType ());
-			}
-			return null;
-		}
+        IType check_prompto(Context context)
+        {
+            switch (identifier)
+            {
+                case "$context":
+                    return new CSharpClassType(context.GetType());
+                case "$store":
+                    return new CSharpClassType(typeof(IStore));
+            }
+            return null;
+        }
 
         IType check_instance(Context context)
         {
@@ -223,11 +238,11 @@ namespace prompto.csharp
         IType check_class()
         {
             Type klass = interpret_type();
-            if(klass==null)
+            if (klass == null)
                 return null;
             else
                 return new CSharpClassType(klass);
-         }
+        }
 
         IType check_child(Context context)
         {
@@ -245,10 +260,10 @@ namespace prompto.csharp
             Type klass = ((CSharpClassType)t).type;
             FieldInfo field = klass.GetField(identifier);
             if (field != null)
-                 return new CSharpClassType(field.FieldType);
+                return new CSharpClassType(field.FieldType);
             PropertyInfo prop = klass.GetProperty(identifier);
             if (prop != null)
-                 return new CSharpClassType(prop.PropertyType);
+                return new CSharpClassType(prop.PropertyType);
             else
                 return null;
         }

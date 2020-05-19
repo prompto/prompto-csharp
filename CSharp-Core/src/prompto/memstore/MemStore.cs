@@ -13,6 +13,7 @@ namespace prompto.memstore
 	{
 
 		static long lastDbId = 0;
+        static Dictionary<string, long> sequences = new Dictionary<string, long>();
 
 		public static long NextDbId
 		{
@@ -21,6 +22,25 @@ namespace prompto.memstore
 				return Interlocked.Increment(ref lastDbId);
 			}
 		}
+
+
+		public long NextSequenceValue(string name)
+		{
+            lock(sequences)
+            {
+                if(sequences.ContainsKey(name))
+                {
+					long value = sequences[name] + 1;
+					sequences[name] = value;
+					return value;
+				} else
+                {
+					sequences[name] = 1;
+					return 1;
+				}
+			}
+		}
+
 
 		private Dictionary<long, StorableDocument> documents = new Dictionary<long, StorableDocument>();
 
@@ -156,7 +176,7 @@ namespace prompto.memstore
 			return typeof(long);
 		}
 
-		class DataTuple : List<object>
+        class DataTuple : List<object>
 		{
 			public int CompareTo(DataTuple other, List<bool> directions)
 			{

@@ -21,6 +21,7 @@ namespace prompto.store
 		IStoredEnumerable FetchMany(IQuery query);
 		void Flush();
 		IStorable NewStorable(List<string> categories);
+		long NextSequenceValue(string name);
 	}
 
 }
