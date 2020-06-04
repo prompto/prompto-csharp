@@ -15,6 +15,12 @@ namespace prompto.translate.eoe
 		}
 
 		[Test]
+		public void testReadResourceThen()
+		{
+			compareResourceEOE("resource/readResourceThen.pec");
+		}
+
+		[Test]
 		public void testReadWithResource()
 		{
 			compareResourceEOE("resource/readWithResource.pec");

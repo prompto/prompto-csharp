@@ -28,6 +28,12 @@ namespace prompto.runtime.e
 		}
 
 		[Test]
+		public void testReadResourceThen()
+		{
+			CheckOutput("resource/readResourceThen.pec");
+		}
+
+		[Test]
 		public void testReadWithResource()
 		{
 			CheckOutput("resource/readWithResource.pec");

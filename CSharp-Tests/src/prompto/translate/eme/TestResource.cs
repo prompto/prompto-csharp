@@ -15,6 +15,12 @@ namespace prompto.translate.eme
 		}
 
 		[Test]
+		public void testReadResourceThen()
+		{
+			compareResourceEME("resource/readResourceThen.pec");
+		}
+
+		[Test]
 		public void testReadWithResource()
 		{
 			compareResourceEME("resource/readWithResource.pec");

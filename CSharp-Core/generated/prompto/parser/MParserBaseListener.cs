@@ -434,6 +434,20 @@ public partial class MParserBaseListener : IMParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitFetchStatement([NotNull] MParser.FetchStatementContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by the <c>ReadStatement</c>
+	/// labeled alternative in <see cref="MParser.statement"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterReadStatement([NotNull] MParser.ReadStatementContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by the <c>ReadStatement</c>
+	/// labeled alternative in <see cref="MParser.statement"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitReadStatement([NotNull] MParser.ReadStatementContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by the <c>FlushStatement</c>
 	/// labeled alternative in <see cref="MParser.statement"/>.
 	/// <para>The default implementation does nothing.</para>
@@ -1885,6 +1899,18 @@ public partial class MParserBaseListener : IMParserListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitFetchManyAsync([NotNull] MParser.FetchManyAsyncContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="MParser.read_statement"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterRead_statement([NotNull] MParser.Read_statementContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="MParser.read_statement"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitRead_statement([NotNull] MParser.Read_statementContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="MParser.sorted_expression"/>.
 	/// <para>The default implementation does nothing.</para>

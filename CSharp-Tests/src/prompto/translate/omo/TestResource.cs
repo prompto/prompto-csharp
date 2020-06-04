@@ -15,6 +15,12 @@ namespace prompto.translate.omo
 		}
 
 		[Test]
+		public void testReadResourceThen()
+		{
+			compareResourceOMO("resource/readResourceThen.poc");
+		}
+
+		[Test]
 		public void testReadWithResource()
 		{
 			compareResourceOMO("resource/readWithResource.poc");

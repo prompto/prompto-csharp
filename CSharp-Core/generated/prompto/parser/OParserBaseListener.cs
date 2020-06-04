@@ -494,6 +494,20 @@ public partial class OParserBaseListener : IOParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitFetchStatement([NotNull] OParser.FetchStatementContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by the <c>ReadStatement</c>
+	/// labeled alternative in <see cref="OParser.statement"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterReadStatement([NotNull] OParser.ReadStatementContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by the <c>ReadStatement</c>
+	/// labeled alternative in <see cref="OParser.statement"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitReadStatement([NotNull] OParser.ReadStatementContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by the <c>FlushStatement</c>
 	/// labeled alternative in <see cref="OParser.statement"/>.
 	/// <para>The default implementation does nothing.</para>
@@ -1833,6 +1847,18 @@ public partial class OParserBaseListener : IOParserListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitFetchManyAsync([NotNull] OParser.FetchManyAsyncContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="OParser.read_statement"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterRead_statement([NotNull] OParser.Read_statementContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="OParser.read_statement"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitRead_statement([NotNull] OParser.Read_statementContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="OParser.sorted_expression"/>.
 	/// <para>The default implementation does nothing.</para>

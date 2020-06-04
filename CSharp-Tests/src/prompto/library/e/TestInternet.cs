@@ -28,6 +28,12 @@ namespace prompto.library.e
 		}
 
 		[Test]
+		public void testEmail()
+		{
+			CheckTests("internet/email.pec");
+		}
+
+		[Test]
 		public void testHtml()
 		{
 			CheckTests("internet/html.pec");

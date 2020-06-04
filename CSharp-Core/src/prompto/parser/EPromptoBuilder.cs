@@ -2912,6 +2912,23 @@ namespace prompto.parser
             SetNodeValue(ctx, exp);
         }
 
+
+        public override void ExitRead_statement(EParser.Read_statementContext ctx)
+        {
+            IExpression source = GetNodeValue<IExpression>(ctx.source);
+            String name = GetNodeValue<String>(ctx.name);
+            StatementList stmts = GetNodeValue<StatementList>(ctx.stmts);
+            SetNodeValue(ctx, new ReadStatement(source, name, stmts));
+        }
+
+
+        public override void ExitReadStatement(EParser.ReadStatementContext ctx)
+        {
+            ReadStatement stmt = GetNodeValue<ReadStatement>(ctx.stmt);
+            SetNodeValue(ctx, stmt);
+        }
+
+
         public override void ExitWrite_statement(EParser.Write_statementContext ctx)
         {
             IExpression what = GetNodeValue<IExpression>(ctx.what);

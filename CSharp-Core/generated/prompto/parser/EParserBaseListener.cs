@@ -478,6 +478,20 @@ public partial class EParserBaseListener : IEParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitFetchStatement([NotNull] EParser.FetchStatementContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by the <c>ReadStatement</c>
+	/// labeled alternative in <see cref="EParser.statement"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterReadStatement([NotNull] EParser.ReadStatementContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by the <c>ReadStatement</c>
+	/// labeled alternative in <see cref="EParser.statement"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitReadStatement([NotNull] EParser.ReadStatementContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by the <c>FlushStatement</c>
 	/// labeled alternative in <see cref="EParser.statement"/>.
 	/// <para>The default implementation does nothing.</para>
@@ -2059,6 +2073,18 @@ public partial class EParserBaseListener : IEParserListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitFetchManyAsync([NotNull] EParser.FetchManyAsyncContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="EParser.read_statement"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterRead_statement([NotNull] EParser.Read_statementContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="EParser.read_statement"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitRead_statement([NotNull] EParser.Read_statementContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="EParser.sorted_expression"/>.
 	/// <para>The default implementation does nothing.</para>

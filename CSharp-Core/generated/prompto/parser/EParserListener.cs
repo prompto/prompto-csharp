@@ -404,6 +404,18 @@ public interface IEParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitFetchStatement([NotNull] EParser.FetchStatementContext context);
 	/// <summary>
+	/// Enter a parse tree produced by the <c>ReadStatement</c>
+	/// labeled alternative in <see cref="EParser.statement"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterReadStatement([NotNull] EParser.ReadStatementContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>ReadStatement</c>
+	/// labeled alternative in <see cref="EParser.statement"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitReadStatement([NotNull] EParser.ReadStatementContext context);
+	/// <summary>
 	/// Enter a parse tree produced by the <c>FlushStatement</c>
 	/// labeled alternative in <see cref="EParser.statement"/>.
 	/// </summary>
@@ -1753,6 +1765,16 @@ public interface IEParserListener : IParseTreeListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void ExitFetchManyAsync([NotNull] EParser.FetchManyAsyncContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="EParser.read_statement"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterRead_statement([NotNull] EParser.Read_statementContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="EParser.read_statement"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitRead_statement([NotNull] EParser.Read_statementContext context);
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="EParser.sorted_expression"/>.
 	/// </summary>

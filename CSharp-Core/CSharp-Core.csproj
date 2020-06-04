@@ -547,6 +547,7 @@
     <Compile Include="src\prompto\expression\SuperExpression.cs" />
     <Compile Include="src\prompto\expression\ReadBlobExpression.cs" />
     <Compile Include="src\prompto\intrinsic\Binary.cs" />
+    <Compile Include="src\prompto\statement\ReadStatement.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />

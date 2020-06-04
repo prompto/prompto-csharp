@@ -418,6 +418,18 @@ public interface IOParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitFetchStatement([NotNull] OParser.FetchStatementContext context);
 	/// <summary>
+	/// Enter a parse tree produced by the <c>ReadStatement</c>
+	/// labeled alternative in <see cref="OParser.statement"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterReadStatement([NotNull] OParser.ReadStatementContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>ReadStatement</c>
+	/// labeled alternative in <see cref="OParser.statement"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitReadStatement([NotNull] OParser.ReadStatementContext context);
+	/// <summary>
 	/// Enter a parse tree produced by the <c>FlushStatement</c>
 	/// labeled alternative in <see cref="OParser.statement"/>.
 	/// </summary>
@@ -1559,6 +1571,16 @@ public interface IOParserListener : IParseTreeListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void ExitFetchManyAsync([NotNull] OParser.FetchManyAsyncContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="OParser.read_statement"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterRead_statement([NotNull] OParser.Read_statementContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="OParser.read_statement"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitRead_statement([NotNull] OParser.Read_statementContext context);
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="OParser.sorted_expression"/>.
 	/// </summary>
