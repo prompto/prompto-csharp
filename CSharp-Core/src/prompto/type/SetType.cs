@@ -36,7 +36,7 @@ namespace prompto.type
 		public override IType checkAdd (Context context, IType other, bool tryReverse)
 		{
 			if ((other is ListType || other is SetType)
-				&& this.GetItemType().Equals(((ContainerType)other).GetItemType()))
+				&& this.GetItemType().isAssignableFrom(context, ((ContainerType)other).GetItemType()))
 				return this;
 			return base.checkAdd (context, other, tryReverse);
 		}

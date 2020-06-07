@@ -88,6 +88,12 @@ namespace prompto.runtime.o
 		}
 
 		[Test]
+		public void testAddSetDerived()
+		{
+			CheckOutput("add/addSetDerived.poc");
+		}
+
+		[Test]
 		public void testAddTextCharacter()
 		{
 			CheckOutput("add/addTextCharacter.poc");

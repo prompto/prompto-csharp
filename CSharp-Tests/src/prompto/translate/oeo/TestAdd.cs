@@ -75,6 +75,12 @@ namespace prompto.translate.oeo
 		}
 
 		[Test]
+		public void testAddSetDerived()
+		{
+			compareResourceOEO("add/addSetDerived.poc");
+		}
+
+		[Test]
 		public void testAddTextCharacter()
 		{
 			compareResourceOEO("add/addTextCharacter.poc");

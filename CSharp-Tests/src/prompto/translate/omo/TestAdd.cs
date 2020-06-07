@@ -75,6 +75,12 @@ namespace prompto.translate.omo
 		}
 
 		[Test]
+		public void testAddSetDerived()
+		{
+			compareResourceOMO("add/addSetDerived.poc");
+		}
+
+		[Test]
 		public void testAddTextCharacter()
 		{
 			compareResourceOMO("add/addTextCharacter.poc");
