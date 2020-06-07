@@ -57,6 +57,12 @@ namespace prompto.translate.oeo
 		}
 
 		[Test]
+		public void testAddListDerived()
+		{
+			compareResourceOEO("add/addListDerived.poc");
+		}
+
+		[Test]
 		public void testAddPeriod()
 		{
 			compareResourceOEO("add/addPeriod.poc");

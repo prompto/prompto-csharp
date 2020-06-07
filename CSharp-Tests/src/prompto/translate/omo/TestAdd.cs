@@ -57,6 +57,12 @@ namespace prompto.translate.omo
 		}
 
 		[Test]
+		public void testAddListDerived()
+		{
+			compareResourceOMO("add/addListDerived.poc");
+		}
+
+		[Test]
 		public void testAddPeriod()
 		{
 			compareResourceOMO("add/addPeriod.poc");

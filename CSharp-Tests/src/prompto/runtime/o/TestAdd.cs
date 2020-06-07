@@ -70,6 +70,12 @@ namespace prompto.runtime.o
 		}
 
 		[Test]
+		public void testAddListDerived()
+		{
+			CheckOutput("add/addListDerived.poc");
+		}
+
+		[Test]
 		public void testAddPeriod()
 		{
 			CheckOutput("add/addPeriod.poc");
