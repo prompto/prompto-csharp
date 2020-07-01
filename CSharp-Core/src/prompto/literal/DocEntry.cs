@@ -9,10 +9,10 @@ namespace prompto.literal
 {
 
 
-	public class DictEntry : Entry<DictKey>
+	public class DocEntry : Entry<DocKey>
 	{
 
-		public DictEntry(DictKey key, IExpression value)
+		public DocEntry(DocKey key, IExpression value)
 			: base(key, value) 
 		{
 		}

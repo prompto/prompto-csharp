@@ -1,5 +1,7 @@
 ﻿using System;
+using prompto.runtime;
 using prompto.utils;
+using prompto.value;
 
 namespace prompto.literal
 {
@@ -12,12 +14,17 @@ namespace prompto.literal
 			this.text = text;
 		}
 
-		internal override string asKey()
-		{
-			return StringUtils.Unescape( this.text);
+        internal override string interpret(Context context)
+        {
+   			return StringUtils.Unescape(this.text);
 		}
 
-		public override string ToString()
+        internal override void ToDialect(CodeWriter writer)
+        {
+			writer.append(this.text);
+        }
+
+        public override string ToString()
 		{
 			return this.text;
 		}

@@ -6,25 +6,25 @@ using prompto.utils;
 namespace prompto.literal
 {
 
-	public class DocEntryList : List<DictEntry>
+	public class DocEntryList : List<DocEntry>
 	{
 
 		public DocEntryList()
 		{
 		}
 
-		public DocEntryList(List<DictEntry> entries)
+		public DocEntryList(List<DocEntry> entries)
 			: base(entries)
 		{
 		}
 
-		public DocEntryList(DictEntry entry)
+		public DocEntryList(DocEntry entry)
 		{
 			this.Add(entry);
 		}
 
 		/* for unified grammar */
-		public void add(DictEntry entry)
+		public void add(DocEntry entry)
 		{
 			this.Add(entry);
 		}
@@ -34,7 +34,7 @@ namespace prompto.literal
 		{
 			StringBuilder sb = new StringBuilder();
 			sb.Append("{");
-			foreach (DictEntry entry in this)
+			foreach (DocEntry entry in this)
 			{
 				sb.Append(entry.ToString());
 				sb.Append(", ");
@@ -50,7 +50,7 @@ namespace prompto.literal
 			writer.append('{');
 			if (this.Count > 0)
 			{
-				foreach (DictEntry entry in this)
+				foreach (DocEntry entry in this)
 				{
 					entry.ToDialect(writer);
 					writer.append(", ");

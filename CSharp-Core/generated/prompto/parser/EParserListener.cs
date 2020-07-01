@@ -3500,6 +3500,50 @@ public interface IEParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitExpression_tuple([NotNull] EParser.Expression_tupleContext context);
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="EParser.doc_entry_list"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterDoc_entry_list([NotNull] EParser.Doc_entry_listContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="EParser.doc_entry_list"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitDoc_entry_list([NotNull] EParser.Doc_entry_listContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="EParser.doc_entry"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterDoc_entry([NotNull] EParser.Doc_entryContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="EParser.doc_entry"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitDoc_entry([NotNull] EParser.Doc_entryContext context);
+	/// <summary>
+	/// Enter a parse tree produced by the <c>DocKeyIdentifier</c>
+	/// labeled alternative in <see cref="EParser.doc_key"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterDocKeyIdentifier([NotNull] EParser.DocKeyIdentifierContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>DocKeyIdentifier</c>
+	/// labeled alternative in <see cref="EParser.doc_key"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitDocKeyIdentifier([NotNull] EParser.DocKeyIdentifierContext context);
+	/// <summary>
+	/// Enter a parse tree produced by the <c>DocKeyText</c>
+	/// labeled alternative in <see cref="EParser.doc_key"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterDocKeyText([NotNull] EParser.DocKeyTextContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>DocKeyText</c>
+	/// labeled alternative in <see cref="EParser.doc_key"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitDocKeyText([NotNull] EParser.DocKeyTextContext context);
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="EParser.dict_entry_list"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>

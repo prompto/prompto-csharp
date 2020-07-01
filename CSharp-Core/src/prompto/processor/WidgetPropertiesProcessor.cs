@@ -74,7 +74,7 @@ namespace prompto.processor
         public PropertyMap LoadProperties(Annotation annotation, Context context, DocEntryList entries)
         {
             PropertyMap props = new PropertyMap();
-            foreach (DictEntry entry in entries)
+            foreach (DocEntry entry in entries)
             {
                 Property prop = LoadProperty(annotation, context, entry);
                 if (prop == null)
@@ -87,7 +87,7 @@ namespace prompto.processor
             return props;
         }
 
-        private Property LoadProperty(Annotation annotation, Context context, DictEntry entry)
+        private Property LoadProperty(Annotation annotation, Context context, DocEntry entry)
         {
             Property prop = new Property();
             prop.SetName(entry.GetKey().ToString());
@@ -102,9 +102,9 @@ namespace prompto.processor
                 throw new SyntaxError("WidgetProperties expects a Document of types as unique parameter");
         }
 
-		private Property LoadProperty(Annotation annotation, Context context, DictEntry entry, Property prop, DocumentLiteral doc)
+		private Property LoadProperty(Annotation annotation, Context context, DocEntry entry, Property prop, DocumentLiteral doc)
 		{
-			foreach (DictEntry child in doc.GetEntries())
+			foreach (DocEntry child in doc.GetEntries())
 			{
 				String name = child.GetKey().ToString();
 				Object value = child.GetValue();
@@ -179,7 +179,7 @@ namespace prompto.processor
 		return prop;
 	}
 
-    private Property LoadProperty(Annotation annotation, Context context, DictEntry entry, Property prop, SetLiteral literal)
+    private Property LoadProperty(Annotation annotation, Context context, DocEntry entry, Property prop, SetLiteral literal)
     {
 	    SetValue values = (SetValue)literal.interpret(context);
 	    IType itemType = values.ItemType;
@@ -212,7 +212,7 @@ namespace prompto.processor
 			throw new SyntaxError("Expected a set of Types.");
 	}
 
-    private Property LoadProperty(Annotation annotation, Context context, DictEntry entry, Property prop, TypeLiteral value)
+    private Property LoadProperty(Annotation annotation, Context context, DocEntry entry, Property prop, TypeLiteral value)
     {
 	    IType type = resolveType(annotation, context, value);
 	    if (type == null)

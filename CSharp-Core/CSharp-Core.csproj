@@ -548,6 +548,12 @@
     <Compile Include="src\prompto\expression\ReadBlobExpression.cs" />
     <Compile Include="src\prompto\intrinsic\Binary.cs" />
     <Compile Include="src\prompto\statement\ReadStatement.cs" />
+    <Compile Include="src\prompto\literal\Entry.cs" />
+    <Compile Include="src\prompto\literal\Key.cs" />
+    <Compile Include="src\prompto\literal\DocEntry.cs" />
+    <Compile Include="src\prompto\literal\DocKey.cs" />
+    <Compile Include="src\prompto\literal\DocTextKey.cs" />
+    <Compile Include="src\prompto\literal\DocIdentifierKey.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />

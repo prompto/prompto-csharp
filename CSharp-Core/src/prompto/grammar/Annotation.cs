@@ -11,9 +11,9 @@ namespace prompto.grammar
 	public class Annotation
 	{
 		String name;
-		DictEntryList arguments;
+		DocEntryList arguments;
 
-		public Annotation(String name, DictEntryList arguments)
+		public Annotation(String name, DocEntryList arguments)
 		{
 			this.name = name;
 			this.arguments = arguments;
@@ -33,7 +33,7 @@ namespace prompto.grammar
 			if (arguments != null && arguments.Count > 0)
 			{
 				writer.append("(");
-				foreach (DictEntry entry in arguments)
+				foreach (DocEntry entry in arguments)
 				{
 					if (entry.GetKey() != null)
 					{
@@ -61,9 +61,9 @@ namespace prompto.grammar
 		{
 			if (arguments != null)
 			{
-				foreach (DictEntry argument in arguments)
+				foreach (DocEntry argument in arguments)
 				{
-					string key = (string)argument.GetKey().asText().GetStorableData();
+					string key = argument.GetKey().interpret(null);
 					if (key == name)
 						return argument.GetValue();
 				}

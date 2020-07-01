@@ -402,6 +402,9 @@
     <Compile Include="src\prompto\translate\oeo\TestTypes.cs" />
     <Compile Include="src\prompto\translate\omo\TestTypes.cs" />
     <Compile Include="src\prompto\library\TestYAMLReader.cs" />
+    <Compile Include="src\prompto\runtime\o\TestAssign.cs" />
+    <Compile Include="src\prompto\translate\oeo\TestAssign.cs" />
+    <Compile Include="src\prompto\translate\omo\TestAssign.cs" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />

@@ -60,7 +60,7 @@ namespace prompto.literal
 				check (context); // to compute itemType
 				Dictionary<TextValue, IValue> dict = new Dictionary<TextValue, IValue> ();
 				foreach (DictEntry e in entries) {
-					TextValue key = e.GetKey ().asText ();
+					TextValue key = new TextValue(e.GetKey ().interpret(context));
 					IValue val = e.GetValue ().interpret (context);
 					dict [key] = val;
 				}

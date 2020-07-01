@@ -3336,6 +3336,50 @@ public interface IOParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitExpression_tuple([NotNull] OParser.Expression_tupleContext context);
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="OParser.doc_entry_list"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterDoc_entry_list([NotNull] OParser.Doc_entry_listContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="OParser.doc_entry_list"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitDoc_entry_list([NotNull] OParser.Doc_entry_listContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="OParser.doc_entry"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterDoc_entry([NotNull] OParser.Doc_entryContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="OParser.doc_entry"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitDoc_entry([NotNull] OParser.Doc_entryContext context);
+	/// <summary>
+	/// Enter a parse tree produced by the <c>DocKeyIdentifier</c>
+	/// labeled alternative in <see cref="OParser.doc_key"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterDocKeyIdentifier([NotNull] OParser.DocKeyIdentifierContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>DocKeyIdentifier</c>
+	/// labeled alternative in <see cref="OParser.doc_key"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitDocKeyIdentifier([NotNull] OParser.DocKeyIdentifierContext context);
+	/// <summary>
+	/// Enter a parse tree produced by the <c>DocKeyText</c>
+	/// labeled alternative in <see cref="OParser.doc_key"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterDocKeyText([NotNull] OParser.DocKeyTextContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>DocKeyText</c>
+	/// labeled alternative in <see cref="OParser.doc_key"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitDocKeyText([NotNull] OParser.DocKeyTextContext context);
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="OParser.dict_entry_list"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>

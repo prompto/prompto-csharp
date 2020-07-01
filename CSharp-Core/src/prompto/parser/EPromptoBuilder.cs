@@ -476,6 +476,39 @@ namespace prompto.parser
         }
 
 
+        public override void ExitDoc_entry_list(EParser.Doc_entry_listContext ctx)
+        {
+            DocEntryList items = new DocEntryList();
+            foreach (ParserRuleContext entry in ctx.doc_entry())
+            {
+                DocEntry item = GetNodeValue<DocEntry>(entry);
+                items.add(item);
+            }
+            SetNodeValue(ctx, items);
+        }
+
+        public override void ExitDoc_entry(EParser.Doc_entryContext ctx)
+        {
+            DocKey key = GetNodeValue<DocKey>(ctx.key);
+            IExpression value = GetNodeValue<IExpression>(ctx.value);
+            DocEntry entry = new DocEntry(key, value);
+            SetNodeValue(ctx, entry);
+        }
+
+
+        public override void ExitDocKeyIdentifier(EParser.DocKeyIdentifierContext ctx)
+        {
+            String text = ctx.name.GetText();
+            SetNodeValue(ctx, new DocIdentifierKey(text));
+        }
+
+
+        public override void ExitDocKeyText(EParser.DocKeyTextContext ctx)
+        {
+            String text = ctx.name.Text;
+            SetNodeValue(ctx, new DocTextKey(text));
+        }
+
         public override void ExitLiteralExpression(EParser.LiteralExpressionContext ctx)
         {
             IExpression exp = GetNodeValue<IExpression>(ctx.exp);
@@ -2462,13 +2495,13 @@ namespace prompto.parser
         public override void ExitAnnotation_constructor(EParser.Annotation_constructorContext ctx)
         {
             String name = GetNodeValue<String>(ctx.name);
-            DictEntryList args = new DictEntryList();
+            DocEntryList args = new DocEntryList();
             IExpression exp = GetNodeValue<IExpression>(ctx.exp);
             if (exp != null)
-                args.add(new DictEntry(null, exp));
+                args.add(new DocEntry(null, exp));
             foreach (RuleContext argCtx in ctx.annotation_argument())
             {
-                DictEntry arg = GetNodeValue<DictEntry>(argCtx);
+                DocEntry arg = GetNodeValue<DocEntry>(argCtx);
                 args.add(arg);
             }
             SetNodeValue(ctx, new Annotation(name, args));
@@ -2478,7 +2511,7 @@ namespace prompto.parser
         {
             String name = GetNodeValue<String>(ctx.name);
             IExpression exp = GetNodeValue<IExpression>(ctx.exp);
-            SetNodeValue(ctx, new DictEntry(new DictIdentifierKey(name), exp));
+            SetNodeValue(ctx, new DocEntry(new DocIdentifierKey(name), exp));
         }
 
         public override void ExitAnnotation_identifier(EParser.Annotation_identifierContext ctx)
@@ -2736,9 +2769,10 @@ namespace prompto.parser
 
         public override void ExitDocument_literal(EParser.Document_literalContext ctx)
         {
-            DictEntryList entries = GetNodeValue<DictEntryList>(ctx.dict_entry_list());
-            DocEntryList items = new DocEntryList(entries);
-            SetNodeValue(ctx, new DocumentLiteral(items));
+            DocEntryList entries = GetNodeValue<DocEntryList>(ctx.doc_entry_list());
+            if(entries==null)
+                entries = new DocEntryList();
+            SetNodeValue(ctx, new DocumentLiteral(entries));
         }
 
 

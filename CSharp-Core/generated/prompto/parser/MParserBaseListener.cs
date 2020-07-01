@@ -3880,6 +3880,58 @@ public partial class MParserBaseListener : IMParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitExpression_tuple([NotNull] MParser.Expression_tupleContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="MParser.doc_entry_list"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterDoc_entry_list([NotNull] MParser.Doc_entry_listContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="MParser.doc_entry_list"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitDoc_entry_list([NotNull] MParser.Doc_entry_listContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="MParser.doc_entry"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterDoc_entry([NotNull] MParser.Doc_entryContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="MParser.doc_entry"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitDoc_entry([NotNull] MParser.Doc_entryContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by the <c>DocKeyIdentifier</c>
+	/// labeled alternative in <see cref="MParser.doc_key"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterDocKeyIdentifier([NotNull] MParser.DocKeyIdentifierContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by the <c>DocKeyIdentifier</c>
+	/// labeled alternative in <see cref="MParser.doc_key"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitDocKeyIdentifier([NotNull] MParser.DocKeyIdentifierContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by the <c>DocKeyText</c>
+	/// labeled alternative in <see cref="MParser.doc_key"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterDocKeyText([NotNull] MParser.DocKeyTextContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by the <c>DocKeyText</c>
+	/// labeled alternative in <see cref="MParser.doc_key"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitDocKeyText([NotNull] MParser.DocKeyTextContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="MParser.dict_entry_list"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>

@@ -44,9 +44,9 @@ namespace prompto.literal
 			{
 				check(context); // to compute itemType
 				DocumentValue doc = new DocumentValue();
-				foreach (DictEntry e in entries)
+				foreach (DocEntry e in entries)
 				{
-					TextValue key = e.GetKey().asText();
+					TextValue key = new TextValue(e.GetKey().interpret(context));
 					IValue val = e.GetValue().interpret(context);
 					doc.SetMember(key.Value, val);
 				}
