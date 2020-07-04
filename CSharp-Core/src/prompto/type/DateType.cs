@@ -44,7 +44,10 @@ namespace prompto.type
         {
             if (other is PeriodType)
                 return this; // ignore time section
-			return base.checkAdd(context, other, tryReverse);
+            else if (other is TimeType)
+                return DateTimeType.Instance;
+            else
+                return base.checkAdd(context, other, tryReverse);
         }
 
         

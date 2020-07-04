@@ -1,11 +1,6 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Globalization;
-using DateTime = System.DateTime;
 using prompto.error;
-using prompto.grammar;
 using prompto.runtime;
 using prompto.type;
 
@@ -45,6 +40,8 @@ namespace prompto.value
         {
             if (value is PeriodValue)
                 return this.plus((PeriodValue)value);
+            else if (value is TimeValue)
+                return this.plus((TimeValue)value);
             else
                 throw new SyntaxError("Illegal: Date + " + value.GetType().Name);
         }
@@ -114,6 +111,12 @@ namespace prompto.value
         internal DateValue plus(PeriodValue period)
         {
             return new DateValue(this.value.AddYears(period.Years).AddMonths(period.Months).AddDays(period.Weeks * 7).AddDays(period.Days));
+        }
+
+        internal DateTimeValue plus(TimeValue time)
+        {
+            DateTimeOffset offset = new DateTimeOffset(this.value.AddMilliseconds(time.Value.TotalMilliseconds), new TimeSpan(0));
+            return new DateTimeValue(offset);
         }
 
         public long Year { get { return value.Year; } }
