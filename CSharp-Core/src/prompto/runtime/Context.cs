@@ -486,8 +486,6 @@ namespace prompto.runtime
                     decl = findAttribute(name);
                 if (decl == null)
                     throw new SyntaxError("Expected an attribute, got: " + exp.ToString());
-                else if (!decl.Storable)
-                    throw new SyntaxError(name + " is not storable");
                 return decl;
             }
         }

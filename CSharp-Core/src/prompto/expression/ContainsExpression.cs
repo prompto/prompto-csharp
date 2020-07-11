@@ -176,6 +176,8 @@ namespace prompto.expression
             AttributeDeclaration decl = context.CheckAttribute(left);
             if (decl == null)
                 return VoidType.Instance;
+            else if (!decl.Storable)
+                throw new SyntaxError(decl.GetName() + " is not storable");
             IType rt = right.check(context);
             return checkOperator(context, decl.getIType(), rt);
         }
@@ -184,7 +186,7 @@ namespace prompto.expression
         public void interpretQuery(Context context, IQueryBuilder builder)
         {
             AttributeDeclaration decl = context.CheckAttribute(left);
-            if (decl == null)
+            if (decl == null || !decl.Storable)
                 throw new SyntaxError("Unable to interpret predicate");
             IValue value = right.interpret(context);
             MatchOp matchOp = getMatchOp(context, decl.getIType(), value.GetIType(), this.oper, false);
