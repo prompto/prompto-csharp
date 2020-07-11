@@ -5,7 +5,7 @@ using prompto.type;
 using prompto.utils;
 using prompto.grammar;
 using prompto.value;
-
+using prompto.declaration;
 
 namespace prompto.expression
 {
@@ -14,6 +14,7 @@ namespace prompto.expression
 	    IType check(Context context);
 	    IValue interpret(Context context);
         void ParentToDialect(CodeWriter writer);
+        AttributeDeclaration CheckAttribute(Context context);
     }
 
 }

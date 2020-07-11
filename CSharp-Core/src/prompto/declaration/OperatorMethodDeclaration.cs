@@ -6,6 +6,7 @@ using prompto.statement;
 using prompto.runtime;
 using prompto.utils;
 using prompto.param;
+using prompto.error;
 
 namespace prompto.declaration
 {
@@ -68,7 +69,12 @@ namespace prompto.declaration
 			writer.dedent();
 			writer.append("}\n");
 		}
-			
+
+		public AttributeDeclaration CheckAttribute(Context context)
+		{
+			throw new SyntaxError("Expected an attribute, got: " + this.ToString());
+		}
+
 	}
 
 }

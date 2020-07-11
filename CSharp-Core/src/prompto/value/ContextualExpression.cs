@@ -6,6 +6,8 @@ using prompto.type;
 using prompto.expression;
 using prompto.runtime;
 using prompto.utils;
+using prompto.declaration;
+using prompto.error;
 
 namespace prompto.value
 {
@@ -38,6 +40,11 @@ namespace prompto.value
         public IType check (Context context)
 		{
 			return Expression.check (Calling);
+		}
+
+		public AttributeDeclaration CheckAttribute(Context context)
+		{
+			throw new SyntaxError("Expected an attribute, got: " + this.ToString());
 		}
 
 		public virtual IValue interpret (Context context)

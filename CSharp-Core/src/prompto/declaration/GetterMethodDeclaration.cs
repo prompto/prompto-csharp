@@ -2,12 +2,9 @@ using prompto.runtime;
 using System;
 using prompto.statement;
 using prompto.expression;
-using prompto.grammar;
 using prompto.type;
 using prompto.utils;
-using prompto.parser;
-using prompto.value;
-
+using prompto.error;
 
 namespace prompto.declaration
 {
@@ -26,6 +23,11 @@ namespace prompto.declaration
 			AttributeDeclaration decl = context.getRegisteredDeclaration<AttributeDeclaration>(name);
 			return decl.getIType();
         }
+
+		public AttributeDeclaration CheckAttribute(Context context)
+		{
+			throw new SyntaxError("Expected an attribute, got: " + this.ToString());
+		}
 
 		protected override void ToODialect(CodeWriter writer) {
 			writer.append("getter ");

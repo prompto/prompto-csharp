@@ -1,4 +1,6 @@
-﻿using prompto.parser;
+﻿using prompto.declaration;
+using prompto.error;
+using prompto.parser;
 using prompto.runtime;
 using prompto.type;
 using prompto.utils;
@@ -15,5 +17,10 @@ namespace prompto.expression
         {
             ToDialect(writer);
         }
+        public virtual AttributeDeclaration CheckAttribute(Context context)
+        {
+            throw new SyntaxError("Expected an attribute, got: " + this.ToString());
+        }
+
     }
 }

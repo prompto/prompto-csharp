@@ -29,8 +29,8 @@ namespace prompto.declaration
             }
         }
 
-        override
-        public void ToDialect(CodeWriter writer)
+        
+        public override void ToDialect(CodeWriter writer)
         {
             if (writer.isGlobalContext())
                 writer = writer.newLocalWriter();

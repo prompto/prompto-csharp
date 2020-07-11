@@ -1,12 +1,10 @@
 using prompto.runtime;
 using System;
-using prompto.parser;
 using prompto.expression;
-using prompto.grammar;
 using prompto.statement;
 using prompto.type;
 using prompto.utils;
-using prompto.value;
+using prompto.error;
 
 namespace prompto.declaration
 {
@@ -54,7 +52,11 @@ namespace prompto.declaration
 			return decl.getIType();
         }
 
+		public AttributeDeclaration CheckAttribute(Context context)
+		{
+			throw new SyntaxError("Expected an attribute, got: " + this.ToString());
+		}
 
-    }
+	}
 
 }

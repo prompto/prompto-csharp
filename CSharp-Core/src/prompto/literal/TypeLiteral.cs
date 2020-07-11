@@ -1,4 +1,6 @@
 ﻿using System;
+using prompto.declaration;
+using prompto.error;
 using prompto.expression;
 using prompto.parser;
 using prompto.runtime;
@@ -28,6 +30,11 @@ namespace prompto.literal
             return new TypeType(type);
         }
 
+
+        public AttributeDeclaration CheckAttribute(Context context)
+        {
+            throw new SyntaxError("Expected an attribute, got: " + this.ToString());
+        }
 
         public IValue interpret(Context context)
         {

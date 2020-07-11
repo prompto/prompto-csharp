@@ -82,6 +82,12 @@ namespace prompto.expression
                 throw new SyntaxError(name + "  is not a value or method:" + named.GetType().Name);
         }
 
+        public override AttributeDeclaration CheckAttribute(Context context)
+        {
+            AttributeDeclaration decl = context.findAttribute(this.name);
+            return decl != null ? decl : base.CheckAttribute(context);
+        }
+
         public override IValue interpret(Context context)
         {
     		if (context.hasValue(name))

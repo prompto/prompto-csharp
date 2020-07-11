@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using prompto.declaration;
+using prompto.error;
 using prompto.runtime;
 using prompto.type;
 using prompto.utils;
@@ -44,6 +46,11 @@ namespace prompto.jsx
                 foreach (IJsxExpression child in children)
                     child.check(context);
             return JsxType.Instance;
+        }
+
+        public AttributeDeclaration CheckAttribute(Context context)
+        {
+            throw new SyntaxError("Expected an attribute, got: " + this.ToString());
         }
 
         public IValue interpret(Context context)

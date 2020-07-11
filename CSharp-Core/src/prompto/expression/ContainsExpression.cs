@@ -173,7 +173,7 @@ namespace prompto.expression
 
         public IType checkQuery(Context context)
         {
-            AttributeDeclaration decl = context.CheckAttribute(left);
+            AttributeDeclaration decl = left.CheckAttribute(context);
             if (decl == null)
                 return VoidType.Instance;
             else if (!decl.Storable)
@@ -185,7 +185,7 @@ namespace prompto.expression
 
         public void interpretQuery(Context context, IQueryBuilder builder)
         {
-            AttributeDeclaration decl = context.CheckAttribute(left);
+            AttributeDeclaration decl = left.CheckAttribute(context);
             if (decl == null || !decl.Storable)
                 throw new SyntaxError("Unable to interpret predicate");
             IValue value = right.interpret(context);

@@ -1,4 +1,6 @@
 using System;
+using prompto.declaration;
+using prompto.error;
 using prompto.runtime;
 using prompto.type;
 using prompto.utils;
@@ -21,6 +23,11 @@ namespace prompto.jsx
 		public IType check(Context context)
 		{
 			return TextType.Instance;
+		}
+
+		public AttributeDeclaration CheckAttribute(Context context)
+		{
+			throw new SyntaxError("Expected an attribute, got: " + this.ToString());
 		}
 
 		public IValue interpret(Context context)

@@ -64,6 +64,13 @@ namespace prompto.expression
             return resolveAndCheck(context, false);
         }
 
+
+        public override AttributeDeclaration CheckAttribute(Context context)
+        {
+            AttributeDeclaration decl = context.findAttribute(this.name);
+            return decl!=null ? decl : base.CheckAttribute(context);
+        }
+
         public IType checkMember(Context context)
         {
             return resolveAndCheck(context, true);

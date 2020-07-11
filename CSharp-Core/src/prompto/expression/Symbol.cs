@@ -10,6 +10,8 @@ using prompto.grammar;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using prompto.store;
+using prompto.declaration;
+using prompto.error;
 
 namespace prompto.expression
 {
@@ -63,6 +65,11 @@ namespace prompto.expression
 		public abstract IType GetIType(Context context);
 
         public abstract IType check(Context context);
+
+		public AttributeDeclaration CheckAttribute(Context context)
+		{
+			throw new SyntaxError("Expected an attribute, got: " + this.ToString());
+		}
 
 		public abstract IValue interpret(Context context);
 

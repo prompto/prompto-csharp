@@ -1,4 +1,6 @@
 using System;
+using prompto.declaration;
+using prompto.error;
 using prompto.expression;
 using prompto.runtime;
 using prompto.type;
@@ -24,6 +26,11 @@ namespace prompto.jsx
 		{
 			expression.check(context);
 			return JsxType.Instance;
+		}
+
+		public AttributeDeclaration CheckAttribute(Context context)
+		{
+			throw new SyntaxError("Expected an attribute, got: " + this.ToString());
 		}
 
 		public IValue interpret(Context context)
