@@ -30,9 +30,11 @@ namespace prompto.expression
             return BooleanType.Instance;
         }
 
-		public IType checkQuery(Context context)
+		public void checkQuery(Context context)
 		{
-			return check(context);
+			if (!(expression is IPredicateExpression))
+				throw new SyntaxError("Expected a predicate, got: " + expression.ToString());
+			((IPredicateExpression)expression).checkQuery(context);
 		}
 
 		public override void ToDialect(CodeWriter writer)

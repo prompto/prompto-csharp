@@ -39,8 +39,8 @@ namespace prompto.type
             return this.GetItemType().Equals(other.GetItemType());
         }
 
-        override
-        public IType checkItem(Context context, IType other)
+        
+        public override IType checkItem(Context context, IType other)
         {
             if (other == IntegerType.Instance)
                 return itemType;
@@ -48,21 +48,21 @@ namespace prompto.type
                 return base.checkItem(context, other);
         }
 
-        override
-        public IType checkSlice(Context context)
+        
+        public override IType checkSlice(Context context)
         {
             return this;
         }
 
-        override
-        public IType checkIterator(Context context)
+        
+        public override IType checkIterator(Context context)
         {
             return itemType;
         }
 
-		public override IType checkContainsAllOrAny(Context context, IType other)
+		public override void checkContainsAllOrAny(Context context, IType other)
 		{
-			return BooleanType.Instance;
+			// nothing to do
 		}
 
     }

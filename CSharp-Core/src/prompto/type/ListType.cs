@@ -103,9 +103,9 @@ namespace prompto.type
 		}
 
 
-		public override IType checkContainsAllOrAny(Context context, IType other)
+		public override void checkContainsAllOrAny(Context context, IType other)
 		{
-			return BooleanType.Instance;
+			// nothing to do
 		}
 
 

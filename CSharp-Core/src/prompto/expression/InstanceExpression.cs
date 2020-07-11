@@ -104,13 +104,13 @@ namespace prompto.expression
 			}
         }
 
-        public IType checkQuery(Context context)
+        public void checkQuery(Context context)
         {
             IPredicateExpression predicate = ToPredicate(context);
             if (predicate != null)
-                return predicate.checkQuery(context);
+                predicate.checkQuery(context);
             else
-                return NullType.Instance;
+                throw new SyntaxError("Expected a predicate, got: " + name);
         }
 
 

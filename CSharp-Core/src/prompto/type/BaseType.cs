@@ -134,26 +134,26 @@ namespace prompto.type
 				throw new SyntaxError ("Cannot modulo " + this.GetTypeName () + " with " + other.GetTypeName ());
 		}
 
-		public virtual IType checkCompare (Context context, IType other)
+		public virtual void checkCompare (Context context, IType other)
 		{
 			if (other is EnumeratedNativeType)
-				return checkCompare(context, ((EnumeratedNativeType)other).getDerivedFrom());
+				checkCompare(context, ((EnumeratedNativeType)other).getDerivedFrom());
 			else
 				throw new SyntaxError ("Cannot compare " + this.GetTypeName () + " to " + other.GetTypeName ());
 		}
 
-		public virtual IType checkContains (Context context, IType other)
+		public virtual void checkContains (Context context, IType other)
 		{
 			if (other is EnumeratedNativeType)
-				return checkContains(context, ((EnumeratedNativeType)other).getDerivedFrom());
+				checkContains(context, ((EnumeratedNativeType)other).getDerivedFrom());
 			else
 				throw new SyntaxError (this.GetTypeName () + " cannot contain " + other.GetTypeName ());
 		}
 
-		public virtual IType checkContainsAllOrAny (Context context, IType other)
+		public virtual void checkContainsAllOrAny (Context context, IType other)
 		{
 			if (other is EnumeratedNativeType)
-				return checkContainsAllOrAny(context, ((EnumeratedNativeType)other).getDerivedFrom());
+				checkContainsAllOrAny(context, ((EnumeratedNativeType)other).getDerivedFrom());
 			else
 				throw new SyntaxError (this.GetTypeName () + " cannot contain " + other.GetTypeName ());
 		}

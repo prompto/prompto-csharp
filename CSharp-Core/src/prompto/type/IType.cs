@@ -36,15 +36,15 @@ namespace prompto.type
 
 		IType checkModulo (Context context, IType rt);
 
-		IType checkCompare (Context context, IType other);
+		void checkCompare (Context context, IType other);
 
 		IType checkItem (Context context, IType itemType);
 
 		IType checkRange (Context context, IType other);
 
-		IType checkContains (Context context, IType other);
+		void checkContains (Context context, IType other);
 
-		IType checkContainsAllOrAny (Context context, IType other);
+		void checkContainsAllOrAny (Context context, IType other);
 
 		IType checkIterator (Context context);
 

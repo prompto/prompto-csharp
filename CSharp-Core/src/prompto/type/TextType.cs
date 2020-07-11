@@ -129,16 +129,17 @@ namespace prompto.type
                 return base.checkMultiply(context, other, tryReverse);
         }
 
-        override
-        public IType checkCompare(Context context, IType other)
+        
+        public override void checkCompare(Context context, IType other)
         {
             if (other is TextType || other is CharacterType)
-                return BooleanType.Instance;
-            return base.checkCompare(context, other);
+                return;
+            else
+                base.checkCompare(context, other);
         }
 
-        override
-        public IType checkItem(Context context, IType other)
+        
+        public override IType checkItem(Context context, IType other)
         {
             if (other == IntegerType.Instance)
                 return CharacterType.Instance;
@@ -146,18 +147,19 @@ namespace prompto.type
                 return base.checkItem(context, other);
         }
 
-        override
-        public IType checkContains(Context context, IType other)
+        
+        public override void checkContains(Context context, IType other)
         {
             if (other is TextType || other is CharacterType)
-                return BooleanType.Instance;
-            return base.checkContains(context, other);
+                return;
+            else
+                base.checkContains(context, other);
         }
 
 
-        public override IType checkContainsAllOrAny(Context context, IType other)
+        public override void checkContainsAllOrAny(Context context, IType other)
         {
-            return BooleanType.Instance;
+            // nothing to do
         }
 
 

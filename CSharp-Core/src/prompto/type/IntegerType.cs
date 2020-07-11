@@ -88,8 +88,8 @@ namespace prompto.type
             return base.checkDivide(context, other);
         }
 
-        override
-       public IType checkIntDivide(Context context, IType other)
+        
+       public override IType checkIntDivide(Context context, IType other)
         {
             if (other is IntegerType)
                 return IntegerType.Instance;
@@ -104,18 +104,17 @@ namespace prompto.type
             return base.checkDivide(context, other);
         }
 
-        override
-        public IType checkCompare(Context context, IType other)
+        
+        public override void checkCompare(Context context, IType other)
         {
-            if (other is IntegerType)
-                return BooleanType.Instance;
-            if (other is DecimalType)
-                return BooleanType.Instance;
-            return base.checkCompare(context, other);
+            if (other is IntegerType || other is DecimalType)
+                return;
+            else
+                base.checkCompare(context, other);
         }
 
-        override
-        public IType checkRange(Context context, IType other)
+        
+        public override IType checkRange(Context context, IType other)
         {
             if (other is IntegerType)
                 return new RangeType(this);

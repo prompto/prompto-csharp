@@ -90,12 +90,12 @@ namespace prompto.type
 		}
 
 
-		public override IType checkContains (Context context, IType other)
+		public override void checkContains (Context context, IType other)
 		{
 			if (other == TextType.Instance)
-				return BooleanType.Instance;
+				return;
 			else
-				return base.checkContains (context, other);
+				base.checkContains (context, other);
 		}
 
 
@@ -113,9 +113,9 @@ namespace prompto.type
 			return new EntryType (itemType);
 		}
 
-		public override IType checkContainsAllOrAny(Context context, IType other)
+		public override void checkContainsAllOrAny(Context context, IType other)
 		{
-			return BooleanType.Instance;
+			// nothing to do
 		}
 	
 	}

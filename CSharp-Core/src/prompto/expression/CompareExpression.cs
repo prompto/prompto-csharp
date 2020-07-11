@@ -59,7 +59,8 @@ namespace prompto.expression
 		{
 			IType lt = left.check(context);
 			IType rt = right.check(context);
-			return lt.checkCompare(context, rt);
+			lt.checkCompare(context, rt);
+			return BooleanType.Instance;
 		}
 
 		public override IValue interpret(Context context)
@@ -102,15 +103,15 @@ namespace prompto.expression
 			return false;
 		}
 
-		public IType checkQuery(Context context)
+		public void checkQuery(Context context)
         {
 			AttributeDeclaration decl = left.CheckAttribute(context);
 			if (decl == null)
-				return VoidType.Instance;
+				throw new SyntaxError("Expected an attribute, got: " + left.ToString());
 			else if (!decl.Storable)
 				throw new SyntaxError(decl.GetName() + " is not storable");
 			IType rt = right.check(context);
-			return decl.GetIType(context).checkCompare(context, rt);
+			decl.GetIType(context).checkCompare(context, rt);
 		}
 
 

@@ -196,12 +196,12 @@ namespace prompto.expression
                 return null;
         }
 
-        public IType checkQuery(Context context)
+        public void checkQuery(Context context)
         {
             if (resolved == null)
                 resolveAndCheck(context, false);
             if (resolved is IPredicateExpression)
-                return ((IPredicateExpression)resolved).checkQuery(context);
+                ((IPredicateExpression)resolved).checkQuery(context);
             else
                 throw new SyntaxError("Filtering expression must be a predicate !");
         }

@@ -95,13 +95,12 @@ namespace prompto.type
 		}
 
         
-        public override IType checkCompare(Context context, IType other)
+        public override void checkCompare(Context context, IType other)
         {
-            if (other is IntegerType)
-                return BooleanType.Instance;
-            if (other is DecimalType)
-                return BooleanType.Instance;
-            return base.checkCompare(context, other);
+            if (other is IntegerType || other is DecimalType)
+                return;
+            else
+                base.checkCompare(context, other);
         }
 
         

@@ -54,9 +54,14 @@ namespace prompto.expression
 			return BooleanType.Instance;
 		}
 
-		public IType checkQuery(Context context)
+		public void checkQuery(Context context)
 		{
-			return check(context);
+			if (!(left is IPredicateExpression))
+				throw new SyntaxError("Expected a predicate, got: " + left.ToString());
+			((IPredicateExpression)left).checkQuery(context);
+			if (!(right is IPredicateExpression))
+				throw new SyntaxError("Expected a predicate, got: " + right.ToString());
+			((IPredicateExpression)right).checkQuery(context);
 		}
 
 		public override IValue interpret (Context context)

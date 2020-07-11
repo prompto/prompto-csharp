@@ -47,14 +47,14 @@ namespace prompto.type
 				return base.checkMember(context, name);
 		}
 
-		override
-		public IType checkAdd(Context context, IType other, bool tryReverse)
+		
+		public override IType checkAdd(Context context, IType other, bool tryReverse)
         {
             return TextType.Instance;
         }
 
-        override
-		public IType checkMultiply(Context context, IType other, bool tryReverse)
+        
+		public override IType checkMultiply(Context context, IType other, bool tryReverse)
         {
             if (other is IntegerType)
                 return TextType.Instance;
@@ -62,16 +62,17 @@ namespace prompto.type
 				return base.checkMultiply(context, other, tryReverse);
         }
 
-        override
-        public IType checkCompare(Context context, IType other)
+        
+        public override void checkCompare(Context context, IType other)
         {
             if (other is CharacterType || other is TextType)
-                return BooleanType.Instance;
-            return base.checkCompare(context, other);
+                return;
+            else
+                base.checkCompare(context, other);
         }
 
-        override
-        public IType checkRange(Context context, IType other)
+        
+        public override IType checkRange(Context context, IType other)
         {
             if (other is CharacterType)
                 return new RangeType(this);

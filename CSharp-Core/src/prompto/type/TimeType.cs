@@ -63,8 +63,8 @@ namespace prompto.type
 			return base.checkAdd(context, other, tryReverse);
         }
 
-        override 
-        public IType checkSubstract(Context context, IType other)
+         
+        public override IType checkSubstract(Context context, IType other)
         {
             if (other is TimeType)
                 return PeriodType.Instance;
@@ -73,16 +73,17 @@ namespace prompto.type
             return base.checkSubstract(context, other);
         }
 
-        override 
-        public IType checkCompare(Context context, IType other)
+         
+        public override void checkCompare(Context context, IType other)
         {
             if (other is TimeType)
-                return BooleanType.Instance;
-            return base.checkCompare(context, other);
+                return;
+            else
+                base.checkCompare(context, other);
         }
 
-        override
-        public IType checkRange(Context context, IType other)
+        
+        public override IType checkRange(Context context, IType other)
         {
             if (other is TimeType)
                 return new RangeType(this);

@@ -45,20 +45,24 @@ namespace prompto.expression
         {
             IType lt = left.check(context);
             IType rt = right.check(context);
-            return checkOperator(context, lt, rt);
+            checkOperator(context, lt, rt);
+            return BooleanType.Instance;
         }
 
-        private IType checkOperator(Context context, IType lt, IType rt) { 
+        private void checkOperator(Context context, IType lt, IType rt) { 
             switch (oper)
             {
                 case ContOp.IN:
                 case ContOp.NOT_IN:
-                    return rt.checkContains(context, lt);
+                    rt.checkContains(context, lt);
+                    break;
                 case ContOp.HAS:
                 case ContOp.NOT_HAS:
-                    return lt.checkContains(context, rt);
+                    lt.checkContains(context, rt);
+                    break;
                 default:
-                    return lt.checkContainsAllOrAny(context, rt);
+                    lt.checkContainsAllOrAny(context, rt);
+                    break;
             }
         }
 
@@ -171,15 +175,15 @@ namespace prompto.expression
             return false;
         }
 
-        public IType checkQuery(Context context)
+        public void checkQuery(Context context)
         {
             AttributeDeclaration decl = left.CheckAttribute(context);
             if (decl == null)
-                return VoidType.Instance;
+                throw new SyntaxError("Expected an attribute, got: " + left.ToString());
             else if (!decl.Storable)
                 throw new SyntaxError(decl.GetName() + " is not storable");
             IType rt = right.check(context);
-            return checkOperator(context, decl.getIType(), rt);
+            checkOperator(context, decl.getIType(), rt);
         }
 
 

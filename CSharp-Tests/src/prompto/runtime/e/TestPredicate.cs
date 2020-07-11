@@ -22,6 +22,18 @@ namespace prompto.runtime.e
 		}
 
 		[Test]
+		public void testAnd()
+		{
+			CheckOutput("predicate/and.pec");
+		}
+
+		[Test]
+		public void testAndError()
+		{
+			CheckOutput("predicate/andError.pec");
+		}
+
+		[Test]
 		public void testContainsItem()
 		{
 			CheckOutput("predicate/containsItem.pec");
@@ -67,6 +79,30 @@ namespace prompto.runtime.e
 		public void testNotEquals()
 		{
 			CheckOutput("predicate/notEquals.pec");
+		}
+
+		[Test]
+		public void testOr()
+		{
+			CheckOutput("predicate/or.pec");
+		}
+
+		[Test]
+		public void testOrError()
+		{
+			CheckOutput("predicate/orError.pec");
+		}
+
+		[Test]
+		public void testParenthesis()
+		{
+			CheckOutput("predicate/parenthesis.pec");
+		}
+
+		[Test]
+		public void testParenthesisError()
+		{
+			CheckOutput("predicate/parenthesisError.pec");
 		}
 
 		[Test]

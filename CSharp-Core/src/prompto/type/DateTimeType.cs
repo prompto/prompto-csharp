@@ -99,13 +99,12 @@ namespace prompto.type
         }
 
         
-        public override IType checkCompare(Context context, IType other)
+        public override void checkCompare(Context context, IType other)
         {
-            if (other is DateType)
-                return BooleanType.Instance;
-            if (other is DateTimeType)
-                return BooleanType.Instance;
-            return base.checkCompare(context, other);
+            if (other is DateType || other is DateTimeType)
+                return;
+            else
+                base.checkCompare(context, other);
         }
 
         

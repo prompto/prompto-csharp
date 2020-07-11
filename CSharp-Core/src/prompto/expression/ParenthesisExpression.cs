@@ -1,6 +1,6 @@
+using prompto.error;
 using prompto.runtime;
-using System;
-using prompto.parser;
+using prompto.store;
 using prompto.type;
 using prompto.utils;
 using prompto.value;
@@ -9,7 +9,7 @@ using prompto.value;
 namespace prompto.expression
 {
 
-    public class ParenthesisExpression : BaseExpression, IExpression
+    public class ParenthesisExpression : BaseExpression, IPredicateExpression
     {
 
         IExpression expression;
@@ -42,9 +42,26 @@ namespace prompto.expression
             return expression.check(context);
         }
 
+		public void checkQuery(Context context)
+		{
+			if (!(expression is IPredicateExpression))
+				throw new SyntaxError("Expected a predicate, got: " + expression.ToString());
+			((IPredicateExpression)expression).checkQuery(context);
+		}
+
 		public override IValue interpret(Context context)
         {
             return expression.interpret(context);
         }
+
+        public void interpretQuery(Context context, IQueryBuilder builder)
+        {
+            if (!(expression is IPredicateExpression))
+                throw new SyntaxError("Expected a predicate, got: " + expression.ToString());
+            ((IPredicateExpression)expression).interpretQuery(context, builder);
+        }
+
+
+
     }
 }

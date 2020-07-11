@@ -65,9 +65,9 @@ namespace prompto.type
 				return base.checkItem (context, other);
 		}
 
-		public override IType checkContainsAllOrAny (Context context, IType other)
+		public override void checkContainsAllOrAny (Context context, IType other)
 		{
-			return BooleanType.Instance;
+			// nothing to do
 		}
 
 		public override ISet<IMethodDeclaration> getMemberMethods(Context context, string name)

@@ -96,10 +96,11 @@ namespace prompto.expression
         {
             IType lt = left.check(context);
             IType rt = right.check(context);
-            return checkOperator(context, lt, rt);
+            checkOperator(context, lt, rt);
+            return BooleanType.Instance; 
         }
 
-        private IType checkOperator(Context context, IType lt, IType rt)
+        private void checkOperator(Context context, IType lt, IType rt)
         {
             if (oper == EqOp.CONTAINS || oper == EqOp.NOT_CONTAINS)
             {
@@ -110,7 +111,7 @@ namespace prompto.expression
                 if (!(lt is TextType) || !(rt is TextType || rt is CharacterType))
                     throw new SyntaxError("'contains' is only supported for textual values!");
             }
-            return BooleanType.Instance; // can compare all objects
+            // can compare EQUALS all objects
         }
 
         public override IValue interpret(Context context)
@@ -219,15 +220,15 @@ namespace prompto.expression
             return false;
         }
 
-        public IType checkQuery(Context context)
+        public void checkQuery(Context context)
         {
             AttributeDeclaration decl = left.CheckAttribute(context);
             if (decl == null)
-                return VoidType.Instance;
+                throw new SyntaxError("Expected an attribute, got: " + left.ToString());
             else if (!decl.Storable)
                 throw new SyntaxError(decl.GetName() + " is not storable");
             IType rt = right.check(context);
-            return checkOperator(context, decl.getIType(), rt);
+            checkOperator(context, decl.getIType(), rt);
         }
 
         public void interpretQuery(Context context, IQueryBuilder builder)

@@ -33,11 +33,12 @@ namespace prompto.type
 
 
         
-        public override IType checkCompare(Context context, IType other)
+        public override void checkCompare(Context context, IType other)
         {
             if (other is VersionType)
-                return BooleanType.Instance;
-            return base.checkCompare(context, other);
+                return;
+            else
+                base.checkCompare(context, other);
         }
 
         

@@ -9,6 +9,18 @@ namespace prompto.translate.eme
 	{
 
 		[Test]
+		public void testAnd()
+		{
+			compareResourceEME("predicate/and.pec");
+		}
+
+		[Test]
+		public void testAndError()
+		{
+			compareResourceEME("predicate/andError.pec");
+		}
+
+		[Test]
 		public void testContainsItem()
 		{
 			compareResourceEME("predicate/containsItem.pec");
@@ -54,6 +66,30 @@ namespace prompto.translate.eme
 		public void testNotEquals()
 		{
 			compareResourceEME("predicate/notEquals.pec");
+		}
+
+		[Test]
+		public void testOr()
+		{
+			compareResourceEME("predicate/or.pec");
+		}
+
+		[Test]
+		public void testOrError()
+		{
+			compareResourceEME("predicate/orError.pec");
+		}
+
+		[Test]
+		public void testParenthesis()
+		{
+			compareResourceEME("predicate/parenthesis.pec");
+		}
+
+		[Test]
+		public void testParenthesisError()
+		{
+			compareResourceEME("predicate/parenthesisError.pec");
 		}
 
 		[Test]

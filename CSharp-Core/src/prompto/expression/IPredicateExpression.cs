@@ -6,7 +6,7 @@ namespace prompto.expression
 {
 	public interface IPredicateExpression : IExpression
 	{
-		IType checkQuery(Context context);
+		void checkQuery(Context context);
 		void interpretQuery(Context context, IQueryBuilder builder);
 
 	}
