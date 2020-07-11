@@ -10,6 +10,10 @@ namespace prompto.error {
         {
         }
 
+        public String Suffix { get; set; }
+
+        public override string Message => base.Message + (Suffix!=null ? Suffix : "");
+
     }
 
 }

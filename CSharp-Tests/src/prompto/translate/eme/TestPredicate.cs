@@ -21,6 +21,12 @@ namespace prompto.translate.eme
 		}
 
 		[Test]
+		public void testEqualsError()
+		{
+			compareResourceEME("predicate/equalsError.pec");
+		}
+
+		[Test]
 		public void testGreater()
 		{
 			compareResourceEME("predicate/greater.pec");

@@ -21,6 +21,12 @@ namespace prompto.translate.eoe
 		}
 
 		[Test]
+		public void testEqualsError()
+		{
+			compareResourceEOE("predicate/equalsError.pec");
+		}
+
+		[Test]
 		public void testGreater()
 		{
 			compareResourceEOE("predicate/greater.pec");

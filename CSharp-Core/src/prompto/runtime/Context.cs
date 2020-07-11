@@ -102,7 +102,7 @@ namespace prompto.runtime
                 return parent.getClosestInstanceContext();
         }
 
-        public Context getParentMostContext()
+       public Context getParentMostContext()
         {
             if (parent == null)
                 return this;
@@ -474,7 +474,23 @@ namespace prompto.runtime
                 return globals.getNativeBinding(type);
         }
 
-    }
+        public AttributeDeclaration CheckAttribute(IExpression exp)
+        {
+            String name = null;
+            AttributeDeclaration decl = null;
+            if (exp is UnresolvedIdentifier)
+			    name = ((UnresolvedIdentifier)exp).getName();
+            else if (exp is InstanceExpression)
+			    name = ((InstanceExpression)exp).getName();
+                if (name != null)
+                    decl = findAttribute(name);
+                if (decl == null)
+                    throw new SyntaxError("Expected an attribute, got: " + exp.ToString());
+                else if (!decl.Storable)
+                    throw new SyntaxError(name + " is not storable");
+                return decl;
+            }
+        }
 
     class ResourceContext : Context
     {

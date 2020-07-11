@@ -34,6 +34,12 @@ namespace prompto.runtime.e
 		}
 
 		[Test]
+		public void testEqualsError()
+		{
+			CheckOutput("predicate/equalsError.pec");
+		}
+
+		[Test]
 		public void testGreater()
 		{
 			CheckOutput("predicate/greater.pec");

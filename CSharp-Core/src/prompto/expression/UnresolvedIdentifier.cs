@@ -17,14 +17,14 @@ namespace prompto.expression
     public class UnresolvedIdentifier : BaseExpression, IPredicateExpression
     {
 
-		Dialect dialect;
-		String name;
+        Dialect dialect;
+        String name;
         IExpression resolved;
 
         public UnresolvedIdentifier(String name, Dialect dialect)
         {
             this.name = name;
-			this.dialect = dialect;
+            this.dialect = dialect;
         }
 
         public String getName()
@@ -37,7 +37,7 @@ namespace prompto.expression
             return resolved;
         }
 
-        
+
         public override String ToString()
         {
             return name;
@@ -45,14 +45,17 @@ namespace prompto.expression
 
         public override void ToDialect(CodeWriter writer)
         {
-			try {
-				resolve(writer.getContext(), false);
-			} catch(SyntaxError /*e*/) {
-			}
-			if(resolved!=null)
-				resolved.ToDialect(writer);
-			else
-				writer.append(name);
+            try
+            {
+                resolve(writer.getContext(), false);
+            }
+            catch (SyntaxError /*e*/)
+            {
+            }
+            if (resolved != null)
+                resolved.ToDialect(writer);
+            else
+                writer.append(name);
         }
 
 
@@ -66,7 +69,7 @@ namespace prompto.expression
             return resolveAndCheck(context, true);
         }
 
-		public override IValue interpret(Context context)
+        public override IValue interpret(Context context)
         {
             if (resolved == null)
                 resolveAndCheck(context, false);
@@ -74,49 +77,50 @@ namespace prompto.expression
         }
 
         private IType resolveAndCheck(Context context, bool forMember)
-		{
-			resolve(context, forMember);
-			return resolved.check(context);
-		}
+        {
+            resolve(context, forMember);
+            return resolved.check(context);
+        }
 
-		public IExpression resolve(Context context, bool forMember)
-		{
-			if (resolved == null) {
-				resolved = doResolve(context, forMember);
-			}
+        public IExpression resolve(Context context, bool forMember)
+        {
+            if (resolved == null)
+            {
+                resolved = doResolve(context, forMember);
+            }
             if (resolved != null)
-				return resolved;
-			else
+                return resolved;
+            else
                 throw new SyntaxError("Unknown identifier:" + name);
         }
 
-		IExpression doResolve(Context context, bool forMember)
-		{
-			IExpression resolved = resolveSymbol(context);
-			if (resolved != null)
-				return resolved;
-			resolved = resolveTypeOrConstructor(context, forMember);
-			if (resolved != null)
-				return resolved;
-			resolved = resolveMethodCall(context);
-			if (resolved != null)
-				return resolved;
-			resolved = resolveInstance(context);
-			return resolved;
-		}
+        IExpression doResolve(Context context, bool forMember)
+        {
+            IExpression resolved = resolveSymbol(context);
+            if (resolved != null)
+                return resolved;
+            resolved = resolveTypeOrConstructor(context, forMember);
+            if (resolved != null)
+                return resolved;
+            resolved = resolveMethodCall(context);
+            if (resolved != null)
+                return resolved;
+            resolved = resolveInstance(context);
+            return resolved;
+        }
 
-		IExpression resolveTypeOrConstructor(Context context, bool forMember)
-		{
-			if (!Char.IsUpper(name[0]))
-				return null;
-			if (forMember)
-				return resolveType(context);
-			else
-				return resolveConstructor(context);
-		}
+        IExpression resolveTypeOrConstructor(Context context, bool forMember)
+        {
+            if (!Char.IsUpper(name[0]))
+                return null;
+            if (forMember)
+                return resolveType(context);
+            else
+                return resolveConstructor(context);
+        }
 
 
-		private IExpression resolveInstance(Context context)
+        private IExpression resolveInstance(Context context)
         {
             try
             {
@@ -132,8 +136,8 @@ namespace prompto.expression
 
         private IExpression resolveMethodCall(Context context)
         {
-			if (dialect != Dialect.E)
-				return null;
+            if (dialect != Dialect.E)
+                return null;
             try
             {
                 IExpression method = new MethodCall(new MethodSelector(name));
@@ -150,7 +154,7 @@ namespace prompto.expression
         {
             try
             {
-				IExpression method = new ConstructorExpression(new CategoryType(name), null, null, true);
+                IExpression method = new ConstructorExpression(new CategoryType(name), null, null, true);
                 method.check(context);
                 return method;
             }
@@ -163,15 +167,15 @@ namespace prompto.expression
         private IExpression resolveType(Context context)
         {
             IDeclaration decl = context.getRegisteredDeclaration<IDeclaration>(name);
-			if (decl is EnumeratedCategoryDeclaration)
-				return new TypeExpression(new EnumeratedCategoryType(name));
+            if (decl is EnumeratedCategoryDeclaration)
+                return new TypeExpression(new EnumeratedCategoryType(name));
             else if (decl is CategoryDeclaration)
                 return new TypeExpression(new CategoryType(name));
             else if (decl is EnumeratedNativeDeclaration)
                 return new TypeExpression(decl.GetIType(context));
             else foreach (IType type in NativeType.getAll())
-             {
-				if (name == type.GetTypeName())
+                {
+                    if (name == type.GetTypeName())
                         return new TypeExpression(type);
                 }
             return null;
@@ -185,11 +189,21 @@ namespace prompto.expression
                 return null;
         }
 
+        public IType checkQuery(Context context)
+        {
+            if (resolved == null)
+                resolveAndCheck(context, false);
+            if (resolved is IPredicateExpression)
+                return ((IPredicateExpression)resolved).checkQuery(context);
+            else
+                throw new SyntaxError("Filtering expression must be a predicate !");
+        }
+
         public void interpretQuery(Context context, IQueryBuilder builder)
         {
             if (resolved == null)
                 resolveAndCheck(context, false);
-            if(resolved is IPredicateExpression)
+            if (resolved is IPredicateExpression)
                 ((IPredicateExpression)resolved).interpretQuery(context, builder);
             else
                 throw new SyntaxError("Filtering expression must be a predicate !");

@@ -30,7 +30,12 @@ namespace prompto.expression
             return BooleanType.Instance;
         }
 
-        public override void ToDialect(CodeWriter writer)
+		public IType checkQuery(Context context)
+		{
+			return check(context);
+		}
+
+		public override void ToDialect(CodeWriter writer)
         {
 			writer.append(operatorToDialect(writer.getDialect()));
 			expression.ToDialect(writer);

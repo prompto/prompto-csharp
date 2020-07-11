@@ -102,46 +102,33 @@ namespace prompto.expression
 			return false;
 		}
 
+		public IType checkQuery(Context context)
+        {
+			AttributeDeclaration decl = context.CheckAttribute(left);
+			if (decl == null)
+				return VoidType.Instance;
+			IType rt = right.check(context);
+			return decl.GetIType(context).checkCompare(context, rt);
+		}
+
+
 		public void interpretQuery(Context context, IQueryBuilder builder)
 		{
-			String name = null;
-			IValue value = null;
-			if (left is UnresolvedIdentifier)
-			{
-				name = ((UnresolvedIdentifier)left).getName();
-				value = right.interpret(context);
-			}
-			else if (left is InstanceExpression)
-			{
-				name = ((InstanceExpression)left).getName();
-				value = right.interpret(context);
-			}
-			else if (right is UnresolvedIdentifier)
-			{
-				name = ((UnresolvedIdentifier)right).getName();
-				value = left.interpret(context);
-			}
-			else if (right is InstanceExpression)
-			{
-				name = ((InstanceExpression)right).getName();
-				value = left.interpret(context);
-			}
-			if (name == null)
+			AttributeDeclaration decl = context.CheckAttribute(left);
+			if (decl == null)
 				throw new SyntaxError("Unable to interpret predicate");
-			else {
-				AttributeDeclaration decl = context.findAttribute(name);
-				AttributeInfo info = decl == null ? null : decl.getAttributeInfo();
-				if (value is IInstance)
-					value = ((IInstance)value).GetMemberValue(context, "dbId", false);
-				MatchOp matchOp = getMatchOp();
-				builder.Verify(info, matchOp, value == null ? null : value.GetStorableData());
-				switch (oper)
-				{
-					case CmpOp.GTE:
-					case CmpOp.LTE:
-						builder.Not();
-						break;
-				}
+			IValue value = right.interpret(context);
+			AttributeInfo info = decl.getAttributeInfo();
+			if (value is IInstance)
+				value = ((IInstance)value).GetMemberValue(context, "dbId", false);
+			MatchOp matchOp = getMatchOp();
+			builder.Verify(info, matchOp, value == null ? null : value.GetStorableData());
+			switch (oper)
+			{
+				case CmpOp.GTE:
+				case CmpOp.LTE:
+					builder.Not();
+					break;
 			}
 		}
 

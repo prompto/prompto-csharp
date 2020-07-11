@@ -9,6 +9,7 @@ using prompto.declaration;
 using prompto.store;
 using Antlr4.Runtime;
 using prompto.memstore;
+using prompto.error;
 
 namespace prompto.parser
 {
@@ -172,7 +173,14 @@ namespace prompto.parser
 		protected void CheckOutput (String resourceName)
 		{
 			DataStore.Instance = new MemStore ();
-			runResource (resourceName);
+			try
+			{
+				runResource(resourceName);
+			} catch(SyntaxError e)
+            {
+				Console.Write(e.Message);
+
+			}
 			String read = Out.read ();
 			List<String> expected = ReadExpected (resourceName);
 			if (expected.Count == 1)

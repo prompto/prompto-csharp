@@ -98,6 +98,16 @@ namespace prompto.expression
 			}
         }
 
+        public IType checkQuery(Context context)
+        {
+            IPredicateExpression predicate = ToPredicate(context);
+            if (predicate != null)
+                return predicate.checkQuery(context);
+            else
+                return NullType.Instance;
+        }
+
+
         private IPredicateExpression ToPredicate(Context context)
         {
             AttributeDeclaration decl = context.findAttribute(name);

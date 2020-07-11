@@ -70,6 +70,11 @@ namespace prompto.expression
             return BooleanType.Instance;
         }
 
+		public IType checkQuery(Context context)
+        {
+			return check(context);
+        }
+
 		public override IValue interpret(Context context)
 		{
 			IValue lval = left.interpret (context);

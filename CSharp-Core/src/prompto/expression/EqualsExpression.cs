@@ -96,6 +96,11 @@ namespace prompto.expression
         {
             IType lt = left.check(context);
             IType rt = right.check(context);
+            return checkOperator(context, lt, rt);
+        }
+
+        private IType checkOperator(Context context, IType lt, IType rt)
+        {
             if (oper == EqOp.CONTAINS || oper == EqOp.NOT_CONTAINS)
             {
                 if (lt is ContainerType)
@@ -214,24 +219,24 @@ namespace prompto.expression
             return false;
         }
 
+        public IType checkQuery(Context context)
+        {
+            AttributeDeclaration decl = context.CheckAttribute(left);
+            if (decl == null)
+                return VoidType.Instance;
+            IType rt = right.check(context);
+            return checkOperator(context, decl.getIType(), rt);
+        }
+
         public void interpretQuery(Context context, IQueryBuilder builder)
         {
-            IValue value = null;
-            String name = readFieldName(left);
-            if (name != null)
-                value = right.interpret(context);
-            else
-            {
-                name = readFieldName(right);
-                if (name != null)
-                    value = left.interpret(context);
-                else
-                    throw new SyntaxError("Unable to interpret predicate");
-            }
+            AttributeDeclaration decl = context.CheckAttribute(left);
+            if (decl == null)
+                throw new SyntaxError("Unable to interpret predicate");
+            IValue value = right.interpret(context);
             if (value is IInstance)
                 value = ((IInstance)value).GetMemberValue(context, "dbId", false);
-            AttributeDeclaration decl = context.findAttribute(name);
-            AttributeInfo info = decl == null ? null : decl.getAttributeInfo();
+            AttributeInfo info = decl.getAttributeInfo();
             Object data = value == null ? null : value.GetStorableData();
             MatchOp match = GetMatchOp();
             builder.Verify<Object>(info, match, data);
@@ -256,16 +261,7 @@ namespace prompto.expression
             }
         }
 
-        private String readFieldName(IExpression exp)
-        {
-            if (exp is UnresolvedIdentifier
-            || exp is InstanceExpression
-            || exp is MemberSelector)
-                return exp.ToString();
-            else
-                return null;
-        }
-
+ 
     }
 
 }

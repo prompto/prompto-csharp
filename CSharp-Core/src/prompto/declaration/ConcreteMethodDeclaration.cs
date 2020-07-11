@@ -6,7 +6,7 @@ using prompto.type;
 using prompto.utils;
 using prompto.value;
 using prompto.param;
-
+using prompto.error;
 
 namespace prompto.declaration
 {
@@ -172,6 +172,11 @@ namespace prompto.declaration
             try
             {
                 return statements.interpret(context);
+            }
+            catch(SyntaxError e)
+            {
+                e.Suffix = " in method '" + this.name + "'";
+                throw e;
             }
             finally
             {
