@@ -172,7 +172,7 @@ namespace prompto.value
                     return PeriodValue.ZERO;
                 if (count == 1)
                     return this;
-                return this.times(count); ;
+                return this.times(count);
             }
             else
                 throw new SyntaxError("Illegal: Period * " + value.GetType().Name);
@@ -181,8 +181,25 @@ namespace prompto.value
         
         public override Object ConvertTo(Type type)
         {
-            return this; // TODO convert to TimeSpan
+            if(type == typeof(DateTime))
+                return new DateTime()
+                    .AddYears(this.Years)
+                    .AddMonths(this.Months)
+                    .AddDays(this.Days)
+                    .AddHours(this.Hours)
+                    .AddMinutes(this.Minutes)
+                    .AddSeconds(this.Seconds)
+                    .AddMilliseconds(this.Millis);
+            else
+                return this;
         }
+
+        public long TotalMilliseconds()
+        {
+            DateTime period = (DateTime)ConvertTo(typeof(DateTime));
+            return period.Ticks / 10000; // 1 tick = 100 nanosecond
+        }
+
 
         public PeriodValue minus(PeriodValue period)
         {
