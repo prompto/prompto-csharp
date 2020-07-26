@@ -1,3 +1,4 @@
+using System;
 using prompto.runtime;
 using prompto.store;
 using prompto.value;
@@ -22,8 +23,8 @@ namespace prompto.type
         {
         }
 
-        override
-        public System.Type ToCSharpType()
+        
+        public override Type ToCSharpType(Context context)
         {
             return typeof(PeriodValue);
         }

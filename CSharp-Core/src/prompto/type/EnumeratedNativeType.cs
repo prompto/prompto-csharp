@@ -67,7 +67,7 @@ namespace prompto.type
 		}
 
 
-		public override System.Type ToCSharpType()
+		public override System.Type ToCSharpType(Context context)
 		{
 			// TODO Auto-generated method stub
 			return null;

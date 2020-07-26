@@ -58,7 +58,7 @@ namespace prompto.type
             throw new NotImplementedException();
         }
 
-        public override Type ToCSharpType()
+        public override Type ToCSharpType(Context context)
         {
             throw new NotImplementedException();
         }

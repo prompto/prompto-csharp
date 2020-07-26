@@ -80,7 +80,7 @@ namespace prompto.type
 
 		void ToDialect (CodeWriter writer, bool skipMutable);
 
-		Type ToCSharpType ();
+		Type ToCSharpType (Context context);
 
 		IValue ConvertCSharpValueToIValue (Context context, Object value);
 

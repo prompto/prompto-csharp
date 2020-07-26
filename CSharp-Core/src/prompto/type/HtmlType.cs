@@ -1,4 +1,5 @@
 ﻿using System;
+using prompto.runtime;
 using prompto.store;
 
 namespace prompto.type
@@ -30,7 +31,7 @@ namespace prompto.type
 				return base.isAssignableFrom(context, other);
 		}
 
-		public override Type ToCSharpType()
+		public override Type ToCSharpType(Context context)
 		{
 			throw new NotSupportedException("Should never get there!");
 		}

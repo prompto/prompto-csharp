@@ -24,7 +24,7 @@ namespace prompto.type
 				return base.checkMember (context, name);
 		}
 
-		public override Type ToCSharpType ()
+		public override Type ToCSharpType (Context context)
 		{
 			throw new NotImplementedException ();
 		}

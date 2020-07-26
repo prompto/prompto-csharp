@@ -225,7 +225,7 @@ namespace prompto.type
 			throw new Exception ("Unsupported!");
 		}
 
-		public abstract Type ToCSharpType ();
+		public abstract Type ToCSharpType (Context context);
 
 		public virtual IValue ConvertCSharpValueToIValue (Context context, Object value)
 		{

@@ -24,7 +24,7 @@ namespace prompto.type
         }
 
         
-        public override System.Type ToCSharpType()
+        public override System.Type ToCSharpType(Context context)
         {
             return typeof(Object);
         }

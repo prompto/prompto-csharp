@@ -27,7 +27,7 @@ namespace prompto.type
         }
 
         override 
-        public System.Type ToCSharpType()
+        public System.Type ToCSharpType(Context context)
         {
             return typeof(TimeValue);
         }

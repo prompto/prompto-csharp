@@ -22,7 +22,7 @@ public class VoidType : NativeType {
 	}
 	
 	override
-	public System.Type ToCSharpType() {
+	public System.Type ToCSharpType(Context context) {
 		return typeof(void);
 	}
 

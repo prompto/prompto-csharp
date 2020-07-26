@@ -126,7 +126,7 @@ namespace prompto.csharp
 				if (named is NativeCategoryDeclaration)
 					klass = ((NativeCategoryDeclaration)named).getBoundClass (true);
 			} else
-				klass = type.ToCSharpType ();
+				klass = type.ToCSharpType (context);
 			return findMethod (context, klass);
 		}
 
@@ -166,7 +166,7 @@ namespace prompto.csharp
 
 		bool IsValidArgument (Context context, Type klass, CSharpExpression argument)
 		{
-			Type type = argument.check (context).ToCSharpType ();
+			Type type = argument.check (context).ToCSharpType(context);
 			return IsValidArgument (klass, type);
 		}
 

@@ -36,7 +36,7 @@ namespace prompto.type
         }
         
         
-        public override Type ToCSharpType()
+        public override Type ToCSharpType(Context context)
         {
             return typeof(Object);
         }

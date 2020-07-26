@@ -21,7 +21,7 @@ namespace prompto.type
 			return new IteratorType(itemType);
 		}
 
-		public override Type ToCSharpType()
+		public override Type ToCSharpType(Context context)
 		{
 			return typeof(IterableValue);
 		}

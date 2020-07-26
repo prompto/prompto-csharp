@@ -20,7 +20,7 @@ namespace prompto.type
 		}
 
         
-        public override Type ToCSharpType()
+        public override Type ToCSharpType(Context context)
         {
             return null; // no equivalent
         }

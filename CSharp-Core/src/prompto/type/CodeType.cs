@@ -1,4 +1,5 @@
 using System;
+using prompto.runtime;
 using prompto.store;
 
 namespace prompto.type
@@ -23,8 +24,8 @@ public class CodeType : NativeType {
    {
 	}
 	
-	override
-    public Type ToCSharpType() {
+	
+    public override Type ToCSharpType(Context context) {
 		return null;
 	}
 }

@@ -46,7 +46,7 @@ namespace prompto.type
 		    return type.getStaticMemberMethods(context, name);
         }
 
-        public override Type ToCSharpType()
+        public override Type ToCSharpType(Context context)
         {
             return typeof(Type);
         }

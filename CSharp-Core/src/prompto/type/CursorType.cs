@@ -22,7 +22,7 @@ namespace prompto.type
 			return new CursorType(itemType);
 		}
 
-		public override Type ToCSharpType ()
+		public override Type ToCSharpType (Context context)
 		{
 			return typeof(CursorValue);
 		}

@@ -87,7 +87,7 @@ namespace prompto.type
                 return base.checkAdd(context, other, tryReverse);
         }
 
-        public override Type ToCSharpType()
+        public override Type ToCSharpType(Context context)
         {
             return typeof(DocumentValue);
         }

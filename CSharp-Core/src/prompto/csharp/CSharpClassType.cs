@@ -48,7 +48,7 @@ namespace prompto.csharp
             this.type = type;
         }
 
-        public override Type ToCSharpType()
+        public override Type ToCSharpType(Context context)
         {
             return this.type;
         }

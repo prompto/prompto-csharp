@@ -30,9 +30,9 @@ namespace prompto.type
 		}
 
 
-		public override Type ToCSharpType ()
+		public override Type ToCSharpType (Context context)
 		{
-			Type elemType = this.itemType.ToCSharpType ();
+			Type elemType = this.itemType.ToCSharpType (context);
 			Type[] types = new Type[] { typeof(String), elemType };
 			Type type = typeof(IDictionary<,>).MakeGenericType (types);
 			return type;
