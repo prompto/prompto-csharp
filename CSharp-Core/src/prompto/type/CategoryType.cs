@@ -151,9 +151,13 @@ namespace prompto.type
         }
 
 
-        public override Type ToCSharpType()
+        public override Type ToCSharpType(Context context)
         {
-            return typeof(Object);
+            IDeclaration decl = getDeclaration(context);
+            if (decl is MethodDeclarationMap)
+                return typeof(ClosureValue);
+            else
+                return typeof(Object);
         }
 
         
@@ -179,11 +183,9 @@ namespace prompto.type
 
         public IDeclaration getDeclaration(Context context)
         {
-            IDeclaration actual = context.getRegisteredDeclaration<CategoryDeclaration>(typeName);
+            IDeclaration actual = context.getRegisteredDeclaration<IDeclaration>(typeName);
             if (actual == null)
-                actual = context.getRegisteredDeclaration<EnumeratedNativeDeclaration>(typeName);
-            if (actual == null)
-                throw new SyntaxError("Unknown category: \"" + typeName + "\"");
+                throw new SyntaxError("Unknown type: \"" + typeName + "\"");
             return actual;
         }
 
