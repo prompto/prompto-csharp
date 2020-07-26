@@ -58,9 +58,16 @@ namespace prompto.parser
 			return files;
 		}
 
-		protected void CheckTests(String resource) {
-			DeclarationList stmts = parseResource(resource);
-			foreach(IDeclaration decl in stmts) {
+		protected void CheckTests(String resource)
+		{
+			CheckTests(resource, false);
+		}
+
+		protected void CheckTests(String resource, bool register) {
+			DeclarationList decls = parseResource(resource);
+			if (register)
+				decls.register(coreContext);
+			foreach (IDeclaration decl in decls) {
 				if(!(decl is TestMethodDeclaration))
 					continue;
 				Out.reset();
