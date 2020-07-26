@@ -43,7 +43,7 @@ namespace prompto.expression
 
         public override string ToString()
         {
-            return ToString(Context.newGlobalContext());
+            return ToString(Context.newGlobalsContext());
         }
 
         public String ToString(Context context)

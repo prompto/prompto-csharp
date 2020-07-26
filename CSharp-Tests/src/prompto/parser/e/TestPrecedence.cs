@@ -31,7 +31,7 @@ namespace prompto.parser.e {
         public void test3Minuses()
         {
             IExpression exp = parse_expression("1-2-3-4");
-            Context context = Context.newGlobalContext();
+            Context context = Context.newGlobalsContext();
             IntegerValue value = (IntegerValue)exp.interpret(context);
             Assert.AreEqual(-8L, value.LongValue);
         }
@@ -40,7 +40,7 @@ namespace prompto.parser.e {
         public void test2Plus3Minuses()
         {
             IExpression exp = parse_expression("1+2-3+4-5-6");
-            Context context = Context.newGlobalContext();
+            Context context = Context.newGlobalsContext();
             IntegerValue value = (IntegerValue)exp.interpret(context);
             Assert.AreEqual(-7L, value.LongValue);
         }
@@ -49,7 +49,7 @@ namespace prompto.parser.e {
         public void test1Star1Plus()
         {
             IExpression exp = parse_expression("1*2+3");
-            Context context = Context.newGlobalContext();
+            Context context = Context.newGlobalsContext();
             IntegerValue value = (IntegerValue)exp.interpret(context);
             Assert.AreEqual(5L, value.LongValue);
         }

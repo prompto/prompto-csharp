@@ -43,7 +43,7 @@ namespace prompto.parser.e {
 		    ParseTreeWalker walker = new ParseTreeWalker();
 		    walker.Walk(builder, tree);
             CSharpStatement statement = builder.GetNodeValue<CSharpStatement>(tree);
-            Context context = Context.newGlobalContext();
+            Context context = Context.newGlobalsContext();
             IParameter arg = new CategoryParameter(TextType.Instance, "value");
             arg.register(context);
             context.setValue("value", new prompto.value.TextValue("test")); // StringLiteral trims enclosing quotes

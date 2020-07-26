@@ -18,7 +18,7 @@ namespace prompto.parser.o
 			OCleverParser parser = new OCleverParser(jsx);
 			ReturnStatement stmt = parser.doParse<ReturnStatement>(parser.return_statement);
 			Assert.IsNotNull(stmt.getExpression());
-			CodeWriter writer = new CodeWriter(Dialect.O, Context.newGlobalContext());
+			CodeWriter writer = new CodeWriter(Dialect.O, Context.newGlobalsContext());
 			stmt.ToDialect(writer);
 			writer.append(";");
 			String result = writer.ToString();
@@ -32,7 +32,7 @@ namespace prompto.parser.o
 			OCleverParser parser = new OCleverParser(jsx);
 			ReturnStatement stmt = parser.doParse<ReturnStatement>(parser.return_statement);
 			Assert.IsNotNull(stmt.getExpression());
-			CodeWriter writer = new CodeWriter(Dialect.O, Context.newGlobalContext());
+			CodeWriter writer = new CodeWriter(Dialect.O, Context.newGlobalsContext());
 			stmt.ToDialect(writer);
 			writer.append(";");
 			String result = writer.ToString();

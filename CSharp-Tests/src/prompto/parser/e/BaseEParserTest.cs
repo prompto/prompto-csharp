@@ -17,8 +17,8 @@ namespace prompto.parser
 			return parseEString(code);
 		}
 
-		override
-		public DeclarationList parseResource(String resourceName)
+		
+		public override DeclarationList parseResource(String resourceName)
 		{
 			return parseEResource (resourceName);
 		}

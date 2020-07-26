@@ -22,7 +22,7 @@ namespace prompto.csharp
 			Assert.IsNotNull(method);
 			Type type = method.ReturnType;
 			Assert.IsNotNull(type);
-			Context context = Context.newGlobalContext();
+			Context context = Context.newGlobalsContext();
 			String name = "Attribute";
 			NativeCategoryDeclaration declaration = new NativeCategoryDeclaration(name, null, null, null, null);
 			context.registerNativeBinding(typeof(AttributeDeclaration), declaration);

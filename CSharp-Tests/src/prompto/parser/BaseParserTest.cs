@@ -22,10 +22,17 @@ namespace prompto.parser
 		protected Context coreContext;
 		protected Context context;
 
+		[SetUp]
+		public void __before__test__()
+		{
+			context = ApplicationContext.Init();
+		}
+
+
 		public void LoadDependency(String libraryName)
 		{
 			if(coreContext==null)
-				coreContext = Context.newGlobalContext();
+				coreContext = Context.newGlobalsContext();
 			DeclarationList allStmts = null;
 			List<String> files = ListLibraryFiles(libraryName);
 			foreach(String file in files) {
@@ -75,7 +82,7 @@ namespace prompto.parser
 
 		public DeclarationList parseEString (String code)
 		{
-			context = Context.newGlobalContext ();
+			context = Context.newGlobalsContext ();
 			ECleverParser parser = new ECleverParser (code);
 			parser.ErrorHandler = new FatalErrorStrategy ();
 			return parser.parse_declaration_list ();
@@ -83,7 +90,7 @@ namespace prompto.parser
 
 		public DeclarationList parseMString (String code)
 		{
-			context = Context.newGlobalContext ();
+			context = Context.newGlobalsContext ();
 			MCleverParser parser = new MCleverParser (code);
 			parser.ErrorHandler = new FatalErrorStrategy ();
 			return parser.parse_declaration_list ();
@@ -91,7 +98,7 @@ namespace prompto.parser
 
 		public DeclarationList parseOString (String code)
 		{
-			context = Context.newGlobalContext ();
+			context = Context.newGlobalsContext ();
 			OCleverParser parser = new OCleverParser (code);
 			parser.ErrorHandler = new FatalErrorStrategy ();
 			return parser.parse_declaration_list ();
@@ -99,7 +106,7 @@ namespace prompto.parser
 
 		public DeclarationList parseEResource (String resourceName)
 		{
-			context = Context.newGlobalContext ();
+			context = Context.newGlobalsContext ();
 			Stream input = OpenResource (resourceName);
 			try {
 				ECleverParser parser = new ECleverParser (input);
@@ -111,7 +118,7 @@ namespace prompto.parser
 
 		public DeclarationList parseOResource (String resourceName)
 		{
-			context = Context.newGlobalContext ();
+			context = Context.newGlobalsContext ();
 			Stream input = OpenResource (resourceName);
 			try {
 				OCleverParser parser = new OCleverParser (input);
@@ -123,7 +130,7 @@ namespace prompto.parser
 
 		public DeclarationList parseMResource (String resourceName)
 		{
-			context = Context.newGlobalContext ();
+			context = Context.newGlobalsContext ();
 			Stream input = OpenResource (resourceName);
 			try {
 				MCleverParser parser = new MCleverParser (input);
@@ -238,7 +245,7 @@ namespace prompto.parser
 			// Console.WriteLine(expected);
 			// parse e source code
 			DeclarationList dle = parseEString(expected);
-			context = Context.newGlobalContext();
+			context = Context.newGlobalsContext();
 			dle.register(context);
 			// rewrite as o
 			CodeWriter writer = new CodeWriter(Dialect.O, context);
@@ -247,7 +254,7 @@ namespace prompto.parser
 			// Console.WriteLine(o);
 			// parse o source code
 			DeclarationList dlo = parseOString(o);
-			context = Context.newGlobalContext();
+			context = Context.newGlobalsContext();
 			dlo.register(context);
 			// rewrite as e
 			writer = new CodeWriter(Dialect.E, context);
@@ -263,7 +270,7 @@ namespace prompto.parser
 			// Console.WriteLine(expected);
 			// parse e source code
 			DeclarationList dle = parseEString(expected);
-			context = Context.newGlobalContext();
+			context = Context.newGlobalsContext();
 			dle.register(context);
 			// rewrite as p
 			CodeWriter writer = new CodeWriter(Dialect.M, context);
@@ -272,7 +279,7 @@ namespace prompto.parser
 			// Console.WriteLine(p);
 			// parse m source code
 			DeclarationList dlp = parseMString(m);
-			context = Context.newGlobalContext();
+			context = Context.newGlobalsContext();
 			dlp.register(context);
 			// rewrite as e
 			writer = new CodeWriter(Dialect.E, context);
@@ -288,7 +295,7 @@ namespace prompto.parser
 			// Console.WriteLine(expected);
 			// parse o source code
 			DeclarationList dlo = parseOString(expected);
-			context = Context.newGlobalContext();
+			context = Context.newGlobalsContext();
 			dlo.register(context);
 			// rewrite as e
 			CodeWriter writer = new CodeWriter(Dialect.E, context);
@@ -297,7 +304,7 @@ namespace prompto.parser
 			// Console.WriteLine(e);
 			// parse e source code
 			DeclarationList dle = parseEString(e);
-			context = Context.newGlobalContext();
+			context = Context.newGlobalsContext();
 			dle.register(context);
 			// rewrite as o
 			writer = new CodeWriter(Dialect.O, context);
@@ -313,7 +320,7 @@ namespace prompto.parser
 			// Console.WriteLine(expected);
 			// parse o source code
 			DeclarationList dlo = parseOString(expected);
-			context = Context.newGlobalContext();
+			context = Context.newGlobalsContext();
 			dlo.register(context);
 			// rewrite as p
 			CodeWriter writer = new CodeWriter(Dialect.M, context);
@@ -322,7 +329,7 @@ namespace prompto.parser
 			// Console.WriteLine(p);
 			// parse m source code
 			DeclarationList dlp = parseMString(m);
-			context = Context.newGlobalContext();
+			context = Context.newGlobalsContext();
 			dlp.register(context);
 			// rewrite as o
 			writer = new CodeWriter(Dialect.O, context);

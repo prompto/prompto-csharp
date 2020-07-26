@@ -16,7 +16,7 @@ namespace prompto.parser.e
         {
 			Assert.Throws<SyntaxError>(() =>
 			{
-				Context context = Context.newGlobalContext();
+				Context context = Context.newGlobalsContext();
 				Assert.IsNull(context.getRegisteredDeclaration<IDeclaration>("id"));
 				DeclarationList stmts = parseString("define id as Integer attribute");
 				Assert.IsNotNull(stmts);
@@ -34,7 +34,7 @@ namespace prompto.parser.e
         {
 			Assert.Throws<SyntaxError>(() =>
 			{
-				Context context = Context.newGlobalContext();
+				Context context = Context.newGlobalsContext();
 				Assert.IsNull(context.getRegisteredDeclaration<IDeclaration>("Person"));
 				DeclarationList stmts = parseString("define Person as category with attributes id and name");
 				Assert.IsNotNull(stmts);
@@ -50,7 +50,7 @@ namespace prompto.parser.e
         [Test]
         public void testMethod()
         {
-			context = Context.newGlobalContext();
+			context = Context.newGlobalsContext();
             Assert.IsNull(context.getRegisteredDeclaration<IDeclaration>("printName"));
             DeclarationList stmts = parseString("define name as Text attribute\r\n"
                     + "define printName as method receiving name doing:\r\n"

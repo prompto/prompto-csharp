@@ -18,7 +18,7 @@ namespace prompto.runtime
     public class Context : IContext
     {
 
-        public static Context newGlobalContext()
+        public static Context newGlobalsContext()
         {
             Context context = new Context();
             context.globals = context;

@@ -633,7 +633,7 @@ namespace prompto.parser
 
         public String generate(IDialectElement elem)
         {
-            Context context = Context.newGlobalContext();
+            Context context = Context.newGlobalsContext();
             CodeWriter writer = new CodeWriter(Dialect.E, context);
             elem.ToDialect(writer);
             return writer.ToString();

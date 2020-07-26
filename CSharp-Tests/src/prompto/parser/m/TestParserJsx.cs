@@ -18,7 +18,7 @@ namespace prompto.parser.m
 			MCleverParser parser = new MCleverParser(jsx);
 			ReturnStatement stmt = parser.doParse<ReturnStatement>(parser.return_statement, true);
 			Assert.IsNotNull(stmt.getExpression());
-			CodeWriter writer = new CodeWriter(Dialect.M, Context.newGlobalContext());
+			CodeWriter writer = new CodeWriter(Dialect.M, Context.newGlobalsContext());
 			stmt.ToDialect(writer);
 			String result = writer.ToString();
 			Assert.AreEqual(jsx, result);
@@ -31,7 +31,7 @@ namespace prompto.parser.m
 			MCleverParser parser = new MCleverParser(jsx);
 			ReturnStatement stmt = parser.doParse<ReturnStatement>(parser.return_statement, true);
 			Assert.IsNotNull(stmt.getExpression());
-			CodeWriter writer = new CodeWriter(Dialect.M, Context.newGlobalContext());
+			CodeWriter writer = new CodeWriter(Dialect.M, Context.newGlobalsContext());
 			stmt.ToDialect(writer);
 			String result = writer.ToString();
 			Assert.AreEqual(jsx, result);

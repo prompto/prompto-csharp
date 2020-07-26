@@ -17,7 +17,7 @@ namespace prompto.parser.e
         [SetUp]
         public void register()
         {
-            context = Context.newGlobalContext();
+            context = Context.newGlobalsContext();
             DeclarationList stmts = parseString("define id as Integer attribute\r\n" +
                     "define name as String attribute\r\n" +
                     "define other as String attribute\r\n" +
