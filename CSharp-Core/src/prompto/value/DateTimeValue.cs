@@ -135,8 +135,8 @@ namespace prompto.value
                 return base.GetMemberValue(context, name, autoCreate);
         }
 
-        override
-        public Object ConvertTo(Type type)
+        
+        public override Object ConvertTo(Type type)
         {
             return value;
         }
