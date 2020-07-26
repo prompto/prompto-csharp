@@ -57,6 +57,12 @@ namespace prompto.runtime.o
 			CheckOutput("condition/ternary.poc");
 		}
 
+		[Test]
+		public void testTernaryType()
+		{
+			CheckOutput("condition/ternaryType.poc");
+		}
+
 	}
 }
 

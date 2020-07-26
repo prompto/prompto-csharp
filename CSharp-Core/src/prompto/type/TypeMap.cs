@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System;
-using prompto.grammar;
 using prompto.error;
 using prompto.runtime;
 
@@ -18,10 +17,10 @@ namespace prompto.type
             // first pass: get less specific type
             foreach (IType t in Values)
             {
-                if (type == null)
-                    type = t;
-                else if (type == NullType.Instance)
+                if (t == NullType.Instance)
                     continue;
+                else if (type == null)
+                    type = t;
                 else if (type.isAssignableFrom(context, t))
                     continue;
                 else if (t.isAssignableFrom(context, type))

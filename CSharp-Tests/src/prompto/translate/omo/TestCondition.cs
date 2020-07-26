@@ -44,6 +44,12 @@ namespace prompto.translate.omo
 			compareResourceOMO("condition/ternary.poc");
 		}
 
+		[Test]
+		public void testTernaryType()
+		{
+			compareResourceOMO("condition/ternaryType.poc");
+		}
+
 	}
 }
 

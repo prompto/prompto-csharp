@@ -44,6 +44,12 @@ namespace prompto.translate.oeo
 			compareResourceOEO("condition/ternary.poc");
 		}
 
+		[Test]
+		public void testTernaryType()
+		{
+			compareResourceOEO("condition/ternaryType.poc");
+		}
+
 	}
 }
 
