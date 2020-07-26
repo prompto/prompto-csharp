@@ -21,6 +21,12 @@ namespace prompto.translate.oeo
 		}
 
 		[Test]
+		public void testLocalScope()
+		{
+			compareResourceOEO("condition/localScope.poc");
+		}
+
+		[Test]
 		public void testReturnIf()
 		{
 			compareResourceOEO("condition/returnIf.poc");

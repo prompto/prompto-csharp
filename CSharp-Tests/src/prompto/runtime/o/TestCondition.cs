@@ -34,6 +34,12 @@ namespace prompto.runtime.o
 		}
 
 		[Test]
+		public void testLocalScope()
+		{
+			CheckOutput("condition/localScope.poc");
+		}
+
+		[Test]
 		public void testReturnIf()
 		{
 			CheckOutput("condition/returnIf.poc");

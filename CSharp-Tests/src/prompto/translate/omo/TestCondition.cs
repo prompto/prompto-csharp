@@ -21,6 +21,12 @@ namespace prompto.translate.omo
 		}
 
 		[Test]
+		public void testLocalScope()
+		{
+			compareResourceOMO("condition/localScope.poc");
+		}
+
+		[Test]
 		public void testReturnIf()
 		{
 			compareResourceOMO("condition/returnIf.poc");
