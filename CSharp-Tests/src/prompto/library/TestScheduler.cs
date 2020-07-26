@@ -31,10 +31,8 @@ namespace prompto.library.e
         [Test]
         public void testScheduler()
         {
-            CheckTests("prompto/scheduler.pec");
+            CheckTests("manual/scheduler.pec", true);
         }
-
-
 
     }
 }
