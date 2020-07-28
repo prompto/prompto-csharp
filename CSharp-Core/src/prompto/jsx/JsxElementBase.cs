@@ -35,6 +35,11 @@ namespace prompto.jsx
 			return JsxType.Instance;
 		}
 
+		public virtual IType checkReference(Context context)
+		{
+			return check(context);
+		}
+
 		public AttributeDeclaration CheckAttribute(Context context)
 		{
 			throw new SyntaxError("Expected an attribute, got: " + this.ToString());
@@ -43,6 +48,11 @@ namespace prompto.jsx
 		public IValue interpret(Context context)
 		{
 			return new JsxValue(this);
+		}
+
+		public virtual IValue interpretReference(Context context)
+		{
+			return interpret(context);
 		}
 
 		public abstract void ToDialect(CodeWriter writer);

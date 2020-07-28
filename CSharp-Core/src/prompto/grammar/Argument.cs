@@ -167,8 +167,14 @@ namespace prompto.grammar
 
         public IType checkActualType(Context context, IType requiredType, IExpression expression, bool checkInstance)
         {
+            IType actualType = null;
             bool isArrow = isArrowExpression(requiredType, expression);
-            IType actualType = isArrow ? checkArrowExpression(context, (MethodType)requiredType, expression) : expression.check(context.getCallingContext());
+            if (isArrow)
+                actualType = checkArrowExpression(context, (MethodType)requiredType, expression);
+            else if(requiredType is MethodType)
+                actualType = expression.checkReference(context.getCallingContext());
+            else
+                actualType = expression.check(context.getCallingContext());
             if (checkInstance && actualType is CategoryType) {
                 Object value = expression.interpret(context.getCallingContext());
                 if (value is IInstance)

@@ -23,7 +23,8 @@ namespace prompto.value
 		{
 			Context parentMost = this.context.getParentMostContext();
 			Context savedParent = parentMost.getParentContext();
-			parentMost.setParentContext(context);
+			if(!context.IsChildOf(parentMost))
+				parentMost.setParentContext(context);
 			Context local = this.context.newChildContext();
 			try
 			{

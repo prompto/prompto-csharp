@@ -171,9 +171,9 @@ namespace prompto.declaration
         {
             try
             {
-                IType requiredType = parameter.GetIType(context);
+                IType requiredType = parameter.GetIType(context).Resolve(context);
                 IExpression expression = argument.getExpression();
-                IType actualType = argument.checkActualType(context, requiredType, expression, useInstance);
+                IType actualType = argument.checkActualType(context, requiredType, expression, useInstance).Resolve(context);
                 if (actualType.Equals(requiredType))
                     return Specificity.EXACT;
                 if (requiredType.isAssignableFrom(context, actualType))

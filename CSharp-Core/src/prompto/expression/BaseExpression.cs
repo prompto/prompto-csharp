@@ -11,7 +11,15 @@ namespace prompto.expression
     public abstract class BaseExpression : Section, IExpression
     {
         public abstract IType check(Context context);
+        public virtual IType checkReference(Context context)
+        {
+            return check(context);
+        }
         public abstract IValue interpret(Context context);
+        public virtual IValue interpretReference(Context context)
+        {
+            return interpret(context);
+        }
         public abstract void ToDialect(CodeWriter writer);
         public virtual void ParentToDialect(CodeWriter writer)
         {

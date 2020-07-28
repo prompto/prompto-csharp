@@ -42,6 +42,11 @@ namespace prompto.value
 			return Expression.check (Calling);
 		}
 
+		public virtual IType checkReference(Context context)
+		{
+			return Expression.checkReference(context);
+		}
+
 		public AttributeDeclaration CheckAttribute(Context context)
 		{
 			throw new SyntaxError("Expected an attribute, got: " + this.ToString());
@@ -52,7 +57,12 @@ namespace prompto.value
 			return Expression.interpret (Calling);
 		}
 
-        public void ParentToDialect(CodeWriter writer)
+		public virtual IValue interpretReference(Context context)
+		{
+			return Expression.interpretReference(Calling);
+		}
+
+		public void ParentToDialect(CodeWriter writer)
         {
             ToDialect(writer);
         }

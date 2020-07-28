@@ -5,6 +5,7 @@ using prompto.statement;
 using prompto.type;
 using prompto.utils;
 using prompto.error;
+using prompto.value;
 
 namespace prompto.declaration
 {
@@ -51,6 +52,17 @@ namespace prompto.declaration
 			AttributeDeclaration decl = context.getRegisteredDeclaration<AttributeDeclaration>(name);
 			return decl.getIType();
         }
+
+		public virtual IType checkReference(Context context)
+		{
+			return check(context);
+		}
+
+
+		public virtual IValue interpretReference(Context context)
+		{
+			return interpret(context);
+		}
 
 		public AttributeDeclaration CheckAttribute(Context context)
 		{

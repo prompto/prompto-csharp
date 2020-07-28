@@ -53,12 +53,21 @@ namespace prompto.literal
 			return value;
 		}
 
+		public abstract IType check(Context context);
+		public virtual IType checkReference(Context context)
+		{
+			return check(context);
+		}
+
 		public virtual IValue interpret (Context context)
 		{
 			return value;
 		}
+		public virtual IValue interpretReference(Context context)
+		{
+			return interpret(context);
+		}
 
-		public abstract IType check (Context context);
 
 		public AttributeDeclaration CheckAttribute(Context context)
 		{

@@ -66,6 +66,11 @@ namespace prompto.expression
 
         public abstract IType check(Context context);
 
+		public virtual IType checkReference(Context context)
+		{
+			return check(context);
+		}
+
 		public AttributeDeclaration CheckAttribute(Context context)
 		{
 			throw new SyntaxError("Expected an attribute, got: " + this.ToString());
@@ -73,7 +78,11 @@ namespace prompto.expression
 
 		public abstract IValue interpret(Context context);
 
-		
+		public virtual IValue interpretReference(Context context)
+		{
+			return interpret(context);
+		}
+
 		public IValue Add(Context context, IValue value) {
 			throw new NotSupportedException("Add not supported by " + this.GetType().Name);
 		}

@@ -64,6 +64,12 @@ namespace prompto.expression
             return resolveAndCheck(context, false);
         }
 
+        public override IType checkReference(Context context)
+        {
+            resolve(context, false);
+            return resolved != null ? resolved.checkReference(context) : AnyType.Instance;
+        }
+
 
         public override AttributeDeclaration CheckAttribute(Context context)
         {
@@ -81,6 +87,13 @@ namespace prompto.expression
             if (resolved == null)
                 resolveAndCheck(context, false);
             return resolved.interpret(context);
+        }
+
+        public virtual new IValue interpretReference(Context context)
+        {
+            if (resolved == null)
+                resolveAndCheck(context, false);
+            return resolved.interpretReference(context);
         }
 
         private IType resolveAndCheck(Context context, bool forMember)

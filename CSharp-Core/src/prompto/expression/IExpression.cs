@@ -12,7 +12,9 @@ namespace prompto.expression
 
     public interface IExpression : IDialectElement {
 	    IType check(Context context);
-	    IValue interpret(Context context);
+        IType checkReference(Context context);
+        IValue interpret(Context context);
+        IValue interpretReference(Context context);
         void ParentToDialect(CodeWriter writer);
         AttributeDeclaration CheckAttribute(Context context);
     }

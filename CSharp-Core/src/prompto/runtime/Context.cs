@@ -120,6 +120,11 @@ namespace prompto.runtime
             this.parent = parent;
         }
 
+        public bool IsChildOf(Context context)
+        {
+            return context == this.parent || (this.parent != null && this.parent.IsChildOf(context));
+        }
+
         public Context newResourceContext()
         {
             Context context = new ResourceContext();

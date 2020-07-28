@@ -52,8 +52,8 @@ namespace prompto.statement
             return arguments;
         }
 
-        override
-        public void ToDialect(CodeWriter writer)
+
+        public override void ToDialect(CodeWriter writer)
         {
             if (requiresInvoke(writer))
                 writer.append("invoke: ");
@@ -81,7 +81,7 @@ namespace prompto.statement
             }
             return false;
         }
-        
+
         public override IType check(Context context)
         {
             MethodFinder finder = new MethodFinder(context, this);
@@ -90,6 +90,15 @@ namespace prompto.statement
             return check(declaration, context, local);
         }
 
+        public override IType checkReference(Context context)
+        {
+            MethodFinder finder = new MethodFinder(context, this);
+            IMethodDeclaration method = finder.findMethod(false);
+            if (method != null)
+                return new MethodType(method);
+            else
+                return null;
+        }
 
         private bool IsLocalClosure(Context context)
         {
@@ -141,17 +150,24 @@ namespace prompto.statement
                 return arguments.makeArguments(context, declaration);
         }
 
-        
+
         public override IValue interpret(Context context)
         {
             IMethodDeclaration declaration = findDeclaration(context);
             Context local = selector.newLocalContext(context, declaration);
             declaration.registerParameters(local);
-            registerArguments(context, local, declaration);
+            assignArguments(context, local, declaration);
             return declaration.interpret(local);
         }
 
-        private void registerArguments(Context context, Context local, IMethodDeclaration declaration)
+        public override IValue interpretReference(Context context)
+        {
+            IMethodDeclaration declaration = findDeclaration(context);
+            return new ClosureValue(context, new MethodType(declaration));
+        }
+
+
+        private void assignArguments(Context context, Context local, IMethodDeclaration declaration)
         {
             ArgumentList arguments = makeArguments(context, declaration);
             foreach (Argument argument in arguments)

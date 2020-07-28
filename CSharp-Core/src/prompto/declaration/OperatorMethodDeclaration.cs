@@ -7,6 +7,7 @@ using prompto.runtime;
 using prompto.utils;
 using prompto.param;
 using prompto.error;
+using prompto.value;
 
 namespace prompto.declaration
 {
@@ -73,6 +74,16 @@ namespace prompto.declaration
 		public AttributeDeclaration CheckAttribute(Context context)
 		{
 			throw new SyntaxError("Expected an attribute, got: " + this.ToString());
+		}
+
+		public virtual IType checkReference(Context context)
+		{
+			return check(context);
+		}
+
+		public virtual IValue interpretReference(Context context)
+		{
+			return interpret(context);
 		}
 
 	}

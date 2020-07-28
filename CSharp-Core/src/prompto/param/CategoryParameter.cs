@@ -56,6 +56,16 @@ namespace prompto.param
             return base.setMutable(mutable);
         }
 
+        public override IValue checkValue(Context context, IExpression expression) 
+        {
+            resolve(context);
+		    if(resolved is MethodType)
+			    return expression.interpretReference(context);
+		    else
+			    return base.checkValue(context, expression);
+	    }
+
+
         public override void ToDialect(CodeWriter writer)
         {
 			if(this.mutable)
