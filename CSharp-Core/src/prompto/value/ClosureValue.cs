@@ -19,6 +19,12 @@ namespace prompto.value
 			this.context = context;
 		}
 
+
+		public Context getContext()
+        {
+			return context;
+        }
+
 		public IValue interpret(Context context)
 		{
 			Context parentMost = this.context.getParentMostContext();
@@ -41,7 +47,7 @@ namespace prompto.value
             return Method.interpret (local);
 		}
 
-		private IMethodDeclaration Method
+		public IMethodDeclaration Method
 		{
 			get
 			{

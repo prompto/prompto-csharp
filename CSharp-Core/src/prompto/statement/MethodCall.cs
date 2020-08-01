@@ -212,7 +212,7 @@ namespace prompto.statement
             {
                 Object o = context.getValue(selector.getName());
                 if (o is ClosureValue)
-                    return new ClosureDeclaration((ClosureValue)o);
+                    return getClosureDeclaration(context, (ClosureValue)o);
                 else if (o is ArrowValue)
                     return new ArrowDeclaration((ArrowValue)o);
             }
@@ -220,6 +220,23 @@ namespace prompto.statement
             {
             }
             return null;
+        }
+
+        private IMethodDeclaration getClosureDeclaration(Context context, ClosureValue closure)
+        {
+            IMethodDeclaration decl = closure.Method;
+            if (decl.getMemberOf() != null)
+            {
+                // the closure references a member method (useful when a method reference is needed)
+                // in which case we may simply want to return that method to avoid spilling context into method body
+                // this is only true if the closure comes straight from the method's instance context
+                // if the closure comes from an accessible context that is not the instance context
+                // then it is a local variable that needs the closure context to be interpreted
+                Context declaring = context.contextForValue(selector.getName());
+                if (declaring == closure.getContext())
+                    return decl;
+            }
+            return new ClosureDeclaration(closure); throw new NotImplementedException();
         }
     }
 }

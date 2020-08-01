@@ -133,7 +133,7 @@ namespace prompto.expression
 			if (parent != null)
 				return newInstanceContext (context);
 			else if(declaration.getMemberOf()!=null)
-				return newLocalInstanceContext(context);
+				return newLocalInstanceContext(context, declaration);
 			else
 				return context.newLocalContext ();
 		}
@@ -143,7 +143,7 @@ namespace prompto.expression
 			if (parent != null)
 				return newInstanceCheckContext (context);
 			else if(declaration.getMemberOf()!=null)
-				return newLocalInstanceContext(context);
+				return newLocalInstanceContext(context, declaration);
 			else
 				return context.newLocalContext ();
 		}
@@ -160,13 +160,21 @@ namespace prompto.expression
 				return context.newChildContext();
 		}
 
-		private Context newLocalInstanceContext(Context context) {
-			Context parent = context.getParentContext();
-			if(!(parent is InstanceContext))
-				throw new SyntaxError("Not in instance context !");
-			context = context.newLocalContext();
-			context.setParentContext(parent); // make local context child of the existing instance
-			return context;
+		private Context newLocalInstanceContext(Context context, IMethodDeclaration declaration) {
+			InstanceContext instance = context.getClosestInstanceContext();
+			if (instance != null)
+			{
+				CategoryType required = (CategoryType)declaration.getMemberOf().GetIType(context);
+				IType actual = instance.getInstanceType();
+				if (!required.isAssignableFrom(context, actual))
+					instance = null;
+			}
+			if (instance == null)
+			{
+				CategoryType declaring = (CategoryType)declaration.getMemberOf().GetIType(context);
+				instance = context.newInstanceContext(declaring, false);
+			}
+			return instance.newChildContext();
 		}
 
 		private Context newInstanceContext (Context context)

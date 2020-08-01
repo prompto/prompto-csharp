@@ -150,7 +150,7 @@ namespace prompto.runtime
             return initInstanceContext(new BuiltInContext(value), false);
         }
 
-        public Context newInstanceContext(CategoryType type, bool isChild)
+        public InstanceContext newInstanceContext(CategoryType type, bool isChild)
         {
             InstanceContext context = initInstanceContext(new InstanceContext(type), isChild);
             CategoryDeclaration decl = context.getDeclaration();
