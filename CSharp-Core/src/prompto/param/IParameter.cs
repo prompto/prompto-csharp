@@ -9,7 +9,7 @@ using prompto.grammar;
 namespace prompto.param
 {
 
-    public interface IParameter : INamed, IDialectElement
+    public interface IParameter : INamedInstance, IDialectElement
     {
 
         String getProto();

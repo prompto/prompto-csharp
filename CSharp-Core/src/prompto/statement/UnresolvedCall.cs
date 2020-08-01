@@ -148,7 +148,7 @@ namespace prompto.statement
 				INamed named = context.getRegisteredValue<INamed>(name);
 				if (named != null)
 				{
-					IType type = named.GetIType(context);
+					IType type = named.GetIType(context).Resolve(context);
 					if (type is MethodType)
 					{
 						call = new MethodCall(new MethodSelector(name), arguments);

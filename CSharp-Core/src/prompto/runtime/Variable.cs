@@ -1,12 +1,11 @@
 using prompto.grammar;
 using System;
-using prompto.expression;
 using prompto.type;
 
 namespace prompto.runtime
 {
 
-	public class Variable : INamed
+	public class Variable : INamedInstance
     {
 
         String name;
@@ -18,8 +17,8 @@ namespace prompto.runtime
 			this.type = type;
         }
 
-        override
-        public String ToString()
+        
+        public override String ToString()
         {
 			return name;
         }

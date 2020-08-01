@@ -163,10 +163,10 @@ namespace prompto.parser
 
 		protected void loadResource (String resourceName)
 		{
-			DeclarationList stmts = parseResource (resourceName);
-			Assert.IsNotNull (stmts);
-			stmts.register (context);
-			stmts.check (context);
+			DeclarationList decls = parseResource (resourceName);
+			Assert.IsNotNull (decls);
+			decls.register (context);
+			decls.check (context);
 		}
 
 		protected void runResource (String resourceName)
@@ -193,7 +193,6 @@ namespace prompto.parser
 			} catch(SyntaxError e)
             {
 				Console.Write(e.Message);
-
 			}
 			String read = Out.read ();
 			List<String> expected = ReadExpected (resourceName);

@@ -53,10 +53,18 @@ namespace prompto.expression
 			ISet<IMethodDeclaration> methods = new HashSet<IMethodDeclaration>();
             // could be a locally registered method
 			INamed named = context.getRegistered(name);
-			if (named is Variable && named.GetIType(context) is MethodType)
+			if (named is INamedInstance)
 			{
-				methods.Add(((MethodType)named.GetIType(context)).Method);
-				return methods;
+				IType type = named.GetIType(context);
+				if (type != null)
+				{
+					type = type.Resolve(context);
+					if (type is MethodType)
+					{
+						methods.Add(((MethodType)type).Method);
+						return methods;
+					}
+				}
 			}
 			// if called from a member method, could be a member method called without this/self
 			InstanceContext instance = context.getClosestInstanceContext();

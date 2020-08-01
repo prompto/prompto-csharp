@@ -556,6 +556,7 @@
     <Compile Include="src\prompto\literal\DocIdentifierKey.cs" />
     <Compile Include="src\prompto\runtime\ApplicationContext.cs" />
     <Compile Include="src\prompto\runtime\Scheduler.cs" />
+    <Compile Include="src\prompto\grammar\INamedInstance.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
