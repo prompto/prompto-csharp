@@ -28,6 +28,8 @@ namespace prompto.type
                 else
                     throw new SyntaxError("Incompatible types: " + type.GetTypeName() + " and " + t.GetTypeName());
             }
+            if (type == null)
+                return NullType.Instance;
             // second pass: check compatible
             foreach (IType t in Values)
             {
