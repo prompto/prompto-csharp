@@ -99,6 +99,12 @@ namespace prompto.translate.oeo
 		}
 
 		[Test]
+		public void testParameter()
+		{
+			compareResourceOEO("methods/parameter.poc");
+		}
+
+		[Test]
 		public void testPolymorphic_abstract()
 		{
 			compareResourceOEO("methods/polymorphic_abstract.poc");

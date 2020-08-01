@@ -99,6 +99,12 @@ namespace prompto.translate.omo
 		}
 
 		[Test]
+		public void testParameter()
+		{
+			compareResourceOMO("methods/parameter.poc");
+		}
+
+		[Test]
 		public void testPolymorphic_abstract()
 		{
 			compareResourceOMO("methods/polymorphic_abstract.poc");

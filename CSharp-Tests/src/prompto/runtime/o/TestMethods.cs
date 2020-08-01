@@ -100,6 +100,12 @@ namespace prompto.runtime.o
 		}
 
 		[Test]
+		public void testParameter()
+		{
+			CheckOutput("methods/parameter.poc");
+		}
+
+		[Test]
 		public void testPolymorphic_abstract()
 		{
 			CheckOutput("methods/polymorphic_abstract.poc");

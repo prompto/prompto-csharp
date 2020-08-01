@@ -118,6 +118,12 @@ namespace prompto.runtime.e
 		}
 
 		[Test]
+		public void testParameter()
+		{
+			CheckOutput("methods/parameter.pec");
+		}
+
+		[Test]
 		public void testPolymorphic_abstract()
 		{
 			CheckOutput("methods/polymorphic_abstract.pec");

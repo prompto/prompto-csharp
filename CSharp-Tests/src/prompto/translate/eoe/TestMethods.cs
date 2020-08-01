@@ -117,6 +117,12 @@ namespace prompto.translate.eoe
 		}
 
 		[Test]
+		public void testParameter()
+		{
+			compareResourceEOE("methods/parameter.pec");
+		}
+
+		[Test]
 		public void testPolymorphic_abstract()
 		{
 			compareResourceEOE("methods/polymorphic_abstract.pec");
