@@ -409,7 +409,6 @@
     <Compile Include="src\prompto\param\CategoryParameter.cs" />
     <Compile Include="src\prompto\param\CodeParameter.cs" />
     <Compile Include="src\prompto\param\IParameter.cs" />
-    <Compile Include="src\prompto\param\INamedParameter.cs" />
     <Compile Include="src\prompto\param\MethodParameter.cs" />
     <Compile Include="src\prompto\param\UnresolvedParameter.cs" />
     <Compile Include="src\prompto\param\ITypedParameter.cs" />

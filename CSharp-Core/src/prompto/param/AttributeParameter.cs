@@ -12,7 +12,7 @@ using prompto.expression;
 namespace prompto.param
 {
 
-    public class AttributeParameter : BaseParameter, INamedParameter
+    public class AttributeParameter : BaseParameter
     {
 
         public AttributeParameter(String name)

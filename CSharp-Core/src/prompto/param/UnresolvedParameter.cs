@@ -12,10 +12,10 @@ using prompto.grammar;
 namespace prompto.param
 {
 
-    public class UnresolvedParameter : BaseParameter, INamedParameter, IDialectElement
+    public class UnresolvedParameter : BaseParameter, IDialectElement
     {
 
-        INamedParameter resolved = null;
+        IParameter resolved = null;
 
         public UnresolvedParameter(String name)
 			: base(name)

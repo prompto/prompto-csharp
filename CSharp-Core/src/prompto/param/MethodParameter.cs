@@ -13,7 +13,7 @@ using prompto.value;
 namespace prompto.param
 {
 
-	public class MethodParameter : BaseParameter, INamedParameter
+	public class MethodParameter : BaseParameter
 	{
 
 		public MethodParameter(String name)
