@@ -13,30 +13,30 @@ namespace prompto.type
         {
             if (Count == 0)
                 return VoidType.Instance;
-            IType type = null;
+            IType inferred = null;
             // first pass: get less specific type
             foreach (IType t in Values)
             {
                 if (t == NullType.Instance)
                     continue;
-                else if (type == null)
-                    type = t;
-                else if (type.isAssignableFrom(context, t))
+                else if (inferred == null)
+                    inferred = t;
+                else if (inferred.isAssignableFrom(context, t))
                     continue;
-                else if (t.isAssignableFrom(context, type))
-                    type = t;
+                else if (t.isAssignableFrom(context, inferred))
+                    inferred = t;
                 else
-                    throw new SyntaxError("Incompatible types: " + type.GetTypeName() + " and " + t.GetTypeName());
+                    throw new SyntaxError("Incompatible types: " + inferred.GetTypeName() + " and " + t.GetTypeName());
             }
-            if (type == null)
+            if (inferred == null)
                 return NullType.Instance;
             // second pass: check compatible
             foreach (IType t in Values)
             {
-                if (!type.isAssignableFrom(context, t))
-					throw new SyntaxError("Incompatible types: " + type.GetTypeName() + " and " + t.GetTypeName());
+                if (!inferred.isAssignableFrom(context, t))
+					throw new SyntaxError("Incompatible types: " + inferred.GetTypeName() + " and " + t.GetTypeName());
             }
-            return type;
+            return inferred;
         }
 
     }
