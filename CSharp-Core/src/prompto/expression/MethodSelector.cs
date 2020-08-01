@@ -42,16 +42,20 @@ namespace prompto.expression
 
 		public ISet<IMethodDeclaration> getCandidates (Context context, bool checkInstance)
 		{
-			if(parent == null)
+			IMethodDeclaration decl = getMethodInstance(context);
+			if (decl != null) {
+				ISet<IMethodDeclaration> methods = new HashSet<IMethodDeclaration>();
+				methods.Add(decl);
+				return methods;
+			} else if (parent == null)
 				return getGlobalCandidates (context);
 			else
 				return getMemberCandidates (context, checkInstance);
 		}
 
-		private ISet<IMethodDeclaration> getGlobalCandidates(Context context)
-		{
-			ISet<IMethodDeclaration> methods = new HashSet<IMethodDeclaration>();
-            // could be a locally registered method
+
+		private IMethodDeclaration getMethodInstance(Context context)
+        {
 			INamed named = context.getRegistered(name);
 			if (named is INamedInstance)
 			{
@@ -60,13 +64,18 @@ namespace prompto.expression
 				{
 					type = type.Resolve(context);
 					if (type is MethodType)
-					{
-						methods.Add(((MethodType)type).Method);
-						return methods;
-					}
+						return ((MethodType)type).Method;
 				}
 			}
-			// if called from a member method, could be a member method called without this/self
+			return null;
+
+		}
+
+
+		private ISet<IMethodDeclaration> getGlobalCandidates(Context context)
+		{
+			ISet<IMethodDeclaration> methods = new HashSet<IMethodDeclaration>();
+    		// if called from a member method, could be a member method called without this/self
 			InstanceContext instance = context.getClosestInstanceContext();
 			if (instance != null)
 			{
