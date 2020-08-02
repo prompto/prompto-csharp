@@ -2336,6 +2336,13 @@ namespace prompto.parser
         }
 
 
+        public override void ExitNotHasExpression(OParser.NotHasExpressionContext ctx)
+        {
+            IExpression left = GetNodeValue<IExpression>(ctx.left);
+            IExpression right = GetNodeValue<IExpression>(ctx.right);
+            SetNodeValue(ctx, new ContainsExpression(left, ContOp.NOT_HAS, right));
+        }
+
         public override void ExitHasAllExpression(OParser.HasAllExpressionContext ctx)
         {
             IExpression left = GetNodeValue<IExpression>(ctx.left);

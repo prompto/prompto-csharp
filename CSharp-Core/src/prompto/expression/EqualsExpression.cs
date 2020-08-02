@@ -243,7 +243,7 @@ namespace prompto.expression
             Object data = value == null ? null : value.GetStorableData();
             MatchOp match = GetMatchOp();
             builder.Verify<Object>(info, match, data);
-            if (oper == EqOp.NOT_EQUALS)
+            if (oper == EqOp.NOT_EQUALS || oper == EqOp.IS_NOT || oper == EqOp.NOT_CONTAINS)
                 builder.Not();
         }
 
@@ -251,6 +251,8 @@ namespace prompto.expression
         {
             switch (oper)
             {
+                case EqOp.IS:
+                case EqOp.IS_NOT:
                 case EqOp.EQUALS:
                 case EqOp.NOT_EQUALS:
                     return MatchOp.EQUALS;
