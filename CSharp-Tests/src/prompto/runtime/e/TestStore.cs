@@ -58,9 +58,69 @@ namespace prompto.runtime.e
 		}
 
 		[Test]
+		public void testFetchContains()
+		{
+			CheckOutput("store/fetchContains.pec");
+		}
+
+		[Test]
+		public void testFetchGreater()
+		{
+			CheckOutput("store/fetchGreater.pec");
+		}
+
+		[Test]
+		public void testFetchGreaterEqual()
+		{
+			CheckOutput("store/fetchGreaterEqual.pec");
+		}
+
+		[Test]
+		public void testFetchHas()
+		{
+			CheckOutput("store/fetchHas.pec");
+		}
+
+		[Test]
+		public void testFetchIn()
+		{
+			CheckOutput("store/fetchIn.pec");
+		}
+
+		[Test]
+		public void testFetchLesser()
+		{
+			CheckOutput("store/fetchLesser.pec");
+		}
+
+		[Test]
+		public void testFetchLesserEqual()
+		{
+			CheckOutput("store/fetchLesserEqual.pec");
+		}
+
+		[Test]
 		public void testFetchNotBoolean()
 		{
 			CheckOutput("store/fetchNotBoolean.pec");
+		}
+
+		[Test]
+		public void testFetchNotContains()
+		{
+			CheckOutput("store/fetchNotContains.pec");
+		}
+
+		[Test]
+		public void testFetchNotHas()
+		{
+			CheckOutput("store/fetchNotHas.pec");
+		}
+
+		[Test]
+		public void testFetchNotIn()
+		{
+			CheckOutput("store/fetchNotIn.pec");
 		}
 
 		[Test]

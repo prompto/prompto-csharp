@@ -45,9 +45,69 @@ namespace prompto.translate.eoe
 		}
 
 		[Test]
+		public void testFetchContains()
+		{
+			compareResourceEOE("store/fetchContains.pec");
+		}
+
+		[Test]
+		public void testFetchGreater()
+		{
+			compareResourceEOE("store/fetchGreater.pec");
+		}
+
+		[Test]
+		public void testFetchGreaterEqual()
+		{
+			compareResourceEOE("store/fetchGreaterEqual.pec");
+		}
+
+		[Test]
+		public void testFetchHas()
+		{
+			compareResourceEOE("store/fetchHas.pec");
+		}
+
+		[Test]
+		public void testFetchIn()
+		{
+			compareResourceEOE("store/fetchIn.pec");
+		}
+
+		[Test]
+		public void testFetchLesser()
+		{
+			compareResourceEOE("store/fetchLesser.pec");
+		}
+
+		[Test]
+		public void testFetchLesserEqual()
+		{
+			compareResourceEOE("store/fetchLesserEqual.pec");
+		}
+
+		[Test]
 		public void testFetchNotBoolean()
 		{
 			compareResourceEOE("store/fetchNotBoolean.pec");
+		}
+
+		[Test]
+		public void testFetchNotContains()
+		{
+			compareResourceEOE("store/fetchNotContains.pec");
+		}
+
+		[Test]
+		public void testFetchNotHas()
+		{
+			compareResourceEOE("store/fetchNotHas.pec");
+		}
+
+		[Test]
+		public void testFetchNotIn()
+		{
+			compareResourceEOE("store/fetchNotIn.pec");
 		}
 
 		[Test]

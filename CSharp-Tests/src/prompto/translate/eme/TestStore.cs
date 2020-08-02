@@ -45,9 +45,69 @@ namespace prompto.translate.eme
 		}
 
 		[Test]
+		public void testFetchContains()
+		{
+			compareResourceEME("store/fetchContains.pec");
+		}
+
+		[Test]
+		public void testFetchGreater()
+		{
+			compareResourceEME("store/fetchGreater.pec");
+		}
+
+		[Test]
+		public void testFetchGreaterEqual()
+		{
+			compareResourceEME("store/fetchGreaterEqual.pec");
+		}
+
+		[Test]
+		public void testFetchHas()
+		{
+			compareResourceEME("store/fetchHas.pec");
+		}
+
+		[Test]
+		public void testFetchIn()
+		{
+			compareResourceEME("store/fetchIn.pec");
+		}
+
+		[Test]
+		public void testFetchLesser()
+		{
+			compareResourceEME("store/fetchLesser.pec");
+		}
+
+		[Test]
+		public void testFetchLesserEqual()
+		{
+			compareResourceEME("store/fetchLesserEqual.pec");
+		}
+
+		[Test]
 		public void testFetchNotBoolean()
 		{
 			compareResourceEME("store/fetchNotBoolean.pec");
+		}
+
+		[Test]
+		public void testFetchNotContains()
+		{
+			compareResourceEME("store/fetchNotContains.pec");
+		}
+
+		[Test]
+		public void testFetchNotHas()
+		{
+			compareResourceEME("store/fetchNotHas.pec");
+		}
+
+		[Test]
+		public void testFetchNotIn()
+		{
+			compareResourceEME("store/fetchNotIn.pec");
 		}
 
 		[Test]
