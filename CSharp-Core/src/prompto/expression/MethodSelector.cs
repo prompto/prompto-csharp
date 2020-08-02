@@ -151,6 +151,12 @@ namespace prompto.expression
 		private Context newInstanceCheckContext (Context context)
 		{
 			IType type = parent.check (context);
+			// if calling singleton method, parent is the singleton type 
+			if (type is TypeType) { 
+				IDeclaration decl = context.getRegisteredDeclaration<IDeclaration>(((TypeType) type).GetIType().GetTypeName());
+				if(decl is SingletonCategoryDeclaration)
+					type = decl.GetIType(context);
+			}
 			if (type is CategoryType)
 			{
 				context = context.newInstanceContext((CategoryType)type, false);

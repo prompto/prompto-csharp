@@ -17,7 +17,12 @@ namespace prompto.type
           this.type = type;
         }
 
-  
+
+        public IType GetIType()
+        {
+            return type;
+        }
+
         public override void checkUnique(Context context)
         {
             // nothing to do
