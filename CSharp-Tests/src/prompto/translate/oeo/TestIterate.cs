@@ -26,6 +26,12 @@ namespace prompto.translate.oeo
 			compareResourceOEO("iterate/forEachIntegerRange.poc");
 		}
 
+		[Test]
+		public void testForEachIntegerSet()
+		{
+			compareResourceOEO("iterate/forEachIntegerSet.poc");
+		}
+
 	}
 }
 

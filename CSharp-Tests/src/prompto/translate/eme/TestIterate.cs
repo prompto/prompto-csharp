@@ -26,6 +26,12 @@ namespace prompto.translate.eme
 			compareResourceEME("iterate/forEachIntegerList.pec");
 		}
 
+		[Test]
+		public void testForEachIntegerSet()
+		{
+			compareResourceEME("iterate/forEachIntegerSet.pec");
+		}
+
 	}
 }
 

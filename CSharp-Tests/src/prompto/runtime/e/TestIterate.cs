@@ -39,6 +39,12 @@ namespace prompto.runtime.e
 			CheckOutput("iterate/forEachIntegerList.pec");
 		}
 
+		[Test]
+		public void testForEachIntegerSet()
+		{
+			CheckOutput("iterate/forEachIntegerSet.pec");
+		}
+
 	}
 }
 
