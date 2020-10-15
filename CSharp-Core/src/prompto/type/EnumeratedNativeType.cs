@@ -88,12 +88,6 @@ namespace prompto.type
 		}
 
 
-		public override bool isAssignableFrom(Context context, IType other)
-		{
-			return this.GetTypeName().Equals(other.GetTypeName());
-		}
-
-
 		public override bool isMoreSpecificThan(Context context, IType other)
 		{
 			// TODO Auto-generated method stub
