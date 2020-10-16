@@ -250,9 +250,57 @@ namespace prompto.runtime.e
 		}
 
 		[Test]
+		public void testPeriodDays()
+		{
+			CheckOutput("builtins/periodDays.pec");
+		}
+
+		[Test]
+		public void testPeriodHours()
+		{
+			CheckOutput("builtins/periodHours.pec");
+		}
+
+		[Test]
+		public void testPeriodMillis()
+		{
+			CheckOutput("builtins/periodMillis.pec");
+		}
+
+		[Test]
+		public void testPeriodMinutes()
+		{
+			CheckOutput("builtins/periodMinutes.pec");
+		}
+
+		[Test]
+		public void testPeriodMonths()
+		{
+			CheckOutput("builtins/periodMonths.pec");
+		}
+
+		[Test]
+		public void testPeriodSeconds()
+		{
+			CheckOutput("builtins/periodSeconds.pec");
+		}
+
+		[Test]
 		public void testPeriodText()
 		{
 			CheckOutput("builtins/periodText.pec");
+		}
+
+		[Test]
+		public void testPeriodWeeks()
+		{
+			CheckOutput("builtins/periodWeeks.pec");
+		}
+
+		[Test]
+		public void testPeriodYears()
+		{
+			CheckOutput("builtins/periodYears.pec");
 		}
 
 		[Test]

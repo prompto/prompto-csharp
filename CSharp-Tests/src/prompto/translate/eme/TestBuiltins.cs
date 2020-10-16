@@ -249,9 +249,57 @@ namespace prompto.translate.eme
 		}
 
 		[Test]
+		public void testPeriodDays()
+		{
+			compareResourceEME("builtins/periodDays.pec");
+		}
+
+		[Test]
+		public void testPeriodHours()
+		{
+			compareResourceEME("builtins/periodHours.pec");
+		}
+
+		[Test]
+		public void testPeriodMillis()
+		{
+			compareResourceEME("builtins/periodMillis.pec");
+		}
+
+		[Test]
+		public void testPeriodMinutes()
+		{
+			compareResourceEME("builtins/periodMinutes.pec");
+		}
+
+		[Test]
+		public void testPeriodMonths()
+		{
+			compareResourceEME("builtins/periodMonths.pec");
+		}
+
+		[Test]
+		public void testPeriodSeconds()
+		{
+			compareResourceEME("builtins/periodSeconds.pec");
+		}
+
+		[Test]
 		public void testPeriodText()
 		{
 			compareResourceEME("builtins/periodText.pec");
+		}
+
+		[Test]
+		public void testPeriodWeeks()
+		{
+			compareResourceEME("builtins/periodWeeks.pec");
+		}
+
+		[Test]
+		public void testPeriodYears()
+		{
+			compareResourceEME("builtins/periodYears.pec");
 		}
 
 		[Test]

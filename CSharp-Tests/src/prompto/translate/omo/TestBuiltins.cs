@@ -141,6 +141,54 @@ namespace prompto.translate.omo
 		}
 
 		[Test]
+		public void testPeriodDays()
+		{
+			compareResourceOMO("builtins/periodDays.poc");
+		}
+
+		[Test]
+		public void testPeriodHours()
+		{
+			compareResourceOMO("builtins/periodHours.poc");
+		}
+
+		[Test]
+		public void testPeriodMillis()
+		{
+			compareResourceOMO("builtins/periodMillis.poc");
+		}
+
+		[Test]
+		public void testPeriodMinutes()
+		{
+			compareResourceOMO("builtins/periodMinutes.poc");
+		}
+
+		[Test]
+		public void testPeriodMonths()
+		{
+			compareResourceOMO("builtins/periodMonths.poc");
+		}
+
+		[Test]
+		public void testPeriodSeconds()
+		{
+			compareResourceOMO("builtins/periodSeconds.poc");
+		}
+
+		[Test]
+		public void testPeriodWeeks()
+		{
+			compareResourceOMO("builtins/periodWeeks.poc");
+		}
+
+		[Test]
+		public void testPeriodYears()
+		{
+			compareResourceOMO("builtins/periodYears.poc");
+		}
+
+		[Test]
 		public void testSetCount()
 		{
 			compareResourceOMO("builtins/setCount.poc");

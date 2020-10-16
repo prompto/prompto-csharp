@@ -30,7 +30,26 @@ namespace prompto.type
         }
 
 
- 		public override IType checkAdd(Context context, IType other, bool tryReverse)
+        public override IType checkMember(Context context, String name)
+        {
+            switch (name)
+            {
+                case "years":
+                case "months":
+                case "weeks":
+                case "days":
+                case "hours":
+                case "minutes":
+                case "seconds":
+                case "milliseconds":
+                    return IntegerType.Instance;
+                default:
+                    return base.checkMember(context, name);
+            }
+        }
+
+
+        public override IType checkAdd(Context context, IType other, bool tryReverse)
         {
             if (other is PeriodType)
                 return this;

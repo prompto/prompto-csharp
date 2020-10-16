@@ -142,6 +142,54 @@ namespace prompto.runtime.o
 		}
 
 		[Test]
+		public void testPeriodDays()
+		{
+			CheckOutput("builtins/periodDays.poc");
+		}
+
+		[Test]
+		public void testPeriodHours()
+		{
+			CheckOutput("builtins/periodHours.poc");
+		}
+
+		[Test]
+		public void testPeriodMillis()
+		{
+			CheckOutput("builtins/periodMillis.poc");
+		}
+
+		[Test]
+		public void testPeriodMinutes()
+		{
+			CheckOutput("builtins/periodMinutes.poc");
+		}
+
+		[Test]
+		public void testPeriodMonths()
+		{
+			CheckOutput("builtins/periodMonths.poc");
+		}
+
+		[Test]
+		public void testPeriodSeconds()
+		{
+			CheckOutput("builtins/periodSeconds.poc");
+		}
+
+		[Test]
+		public void testPeriodWeeks()
+		{
+			CheckOutput("builtins/periodWeeks.poc");
+		}
+
+		[Test]
+		public void testPeriodYears()
+		{
+			CheckOutput("builtins/periodYears.poc");
+		}
+
+		[Test]
 		public void testSetCount()
 		{
 			CheckOutput("builtins/setCount.poc");

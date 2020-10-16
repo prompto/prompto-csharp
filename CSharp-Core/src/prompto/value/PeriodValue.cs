@@ -251,7 +251,29 @@ namespace prompto.value
                 millis);
         }
 
-        
+
+        public override IValue GetMemberValue(Context context, String name, bool autoCreate)
+        {
+            if ("years" == name)
+                return new IntegerValue(this.Years);
+            else if ("months" == name)
+                return new IntegerValue(this.Months);
+            else if ("weeks" == name)
+                return new IntegerValue(this.Weeks);
+            else if ("days" == name)
+                return new IntegerValue(this.Days);
+            else if ("hours" == name)
+                return new IntegerValue(this.Hours);
+            else if ("minutes" == name)
+                return new IntegerValue(this.Minutes);
+            else if ("seconds" == name)
+                return new IntegerValue(this.Seconds);
+            else if ("milliseconds" == name)
+                return new IntegerValue(this.Millis);
+            else
+                return base.GetMemberValue(context, name, autoCreate);
+        }
+
         public override String ToString()
         {
             StringBuilder sb = new StringBuilder("P");

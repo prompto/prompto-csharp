@@ -141,6 +141,54 @@ namespace prompto.translate.oeo
 		}
 
 		[Test]
+		public void testPeriodDays()
+		{
+			compareResourceOEO("builtins/periodDays.poc");
+		}
+
+		[Test]
+		public void testPeriodHours()
+		{
+			compareResourceOEO("builtins/periodHours.poc");
+		}
+
+		[Test]
+		public void testPeriodMillis()
+		{
+			compareResourceOEO("builtins/periodMillis.poc");
+		}
+
+		[Test]
+		public void testPeriodMinutes()
+		{
+			compareResourceOEO("builtins/periodMinutes.poc");
+		}
+
+		[Test]
+		public void testPeriodMonths()
+		{
+			compareResourceOEO("builtins/periodMonths.poc");
+		}
+
+		[Test]
+		public void testPeriodSeconds()
+		{
+			compareResourceOEO("builtins/periodSeconds.poc");
+		}
+
+		[Test]
+		public void testPeriodWeeks()
+		{
+			compareResourceOEO("builtins/periodWeeks.poc");
+		}
+
+		[Test]
+		public void testPeriodYears()
+		{
+			compareResourceOEO("builtins/periodYears.poc");
+		}
+
+		[Test]
 		public void testSetCount()
 		{
 			compareResourceOEO("builtins/setCount.poc");

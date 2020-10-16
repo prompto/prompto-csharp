@@ -249,9 +249,57 @@ namespace prompto.translate.eoe
 		}
 
 		[Test]
+		public void testPeriodDays()
+		{
+			compareResourceEOE("builtins/periodDays.pec");
+		}
+
+		[Test]
+		public void testPeriodHours()
+		{
+			compareResourceEOE("builtins/periodHours.pec");
+		}
+
+		[Test]
+		public void testPeriodMillis()
+		{
+			compareResourceEOE("builtins/periodMillis.pec");
+		}
+
+		[Test]
+		public void testPeriodMinutes()
+		{
+			compareResourceEOE("builtins/periodMinutes.pec");
+		}
+
+		[Test]
+		public void testPeriodMonths()
+		{
+			compareResourceEOE("builtins/periodMonths.pec");
+		}
+
+		[Test]
+		public void testPeriodSeconds()
+		{
+			compareResourceEOE("builtins/periodSeconds.pec");
+		}
+
+		[Test]
 		public void testPeriodText()
 		{
 			compareResourceEOE("builtins/periodText.pec");
+		}
+
+		[Test]
+		public void testPeriodWeeks()
+		{
+			compareResourceEOE("builtins/periodWeeks.pec");
+		}
+
+		[Test]
+		public void testPeriodYears()
+		{
+			compareResourceEOE("builtins/periodYears.pec");
 		}
 
 		[Test]
