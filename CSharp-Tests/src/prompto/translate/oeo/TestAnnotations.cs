@@ -122,6 +122,12 @@ namespace prompto.translate.oeo
 			compareResourceOEO("annotations/category.poc");
 		}
 
+		[Test]
+		public void testInlined()
+		{
+			compareResourceOEO("annotations/inlined.poc");
+		}
+
 	}
 }
 

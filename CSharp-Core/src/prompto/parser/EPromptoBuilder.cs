@@ -554,8 +554,16 @@ namespace prompto.parser
 
         public override void ExitNative_member_method_declaration(EParser.Native_member_method_declarationContext ctx)
         {
-            IMethodDeclaration decl = GetNodeValue<IMethodDeclaration>(ctx.GetChild(0));
-            SetNodeValue(ctx, decl);
+            List<CommentStatement> comments = ReadComments(ctx.comment_statement());
+            List<Annotation> annotations = ReadAnnotations(ctx.annotation_constructor());
+            IParseTree ctx_ = ctx.children[ctx.ChildCount - 1];
+            IDeclaration decl = GetNodeValue<IDeclaration>(ctx_);
+            if (decl != null)
+            {
+                decl.Comments = comments;
+                decl.Annotations = annotations;
+                SetNodeValue(ctx, decl);
+            }
         }
 
         public override void ExitNative_symbol(EParser.Native_symbolContext ctx)

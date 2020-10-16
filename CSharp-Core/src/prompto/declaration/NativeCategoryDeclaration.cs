@@ -6,6 +6,7 @@ using prompto.grammar;
 using prompto.value;
 using prompto.csharp;
 using prompto.utils;
+using prompto.statement;
 
 namespace prompto.declaration
 {
@@ -98,6 +99,12 @@ namespace prompto.declaration
 			if(methods!=null && methods.Count>0)
 			{
 				foreach(IDeclaration decl in methods) {
+					if (decl.Comments != null)
+						foreach (CommentStatement comment in decl.Comments)
+							comment.ToDialect(writer);
+					if (decl.Annotations != null)
+						foreach (Annotation annotation in decl.Annotations)
+							annotation.ToDialect(writer);
 					CodeWriter w = writer.newMemberWriter();
 					decl.ToDialect(w);
 					writer.newLine();

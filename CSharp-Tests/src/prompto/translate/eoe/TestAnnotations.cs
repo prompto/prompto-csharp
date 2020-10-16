@@ -20,6 +20,12 @@ namespace prompto.translate.eoe
 			compareResourceEOE("annotations/category.pec");
 		}
 
+		[Test]
+		public void testInlined()
+		{
+			compareResourceEOE("annotations/inlined.pec");
+		}
+
 	}
 }
 
