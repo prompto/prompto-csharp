@@ -133,43 +133,62 @@ namespace prompto.statement
 		private IExpression resolveUnresolvedIdentifier(Context context, UnresolvedIdentifier caller)
 		{
 			String name = caller.getName();
-			IExpression call = null;
-			IDeclaration decl = null;
 			// if this happens in the context of a member method, then we need to check for category members first
-			InstanceContext instance = context.getClosestInstanceContext();
-			if (instance != null)
-			{
-				decl = resolveUnresolvedMember(instance, name);
-				if (decl != null)
-					call = new MethodCall(new MethodSelector(name), arguments);
-			}
+			IExpression call = resolveUnresolvedMemberMethod(context, name);
 			if (call == null)
-			{
-				INamed named = context.getRegisteredValue<INamed>(name);
-				if (named != null)
-				{
-					IType type = named.GetIType(context).Resolve(context);
-					if (type is MethodType)
-					{
-						call = new MethodCall(new MethodSelector(name), arguments);
-						((MethodCall)call).setVariableName(name);
-					}
-				}
-			}
+				call = resolveUnresolvedMethodReference(context, name);
 			if (call == null)
-			{
-				decl = context.getRegisteredDeclaration<IDeclaration>(name);
-				if (decl == null)
-					throw new SyntaxError("Unknown name:" + name);
-				if (decl is CategoryDeclaration)
-					return new ConstructorExpression(new CategoryType(name), null, arguments, false);
-				else
-					return new MethodCall(new MethodSelector(name), arguments);
-			}
+				call = resolveUnresolvedDeclaration(context, name);
+			if (call == null)
+				throw new SyntaxError("Unknown name:" + name);
 			return call;
 		}
 
-		private IDeclaration resolveUnresolvedMember(InstanceContext context, String name)
+        private IExpression resolveUnresolvedDeclaration(Context context, string name)
+        {
+			IDeclaration decl = context.getRegisteredDeclaration<IDeclaration>(name);
+			if (decl == null)
+				return null;
+			else if (decl is CategoryDeclaration)
+					return new ConstructorExpression(new CategoryType(name), null, arguments);
+			else
+				return new MethodCall(new MethodSelector(name), arguments);
+	    }
+
+        private IExpression resolveUnresolvedMethodReference(Context context, string name)
+        {
+			INamed named = context.getRegisteredValue<INamed>(name);
+			if (named == null)
+				return null;
+			IType type = named.GetIType(context).Resolve(context);
+			if (type is MethodType)
+			{
+				MethodCall call = new MethodCall(new MethodSelector(name), arguments);
+				call.setVariableName(name);
+				return call;
+			}
+			else
+				return null;
+		}
+
+        private IExpression resolveUnresolvedMemberMethod(Context context, string name)
+        {
+			while(context != null)
+            {
+				InstanceContext instance = context.getClosestInstanceContext();
+				if (instance == null)
+					return null;
+
+				IDeclaration decl = resolveUnresolvedMember(instance, name);
+				if (decl != null)
+					return new MethodCall(new MethodSelector(name), arguments);
+				else
+					context = instance.getParentContext();
+			}
+			return null;
+	    }
+
+        private IDeclaration resolveUnresolvedMember(InstanceContext context, String name)
 		{
 			ConcreteCategoryDeclaration decl = context.getRegisteredDeclaration<ConcreteCategoryDeclaration>(context.getInstanceType().GetTypeName());
 			MethodDeclarationMap methods = decl.getMemberMethods(context, name);
