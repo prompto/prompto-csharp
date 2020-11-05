@@ -82,6 +82,12 @@ namespace prompto.runtime.o
 		}
 
 		[Test]
+		public void testHomonym2()
+		{
+			CheckOutput("methods/homonym2.poc");
+		}
+
+		[Test]
 		public void testImplicitMember()
 		{
 			CheckOutput("methods/implicitMember.poc");

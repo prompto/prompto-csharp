@@ -81,6 +81,12 @@ namespace prompto.translate.oeo
 		}
 
 		[Test]
+		public void testHomonym2()
+		{
+			compareResourceOEO("methods/homonym2.poc");
+		}
+
+		[Test]
 		public void testImplicitMember()
 		{
 			compareResourceOEO("methods/implicitMember.poc");
