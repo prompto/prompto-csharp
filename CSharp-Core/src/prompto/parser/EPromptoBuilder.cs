@@ -1213,7 +1213,7 @@ namespace prompto.parser
             {
                 args.CheckLastAnd();
             }
-            SetNodeValue(ctx, new ConstructorExpression(type, copyFrom, args, true));
+            SetNodeValue(ctx, new ConstructorExpression(type, copyFrom, args));
         }
 
 
@@ -1232,7 +1232,7 @@ namespace prompto.parser
             {
                 args.CheckLastAnd();
             }
-            SetNodeValue(ctx, new ConstructorExpression(type, null, args, true));
+            SetNodeValue(ctx, new ConstructorExpression(type, null, args));
         }
 
         public override void ExitAssertion(EParser.AssertionContext ctx)

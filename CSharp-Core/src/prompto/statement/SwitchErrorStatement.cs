@@ -190,7 +190,7 @@ namespace prompto.statement
                 ArgumentList args = new ArgumentList();
                 args.Add(new Argument(new UnresolvedParameter("name"), new TextLiteral(e.GetType().Name)));
                 args.Add(new Argument(new UnresolvedParameter("text"), new TextLiteral(e.Message)));
-                ConstructorExpression ctor = new ConstructorExpression(new CategoryType("Error"), null, args, false);
+                ConstructorExpression ctor = new ConstructorExpression(new CategoryType("Error"), null, args);
                 exp = ctor;
             }
             if (context.getRegisteredValue<INamed>(errorName) == null)

@@ -174,7 +174,7 @@ namespace prompto.expression
         {
             try
             {
-                IExpression method = new ConstructorExpression(new CategoryType(name), null, null, true);
+                IExpression method = new ConstructorExpression(new CategoryType(name), null, null);
                 method.check(context);
                 return method;
             }

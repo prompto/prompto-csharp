@@ -1166,14 +1166,14 @@ namespace prompto.parser
             CategoryType type = GetNodeValue<CategoryType>(ctx.typ);
             IExpression copyFrom = GetNodeValue<IExpression>(ctx.copyExp);
             ArgumentList args = GetNodeValue<ArgumentList>(ctx.args);
-            SetNodeValue(ctx, new ConstructorExpression(type, copyFrom, args, true));
+            SetNodeValue(ctx, new ConstructorExpression(type, copyFrom, args));
         }
 
         public override void ExitConstructorNoFrom(MParser.ConstructorNoFromContext ctx)
         {
             CategoryType type = GetNodeValue<CategoryType>(ctx.typ);
             ArgumentList args = GetNodeValue<ArgumentList>(ctx.args);
-            SetNodeValue(ctx, new ConstructorExpression(type, null, args, true));
+            SetNodeValue(ctx, new ConstructorExpression(type, null, args));
         }
 
 

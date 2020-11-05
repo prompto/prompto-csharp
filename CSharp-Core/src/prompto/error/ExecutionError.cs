@@ -26,7 +26,7 @@ public abstract class ExecutionError : PromptoError {
 				ArgumentList args = new ArgumentList();
 				args.Add(new Argument(new UnresolvedParameter("name"), new TextLiteral(this.GetType().Name)));
 				args.Add(new Argument(new UnresolvedParameter("text"), new TextLiteral(this.Message)));
-				exp = new ConstructorExpression(new CategoryType("Error"), null, args, true);
+				exp = new ConstructorExpression(new CategoryType("Error"), null, args);
 			}
 			if(context.getRegisteredValue<INamed>(errorName)==null)
 				context.registerValue(new ErrorVariable(errorName));

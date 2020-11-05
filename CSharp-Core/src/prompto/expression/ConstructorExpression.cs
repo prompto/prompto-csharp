@@ -18,14 +18,13 @@ namespace prompto.expression
         CategoryType type;
         IExpression copyFrom;
         ArgumentList arguments;
-        bool xchecked;
+        bool xchecked = false;
 
-        public ConstructorExpression(CategoryType type, IExpression copyFrom, ArgumentList arguments, bool xchecked)
+        public ConstructorExpression(CategoryType type, IExpression copyFrom, ArgumentList arguments)
         {
             this.type = type;
             this.copyFrom = copyFrom;
             this.arguments = arguments;
-            this.xchecked = xchecked;
         }
 
         public CategoryType getType()

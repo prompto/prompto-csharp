@@ -29,7 +29,7 @@ namespace prompto.expression
 		public override IValue interpret(Context context)
 		{
 			CategoryType type = (CategoryType)check(context);
-			ConstructorExpression ctor = new ConstructorExpression(type, source, null, true);
+			ConstructorExpression ctor = new ConstructorExpression(type, source, null);
 			return ctor.interpret(context);
 		}
 
