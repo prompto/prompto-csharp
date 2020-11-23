@@ -154,8 +154,8 @@ namespace prompto.statement
             this.statements = statements;
         }
 
-        override
-        public void ToDialect(CodeWriter writer)
+        
+        public override void ToDialect(CodeWriter writer)
         {
             switch (writer.getDialect())
             {
@@ -205,7 +205,7 @@ namespace prompto.statement
                 if (context != writer.getContext())
                     writer = writer.newChildWriter(context);
             }
-            bool curly = statements != null && statements.Count > 1;
+            bool curly = needsCurlyBraces();
             if (curly)
                 writer.append("{\n");
             else
@@ -216,6 +216,18 @@ namespace prompto.statement
             if (curly)
                 writer.append("}");
         }
+
+        bool needsCurlyBraces()
+        {
+            if (statements == null)
+                return false;
+            if (statements.Count > 1)
+                return true;
+            else
+                return !statements[0].IsSimple;
+
+        }
+
         public IExpression getCondition()
         {
             return condition;

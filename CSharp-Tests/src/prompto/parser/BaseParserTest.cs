@@ -246,6 +246,23 @@ namespace prompto.parser
 			return s.Replace(" ", "").Replace("\t", "").Replace("\n", "");
 		}
 
+		public void compareResourceOO(String resourceName)
+		{
+			String expected = getResourceAsString(resourceName);
+			// Console.WriteLine(expected);
+			// parse o source code
+			DeclarationList dlo = parseOString(expected);
+			context = Context.newGlobalsContext();
+			dlo.register(context);
+			// rewrite as o
+			CodeWriter writer = new CodeWriter(Dialect.O, context);
+			dlo.ToDialect(writer);
+			String actual = writer.ToString();
+			// Console.WriteLine(actual);
+			// ensure equivalent
+			assertEquivalent(expected, actual);
+		}
+
 		public void compareResourceEOE(String resourceName) {
 			String expected = getResourceAsString(resourceName);
 			// Console.WriteLine(expected);
