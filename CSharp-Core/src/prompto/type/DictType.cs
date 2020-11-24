@@ -4,6 +4,8 @@ using prompto.value;
 using System.Collections.Generic;
 using prompto.store;
 using prompto.declaration;
+using prompto.param;
+using prompto.error;
 
 namespace prompto.type
 {
@@ -56,15 +58,25 @@ namespace prompto.type
 
         public override ISet<IMethodDeclaration> getMemberMethods(Context context, string name)
         {
-            if(name=="swap")
-            {
+			if (name == "swap")
+			{
 				ISet<IMethodDeclaration> methods = new HashSet<IMethodDeclaration>();
 				methods.Add(SWAP_METHOD);
 				return methods;
-			} else
-                return base.getMemberMethods(context, name);
+			}
+			else if (name == "remove")
+			{
+				ISet<IMethodDeclaration> methods = new HashSet<IMethodDeclaration>();
+				methods.Add(REMOVE_METHOD);
+				return methods;
+			}
+			else
+				return base.getMemberMethods(context, name);
         }
 
+		internal static IParameter KEY_ARGUMENT = new CategoryParameter(TextType.Instance, "key");
+
+		internal static IMethodDeclaration REMOVE_METHOD = new RemoveMethodDeclaration();
 		internal static IMethodDeclaration SWAP_METHOD = new SwapMethodDeclaration();
 
 		public override bool Equals (Object obj)
@@ -138,6 +150,32 @@ namespace prompto.type
 		public override IType check(Context context)
 		{
 			return new DictType(TextType.Instance);
+		}
+
+	};
+
+	class RemoveMethodDeclaration : BuiltInMethodDeclaration
+	{
+
+		public RemoveMethodDeclaration()
+		: base("remove", DictType.KEY_ARGUMENT)
+		{ }
+
+		public override IValue interpret(Context context)
+		{
+			DictValue dict = (DictValue)getValue(context);
+			if (!dict.IsMutable())
+				throw new NotMutableError();
+			TextValue key = (TextValue)context.getValue("key");
+			dict.Remove(key);
+			return null;
+		}
+
+
+
+		public override IType check(Context context)
+		{
+			return VoidType.Instance;
 		}
 
 	};
