@@ -182,6 +182,11 @@
             If true, write the output in canonical form.
             </summary>
         </member>
+        <member name="P:YamlDotNet.Core.EmitterSettings.SkipAnchorName">
+            <summary>
+            If true, write output without anchor names.
+            </summary>
+        </member>
         <member name="P:YamlDotNet.Core.EmitterSettings.MaxSimpleKeyLength">
             <summary>
             The maximum allowed length for simple keys.
@@ -2373,6 +2378,15 @@
             <param name="message">The message.</param>
             <param name="inner">The inner.</param>
         </member>
+        <member name="M:YamlDotNet.Helpers.ExpressionExtensions.AsProperty(System.Linq.Expressions.LambdaExpression)">
+            <summary>
+            Returns the <see cref="T:System.Reflection.PropertyInfo" /> that describes the property that
+            is being returned in an expression in the form:
+            <code>
+              x => x.SomeProperty
+            </code>
+            </summary>
+        </member>
         <member name="T:YamlDotNet.Helpers.GenericCollectionToNonGenericAdapter`1">
             <summary>
             Adapts an <see cref="T:System.Collections.Generic.ICollection`1" /> to <see cref="T:System.Collections.IList" />
@@ -2384,6 +2398,28 @@
             Adapts an <see cref="T:System.Collections.Generic.IDictionary`2" /> to <see cref="T:System.Collections.IDictionary" />
             because not all generic dictionaries implement <see cref="T:System.Collections.IDictionary" />.
             </summary>
+        </member>
+        <member name="P:YamlDotNet.Helpers.IOrderedDictionary`2.Item(System.Int32)">
+            <summary>
+            Gets or sets the element with the specified index.
+            </summary>
+            <param name="index">The index of the element to get or set.</param>
+            <returns>The element with the specified index.</returns>
+        </member>
+        <member name="M:YamlDotNet.Helpers.IOrderedDictionary`2.Insert(System.Int32,`0,`1)">
+            <summary>
+            Adds an element with the provided key and value to the <see cref="T:YamlDotNet.Helpers.IOrderedDictionary`2"/>
+            at the given index.
+            </summary>
+            <param name="index">The zero-based index at which the item should be inserted.</param>
+            <param name="key">The object to use as the key of the element to add.</param>
+            <param name="value">The object to use as the value of the element to add.</param>
+        </member>
+        <member name="M:YamlDotNet.Helpers.IOrderedDictionary`2.RemoveAt(System.Int32)">
+            <summary>
+            Removes the element at the specified index.
+            </summary>
+            <param name="index">The zero-based index of the element to remove.</param>
         </member>
         <member name="M:YamlDotNet.ReflectionExtensions.HasDefaultConstructor(System.Type)">
             <summary>
@@ -3402,6 +3438,11 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:YamlDotNet.Serialization.BuilderSkeleton`1.IncludeNonPublicProperties">
+            <summary>
+            Allows serialization and deserialization of non-public properties.
+            </summary>
+        </member>
         <member name="M:YamlDotNet.Serialization.BuilderSkeleton`1.WithNamingConvention(YamlDotNet.Serialization.INamingConvention)">
             <summary>
             Sets the <see cref="T:YamlDotNet.Serialization.INamingConvention" /> that will be used by the (de)serializer.
@@ -3411,6 +3452,15 @@
             <summary>
             Sets the <see cref="T:YamlDotNet.Serialization.ITypeResolver" /> that will be used by the (de)serializer.
             </summary>
+        </member>
+        <member name="M:YamlDotNet.Serialization.BuilderSkeleton`1.WithAttributeOverride``1(System.Linq.Expressions.Expression{System.Func{``0,System.Object}},System.Attribute)">
+            <summary>
+            Register an <see cref="T:System.Attribute"/> for a given property.
+            </summary>
+            <typeparam name="TClass"></typeparam>
+            <param name="propertyAccessor">An expression in the form: x => x.SomeProperty</param>
+            <param name="attribute">The attribute to register.</param>
+            <returns></returns>
         </member>
         <member name="M:YamlDotNet.Serialization.BuilderSkeleton`1.WithAttributeOverride(System.Type,System.String,System.Attribute)">
             <summary>
@@ -3446,13 +3496,13 @@
             Unregisters an existing <see cref="T:YamlDotNet.Serialization.IYamlTypeConverter" /> of type <param name="converterType" />.
             </summary>
         </member>
-        <member name="M:YamlDotNet.Serialization.BuilderSkeleton`1.WithTypeInspector``1(YamlDotNet.Func{YamlDotNet.Serialization.ITypeInspector,``0})">
+        <member name="M:YamlDotNet.Serialization.BuilderSkeleton`1.WithTypeInspector``1(System.Func{YamlDotNet.Serialization.ITypeInspector,``0})">
             <summary>
             Registers an additional <see cref="T:YamlDotNet.Serialization.ITypeInspector" /> to be used by the (de)serializer.
             </summary>
             <param name="typeInspectorFactory">A function that instantiates the type inspector.</param>
         </member>
-        <member name="M:YamlDotNet.Serialization.BuilderSkeleton`1.WithTypeInspector``1(YamlDotNet.Func{YamlDotNet.Serialization.ITypeInspector,``0},System.Action{YamlDotNet.Serialization.IRegistrationLocationSelectionSyntax{YamlDotNet.Serialization.ITypeInspector}})">
+        <member name="M:YamlDotNet.Serialization.BuilderSkeleton`1.WithTypeInspector``1(System.Func{YamlDotNet.Serialization.ITypeInspector,``0},System.Action{YamlDotNet.Serialization.IRegistrationLocationSelectionSyntax{YamlDotNet.Serialization.ITypeInspector}})">
             <summary>
             Registers an additional <see cref="T:YamlDotNet.Serialization.ITypeInspector" /> to be used by the (de)serializer.
             </summary>
@@ -3622,7 +3672,7 @@
             Sets the <see cref="T:YamlDotNet.Serialization.IObjectFactory" /> that will be used by the deserializer.
             </summary>
         </member>
-        <member name="M:YamlDotNet.Serialization.DeserializerBuilder.WithObjectFactory(YamlDotNet.Func{System.Type,System.Object})">
+        <member name="M:YamlDotNet.Serialization.DeserializerBuilder.WithObjectFactory(System.Func{System.Type,System.Object})">
             <summary>
             Sets the <see cref="T:YamlDotNet.Serialization.IObjectFactory" /> that will be used by the deserializer.
             </summary>
@@ -4222,13 +4272,13 @@
             Sets the maximum recursion that is allowed while traversing the object graph. The default value is 50.
             </summary>
         </member>
-        <member name="M:YamlDotNet.Serialization.SerializerBuilder.WithEventEmitter``1(YamlDotNet.Func{YamlDotNet.Serialization.IEventEmitter,``0})">
+        <member name="M:YamlDotNet.Serialization.SerializerBuilder.WithEventEmitter``1(System.Func{YamlDotNet.Serialization.IEventEmitter,``0})">
             <summary>
             Registers an additional <see cref="T:YamlDotNet.Serialization.IEventEmitter" /> to be used by the serializer.
             </summary>
             <param name="eventEmitterFactory">A function that instantiates the event emitter.</param>
         </member>
-        <member name="M:YamlDotNet.Serialization.SerializerBuilder.WithEventEmitter``1(YamlDotNet.Func{YamlDotNet.Serialization.IEventEmitter,``0},System.Action{YamlDotNet.Serialization.IRegistrationLocationSelectionSyntax{YamlDotNet.Serialization.IEventEmitter}})">
+        <member name="M:YamlDotNet.Serialization.SerializerBuilder.WithEventEmitter``1(System.Func{YamlDotNet.Serialization.IEventEmitter,``0},System.Action{YamlDotNet.Serialization.IRegistrationLocationSelectionSyntax{YamlDotNet.Serialization.IEventEmitter}})">
             <summary>
             Registers an additional <see cref="T:YamlDotNet.Serialization.IEventEmitter" /> to be used by the serializer.
             </summary>
@@ -4355,14 +4405,14 @@
             </summary>
             <param name="objectGraphTraversalStrategyFactory">A function that instantiates the traversal strategy.</param>
         </member>
-        <member name="M:YamlDotNet.Serialization.SerializerBuilder.WithEmissionPhaseObjectGraphVisitor``1(YamlDotNet.Func{YamlDotNet.Serialization.EmissionPhaseObjectGraphVisitorArgs,``0})">
+        <member name="M:YamlDotNet.Serialization.SerializerBuilder.WithEmissionPhaseObjectGraphVisitor``1(System.Func{YamlDotNet.Serialization.EmissionPhaseObjectGraphVisitorArgs,``0})">
             <summary>
             Registers an additional <see cref="T:YamlDotNet.Serialization.IObjectGraphVisitor`1" /> to be used by the serializer
             while emitting an object graph.
             </summary>
             <param name="objectGraphVisitorFactory">A function that instantiates the type inspector.</param>
         </member>
-        <member name="M:YamlDotNet.Serialization.SerializerBuilder.WithEmissionPhaseObjectGraphVisitor``1(YamlDotNet.Func{YamlDotNet.Serialization.EmissionPhaseObjectGraphVisitorArgs,``0},System.Action{YamlDotNet.Serialization.IRegistrationLocationSelectionSyntax{YamlDotNet.Serialization.IObjectGraphVisitor{YamlDotNet.Core.IEmitter}}})">
+        <member name="M:YamlDotNet.Serialization.SerializerBuilder.WithEmissionPhaseObjectGraphVisitor``1(System.Func{YamlDotNet.Serialization.EmissionPhaseObjectGraphVisitorArgs,``0},System.Action{YamlDotNet.Serialization.IRegistrationLocationSelectionSyntax{YamlDotNet.Serialization.IObjectGraphVisitor{YamlDotNet.Core.IEmitter}}})">
             <summary>
             Registers an additional <see cref="T:YamlDotNet.Serialization.IObjectGraphVisitor`1" /> to be used by the serializer
             while emitting an object graph.
@@ -4646,6 +4696,11 @@
             <param name="member">Class Member</param>
             <param name="attribute">Overriding Attribute</param>
         </member>
+        <member name="M:YamlDotNet.Serialization.YamlAttributeOverrides.Add``1(System.Linq.Expressions.Expression{System.Func{``0,System.Object}},System.Attribute)">
+            <summary>
+            Adds a Member Attribute Override
+            </summary>
+        </member>
         <member name="M:YamlDotNet.Serialization.YamlAttributeOverrides.Clone">
             <summary>
             Creates a copy of this instance.
@@ -4841,23 +4896,6 @@
             </summary>
         </member>
         <member name="P:System.Diagnostics.CodeAnalysis.NotNullWhenAttribute.ReturnValue">
-            <summary>
-                Gets the return value condition.
-                If the method returns this value, the associated parameter will not be <see langword="null"/>.
-            </summary>
-        </member>
-        <member name="M:System.Diagnostics.CodeAnalysis.NotNullWhenAttribute.#ctor(System.Boolean)">
-            <summary>
-                Initializes the attribute with the specified return value condition.
-            </summary>
-            <param name="returnValue">
-                The return value condition.
-                If the method returns this value, the associated parameter will not be <see langword="null"/>.
-            </param>
-        </member>
-    </members>
-</doc>
-mber name="P:System.Diagnostics.CodeAnalysis.NotNullWhenAttribute.ReturnValue">
             <summary>
                 Gets the return value condition.
                 If the method returns this value, the associated parameter will not be <see langword="null"/>.
