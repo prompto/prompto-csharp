@@ -58,25 +58,28 @@ namespace prompto.type
 
         public override ISet<IMethodDeclaration> getMemberMethods(Context context, string name)
         {
-			if (name == "swap")
+			ISet<IMethodDeclaration> methods = new HashSet<IMethodDeclaration>();
+			switch (name)
 			{
-				ISet<IMethodDeclaration> methods = new HashSet<IMethodDeclaration>();
-				methods.Add(SWAP_METHOD);
-				return methods;
+				case "swap":
+					methods.Add(SWAP_METHOD);
+					return methods;
+				case "removeKey":
+					methods.Add(REMOVE_KEY_METHOD);
+					return methods;
+				case "removeValue":
+					methods.Add(REMOVE_VALUE_METHOD);
+					return methods;
+				default:
+					return base.getMemberMethods(context, name);
 			}
-			else if (name == "remove")
-			{
-				ISet<IMethodDeclaration> methods = new HashSet<IMethodDeclaration>();
-				methods.Add(REMOVE_METHOD);
-				return methods;
-			}
-			else
-				return base.getMemberMethods(context, name);
-        }
+		}
 
 		internal static IParameter KEY_ARGUMENT = new CategoryParameter(TextType.Instance, "key");
+		internal static IParameter VALUE_ARGUMENT = new CategoryParameter(AnyType.Instance, "value");
 
-		internal static IMethodDeclaration REMOVE_METHOD = new RemoveMethodDeclaration();
+		internal static IMethodDeclaration REMOVE_KEY_METHOD = new RemoveDictKeyMethodDeclaration();
+		internal static IMethodDeclaration REMOVE_VALUE_METHOD = new RemoveDictValueMethodDeclaration();
 		internal static IMethodDeclaration SWAP_METHOD = new SwapMethodDeclaration();
 
 		public override bool Equals (Object obj)
@@ -154,11 +157,11 @@ namespace prompto.type
 
 	};
 
-	class RemoveMethodDeclaration : BuiltInMethodDeclaration
+	class RemoveDictKeyMethodDeclaration : BuiltInMethodDeclaration
 	{
 
-		public RemoveMethodDeclaration()
-		: base("remove", DictType.KEY_ARGUMENT)
+		public RemoveDictKeyMethodDeclaration()
+		: base("removeKey", DictType.KEY_ARGUMENT)
 		{ }
 
 		public override IValue interpret(Context context)
@@ -168,6 +171,32 @@ namespace prompto.type
 				throw new NotMutableError();
 			TextValue key = (TextValue)context.getValue("key");
 			dict.Remove(key);
+			return null;
+		}
+
+
+
+		public override IType check(Context context)
+		{
+			return VoidType.Instance;
+		}
+
+	};
+
+	class RemoveDictValueMethodDeclaration : BuiltInMethodDeclaration
+	{
+
+		public RemoveDictValueMethodDeclaration()
+		: base("removeValue", DictType.VALUE_ARGUMENT)
+		{ }
+
+		public override IValue interpret(Context context)
+		{
+			DictValue dict = (DictValue)getValue(context);
+			if (!dict.IsMutable())
+				throw new NotMutableError();
+			IValue value = context.getValue("value");
+			dict.RemoveValue(value);
 			return null;
 		}
 

@@ -100,6 +100,19 @@ namespace prompto.value
             throw new NotSupportedException("Subtract not supported by " + this.GetType().Name);
         }
 
+
+        public void RemoveValue(IValue value)
+        {
+            HashSet<TextValue> keys = new HashSet<TextValue>();
+            foreach (KeyValuePair<TextValue, IValue> kvp in (Dictionary<TextValue, IValue>)this)
+            {
+                if (kvp.Value.Equals(value))
+                    keys.Add(kvp.Key);
+            }
+            foreach (TextValue key in keys)
+                this.Remove(key);
+        }
+
         public virtual IValue Multiply(Context context, IValue value)
         {
             throw new NotSupportedException("Multiply not supported by " + this.GetType().Name);

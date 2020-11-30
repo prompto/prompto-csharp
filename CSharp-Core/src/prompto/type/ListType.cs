@@ -7,6 +7,8 @@ using prompto.value;
 using System.Collections;
 using prompto.store;
 using prompto.declaration;
+using prompto.param;
+using prompto.error;
 
 namespace prompto.type
 {
@@ -117,12 +119,18 @@ namespace prompto.type
 
 		public override ISet<IMethodDeclaration> getMemberMethods(Context context, string name)
 		{
-			ISet<IMethodDeclaration> list = new HashSet<IMethodDeclaration>();
+			ISet<IMethodDeclaration> methods = new HashSet<IMethodDeclaration>();
 			switch (name)
 			{
 				case "join":
-					list.Add(JOIN_METHOD);
-					return list;
+					methods.Add(JOIN_METHOD);
+					return methods;
+				case "removeItem":
+					methods.Add(REMOVE_ITEM_METHOD);
+					return methods;
+				case "removeValue":
+					methods.Add(REMOVE_VALUE_METHOD);
+					return methods;
 				default:
 					return base.getMemberMethods(context, name);
 			}
@@ -143,9 +151,15 @@ namespace prompto.type
 
 		static IMethodDeclaration JOIN_METHOD = new JoinListMethod();
 
+		internal static IParameter ITEM_ARGUMENT = new CategoryParameter(IntegerType.Instance, "item");
+		internal static IParameter VALUE_ARGUMENT = new CategoryParameter(AnyType.Instance, "value");
+
+		internal static IMethodDeclaration REMOVE_ITEM_METHOD = new RemoveListItemMethodDeclaration();
+		internal static IMethodDeclaration REMOVE_VALUE_METHOD = new RemoveListValueMethodDeclaration();
+
 	}
 
-    class JoinListMethod : BaseJoinMethod {
+	class JoinListMethod : BaseJoinMethod {
 
 		protected override IEnumerable<IValue> getItems(Context context)
 		{
@@ -153,4 +167,54 @@ namespace prompto.type
 			return list.GetEnumerable(context);
 		}
 	}
+
+	internal class RemoveListItemMethodDeclaration : BuiltInMethodDeclaration
+	{
+
+		public RemoveListItemMethodDeclaration()
+		: base("removeItem", ListType.ITEM_ARGUMENT)
+		{ }
+
+		public override IValue interpret(Context context)
+		{
+			ListValue list = (ListValue)getValue(context);
+			if (!list.IsMutable())
+				throw new NotMutableError();
+			IntegerValue item = (IntegerValue)context.getValue("item");
+			list.RemoveAt((int)item.LongValue - 1);
+			return null;
+		}
+
+		public override IType check(Context context)
+		{
+			return VoidType.Instance;
+		}
+
+	};
+
+	internal class RemoveListValueMethodDeclaration : BuiltInMethodDeclaration
+	{
+
+		public RemoveListValueMethodDeclaration()
+		: base("removeValue", ListType.VALUE_ARGUMENT)
+		{ }
+
+		public override IValue interpret(Context context)
+		{
+			ListValue list = (ListValue)getValue(context);
+			if (!list.IsMutable())
+				throw new NotMutableError();
+			IValue value = context.getValue("value");
+			list.Remove(value);
+			return null;
+		}
+
+
+
+		public override IType check(Context context)
+		{
+			return VoidType.Instance;
+		}
+
+	};
 }
