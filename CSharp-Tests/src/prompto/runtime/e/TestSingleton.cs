@@ -28,6 +28,12 @@ namespace prompto.runtime.e
 		}
 
 		[Test]
+		public void testConstructor()
+		{
+			CheckOutput("singleton/constructor.pec");
+		}
+
+		[Test]
 		public void testInternal()
 		{
 			CheckOutput("singleton/internal.pec");

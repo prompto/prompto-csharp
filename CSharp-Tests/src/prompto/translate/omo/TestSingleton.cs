@@ -15,6 +15,12 @@ namespace prompto.translate.omo
 		}
 
 		[Test]
+		public void testConstructor()
+		{
+			compareResourceOMO("singleton/constructor.poc");
+		}
+
+		[Test]
 		public void testInternal()
 		{
 			compareResourceOMO("singleton/internal.poc");

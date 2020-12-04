@@ -16,7 +16,7 @@ namespace prompto.declaration
 
         protected IdentifierList derivedFrom;
         protected MethodDeclarationList methods;
-        Dictionary<String, IDeclaration> methodsMap = null;
+        protected Dictionary<String, IDeclaration> methodsMap = null;
 
         public ConcreteCategoryDeclaration(String name)
             : base(name)

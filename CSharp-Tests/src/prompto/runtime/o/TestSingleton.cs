@@ -28,6 +28,12 @@ namespace prompto.runtime.o
 		}
 
 		[Test]
+		public void testConstructor()
+		{
+			CheckOutput("singleton/constructor.poc");
+		}
+
+		[Test]
 		public void testInternal()
 		{
 			CheckOutput("singleton/internal.poc");

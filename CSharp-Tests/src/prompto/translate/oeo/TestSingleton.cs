@@ -15,6 +15,12 @@ namespace prompto.translate.oeo
 		}
 
 		[Test]
+		public void testConstructor()
+		{
+			compareResourceOEO("singleton/constructor.poc");
+		}
+
+		[Test]
 		public void testInternal()
 		{
 			compareResourceOEO("singleton/internal.poc");

@@ -1,5 +1,6 @@
 using System;
 using prompto.grammar;
+using prompto.runtime;
 using prompto.utils;
 
 namespace prompto.declaration
@@ -26,5 +27,21 @@ namespace prompto.declaration
 		{
 			writer.append ("singleton");
 		}
-	}
+
+        public ConcreteMethodDeclaration getConstructorMethod(Context context)
+        {
+			registerMethods(context);
+			if(methodsMap.ContainsKey("constructor"))
+            {
+				IDeclaration decl = methodsMap["constructor"];
+				if (decl is MethodDeclarationMap) {
+					IMethodDeclaration method = ((MethodDeclarationMap)decl).GetFirst();
+					if (method is ConcreteMethodDeclaration)
+						return (ConcreteMethodDeclaration)method;
+				}
+
+			}
+			return null;
+        }
+    }
 }
