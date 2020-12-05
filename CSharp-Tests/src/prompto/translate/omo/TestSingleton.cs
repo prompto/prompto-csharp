@@ -15,9 +15,9 @@ namespace prompto.translate.omo
 		}
 
 		[Test]
-		public void testConstructor()
+		public void testInitialize()
 		{
-			compareResourceOMO("singleton/constructor.poc");
+			compareResourceOMO("singleton/initialize.poc");
 		}
 
 		[Test]

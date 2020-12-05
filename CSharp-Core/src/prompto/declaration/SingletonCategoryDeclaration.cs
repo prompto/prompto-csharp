@@ -28,12 +28,12 @@ namespace prompto.declaration
 			writer.append ("singleton");
 		}
 
-        public ConcreteMethodDeclaration getConstructorMethod(Context context)
+        public ConcreteMethodDeclaration getInitializeMethod(Context context)
         {
 			registerMethods(context);
-			if(methodsMap.ContainsKey("constructor"))
+			if(methodsMap.ContainsKey("initialize"))
             {
-				IDeclaration decl = methodsMap["constructor"];
+				IDeclaration decl = methodsMap["initialize"];
 				if (decl is MethodDeclarationMap) {
 					IMethodDeclaration method = ((MethodDeclarationMap)decl).GetFirst();
 					if (method is ConcreteMethodDeclaration)

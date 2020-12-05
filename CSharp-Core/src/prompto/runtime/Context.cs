@@ -446,7 +446,7 @@ namespace prompto.runtime
                         throw new InternalError("No such singleton:" + type.GetTypeName());
                     value = new ConcreteInstance(this, (ConcreteCategoryDeclaration)decl);
                     ((IInstance)value).setMutable(true); // a singleton is protected by "with x do", so always mutable in that context
-                    ConcreteMethodDeclaration method = ((SingletonCategoryDeclaration)decl).getConstructorMethod(this);
+                    ConcreteMethodDeclaration method = ((SingletonCategoryDeclaration)decl).getInitializeMethod(this);
                     if (method != null)
                     {
                         Context instance = newInstanceContext((IInstance)value, false);

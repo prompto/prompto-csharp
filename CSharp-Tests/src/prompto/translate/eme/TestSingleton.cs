@@ -15,9 +15,9 @@ namespace prompto.translate.eme
 		}
 
 		[Test]
-		public void testConstructor()
+		public void testInitialize()
 		{
-			compareResourceEME("singleton/constructor.pec");
+			compareResourceEME("singleton/initialize.pec");
 		}
 
 		[Test]

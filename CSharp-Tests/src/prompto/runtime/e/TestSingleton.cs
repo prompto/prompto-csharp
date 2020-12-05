@@ -28,9 +28,9 @@ namespace prompto.runtime.e
 		}
 
 		[Test]
-		public void testConstructor()
+		public void testInitialize()
 		{
-			CheckOutput("singleton/constructor.pec");
+			CheckOutput("singleton/initialize.pec");
 		}
 
 		[Test]

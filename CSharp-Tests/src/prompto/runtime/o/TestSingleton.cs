@@ -28,9 +28,9 @@ namespace prompto.runtime.o
 		}
 
 		[Test]
-		public void testConstructor()
+		public void testInitialize()
 		{
-			CheckOutput("singleton/constructor.poc");
+			CheckOutput("singleton/initialize.poc");
 		}
 
 		[Test]
