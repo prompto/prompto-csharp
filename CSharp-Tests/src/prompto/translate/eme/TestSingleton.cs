@@ -15,6 +15,12 @@ namespace prompto.translate.eme
 		}
 
 		[Test]
+		public void testDictionary()
+		{
+			compareResourceEME("singleton/dictionary.pec");
+		}
+
+		[Test]
 		public void testInitialize()
 		{
 			compareResourceEME("singleton/initialize.pec");

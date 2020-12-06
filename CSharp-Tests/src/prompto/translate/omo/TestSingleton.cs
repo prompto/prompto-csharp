@@ -15,6 +15,12 @@ namespace prompto.translate.omo
 		}
 
 		[Test]
+		public void testDictionary()
+		{
+			compareResourceOMO("singleton/dictionary.poc");
+		}
+
+		[Test]
 		public void testInitialize()
 		{
 			compareResourceOMO("singleton/initialize.poc");

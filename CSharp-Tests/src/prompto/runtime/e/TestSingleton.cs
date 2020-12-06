@@ -28,6 +28,12 @@ namespace prompto.runtime.e
 		}
 
 		[Test]
+		public void testDictionary()
+		{
+			CheckOutput("singleton/dictionary.pec");
+		}
+
+		[Test]
 		public void testInitialize()
 		{
 			CheckOutput("singleton/initialize.pec");

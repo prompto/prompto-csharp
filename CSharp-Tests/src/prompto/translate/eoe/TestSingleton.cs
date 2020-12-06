@@ -15,6 +15,12 @@ namespace prompto.translate.eoe
 		}
 
 		[Test]
+		public void testDictionary()
+		{
+			compareResourceEOE("singleton/dictionary.pec");
+		}
+
+		[Test]
 		public void testInitialize()
 		{
 			compareResourceEOE("singleton/initialize.pec");
