@@ -15,6 +15,12 @@ namespace prompto.translate.eoe
 		}
 
 		[Test]
+		public void testAddCss()
+		{
+			compareResourceEOE("add/addCss.pec");
+		}
+
+		[Test]
 		public void testAddDate()
 		{
 			compareResourceEOE("add/addDate.pec");

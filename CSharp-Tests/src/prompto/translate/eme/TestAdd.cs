@@ -15,6 +15,12 @@ namespace prompto.translate.eme
 		}
 
 		[Test]
+		public void testAddCss()
+		{
+			compareResourceEME("add/addCss.pec");
+		}
+
+		[Test]
 		public void testAddDate()
 		{
 			compareResourceEME("add/addDate.pec");

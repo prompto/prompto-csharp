@@ -15,6 +15,12 @@ namespace prompto.translate.omo
 		}
 
 		[Test]
+		public void testAddCss()
+		{
+			compareResourceOMO("add/addCss.poc");
+		}
+
+		[Test]
 		public void testAddDate()
 		{
 			compareResourceOMO("add/addDate.poc");

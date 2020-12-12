@@ -28,6 +28,12 @@ namespace prompto.runtime.e
 		}
 
 		[Test]
+		public void testAddCss()
+		{
+			CheckOutput("add/addCss.pec");
+		}
+
+		[Test]
 		public void testAddDate()
 		{
 			CheckOutput("add/addDate.pec");

@@ -28,6 +28,12 @@ namespace prompto.runtime.o
 		}
 
 		[Test]
+		public void testAddCss()
+		{
+			CheckOutput("add/addCss.poc");
+		}
+
+		[Test]
 		public void testAddDate()
 		{
 			CheckOutput("add/addDate.poc");
