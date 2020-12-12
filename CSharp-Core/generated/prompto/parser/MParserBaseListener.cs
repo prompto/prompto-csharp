@@ -2061,6 +2061,18 @@ public partial class MParserBaseListener : IMParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitNull_literal([NotNull] MParser.Null_literalContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="MParser.comment_statement"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterComment_statement([NotNull] MParser.Comment_statementContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="MParser.comment_statement"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitComment_statement([NotNull] MParser.Comment_statementContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="MParser.repl"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
@@ -3314,18 +3326,6 @@ public partial class MParserBaseListener : IMParserListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitMethod_declaration([NotNull] MParser.Method_declarationContext context) { }
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="MParser.comment_statement"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void EnterComment_statement([NotNull] MParser.Comment_statementContext context) { }
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="MParser.comment_statement"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void ExitComment_statement([NotNull] MParser.Comment_statementContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="MParser.native_statement_list"/>.
 	/// <para>The default implementation does nothing.</para>

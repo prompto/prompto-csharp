@@ -63,12 +63,12 @@ namespace prompto.parser
 
 		public DeclarationList parse_declaration_list()
 		{
-		return doParse<DeclarationList>(this.declaration_list, false);
+			return doParse<DeclarationList>(this.declaration_list, false);
 		}
 
 		public IType parse_standalone_type()
 		{
-		return doParse<IType>(this.category_or_any_type, false);
+			return doParse<IType>(this.category_or_any_type, false);
 		}
 
 		public T doParse<T>(Func<IParseTree> method, bool addLF)
