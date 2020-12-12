@@ -14,7 +14,12 @@ namespace prompto.css
 			this.text = text;
 		}
 
-		public void ToDialect(CodeWriter writer)
+        public override string ToString()
+        {
+            return text;
+        }
+
+        public void ToDialect(CodeWriter writer)
 		{
 			writer.append(text);
 		}

@@ -7,7 +7,7 @@ namespace prompto.css
 	public class CssField
 	{
 
-		String name;
+		internal String name;
 		ICssValue value;
 
 		public CssField(String name, ICssValue value)
@@ -16,7 +16,12 @@ namespace prompto.css
 			this.value = value;
 		}
 
-		public void ToDialect(CodeWriter writer)
+        public override string ToString()
+        {
+            return name + ": " + value.ToString();
+        }
+
+        public void ToDialect(CodeWriter writer)
 		{
 			writer.append(name).append(":");
 			value.ToDialect(writer);
