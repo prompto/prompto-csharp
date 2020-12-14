@@ -243,6 +243,8 @@ namespace prompto.value
         {
             if (!(obj is ConcreteInstance))
                 return false;
+            if(declaration != ((ConcreteInstance)obj).declaration)
+                return false;
             return DictionaryUtils.AreEqual(this.values, ((ConcreteInstance)obj).values);
         }
 
