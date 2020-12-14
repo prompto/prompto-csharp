@@ -45,6 +45,12 @@ namespace prompto.translate.omo
 		}
 
 		[Test]
+		public void testEquals()
+		{
+			compareResourceOMO("categories/equals.poc");
+		}
+
+		[Test]
 		public void testPopulateFalse()
 		{
 			compareResourceOMO("categories/populateFalse.poc");

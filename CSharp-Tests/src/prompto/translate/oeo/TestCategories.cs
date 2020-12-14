@@ -45,6 +45,12 @@ namespace prompto.translate.oeo
 		}
 
 		[Test]
+		public void testEquals()
+		{
+			compareResourceOEO("categories/equals.poc");
+		}
+
+		[Test]
 		public void testPopulateFalse()
 		{
 			compareResourceOEO("categories/populateFalse.poc");

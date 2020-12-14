@@ -58,6 +58,12 @@ namespace prompto.runtime.o
 		}
 
 		[Test]
+		public void testEquals()
+		{
+			CheckOutput("categories/equals.poc");
+		}
+
+		[Test]
 		public void testPopulateFalse()
 		{
 			CheckOutput("categories/populateFalse.poc");
