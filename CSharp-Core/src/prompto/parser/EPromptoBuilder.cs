@@ -1290,14 +1290,7 @@ namespace prompto.parser
             SetNodeValue(ctx, new VariableInstance(name));
         }
 
-        public override void ExitRoughlyEqualsExpression(EParser.RoughlyEqualsExpressionContext ctx)
-        {
-            IExpression left = GetNodeValue<IExpression>(ctx.left);
-            IExpression right = GetNodeValue<IExpression>(ctx.right);
-            SetNodeValue(ctx, new EqualsExpression(left, EqOp.ROUGHLY, right));
-        }
-
-
+ 
         public override void ExitChildInstance(EParser.ChildInstanceContext ctx)
         {
             IAssignableInstance parent = GetNodeValue<IAssignableInstance>(ctx.assignable_instance());
@@ -2246,49 +2239,48 @@ namespace prompto.parser
         {
             IExpression left = GetNodeValue<IExpression>(ctx.left);
             IExpression right = GetNodeValue<IExpression>(ctx.right);
-            SetNodeValue(ctx, new EqualsExpression(left, EqOp.EQUALS, right));
+            EqOp eqOp;
+            switch (ctx.op.Type)
+            {
+                case ELexer.EQ:
+                    eqOp = EqOp.EQUALS;
+                    break;
+                case ELexer.LTGT:
+                    eqOp = EqOp.NOT_EQUALS;
+                    break;
+                case ELexer.TILDE:
+                    eqOp = EqOp.ROUGHLY;
+                    break;
+                default:
+                    throw new Exception("Operator " + ctx.op.Type);
+            }
+            SetNodeValue(ctx, new EqualsExpression(left, eqOp, right));
         }
 
-
-        public override void ExitNotEqualsExpression(EParser.NotEqualsExpressionContext ctx)
+        public override void ExitCompareExpression(EParser.CompareExpressionContext ctx)
         {
             IExpression left = GetNodeValue<IExpression>(ctx.left);
             IExpression right = GetNodeValue<IExpression>(ctx.right);
-            SetNodeValue(ctx, new EqualsExpression(left, EqOp.NOT_EQUALS, right));
+            CmpOp cmpOp;
+            switch (ctx.op.Type)
+            {
+                case ELexer.LT:
+                    cmpOp = CmpOp.LT;
+                    break;
+                case ELexer.LTE:
+                    cmpOp = CmpOp.LTE;
+                    break;
+                case ELexer.GT:
+                    cmpOp = CmpOp.GT;
+                    break;
+                case ELexer.GTE:
+                    cmpOp = CmpOp.GTE;
+                    break;
+                default:
+                    throw new Exception("Operator " + ctx.op.Type);
+            }
+            SetNodeValue(ctx, new CompareExpression(left, cmpOp, right));
         }
-
-
-        public override void ExitGreaterThanExpression(EParser.GreaterThanExpressionContext ctx)
-        {
-            IExpression left = GetNodeValue<IExpression>(ctx.left);
-            IExpression right = GetNodeValue<IExpression>(ctx.right);
-            SetNodeValue(ctx, new CompareExpression(left, CmpOp.GT, right));
-        }
-
-
-        public override void ExitGreaterThanOrEqualExpression(EParser.GreaterThanOrEqualExpressionContext ctx)
-        {
-            IExpression left = GetNodeValue<IExpression>(ctx.left);
-            IExpression right = GetNodeValue<IExpression>(ctx.right);
-            SetNodeValue(ctx, new CompareExpression(left, CmpOp.GTE, right));
-        }
-
-
-        public override void ExitLessThanExpression(EParser.LessThanExpressionContext ctx)
-        {
-            IExpression left = GetNodeValue<IExpression>(ctx.left);
-            IExpression right = GetNodeValue<IExpression>(ctx.right);
-            SetNodeValue(ctx, new CompareExpression(left, CmpOp.LT, right));
-        }
-
-
-        public override void ExitLessThanOrEqualExpression(EParser.LessThanOrEqualExpressionContext ctx)
-        {
-            IExpression left = GetNodeValue<IExpression>(ctx.left);
-            IExpression right = GetNodeValue<IExpression>(ctx.right);
-            SetNodeValue(ctx, new CompareExpression(left, CmpOp.LTE, right));
-        }
-
 
         public override void ExitAtomicSwitchCase(EParser.AtomicSwitchCaseContext ctx)
         {
@@ -2374,18 +2366,12 @@ namespace prompto.parser
         {
             IExpression left = GetNodeValue<IExpression>(ctx.left);
             IExpression right = GetNodeValue<IExpression>(ctx.right);
-            SetNodeValue(ctx, new ContainsExpression(left, ContOp.IN, right));
+            ContOp contOp = ctx.NOT() == null ? ContOp.IN : ContOp.NOT_IN;
+            SetNodeValue(ctx, new ContainsExpression(left, contOp, right));
         }
 
 
-        public override void ExitNotInExpression(EParser.NotInExpressionContext ctx)
-        {
-            IExpression left = GetNodeValue<IExpression>(ctx.left);
-            IExpression right = GetNodeValue<IExpression>(ctx.right);
-            SetNodeValue(ctx, new ContainsExpression(left, ContOp.NOT_IN, right));
-        }
-
-        public override void ExitIsATypeExpression(EParser.IsATypeExpressionContext ctx)
+       public override void ExitIsATypeExpression(EParser.IsATypeExpressionContext ctx)
         {
             IType type = GetNodeValue<IType>(ctx.category_or_any_type());
             IExpression exp = new TypeExpression(type);
@@ -2403,17 +2389,14 @@ namespace prompto.parser
             IExpression left = GetNodeValue<IExpression>(ctx.left);
             IExpression right = GetNodeValue<IExpression>(ctx.right);
             EqOp op = right is TypeExpression ? EqOp.IS_A : EqOp.IS;
+            if (ctx.NOT() != null)
+            {
+                EqOp[] values = (EqOp[])Enum.GetValues(op.GetType());
+                int index = Array.IndexOf(values, op);
+                op = values[index + 1];
+            }
             SetNodeValue(ctx, new EqualsExpression(left, op, right));
         }
-
-        public override void ExitIsNotExpression(EParser.IsNotExpressionContext ctx)
-        {
-            IExpression left = GetNodeValue<IExpression>(ctx.left);
-            IExpression right = GetNodeValue<IExpression>(ctx.right);
-            EqOp op = right is TypeExpression ? EqOp.IS_NOT_A : EqOp.IS_NOT;
-            SetNodeValue(ctx, new EqualsExpression(left, op, right));
-        }
-
 
         public override void ExitCssType([NotNull] EParser.CssTypeContext ctx)
         {
@@ -2424,30 +2407,16 @@ namespace prompto.parser
         {
             IExpression left = GetNodeValue<IExpression>(ctx.left);
             IExpression right = GetNodeValue<IExpression>(ctx.right);
-            SetNodeValue(ctx, new ContainsExpression(left, ContOp.HAS, right));
-        }
-
-
-        public override void ExitNotHasExpression(EParser.NotHasExpressionContext ctx)
-        {
-            IExpression left = GetNodeValue<IExpression>(ctx.left);
-            IExpression right = GetNodeValue<IExpression>(ctx.right);
-            SetNodeValue(ctx, new ContainsExpression(left, ContOp.NOT_HAS, right));
+            ContOp contOp = ctx.NOT() == null ? ContOp.HAS : ContOp.NOT_HAS;
+            SetNodeValue(ctx, new ContainsExpression(left, contOp, right));
         }
 
         public override void ExitHasAllExpression(EParser.HasAllExpressionContext ctx)
         {
             IExpression left = GetNodeValue<IExpression>(ctx.left);
             IExpression right = GetNodeValue<IExpression>(ctx.right);
-            SetNodeValue(ctx, new ContainsExpression(left, ContOp.HAS_ALL, right));
-        }
-
-
-        public override void ExitNotHasAllExpression(EParser.NotHasAllExpressionContext ctx)
-        {
-            IExpression left = GetNodeValue<IExpression>(ctx.left);
-            IExpression right = GetNodeValue<IExpression>(ctx.right);
-            SetNodeValue(ctx, new ContainsExpression(left, ContOp.NOT_HAS_ALL, right));
+            ContOp contOp = ctx.NOT() == null ? ContOp.HAS_ALL : ContOp.NOT_HAS_ALL;
+            SetNodeValue(ctx, new ContainsExpression(left, contOp, right));
         }
 
 
@@ -2455,33 +2424,17 @@ namespace prompto.parser
         {
             IExpression left = GetNodeValue<IExpression>(ctx.left);
             IExpression right = GetNodeValue<IExpression>(ctx.right);
-            SetNodeValue(ctx, new ContainsExpression(left, ContOp.HAS_ANY, right));
+            ContOp contOp = ctx.NOT() == null ? ContOp.HAS_ANY : ContOp.NOT_HAS_ANY;
+            SetNodeValue(ctx, new ContainsExpression(left, contOp, right));
         }
-
-
-        public override void ExitNotHasAnyExpression(EParser.NotHasAnyExpressionContext ctx)
-        {
-            IExpression left = GetNodeValue<IExpression>(ctx.left);
-            IExpression right = GetNodeValue<IExpression>(ctx.right);
-            SetNodeValue(ctx, new ContainsExpression(left, ContOp.NOT_HAS_ANY, right));
-        }
-
 
         public override void ExitContainsExpression(EParser.ContainsExpressionContext ctx)
         {
             IExpression left = GetNodeValue<IExpression>(ctx.left);
             IExpression right = GetNodeValue<IExpression>(ctx.right);
-            SetNodeValue(ctx, new EqualsExpression(left, EqOp.CONTAINS, right));
+            EqOp eqOp = ctx.NOT() == null ? EqOp.CONTAINS : EqOp.NOT_CONTAINS;
+            SetNodeValue(ctx, new EqualsExpression(left, eqOp, right));
         }
-
-
-        public override void ExitNotContainsExpression(EParser.NotContainsExpressionContext ctx)
-        {
-            IExpression left = GetNodeValue<IExpression>(ctx.left);
-            IExpression right = GetNodeValue<IExpression>(ctx.right);
-            SetNodeValue(ctx, new EqualsExpression(left, EqOp.NOT_CONTAINS, right));
-        }
-
 
         public override void ExitDivideExpression(EParser.DivideExpressionContext ctx)
         {
@@ -2847,7 +2800,14 @@ namespace prompto.parser
         {
             String itemName = GetNodeValue<String>(ctx.name);
             IExpression predicate = GetNodeValue<IExpression>(ctx.predicate);
-            SetNodeValue(ctx, new FilteredExpression(itemName, null, predicate));
+            PredicateExpression expression = null;
+            if (itemName != null)
+                expression = new ExplicitPredicateExpression(itemName, predicate);
+            else if (predicate is PredicateExpression)
+			    expression = (PredicateExpression)predicate;
+            else
+                throw new Exception();
+            SetNodeValue(ctx, new FilteredExpression(null, expression));
         }
 
 

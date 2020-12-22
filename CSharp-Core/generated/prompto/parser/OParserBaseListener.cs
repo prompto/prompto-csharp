@@ -1051,20 +1051,6 @@ public partial class OParserBaseListener : IOParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitTernaryExpression([NotNull] OParser.TernaryExpressionContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by the <c>NotEqualsExpression</c>
-	/// labeled alternative in <see cref="OParser.expression"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void EnterNotEqualsExpression([NotNull] OParser.NotEqualsExpressionContext context) { }
-	/// <summary>
-	/// Exit a parse tree produced by the <c>NotEqualsExpression</c>
-	/// labeled alternative in <see cref="OParser.expression"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void ExitNotEqualsExpression([NotNull] OParser.NotEqualsExpressionContext context) { }
-	/// <summary>
 	/// Enter a parse tree produced by the <c>InExpression</c>
 	/// labeled alternative in <see cref="OParser.expression"/>.
 	/// <para>The default implementation does nothing.</para>
@@ -1121,19 +1107,19 @@ public partial class OParserBaseListener : IOParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitNotExpression([NotNull] OParser.NotExpressionContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by the <c>GreaterThanExpression</c>
+	/// Enter a parse tree produced by the <c>CompareExpression</c>
 	/// labeled alternative in <see cref="OParser.expression"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void EnterGreaterThanExpression([NotNull] OParser.GreaterThanExpressionContext context) { }
+	public virtual void EnterCompareExpression([NotNull] OParser.CompareExpressionContext context) { }
 	/// <summary>
-	/// Exit a parse tree produced by the <c>GreaterThanExpression</c>
+	/// Exit a parse tree produced by the <c>CompareExpression</c>
 	/// labeled alternative in <see cref="OParser.expression"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void ExitGreaterThanExpression([NotNull] OParser.GreaterThanExpressionContext context) { }
+	public virtual void ExitCompareExpression([NotNull] OParser.CompareExpressionContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by the <c>OrExpression</c>
 	/// labeled alternative in <see cref="OParser.expression"/>.
@@ -1163,34 +1149,6 @@ public partial class OParserBaseListener : IOParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitCodeExpression([NotNull] OParser.CodeExpressionContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by the <c>LessThanOrEqualExpression</c>
-	/// labeled alternative in <see cref="OParser.expression"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void EnterLessThanOrEqualExpression([NotNull] OParser.LessThanOrEqualExpressionContext context) { }
-	/// <summary>
-	/// Exit a parse tree produced by the <c>LessThanOrEqualExpression</c>
-	/// labeled alternative in <see cref="OParser.expression"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void ExitLessThanOrEqualExpression([NotNull] OParser.LessThanOrEqualExpressionContext context) { }
-	/// <summary>
-	/// Enter a parse tree produced by the <c>NotHasAnyExpression</c>
-	/// labeled alternative in <see cref="OParser.expression"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void EnterNotHasAnyExpression([NotNull] OParser.NotHasAnyExpressionContext context) { }
-	/// <summary>
-	/// Exit a parse tree produced by the <c>NotHasAnyExpression</c>
-	/// labeled alternative in <see cref="OParser.expression"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void ExitNotHasAnyExpression([NotNull] OParser.NotHasAnyExpressionContext context) { }
-	/// <summary>
 	/// Enter a parse tree produced by the <c>AndExpression</c>
 	/// labeled alternative in <see cref="OParser.expression"/>.
 	/// <para>The default implementation does nothing.</para>
@@ -1219,20 +1177,6 @@ public partial class OParserBaseListener : IOParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitArrowExpression([NotNull] OParser.ArrowExpressionContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by the <c>NotHasExpression</c>
-	/// labeled alternative in <see cref="OParser.expression"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void EnterNotHasExpression([NotNull] OParser.NotHasExpressionContext context) { }
-	/// <summary>
-	/// Exit a parse tree produced by the <c>NotHasExpression</c>
-	/// labeled alternative in <see cref="OParser.expression"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void ExitNotHasExpression([NotNull] OParser.NotHasExpressionContext context) { }
-	/// <summary>
 	/// Enter a parse tree produced by the <c>ClosureExpression</c>
 	/// labeled alternative in <see cref="OParser.expression"/>.
 	/// <para>The default implementation does nothing.</para>
@@ -1246,20 +1190,6 @@ public partial class OParserBaseListener : IOParserListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitClosureExpression([NotNull] OParser.ClosureExpressionContext context) { }
-	/// <summary>
-	/// Enter a parse tree produced by the <c>NotHasAllExpression</c>
-	/// labeled alternative in <see cref="OParser.expression"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void EnterNotHasAllExpression([NotNull] OParser.NotHasAllExpressionContext context) { }
-	/// <summary>
-	/// Exit a parse tree produced by the <c>NotHasAllExpression</c>
-	/// labeled alternative in <see cref="OParser.expression"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void ExitNotHasAllExpression([NotNull] OParser.NotHasAllExpressionContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by the <c>ContainsExpression</c>
 	/// labeled alternative in <see cref="OParser.expression"/>.
@@ -1275,20 +1205,6 @@ public partial class OParserBaseListener : IOParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitContainsExpression([NotNull] OParser.ContainsExpressionContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by the <c>NotContainsExpression</c>
-	/// labeled alternative in <see cref="OParser.expression"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void EnterNotContainsExpression([NotNull] OParser.NotContainsExpressionContext context) { }
-	/// <summary>
-	/// Exit a parse tree produced by the <c>NotContainsExpression</c>
-	/// labeled alternative in <see cref="OParser.expression"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void ExitNotContainsExpression([NotNull] OParser.NotContainsExpressionContext context) { }
-	/// <summary>
 	/// Enter a parse tree produced by the <c>MultiplyExpression</c>
 	/// labeled alternative in <see cref="OParser.expression"/>.
 	/// <para>The default implementation does nothing.</para>
@@ -1302,34 +1218,6 @@ public partial class OParserBaseListener : IOParserListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitMultiplyExpression([NotNull] OParser.MultiplyExpressionContext context) { }
-	/// <summary>
-	/// Enter a parse tree produced by the <c>RoughlyEqualsExpression</c>
-	/// labeled alternative in <see cref="OParser.expression"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void EnterRoughlyEqualsExpression([NotNull] OParser.RoughlyEqualsExpressionContext context) { }
-	/// <summary>
-	/// Exit a parse tree produced by the <c>RoughlyEqualsExpression</c>
-	/// labeled alternative in <see cref="OParser.expression"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void ExitRoughlyEqualsExpression([NotNull] OParser.RoughlyEqualsExpressionContext context) { }
-	/// <summary>
-	/// Enter a parse tree produced by the <c>IsNotAnExpression</c>
-	/// labeled alternative in <see cref="OParser.expression"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void EnterIsNotAnExpression([NotNull] OParser.IsNotAnExpressionContext context) { }
-	/// <summary>
-	/// Exit a parse tree produced by the <c>IsNotAnExpression</c>
-	/// labeled alternative in <see cref="OParser.expression"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void ExitIsNotAnExpression([NotNull] OParser.IsNotAnExpressionContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by the <c>ExecuteExpression</c>
 	/// labeled alternative in <see cref="OParser.expression"/>.
@@ -1345,34 +1233,6 @@ public partial class OParserBaseListener : IOParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitExecuteExpression([NotNull] OParser.ExecuteExpressionContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by the <c>GreaterThanOrEqualExpression</c>
-	/// labeled alternative in <see cref="OParser.expression"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void EnterGreaterThanOrEqualExpression([NotNull] OParser.GreaterThanOrEqualExpressionContext context) { }
-	/// <summary>
-	/// Exit a parse tree produced by the <c>GreaterThanOrEqualExpression</c>
-	/// labeled alternative in <see cref="OParser.expression"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void ExitGreaterThanOrEqualExpression([NotNull] OParser.GreaterThanOrEqualExpressionContext context) { }
-	/// <summary>
-	/// Enter a parse tree produced by the <c>NotInExpression</c>
-	/// labeled alternative in <see cref="OParser.expression"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void EnterNotInExpression([NotNull] OParser.NotInExpressionContext context) { }
-	/// <summary>
-	/// Exit a parse tree produced by the <c>NotInExpression</c>
-	/// labeled alternative in <see cref="OParser.expression"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void ExitNotInExpression([NotNull] OParser.NotInExpressionContext context) { }
-	/// <summary>
 	/// Enter a parse tree produced by the <c>IteratorExpression</c>
 	/// labeled alternative in <see cref="OParser.expression"/>.
 	/// <para>The default implementation does nothing.</para>
@@ -1386,20 +1246,6 @@ public partial class OParserBaseListener : IOParserListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitIteratorExpression([NotNull] OParser.IteratorExpressionContext context) { }
-	/// <summary>
-	/// Enter a parse tree produced by the <c>IsNotExpression</c>
-	/// labeled alternative in <see cref="OParser.expression"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void EnterIsNotExpression([NotNull] OParser.IsNotExpressionContext context) { }
-	/// <summary>
-	/// Exit a parse tree produced by the <c>IsNotExpression</c>
-	/// labeled alternative in <see cref="OParser.expression"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void ExitIsNotExpression([NotNull] OParser.IsNotExpressionContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by the <c>DivideExpression</c>
 	/// labeled alternative in <see cref="OParser.expression"/>.
@@ -1541,20 +1387,6 @@ public partial class OParserBaseListener : IOParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitModuloExpression([NotNull] OParser.ModuloExpressionContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by the <c>LessThanExpression</c>
-	/// labeled alternative in <see cref="OParser.expression"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void EnterLessThanExpression([NotNull] OParser.LessThanExpressionContext context) { }
-	/// <summary>
-	/// Exit a parse tree produced by the <c>LessThanExpression</c>
-	/// labeled alternative in <see cref="OParser.expression"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void ExitLessThanExpression([NotNull] OParser.LessThanExpressionContext context) { }
-	/// <summary>
 	/// Enter a parse tree produced by the <c>EqualsExpression</c>
 	/// labeled alternative in <see cref="OParser.expression"/>.
 	/// <para>The default implementation does nothing.</para>
@@ -1568,6 +1400,48 @@ public partial class OParserBaseListener : IOParserListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitEqualsExpression([NotNull] OParser.EqualsExpressionContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by the <c>ArrowFilterExpression</c>
+	/// labeled alternative in <see cref="OParser.filter_expression"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterArrowFilterExpression([NotNull] OParser.ArrowFilterExpressionContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by the <c>ArrowFilterExpression</c>
+	/// labeled alternative in <see cref="OParser.filter_expression"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitArrowFilterExpression([NotNull] OParser.ArrowFilterExpressionContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by the <c>ExplicitFilterExpression</c>
+	/// labeled alternative in <see cref="OParser.filter_expression"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterExplicitFilterExpression([NotNull] OParser.ExplicitFilterExpressionContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by the <c>ExplicitFilterExpression</c>
+	/// labeled alternative in <see cref="OParser.filter_expression"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitExplicitFilterExpression([NotNull] OParser.ExplicitFilterExpressionContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by the <c>OtherFilterExpression</c>
+	/// labeled alternative in <see cref="OParser.filter_expression"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterOtherFilterExpression([NotNull] OParser.OtherFilterExpressionContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by the <c>OtherFilterExpression</c>
+	/// labeled alternative in <see cref="OParser.filter_expression"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitOtherFilterExpression([NotNull] OParser.OtherFilterExpressionContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="OParser.an_expression"/>.
 	/// <para>The default implementation does nothing.</para>

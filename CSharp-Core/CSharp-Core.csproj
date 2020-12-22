@@ -556,6 +556,8 @@
     <Compile Include="src\prompto\runtime\ApplicationContext.cs" />
     <Compile Include="src\prompto\runtime\Scheduler.cs" />
     <Compile Include="src\prompto\grammar\INamedInstance.cs" />
+    <Compile Include="src\prompto\expression\PredicateExpression.cs" />
+    <Compile Include="src\prompto\expression\ExplicitPredicateExpression.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />

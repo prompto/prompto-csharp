@@ -13,13 +13,11 @@ namespace prompto.expression
 	public class FilteredExpression : BaseExpression, IExpression
 	{
 
-		String itemName;
 		IExpression source;
-		IExpression predicate;
+		PredicateExpression predicate;
 
-		public FilteredExpression(String name, IExpression source, IExpression predicate)
+		public FilteredExpression(IExpression source, PredicateExpression predicate)
 		{
-			this.itemName = name;
 			this.source = source;
 			this.predicate = predicate;
 		}
@@ -40,42 +38,9 @@ namespace prompto.expression
 
 		public override void ToDialect(CodeWriter writer)
 		{
-			if (itemName != null)
-				ToDialectExplicit(writer);
-			else if (predicate is ArrowExpression)
-				((ArrowExpression)predicate).FilterToDialect(writer, source);
-			else
-				throw new SyntaxError("Expecting an arrow expression!");
+			predicate.FilteredToDialect(writer, source);
 		}
 
-
-		public void ToDialectExplicit(CodeWriter writer)
-		{
-			writer = writer.newChildWriter();
-			IType sourceType = source.check(writer.getContext());
-			IType itemType = ((IterableType)sourceType).GetItemType();
-			writer.getContext().registerValue(new Variable(itemName, itemType));
-			switch (writer.getDialect())
-			{
-				case Dialect.E:
-				case Dialect.M:
-					source.ToDialect(writer);
-					writer.append(" filtered with ");
-					writer.append(itemName);
-					writer.append(" where ");
-					predicate.ToDialect(writer);
-					break;
-				case Dialect.O:
-					writer.append("filtered (");
-					source.ToDialect(writer);
-					writer.append(") with (");
-					writer.append(itemName);
-					writer.append(") where (");
-					predicate.ToDialect(writer);
-					writer.append(")");
-					break;
-			}
-		}
 
 		public override IType check(Context context)
 		{
@@ -83,21 +48,11 @@ namespace prompto.expression
 			if (!(sourceType is IterableType))
 				throw new SyntaxError("Expecting an iterable type as data source !");
 			IType itemType = ((IterableType)sourceType).GetItemType();
-			if (itemName != null)
-			{
-				Context child = context.newChildContext();
-				child.registerValue(new Variable(itemName, itemType));
-				IType filterType = predicate.check(child);
-				if (filterType != BooleanType.Instance)
-					throw new SyntaxError("Filtering expresion must return a bool !");
-			}
-			else if (predicate is ArrowExpression)
-			{
-				// TODO
-			}
-			else
-				throw new SyntaxError("Expecting an arrow expression!");
-			return sourceType;
+			ArrowExpression arrow = predicate.ToArrowExpression();
+			IType filterType = predicate.Check(context, itemType);
+			if (filterType != BooleanType.Instance)
+				throw new SyntaxError("Filtering expresion must return a bool !");
+			return new ListType(itemType);
 		}
 
 		public override IValue interpret(Context context)
@@ -112,24 +67,11 @@ namespace prompto.expression
 			if (!(value is IFilterable))
 				throw new InternalError("Illegal fetch source: " + source);
 			IFilterable list = (IFilterable)value;
-			ArrowExpression arrow = toArrowExpression();
+			ArrowExpression arrow = predicate.ToArrowExpression();
 			Predicate<IValue> filter = arrow.GetFilter(context, itemType);
 			return list.Filter(filter);
 		}
 
-		ArrowExpression toArrowExpression()
-		{
-			if (itemName != null)
-			{
-				ArrowExpression arrow = new ArrowExpression(new IdentifierList(itemName), null, null);
-				arrow.Expression = predicate;
-				return arrow;
-			}
-			else if (predicate is ArrowExpression)
-				return (ArrowExpression)predicate;
-			else
-				throw new SyntaxError("Not a valid filter!");
-		}
 	}
 }
 

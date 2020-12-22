@@ -828,18 +828,6 @@ public interface IMParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitTernaryExpression([NotNull] MParser.TernaryExpressionContext context);
 	/// <summary>
-	/// Enter a parse tree produced by the <c>NotEqualsExpression</c>
-	/// labeled alternative in <see cref="MParser.expression"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterNotEqualsExpression([NotNull] MParser.NotEqualsExpressionContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>NotEqualsExpression</c>
-	/// labeled alternative in <see cref="MParser.expression"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitNotEqualsExpression([NotNull] MParser.NotEqualsExpressionContext context);
-	/// <summary>
 	/// Enter a parse tree produced by the <c>InExpression</c>
 	/// labeled alternative in <see cref="MParser.expression"/>.
 	/// </summary>
@@ -876,17 +864,17 @@ public interface IMParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitNotExpression([NotNull] MParser.NotExpressionContext context);
 	/// <summary>
-	/// Enter a parse tree produced by the <c>GreaterThanExpression</c>
+	/// Enter a parse tree produced by the <c>CompareExpression</c>
 	/// labeled alternative in <see cref="MParser.expression"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterGreaterThanExpression([NotNull] MParser.GreaterThanExpressionContext context);
+	void EnterCompareExpression([NotNull] MParser.CompareExpressionContext context);
 	/// <summary>
-	/// Exit a parse tree produced by the <c>GreaterThanExpression</c>
+	/// Exit a parse tree produced by the <c>CompareExpression</c>
 	/// labeled alternative in <see cref="MParser.expression"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitGreaterThanExpression([NotNull] MParser.GreaterThanExpressionContext context);
+	void ExitCompareExpression([NotNull] MParser.CompareExpressionContext context);
 	/// <summary>
 	/// Enter a parse tree produced by the <c>OrExpression</c>
 	/// labeled alternative in <see cref="MParser.expression"/>.
@@ -912,30 +900,6 @@ public interface IMParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitCodeExpression([NotNull] MParser.CodeExpressionContext context);
 	/// <summary>
-	/// Enter a parse tree produced by the <c>LessThanOrEqualExpression</c>
-	/// labeled alternative in <see cref="MParser.expression"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterLessThanOrEqualExpression([NotNull] MParser.LessThanOrEqualExpressionContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>LessThanOrEqualExpression</c>
-	/// labeled alternative in <see cref="MParser.expression"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitLessThanOrEqualExpression([NotNull] MParser.LessThanOrEqualExpressionContext context);
-	/// <summary>
-	/// Enter a parse tree produced by the <c>NotHasAnyExpression</c>
-	/// labeled alternative in <see cref="MParser.expression"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterNotHasAnyExpression([NotNull] MParser.NotHasAnyExpressionContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>NotHasAnyExpression</c>
-	/// labeled alternative in <see cref="MParser.expression"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitNotHasAnyExpression([NotNull] MParser.NotHasAnyExpressionContext context);
-	/// <summary>
 	/// Enter a parse tree produced by the <c>AndExpression</c>
 	/// labeled alternative in <see cref="MParser.expression"/>.
 	/// </summary>
@@ -960,18 +924,6 @@ public interface IMParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitArrowExpression([NotNull] MParser.ArrowExpressionContext context);
 	/// <summary>
-	/// Enter a parse tree produced by the <c>NotHasExpression</c>
-	/// labeled alternative in <see cref="MParser.expression"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterNotHasExpression([NotNull] MParser.NotHasExpressionContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>NotHasExpression</c>
-	/// labeled alternative in <see cref="MParser.expression"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitNotHasExpression([NotNull] MParser.NotHasExpressionContext context);
-	/// <summary>
 	/// Enter a parse tree produced by the <c>ClosureExpression</c>
 	/// labeled alternative in <see cref="MParser.expression"/>.
 	/// </summary>
@@ -983,18 +935,6 @@ public interface IMParserListener : IParseTreeListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void ExitClosureExpression([NotNull] MParser.ClosureExpressionContext context);
-	/// <summary>
-	/// Enter a parse tree produced by the <c>NotHasAllExpression</c>
-	/// labeled alternative in <see cref="MParser.expression"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterNotHasAllExpression([NotNull] MParser.NotHasAllExpressionContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>NotHasAllExpression</c>
-	/// labeled alternative in <see cref="MParser.expression"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitNotHasAllExpression([NotNull] MParser.NotHasAllExpressionContext context);
 	/// <summary>
 	/// Enter a parse tree produced by the <c>ContainsExpression</c>
 	/// labeled alternative in <see cref="MParser.expression"/>.
@@ -1020,18 +960,6 @@ public interface IMParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitFilteredListExpression([NotNull] MParser.FilteredListExpressionContext context);
 	/// <summary>
-	/// Enter a parse tree produced by the <c>NotContainsExpression</c>
-	/// labeled alternative in <see cref="MParser.expression"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterNotContainsExpression([NotNull] MParser.NotContainsExpressionContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>NotContainsExpression</c>
-	/// labeled alternative in <see cref="MParser.expression"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitNotContainsExpression([NotNull] MParser.NotContainsExpressionContext context);
-	/// <summary>
 	/// Enter a parse tree produced by the <c>MultiplyExpression</c>
 	/// labeled alternative in <see cref="MParser.expression"/>.
 	/// </summary>
@@ -1043,18 +971,6 @@ public interface IMParserListener : IParseTreeListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void ExitMultiplyExpression([NotNull] MParser.MultiplyExpressionContext context);
-	/// <summary>
-	/// Enter a parse tree produced by the <c>RoughlyEqualsExpression</c>
-	/// labeled alternative in <see cref="MParser.expression"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterRoughlyEqualsExpression([NotNull] MParser.RoughlyEqualsExpressionContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>RoughlyEqualsExpression</c>
-	/// labeled alternative in <see cref="MParser.expression"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitRoughlyEqualsExpression([NotNull] MParser.RoughlyEqualsExpressionContext context);
 	/// <summary>
 	/// Enter a parse tree produced by the <c>ExecuteExpression</c>
 	/// labeled alternative in <see cref="MParser.expression"/>.
@@ -1068,30 +984,6 @@ public interface IMParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitExecuteExpression([NotNull] MParser.ExecuteExpressionContext context);
 	/// <summary>
-	/// Enter a parse tree produced by the <c>GreaterThanOrEqualExpression</c>
-	/// labeled alternative in <see cref="MParser.expression"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterGreaterThanOrEqualExpression([NotNull] MParser.GreaterThanOrEqualExpressionContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>GreaterThanOrEqualExpression</c>
-	/// labeled alternative in <see cref="MParser.expression"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitGreaterThanOrEqualExpression([NotNull] MParser.GreaterThanOrEqualExpressionContext context);
-	/// <summary>
-	/// Enter a parse tree produced by the <c>NotInExpression</c>
-	/// labeled alternative in <see cref="MParser.expression"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterNotInExpression([NotNull] MParser.NotInExpressionContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>NotInExpression</c>
-	/// labeled alternative in <see cref="MParser.expression"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitNotInExpression([NotNull] MParser.NotInExpressionContext context);
-	/// <summary>
 	/// Enter a parse tree produced by the <c>IteratorExpression</c>
 	/// labeled alternative in <see cref="MParser.expression"/>.
 	/// </summary>
@@ -1103,18 +995,6 @@ public interface IMParserListener : IParseTreeListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void ExitIteratorExpression([NotNull] MParser.IteratorExpressionContext context);
-	/// <summary>
-	/// Enter a parse tree produced by the <c>IsNotExpression</c>
-	/// labeled alternative in <see cref="MParser.expression"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterIsNotExpression([NotNull] MParser.IsNotExpressionContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>IsNotExpression</c>
-	/// labeled alternative in <see cref="MParser.expression"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitIsNotExpression([NotNull] MParser.IsNotExpressionContext context);
 	/// <summary>
 	/// Enter a parse tree produced by the <c>DivideExpression</c>
 	/// labeled alternative in <see cref="MParser.expression"/>.
@@ -1236,18 +1116,6 @@ public interface IMParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitModuloExpression([NotNull] MParser.ModuloExpressionContext context);
 	/// <summary>
-	/// Enter a parse tree produced by the <c>LessThanExpression</c>
-	/// labeled alternative in <see cref="MParser.expression"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterLessThanExpression([NotNull] MParser.LessThanExpressionContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>LessThanExpression</c>
-	/// labeled alternative in <see cref="MParser.expression"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitLessThanExpression([NotNull] MParser.LessThanExpressionContext context);
-	/// <summary>
 	/// Enter a parse tree produced by the <c>EqualsExpression</c>
 	/// labeled alternative in <see cref="MParser.expression"/>.
 	/// </summary>
@@ -1259,6 +1127,42 @@ public interface IMParserListener : IParseTreeListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void ExitEqualsExpression([NotNull] MParser.EqualsExpressionContext context);
+	/// <summary>
+	/// Enter a parse tree produced by the <c>ArrowFilterExpression</c>
+	/// labeled alternative in <see cref="MParser.filter_expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterArrowFilterExpression([NotNull] MParser.ArrowFilterExpressionContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>ArrowFilterExpression</c>
+	/// labeled alternative in <see cref="MParser.filter_expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitArrowFilterExpression([NotNull] MParser.ArrowFilterExpressionContext context);
+	/// <summary>
+	/// Enter a parse tree produced by the <c>ExplicitFilterExpression</c>
+	/// labeled alternative in <see cref="MParser.filter_expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterExplicitFilterExpression([NotNull] MParser.ExplicitFilterExpressionContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>ExplicitFilterExpression</c>
+	/// labeled alternative in <see cref="MParser.filter_expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitExplicitFilterExpression([NotNull] MParser.ExplicitFilterExpressionContext context);
+	/// <summary>
+	/// Enter a parse tree produced by the <c>OtherFilterExpression</c>
+	/// labeled alternative in <see cref="MParser.filter_expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterOtherFilterExpression([NotNull] MParser.OtherFilterExpressionContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>OtherFilterExpression</c>
+	/// labeled alternative in <see cref="MParser.filter_expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitOtherFilterExpression([NotNull] MParser.OtherFilterExpressionContext context);
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="MParser.closure_expression"/>.
 	/// </summary>
