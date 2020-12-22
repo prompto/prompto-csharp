@@ -75,7 +75,7 @@
     <Compile Include="src\prompto\runtime\e\TestAdd.cs" />
     <Compile Include="src\prompto\runtime\e\TestCategories.cs" />
     <Compile Include="src\prompto\runtime\e\TestClosures.cs" />
-    <Compile Include="src\prompto\runtime\e\TestContains.cs" />
+    <Compile Include="src\prompto\runtime\e\TestContainer.cs" />
     <Compile Include="src\prompto\runtime\e\TestDiv.cs" />
     <Compile Include="src\prompto\runtime\e\TestDocuments.cs" />
     <Compile Include="src\prompto\runtime\e\TestEnums.cs" />
@@ -100,7 +100,7 @@
     <Compile Include="src\prompto\runtime\o\TestBuiltIns.cs" />
     <Compile Include="src\prompto\runtime\o\TestCategories.cs" />
     <Compile Include="src\prompto\runtime\o\TestClosures.cs" />
-    <Compile Include="src\prompto\runtime\o\TestContains.cs" />
+    <Compile Include="src\prompto\runtime\o\TestContainer.cs" />
     <Compile Include="src\prompto\runtime\o\TestDiv.cs" />
     <Compile Include="src\prompto\runtime\o\TestDocuments.cs" />
     <Compile Include="src\prompto\runtime\o\TestEnums.cs" />
@@ -132,7 +132,7 @@
     <Compile Include="src\prompto\translate\eoe\TestCategories.cs" />
     <Compile Include="src\prompto\translate\eoe\TestClosures.cs" />
     <Compile Include="src\prompto\translate\eoe\TestCondition.cs" />
-    <Compile Include="src\prompto\translate\eoe\TestContains.cs" />
+    <Compile Include="src\prompto\translate\eoe\TestContainer.cs" />
     <Compile Include="src\prompto\translate\eoe\TestDebug.cs" />
     <Compile Include="src\prompto\translate\eoe\TestDiv.cs" />
     <Compile Include="src\prompto\translate\eoe\TestDocuments.cs" />
@@ -162,7 +162,7 @@
     <Compile Include="src\prompto\translate\oeo\TestCategories.cs" />
     <Compile Include="src\prompto\translate\oeo\TestClosures.cs" />
     <Compile Include="src\prompto\translate\oeo\TestCondition.cs" />
-    <Compile Include="src\prompto\translate\oeo\TestContains.cs" />
+    <Compile Include="src\prompto\translate\oeo\TestContainer.cs" />
     <Compile Include="src\prompto\translate\oeo\TestDiv.cs" />
     <Compile Include="src\prompto\translate\oeo\TestDocuments.cs" />
     <Compile Include="src\prompto\translate\oeo\TestEnums.cs" />
@@ -232,7 +232,7 @@
     <Compile Include="src\prompto\translate\eme\TestCategories.cs" />
     <Compile Include="src\prompto\translate\eme\TestClosures.cs" />
     <Compile Include="src\prompto\translate\eme\TestCondition.cs" />
-    <Compile Include="src\prompto\translate\eme\TestContains.cs" />
+    <Compile Include="src\prompto\translate\eme\TestContainer.cs" />
     <Compile Include="src\prompto\translate\eme\TestDebug.cs" />
     <Compile Include="src\prompto\translate\eme\TestDiv.cs" />
     <Compile Include="src\prompto\translate\eme\TestDocuments.cs" />
@@ -269,7 +269,7 @@
     <Compile Include="src\prompto\translate\omo\TestCategories.cs" />
     <Compile Include="src\prompto\translate\omo\TestClosures.cs" />
     <Compile Include="src\prompto\translate\omo\TestCondition.cs" />
-    <Compile Include="src\prompto\translate\omo\TestContains.cs" />
+    <Compile Include="src\prompto\translate\omo\TestContainer.cs" />
     <Compile Include="src\prompto\translate\omo\TestDiv.cs" />
     <Compile Include="src\prompto\translate\omo\TestDocuments.cs" />
     <Compile Include="src\prompto\translate\omo\TestEnums.cs" />

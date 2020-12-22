@@ -6,7 +6,7 @@ namespace prompto.runtime.e
 {
 
 	[TestFixture]
-	public class TestContains : BaseEParserTest
+	public class TestContainer : BaseEParserTest
 	{
 
 		[SetUp]
@@ -24,181 +24,181 @@ namespace prompto.runtime.e
 		[Test]
 		public void testHasAllDict()
 		{
-			CheckOutput("contains/hasAllDict.pec");
+			CheckOutput("container/hasAllDict.pec");
 		}
 
 		[Test]
 		public void testHasAllList()
 		{
-			CheckOutput("contains/hasAllList.pec");
+			CheckOutput("container/hasAllList.pec");
 		}
 
 		[Test]
 		public void testHasAllRange()
 		{
-			CheckOutput("contains/hasAllRange.pec");
+			CheckOutput("container/hasAllRange.pec");
 		}
 
 		[Test]
 		public void testHasAllSet()
 		{
-			CheckOutput("contains/hasAllSet.pec");
+			CheckOutput("container/hasAllSet.pec");
 		}
 
 		[Test]
 		public void testHasAllText()
 		{
-			CheckOutput("contains/hasAllText.pec");
+			CheckOutput("container/hasAllText.pec");
 		}
 
 		[Test]
 		public void testHasAllTuple()
 		{
-			CheckOutput("contains/hasAllTuple.pec");
+			CheckOutput("container/hasAllTuple.pec");
 		}
 
 		[Test]
 		public void testHasAnyDict()
 		{
-			CheckOutput("contains/hasAnyDict.pec");
+			CheckOutput("container/hasAnyDict.pec");
 		}
 
 		[Test]
 		public void testHasAnyList()
 		{
-			CheckOutput("contains/hasAnyList.pec");
+			CheckOutput("container/hasAnyList.pec");
 		}
 
 		[Test]
 		public void testHasAnyRange()
 		{
-			CheckOutput("contains/hasAnyRange.pec");
+			CheckOutput("container/hasAnyRange.pec");
 		}
 
 		[Test]
 		public void testHasAnySet()
 		{
-			CheckOutput("contains/hasAnySet.pec");
+			CheckOutput("container/hasAnySet.pec");
 		}
 
 		[Test]
 		public void testHasAnyText()
 		{
-			CheckOutput("contains/hasAnyText.pec");
+			CheckOutput("container/hasAnyText.pec");
 		}
 
 		[Test]
 		public void testHasAnyTuple()
 		{
-			CheckOutput("contains/hasAnyTuple.pec");
+			CheckOutput("container/hasAnyTuple.pec");
 		}
 
 		[Test]
 		public void testInCharacterRange()
 		{
-			CheckOutput("contains/inCharacterRange.pec");
+			CheckOutput("container/inCharacterRange.pec");
 		}
 
 		[Test]
 		public void testInDateRange()
 		{
-			CheckOutput("contains/inDateRange.pec");
+			CheckOutput("container/inDateRange.pec");
 		}
 
 		[Test]
 		public void testInDict()
 		{
-			CheckOutput("contains/inDict.pec");
+			CheckOutput("container/inDict.pec");
 		}
 
 		[Test]
 		public void testInIntegerRange()
 		{
-			CheckOutput("contains/inIntegerRange.pec");
+			CheckOutput("container/inIntegerRange.pec");
 		}
 
 		[Test]
 		public void testInList()
 		{
-			CheckOutput("contains/inList.pec");
+			CheckOutput("container/inList.pec");
 		}
 
 		[Test]
 		public void testInSet()
 		{
-			CheckOutput("contains/inSet.pec");
+			CheckOutput("container/inSet.pec");
 		}
 
 		[Test]
 		public void testInText()
 		{
-			CheckOutput("contains/inText.pec");
+			CheckOutput("container/inText.pec");
 		}
 
 		[Test]
 		public void testInTextEnum()
 		{
-			CheckOutput("contains/inTextEnum.pec");
+			CheckOutput("container/inTextEnum.pec");
 		}
 
 		[Test]
 		public void testInTimeRange()
 		{
-			CheckOutput("contains/inTimeRange.pec");
+			CheckOutput("container/inTimeRange.pec");
 		}
 
 		[Test]
 		public void testInTuple()
 		{
-			CheckOutput("contains/inTuple.pec");
+			CheckOutput("container/inTuple.pec");
 		}
 
 		[Test]
 		public void testNinCharacterRange()
 		{
-			CheckOutput("contains/ninCharacterRange.pec");
+			CheckOutput("container/ninCharacterRange.pec");
 		}
 
 		[Test]
 		public void testNinDateRange()
 		{
-			CheckOutput("contains/ninDateRange.pec");
+			CheckOutput("container/ninDateRange.pec");
 		}
 
 		[Test]
 		public void testNinDict()
 		{
-			CheckOutput("contains/ninDict.pec");
+			CheckOutput("container/ninDict.pec");
 		}
 
 		[Test]
 		public void testNinIntegerRange()
 		{
-			CheckOutput("contains/ninIntegerRange.pec");
+			CheckOutput("container/ninIntegerRange.pec");
 		}
 
 		[Test]
 		public void testNinList()
 		{
-			CheckOutput("contains/ninList.pec");
+			CheckOutput("container/ninList.pec");
 		}
 
 		[Test]
 		public void testNinSet()
 		{
-			CheckOutput("contains/ninSet.pec");
+			CheckOutput("container/ninSet.pec");
 		}
 
 		[Test]
 		public void testNinText()
 		{
-			CheckOutput("contains/ninText.pec");
+			CheckOutput("container/ninText.pec");
 		}
 
 		[Test]
 		public void testNinTimeRange()
 		{
-			CheckOutput("contains/ninTimeRange.pec");
+			CheckOutput("container/ninTimeRange.pec");
 		}
 
 	}

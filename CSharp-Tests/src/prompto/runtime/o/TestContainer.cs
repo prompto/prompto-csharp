@@ -6,7 +6,7 @@ namespace prompto.runtime.o
 {
 
 	[TestFixture]
-	public class TestContains : BaseOParserTest
+	public class TestContainer : BaseOParserTest
 	{
 
 		[SetUp]
@@ -24,157 +24,157 @@ namespace prompto.runtime.o
 		[Test]
 		public void testHasAllList()
 		{
-			CheckOutput("contains/hasAllList.poc");
+			CheckOutput("container/hasAllList.poc");
 		}
 
 		[Test]
 		public void testHasAllSet()
 		{
-			CheckOutput("contains/hasAllSet.poc");
+			CheckOutput("container/hasAllSet.poc");
 		}
 
 		[Test]
 		public void testHasAllText()
 		{
-			CheckOutput("contains/hasAllText.poc");
+			CheckOutput("container/hasAllText.poc");
 		}
 
 		[Test]
 		public void testHasAllTuple()
 		{
-			CheckOutput("contains/hasAllTuple.poc");
+			CheckOutput("container/hasAllTuple.poc");
 		}
 
 		[Test]
 		public void testHasAnyList()
 		{
-			CheckOutput("contains/hasAnyList.poc");
+			CheckOutput("container/hasAnyList.poc");
 		}
 
 		[Test]
 		public void testHasAnySet()
 		{
-			CheckOutput("contains/hasAnySet.poc");
+			CheckOutput("container/hasAnySet.poc");
 		}
 
 		[Test]
 		public void testHasAnyText()
 		{
-			CheckOutput("contains/hasAnyText.poc");
+			CheckOutput("container/hasAnyText.poc");
 		}
 
 		[Test]
 		public void testHasAnyTuple()
 		{
-			CheckOutput("contains/hasAnyTuple.poc");
+			CheckOutput("container/hasAnyTuple.poc");
 		}
 
 		[Test]
 		public void testInCharacterRange()
 		{
-			CheckOutput("contains/inCharacterRange.poc");
+			CheckOutput("container/inCharacterRange.poc");
 		}
 
 		[Test]
 		public void testInDateRange()
 		{
-			CheckOutput("contains/inDateRange.poc");
+			CheckOutput("container/inDateRange.poc");
 		}
 
 		[Test]
 		public void testInDict()
 		{
-			CheckOutput("contains/inDict.poc");
+			CheckOutput("container/inDict.poc");
 		}
 
 		[Test]
 		public void testInIntegerRange()
 		{
-			CheckOutput("contains/inIntegerRange.poc");
+			CheckOutput("container/inIntegerRange.poc");
 		}
 
 		[Test]
 		public void testInList()
 		{
-			CheckOutput("contains/inList.poc");
+			CheckOutput("container/inList.poc");
 		}
 
 		[Test]
 		public void testInSet()
 		{
-			CheckOutput("contains/inSet.poc");
+			CheckOutput("container/inSet.poc");
 		}
 
 		[Test]
 		public void testInText()
 		{
-			CheckOutput("contains/inText.poc");
+			CheckOutput("container/inText.poc");
 		}
 
 		[Test]
 		public void testInTextEnum()
 		{
-			CheckOutput("contains/inTextEnum.poc");
+			CheckOutput("container/inTextEnum.poc");
 		}
 
 		[Test]
 		public void testInTimeRange()
 		{
-			CheckOutput("contains/inTimeRange.poc");
+			CheckOutput("container/inTimeRange.poc");
 		}
 
 		[Test]
 		public void testInTuple()
 		{
-			CheckOutput("contains/inTuple.poc");
+			CheckOutput("container/inTuple.poc");
 		}
 
 		[Test]
 		public void testNinCharacterRange()
 		{
-			CheckOutput("contains/ninCharacterRange.poc");
+			CheckOutput("container/ninCharacterRange.poc");
 		}
 
 		[Test]
 		public void testNinDateRange()
 		{
-			CheckOutput("contains/ninDateRange.poc");
+			CheckOutput("container/ninDateRange.poc");
 		}
 
 		[Test]
 		public void testNinDict()
 		{
-			CheckOutput("contains/ninDict.poc");
+			CheckOutput("container/ninDict.poc");
 		}
 
 		[Test]
 		public void testNinIntegerRange()
 		{
-			CheckOutput("contains/ninIntegerRange.poc");
+			CheckOutput("container/ninIntegerRange.poc");
 		}
 
 		[Test]
 		public void testNinList()
 		{
-			CheckOutput("contains/ninList.poc");
+			CheckOutput("container/ninList.poc");
 		}
 
 		[Test]
 		public void testNinSet()
 		{
-			CheckOutput("contains/ninSet.poc");
+			CheckOutput("container/ninSet.poc");
 		}
 
 		[Test]
 		public void testNinText()
 		{
-			CheckOutput("contains/ninText.poc");
+			CheckOutput("container/ninText.poc");
 		}
 
 		[Test]
 		public void testNinTimeRange()
 		{
-			CheckOutput("contains/ninTimeRange.poc");
+			CheckOutput("container/ninTimeRange.poc");
 		}
 
 	}

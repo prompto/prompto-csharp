@@ -5,163 +5,163 @@ namespace prompto.translate.omo
 {
 
 	[TestFixture]
-	public class TestContains : BaseOParserTest
+	public class TestContainer : BaseOParserTest
 	{
 
 		[Test]
 		public void testHasAllList()
 		{
-			compareResourceOMO("contains/hasAllList.poc");
+			compareResourceOMO("container/hasAllList.poc");
 		}
 
 		[Test]
 		public void testHasAllSet()
 		{
-			compareResourceOMO("contains/hasAllSet.poc");
+			compareResourceOMO("container/hasAllSet.poc");
 		}
 
 		[Test]
 		public void testHasAllText()
 		{
-			compareResourceOMO("contains/hasAllText.poc");
+			compareResourceOMO("container/hasAllText.poc");
 		}
 
 		[Test]
 		public void testHasAllTuple()
 		{
-			compareResourceOMO("contains/hasAllTuple.poc");
+			compareResourceOMO("container/hasAllTuple.poc");
 		}
 
 		[Test]
 		public void testHasAnyList()
 		{
-			compareResourceOMO("contains/hasAnyList.poc");
+			compareResourceOMO("container/hasAnyList.poc");
 		}
 
 		[Test]
 		public void testHasAnySet()
 		{
-			compareResourceOMO("contains/hasAnySet.poc");
+			compareResourceOMO("container/hasAnySet.poc");
 		}
 
 		[Test]
 		public void testHasAnyText()
 		{
-			compareResourceOMO("contains/hasAnyText.poc");
+			compareResourceOMO("container/hasAnyText.poc");
 		}
 
 		[Test]
 		public void testHasAnyTuple()
 		{
-			compareResourceOMO("contains/hasAnyTuple.poc");
+			compareResourceOMO("container/hasAnyTuple.poc");
 		}
 
 		[Test]
 		public void testInCharacterRange()
 		{
-			compareResourceOMO("contains/inCharacterRange.poc");
+			compareResourceOMO("container/inCharacterRange.poc");
 		}
 
 		[Test]
 		public void testInDateRange()
 		{
-			compareResourceOMO("contains/inDateRange.poc");
+			compareResourceOMO("container/inDateRange.poc");
 		}
 
 		[Test]
 		public void testInDict()
 		{
-			compareResourceOMO("contains/inDict.poc");
+			compareResourceOMO("container/inDict.poc");
 		}
 
 		[Test]
 		public void testInIntegerRange()
 		{
-			compareResourceOMO("contains/inIntegerRange.poc");
+			compareResourceOMO("container/inIntegerRange.poc");
 		}
 
 		[Test]
 		public void testInList()
 		{
-			compareResourceOMO("contains/inList.poc");
+			compareResourceOMO("container/inList.poc");
 		}
 
 		[Test]
 		public void testInSet()
 		{
-			compareResourceOMO("contains/inSet.poc");
+			compareResourceOMO("container/inSet.poc");
 		}
 
 		[Test]
 		public void testInText()
 		{
-			compareResourceOMO("contains/inText.poc");
+			compareResourceOMO("container/inText.poc");
 		}
 
 		[Test]
 		public void testInTextEnum()
 		{
-			compareResourceOMO("contains/inTextEnum.poc");
+			compareResourceOMO("container/inTextEnum.poc");
 		}
 
 		[Test]
 		public void testInTimeRange()
 		{
-			compareResourceOMO("contains/inTimeRange.poc");
+			compareResourceOMO("container/inTimeRange.poc");
 		}
 
 		[Test]
 		public void testInTuple()
 		{
-			compareResourceOMO("contains/inTuple.poc");
+			compareResourceOMO("container/inTuple.poc");
 		}
 
 		[Test]
 		public void testNinCharacterRange()
 		{
-			compareResourceOMO("contains/ninCharacterRange.poc");
+			compareResourceOMO("container/ninCharacterRange.poc");
 		}
 
 		[Test]
 		public void testNinDateRange()
 		{
-			compareResourceOMO("contains/ninDateRange.poc");
+			compareResourceOMO("container/ninDateRange.poc");
 		}
 
 		[Test]
 		public void testNinDict()
 		{
-			compareResourceOMO("contains/ninDict.poc");
+			compareResourceOMO("container/ninDict.poc");
 		}
 
 		[Test]
 		public void testNinIntegerRange()
 		{
-			compareResourceOMO("contains/ninIntegerRange.poc");
+			compareResourceOMO("container/ninIntegerRange.poc");
 		}
 
 		[Test]
 		public void testNinList()
 		{
-			compareResourceOMO("contains/ninList.poc");
+			compareResourceOMO("container/ninList.poc");
 		}
 
 		[Test]
 		public void testNinSet()
 		{
-			compareResourceOMO("contains/ninSet.poc");
+			compareResourceOMO("container/ninSet.poc");
 		}
 
 		[Test]
 		public void testNinText()
 		{
-			compareResourceOMO("contains/ninText.poc");
+			compareResourceOMO("container/ninText.poc");
 		}
 
 		[Test]
 		public void testNinTimeRange()
 		{
-			compareResourceOMO("contains/ninTimeRange.poc");
+			compareResourceOMO("container/ninTimeRange.poc");
 		}
 
 	}

@@ -5,187 +5,187 @@ namespace prompto.translate.eoe
 {
 
 	[TestFixture]
-	public class TestContains : BaseEParserTest
+	public class TestContainer : BaseEParserTest
 	{
 
 		[Test]
 		public void testHasAllDict()
 		{
-			compareResourceEOE("contains/hasAllDict.pec");
+			compareResourceEOE("container/hasAllDict.pec");
 		}
 
 		[Test]
 		public void testHasAllList()
 		{
-			compareResourceEOE("contains/hasAllList.pec");
+			compareResourceEOE("container/hasAllList.pec");
 		}
 
 		[Test]
 		public void testHasAllRange()
 		{
-			compareResourceEOE("contains/hasAllRange.pec");
+			compareResourceEOE("container/hasAllRange.pec");
 		}
 
 		[Test]
 		public void testHasAllSet()
 		{
-			compareResourceEOE("contains/hasAllSet.pec");
+			compareResourceEOE("container/hasAllSet.pec");
 		}
 
 		[Test]
 		public void testHasAllText()
 		{
-			compareResourceEOE("contains/hasAllText.pec");
+			compareResourceEOE("container/hasAllText.pec");
 		}
 
 		[Test]
 		public void testHasAllTuple()
 		{
-			compareResourceEOE("contains/hasAllTuple.pec");
+			compareResourceEOE("container/hasAllTuple.pec");
 		}
 
 		[Test]
 		public void testHasAnyDict()
 		{
-			compareResourceEOE("contains/hasAnyDict.pec");
+			compareResourceEOE("container/hasAnyDict.pec");
 		}
 
 		[Test]
 		public void testHasAnyList()
 		{
-			compareResourceEOE("contains/hasAnyList.pec");
+			compareResourceEOE("container/hasAnyList.pec");
 		}
 
 		[Test]
 		public void testHasAnyRange()
 		{
-			compareResourceEOE("contains/hasAnyRange.pec");
+			compareResourceEOE("container/hasAnyRange.pec");
 		}
 
 		[Test]
 		public void testHasAnySet()
 		{
-			compareResourceEOE("contains/hasAnySet.pec");
+			compareResourceEOE("container/hasAnySet.pec");
 		}
 
 		[Test]
 		public void testHasAnyText()
 		{
-			compareResourceEOE("contains/hasAnyText.pec");
+			compareResourceEOE("container/hasAnyText.pec");
 		}
 
 		[Test]
 		public void testHasAnyTuple()
 		{
-			compareResourceEOE("contains/hasAnyTuple.pec");
+			compareResourceEOE("container/hasAnyTuple.pec");
 		}
 
 		[Test]
 		public void testInCharacterRange()
 		{
-			compareResourceEOE("contains/inCharacterRange.pec");
+			compareResourceEOE("container/inCharacterRange.pec");
 		}
 
 		[Test]
 		public void testInDateRange()
 		{
-			compareResourceEOE("contains/inDateRange.pec");
+			compareResourceEOE("container/inDateRange.pec");
 		}
 
 		[Test]
 		public void testInDict()
 		{
-			compareResourceEOE("contains/inDict.pec");
+			compareResourceEOE("container/inDict.pec");
 		}
 
 		[Test]
 		public void testInIntegerRange()
 		{
-			compareResourceEOE("contains/inIntegerRange.pec");
+			compareResourceEOE("container/inIntegerRange.pec");
 		}
 
 		[Test]
 		public void testInList()
 		{
-			compareResourceEOE("contains/inList.pec");
+			compareResourceEOE("container/inList.pec");
 		}
 
 		[Test]
 		public void testInSet()
 		{
-			compareResourceEOE("contains/inSet.pec");
+			compareResourceEOE("container/inSet.pec");
 		}
 
 		[Test]
 		public void testInText()
 		{
-			compareResourceEOE("contains/inText.pec");
+			compareResourceEOE("container/inText.pec");
 		}
 
 		[Test]
 		public void testInTextEnum()
 		{
-			compareResourceEOE("contains/inTextEnum.pec");
+			compareResourceEOE("container/inTextEnum.pec");
 		}
 
 		[Test]
 		public void testInTimeRange()
 		{
-			compareResourceEOE("contains/inTimeRange.pec");
+			compareResourceEOE("container/inTimeRange.pec");
 		}
 
 		[Test]
 		public void testInTuple()
 		{
-			compareResourceEOE("contains/inTuple.pec");
+			compareResourceEOE("container/inTuple.pec");
 		}
 
 		[Test]
 		public void testNinCharacterRange()
 		{
-			compareResourceEOE("contains/ninCharacterRange.pec");
+			compareResourceEOE("container/ninCharacterRange.pec");
 		}
 
 		[Test]
 		public void testNinDateRange()
 		{
-			compareResourceEOE("contains/ninDateRange.pec");
+			compareResourceEOE("container/ninDateRange.pec");
 		}
 
 		[Test]
 		public void testNinDict()
 		{
-			compareResourceEOE("contains/ninDict.pec");
+			compareResourceEOE("container/ninDict.pec");
 		}
 
 		[Test]
 		public void testNinIntegerRange()
 		{
-			compareResourceEOE("contains/ninIntegerRange.pec");
+			compareResourceEOE("container/ninIntegerRange.pec");
 		}
 
 		[Test]
 		public void testNinList()
 		{
-			compareResourceEOE("contains/ninList.pec");
+			compareResourceEOE("container/ninList.pec");
 		}
 
 		[Test]
 		public void testNinSet()
 		{
-			compareResourceEOE("contains/ninSet.pec");
+			compareResourceEOE("container/ninSet.pec");
 		}
 
 		[Test]
 		public void testNinText()
 		{
-			compareResourceEOE("contains/ninText.pec");
+			compareResourceEOE("container/ninText.pec");
 		}
 
 		[Test]
 		public void testNinTimeRange()
 		{
-			compareResourceEOE("contains/ninTimeRange.pec");
+			compareResourceEOE("container/ninTimeRange.pec");
 		}
 
 	}
