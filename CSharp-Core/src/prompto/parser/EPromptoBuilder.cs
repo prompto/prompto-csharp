@@ -1,6 +1,5 @@
 using Antlr4.Runtime.Tree;
 using Antlr4.Runtime;
-using prompto.parser;
 using System;
 using prompto.grammar;
 using prompto.expression;
@@ -1004,7 +1003,7 @@ namespace prompto.parser
 
         public override void ExitUnresolvedWithArgsStatement(EParser.UnresolvedWithArgsStatementContext ctx)
         {
-            IExpression exp = ctx.exp1!=null ? GetNodeValue<IExpression>(ctx.exp1) : GetNodeValue<IExpression>(ctx.exp2);
+            IExpression exp = ctx.exp1 != null ? GetNodeValue<IExpression>(ctx.exp1) : GetNodeValue<IExpression>(ctx.exp2);
             ArgumentList args = GetNodeValue<ArgumentList>(ctx.args);
             String resultName = GetNodeValue<String>(ctx.name);
             StatementList stmts = GetNodeValue<StatementList>(ctx.stmts);
@@ -1290,7 +1289,7 @@ namespace prompto.parser
             SetNodeValue(ctx, new VariableInstance(name));
         }
 
- 
+
         public override void ExitChildInstance(EParser.ChildInstanceContext ctx)
         {
             IAssignableInstance parent = GetNodeValue<IAssignableInstance>(ctx.assignable_instance());
@@ -2371,7 +2370,7 @@ namespace prompto.parser
         }
 
 
-       public override void ExitIsATypeExpression(EParser.IsATypeExpressionContext ctx)
+        public override void ExitIsATypeExpression(EParser.IsATypeExpressionContext ctx)
         {
             IType type = GetNodeValue<IType>(ctx.category_or_any_type());
             IExpression exp = new TypeExpression(type);
@@ -2738,7 +2737,7 @@ namespace prompto.parser
         public override void ExitDocument_literal(EParser.Document_literalContext ctx)
         {
             DocEntryList entries = GetNodeValue<DocEntryList>(ctx.doc_entry_list());
-            if(entries==null)
+            if (entries == null)
                 entries = new DocEntryList();
             SetNodeValue(ctx, new DocumentLiteral(entries));
         }
@@ -2804,7 +2803,7 @@ namespace prompto.parser
             if (itemName != null)
                 expression = new ExplicitPredicateExpression(itemName, predicate);
             else if (predicate is PredicateExpression)
-			    expression = (PredicateExpression)predicate;
+                expression = (PredicateExpression)predicate;
             else
                 throw new Exception();
             SetNodeValue(ctx, new FilteredExpression(null, expression));
@@ -2819,6 +2818,24 @@ namespace prompto.parser
             SetNodeValue(ctx, fetch);
         }
 
+
+        public override void ExitArrowFilterExpression(EParser.ArrowFilterExpressionContext ctx)
+        {
+            SetNodeValue(ctx, GetNodeValue<IExpression>(ctx.arrow_expression()));
+        }
+
+
+        public override void ExitExplicitFilterExpression(EParser.ExplicitFilterExpressionContext ctx)
+        {
+            String name = GetNodeValue<string>(ctx.variable_identifier());
+            IExpression predicate = GetNodeValue<IExpression>(ctx.expression());
+            SetNodeValue(ctx, new ExplicitPredicateExpression(name, predicate));
+        }
+
+        public override void ExitOtherFilterExpression(EParser.OtherFilterExpressionContext ctx)
+        {
+            SetNodeValue(ctx, GetNodeValue<IExpression>(ctx.expression()));
+        }
 
         public override void ExitCode_type(EParser.Code_typeContext ctx)
         {

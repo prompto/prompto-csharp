@@ -46,12 +46,12 @@ namespace prompto.expression
 		{
 			IType sourceType = source.check(context);
 			if (!(sourceType is IterableType))
-				throw new SyntaxError("Expecting an iterable type as data source !");
+				throw new SyntaxError("Expecting an iterable type as data source!");
 			IType itemType = ((IterableType)sourceType).GetItemType();
 			ArrowExpression arrow = predicate.ToArrowExpression();
-			IType filterType = predicate.Check(context, itemType);
+			IType filterType = arrow.CheckFilter(context, itemType);
 			if (filterType != BooleanType.Instance)
-				throw new SyntaxError("Filtering expresion must return a bool !");
+				throw new SyntaxError("Filtering expresion must return a bool!");
 			return new ListType(itemType);
 		}
 

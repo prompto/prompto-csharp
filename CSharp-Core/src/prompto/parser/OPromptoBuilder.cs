@@ -2182,13 +2182,13 @@ namespace prompto.parser
             EqOp eqOp;
             switch (ctx.op.Type)
             {
-                case ELexer.EQ:
+                case OLexer.EQ2:
                     eqOp = EqOp.EQUALS;
                     break;
-                case ELexer.LTGT:
+                case OLexer.XEQ:
                     eqOp = EqOp.NOT_EQUALS;
                     break;
-                case ELexer.TILDE:
+                case OLexer.TEQ:
                     eqOp = EqOp.ROUGHLY;
                     break;
                 default:
@@ -2204,16 +2204,16 @@ namespace prompto.parser
             CmpOp cmpOp;
             switch (ctx.op.Type)
             {
-                case ELexer.LT:
+                case OLexer.LT:
                     cmpOp = CmpOp.LT;
                     break;
-                case ELexer.LTE:
+                case OLexer.LTE:
                     cmpOp = CmpOp.LTE;
                     break;
-                case ELexer.GT:
+                case OLexer.GT:
                     cmpOp = CmpOp.GT;
                     break;
-                case ELexer.GTE:
+                case OLexer.GTE:
                     cmpOp = CmpOp.GTE;
                     break;
                 default:
@@ -2669,6 +2669,24 @@ namespace prompto.parser
             else
                 throw new Exception();
             SetNodeValue(ctx, new FilteredExpression(source, expression));
+        }
+
+        public override void ExitArrowFilterExpression(OParser.ArrowFilterExpressionContext ctx)
+        {
+            SetNodeValue(ctx, GetNodeValue<IExpression>(ctx.arrow_expression()));
+        }
+
+
+        public override void ExitExplicitFilterExpression(OParser.ExplicitFilterExpressionContext ctx)
+        {
+            String name = GetNodeValue<string>(ctx.variable_identifier());
+            IExpression predicate = GetNodeValue<IExpression>(ctx.expression());
+            SetNodeValue(ctx, new ExplicitPredicateExpression(name, predicate));
+        }
+
+        public override void ExitOtherFilterExpression(OParser.OtherFilterExpressionContext ctx)
+        {
+            SetNodeValue(ctx, GetNodeValue<IExpression>(ctx.expression()));
         }
 
         public override void ExitCode_type(OParser.Code_typeContext ctx)

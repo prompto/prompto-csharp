@@ -2,12 +2,12 @@ using prompto.runtime;
 using System;
 using prompto.utils;
 using prompto.error;
-using BooleanValue = prompto.value.BooleanValue;
 using prompto.value;
 using prompto.type;
 using prompto.grammar;
 using prompto.declaration;
 using prompto.store;
+using System.Linq;
 
 namespace prompto.expression
 {
@@ -32,7 +32,10 @@ namespace prompto.expression
             writer.append(" ");
             ContOpToDialect(writer);
             writer.append(" ");
-            right.ToDialect(writer);
+            if (right is PredicateExpression)
+                ((PredicateExpression)right).ContainsToDialect(writer);
+            else
+                right.ToDialect(writer);
         }
 
         public void ContOpToDialect(CodeWriter writer)
@@ -43,13 +46,35 @@ namespace prompto.expression
 
         public override IType check(Context context)
         {
+            if (right is PredicateExpression)
+                return checkPredicate(context);
+            else
+                return checkValue(context);
+        }
+
+        private IType checkPredicate(Context context)
+        {
+            IType lt = left.check(context);
+            if (lt is IterableType)
+            {
+                IType itemType = ((IterableType)lt).GetItemType();
+                ArrowExpression arrow = ((PredicateExpression)right).ToArrowExpression();
+                return arrow.CheckFilter(context, itemType);
+            }
+            else
+                throw new SyntaxError("Expecting collection");
+        }
+
+        IType checkValue(Context context)
+        {
             IType lt = left.check(context);
             IType rt = right.check(context);
             checkOperator(context, lt, rt);
             return BooleanType.Instance;
         }
 
-        private void checkOperator(Context context, IType lt, IType rt) { 
+        private void checkOperator(Context context, IType lt, IType rt)
+        {
             switch (oper)
             {
                 case ContOp.IN:
@@ -67,6 +92,64 @@ namespace prompto.expression
         }
 
         public override IValue interpret(Context context)
+        {
+            if (right is PredicateExpression)
+                return interpretPredicate(context);
+
+            else
+                return interpretValue(context);
+        }
+
+        IValue interpretPredicate(Context context)
+        {
+            IValue lval = left.interpret(context);
+            if (lval is IContainer)
+            {
+
+                IType itemType = ((ContainerType)lval.GetIType()).GetItemType();
+                ArrowExpression arrow = ((PredicateExpression)right).ToArrowExpression();
+                Predicate<IValue> predicate = arrow.GetFilter(context, itemType);
+                return interpretPredicate(context, (IContainer)lval, predicate);
+            }
+            else
+                throw new SyntaxError("Expecting collection");
+
+        }
+        private IValue interpretPredicate(Context context, IContainer lval, Predicate<IValue> predicate)
+        {
+            bool? result = null;
+            switch (oper)
+            {
+                case ContOp.HAS_ALL:
+                case ContOp.NOT_HAS_ALL:
+                    result = allMatch(context, lval, predicate);
+                    break;
+                case ContOp.HAS_ANY:
+                case ContOp.NOT_HAS_ANY:
+                    result = anyMatch(context, lval, predicate);
+                    break;
+            }
+            if (result != null)
+            {
+                if (oper.ToString().StartsWith("NOT_"))
+                    result = !result;
+                return BooleanValue.ValueOf(result.Value);
+            }
+            String lowerName = oper.ToString().ToLower().Replace('_', ' ');
+            throw new SyntaxError("Illegal filter: " + lval.GetType().Name + " " + lowerName);
+        }
+
+        public bool allMatch(Context context, IContainer container, Predicate<IValue> predicate)
+        {
+            return container.GetEnumerable(context).All(item => predicate(item));
+        }
+
+        public bool anyMatch(Context context, IContainer container, Predicate<IValue> predicate)
+        {
+            return container.GetEnumerable(context).Any(item => predicate(item));
+        }
+
+        IValue interpretValue(Context context)
         {
             IValue lval = left.interpret(context);
             IValue rval = right.interpret(context);
@@ -190,7 +273,7 @@ namespace prompto.expression
         public void interpretQuery(Context context, IQueryBuilder builder)
         {
             AttributeDeclaration decl = left.CheckAttribute(context);
-            if (decl == null || !decl.Storable)
+            if (decl == null || !decl.Storable)
                 throw new SyntaxError("Unable to interpret predicate");
             IValue value = right.interpret(context);
             MatchOp matchOp = getMatchOp(context, decl.getIType(), value.GetIType(), this.oper, false);
@@ -203,7 +286,7 @@ namespace prompto.expression
                 builder.Not();
         }
 
-       private MatchOp getMatchOp(Context context, IType fieldType, IType valueType, ContOp oper, bool reverse)
+        private MatchOp getMatchOp(Context context, IType fieldType, IType valueType, ContOp oper, bool reverse)
         {
             if (reverse)
             {

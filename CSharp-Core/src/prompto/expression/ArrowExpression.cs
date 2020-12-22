@@ -11,7 +11,7 @@ using prompto.value;
 
 namespace prompto.expression
 {
-    public class ArrowExpression : BaseExpression, IExpression
+    public class ArrowExpression : PredicateExpression, IExpression
     {
 
         public ArrowExpression(IdentifierList args, String argsSuite, String arrowSuite)
@@ -26,14 +26,28 @@ namespace prompto.expression
         public String ArrowSuite { get; set; }
         public StatementList Statements { get; set; }
 
-        public override IType check(Context context)
+        public override ArrowExpression ToArrowExpression()
         {
-            return check(context, null);
+            return this;
         }
 
-        public IType check(Context context, IType returnType)
+        public override IType check(Context context)
+        {
+            return Check(context, null);
+        }
+
+        public override IType Check(Context context, IType returnType)
         {
             return Statements.check(context, returnType);
+        }
+
+        public IType CheckFilter(Context context, IType itemType)
+        {
+            if (Arguments == null || Arguments.Count != 1)
+                throw new SyntaxError("Expecting 1 parameter only!");
+            context = context.newChildContext();
+            context.registerValue(new Variable(Arguments[0], itemType));
+            return Statements.check(context, null);
         }
 
         public override IValue interpret(Context context)
@@ -98,7 +112,7 @@ namespace prompto.expression
             }
         }
 
-        public void FilterToDialect(CodeWriter writer, IExpression source)
+        public override void FilteredToDialect(CodeWriter writer, IExpression source)
         {
             if (Arguments.Count != 1)
                 throw new SyntaxError("Expecting 1 parameter only!");
@@ -122,6 +136,16 @@ namespace prompto.expression
                     writer.append(")");
                     break;
             }
+        }
+
+        public override void ContainsToDialect(CodeWriter writer)
+        {
+            writer.append("where ");
+            if (writer.getDialect() == Dialect.O)
+                writer.append("( ");
+            this.ToDialect(writer);
+            if (writer.getDialect() == Dialect.O)
+                writer.append(" ) ");
         }
 
         public IExpression Expression
