@@ -22,51 +22,51 @@ namespace prompto.runtime.o
 		}
 
 		[Test]
-		public void testContainsAllList()
+		public void testHasAllList()
 		{
-			CheckOutput("contains/containsAllList.poc");
+			CheckOutput("contains/hasAllList.poc");
 		}
 
 		[Test]
-		public void testContainsAllSet()
+		public void testHasAllSet()
 		{
-			CheckOutput("contains/containsAllSet.poc");
+			CheckOutput("contains/hasAllSet.poc");
 		}
 
 		[Test]
-		public void testContainsAllText()
+		public void testHasAllText()
 		{
-			CheckOutput("contains/containsAllText.poc");
+			CheckOutput("contains/hasAllText.poc");
 		}
 
 		[Test]
-		public void testContainsAllTuple()
+		public void testHasAllTuple()
 		{
-			CheckOutput("contains/containsAllTuple.poc");
+			CheckOutput("contains/hasAllTuple.poc");
 		}
 
 		[Test]
-		public void testContainsAnyList()
+		public void testHasAnyList()
 		{
-			CheckOutput("contains/containsAnyList.poc");
+			CheckOutput("contains/hasAnyList.poc");
 		}
 
 		[Test]
-		public void testContainsAnySet()
+		public void testHasAnySet()
 		{
-			CheckOutput("contains/containsAnySet.poc");
+			CheckOutput("contains/hasAnySet.poc");
 		}
 
 		[Test]
-		public void testContainsAnyText()
+		public void testHasAnyText()
 		{
-			CheckOutput("contains/containsAnyText.poc");
+			CheckOutput("contains/hasAnyText.poc");
 		}
 
 		[Test]
-		public void testContainsAnyTuple()
+		public void testHasAnyTuple()
 		{
-			CheckOutput("contains/containsAnyTuple.poc");
+			CheckOutput("contains/hasAnyTuple.poc");
 		}
 
 		[Test]

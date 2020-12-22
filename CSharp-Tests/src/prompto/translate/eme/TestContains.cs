@@ -9,75 +9,75 @@ namespace prompto.translate.eme
 	{
 
 		[Test]
-		public void testContainsAllDict()
+		public void testHasAllDict()
 		{
-			compareResourceEME("contains/containsAllDict.pec");
+			compareResourceEME("contains/hasAllDict.pec");
 		}
 
 		[Test]
-		public void testContainsAllList()
+		public void testHasAllList()
 		{
-			compareResourceEME("contains/containsAllList.pec");
+			compareResourceEME("contains/hasAllList.pec");
 		}
 
 		[Test]
-		public void testContainsAllRange()
+		public void testHasAllRange()
 		{
-			compareResourceEME("contains/containsAllRange.pec");
+			compareResourceEME("contains/hasAllRange.pec");
 		}
 
 		[Test]
-		public void testContainsAllSet()
+		public void testHasAllSet()
 		{
-			compareResourceEME("contains/containsAllSet.pec");
+			compareResourceEME("contains/hasAllSet.pec");
 		}
 
 		[Test]
-		public void testContainsAllText()
+		public void testHasAllText()
 		{
-			compareResourceEME("contains/containsAllText.pec");
+			compareResourceEME("contains/hasAllText.pec");
 		}
 
 		[Test]
-		public void testContainsAllTuple()
+		public void testHasAllTuple()
 		{
-			compareResourceEME("contains/containsAllTuple.pec");
+			compareResourceEME("contains/hasAllTuple.pec");
 		}
 
 		[Test]
-		public void testContainsAnyDict()
+		public void testHasAnyDict()
 		{
-			compareResourceEME("contains/containsAnyDict.pec");
+			compareResourceEME("contains/hasAnyDict.pec");
 		}
 
 		[Test]
-		public void testContainsAnyList()
+		public void testHasAnyList()
 		{
-			compareResourceEME("contains/containsAnyList.pec");
+			compareResourceEME("contains/hasAnyList.pec");
 		}
 
 		[Test]
-		public void testContainsAnyRange()
+		public void testHasAnyRange()
 		{
-			compareResourceEME("contains/containsAnyRange.pec");
+			compareResourceEME("contains/hasAnyRange.pec");
 		}
 
 		[Test]
-		public void testContainsAnySet()
+		public void testHasAnySet()
 		{
-			compareResourceEME("contains/containsAnySet.pec");
+			compareResourceEME("contains/hasAnySet.pec");
 		}
 
 		[Test]
-		public void testContainsAnyText()
+		public void testHasAnyText()
 		{
-			compareResourceEME("contains/containsAnyText.pec");
+			compareResourceEME("contains/hasAnyText.pec");
 		}
 
 		[Test]
-		public void testContainsAnyTuple()
+		public void testHasAnyTuple()
 		{
-			compareResourceEME("contains/containsAnyTuple.pec");
+			compareResourceEME("contains/hasAnyTuple.pec");
 		}
 
 		[Test]

@@ -9,51 +9,51 @@ namespace prompto.translate.omo
 	{
 
 		[Test]
-		public void testContainsAllList()
+		public void testHasAllList()
 		{
-			compareResourceOMO("contains/containsAllList.poc");
+			compareResourceOMO("contains/hasAllList.poc");
 		}
 
 		[Test]
-		public void testContainsAllSet()
+		public void testHasAllSet()
 		{
-			compareResourceOMO("contains/containsAllSet.poc");
+			compareResourceOMO("contains/hasAllSet.poc");
 		}
 
 		[Test]
-		public void testContainsAllText()
+		public void testHasAllText()
 		{
-			compareResourceOMO("contains/containsAllText.poc");
+			compareResourceOMO("contains/hasAllText.poc");
 		}
 
 		[Test]
-		public void testContainsAllTuple()
+		public void testHasAllTuple()
 		{
-			compareResourceOMO("contains/containsAllTuple.poc");
+			compareResourceOMO("contains/hasAllTuple.poc");
 		}
 
 		[Test]
-		public void testContainsAnyList()
+		public void testHasAnyList()
 		{
-			compareResourceOMO("contains/containsAnyList.poc");
+			compareResourceOMO("contains/hasAnyList.poc");
 		}
 
 		[Test]
-		public void testContainsAnySet()
+		public void testHasAnySet()
 		{
-			compareResourceOMO("contains/containsAnySet.poc");
+			compareResourceOMO("contains/hasAnySet.poc");
 		}
 
 		[Test]
-		public void testContainsAnyText()
+		public void testHasAnyText()
 		{
-			compareResourceOMO("contains/containsAnyText.poc");
+			compareResourceOMO("contains/hasAnyText.poc");
 		}
 
 		[Test]
-		public void testContainsAnyTuple()
+		public void testHasAnyTuple()
 		{
-			compareResourceOMO("contains/containsAnyTuple.poc");
+			compareResourceOMO("contains/hasAnyTuple.poc");
 		}
 
 		[Test]

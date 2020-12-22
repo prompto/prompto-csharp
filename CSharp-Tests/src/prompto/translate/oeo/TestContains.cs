@@ -9,51 +9,51 @@ namespace prompto.translate.oeo
 	{
 
 		[Test]
-		public void testContainsAllList()
+		public void testHasAllList()
 		{
-			compareResourceOEO("contains/containsAllList.poc");
+			compareResourceOEO("contains/hasAllList.poc");
 		}
 
 		[Test]
-		public void testContainsAllSet()
+		public void testHasAllSet()
 		{
-			compareResourceOEO("contains/containsAllSet.poc");
+			compareResourceOEO("contains/hasAllSet.poc");
 		}
 
 		[Test]
-		public void testContainsAllText()
+		public void testHasAllText()
 		{
-			compareResourceOEO("contains/containsAllText.poc");
+			compareResourceOEO("contains/hasAllText.poc");
 		}
 
 		[Test]
-		public void testContainsAllTuple()
+		public void testHasAllTuple()
 		{
-			compareResourceOEO("contains/containsAllTuple.poc");
+			compareResourceOEO("contains/hasAllTuple.poc");
 		}
 
 		[Test]
-		public void testContainsAnyList()
+		public void testHasAnyList()
 		{
-			compareResourceOEO("contains/containsAnyList.poc");
+			compareResourceOEO("contains/hasAnyList.poc");
 		}
 
 		[Test]
-		public void testContainsAnySet()
+		public void testHasAnySet()
 		{
-			compareResourceOEO("contains/containsAnySet.poc");
+			compareResourceOEO("contains/hasAnySet.poc");
 		}
 
 		[Test]
-		public void testContainsAnyText()
+		public void testHasAnyText()
 		{
-			compareResourceOEO("contains/containsAnyText.poc");
+			compareResourceOEO("contains/hasAnyText.poc");
 		}
 
 		[Test]
-		public void testContainsAnyTuple()
+		public void testHasAnyTuple()
 		{
-			compareResourceOEO("contains/containsAnyTuple.poc");
+			compareResourceOEO("contains/hasAnyTuple.poc");
 		}
 
 		[Test]

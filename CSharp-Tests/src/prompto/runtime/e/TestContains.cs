@@ -22,75 +22,75 @@ namespace prompto.runtime.e
 		}
 
 		[Test]
-		public void testContainsAllDict()
+		public void testHasAllDict()
 		{
-			CheckOutput("contains/containsAllDict.pec");
+			CheckOutput("contains/hasAllDict.pec");
 		}
 
 		[Test]
-		public void testContainsAllList()
+		public void testHasAllList()
 		{
-			CheckOutput("contains/containsAllList.pec");
+			CheckOutput("contains/hasAllList.pec");
 		}
 
 		[Test]
-		public void testContainsAllRange()
+		public void testHasAllRange()
 		{
-			CheckOutput("contains/containsAllRange.pec");
+			CheckOutput("contains/hasAllRange.pec");
 		}
 
 		[Test]
-		public void testContainsAllSet()
+		public void testHasAllSet()
 		{
-			CheckOutput("contains/containsAllSet.pec");
+			CheckOutput("contains/hasAllSet.pec");
 		}
 
 		[Test]
-		public void testContainsAllText()
+		public void testHasAllText()
 		{
-			CheckOutput("contains/containsAllText.pec");
+			CheckOutput("contains/hasAllText.pec");
 		}
 
 		[Test]
-		public void testContainsAllTuple()
+		public void testHasAllTuple()
 		{
-			CheckOutput("contains/containsAllTuple.pec");
+			CheckOutput("contains/hasAllTuple.pec");
 		}
 
 		[Test]
-		public void testContainsAnyDict()
+		public void testHasAnyDict()
 		{
-			CheckOutput("contains/containsAnyDict.pec");
+			CheckOutput("contains/hasAnyDict.pec");
 		}
 
 		[Test]
-		public void testContainsAnyList()
+		public void testHasAnyList()
 		{
-			CheckOutput("contains/containsAnyList.pec");
+			CheckOutput("contains/hasAnyList.pec");
 		}
 
 		[Test]
-		public void testContainsAnyRange()
+		public void testHasAnyRange()
 		{
-			CheckOutput("contains/containsAnyRange.pec");
+			CheckOutput("contains/hasAnyRange.pec");
 		}
 
 		[Test]
-		public void testContainsAnySet()
+		public void testHasAnySet()
 		{
-			CheckOutput("contains/containsAnySet.pec");
+			CheckOutput("contains/hasAnySet.pec");
 		}
 
 		[Test]
-		public void testContainsAnyText()
+		public void testHasAnyText()
 		{
-			CheckOutput("contains/containsAnyText.pec");
+			CheckOutput("contains/hasAnyText.pec");
 		}
 
 		[Test]
-		public void testContainsAnyTuple()
+		public void testHasAnyTuple()
 		{
-			CheckOutput("contains/containsAnyTuple.pec");
+			CheckOutput("contains/hasAnyTuple.pec");
 		}
 
 		[Test]

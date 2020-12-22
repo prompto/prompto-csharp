@@ -9,75 +9,75 @@ namespace prompto.translate.eoe
 	{
 
 		[Test]
-		public void testContainsAllDict()
+		public void testHasAllDict()
 		{
-			compareResourceEOE("contains/containsAllDict.pec");
+			compareResourceEOE("contains/hasAllDict.pec");
 		}
 
 		[Test]
-		public void testContainsAllList()
+		public void testHasAllList()
 		{
-			compareResourceEOE("contains/containsAllList.pec");
+			compareResourceEOE("contains/hasAllList.pec");
 		}
 
 		[Test]
-		public void testContainsAllRange()
+		public void testHasAllRange()
 		{
-			compareResourceEOE("contains/containsAllRange.pec");
+			compareResourceEOE("contains/hasAllRange.pec");
 		}
 
 		[Test]
-		public void testContainsAllSet()
+		public void testHasAllSet()
 		{
-			compareResourceEOE("contains/containsAllSet.pec");
+			compareResourceEOE("contains/hasAllSet.pec");
 		}
 
 		[Test]
-		public void testContainsAllText()
+		public void testHasAllText()
 		{
-			compareResourceEOE("contains/containsAllText.pec");
+			compareResourceEOE("contains/hasAllText.pec");
 		}
 
 		[Test]
-		public void testContainsAllTuple()
+		public void testHasAllTuple()
 		{
-			compareResourceEOE("contains/containsAllTuple.pec");
+			compareResourceEOE("contains/hasAllTuple.pec");
 		}
 
 		[Test]
-		public void testContainsAnyDict()
+		public void testHasAnyDict()
 		{
-			compareResourceEOE("contains/containsAnyDict.pec");
+			compareResourceEOE("contains/hasAnyDict.pec");
 		}
 
 		[Test]
-		public void testContainsAnyList()
+		public void testHasAnyList()
 		{
-			compareResourceEOE("contains/containsAnyList.pec");
+			compareResourceEOE("contains/hasAnyList.pec");
 		}
 
 		[Test]
-		public void testContainsAnyRange()
+		public void testHasAnyRange()
 		{
-			compareResourceEOE("contains/containsAnyRange.pec");
+			compareResourceEOE("contains/hasAnyRange.pec");
 		}
 
 		[Test]
-		public void testContainsAnySet()
+		public void testHasAnySet()
 		{
-			compareResourceEOE("contains/containsAnySet.pec");
+			compareResourceEOE("contains/hasAnySet.pec");
 		}
 
 		[Test]
-		public void testContainsAnyText()
+		public void testHasAnyText()
 		{
-			compareResourceEOE("contains/containsAnyText.pec");
+			compareResourceEOE("contains/hasAnyText.pec");
 		}
 
 		[Test]
-		public void testContainsAnyTuple()
+		public void testHasAnyTuple()
 		{
-			compareResourceEOE("contains/containsAnyTuple.pec");
+			compareResourceEOE("contains/hasAnyTuple.pec");
 		}
 
 		[Test]
