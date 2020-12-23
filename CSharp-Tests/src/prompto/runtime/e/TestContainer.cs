@@ -28,6 +28,18 @@ namespace prompto.runtime.e
 		}
 
 		[Test]
+		public void testHasAllFromList()
+		{
+			CheckOutput("container/hasAllFromList.pec");
+		}
+
+		[Test]
+		public void testHasAllFromSet()
+		{
+			CheckOutput("container/hasAllFromSet.pec");
+		}
+
+		[Test]
 		public void testHasAllList()
 		{
 			CheckOutput("container/hasAllList.pec");
@@ -61,6 +73,18 @@ namespace prompto.runtime.e
 		public void testHasAnyDict()
 		{
 			CheckOutput("container/hasAnyDict.pec");
+		}
+
+		[Test]
+		public void testHasAnyFromList()
+		{
+			CheckOutput("container/hasAnyFromList.pec");
+		}
+
+		[Test]
+		public void testHasAnyFromSet()
+		{
+			CheckOutput("container/hasAnyFromSet.pec");
 		}
 
 		[Test]

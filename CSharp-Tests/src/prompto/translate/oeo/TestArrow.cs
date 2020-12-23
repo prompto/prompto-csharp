@@ -27,6 +27,30 @@ namespace prompto.translate.oeo
 		}
 
 		[Test]
+		public void testHasAllFromList()
+		{
+			compareResourceOEO("arrow/hasAllFromList.poc");
+		}
+
+		[Test]
+		public void testHasAllFromSet()
+		{
+			compareResourceOEO("arrow/hasAllFromSet.poc");
+		}
+
+		[Test]
+		public void testHasAnyFromList()
+		{
+			compareResourceOEO("arrow/hasAnyFromList.poc");
+		}
+
+		[Test]
+		public void testHasAnyFromSet()
+		{
+			compareResourceOEO("arrow/hasAnyFromSet.poc");
+		}
+
+		[Test]
 		public void testSortCategory1Arg()
 		{
 			compareResourceOEO("arrow/sortCategory1Arg.poc");

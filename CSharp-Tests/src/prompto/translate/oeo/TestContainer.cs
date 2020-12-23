@@ -9,6 +9,18 @@ namespace prompto.translate.oeo
 	{
 
 		[Test]
+		public void testHasAllFromList()
+		{
+			compareResourceOEO("container/hasAllFromList.poc");
+		}
+
+		[Test]
+		public void testHasAllFromSet()
+		{
+			compareResourceOEO("container/hasAllFromSet.poc");
+		}
+
+		[Test]
 		public void testHasAllList()
 		{
 			compareResourceOEO("container/hasAllList.poc");
@@ -30,6 +42,18 @@ namespace prompto.translate.oeo
 		public void testHasAllTuple()
 		{
 			compareResourceOEO("container/hasAllTuple.poc");
+		}
+
+		[Test]
+		public void testHasAnyFromList()
+		{
+			compareResourceOEO("container/hasAnyFromList.poc");
+		}
+
+		[Test]
+		public void testHasAnyFromSet()
+		{
+			compareResourceOEO("container/hasAnyFromSet.poc");
 		}
 
 		[Test]

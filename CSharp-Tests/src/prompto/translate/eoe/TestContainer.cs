@@ -15,6 +15,18 @@ namespace prompto.translate.eoe
 		}
 
 		[Test]
+		public void testHasAllFromList()
+		{
+			compareResourceEOE("container/hasAllFromList.pec");
+		}
+
+		[Test]
+		public void testHasAllFromSet()
+		{
+			compareResourceEOE("container/hasAllFromSet.pec");
+		}
+
+		[Test]
 		public void testHasAllList()
 		{
 			compareResourceEOE("container/hasAllList.pec");
@@ -48,6 +60,18 @@ namespace prompto.translate.eoe
 		public void testHasAnyDict()
 		{
 			compareResourceEOE("container/hasAnyDict.pec");
+		}
+
+		[Test]
+		public void testHasAnyFromList()
+		{
+			compareResourceEOE("container/hasAnyFromList.pec");
+		}
+
+		[Test]
+		public void testHasAnyFromSet()
+		{
+			compareResourceEOE("container/hasAnyFromSet.pec");
 		}
 
 		[Test]

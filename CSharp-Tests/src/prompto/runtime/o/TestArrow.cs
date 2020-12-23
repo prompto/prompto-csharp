@@ -40,6 +40,30 @@ namespace prompto.runtime.o
 		}
 
 		[Test]
+		public void testHasAllFromList()
+		{
+			CheckOutput("arrow/hasAllFromList.poc");
+		}
+
+		[Test]
+		public void testHasAllFromSet()
+		{
+			CheckOutput("arrow/hasAllFromSet.poc");
+		}
+
+		[Test]
+		public void testHasAnyFromList()
+		{
+			CheckOutput("arrow/hasAnyFromList.poc");
+		}
+
+		[Test]
+		public void testHasAnyFromSet()
+		{
+			CheckOutput("arrow/hasAnyFromSet.poc");
+		}
+
+		[Test]
 		public void testSortCategory1Arg()
 		{
 			CheckOutput("arrow/sortCategory1Arg.poc");

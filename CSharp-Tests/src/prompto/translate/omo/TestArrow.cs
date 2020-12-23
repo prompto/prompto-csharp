@@ -27,6 +27,30 @@ namespace prompto.translate.omo
 		}
 
 		[Test]
+		public void testHasAllFromList()
+		{
+			compareResourceOMO("arrow/hasAllFromList.poc");
+		}
+
+		[Test]
+		public void testHasAllFromSet()
+		{
+			compareResourceOMO("arrow/hasAllFromSet.poc");
+		}
+
+		[Test]
+		public void testHasAnyFromList()
+		{
+			compareResourceOMO("arrow/hasAnyFromList.poc");
+		}
+
+		[Test]
+		public void testHasAnyFromSet()
+		{
+			compareResourceOMO("arrow/hasAnyFromSet.poc");
+		}
+
+		[Test]
 		public void testSortCategory1Arg()
 		{
 			compareResourceOMO("arrow/sortCategory1Arg.poc");

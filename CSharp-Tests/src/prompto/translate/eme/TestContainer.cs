@@ -15,6 +15,18 @@ namespace prompto.translate.eme
 		}
 
 		[Test]
+		public void testHasAllFromList()
+		{
+			compareResourceEME("container/hasAllFromList.pec");
+		}
+
+		[Test]
+		public void testHasAllFromSet()
+		{
+			compareResourceEME("container/hasAllFromSet.pec");
+		}
+
+		[Test]
 		public void testHasAllList()
 		{
 			compareResourceEME("container/hasAllList.pec");
@@ -48,6 +60,18 @@ namespace prompto.translate.eme
 		public void testHasAnyDict()
 		{
 			compareResourceEME("container/hasAnyDict.pec");
+		}
+
+		[Test]
+		public void testHasAnyFromList()
+		{
+			compareResourceEME("container/hasAnyFromList.pec");
+		}
+
+		[Test]
+		public void testHasAnyFromSet()
+		{
+			compareResourceEME("container/hasAnyFromSet.pec");
 		}
 
 		[Test]

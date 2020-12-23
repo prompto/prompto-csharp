@@ -9,6 +9,18 @@ namespace prompto.translate.omo
 	{
 
 		[Test]
+		public void testHasAllFromList()
+		{
+			compareResourceOMO("container/hasAllFromList.poc");
+		}
+
+		[Test]
+		public void testHasAllFromSet()
+		{
+			compareResourceOMO("container/hasAllFromSet.poc");
+		}
+
+		[Test]
 		public void testHasAllList()
 		{
 			compareResourceOMO("container/hasAllList.poc");
@@ -30,6 +42,18 @@ namespace prompto.translate.omo
 		public void testHasAllTuple()
 		{
 			compareResourceOMO("container/hasAllTuple.poc");
+		}
+
+		[Test]
+		public void testHasAnyFromList()
+		{
+			compareResourceOMO("container/hasAnyFromList.poc");
+		}
+
+		[Test]
+		public void testHasAnyFromSet()
+		{
+			compareResourceOMO("container/hasAnyFromSet.poc");
 		}
 
 		[Test]

@@ -22,6 +22,18 @@ namespace prompto.runtime.o
 		}
 
 		[Test]
+		public void testHasAllFromList()
+		{
+			CheckOutput("container/hasAllFromList.poc");
+		}
+
+		[Test]
+		public void testHasAllFromSet()
+		{
+			CheckOutput("container/hasAllFromSet.poc");
+		}
+
+		[Test]
 		public void testHasAllList()
 		{
 			CheckOutput("container/hasAllList.poc");
@@ -43,6 +55,18 @@ namespace prompto.runtime.o
 		public void testHasAllTuple()
 		{
 			CheckOutput("container/hasAllTuple.poc");
+		}
+
+		[Test]
+		public void testHasAnyFromList()
+		{
+			CheckOutput("container/hasAnyFromList.poc");
+		}
+
+		[Test]
+		public void testHasAnyFromSet()
+		{
+			CheckOutput("container/hasAnyFromSet.poc");
 		}
 
 		[Test]
