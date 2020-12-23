@@ -76,7 +76,7 @@ namespace prompto.type
         {
             context = context.newChildContext();
             this.method.registerParameters(context);
-            expression.Check(context, this.method.getReturnType());
+            expression.CheckReturnType(context, this.method.getReturnType());
             return this;
         }
     }

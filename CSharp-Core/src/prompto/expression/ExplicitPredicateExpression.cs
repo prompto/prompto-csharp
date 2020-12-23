@@ -89,7 +89,7 @@ namespace prompto.expression
         }
 
 
-        public override IType Check(Context context, IType itemType)
+        public override IType CheckFilter(Context context, IType itemType)
         {
             Context child = context.newChildContext();
             child.registerValue(new Variable(itemName, itemType));

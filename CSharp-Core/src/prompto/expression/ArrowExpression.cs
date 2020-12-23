@@ -33,15 +33,15 @@ namespace prompto.expression
 
         public override IType check(Context context)
         {
-            return Check(context, null);
+            return CheckReturnType(context, null);
         }
 
-        public override IType Check(Context context, IType returnType)
+        public IType CheckReturnType(Context context, IType returnType)
         {
             return Statements.check(context, returnType);
         }
 
-        public IType CheckFilter(Context context, IType itemType)
+        public override IType CheckFilter(Context context, IType itemType)
         {
             if (Arguments == null || Arguments.Count != 1)
                 throw new SyntaxError("Expecting 1 parameter only!");
