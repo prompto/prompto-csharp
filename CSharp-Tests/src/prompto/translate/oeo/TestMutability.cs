@@ -9,6 +9,12 @@ namespace prompto.translate.oeo
 	{
 
 		[Test]
+		public void testDowncastMutable()
+		{
+			compareResourceOEO("mutability/downcastMutable.poc");
+		}
+
+		[Test]
 		public void testImmutable()
 		{
 			compareResourceOEO("mutability/immutable.poc");

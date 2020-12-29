@@ -22,6 +22,12 @@ namespace prompto.runtime.o
 		}
 
 		[Test]
+		public void testDowncastMutable()
+		{
+			CheckOutput("mutability/downcastMutable.poc");
+		}
+
+		[Test]
 		public void testImmutable()
 		{
 			CheckOutput("mutability/immutable.poc");

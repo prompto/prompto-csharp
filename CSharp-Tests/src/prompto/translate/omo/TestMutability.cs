@@ -9,6 +9,12 @@ namespace prompto.translate.omo
 	{
 
 		[Test]
+		public void testDowncastMutable()
+		{
+			compareResourceOMO("mutability/downcastMutable.poc");
+		}
+
+		[Test]
 		public void testImmutable()
 		{
 			compareResourceOMO("mutability/immutable.poc");
