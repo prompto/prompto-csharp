@@ -38,6 +38,10 @@ namespace prompto.type
 			return this;
 		}
 
+		public virtual bool IsMutable(Context context)
+		{
+			return false;
+		}
 
 		public virtual IType AsMutable(Context context, bool mutable)
 		{

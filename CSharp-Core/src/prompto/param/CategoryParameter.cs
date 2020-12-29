@@ -132,7 +132,15 @@ namespace prompto.param
 			Context actual = context.contextForValue(name);
             if (actual == context)
                 throw new SyntaxError("Duplicate argument: \"" + name + "\"");
-            context.registerValue(this);
+            resolve(context);
+            if(resolved == type)
+                context.registerValue(this);
+            else
+            {
+                CategoryParameter param = new CategoryParameter(resolved, name);
+                param.setMutable(mutable);
+                context.registerValue(param);
+            }
 			if (DefaultValue != null) {
 				IValue value = DefaultValue.interpret (context);
 				context.setValue (name, value);
@@ -150,7 +158,7 @@ namespace prompto.param
         private void resolve(Context context)
         {
             if (resolved == null)
-                resolved = type.Resolve(context);
+                resolved = type.Resolve(context).AsMutable(context, mutable);
         }
 
         public override IType GetIType(Context context)

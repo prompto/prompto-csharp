@@ -262,7 +262,7 @@ namespace prompto.statement
         {
             Context parent = context;
             if (condition is EqualsExpression)
-                context = ((EqualsExpression)condition).downCast(context, setValue);
+                context = ((EqualsExpression)condition).downcast(context, setValue);
             context = parent != context ? context : context.newChildContext();
             return context;
         }

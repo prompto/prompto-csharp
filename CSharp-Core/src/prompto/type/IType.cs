@@ -22,6 +22,8 @@ namespace prompto.type
 
         IType Resolve(Context context);
 
+		bool IsMutable(Context context);
+
 		IType AsMutable(Context context, bool mutable);
 
 		IType checkAdd (Context context, IType other, bool tryReverse);

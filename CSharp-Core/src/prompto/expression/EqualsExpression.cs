@@ -176,7 +176,7 @@ namespace prompto.expression
         }
 
 
-        public Context downCast(Context context, bool setValue)
+        public Context downcast(Context context, bool setValue)
         {
             if (oper == EqOp.IS_A)
             {
@@ -184,12 +184,15 @@ namespace prompto.expression
                 if (name != null)
                 {
                     INamed value = context.getRegisteredValue<INamed>(name);
-                    IType type = ((TypeExpression)right).getType();
+                    IType targetType = ((TypeExpression)right).getType();
+                    IType sourceType = value.GetIType(context);
+                    if (sourceType.IsMutable(context))
+                        targetType = targetType.AsMutable(context, true);
                     Context local = context.newChildContext();
-                    value = new LinkedVariable(type, value);
+                    value = new LinkedVariable(targetType, value);
                     local.registerValue(value, false);
                     if (setValue)
-                        local.setValue(name, new LinkedValue(context, type));
+                        local.setValue(name, new LinkedValue(context, targetType));
                     context = local;
                 }
             }
