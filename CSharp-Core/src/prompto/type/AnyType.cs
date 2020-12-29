@@ -21,18 +21,24 @@ namespace prompto.type
         }
 
         private AnyType()
-			: base(TypeFamily.ANY)
+            : base(TypeFamily.ANY)
         {
         }
 
-		public override string GetTypeName()
-		{
-			return "any";
-		}
-
-		public override IType checkMember(Context context, String name)
+        public override string GetTypeName()
         {
-            return AnyType.Instance;
+            return "any";
+        }
+
+        public override IType checkItem(Context context, IType itemType)
+        {
+            return DocumentType.Instance.checkItem(context, itemType); // needed to support lists in Documents
+        }
+
+
+        public override IType checkMember(Context context, String name)
+        {
+            return DocumentType.Instance.checkMember(context, name); // needed to support members in Documents
         }
         
         
@@ -42,11 +48,6 @@ namespace prompto.type
         }
 
         
-        public override IType checkItem(Context context, IType itemType)
-        {
-            return AnyType.Instance; // needed to support lists in Documents
-        }
-
         
         public override bool isAssignableFrom(Context context, IType other)
         {

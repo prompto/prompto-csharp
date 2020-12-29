@@ -55,10 +55,7 @@ namespace prompto.type
 
         public override IType checkItem(Context context, IType itemType)
         {
-            if (itemType == TextType.Instance)
-                return AnyType.Instance;
-            else
-                return base.checkItem(context, itemType);
+            return AnyType.Instance;
         }
 
         public override IType checkMember(Context context, String name)
