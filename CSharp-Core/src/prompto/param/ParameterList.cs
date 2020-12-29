@@ -16,28 +16,28 @@ namespace prompto.param
 
 		public ParameterList(params IParameter[] arguments)
 		{
-			foreach (IParameter arg in arguments)
-				this.Add(arg);
+			foreach (IParameter param in arguments)
+				this.Add(param);
 		}
 
 		public void register(Context context)
 		{
-			foreach (IParameter arg in this)
-				arg.register(context);
+			foreach (IParameter param in this)
+				param.register(context);
 		}
 
 		public void check(Context context)
 		{
-			foreach (IParameter arg in this)
-				arg.check(context);
+			foreach (IParameter param in this)
+				param.check(context);
 		}
 
 		public IParameter find(String name)
 		{
-			foreach (IParameter arg in this)
+			foreach (IParameter param in this)
 			{
-				if (name.Equals(arg.GetName()))
-					return arg;
+				if (name.Equals(param.GetName()))
+					return param;
 			}
 			return null;
 		}
@@ -63,11 +63,11 @@ namespace prompto.param
 		{
 			IParameter last = this.Count > 0 ? this[this.Count - 1] : null;
 			writer.append("receiving ");
-			foreach (IParameter arg in this)
+			foreach (IParameter param in this)
 			{
-				if (arg == last)
+				if (param == last)
 					break;
-				arg.ToDialect(writer);
+				param.ToDialect(writer);
 				writer.append(", ");
 			}
 			if (this.Count > 1)
@@ -81,9 +81,9 @@ namespace prompto.param
 
 		private void ToODialect(CodeWriter writer)
 		{
-			foreach (IParameter arg in this)
+			foreach (IParameter param in this)
 			{
-				arg.ToDialect(writer);
+				param.ToDialect(writer);
 				writer.append(", ");
 			}
 			writer.trimLast(2);
@@ -91,9 +91,9 @@ namespace prompto.param
 
 		private void toPDialect(CodeWriter writer)
 		{
-			foreach (IParameter arg in this)
+			foreach (IParameter param in this)
 			{
-				arg.ToDialect(writer);
+				param.ToDialect(writer);
 				writer.append(", ");
 			}
 			writer.trimLast(2);

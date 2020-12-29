@@ -36,8 +36,8 @@ namespace prompto.statement
             return expression;
         }
 
-        override
-        public IType check(Context context)
+        
+        public override IType check(Context context)
         {
 			IType valueType = expression.check (context);
 			instance.checkAssignValue(context, valueType);
@@ -47,8 +47,8 @@ namespace prompto.statement
 			return VoidType.Instance;
         }
 
-        override
-        public IValue interpret(Context context)
+        
+        public override IValue interpret(Context context)
         {
             instance.assign(context, expression);
             return null;

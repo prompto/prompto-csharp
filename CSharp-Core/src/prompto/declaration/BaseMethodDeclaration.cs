@@ -85,8 +85,8 @@ namespace prompto.declaration
             return ToString();
         }
 
-        override
-        public String ToString()
+        
+        public override String ToString()
         {
             return GetName() + ":(" + parameters.ToString() + ')';
         }
@@ -108,8 +108,8 @@ namespace prompto.declaration
             return parameters;
         }
 
-        override
-        public void register(Context context)
+        
+        public override void register(Context context)
         {
             context.registerDeclaration(this);
         }
@@ -120,8 +120,8 @@ namespace prompto.declaration
                 parameters.register(context);
         }
 
-        override
-        public IType GetIType(Context context)
+        
+        public override IType GetIType(Context context)
         {
             try
             {
