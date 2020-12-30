@@ -238,6 +238,18 @@ namespace prompto.runtime.e
 		}
 
 		[Test]
+		public void testIteratorToList()
+		{
+			CheckOutput("builtins/iteratorToList.pec");
+		}
+
+		[Test]
+		public void testIteratorToSet()
+		{
+			CheckOutput("builtins/iteratorToSet.pec");
+		}
+
+		[Test]
 		public void testListCount()
 		{
 			CheckOutput("builtins/listCount.pec");
@@ -247,6 +259,12 @@ namespace prompto.runtime.e
 		public void testListText()
 		{
 			CheckOutput("builtins/listText.pec");
+		}
+
+		[Test]
+		public void testListToSet()
+		{
+			CheckOutput("builtins/listToSet.pec");
 		}
 
 		[Test]
@@ -313,6 +331,12 @@ namespace prompto.runtime.e
 		public void testSetText()
 		{
 			CheckOutput("builtins/setText.pec");
+		}
+
+		[Test]
+		public void testSetToList()
+		{
+			CheckOutput("builtins/setToList.pec");
 		}
 
 		[Test]

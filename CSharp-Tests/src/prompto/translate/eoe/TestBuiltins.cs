@@ -237,6 +237,18 @@ namespace prompto.translate.eoe
 		}
 
 		[Test]
+		public void testIteratorToList()
+		{
+			compareResourceEOE("builtins/iteratorToList.pec");
+		}
+
+		[Test]
+		public void testIteratorToSet()
+		{
+			compareResourceEOE("builtins/iteratorToSet.pec");
+		}
+
+		[Test]
 		public void testListCount()
 		{
 			compareResourceEOE("builtins/listCount.pec");
@@ -246,6 +258,12 @@ namespace prompto.translate.eoe
 		public void testListText()
 		{
 			compareResourceEOE("builtins/listText.pec");
+		}
+
+		[Test]
+		public void testListToSet()
+		{
+			compareResourceEOE("builtins/listToSet.pec");
 		}
 
 		[Test]
@@ -312,6 +330,12 @@ namespace prompto.translate.eoe
 		public void testSetText()
 		{
 			compareResourceEOE("builtins/setText.pec");
+		}
+
+		[Test]
+		public void testSetToList()
+		{
+			compareResourceEOE("builtins/setToList.pec");
 		}
 
 		[Test]

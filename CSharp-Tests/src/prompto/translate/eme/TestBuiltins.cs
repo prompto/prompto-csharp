@@ -237,6 +237,18 @@ namespace prompto.translate.eme
 		}
 
 		[Test]
+		public void testIteratorToList()
+		{
+			compareResourceEME("builtins/iteratorToList.pec");
+		}
+
+		[Test]
+		public void testIteratorToSet()
+		{
+			compareResourceEME("builtins/iteratorToSet.pec");
+		}
+
+		[Test]
 		public void testListCount()
 		{
 			compareResourceEME("builtins/listCount.pec");
@@ -246,6 +258,12 @@ namespace prompto.translate.eme
 		public void testListText()
 		{
 			compareResourceEME("builtins/listText.pec");
+		}
+
+		[Test]
+		public void testListToSet()
+		{
+			compareResourceEME("builtins/listToSet.pec");
 		}
 
 		[Test]
@@ -312,6 +330,12 @@ namespace prompto.translate.eme
 		public void testSetText()
 		{
 			compareResourceEME("builtins/setText.pec");
+		}
+
+		[Test]
+		public void testSetToList()
+		{
+			compareResourceEME("builtins/setToList.pec");
 		}
 
 		[Test]
