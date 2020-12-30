@@ -148,8 +148,7 @@ namespace prompto.value
 				throw new SyntaxError("Illegal : List - " + value.GetType().Name);
 		}
 
-
-		public SetValue merge (IEnumerable<IValue> items)
+       public SetValue merge (IEnumerable<IValue> items)
 		{
 			HashSet<IValue> result = new HashSet<IValue>  ();
 			foreach(IValue value in this.items)
@@ -174,5 +173,13 @@ namespace prompto.value
 			else
 				return base.GetMemberValue(context, name, autoCreate);
 		}
+
+		public IValue ToListValue()
+		{
+			List<IValue> list = new List<IValue>(items);
+			return new ListValue(((ContainerType)type).GetItemType(), list);
+		}
+
+
 	}
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using prompto.type;
 
 namespace prompto.value
@@ -53,6 +54,14 @@ namespace prompto.value
             while(source.MoveNext())
                  values.Add(source.Current);
             return values;
+        }
+
+		public IValue ToSetValue()
+        {
+			HashSet<IValue> values = new HashSet<IValue>();
+			while (source.MoveNext())
+				values.Add(source.Current);
+			return new SetValue(((IteratorType)this.GetIType()).GetItemType(), values);
         }
     }
 }

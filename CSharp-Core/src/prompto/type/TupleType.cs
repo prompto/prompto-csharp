@@ -100,7 +100,7 @@ namespace prompto.type
         static IMethodDeclaration JOIN_METHOD = new JoinTupleMethod();
     }
 
-    class JoinTupleMethod : BaseJoinMethod
+    class JoinTupleMethod : BaseJoinMethodDeclaration
     {
 
         protected override IEnumerable<IValue> getItems(Context context)

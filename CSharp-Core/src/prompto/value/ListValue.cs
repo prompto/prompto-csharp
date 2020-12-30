@@ -211,8 +211,7 @@ namespace prompto.value
                 throw new SyntaxError("Illegal : List + " + value.GetType().Name);
         }
 
-
-        public IValue Subtract(Context context, IValue value)
+      public IValue Subtract(Context context, IValue value)
         {
             if (value is ListValue)
             {
@@ -358,6 +357,13 @@ namespace prompto.value
             }
             return new ListValue(AnyType.Instance, items);
         }
+
+        public IValue ToSetValue()
+        {
+            HashSet<IValue> items = new HashSet<IValue>(this);
+            return new SetValue(type.GetItemType(), items);
+        }
+
 
     }
 }

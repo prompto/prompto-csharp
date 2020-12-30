@@ -64,7 +64,10 @@ namespace prompto.type
                 case "toList":
                     list.Add(new IteratorToListMethodDeclaration(GetItemType()));
                     return list;
-                default:
+				case "toSet":
+					list.Add(new IteratorToSetMethodDeclaration(GetItemType()));
+					return list;
+				default:
                     return base.getMemberMethods(context, name);
             }
         }
@@ -84,11 +87,14 @@ namespace prompto.type
 
         public override IValue interpret(Context context)
         {
-            IteratorValue value = (IteratorValue)getValue(context);
-            return value.ToListValue();
+			IValue value = getValue(context);
+			if (value is IterableValue)
+				return ((IterableValue)value).ToListValue();
+			else if (value is IteratorValue)
+				return ((IteratorValue)value).ToListValue();
+			else
+				throw new NotImplementedException();
         }
-
-
 
         public override IType check(Context context)
         {
@@ -96,4 +102,33 @@ namespace prompto.type
         }
 
     };
+
+	class IteratorToSetMethodDeclaration : BuiltInMethodDeclaration
+	{
+
+		IType itemType;
+
+		public IteratorToSetMethodDeclaration(IType itemType)
+		: base("toSet")
+		{
+			this.itemType = itemType;
+		}
+
+		public override IValue interpret(Context context)
+		{
+			IValue value = getValue(context);
+			if (value is IterableValue)
+				return ((IterableValue)value).ToSetValue();
+			else if (value is IteratorValue)
+				return ((IteratorValue)value).ToSetValue();
+			else
+				throw new NotImplementedException();
+		}
+
+		public override IType check(Context context)
+		{
+			return new SetType(itemType);
+		}
+
+	};
 }

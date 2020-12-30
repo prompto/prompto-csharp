@@ -119,7 +119,8 @@ namespace prompto.value
 				return base.GetMemberValue(context, name, autoCreate);
 		}
 
-		public IFilterable Filter(Predicate<IValue> filter)
+ 
+        public IFilterable Filter(Predicate<IValue> filter)
 		{
 			List<IValue> items = new List<IValue>();
 			foreach (IValue item in this)
@@ -139,6 +140,18 @@ namespace prompto.value
 			}
 			return new ListValue(itemType, items);
 	    }
-    }
+
+		public IValue ToListValue()
+		{
+			List<IValue> items = new List<IValue>(this);
+			return new ListValue(itemType, items);
+		}
+
+		public IValue ToSetValue()
+		{
+			HashSet<IValue> items = new HashSet<IValue>(this);
+			return new SetValue(itemType, items);
+		}
+	}
 
 }

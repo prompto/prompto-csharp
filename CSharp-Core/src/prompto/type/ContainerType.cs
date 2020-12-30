@@ -30,11 +30,11 @@ namespace prompto.type
 
     }
 
-    abstract class BaseJoinMethod : BuiltInMethodDeclaration
+    abstract class BaseJoinMethodDeclaration : BuiltInMethodDeclaration
     {
 
 
-        public BaseJoinMethod()
+        public BaseJoinMethodDeclaration()
             : base("join", new CategoryParameter(TextType.Instance, "delimiter", new TextLiteral("\",\"")))
         {
         }

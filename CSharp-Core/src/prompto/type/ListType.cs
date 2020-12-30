@@ -122,6 +122,9 @@ namespace prompto.type
 			ISet<IMethodDeclaration> methods = new HashSet<IMethodDeclaration>();
 			switch (name)
 			{
+				case "toSet":
+					methods.Add(new ListToSetMethodDeclaration(GetItemType()));
+					return methods;
 				case "join":
 					methods.Add(JOIN_METHOD);
 					return methods;
@@ -149,7 +152,7 @@ namespace prompto.type
 				return base.ConvertCSharpValueToIValue(context, value);
 		}
 
-		static IMethodDeclaration JOIN_METHOD = new JoinListMethod();
+		static IMethodDeclaration JOIN_METHOD = new JoinListMethodDeclaration();
 
 		internal static IParameter ITEM_ARGUMENT = new CategoryParameter(IntegerType.Instance, "item");
 		internal static IParameter VALUE_ARGUMENT = new CategoryParameter(AnyType.Instance, "value");
@@ -159,7 +162,7 @@ namespace prompto.type
 
 	}
 
-	class JoinListMethod : BaseJoinMethod {
+	class JoinListMethodDeclaration : BaseJoinMethodDeclaration {
 
 		protected override IEnumerable<IValue> getItems(Context context)
 		{
@@ -217,4 +220,29 @@ namespace prompto.type
 		}
 
 	};
+
+	internal class ListToSetMethodDeclaration : BuiltInMethodDeclaration
+	{
+
+		IType itemType;
+
+		public ListToSetMethodDeclaration(IType itemType)
+		: base("toSet")
+		{
+			this.itemType = itemType;
+		}
+
+		public override IValue interpret(Context context)
+		{
+			ListValue value = (ListValue)getValue(context);
+			return value.ToSetValue();
+		}
+
+		public override IType check(Context context)
+		{
+			return new SetType(itemType);
+		}
+
+	};
+
 }

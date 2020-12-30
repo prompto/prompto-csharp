@@ -75,6 +75,9 @@ namespace prompto.type
 			ISet<IMethodDeclaration> list = new HashSet<IMethodDeclaration>();
 			switch (name)
 			{
+				case "toList":
+					list.Add(new SetToListMethodDeclaration(GetItemType()));
+					return list;
 				case "join":
 					list.Add(JOIN_METHOD);
 					return list;
@@ -88,10 +91,10 @@ namespace prompto.type
 			return typeof(HashSet<Object>);
 		}
 
-		static IMethodDeclaration JOIN_METHOD = new JoinSetMethod();
+		static IMethodDeclaration JOIN_METHOD = new JoinSetMethodDeclaration();
 	}
 
-	class JoinSetMethod : BaseJoinMethod
+	class JoinSetMethodDeclaration : BaseJoinMethodDeclaration
 	{
 
 		protected override IEnumerable<IValue> getItems(Context context)
@@ -100,5 +103,29 @@ namespace prompto.type
 			return set.GetEnumerable(context);
 		}
 	}
+
+	class SetToListMethodDeclaration : BuiltInMethodDeclaration
+	{
+
+		IType itemType;
+
+		public SetToListMethodDeclaration(IType itemType)
+		: base("toList")
+		{
+			this.itemType = itemType;
+		}
+
+		public override IValue interpret(Context context)
+		{
+			SetValue value = (SetValue)getValue(context);
+			return value.ToListValue();
+		}
+
+		public override IType check(Context context)
+		{
+			return new ListType(itemType);
+		}
+
+	};
 
 }
