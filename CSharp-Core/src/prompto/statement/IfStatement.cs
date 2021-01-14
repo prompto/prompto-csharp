@@ -31,8 +31,8 @@ namespace prompto.statement
                 elements.Add(new IfElement(null, elseStmts));
         }
 
-        override
-        public void ToDialect(CodeWriter writer)
+        
+        public override void ToDialect(CodeWriter writer)
         {
             switch (writer.getDialect())
             {
@@ -95,6 +95,7 @@ namespace prompto.statement
             }
             writer.newLine();
         }
+
         public void addAdditional(IExpression condition, StatementList instructions)
         {
             elements.Add(new IfElement(condition, instructions));
@@ -108,13 +109,14 @@ namespace prompto.statement
 
         public override IType check(Context context)
         {
-            List<IType> types = new List<IType>();
+            TypeMap types = new TypeMap();
             foreach (IfElement element in elements)
             {
-                types.Add(element.check(context));
+                IType type = element.check(context);
+                if(type != VoidType.Instance)
+                    types.add(type);
             }
-            // TODO check consistency with additional elements
-            return types[0];
+            return types.inferType(context);
         }
 
 

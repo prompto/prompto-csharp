@@ -27,9 +27,9 @@ public class SetLiteral : Literal<SetValue> {
 	public override IType check(Context context) {
 		if(itemType==null) {
 			if(expressions!=null)
-				itemType = TypeUtils.InferElementType(context, expressions);
+				itemType = TypeUtils.InferExpressionsType(context, expressions);
 			else
-					itemType = TypeUtils.InferElementType(context, value.getItems());
+					itemType = TypeUtils.InferValuesType(context, value.getItems());
 		}
 		return new SetType(itemType); 
 	}

@@ -22,91 +22,29 @@ namespace prompto.utils
                 return default(T);
         }
 
-        public static IType InferElementType(Context context, IEnumerable<IExpression> expressions)
+        public static IType InferExpressionsType(Context context, IEnumerable<IExpression> expressions)
         {
-            List<IType> types = new List<IType>();
+            TypeMap types = new TypeMap();
             foreach (IExpression exp in expressions)
-                types.Add(exp.check(context));
-            return InferElementType(context, types);
-        }
-
-        public static IType InferElementType(Context context, IEnumerable<IValue> values)
-        {
-            List<IType> types = new List<IType>();
-            foreach (IValue value in values)
-                types.Add(value.GetIType());
-            return InferElementType(context, types);
-        }
-
-        public static IType InferElementType(Context context, List<IType> types)
-        {
+                types.add(exp.check(context));
             if (types.Count == 0)
                 return MissingType.Instance;
-            IType lastType = null;
-            foreach (IType type in types)
-            {
-                if (lastType == null)
-                    lastType = type;
-                else if (!lastType.Equals(type))
-                {
-                    if (lastType.isAssignableFrom(context, type))
-                    {
-                        // lastType is less specific
-                    }
-                    else if (type.isAssignableFrom(context, lastType))
-                        lastType = type; // elemType is less specific
-                    else
-                    {
-                        IType common = inferCommonRootType(context, lastType, type);
-                        if (common != null)
-                            lastType = common;
-                        else
-                            throw new SyntaxError("Incompatible types: " + type.ToString() + " and " + lastType.ToString());
-                    }
-                }
-            }
-            return lastType;
-        }
-
-
-        private static IType inferCommonRootType(Context context, IType type1, IType type2)
-        {
-            if (type1 is CategoryType && type2 is CategoryType)
-                return inferCommonRootType(context, (CategoryType)type1, (CategoryType)type2, true);
-            else if (type1 is NativeType || type2 is NativeType)
-                return AnyType.Instance;
             else
-                return null;
+                return types.inferType(context);
         }
 
-
-        private static IType inferCommonRootType(Context context, CategoryType type1, CategoryType type2, bool trySwap)
+        public static IType InferValuesType(Context context, IEnumerable<IValue> values)
         {
-            CategoryDeclaration decl1 = context.getRegisteredDeclaration<CategoryDeclaration>(type1.GetTypeName());
-            if (decl1.getDerivedFrom() != null)
-            {
-                foreach (String name in decl1.getDerivedFrom())
-                {
-                    CategoryType parentType = new CategoryType(name);
-                    if (parentType.isAssignableFrom(context, type2))
-                        return parentType;
-                }
-                // climb up the tree
-                foreach (String name in decl1.getDerivedFrom())
-                {
-                    CategoryType parentType = new CategoryType(name);
-                    IType commonType = inferCommonRootType(context, parentType, type2);
-                    if (commonType != null)
-                        return commonType;
-                }
-            }
-            if (trySwap)
-                return inferCommonRootType(context, type2, type1, false);
+            TypeMap types = new TypeMap();
+            foreach (IValue value in values)
+                types.add(value.GetIType());
+            if (types.Count == 0)
+                return MissingType.Instance;
             else
-                return null;
+                return types.inferType(context);
         }
 
-
+  
         public static IValue FieldToValue(Context context, String name, Object data)
         {
             if (data == null)

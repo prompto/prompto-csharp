@@ -29,8 +29,8 @@ namespace prompto.expression
             if (!(type is BooleanType))
 				throw new SyntaxError("Cannot test condition on " + type.GetTypeName());
             TypeMap types = new TypeMap();
-            types["true"] = ifTrue.check(context);
-            types["false"] = ifFalse.check(context);
+            types.add(ifTrue.check(context));
+            types.add(ifFalse.check(context));
             return types.inferType(context);
         }
 

@@ -38,9 +38,9 @@ namespace prompto.literal
 		{
 			if (itemType == null) {
 				if (expressions != null)
-					itemType = TypeUtils.InferElementType (context, expressions);
+					itemType = TypeUtils.InferExpressionsType (context, expressions);
 				else
-					itemType = TypeUtils.InferElementType (context, value);
+					itemType = TypeUtils.InferValuesType (context, value);
 			}
 			return new ListType (itemType);
 		}

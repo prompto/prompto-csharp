@@ -28,7 +28,8 @@ public class VoidType : NativeType {
 
 	
 	public override bool isAssignableFrom(Context context, IType other) {
-		throw new Exception("Should never get there !");
+		// illegal, but happens during syntax checking, if error is collected rather than thrown
+		return false;
 	}
 	
 }

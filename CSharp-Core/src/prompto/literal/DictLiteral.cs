@@ -45,12 +45,12 @@ namespace prompto.literal
 		{
 			if (entries.Count == 0)
 				return MissingType.Instance;
-			List<IType> types = new List<IType>();
+			TypeMap types = new TypeMap();
 			foreach (DictEntry e in entries)
 			{
-				types.Add(e.GetValue().check(context));
+				types.add(e.GetValue().check(context));
 			}
-			return TypeUtils.InferElementType(context, types);
+			return types.inferType(context);
 		}
 
         
