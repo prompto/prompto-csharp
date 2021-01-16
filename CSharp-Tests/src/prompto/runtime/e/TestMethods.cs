@@ -118,6 +118,12 @@ namespace prompto.runtime.e
 		}
 
 		[Test]
+		public void testMemberRef()
+		{
+			CheckOutput("methods/memberRef.pec");
+		}
+
+		[Test]
 		public void testOverride()
 		{
 			CheckOutput("methods/override.pec");

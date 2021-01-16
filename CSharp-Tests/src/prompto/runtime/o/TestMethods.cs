@@ -100,6 +100,12 @@ namespace prompto.runtime.o
 		}
 
 		[Test]
+		public void testMemberRef()
+		{
+			CheckOutput("methods/memberRef.poc");
+		}
+
+		[Test]
 		public void testOverride()
 		{
 			CheckOutput("methods/override.poc");

@@ -117,6 +117,12 @@ namespace prompto.translate.eme
 		}
 
 		[Test]
+		public void testMemberRef()
+		{
+			compareResourceEME("methods/memberRef.pec");
+		}
+
+		[Test]
 		public void testOverride()
 		{
 			compareResourceEME("methods/override.pec");

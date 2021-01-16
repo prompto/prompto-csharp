@@ -117,6 +117,12 @@ namespace prompto.translate.eoe
 		}
 
 		[Test]
+		public void testMemberRef()
+		{
+			compareResourceEOE("methods/memberRef.pec");
+		}
+
+		[Test]
 		public void testOverride()
 		{
 			compareResourceEOE("methods/override.pec");

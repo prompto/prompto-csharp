@@ -99,6 +99,12 @@ namespace prompto.translate.oeo
 		}
 
 		[Test]
+		public void testMemberRef()
+		{
+			compareResourceOEO("methods/memberRef.poc");
+		}
+
+		[Test]
 		public void testOverride()
 		{
 			compareResourceOEO("methods/override.poc");

@@ -99,6 +99,12 @@ namespace prompto.translate.omo
 		}
 
 		[Test]
+		public void testMemberRef()
+		{
+			compareResourceOMO("methods/memberRef.poc");
+		}
+
+		[Test]
 		public void testOverride()
 		{
 			compareResourceOMO("methods/override.poc");
