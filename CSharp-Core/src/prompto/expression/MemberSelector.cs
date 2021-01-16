@@ -9,6 +9,7 @@ using prompto.grammar;
 using prompto.type;
 using prompto.utils;
 using prompto.statement;
+using prompto.declaration;
 
 namespace prompto.expression
 {
@@ -118,6 +119,22 @@ namespace prompto.expression
 				throw new NullReferenceError();
 			else
 				return instance.GetMemberValue(context, name, true);
+		}
+
+        public override IValue interpretReference(Context context)
+        {
+			// resolve parent to keep clarity
+			IExpression parent = resolveParent(context);
+			IValue instance = parent.interpret(context);
+			if (instance == null || instance == NullValue.Instance)
+				throw new NullReferenceError();
+			else if (instance is IInstance) {
+				CategoryDeclaration category = ((IInstance)instance).getDeclaration();
+				MethodDeclarationMap methods = category.getMemberMethods(context, name);
+				IMethodDeclaration method = methods.GetFirst(); // TODO check prototype
+				return new ClosureValue(context.newInstanceContext((IInstance)instance, true), new MethodType(method));
+			} else
+				throw new SyntaxError("Should never get here!");
 		}
 
 		private IExpression resolveParent(Context context)

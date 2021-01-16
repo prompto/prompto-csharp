@@ -2130,8 +2130,8 @@ namespace prompto.parser
 
         public override void ExitClosureExpression(EParser.ClosureExpressionContext ctx)
         {
-            String name = GetNodeValue<String>(ctx.name);
-            SetNodeValue(ctx, new MethodExpression(name));
+            IExpression expression = GetNodeValue<IExpression>(ctx.exp);
+            SetNodeValue(ctx, new MethodExpression(expression));
         }
 
 

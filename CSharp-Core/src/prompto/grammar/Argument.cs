@@ -161,7 +161,7 @@ namespace prompto.grammar
             bool assignable = requiredType.isAssignableFrom(context, actualType);
             // try passing category member
             if (!assignable && (actualType is CategoryType)) 
-			expression = new MemberSelector(expression, parameter.GetName());
+			    expression = new MemberSelector(expression, parameter.GetName());
             return expression;
        }
 

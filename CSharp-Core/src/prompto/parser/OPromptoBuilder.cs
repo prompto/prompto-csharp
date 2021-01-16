@@ -2059,13 +2059,13 @@ namespace prompto.parser
             SetNodeValue(ctx, stmt);
         }
 
-        public override void ExitClosure_expression(OParser.Closure_expressionContext ctx)
+        public override void ExitType_expression(OParser.Type_expressionContext ctx)
         {
             String name = GetNodeValue<String>(ctx.name);
-            SetNodeValue(ctx, new MethodExpression(name));
+            SetNodeValue(ctx, new TypeExpression(new CategoryType(name)));
         }
 
-        public override void ExitClosureExpression(OParser.ClosureExpressionContext ctx)
+        public override void ExitTypeExpression(OParser.TypeExpressionContext ctx)
         {
             IExpression exp = GetNodeValue<IExpression>(ctx.exp);
             SetNodeValue(ctx, exp);

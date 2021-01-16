@@ -1907,14 +1907,14 @@ namespace prompto.parser
         }
 
 
-        public override void ExitClosure_expression(MParser.Closure_expressionContext ctx)
+        public override void ExitType_expression(MParser.Type_expressionContext ctx)
         {
             String name = GetNodeValue<String>(ctx.name);
-            SetNodeValue(ctx, new MethodExpression(name));
+            SetNodeValue(ctx, new TypeExpression(new CategoryType(name)));
         }
 
 
-        public override void ExitClosureExpression(MParser.ClosureExpressionContext ctx)
+        public override void ExitTypeExpression(MParser.TypeExpressionContext ctx)
         {
             IExpression exp = GetNodeValue<IExpression>(ctx.exp);
             SetNodeValue(ctx, exp);
