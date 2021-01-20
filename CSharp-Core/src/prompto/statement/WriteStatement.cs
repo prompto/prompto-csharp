@@ -6,6 +6,7 @@ using prompto.expression;
 using prompto.type;
 using prompto.value;
 using prompto.utils;
+using prompto.grammar;
 
 namespace prompto.statement
 {
@@ -15,16 +16,25 @@ namespace prompto.statement
 
 		IExpression content;
 		IExpression resource;
+		ThenWith thenWith;
 
-		public WriteStatement (IExpression content, IExpression resource)
+		public WriteStatement (IExpression content, IExpression resource, ThenWith thenWith)
 		{
 			this.content = content;
 			this.resource = resource;
+			this.thenWith = thenWith;
 		}
 
+		public override bool IsSimple
+		{
+			get
+            {
+				return thenWith == null;
+			}
+			
+		}
 
-		override 
-		public void ToDialect (CodeWriter writer)
+        public override void ToDialect (CodeWriter writer)
 		{
 			writer.append("write ");
 			switch(writer.getDialect()) {
@@ -40,20 +50,25 @@ namespace prompto.statement
 			}
 			writer.append(" to ");
 			resource.ToDialect(writer);
+			if (thenWith != null)
+				thenWith.ToDialect(writer, TextType.Instance);
 		}
 
-		override 
-		public IType check (Context context)
+		 
+		public override IType check (Context context)
 		{
 			context = context is ResourceContext ? context : context.newResourceContext();
 			IType resourceType = resource.check (context);
 			if (!(resourceType is ResourceType))
 				throw new SyntaxError ("Not a resource!");
-			return VoidType.Instance;
+			if (thenWith != null)
+				return thenWith.check(context, TextType.Instance);
+			else
+				return VoidType.Instance;
 		}
 
-		override 
-		public IValue interpret (Context context)
+		 
+		public override IValue interpret (Context context)
 		{
 			Context resContext = context is ResourceContext ? context : context.newResourceContext();
 			IValue o = resource.interpret (resContext);
@@ -68,8 +83,15 @@ namespace prompto.statement
 				String data = content.interpret(context).ToString();
 				if(context==resContext)
 				   res.writeLine(data);
+				else if(thenWith != null)
+					res.writeFully(data, text => {
+						Context local = context.newChildContext();
+						local.registerValue(new Variable(thenWith.Name, TextType.Instance));
+						local.setValue(thenWith.Name, new TextValue(text));
+						thenWith.Statements.interpret(local);
+					});
 				else
-				   res.writeFully (data);
+					res.writeFully (data);
 				return null;
 			} finally {
 				if (resContext != context)

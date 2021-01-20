@@ -12,7 +12,8 @@ namespace prompto.value
         Binary readBinary();
         String readFully();
         void writeFully(String data);
-		String readLine();
+        void writeFully(String data, Action<String> thenWith);
+        String readLine();
 		void writeLine(String data);
         void close();
 

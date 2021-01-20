@@ -1963,6 +1963,18 @@ public partial class EParserBaseListener : IEParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitFetchManyAsync([NotNull] EParser.FetchManyAsyncContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="EParser.then"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterThen([NotNull] EParser.ThenContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="EParser.then"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitThen([NotNull] EParser.ThenContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="EParser.read_statement"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>

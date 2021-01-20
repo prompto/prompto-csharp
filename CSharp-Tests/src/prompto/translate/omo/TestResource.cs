@@ -33,6 +33,12 @@ namespace prompto.translate.omo
 		}
 
 		[Test]
+		public void testWriteResourceThen()
+		{
+			compareResourceOMO("resource/writeResourceThen.poc");
+		}
+
+		[Test]
 		public void testWriteWithResource()
 		{
 			compareResourceOMO("resource/writeWithResource.poc");

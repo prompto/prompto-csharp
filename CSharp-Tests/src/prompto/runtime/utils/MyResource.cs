@@ -70,6 +70,13 @@ namespace prompto.runtime.utils
             content = data;
         }
 
+		public void writeFully(string data, Action<string> thenWith)
+		{
+			writeFully(data);
+			thenWith.Invoke("accepted: " + readFully());
+		}
+
+
 		public String readLine()
 		{
 			if(reader==null)
@@ -84,5 +91,6 @@ namespace prompto.runtime.utils
 				val += '\n';
 			content = val + data;
 		}
-	}
+
+    }
 }

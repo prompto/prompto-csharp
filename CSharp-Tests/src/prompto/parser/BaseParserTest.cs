@@ -299,7 +299,7 @@ namespace prompto.parser
 			CodeWriter writer = new CodeWriter(Dialect.M, context);
 			dle.ToDialect(writer);
 			String m = writer.ToString();
-			// Console.WriteLine(p);
+			Console.WriteLine(m);
 			// parse m source code
 			DeclarationList dlp = parseMString(m);
 			context = Context.newGlobalsContext();

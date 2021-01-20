@@ -1464,6 +1464,16 @@ public interface IOParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitFetchManyAsync([NotNull] OParser.FetchManyAsyncContext context);
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="OParser.then"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterThen([NotNull] OParser.ThenContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="OParser.then"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitThen([NotNull] OParser.ThenContext context);
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="OParser.read_statement"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>

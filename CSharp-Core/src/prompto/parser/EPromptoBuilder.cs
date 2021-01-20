@@ -2766,9 +2766,8 @@ namespace prompto.parser
         {
             CategoryType category = GetNodeValue<CategoryType>(ctx.typ);
             IExpression filter = GetNodeValue<IExpression>(ctx.predicate);
-            String name = GetNodeValue<String>(ctx.name);
-            StatementList stmts = GetNodeValue<StatementList>(ctx.stmts);
-            SetNodeValue(ctx, new FetchOneStatement(category, filter, name, stmts));
+            ThenWith thenWith = ThenWith.OrEmpty(GetNodeValue<ThenWith>(ctx.then()));
+            SetNodeValue(ctx, new FetchOneStatement(category, filter, thenWith));
         }
 
         public override void ExitFetchMany(EParser.FetchManyContext ctx)
@@ -2789,11 +2788,17 @@ namespace prompto.parser
             IExpression start = GetNodeValue<IExpression>(ctx.xstart);
             IExpression stop = GetNodeValue<IExpression>(ctx.xstop);
             OrderByClauseList orderBy = GetNodeValue<OrderByClauseList>(ctx.orderby);
-            String name = GetNodeValue<String>(ctx.name);
-            StatementList stmts = GetNodeValue<StatementList>(ctx.stmts);
-            SetNodeValue(ctx, new FetchManyStatement(category, filter, start, stop, orderBy, name, stmts));
+            ThenWith thenWith = ThenWith.OrEmpty(GetNodeValue<ThenWith>(ctx.then()));
+            SetNodeValue(ctx, new FetchManyStatement(category, filter, start, stop, orderBy, thenWith));
         }
 
+
+        public override void ExitThen(EParser.ThenContext ctx)
+        {
+            String name = GetNodeValue<String>(ctx.name);
+            StatementList stmts = GetNodeValue<StatementList>(ctx.stmts);
+            SetNodeValue(ctx, new ThenWith(name, stmts));
+        }
 
         public override void ExitFiltered_list_suffix(EParser.Filtered_list_suffixContext ctx)
         {
@@ -2942,9 +2947,8 @@ namespace prompto.parser
         public override void ExitRead_statement(EParser.Read_statementContext ctx)
         {
             IExpression source = GetNodeValue<IExpression>(ctx.source);
-            String name = GetNodeValue<String>(ctx.name);
-            StatementList stmts = GetNodeValue<StatementList>(ctx.stmts);
-            SetNodeValue(ctx, new ReadStatement(source, name, stmts));
+            ThenWith thenWith = ThenWith.OrEmpty(GetNodeValue<ThenWith>(ctx.then()));
+            SetNodeValue(ctx, new ReadStatement(source, thenWith));
         }
 
 
@@ -2959,7 +2963,8 @@ namespace prompto.parser
         {
             IExpression what = GetNodeValue<IExpression>(ctx.what);
             IExpression target = GetNodeValue<IExpression>(ctx.target);
-            SetNodeValue(ctx, new WriteStatement(what, target));
+            ThenWith thenWith = GetNodeValue<ThenWith>(ctx.then());
+            SetNodeValue(ctx, new WriteStatement(what, target, thenWith));
         }
 
 

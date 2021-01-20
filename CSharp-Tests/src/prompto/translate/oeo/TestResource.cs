@@ -33,6 +33,12 @@ namespace prompto.translate.oeo
 		}
 
 		[Test]
+		public void testWriteResourceThen()
+		{
+			compareResourceOEO("resource/writeResourceThen.poc");
+		}
+
+		[Test]
 		public void testWriteWithResource()
 		{
 			compareResourceOEO("resource/writeWithResource.poc");

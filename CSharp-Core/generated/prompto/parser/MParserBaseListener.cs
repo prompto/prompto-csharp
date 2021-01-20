@@ -1789,6 +1789,18 @@ public partial class MParserBaseListener : IMParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitFetchManyAsync([NotNull] MParser.FetchManyAsyncContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="MParser.then"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterThen([NotNull] MParser.ThenContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="MParser.then"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitThen([NotNull] MParser.ThenContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="MParser.read_statement"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>

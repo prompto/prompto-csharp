@@ -1723,6 +1723,18 @@ public partial class OParserBaseListener : IOParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitFetchManyAsync([NotNull] OParser.FetchManyAsyncContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="OParser.then"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterThen([NotNull] OParser.ThenContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="OParser.then"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitThen([NotNull] OParser.ThenContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="OParser.read_statement"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>

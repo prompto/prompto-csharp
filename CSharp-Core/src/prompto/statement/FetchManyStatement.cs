@@ -10,14 +10,12 @@ namespace prompto.statement
 {
 	public class FetchManyStatement : FetchManyExpression, IStatement
 	{
-		string name;
-		StatementList stmts;
+		ThenWith thenWith;
 
-		public FetchManyStatement(CategoryType type, IExpression filter, IExpression first, IExpression last, OrderByClauseList orderBy, string name, StatementList stmts)
+		public FetchManyStatement(CategoryType type, IExpression filter, IExpression first, IExpression last, OrderByClauseList orderBy, ThenWith thenWith)
 			: base(type, filter, first, last, orderBy)
 		{
-			this.name = name;
-			this.stmts = stmts;
+			this.thenWith = thenWith;
 		}
 
 		public bool CanReturn { get { return false; } }
@@ -28,38 +26,20 @@ namespace prompto.statement
 		public override IType check(Context context)
 		{
 			base.check(context);
-			context = context.newChildContext();
-			context.registerValue(new Variable(name, new CursorType(type)));
-			stmts.check(context, null);
-			return VoidType.Instance;
+			return thenWith.check(context, new CursorType(type));
 		}
 
 
 		public override IValue interpret(Context context) 
 		{
 			IValue record = base.interpret(context);
-			context = context.newChildContext();
-			context.registerValue(new Variable(name, new CursorType(type)));
-			context.setValue(name, record);
-			stmts.interpret(context);
-			return null;
+			return thenWith.interpret(context, record);
 		}
 
 		public override void ToDialect(CodeWriter writer)
 		{
 			base.ToDialect(writer);
-			writer.append(" then with ").append(name);
-			if (writer.getDialect() == Dialect.O)
-				writer.append(" {");
-			else
-				writer.append(":");
-			writer = writer.newChildWriter();
-			writer.getContext().registerValue(new Variable(name, new CursorType(type)));
-			writer.newLine().indent();
-			stmts.ToDialect(writer);
-			writer.dedent();
-			if (writer.getDialect() == Dialect.O)
-				writer.append("}");
+			thenWith.ToDialect(writer, new CursorType(type));
 		}
 
 

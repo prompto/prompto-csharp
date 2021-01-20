@@ -558,6 +558,7 @@
     <Compile Include="src\prompto\grammar\INamedInstance.cs" />
     <Compile Include="src\prompto\expression\PredicateExpression.cs" />
     <Compile Include="src\prompto\expression\ExplicitPredicateExpression.cs" />
+    <Compile Include="src\prompto\grammar\ThenWith.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />

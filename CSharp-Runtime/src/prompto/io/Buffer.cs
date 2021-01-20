@@ -54,6 +54,11 @@ namespace prompto.io
 			this.data = data;
 		}
 
+		public void writeFully(string data, Action<string> thenWith)
+		{
+			thenWith.Invoke(data);
+		}
+
 		public String readLine()
 		{
 			if (reader == null)
@@ -65,5 +70,6 @@ namespace prompto.io
 		{
 			this.data = this.data + data + '\n';
 		}
-	}
+
+     }
 }

@@ -1670,6 +1670,16 @@ public interface IEParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitFetchManyAsync([NotNull] EParser.FetchManyAsyncContext context);
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="EParser.then"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterThen([NotNull] EParser.ThenContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="EParser.then"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitThen([NotNull] EParser.ThenContext context);
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="EParser.read_statement"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>

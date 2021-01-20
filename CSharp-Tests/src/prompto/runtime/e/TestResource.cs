@@ -46,6 +46,12 @@ namespace prompto.runtime.e
 		}
 
 		[Test]
+		public void testWriteResourceThen()
+		{
+			CheckOutput("resource/writeResourceThen.pec");
+		}
+
+		[Test]
 		public void testWriteWithResource()
 		{
 			CheckOutput("resource/writeWithResource.pec");

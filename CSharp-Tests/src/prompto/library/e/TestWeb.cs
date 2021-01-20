@@ -33,6 +33,12 @@ namespace prompto.library.e
 		}
 
 		[Test]
+		public void testFileRef()
+		{
+			CheckTests("web/fileRef.pec");
+		}
+
+		[Test]
 		public void testReact()
 		{
 			CheckTests("web/react.pec");
@@ -42,6 +48,12 @@ namespace prompto.library.e
 		public void testUtils()
 		{
 			CheckTests("web/utils.pec");
+		}
+
+		[Test]
+		public void testWebSocket()
+		{
+			CheckTests("web/webSocket.pec");
 		}
 
 	}

@@ -82,6 +82,11 @@ namespace prompto.internet
 			throw new Exception("Unsupported!");
 		}
 
+		public void writeFully(string data, Action<string> thenWith)
+		{
+			throw new Exception("Unsupported!");
+		}
+
 		public String readLine()
 		{
 			if (client == null)
@@ -96,5 +101,5 @@ namespace prompto.internet
 			throw new Exception("Unsupported!");
 		}
 
-	}
+    }
 }

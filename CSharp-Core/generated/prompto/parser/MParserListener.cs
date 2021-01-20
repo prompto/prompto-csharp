@@ -1520,6 +1520,16 @@ public interface IMParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitFetchManyAsync([NotNull] MParser.FetchManyAsyncContext context);
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="MParser.then"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterThen([NotNull] MParser.ThenContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="MParser.then"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitThen([NotNull] MParser.ThenContext context);
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="MParser.read_statement"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>

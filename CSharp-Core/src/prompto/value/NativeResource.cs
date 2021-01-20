@@ -39,7 +39,12 @@ namespace prompto.value
             ((IResource)instance).writeFully(data);
         }
 
-		public String readLine()
+        public void writeFully(String data, Action<String> thenWith)
+        {
+            ((IResource)instance).writeFully(data, thenWith);
+        }
+
+        public String readLine()
 		{
 			return ((IResource)instance).readLine();
 		}

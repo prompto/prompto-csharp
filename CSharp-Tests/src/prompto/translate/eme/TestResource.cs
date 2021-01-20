@@ -33,6 +33,12 @@ namespace prompto.translate.eme
 		}
 
 		[Test]
+		public void testWriteResourceThen()
+		{
+			compareResourceEME("resource/writeResourceThen.pec");
+		}
+
+		[Test]
 		public void testWriteWithResource()
 		{
 			compareResourceEME("resource/writeWithResource.pec");
