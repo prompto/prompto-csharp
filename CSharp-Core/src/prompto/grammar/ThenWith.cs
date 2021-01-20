@@ -58,7 +58,7 @@ namespace prompto.grammar
             Statements.ToDialect(writer);
             writer.dedent();
             if (writer.getDialect() == Dialect.O)
-                writer.append("}").newLine();
+                writer.append("}");
         }
     }
 }
