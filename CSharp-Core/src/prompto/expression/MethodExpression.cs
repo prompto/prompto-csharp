@@ -8,6 +8,7 @@ using prompto.utils;
 using prompto.value;
 using prompto.declaration;
 using System.Collections.Generic;
+using prompto.literal;
 
 namespace prompto.expression
 {
@@ -31,6 +32,15 @@ namespace prompto.expression
         {
             return expression;
         }
+
+		public TypeLiteral AsTypeLiteral(Context context)
+		{
+			if (expression is UnresolvedIdentifier) {
+				String name = ((UnresolvedIdentifier)expression).getName();
+				return new TypeLiteral(new CategoryType(name));
+			} else
+				throw new NotSupportedException();
+		}
 
 		public override void ToDialect(CodeWriter writer) {
 			if(writer.getDialect()==Dialect.E)
@@ -118,6 +128,6 @@ namespace prompto.expression
 				throw new NotImplementedException();
 		}
 
-	}
+     }
 
 }

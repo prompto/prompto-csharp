@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using prompto.declaration;
 using prompto.error;
+using prompto.expression;
 using prompto.grammar;
 using prompto.literal;
 using prompto.property;
@@ -92,7 +93,14 @@ namespace prompto.processor
             Property prop = new Property();
             prop.SetName(entry.GetKey().ToString());
             Object value = entry.GetValue();
-            if (value is TypeLiteral)
+			if (value is MethodExpression) {
+				value = ((MethodExpression)value).AsTypeLiteral(context);
+			}
+			if (value is TypeExpression) {
+				IType type = ((TypeExpression)value).getType();
+				value = new TypeLiteral(type);
+			}
+			if (value is TypeLiteral)
                 return LoadProperty(annotation, context, entry, prop, (TypeLiteral)value);
             else if (value is SetLiteral)
                 return LoadProperty(annotation, context, entry, prop, (SetLiteral)value);

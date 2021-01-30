@@ -1,9 +1,6 @@
 using prompto.runtime;
-using System;
-using prompto.parser;
 using prompto.type;
 using prompto.expression;
-using prompto.grammar;
 using prompto.utils;
 using prompto.value;
 using prompto.instance;
@@ -23,10 +20,14 @@ namespace prompto.statement
             this.expression = expression;
         }
 
-        override
-        public void ToDialect(CodeWriter writer)
+        public override string ToString()
         {
-			instance.ToDialect(writer, expression);
+            return instance.ToString() + " = " + expression.ToString();
+        }
+
+        public override void ToDialect(CodeWriter writer)
+        {
+            instance.ToDialect(writer, expression);
 			writer.append(" = ");
 			expression.ToDialect(writer);
         }

@@ -26,7 +26,11 @@ namespace prompto.instance
             return name;
         }
 
-		public void ToDialect(CodeWriter writer, IExpression expression)
+        public override string ToString()
+        {
+            return name;
+        }
+        public void ToDialect(CodeWriter writer, IExpression expression)
         {
 			if(expression!=null) try {
 				IType type = expression.check(writer.getContext());

@@ -16,7 +16,7 @@ namespace prompto.parser.m
 		public void canParseCommentLikeCssValue()
         {
 			String css = "#999";
-			MIndentingLexer lexer = new MIndentingLexer(CharStreams.fromstring(css));
+			MIndentingLexer lexer = new MIndentingLexer(CharStreams.fromString(css));
 			IToken token = lexer.NextToken();
 			Assert.AreEqual(MLexer.CSS_DATA, token.Type);
 		}

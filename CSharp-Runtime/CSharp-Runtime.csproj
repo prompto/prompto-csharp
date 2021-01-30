@@ -1,70 +1,13 @@
-<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{63EE2F5C-DD86-4245-98ED-8BDE42236548}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <RootNamespace>CSharpLibraries</RootNamespace>
-    <AssemblyName>CSharp-Runtime</AssemblyName>
+    <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug</OutputPath>
-    <DefineConstants>DEBUG;</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <ConsolePause>false</ConsolePause>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>full</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release</OutputPath>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <ConsolePause>false</ConsolePause>
-  </PropertyGroup>
+
   <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net40\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="YamlDotNet">
-      <HintPath>..\packages\YamlDotNet.9.1.0\lib\net35\YamlDotNet.dll</HintPath>
-    </Reference>
+    <ProjectReference Include="..\CSharp-Core\CSharp-Core.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="src\prompto\internet\Url.cs" />
-    <Compile Include="src\prompto\runtime\Loader.cs" />
-    <Compile Include="src\prompto\reader\CSVReader.cs" />
-    <Compile Include="src\prompto\io\Buffer.cs" />
-    <Compile Include="src\prompto\reader\JSONReader.cs" />
-    <Compile Include="src\prompto\utils\Utils.cs" />
-    <Compile Include="src\prompto\reader\YAMLReader.cs" />
-    <Compile Include="src\prompto\writer\YAMLWriter.cs" />
-    <Compile Include="src\prompto\writer\CSVWriter.cs" />
-  </ItemGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <ItemGroup>
-    <Folder Include="src\" />
-    <Folder Include="src\prompto\" />
-    <Folder Include="src\prompto\internet\" />
-    <Folder Include="src\prompto\runtime\" />
-    <Folder Include="src\prompto\reader\" />
-    <Folder Include="src\prompto\io\" />
-    <Folder Include="src\prompto\utils\" />
-    <Folder Include="src\prompto\writer\" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\CSharp-Core\CSharp-Core.csproj">
-      <Project>{066EA73C-B3DD-41CA-9AD7-81A1D7D3A6DA}</Project>
-      <Name>CSharp-Core</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
+    <PackageReference Include="YamlDotNet" Version="9.1.4" />
   </ItemGroup>
 </Project>

@@ -54,7 +54,13 @@ namespace prompto.literal
         public void ToDialect(CodeWriter writer)
         {
             if (writer.getDialect() == Dialect.E)
-                writer.append("Type: ");
+            {
+                IDeclaration decl = writer.getContext().getRegisteredDeclaration<IDeclaration>(type.GetTypeName());
+                if(decl is MethodDeclarationMap)
+                    writer.append("Method: ");
+                else
+                    writer.append("Type: ");
+            }
             type.ToDialect(writer);
         }
 
