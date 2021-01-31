@@ -4,8 +4,9 @@ language: csharp
 mono: none
 dotnet: 3.1.11
 solution: Prompto.sln
-install:
-  - dotnet add package NUnit.Console --version 3.12.0 
+#install:
+#  - dotnet add package NUnit.Console --version 3.9.0 
+#  - nuget install NUnit.Console -Version 3.9.0 -OutputDirectory testrunner
 script:
-  - dotnet build -c Release -f netstandard2.1 Prompto.sln
-  - dotnet NUnit.ConsoleRunner ./CSharp-Tests/bin/Release/CSharp-Tests.dll
+  - dotnet build -c Release -f netstandard2.0 Prompto.sln 
+  - dotnet test -f netcoreapp3.1 ./CSharp-Tests/bin/Release/CSharp-Tests.dll 
