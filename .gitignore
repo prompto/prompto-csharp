@@ -1,16 +1,12 @@
 **/bin/
 **/obj/
 Prompto.userprefs
-
 Prompto.vsmdi
-
 Local.testsettings
-
 Csharp-Test/TestResult.xml
 travis.yml
 prompto-libraries
 prompto-tests
 .DS_Store
 Prompto.userprefs
-TestReact-bootstrap-3.cs
 .vs
