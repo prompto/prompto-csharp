@@ -100,12 +100,6 @@ namespace prompto.runtime.e
 		}
 
 		[Test]
-		public void testImplicitMember()
-		{
-			CheckOutput("methods/implicitMember.pec");
-		}
-
-		[Test]
 		public void testMember()
 		{
 			CheckOutput("methods/member.pec");
@@ -139,12 +133,6 @@ namespace prompto.runtime.e
 		public void testPolymorphic_abstract()
 		{
 			CheckOutput("methods/polymorphic_abstract.pec");
-		}
-
-		[Test]
-		public void testPolymorphic_implicit()
-		{
-			CheckOutput("methods/polymorphic_implicit.pec");
 		}
 
 		[Test]

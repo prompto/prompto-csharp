@@ -99,12 +99,6 @@ namespace prompto.translate.eoe
 		}
 
 		[Test]
-		public void testImplicitMember()
-		{
-			compareResourceEOE("methods/implicitMember.pec");
-		}
-
-		[Test]
 		public void testMember()
 		{
 			compareResourceEOE("methods/member.pec");
@@ -138,12 +132,6 @@ namespace prompto.translate.eoe
 		public void testPolymorphic_abstract()
 		{
 			compareResourceEOE("methods/polymorphic_abstract.pec");
-		}
-
-		[Test]
-		public void testPolymorphic_implicit()
-		{
-			compareResourceEOE("methods/polymorphic_implicit.pec");
 		}
 
 		[Test]

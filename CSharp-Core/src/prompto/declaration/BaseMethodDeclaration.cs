@@ -171,16 +171,25 @@ namespace prompto.declaration
         {
             try
             {
-                IType requiredType = parameter.GetIType(context).Resolve(context);
+                IType requiredType = parameter.GetIType(context);
+                if (requiredType == null)
+                    return Specificity.INCOMPATIBLE;
+                else
+                    requiredType = requiredType.Resolve(context);
                 IExpression expression = argument.getExpression();
-                IType actualType = argument.checkActualType(context, requiredType, expression, useInstance).Resolve(context);
+                IType actualType = argument.checkActualType(context, requiredType, expression, useInstance);
+                if (actualType == null)
+                    return Specificity.INCOMPATIBLE;
+                else
+                    actualType = actualType.Resolve(context);
                 if (actualType.Equals(requiredType))
                     return Specificity.EXACT;
                 if (requiredType.isAssignableFrom(context, actualType))
                     return Specificity.INHERITED;
-                actualType = argument.resolve(context, this, useInstance).check(context);
-                if (requiredType.isAssignableFrom(context, actualType))
-                    return Specificity.RESOLVED;
+                /*
+                else if(allowDerived && actualType.isAssignableFrom(context, requiredType)
+                    return Specificity.DERIVED;
+                */
             }
             catch (PromptoError)
             {

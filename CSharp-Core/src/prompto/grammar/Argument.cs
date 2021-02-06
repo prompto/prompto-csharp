@@ -168,9 +168,14 @@ namespace prompto.grammar
         public IType checkActualType(Context context, IType requiredType, IExpression expression, bool checkInstance)
         {
             IType actualType = null;
-            bool isArrow = isArrowExpression(requiredType, expression);
+            bool isArrow = isArrowExpression(expression);
             if (isArrow)
-                actualType = checkArrowExpression(context, (MethodType)requiredType, expression);
+            {
+                if (requiredType is MethodType)
+                    actualType = checkArrowExpression(context, (MethodType)requiredType, expression);
+                else
+                    actualType = VoidType.Instance;
+            }
             else if(requiredType is MethodType)
                 actualType = expression.checkReference(context.getCallingContext());
             else
@@ -191,10 +196,8 @@ namespace prompto.grammar
         }
 
 
-        private bool isArrowExpression(IType requiredType, IExpression expression)
+        private bool isArrowExpression(IExpression expression)
         {
-            if (!(requiredType is MethodType))
-			    return false;
             if (expression is ContextualExpression)
                 expression = ((ContextualExpression)expression).Expression;
             return expression is ArrowExpression;

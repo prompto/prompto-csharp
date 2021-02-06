@@ -14,12 +14,6 @@ namespace prompto.translate.oeo
 			compareResourceOEO("self/selfAsParameter.poc");
 		}
 
-		[Test]
-		public void testSelfMember()
-		{
-			compareResourceOEO("self/selfMember.poc");
-		}
-
 	}
 }
 

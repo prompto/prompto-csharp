@@ -87,12 +87,6 @@ namespace prompto.translate.omo
 		}
 
 		[Test]
-		public void testImplicitMember()
-		{
-			compareResourceOMO("methods/implicitMember.poc");
-		}
-
-		[Test]
 		public void testMember()
 		{
 			compareResourceOMO("methods/member.poc");
@@ -120,12 +114,6 @@ namespace prompto.translate.omo
 		public void testPolymorphic_abstract()
 		{
 			compareResourceOMO("methods/polymorphic_abstract.poc");
-		}
-
-		[Test]
-		public void testPolymorphic_implicit()
-		{
-			compareResourceOMO("methods/polymorphic_implicit.poc");
 		}
 
 		[Test]

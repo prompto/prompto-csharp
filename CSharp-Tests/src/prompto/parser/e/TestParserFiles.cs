@@ -40,27 +40,11 @@ namespace prompto.parser
         }
 
         [Test]
-        public void testImplicitMember()
-        {
-            DeclarationList stmts = parseResource("methods/implicitMember.pec");
-            Assert.IsNotNull(stmts);
-            Assert.AreEqual(6, stmts.Count);
-        }
-
-        [Test]
-        public void testPolymorphicImplicit()
-        {
-            DeclarationList stmts = parseResource("methods/polymorphic_implicit.pec");
-            Assert.IsNotNull(stmts);
-            Assert.AreEqual(12, stmts.Count);
-        }
-
-        // [Test]
         public void testEnumeratedCategory()
         {
             DeclarationList stmts = parseResource("enums/categoryEnum.pec");
             Assert.IsNotNull(stmts);
-            Assert.AreEqual(3, stmts.Count);
+            Assert.AreEqual(7, stmts.Count);
         }
 
     }

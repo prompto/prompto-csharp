@@ -88,12 +88,6 @@ namespace prompto.runtime.o
 		}
 
 		[Test]
-		public void testImplicitMember()
-		{
-			CheckOutput("methods/implicitMember.poc");
-		}
-
-		[Test]
 		public void testMember()
 		{
 			CheckOutput("methods/member.poc");
@@ -121,12 +115,6 @@ namespace prompto.runtime.o
 		public void testPolymorphic_abstract()
 		{
 			CheckOutput("methods/polymorphic_abstract.poc");
-		}
-
-		[Test]
-		public void testPolymorphic_implicit()
-		{
-			CheckOutput("methods/polymorphic_implicit.poc");
 		}
 
 		[Test]

@@ -14,12 +14,6 @@ namespace prompto.translate.omo
 			compareResourceOMO("self/selfAsParameter.poc");
 		}
 
-		[Test]
-		public void testSelfMember()
-		{
-			compareResourceOMO("self/selfMember.poc");
-		}
-
 	}
 }
 

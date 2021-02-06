@@ -99,12 +99,6 @@ namespace prompto.translate.eme
 		}
 
 		[Test]
-		public void testImplicitMember()
-		{
-			compareResourceEME("methods/implicitMember.pec");
-		}
-
-		[Test]
 		public void testMember()
 		{
 			compareResourceEME("methods/member.pec");
@@ -138,12 +132,6 @@ namespace prompto.translate.eme
 		public void testPolymorphic_abstract()
 		{
 			compareResourceEME("methods/polymorphic_abstract.pec");
-		}
-
-		[Test]
-		public void testPolymorphic_implicit()
-		{
-			compareResourceEME("methods/polymorphic_implicit.pec");
 		}
 
 		[Test]

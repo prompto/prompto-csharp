@@ -27,12 +27,6 @@ namespace prompto.runtime.e
 			CheckOutput("self/selfAsParameter.pec");
 		}
 
-		[Test]
-		public void testSelfMember()
-		{
-			CheckOutput("self/selfMember.pec");
-		}
-
 	}
 }
 

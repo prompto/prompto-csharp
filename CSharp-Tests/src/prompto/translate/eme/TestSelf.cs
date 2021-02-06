@@ -14,12 +14,6 @@ namespace prompto.translate.eme
 			compareResourceEME("self/selfAsParameter.pec");
 		}
 
-		[Test]
-		public void testSelfMember()
-		{
-			compareResourceEME("self/selfMember.pec");
-		}
-
 	}
 }
 
