@@ -106,7 +106,7 @@ namespace prompto.declaration
                 foreach (String attribute in attributes)
                 {
                     AttributeDeclaration ad = context.getRegisteredDeclaration<AttributeDeclaration>(attribute);
-                    if (ad == null)
+                    if (ad == null && attribute != "text")
                         throw new SyntaxError("Unknown attribute: \"" + attribute + "\"");
                 }
             return new CategoryType(this.GetName());

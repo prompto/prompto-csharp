@@ -124,7 +124,7 @@ namespace prompto.param
 			foreach (String attribute in attributes)
 			{
 				AttributeDeclaration actual = context.getRegisteredDeclaration<AttributeDeclaration>(attribute);
-				if (actual == null)
+				if (actual == null && attribute != "text")
 					throw new SyntaxError("Unknown attribute: \"" + attribute + "\"");
 			}
 		}
