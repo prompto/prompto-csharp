@@ -15,6 +15,12 @@ namespace prompto.translate.oeo
 		}
 
 		[Test]
+		public void testAutoDowncastMethod()
+		{
+			compareResourceOEO("cast/autoDowncastMethod.poc");
+		}
+
+		[Test]
 		public void testCastChild()
 		{
 			compareResourceOEO("cast/castChild.poc");

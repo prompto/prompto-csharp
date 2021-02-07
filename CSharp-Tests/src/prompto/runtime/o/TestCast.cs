@@ -28,6 +28,12 @@ namespace prompto.runtime.o
 		}
 
 		[Test]
+		public void testAutoDowncastMethod()
+		{
+			CheckOutput("cast/autoDowncastMethod.poc");
+		}
+
+		[Test]
 		public void testCastChild()
 		{
 			CheckOutput("cast/castChild.poc");

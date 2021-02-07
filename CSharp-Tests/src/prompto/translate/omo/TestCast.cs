@@ -15,6 +15,12 @@ namespace prompto.translate.omo
 		}
 
 		[Test]
+		public void testAutoDowncastMethod()
+		{
+			compareResourceOMO("cast/autoDowncastMethod.poc");
+		}
+
+		[Test]
 		public void testCastChild()
 		{
 			compareResourceOMO("cast/castChild.poc");
