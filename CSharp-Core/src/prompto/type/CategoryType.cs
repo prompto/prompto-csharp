@@ -274,7 +274,7 @@ namespace prompto.type
         override
         public void checkExists(Context context)
         {
-            getDeclaration(context);
+            Resolve(context);
         }
 
         public override ISet<IMethodDeclaration> getMemberMethods(Context context, string name)

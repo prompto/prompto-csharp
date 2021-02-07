@@ -6,7 +6,7 @@ namespace prompto.runtime
 {
 
 	/* used for downcast */
-	public class LinkedVariable : INamed
+	public class LinkedVariable : INamedInstance
 	{
 
 		IType type;

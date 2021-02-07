@@ -184,7 +184,7 @@ namespace prompto.expression
                 if (name != null)
                 {
                     INamed value = context.getRegisteredValue<INamed>(name);
-                    IType targetType = ((TypeExpression)right).getType();
+                    IType targetType = ((TypeExpression)right).getType().Resolve(context);
                     IType sourceType = value.GetIType(context);
                     if (sourceType.IsMutable(context))
                         targetType = targetType.AsMutable(context, true);
