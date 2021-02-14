@@ -56,6 +56,12 @@ namespace prompto.translate.omo
 			compareResourceOMO("categories/populateFalse.poc");
 		}
 
+		[Test]
+		public void testResourceAttribute()
+		{
+			compareResourceOMO("categories/resourceAttribute.poc");
+		}
+
 	}
 }
 

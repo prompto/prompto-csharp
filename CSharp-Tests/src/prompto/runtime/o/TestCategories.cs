@@ -69,6 +69,12 @@ namespace prompto.runtime.o
 			CheckOutput("categories/populateFalse.poc");
 		}
 
+		[Test]
+		public void testResourceAttribute()
+		{
+			CheckOutput("categories/resourceAttribute.poc");
+		}
+
 	}
 }
 
