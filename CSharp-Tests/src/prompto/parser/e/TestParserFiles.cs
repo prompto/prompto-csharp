@@ -36,7 +36,7 @@ namespace prompto.parser
         {
             DeclarationList stmts = parseResource("methods/attribute.pec");
             Assert.IsNotNull(stmts);
-            Assert.AreEqual(6, stmts.Count);
+            Assert.AreEqual(7, stmts.Count);
         }
 
         [Test]
