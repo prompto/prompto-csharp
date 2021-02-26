@@ -21,6 +21,12 @@ namespace prompto.translate.omo
 		}
 
 		[Test]
+		public void testWithDocumentLiteral()
+		{
+			compareResourceOMO("widget/withDocumentLiteral.poc");
+		}
+
+		[Test]
 		public void testWithEvent()
 		{
 			compareResourceOMO("widget/withEvent.poc");

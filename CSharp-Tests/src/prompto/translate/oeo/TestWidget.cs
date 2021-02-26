@@ -21,6 +21,12 @@ namespace prompto.translate.oeo
 		}
 
 		[Test]
+		public void testWithDocumentLiteral()
+		{
+			compareResourceOEO("widget/withDocumentLiteral.poc");
+		}
+
+		[Test]
 		public void testWithEvent()
 		{
 			compareResourceOEO("widget/withEvent.poc");
