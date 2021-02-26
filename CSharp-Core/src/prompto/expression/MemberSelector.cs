@@ -46,9 +46,15 @@ namespace prompto.expression
 
 		void ToEDialect(CodeWriter writer)
 		{
-			IType type = check(writer.getContext());
-			if (type is MethodType)
-				writer.append("Method: ");
+			try
+			{
+				IType type = check(writer.getContext());
+				if (type is MethodType)
+					writer.append("Method: ");
+			} catch (SyntaxError e)
+			{
+				// gracefully skip exceptions
+			}
 			parentAndMemberToDialect(writer);
 		}
 
