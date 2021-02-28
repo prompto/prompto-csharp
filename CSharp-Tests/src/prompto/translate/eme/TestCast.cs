@@ -45,6 +45,12 @@ namespace prompto.translate.eme
 		}
 
 		[Test]
+		public void testCastDocumentList()
+		{
+			compareResourceEME("cast/castDocumentList.pec");
+		}
+
+		[Test]
 		public void testCastInteger()
 		{
 			compareResourceEME("cast/castInteger.pec");

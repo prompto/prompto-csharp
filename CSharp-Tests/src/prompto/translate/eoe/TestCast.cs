@@ -45,6 +45,12 @@ namespace prompto.translate.eoe
 		}
 
 		[Test]
+		public void testCastDocumentList()
+		{
+			compareResourceEOE("cast/castDocumentList.pec");
+		}
+
+		[Test]
 		public void testCastInteger()
 		{
 			compareResourceEOE("cast/castInteger.pec");
