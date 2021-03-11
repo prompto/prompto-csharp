@@ -6,6 +6,7 @@ using prompto.type;
 using Newtonsoft.Json;
 using prompto.error;
 using System.IO;
+using Newtonsoft.Json.Linq;
 
 namespace prompto.value
 {
@@ -75,6 +76,8 @@ namespace prompto.value
 					return GetKeys();
 				case "values":
 					return GetValues();
+				case "json":
+					return base.GetMemberValue(context, name, autoCreate);
 				default:
 					return GetMember(name, autoCreate);
 			}
@@ -191,7 +194,17 @@ namespace prompto.value
 				return System.Text.Encoding.UTF8.GetString(stream.ToArray());
 			}
 		}
-	
+
+		public override JToken ToJsonToken()
+		{
+			JObject token = new JObject();
+			foreach (KeyValuePair<String, IValue> entry in values)
+			{
+				if(entry.Key != "mutable")
+					token.Add(entry.Key, entry.Value.ToJsonToken());
+			}
+			return token;
+		}
 
 		public override void ToJson (Context context, JsonWriter generator, object instanceId, String fieldName, bool withType, Dictionary<string, byte[]> binaries)
 		{

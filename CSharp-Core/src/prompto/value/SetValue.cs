@@ -5,6 +5,7 @@ using prompto.error;
 using System;
 using System.Text;
 using prompto.expression;
+using Newtonsoft.Json.Linq;
 
 namespace prompto.value
 {
@@ -180,6 +181,13 @@ namespace prompto.value
 			return new ListValue(((ContainerType)type).GetItemType(), list);
 		}
 
+		public override JToken ToJsonToken()
+		{
+			JArray token = new JArray();
+			foreach (IValue o in items)
+				token.Add(o.ToJsonToken());
+			return token;
+		}
 
 	}
 }

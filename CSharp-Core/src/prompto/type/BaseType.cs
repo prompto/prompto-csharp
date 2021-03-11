@@ -182,7 +182,12 @@ namespace prompto.type
 
 		public virtual IType checkMember (Context context, String name)
 		{
-			throw new SyntaxError (this.GetTypeName () + " has no member support for:" + name);
+			if ("text"==name)
+				return TextType.Instance;
+			else if ("json"==name)
+				return TextType.Instance;
+			else
+				throw new SyntaxError(this.GetTypeName() + " has no member support for:" + name);
 		}
 
         public virtual IType checkStaticMember(Context context, String name)

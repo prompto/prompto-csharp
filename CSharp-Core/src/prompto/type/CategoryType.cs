@@ -82,18 +82,23 @@ namespace prompto.type
         {
             if ("category" == name)
                 return new CategoryType("Category");
-            IDeclaration decl = context.getRegisteredDeclaration<IDeclaration>(GetTypeName());
-            if (decl == null)
-                throw new SyntaxError("Unknown category:" + GetTypeName());
-            if (decl is EnumeratedNativeDeclaration)
-                return decl.GetIType(context).checkMember(context, name);
-            else if (decl is CategoryDeclaration)
-                return checkMember(context, (CategoryDeclaration)decl, name);
+            else if ("json" == name)
+                return TextType.Instance;
             else
-                throw new SyntaxError("Not a category:" + GetTypeName());
+            {
+                IDeclaration decl = context.getRegisteredDeclaration<IDeclaration>(GetTypeName());
+                if (decl == null)
+                    throw new SyntaxError("Unknown category:" + GetTypeName());
+                if (decl is EnumeratedNativeDeclaration)
+                    return decl.GetIType(context).checkMember(context, name);
+                else if (decl is CategoryDeclaration)
+                    return checkAttribute(context, (CategoryDeclaration)decl, name);
+                else
+                    throw new SyntaxError("Not a category:" + GetTypeName());
+            }
         }
 
-        public IType checkMember(Context context, CategoryDeclaration decl, String name)
+        public IType checkAttribute(Context context, CategoryDeclaration decl, String name)
         {
             if (decl.Storable && "dbId" == name)
                 return AnyType.Instance;
@@ -125,7 +130,7 @@ namespace prompto.type
             if(decl is EnumeratedCategoryDeclaration || decl is EnumeratedNativeDeclaration)
     	        return decl.GetIType(context).checkStaticMember(context, name);
             if(decl is SingletonCategoryDeclaration)
-    	        return checkMember(context, (SingletonCategoryDeclaration) decl, name);
+    	        return checkAttribute(context, (SingletonCategoryDeclaration) decl, name);
             throw new SyntaxError("No attribute:" + name + " in category:" + GetTypeName());
             
  	    }

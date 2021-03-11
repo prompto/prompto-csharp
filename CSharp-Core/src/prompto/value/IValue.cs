@@ -1,11 +1,10 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using prompto.runtime;
 using prompto.type;
 using Newtonsoft.Json;
 using prompto.store;
+using Newtonsoft.Json.Linq;
 
 namespace prompto.value
 {
@@ -29,6 +28,7 @@ namespace prompto.value
 		bool Equals(Context context, IValue value);
 		bool Roughly(Context context, IValue value);
 		bool Contains(Context context, IValue value);
+		JToken ToJsonToken();
 		void ToJson(Context context, JsonWriter generator, Object instanceId, String fieldName, bool withType, Dictionary<String, byte[]> binaries);
         IValue ToDocumentValue(Context context);
         object GetStorableData();

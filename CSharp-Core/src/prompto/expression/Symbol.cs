@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using prompto.store;
 using prompto.declaration;
 using prompto.error;
+using Newtonsoft.Json.Linq;
 
 namespace prompto.expression
 {
@@ -132,6 +133,11 @@ namespace prompto.expression
 
 		public void SetItem(Context context, IValue item, IValue value) {
 			throw new NotSupportedException("No item support for " + this.GetType().Name);
+		}
+
+		public JToken ToJsonToken()
+		{
+			return new JValue(symbol);
 		}
 
 		public virtual void ToJson (Context context, JsonWriter generator, Object instanceId, String fieldName, bool withType, Dictionary<String, byte[]> binaries)

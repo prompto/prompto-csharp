@@ -6,6 +6,7 @@ using prompto.error;
 using prompto.runtime;
 using System.Globalization;
 using prompto.type;
+using Newtonsoft.Json.Linq;
 
 namespace prompto.value
 {
@@ -39,14 +40,14 @@ namespace prompto.value
 				return base.GetMemberValue(context, name, autoCreate);
 		}
 
-		override
-        public IValue Add(Context context, IValue value)
+		
+        public override IValue Add(Context context, IValue value)
         {
             return new TextValue(this.value.ToString() + value.ToString());
         }
 
-        override
-        public IValue Multiply(Context context, IValue value)
+        
+        public override IValue Multiply(Context context, IValue value)
         {
             if (value is IntegerValue)
             {
@@ -71,8 +72,8 @@ namespace prompto.value
             return value.CompareTo(obj.Value);
         }
 
-        override
-        public Int32 CompareTo(Context context, IValue value)
+        
+        public override Int32 CompareTo(Context context, IValue value)
         {
             if (value is CharacterValue)
                 return this.value.CompareTo(((CharacterValue)value).value);
@@ -82,20 +83,20 @@ namespace prompto.value
         }
 
         
-        override
-        public Object ConvertTo(Type type)
+        
+        public override Object ConvertTo(Type type)
         {
             return value;
         }
         
-        override
-        public String ToString()
+        
+        public override String ToString()
         {
             return Value.ToString();
         }
 
-        override
-        public bool Equals(object obj)
+        
+        public override bool Equals(object obj)
         {
             if (obj is CharacterValue)
                 return value.Equals(((CharacterValue)obj).value);
@@ -103,8 +104,8 @@ namespace prompto.value
                 return value.Equals(obj);
         }
 
-		override
-		public bool Roughly(Context context, IValue obj)
+		
+		public override bool Roughly(Context context, IValue obj)
 		{
 			if (obj is CharacterValue || obj is TextValue) 
 			{
@@ -114,10 +115,16 @@ namespace prompto.value
 				return value.Equals(obj);
 		}
 
-		override
-        public int GetHashCode()
+		
+        public override int GetHashCode()
         {
             return value.GetHashCode();
         }
+
+        public override JToken ToJsonToken()
+        {
+            return new JValue(value);
+        }
+
     }
 }

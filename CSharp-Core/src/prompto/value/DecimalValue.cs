@@ -6,6 +6,7 @@ using System.Globalization;
 using prompto.error;
 using prompto.runtime;
 using prompto.type;
+using Newtonsoft.Json.Linq;
 
 namespace prompto.value
 {
@@ -143,6 +144,12 @@ namespace prompto.value
         {
             return value.GetHashCode();
         }
+
+        public override JToken ToJsonToken()
+        {
+            return new JValue(value);
+        }
+
 
     }
 }

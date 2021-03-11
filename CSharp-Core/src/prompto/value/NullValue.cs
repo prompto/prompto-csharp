@@ -1,4 +1,5 @@
-﻿using prompto.type;
+﻿using Newtonsoft.Json.Linq;
+using prompto.type;
 
 namespace prompto.value
 {
@@ -28,6 +29,12 @@ namespace prompto.value
 		{
 			return null; // YES! you read correctly
 		}
+
+		public override JToken ToJsonToken()
+		{
+			return new JValue((string)null);
+		}
+
 	}
 }
 

@@ -6,6 +6,7 @@ using System.Globalization;
 using prompto.error;
 using prompto.runtime;
 using prompto.type;
+using Newtonsoft.Json.Linq;
 
 namespace prompto.value
 {
@@ -167,6 +168,11 @@ namespace prompto.value
         public override IValue ToDocumentValue(Context context)
         {
             return new TextValue(ToString());
+        }
+
+        public override JToken ToJsonToken()
+        {
+            return new JValue(this.ToString());
         }
 
     }

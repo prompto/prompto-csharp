@@ -9,6 +9,8 @@ using prompto.type;
 using Newtonsoft.Json;
 using prompto.store;
 using System.Text;
+using Newtonsoft.Json.Linq;
+using System.IO;
 
 namespace prompto.value
 {
@@ -48,7 +50,7 @@ namespace prompto.value
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("[");
-            foreach (Object o in this)
+            foreach (IValue o in this)
             {
                 sb.Append(o.ToString());
                 sb.Append(", ");
@@ -57,6 +59,14 @@ namespace prompto.value
                 sb.Length = sb.Length - 2;
             sb.Append("]");
             return sb.ToString();
+        }
+
+        public JToken ToJsonToken()
+        {
+            JArray token = new JArray();
+            foreach (IValue o in this)
+                token.Add(o.ToJsonToken());
+            return token;
         }
 
         public void ToJson(Context context, JsonWriter generator, Object instanceId, String fieldName, bool withType, Dictionary<String, byte[]> binaries)
@@ -271,6 +281,14 @@ namespace prompto.value
                 return new IntegerValue(this.Count);
             else if ("text" == name)
                 return new TextValue(this.ToString());
+            else if ("json" == name)
+            {
+                JToken token = ToJsonToken();
+                JsonSerializer serializer = JsonSerializer.CreateDefault();
+                StringWriter writer = new StringWriter();
+                serializer.Serialize(writer, token);
+                return new TextValue(writer.ToString());
+            }
             else
                 throw new NotSupportedException("No such member " + name);
         }

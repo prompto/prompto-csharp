@@ -10,6 +10,7 @@ using prompto.declaration;
 using prompto.type;
 using prompto.store;
 using prompto.param;
+using Newtonsoft.Json.Linq;
 
 namespace prompto.value
 {
@@ -144,13 +145,21 @@ namespace prompto.value
         {
             if ("category" == name)
                 return GetCategory(context);
+            else if ("json" == name)
+                return base.GetMemberValue(context, name, autoCreate);
+            else
+                return GetAttributeValue(context, name);
+        }
+
+        public IValue GetAttributeValue(Context context, String name)
+        { 
             Context stacked = null;
             bool first = !activeGetters.Value.TryGetValue(name, out stacked);
             if (first)
                 activeGetters.Value[name] = context;
             try
             {
-                return GetMemberAllowGetter(context, name, stacked == null);
+                return GetAttributeValueAllowGetter(context, name, stacked == null);
             }
             finally
             {
@@ -165,7 +174,7 @@ namespace prompto.value
             return new NativeInstance(decl, declaration);
         }
 
-        protected IValue GetMemberAllowGetter(Context context, String attrName, bool allowGetter)
+        protected IValue GetAttributeValueAllowGetter(Context context, String attrName, bool allowGetter)
         {
             GetterMethodDeclaration getter = allowGetter ? declaration.findGetter(context, attrName) : null;
             if (getter != null)
@@ -374,6 +383,16 @@ namespace prompto.value
             return doc;
         }
 
+        public override JToken ToJsonToken()
+        {
+            JObject token = new JObject();
+            foreach (KeyValuePair<String, IValue> entry in values)
+            {
+                if (entry.Key != "mutable")
+                    token.Add(entry.Key, entry.Value.ToJsonToken());
+            }
+            return token;
+        }
     }
 
 }

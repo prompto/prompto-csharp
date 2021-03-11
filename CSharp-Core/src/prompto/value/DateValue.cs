@@ -1,5 +1,6 @@
 using System;
 using System.Globalization;
+using Newtonsoft.Json.Linq;
 using prompto.error;
 using prompto.runtime;
 using prompto.type;
@@ -62,8 +63,8 @@ namespace prompto.value
                 throw new SyntaxError("Illegal: Date - " + value.GetType().Name);
         }
 
-        override
-        public Int32 CompareTo(Context context, IValue value)
+        
+        public override Int32 CompareTo(Context context, IValue value)
         {
             if (value is DateValue)
                 return this.value.CompareTo(((DateValue)value).value);
@@ -72,8 +73,8 @@ namespace prompto.value
 
         }
 
-        override
-        public IValue GetMemberValue(Context context, String name, bool autoCreate)
+        
+        public override IValue GetMemberValue(Context context, String name, bool autoCreate)
         {
             if ("year" == name)
                 return new IntegerValue(this.Year);
@@ -87,8 +88,8 @@ namespace prompto.value
                 return base.GetMemberValue(context, name, autoCreate);
         }
 
-        override
-        public Object ConvertTo(Type type)
+        
+        public override Object ConvertTo(Type type)
         {
             return value;
         }
@@ -168,5 +169,11 @@ namespace prompto.value
         {
             return new TextValue(ToString());
         }
+
+        public override JToken ToJsonToken()
+        {
+            return new JValue(this.ToString());
+        }
+
     }
 }

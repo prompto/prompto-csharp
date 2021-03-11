@@ -10,6 +10,7 @@ using System.Text;
 using prompto.store;
 using prompto.expression;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace prompto.value
 {
@@ -53,6 +54,14 @@ namespace prompto.value
                 sb.Length = sb.Length - 2;
             sb.Append(")");
             return sb.ToString();
+        }
+
+        public JToken ToJsonToken()
+        {
+            JArray token = new JArray();
+            foreach (IValue o in this)
+                token.Add(o.ToJsonToken());
+            return token;
         }
 
         public void ToJson(Context context, JsonWriter generator, Object instanceId, String fieldName, bool withType, Dictionary<String, byte[]> binaries)

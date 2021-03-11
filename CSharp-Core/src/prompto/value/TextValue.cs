@@ -6,6 +6,7 @@ using prompto.grammar;
 using System.Collections;
 using prompto.type;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace prompto.value
 {
@@ -214,6 +215,12 @@ namespace prompto.value
         {
             generator.WriteValue(value);
         }
+
+        public override JToken ToJsonToken()
+        {
+            return new JValue(value);
+        }
+
     }
 
     class CharacterEnumerator : IEnumerator<CharacterValue>

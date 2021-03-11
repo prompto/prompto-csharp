@@ -4,7 +4,7 @@ using prompto.runtime;
 using prompto.type;
 using Newtonsoft.Json;
 using System.Collections.Generic;
-
+using Newtonsoft.Json.Linq;
 
 namespace prompto.value
 {
@@ -163,6 +163,12 @@ namespace prompto.value
         {
             generator.WriteValue(value);
         }
+
+        public override JToken ToJsonToken()
+        {
+            return new JValue(value);
+        }
+
 
     }
 }

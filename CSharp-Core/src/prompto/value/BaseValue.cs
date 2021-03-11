@@ -4,6 +4,8 @@ using prompto.runtime;
 using prompto.type;
 using Newtonsoft.Json;
 using prompto.store;
+using Newtonsoft.Json.Linq;
+using System.IO;
 
 namespace prompto.value
 {
@@ -76,8 +78,16 @@ namespace prompto.value
 
 		public virtual IValue GetMemberValue(Context context, String name, bool autoCreate)
         {
-			if("text"==name)
+			if ("text" == name)
 				return new TextValue(this.ToString());
+			else if ("json" == name)
+			{
+				JToken token = ToJsonToken();
+				JsonSerializer serializer = JsonSerializer.CreateDefault();
+				StringWriter writer = new StringWriter();
+				serializer.Serialize(writer, token);
+				return new TextValue(writer.ToString());
+			} 
 			else
 				throw new NotSupportedException("No member support for " + this.GetType().Name);
         }
@@ -118,6 +128,11 @@ namespace prompto.value
 			throw new NotSupportedException("No 'contains' support for " + this.GetType().Name);
 		}
 
+
+		public virtual JToken ToJsonToken()
+        {
+			throw new NotSupportedException("No ToJsonToken support for " + this.GetType().Name);
+		}
 
 		public virtual void ToJson (Context context, JsonWriter generator, Object instanceId, String fieldName, bool withType, Dictionary<String, byte[]> binaries)
 		{

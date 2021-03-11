@@ -1,4 +1,5 @@
 using System;
+using Newtonsoft.Json.Linq;
 using prompto.error;
 using prompto.runtime;
 using prompto.type;
@@ -79,6 +80,12 @@ namespace prompto.value
         {
             return value.GetHashCode();
         }
+
+        public override JToken ToJsonToken()
+        {
+            return new JValue(value);
+        }
+
 
 
     }

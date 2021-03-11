@@ -8,6 +8,7 @@ using prompto.expression;
 using Newtonsoft.Json;
 using prompto.store;
 using System.Text;
+using Newtonsoft.Json.Linq;
 
 namespace prompto.grammar
 {
@@ -145,6 +146,14 @@ namespace prompto.grammar
 			return false;
 		}
 
+
+		public JToken ToJsonToken()
+		{
+			JArray token = new JArray();
+			foreach (IValue o in this)
+				token.Add(o.ToJsonToken());
+			return token;
+		}
 
 		public virtual void ToJson (Context context, JsonWriter generator, Object instanceId, String fieldName, bool withType, Dictionary<String, byte[]> binaries)
 		{

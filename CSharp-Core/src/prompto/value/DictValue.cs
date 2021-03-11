@@ -10,6 +10,8 @@ using prompto.expression;
 using prompto.type;
 using Newtonsoft.Json;
 using prompto.store;
+using Newtonsoft.Json.Linq;
+using System.IO;
 
 namespace prompto.value
 {
@@ -168,10 +170,22 @@ namespace prompto.value
                     return GetValues();
                 case "text":
                     return new TextValue(this.ToString());
+                case "json":
+                    return ToJsonText();
                 default:
                     throw new NotSupportedException("No such member " + name);
             }
         }
+
+        private TextValue ToJsonText()
+        {
+            JToken token = ToJsonToken();
+            JsonSerializer serializer = JsonSerializer.CreateDefault();
+            StringWriter writer = new StringWriter();
+            serializer.Serialize(writer, token);
+            return new TextValue(writer.ToString());
+        }
+
 
         private IValue GetValues()
         {
@@ -314,6 +328,16 @@ namespace prompto.value
             return false;
         }
 
+
+        public JToken ToJsonToken()
+        {
+            JObject token = new JObject();
+            foreach (KeyValuePair<TextValue, IValue> kvp in (Dictionary<TextValue, IValue>)this)
+            {
+                token.Add(kvp.Key.ToString(), kvp.Value.ToJsonToken());
+            }
+            return token;
+        }
 
         public virtual void ToJson(Context context, JsonWriter generator, Object instanceId, String fieldName, bool withType, Dictionary<String, byte[]> binaries)
         {

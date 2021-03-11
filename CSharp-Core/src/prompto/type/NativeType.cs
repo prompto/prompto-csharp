@@ -42,14 +42,6 @@ namespace prompto.type
 		}
 
 
-		public override IType checkMember(Context context, string name)
-		{
-			if ("text" == name)
-				return TextType.Instance;
-			else
-				return base.checkMember(context, name);
-		}
-
 		public override void checkUnique(Context context)
 		{
 			// nothing to do

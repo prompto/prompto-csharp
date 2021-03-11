@@ -1,4 +1,5 @@
 using System;
+using Newtonsoft.Json.Linq;
 using prompto.error;
 using prompto.runtime;
 using prompto.type;
@@ -78,6 +79,12 @@ namespace prompto.value
         public override string ToString()
         {
 			return "" + major + "." + minor + "." + fix;
-			}
+		}
+
+        public override JToken ToJsonToken()
+        {
+            return new JValue(this.ToString());
+        }
+
     }
 }
