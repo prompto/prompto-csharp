@@ -12,10 +12,10 @@ namespace prompto.memstore
 	public class MemStore : IStore
 	{
 
-		static long lastDbId = 0;
-        static Dictionary<string, long> sequences = new Dictionary<string, long>();
+		long lastDbId = 0;
+        Dictionary<string, long> sequences = new Dictionary<string, long>();
 
-		public static long NextDbId
+		public long NextDbId
 		{
 			get
 			{
@@ -168,7 +168,7 @@ namespace prompto.memstore
 
 		public IStorable NewStorable(List<string> categories)
 		{
-			return new StorableDocument(categories);
+			return new StorableDocument(categories, () => NextDbId);
 		}
 
 		public Type GetDbIdType()
@@ -323,10 +323,12 @@ namespace prompto.memstore
 
 			Dictionary<string, object> document = null;
 			readonly List<string> categories;
+			Func<long> dbIdSource;
 
-			public StorableDocument(List<string> categories)
+			public StorableDocument(List<string> categories, Func<long> dbIdSource)
 			{
 				this.categories = categories;
+				this.dbIdSource = dbIdSource;
 			}
 
 			public object GetOrCreateDbId()
@@ -334,7 +336,7 @@ namespace prompto.memstore
 				object dbId = GetData("dbId");
 				if (dbId == null)
 				{
-					dbId = NextDbId;
+					dbId = dbIdSource.Invoke();
 					SetData("dId", dbId);
 				}
 				return dbId;
@@ -377,7 +379,7 @@ namespace prompto.memstore
 				Dictionary<string, object> doc = new Dictionary<string, object>();
 				if (categories != null)
 					doc["category"] = categories;
-				doc["dbId"] = dbId == null ? NextDbId : dbId;
+				doc["dbId"] = dbId == null ? dbIdSource.Invoke() : dbId;
 				return doc;
 			}
 

@@ -90,8 +90,6 @@ namespace prompto.expression
 				List<String> categories = (List<String>)stored.GetData("category");
 				String actualTypeName = categories.FindLast((v) => true);
 				CategoryType type = new CategoryType(actualTypeName);
-				if (this.type != null)
-					return type.newInstance(context, stored);
 				return type.newInstance(context, stored);
 			}
 		}

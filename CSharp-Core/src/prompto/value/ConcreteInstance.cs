@@ -388,7 +388,12 @@ namespace prompto.value
             JObject token = new JObject();
             foreach (KeyValuePair<String, IValue> entry in values)
             {
-                if (entry.Key != "mutable")
+                if(entry.Key == "dbId")
+                {
+                    JToken value = entry.Value == null ? new JValue((string)null) : new JValue("" + entry.Value);
+                    token.Add(entry.Key, value);
+                }
+                else if (entry.Key != "mutable")
                     token.Add(entry.Key, entry.Value.ToJsonToken());
             }
             return token;

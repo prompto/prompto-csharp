@@ -175,9 +175,8 @@ namespace prompto.declaration
             if (!decl.Storable)
                 return;
             Object data = stored.GetData(name);
-            IValue value = data == null ? null : decl.getIType().ConvertCSharpValueToIValue(context, data);
-            if (value != null)
-                instance.SetMemberValue(context, name, value);
+            IValue value = data == null ? NullValue.Instance : decl.getIType().ConvertCSharpValueToIValue(context, data);
+            instance.SetMemberValue(context, name, value);
         }
 
         public virtual void checkConstructorContext(Context context)
