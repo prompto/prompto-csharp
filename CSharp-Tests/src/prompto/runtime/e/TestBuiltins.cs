@@ -22,6 +22,12 @@ namespace prompto.runtime.e
 		}
 
 		[Test]
+		public void testBooleanJson()
+		{
+			CheckOutput("builtins/booleanJson.pec");
+		}
+
+		[Test]
 		public void testBooleanText()
 		{
 			CheckOutput("builtins/booleanText.pec");
@@ -34,6 +40,12 @@ namespace prompto.runtime.e
 		}
 
 		[Test]
+		public void testCategoryJson()
+		{
+			CheckOutput("builtins/categoryJson.pec");
+		}
+
+		[Test]
 		public void testCategoryText()
 		{
 			CheckOutput("builtins/categoryText.pec");
@@ -43,6 +55,12 @@ namespace prompto.runtime.e
 		public void testCharCodePoint()
 		{
 			CheckOutput("builtins/charCodePoint.pec");
+		}
+
+		[Test]
+		public void testCharJson()
+		{
+			CheckOutput("builtins/charJson.pec");
 		}
 
 		[Test]
@@ -67,6 +85,12 @@ namespace prompto.runtime.e
 		public void testDateDayOfYear()
 		{
 			CheckOutput("builtins/dateDayOfYear.pec");
+		}
+
+		[Test]
+		public void testDateJson()
+		{
+			CheckOutput("builtins/dateJson.pec");
 		}
 
 		[Test]
@@ -103,6 +127,12 @@ namespace prompto.runtime.e
 		public void testDateTimeHour()
 		{
 			CheckOutput("builtins/dateTimeHour.pec");
+		}
+
+		[Test]
+		public void testDateTimeJson()
+		{
+			CheckOutput("builtins/dateTimeJson.pec");
 		}
 
 		[Test]
@@ -154,6 +184,12 @@ namespace prompto.runtime.e
 		}
 
 		[Test]
+		public void testDecimalJson()
+		{
+			CheckOutput("builtins/decimalJson.pec");
+		}
+
+		[Test]
 		public void testDecimalText()
 		{
 			CheckOutput("builtins/decimalText.pec");
@@ -163,6 +199,12 @@ namespace prompto.runtime.e
 		public void testDictCount()
 		{
 			CheckOutput("builtins/dictCount.pec");
+		}
+
+		[Test]
+		public void testDictJson()
+		{
+			CheckOutput("builtins/dictJson.pec");
 		}
 
 		[Test]
@@ -187,6 +229,12 @@ namespace prompto.runtime.e
 		public void testDocumentCount()
 		{
 			CheckOutput("builtins/documentCount.pec");
+		}
+
+		[Test]
+		public void testDocumentJson()
+		{
+			CheckOutput("builtins/documentJson.pec");
 		}
 
 		[Test]
@@ -232,6 +280,12 @@ namespace prompto.runtime.e
 		}
 
 		[Test]
+		public void testIntegerJson()
+		{
+			CheckOutput("builtins/integerJson.pec");
+		}
+
+		[Test]
 		public void testIntegerText()
 		{
 			CheckOutput("builtins/integerText.pec");
@@ -256,6 +310,12 @@ namespace prompto.runtime.e
 		}
 
 		[Test]
+		public void testListJson()
+		{
+			CheckOutput("builtins/listJson.pec");
+		}
+
+		[Test]
 		public void testListText()
 		{
 			CheckOutput("builtins/listText.pec");
@@ -277,6 +337,12 @@ namespace prompto.runtime.e
 		public void testPeriodHours()
 		{
 			CheckOutput("builtins/periodHours.pec");
+		}
+
+		[Test]
+		public void testPeriodJson()
+		{
+			CheckOutput("builtins/periodJson.pec");
 		}
 
 		[Test]
@@ -328,6 +394,12 @@ namespace prompto.runtime.e
 		}
 
 		[Test]
+		public void testSetJson()
+		{
+			CheckOutput("builtins/setJson.pec");
+		}
+
+		[Test]
 		public void testSetText()
 		{
 			CheckOutput("builtins/setText.pec");
@@ -355,6 +427,12 @@ namespace prompto.runtime.e
 		public void testTextEndsWith()
 		{
 			CheckOutput("builtins/textEndsWith.pec");
+		}
+
+		[Test]
+		public void testTextJson()
+		{
+			CheckOutput("builtins/textJson.pec");
 		}
 
 		[Test]
@@ -412,6 +490,12 @@ namespace prompto.runtime.e
 		}
 
 		[Test]
+		public void testTimeJson()
+		{
+			CheckOutput("builtins/timeJson.pec");
+		}
+
+		[Test]
 		public void testTimeMilli()
 		{
 			CheckOutput("builtins/timeMilli.pec");
@@ -445,6 +529,12 @@ namespace prompto.runtime.e
 		public void testTupleText()
 		{
 			CheckOutput("builtins/tupleText.pec");
+		}
+
+		[Test]
+		public void testUuidJson()
+		{
+			CheckOutput("builtins/uuidJson.pec");
 		}
 
 		[Test]

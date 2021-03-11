@@ -9,6 +9,12 @@ namespace prompto.translate.eme
 	{
 
 		[Test]
+		public void testBooleanJson()
+		{
+			compareResourceEME("builtins/booleanJson.pec");
+		}
+
+		[Test]
 		public void testBooleanText()
 		{
 			compareResourceEME("builtins/booleanText.pec");
@@ -21,6 +27,12 @@ namespace prompto.translate.eme
 		}
 
 		[Test]
+		public void testCategoryJson()
+		{
+			compareResourceEME("builtins/categoryJson.pec");
+		}
+
+		[Test]
 		public void testCategoryText()
 		{
 			compareResourceEME("builtins/categoryText.pec");
@@ -30,6 +42,12 @@ namespace prompto.translate.eme
 		public void testCharCodePoint()
 		{
 			compareResourceEME("builtins/charCodePoint.pec");
+		}
+
+		[Test]
+		public void testCharJson()
+		{
+			compareResourceEME("builtins/charJson.pec");
 		}
 
 		[Test]
@@ -54,6 +72,12 @@ namespace prompto.translate.eme
 		public void testDateDayOfYear()
 		{
 			compareResourceEME("builtins/dateDayOfYear.pec");
+		}
+
+		[Test]
+		public void testDateJson()
+		{
+			compareResourceEME("builtins/dateJson.pec");
 		}
 
 		[Test]
@@ -90,6 +114,12 @@ namespace prompto.translate.eme
 		public void testDateTimeHour()
 		{
 			compareResourceEME("builtins/dateTimeHour.pec");
+		}
+
+		[Test]
+		public void testDateTimeJson()
+		{
+			compareResourceEME("builtins/dateTimeJson.pec");
 		}
 
 		[Test]
@@ -153,6 +183,12 @@ namespace prompto.translate.eme
 		}
 
 		[Test]
+		public void testDecimalJson()
+		{
+			compareResourceEME("builtins/decimalJson.pec");
+		}
+
+		[Test]
 		public void testDecimalText()
 		{
 			compareResourceEME("builtins/decimalText.pec");
@@ -162,6 +198,12 @@ namespace prompto.translate.eme
 		public void testDictCount()
 		{
 			compareResourceEME("builtins/dictCount.pec");
+		}
+
+		[Test]
+		public void testDictJson()
+		{
+			compareResourceEME("builtins/dictJson.pec");
 		}
 
 		[Test]
@@ -186,6 +228,12 @@ namespace prompto.translate.eme
 		public void testDocumentCount()
 		{
 			compareResourceEME("builtins/documentCount.pec");
+		}
+
+		[Test]
+		public void testDocumentJson()
+		{
+			compareResourceEME("builtins/documentJson.pec");
 		}
 
 		[Test]
@@ -231,6 +279,12 @@ namespace prompto.translate.eme
 		}
 
 		[Test]
+		public void testIntegerJson()
+		{
+			compareResourceEME("builtins/integerJson.pec");
+		}
+
+		[Test]
 		public void testIntegerText()
 		{
 			compareResourceEME("builtins/integerText.pec");
@@ -255,6 +309,12 @@ namespace prompto.translate.eme
 		}
 
 		[Test]
+		public void testListJson()
+		{
+			compareResourceEME("builtins/listJson.pec");
+		}
+
+		[Test]
 		public void testListText()
 		{
 			compareResourceEME("builtins/listText.pec");
@@ -276,6 +336,12 @@ namespace prompto.translate.eme
 		public void testPeriodHours()
 		{
 			compareResourceEME("builtins/periodHours.pec");
+		}
+
+		[Test]
+		public void testPeriodJson()
+		{
+			compareResourceEME("builtins/periodJson.pec");
 		}
 
 		[Test]
@@ -327,6 +393,12 @@ namespace prompto.translate.eme
 		}
 
 		[Test]
+		public void testSetJson()
+		{
+			compareResourceEME("builtins/setJson.pec");
+		}
+
+		[Test]
 		public void testSetText()
 		{
 			compareResourceEME("builtins/setText.pec");
@@ -354,6 +426,12 @@ namespace prompto.translate.eme
 		public void testTextEndsWith()
 		{
 			compareResourceEME("builtins/textEndsWith.pec");
+		}
+
+		[Test]
+		public void testTextJson()
+		{
+			compareResourceEME("builtins/textJson.pec");
 		}
 
 		[Test]
@@ -411,6 +489,12 @@ namespace prompto.translate.eme
 		}
 
 		[Test]
+		public void testTimeJson()
+		{
+			compareResourceEME("builtins/timeJson.pec");
+		}
+
+		[Test]
 		public void testTimeMilli()
 		{
 			compareResourceEME("builtins/timeMilli.pec");
@@ -444,6 +528,12 @@ namespace prompto.translate.eme
 		public void testTupleText()
 		{
 			compareResourceEME("builtins/tupleText.pec");
+		}
+
+		[Test]
+		public void testUuidJson()
+		{
+			compareResourceEME("builtins/uuidJson.pec");
 		}
 
 		[Test]
