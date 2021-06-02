@@ -3215,7 +3215,7 @@ namespace prompto.parser
         }
 
 
-        public override void ExitJavaScriptCategoryBinding(EParser.JavaScriptCategoryBindingContext ctx)
+        public override void ExitJavascriptCategoryBinding(EParser.JavascriptCategoryBindingContext ctx)
         {
             SetNodeValue(ctx, GetNodeValue<Object>(ctx.binding));
         }
@@ -3258,7 +3258,7 @@ namespace prompto.parser
             SetNodeValue(ctx, new JavaScriptItemExpression(exp));
         }
 
-        public override void ExitJavaScriptNativeStatement(EParser.JavaScriptNativeStatementContext ctx)
+        public override void ExitJavascriptNativeStatement(EParser.JavascriptNativeStatementContext ctx)
         {
             JavaScriptStatement stmt = GetNodeValue<JavaScriptStatement>(ctx.javascript_native_statement());
             SetNodeValue(ctx, new JavaScriptNativeCall(stmt));

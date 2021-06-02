@@ -2654,17 +2654,17 @@ public interface IMParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitPython3CategoryBinding([NotNull] MParser.Python3CategoryBindingContext context);
 	/// <summary>
-	/// Enter a parse tree produced by the <c>JavaScriptCategoryBinding</c>
+	/// Enter a parse tree produced by the <c>JavascriptCategoryBinding</c>
 	/// labeled alternative in <see cref="MParser.native_category_binding"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterJavaScriptCategoryBinding([NotNull] MParser.JavaScriptCategoryBindingContext context);
+	void EnterJavascriptCategoryBinding([NotNull] MParser.JavascriptCategoryBindingContext context);
 	/// <summary>
-	/// Exit a parse tree produced by the <c>JavaScriptCategoryBinding</c>
+	/// Exit a parse tree produced by the <c>JavascriptCategoryBinding</c>
 	/// labeled alternative in <see cref="MParser.native_category_binding"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitJavaScriptCategoryBinding([NotNull] MParser.JavaScriptCategoryBindingContext context);
+	void ExitJavascriptCategoryBinding([NotNull] MParser.JavascriptCategoryBindingContext context);
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="MParser.python_category_binding"/>.
 	/// </summary>
@@ -2794,17 +2794,17 @@ public interface IMParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitPython3NativeStatement([NotNull] MParser.Python3NativeStatementContext context);
 	/// <summary>
-	/// Enter a parse tree produced by the <c>JavaScriptNativeStatement</c>
+	/// Enter a parse tree produced by the <c>JavascriptNativeStatement</c>
 	/// labeled alternative in <see cref="MParser.native_statement"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterJavaScriptNativeStatement([NotNull] MParser.JavaScriptNativeStatementContext context);
+	void EnterJavascriptNativeStatement([NotNull] MParser.JavascriptNativeStatementContext context);
 	/// <summary>
-	/// Exit a parse tree produced by the <c>JavaScriptNativeStatement</c>
+	/// Exit a parse tree produced by the <c>JavascriptNativeStatement</c>
 	/// labeled alternative in <see cref="MParser.native_statement"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitJavaScriptNativeStatement([NotNull] MParser.JavaScriptNativeStatementContext context);
+	void ExitJavascriptNativeStatement([NotNull] MParser.JavascriptNativeStatementContext context);
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="MParser.python_native_statement"/>.
 	/// </summary>

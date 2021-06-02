@@ -3129,19 +3129,19 @@ public partial class MParserBaseListener : IMParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitPython3CategoryBinding([NotNull] MParser.Python3CategoryBindingContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by the <c>JavaScriptCategoryBinding</c>
+	/// Enter a parse tree produced by the <c>JavascriptCategoryBinding</c>
 	/// labeled alternative in <see cref="MParser.native_category_binding"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void EnterJavaScriptCategoryBinding([NotNull] MParser.JavaScriptCategoryBindingContext context) { }
+	public virtual void EnterJavascriptCategoryBinding([NotNull] MParser.JavascriptCategoryBindingContext context) { }
 	/// <summary>
-	/// Exit a parse tree produced by the <c>JavaScriptCategoryBinding</c>
+	/// Exit a parse tree produced by the <c>JavascriptCategoryBinding</c>
 	/// labeled alternative in <see cref="MParser.native_category_binding"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void ExitJavaScriptCategoryBinding([NotNull] MParser.JavaScriptCategoryBindingContext context) { }
+	public virtual void ExitJavascriptCategoryBinding([NotNull] MParser.JavascriptCategoryBindingContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="MParser.python_category_binding"/>.
 	/// <para>The default implementation does nothing.</para>
@@ -3295,19 +3295,19 @@ public partial class MParserBaseListener : IMParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitPython3NativeStatement([NotNull] MParser.Python3NativeStatementContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by the <c>JavaScriptNativeStatement</c>
+	/// Enter a parse tree produced by the <c>JavascriptNativeStatement</c>
 	/// labeled alternative in <see cref="MParser.native_statement"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void EnterJavaScriptNativeStatement([NotNull] MParser.JavaScriptNativeStatementContext context) { }
+	public virtual void EnterJavascriptNativeStatement([NotNull] MParser.JavascriptNativeStatementContext context) { }
 	/// <summary>
-	/// Exit a parse tree produced by the <c>JavaScriptNativeStatement</c>
+	/// Exit a parse tree produced by the <c>JavascriptNativeStatement</c>
 	/// labeled alternative in <see cref="MParser.native_statement"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void ExitJavaScriptNativeStatement([NotNull] MParser.JavaScriptNativeStatementContext context) { }
+	public virtual void ExitJavascriptNativeStatement([NotNull] MParser.JavascriptNativeStatementContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="MParser.python_native_statement"/>.
 	/// <para>The default implementation does nothing.</para>

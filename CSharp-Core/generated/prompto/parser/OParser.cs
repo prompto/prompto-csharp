@@ -13097,22 +13097,22 @@ public partial class OParser : AbstractParser {
 			if (typedListener != null) typedListener.ExitCSharpCategoryBinding(this);
 		}
 	}
-	public partial class JavaScriptCategoryBindingContext : Native_category_bindingContext {
+	public partial class JavascriptCategoryBindingContext : Native_category_bindingContext {
 		public Javascript_category_bindingContext binding;
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode JAVASCRIPT() { return GetToken(OParser.JAVASCRIPT, 0); }
 		[System.Diagnostics.DebuggerNonUserCode] public Javascript_category_bindingContext javascript_category_binding() {
 			return GetRuleContext<Javascript_category_bindingContext>(0);
 		}
-		public JavaScriptCategoryBindingContext(Native_category_bindingContext context) { CopyFrom(context); }
+		public JavascriptCategoryBindingContext(Native_category_bindingContext context) { CopyFrom(context); }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void EnterRule(IParseTreeListener listener) {
 			IOParserListener typedListener = listener as IOParserListener;
-			if (typedListener != null) typedListener.EnterJavaScriptCategoryBinding(this);
+			if (typedListener != null) typedListener.EnterJavascriptCategoryBinding(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void ExitRule(IParseTreeListener listener) {
 			IOParserListener typedListener = listener as IOParserListener;
-			if (typedListener != null) typedListener.ExitJavaScriptCategoryBinding(this);
+			if (typedListener != null) typedListener.ExitJavascriptCategoryBinding(this);
 		}
 	}
 
@@ -13165,13 +13165,13 @@ public partial class OParser : AbstractParser {
 				}
 				break;
 			case JAVASCRIPT:
-				_localctx = new JavaScriptCategoryBindingContext(_localctx);
+				_localctx = new JavascriptCategoryBindingContext(_localctx);
 				EnterOuterAlt(_localctx, 5);
 				{
 				State = 1918;
 				Match(JAVASCRIPT);
 				State = 1919;
-				((JavaScriptCategoryBindingContext)_localctx).binding = javascript_category_binding();
+				((JavascriptCategoryBindingContext)_localctx).binding = javascript_category_binding();
 				}
 				break;
 			default:
@@ -13874,21 +13874,21 @@ public partial class OParser : AbstractParser {
 			if (typedListener != null) typedListener.ExitJavaNativeStatement(this);
 		}
 	}
-	public partial class JavaScriptNativeStatementContext : Native_statementContext {
+	public partial class JavascriptNativeStatementContext : Native_statementContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode JAVASCRIPT() { return GetToken(OParser.JAVASCRIPT, 0); }
 		[System.Diagnostics.DebuggerNonUserCode] public Javascript_native_statementContext javascript_native_statement() {
 			return GetRuleContext<Javascript_native_statementContext>(0);
 		}
-		public JavaScriptNativeStatementContext(Native_statementContext context) { CopyFrom(context); }
+		public JavascriptNativeStatementContext(Native_statementContext context) { CopyFrom(context); }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void EnterRule(IParseTreeListener listener) {
 			IOParserListener typedListener = listener as IOParserListener;
-			if (typedListener != null) typedListener.EnterJavaScriptNativeStatement(this);
+			if (typedListener != null) typedListener.EnterJavascriptNativeStatement(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void ExitRule(IParseTreeListener listener) {
 			IOParserListener typedListener = listener as IOParserListener;
-			if (typedListener != null) typedListener.ExitJavaScriptNativeStatement(this);
+			if (typedListener != null) typedListener.ExitJavascriptNativeStatement(this);
 		}
 	}
 	public partial class Python2NativeStatementContext : Native_statementContext {
@@ -13975,7 +13975,7 @@ public partial class OParser : AbstractParser {
 				}
 				break;
 			case JAVASCRIPT:
-				_localctx = new JavaScriptNativeStatementContext(_localctx);
+				_localctx = new JavascriptNativeStatementContext(_localctx);
 				EnterOuterAlt(_localctx, 5);
 				{
 				State = 2007;
