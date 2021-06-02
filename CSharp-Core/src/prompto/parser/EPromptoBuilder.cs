@@ -3246,6 +3246,18 @@ namespace prompto.parser
             SetNodeValue(ctx, new JavaScriptIntegerLiteral(text));
         }
 
+        public override void ExitJavaScriptItemExpression(EParser.JavaScriptItemExpressionContext ctx)
+        {
+            JavaScriptExpression exp = GetNodeValue<JavaScriptExpression>(ctx.exp);
+            SetNodeValue(ctx, exp);
+        }
+
+        public override void ExitJavascript_item_expression(EParser.Javascript_item_expressionContext ctx)
+        {
+            JavaScriptExpression exp = GetNodeValue<JavaScriptExpression>(ctx.exp);
+            SetNodeValue(ctx, new JavaScriptItemExpression(exp));
+        }
+
         public override void ExitJavaScriptNativeStatement(EParser.JavaScriptNativeStatementContext ctx)
         {
             JavaScriptStatement stmt = GetNodeValue<JavaScriptStatement>(ctx.javascript_native_statement());
