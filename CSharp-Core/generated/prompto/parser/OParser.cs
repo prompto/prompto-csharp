@@ -18612,57 +18612,57 @@ public partial class OParser : AbstractParser {
 			base.CopyFrom(context);
 		}
 	}
-	public partial class JavaScriptMemberExpressionContext : Javascript_selector_expressionContext {
+	public partial class JavascriptMemberExpressionContext : Javascript_selector_expressionContext {
 		public Javascript_identifierContext name;
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode DOT() { return GetToken(OParser.DOT, 0); }
 		[System.Diagnostics.DebuggerNonUserCode] public Javascript_identifierContext javascript_identifier() {
 			return GetRuleContext<Javascript_identifierContext>(0);
 		}
-		public JavaScriptMemberExpressionContext(Javascript_selector_expressionContext context) { CopyFrom(context); }
+		public JavascriptMemberExpressionContext(Javascript_selector_expressionContext context) { CopyFrom(context); }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void EnterRule(IParseTreeListener listener) {
 			IOParserListener typedListener = listener as IOParserListener;
-			if (typedListener != null) typedListener.EnterJavaScriptMemberExpression(this);
+			if (typedListener != null) typedListener.EnterJavascriptMemberExpression(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void ExitRule(IParseTreeListener listener) {
 			IOParserListener typedListener = listener as IOParserListener;
-			if (typedListener != null) typedListener.ExitJavaScriptMemberExpression(this);
+			if (typedListener != null) typedListener.ExitJavascriptMemberExpression(this);
 		}
 	}
-	public partial class JavaScriptItemExpressionContext : Javascript_selector_expressionContext {
+	public partial class JavascriptItemExpressionContext : Javascript_selector_expressionContext {
 		public Javascript_item_expressionContext exp;
 		[System.Diagnostics.DebuggerNonUserCode] public Javascript_item_expressionContext javascript_item_expression() {
 			return GetRuleContext<Javascript_item_expressionContext>(0);
 		}
-		public JavaScriptItemExpressionContext(Javascript_selector_expressionContext context) { CopyFrom(context); }
+		public JavascriptItemExpressionContext(Javascript_selector_expressionContext context) { CopyFrom(context); }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void EnterRule(IParseTreeListener listener) {
 			IOParserListener typedListener = listener as IOParserListener;
-			if (typedListener != null) typedListener.EnterJavaScriptItemExpression(this);
+			if (typedListener != null) typedListener.EnterJavascriptItemExpression(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void ExitRule(IParseTreeListener listener) {
 			IOParserListener typedListener = listener as IOParserListener;
-			if (typedListener != null) typedListener.ExitJavaScriptItemExpression(this);
+			if (typedListener != null) typedListener.ExitJavascriptItemExpression(this);
 		}
 	}
-	public partial class JavaScriptMethodExpressionContext : Javascript_selector_expressionContext {
+	public partial class JavascriptMethodExpressionContext : Javascript_selector_expressionContext {
 		public Javascript_method_expressionContext method;
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode DOT() { return GetToken(OParser.DOT, 0); }
 		[System.Diagnostics.DebuggerNonUserCode] public Javascript_method_expressionContext javascript_method_expression() {
 			return GetRuleContext<Javascript_method_expressionContext>(0);
 		}
-		public JavaScriptMethodExpressionContext(Javascript_selector_expressionContext context) { CopyFrom(context); }
+		public JavascriptMethodExpressionContext(Javascript_selector_expressionContext context) { CopyFrom(context); }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void EnterRule(IParseTreeListener listener) {
 			IOParserListener typedListener = listener as IOParserListener;
-			if (typedListener != null) typedListener.EnterJavaScriptMethodExpression(this);
+			if (typedListener != null) typedListener.EnterJavascriptMethodExpression(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void ExitRule(IParseTreeListener listener) {
 			IOParserListener typedListener = listener as IOParserListener;
-			if (typedListener != null) typedListener.ExitJavaScriptMethodExpression(this);
+			if (typedListener != null) typedListener.ExitJavascriptMethodExpression(this);
 		}
 	}
 
@@ -18675,31 +18675,31 @@ public partial class OParser : AbstractParser {
 			ErrorHandler.Sync(this);
 			switch ( Interpreter.AdaptivePredict(TokenStream,216,Context) ) {
 			case 1:
-				_localctx = new JavaScriptMethodExpressionContext(_localctx);
+				_localctx = new JavascriptMethodExpressionContext(_localctx);
 				EnterOuterAlt(_localctx, 1);
 				{
 				State = 2371;
 				Match(DOT);
 				State = 2372;
-				((JavaScriptMethodExpressionContext)_localctx).method = javascript_method_expression();
+				((JavascriptMethodExpressionContext)_localctx).method = javascript_method_expression();
 				}
 				break;
 			case 2:
-				_localctx = new JavaScriptMemberExpressionContext(_localctx);
+				_localctx = new JavascriptMemberExpressionContext(_localctx);
 				EnterOuterAlt(_localctx, 2);
 				{
 				State = 2373;
 				Match(DOT);
 				State = 2374;
-				((JavaScriptMemberExpressionContext)_localctx).name = javascript_identifier();
+				((JavascriptMemberExpressionContext)_localctx).name = javascript_identifier();
 				}
 				break;
 			case 3:
-				_localctx = new JavaScriptItemExpressionContext(_localctx);
+				_localctx = new JavascriptItemExpressionContext(_localctx);
 				EnterOuterAlt(_localctx, 3);
 				{
 				State = 2375;
-				((JavaScriptItemExpressionContext)_localctx).exp = javascript_item_expression();
+				((JavascriptItemExpressionContext)_localctx).exp = javascript_item_expression();
 				}
 				break;
 			}

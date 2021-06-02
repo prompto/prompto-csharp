@@ -3818,41 +3818,41 @@ public interface IOParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitJavascript_new_expression([NotNull] OParser.Javascript_new_expressionContext context);
 	/// <summary>
-	/// Enter a parse tree produced by the <c>JavaScriptMethodExpression</c>
+	/// Enter a parse tree produced by the <c>JavascriptMethodExpression</c>
 	/// labeled alternative in <see cref="OParser.javascript_selector_expression"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterJavaScriptMethodExpression([NotNull] OParser.JavaScriptMethodExpressionContext context);
+	void EnterJavascriptMethodExpression([NotNull] OParser.JavascriptMethodExpressionContext context);
 	/// <summary>
-	/// Exit a parse tree produced by the <c>JavaScriptMethodExpression</c>
+	/// Exit a parse tree produced by the <c>JavascriptMethodExpression</c>
 	/// labeled alternative in <see cref="OParser.javascript_selector_expression"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitJavaScriptMethodExpression([NotNull] OParser.JavaScriptMethodExpressionContext context);
+	void ExitJavascriptMethodExpression([NotNull] OParser.JavascriptMethodExpressionContext context);
 	/// <summary>
-	/// Enter a parse tree produced by the <c>JavaScriptMemberExpression</c>
+	/// Enter a parse tree produced by the <c>JavascriptMemberExpression</c>
 	/// labeled alternative in <see cref="OParser.javascript_selector_expression"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterJavaScriptMemberExpression([NotNull] OParser.JavaScriptMemberExpressionContext context);
+	void EnterJavascriptMemberExpression([NotNull] OParser.JavascriptMemberExpressionContext context);
 	/// <summary>
-	/// Exit a parse tree produced by the <c>JavaScriptMemberExpression</c>
+	/// Exit a parse tree produced by the <c>JavascriptMemberExpression</c>
 	/// labeled alternative in <see cref="OParser.javascript_selector_expression"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitJavaScriptMemberExpression([NotNull] OParser.JavaScriptMemberExpressionContext context);
+	void ExitJavascriptMemberExpression([NotNull] OParser.JavascriptMemberExpressionContext context);
 	/// <summary>
-	/// Enter a parse tree produced by the <c>JavaScriptItemExpression</c>
+	/// Enter a parse tree produced by the <c>JavascriptItemExpression</c>
 	/// labeled alternative in <see cref="OParser.javascript_selector_expression"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterJavaScriptItemExpression([NotNull] OParser.JavaScriptItemExpressionContext context);
+	void EnterJavascriptItemExpression([NotNull] OParser.JavascriptItemExpressionContext context);
 	/// <summary>
-	/// Exit a parse tree produced by the <c>JavaScriptItemExpression</c>
+	/// Exit a parse tree produced by the <c>JavascriptItemExpression</c>
 	/// labeled alternative in <see cref="OParser.javascript_selector_expression"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitJavaScriptItemExpression([NotNull] OParser.JavaScriptItemExpressionContext context);
+	void ExitJavascriptItemExpression([NotNull] OParser.JavascriptItemExpressionContext context);
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="OParser.javascript_method_expression"/>.
 	/// </summary>

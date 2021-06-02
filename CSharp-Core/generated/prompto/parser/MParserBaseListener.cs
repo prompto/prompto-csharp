@@ -4443,47 +4443,47 @@ public partial class MParserBaseListener : IMParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitJavascript_new_expression([NotNull] MParser.Javascript_new_expressionContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by the <c>JavaScriptMethodExpression</c>
+	/// Enter a parse tree produced by the <c>JavascriptMethodExpression</c>
 	/// labeled alternative in <see cref="MParser.javascript_selector_expression"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void EnterJavaScriptMethodExpression([NotNull] MParser.JavaScriptMethodExpressionContext context) { }
+	public virtual void EnterJavascriptMethodExpression([NotNull] MParser.JavascriptMethodExpressionContext context) { }
 	/// <summary>
-	/// Exit a parse tree produced by the <c>JavaScriptMethodExpression</c>
+	/// Exit a parse tree produced by the <c>JavascriptMethodExpression</c>
 	/// labeled alternative in <see cref="MParser.javascript_selector_expression"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void ExitJavaScriptMethodExpression([NotNull] MParser.JavaScriptMethodExpressionContext context) { }
+	public virtual void ExitJavascriptMethodExpression([NotNull] MParser.JavascriptMethodExpressionContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by the <c>JavaScriptMemberExpression</c>
+	/// Enter a parse tree produced by the <c>JavascriptMemberExpression</c>
 	/// labeled alternative in <see cref="MParser.javascript_selector_expression"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void EnterJavaScriptMemberExpression([NotNull] MParser.JavaScriptMemberExpressionContext context) { }
+	public virtual void EnterJavascriptMemberExpression([NotNull] MParser.JavascriptMemberExpressionContext context) { }
 	/// <summary>
-	/// Exit a parse tree produced by the <c>JavaScriptMemberExpression</c>
+	/// Exit a parse tree produced by the <c>JavascriptMemberExpression</c>
 	/// labeled alternative in <see cref="MParser.javascript_selector_expression"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void ExitJavaScriptMemberExpression([NotNull] MParser.JavaScriptMemberExpressionContext context) { }
+	public virtual void ExitJavascriptMemberExpression([NotNull] MParser.JavascriptMemberExpressionContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by the <c>JavaScriptItemExpression</c>
+	/// Enter a parse tree produced by the <c>JavascriptItemExpression</c>
 	/// labeled alternative in <see cref="MParser.javascript_selector_expression"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void EnterJavaScriptItemExpression([NotNull] MParser.JavaScriptItemExpressionContext context) { }
+	public virtual void EnterJavascriptItemExpression([NotNull] MParser.JavascriptItemExpressionContext context) { }
 	/// <summary>
-	/// Exit a parse tree produced by the <c>JavaScriptItemExpression</c>
+	/// Exit a parse tree produced by the <c>JavascriptItemExpression</c>
 	/// labeled alternative in <see cref="MParser.javascript_selector_expression"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void ExitJavaScriptItemExpression([NotNull] MParser.JavaScriptItemExpressionContext context) { }
+	public virtual void ExitJavascriptItemExpression([NotNull] MParser.JavascriptItemExpressionContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="MParser.javascript_method_expression"/>.
 	/// <para>The default implementation does nothing.</para>

@@ -2950,7 +2950,7 @@ namespace prompto.parser
             SetNodeValue(ctx, map);
         }
 
-        public override void ExitJavaScriptItemExpression(OParser.JavaScriptItemExpressionContext ctx)
+        public override void ExitJavascriptItemExpression(OParser.JavascriptItemExpressionContext ctx)
         {
             JavaScriptExpression exp = GetNodeValue<JavaScriptExpression>(ctx.exp);
             SetNodeValue(ctx, exp);
@@ -2962,7 +2962,7 @@ namespace prompto.parser
             SetNodeValue(ctx, new JavaScriptItemExpression(exp));
         }
 
-        public override void ExitJavaScriptMemberExpression(OParser.JavaScriptMemberExpressionContext ctx)
+        public override void ExitJavascriptMemberExpression(OParser.JavascriptMemberExpressionContext ctx)
         {
             String name = ctx.name.GetText();
             SetNodeValue(ctx, new JavaScriptMemberExpression(name));
@@ -2974,7 +2974,7 @@ namespace prompto.parser
             SetNodeValue(ctx, exp);
         }
 
-        public override void ExitJavaScriptMethodExpression(OParser.JavaScriptMethodExpressionContext ctx)
+        public override void ExitJavascriptMethodExpression(OParser.JavascriptMethodExpressionContext ctx)
         {
             JavaScriptExpression method = GetNodeValue<JavaScriptExpression>(ctx.method);
             SetNodeValue(ctx, method);
