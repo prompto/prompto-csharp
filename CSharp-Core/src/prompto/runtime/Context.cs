@@ -125,9 +125,9 @@ namespace prompto.runtime
             return context == this.parent || (this.parent != null && this.parent.IsChildOf(context));
         }
 
-        public virtual bool IsInResourceContext {
+        public virtual bool IsWithResourceContext {
             get {
-                return parent != null && parent != this && parent.IsInResourceContext;
+                return parent != null && parent != this && parent.IsWithResourceContext;
             }
         }
 
@@ -501,7 +501,7 @@ namespace prompto.runtime
         {
         }
 
-        public override bool IsInResourceContext
+        public override bool IsWithResourceContext
         {
             get
             {

@@ -29,7 +29,7 @@ namespace prompto.expression
 
         public override IType check(Context context)
         {
-			if(!(context.IsInResourceContext))
+			if(!(context.IsWithResourceContext))
 				throw new SyntaxError("Not a resource context!");
 			IType sourceType = resource.check(context);
             if (!(sourceType is ResourceType))
@@ -39,7 +39,7 @@ namespace prompto.expression
 
 		public override IValue interpret(Context context)
 		{
-			if (!(context.IsInResourceContext))
+			if (!(context.IsWithResourceContext))
 				throw new SyntaxError("Not a resource context!");
 			IValue o = resource.interpret(context);
 			if (o == null)
