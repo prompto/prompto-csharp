@@ -22,6 +22,30 @@ namespace prompto.runtime.o
 		}
 
 		[Test]
+		public void testReadInDoWhile()
+		{
+			CheckOutput("resource/readInDoWhile.poc");
+		}
+
+		[Test]
+		public void testReadInForEach()
+		{
+			CheckOutput("resource/readInForEach.poc");
+		}
+
+		[Test]
+		public void testReadInIf()
+		{
+			CheckOutput("resource/readInIf.poc");
+		}
+
+		[Test]
+		public void testReadInWhile()
+		{
+			CheckOutput("resource/readInWhile.poc");
+		}
+
+		[Test]
 		public void testReadResource()
 		{
 			CheckOutput("resource/readResource.poc");

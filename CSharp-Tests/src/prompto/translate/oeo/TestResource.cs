@@ -9,6 +9,30 @@ namespace prompto.translate.oeo
 	{
 
 		[Test]
+		public void testReadInDoWhile()
+		{
+			compareResourceOEO("resource/readInDoWhile.poc");
+		}
+
+		[Test]
+		public void testReadInForEach()
+		{
+			compareResourceOEO("resource/readInForEach.poc");
+		}
+
+		[Test]
+		public void testReadInIf()
+		{
+			compareResourceOEO("resource/readInIf.poc");
+		}
+
+		[Test]
+		public void testReadInWhile()
+		{
+			compareResourceOEO("resource/readInWhile.poc");
+		}
+
+		[Test]
 		public void testReadResource()
 		{
 			compareResourceOEO("resource/readResource.poc");

@@ -9,6 +9,30 @@ namespace prompto.translate.omo
 	{
 
 		[Test]
+		public void testReadInDoWhile()
+		{
+			compareResourceOMO("resource/readInDoWhile.poc");
+		}
+
+		[Test]
+		public void testReadInForEach()
+		{
+			compareResourceOMO("resource/readInForEach.poc");
+		}
+
+		[Test]
+		public void testReadInIf()
+		{
+			compareResourceOMO("resource/readInIf.poc");
+		}
+
+		[Test]
+		public void testReadInWhile()
+		{
+			compareResourceOMO("resource/readInWhile.poc");
+		}
+
+		[Test]
 		public void testReadResource()
 		{
 			compareResourceOMO("resource/readResource.poc");
