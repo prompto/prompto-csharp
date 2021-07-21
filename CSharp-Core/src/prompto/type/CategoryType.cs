@@ -481,13 +481,17 @@ namespace prompto.type
         public IInstance newInstance(Context context)
         {
             CategoryDeclaration decl = context.getRegisteredDeclaration<CategoryDeclaration>(this.GetTypeName());
-            return decl.newInstance(context);
+            IInstance inst = decl.newInstance(context);
+            inst.setMutable(this.Mutable);
+            return inst;
         }
 
         public IInstance newInstance(Context context, IStored stored)
         {
             CategoryDeclaration decl = context.getRegisteredDeclaration<CategoryDeclaration>(this.GetTypeName());
-            return decl.newInstance(context, stored);
+            IInstance inst = decl.newInstance(context, stored);
+            inst.setMutable(this.Mutable);
+            return inst;
         }
 
         public override IValue ConvertCSharpValueToIValue(Context context, object value)
