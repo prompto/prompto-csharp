@@ -3596,6 +3596,16 @@ public interface IEParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitIsOtherExpression([NotNull] EParser.IsOtherExpressionContext context);
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="EParser.metadata"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterMetadata([NotNull] EParser.MetadataContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="EParser.metadata"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitMetadata([NotNull] EParser.MetadataContext context);
+	/// <summary>
 	/// Enter a parse tree produced by the <c>ArrowExpressionBody</c>
 	/// labeled alternative in <see cref="EParser.arrow_expression"/>.
 	/// </summary>

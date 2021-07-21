@@ -3388,6 +3388,16 @@ public interface IMParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitIsOtherExpression([NotNull] MParser.IsOtherExpressionContext context);
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="MParser.metadata"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterMetadata([NotNull] MParser.MetadataContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="MParser.metadata"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitMetadata([NotNull] MParser.MetadataContext context);
+	/// <summary>
 	/// Enter a parse tree produced by the <c>ArrowExpressionBody</c>
 	/// labeled alternative in <see cref="MParser.arrow_expression"/>.
 	/// </summary>

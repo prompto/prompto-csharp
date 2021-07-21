@@ -3420,6 +3420,16 @@ public interface IOParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitIsOtherExpression([NotNull] OParser.IsOtherExpressionContext context);
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="OParser.metadata"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterMetadata([NotNull] OParser.MetadataContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="OParser.metadata"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitMetadata([NotNull] OParser.MetadataContext context);
+	/// <summary>
 	/// Enter a parse tree produced by the <c>ArrowExpressionBody</c>
 	/// labeled alternative in <see cref="OParser.arrow_expression"/>.
 	/// </summary>

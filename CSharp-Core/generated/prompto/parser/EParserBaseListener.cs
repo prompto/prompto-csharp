@@ -4237,6 +4237,18 @@ public partial class EParserBaseListener : IEParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitIsOtherExpression([NotNull] EParser.IsOtherExpressionContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="EParser.metadata"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterMetadata([NotNull] EParser.MetadataContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="EParser.metadata"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitMetadata([NotNull] EParser.MetadataContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by the <c>ArrowExpressionBody</c>
 	/// labeled alternative in <see cref="EParser.arrow_expression"/>.
 	/// <para>The default implementation does nothing.</para>

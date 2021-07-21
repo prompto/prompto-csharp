@@ -3995,6 +3995,18 @@ public partial class MParserBaseListener : IMParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitIsOtherExpression([NotNull] MParser.IsOtherExpressionContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="MParser.metadata"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterMetadata([NotNull] MParser.MetadataContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="MParser.metadata"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitMetadata([NotNull] MParser.MetadataContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by the <c>ArrowExpressionBody</c>
 	/// labeled alternative in <see cref="MParser.arrow_expression"/>.
 	/// <para>The default implementation does nothing.</para>
