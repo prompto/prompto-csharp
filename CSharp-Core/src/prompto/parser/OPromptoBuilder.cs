@@ -1092,8 +1092,9 @@ namespace prompto.parser
         {
             ExpressionList del = GetNodeValue<ExpressionList>(ctx.to_del);
             ExpressionList add = GetNodeValue<ExpressionList>(ctx.to_add);
+            IExpression meta = GetNodeValue<IExpression>(ctx.with_meta);
             StatementList stmts = GetNodeValue<StatementList>(ctx.stmts);
-            StoreStatement stmt = new StoreStatement(del, add, stmts);
+            DeleteAndStoreStatement stmt = new DeleteAndStoreStatement(del, add, meta, stmts);
             SetNodeValue(ctx, stmt);
         }
 
