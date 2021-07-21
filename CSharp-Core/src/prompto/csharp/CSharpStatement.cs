@@ -23,6 +23,8 @@ namespace prompto.csharp
 		public IType check(Context context, IType returnType)
 		{
 			IType type = expression.check(context);
+			if (type == null)
+				type = returnType;
 			if (type is CSharpClassType)
 				type = ((CSharpClassType)type).ConvertCSharpTypeToPromptoType(context, returnType);
 			return isReturn ? type : VoidType.Instance;
@@ -43,8 +45,7 @@ namespace prompto.csharp
 			}
         }
 
-        override
-        public String ToString()
+        public override String ToString()
         {
             return "" + (isReturn ? "return " : "") + expression.ToString() + ";";
         }
