@@ -92,13 +92,27 @@ namespace prompto.csharp
             type = GetGenericType(type);
             if (type==null)
                 return null;
-            Type parent = type.GetGenericTypeDefinition();
-            Type item = type.GetGenericArguments()[0];
-            IType itemType = ConvertCSharpTypeToPromptoType(context, item, null);
-            if (typeof(IList).IsAssignableFrom(parent))
+            Type generic = type.GetGenericTypeDefinition();
+            if (typeof(IList).IsAssignableFrom(generic))
+            {
+                Type item = type.GetGenericArguments()[0];
+                IType itemType = ConvertCSharpTypeToPromptoType(context, item, null);
                 return new ListType(itemType);
-            else if (parent == typeof(IEnumerator<>))
+            }
+            else if (generic == typeof(IEnumerator<>))
+            {
+                Type item = type.GetGenericArguments()[0];
+                IType itemType = ConvertCSharpTypeToPromptoType(context, item, null);
                 return new IteratorType(itemType);
+            }
+            else if (typeof(IDictionary<string, object>).IsAssignableFrom(type))
+                return DocumentType.Instance;
+            else if (generic == typeof(IDictionary<,>) && type.GetGenericArguments()[0] == typeof(string))
+            {
+                Type item = type.GetGenericArguments()[1];
+                IType itemType = ConvertCSharpTypeToPromptoType(context, item, null);
+                return new DictType(itemType);
+            }
             else
                 return null;
         }
@@ -135,7 +149,7 @@ namespace prompto.csharp
             if (result != null)
                 return result;
             else
-                throw new InternalError("Unable to convert:" + value.GetType().Name);
+                throw new InternalError("Unable to convert: " + value.GetType().Name);
         }
 
         private static bool IsA(Type expected, Type actual)
@@ -227,7 +241,17 @@ namespace prompto.csharp
 
         private static IValue ConvertDocument(Context context, Object value, Type type, IType returnType)
         {
-            return null; // nothing to do until we have compiled mode
+            if (returnType == DocumentType.Instance && value is IDictionary<string, object>) {
+                IDictionary<string, object> dict = (IDictionary<string, object>)value;
+                DocumentValue doc = new DocumentValue();
+                foreach(KeyValuePair< string, object> kvp in dict)
+                {
+                    doc.SetMemberValue(context, kvp.Key, ConvertCSharpValueToPromptoValue(context, kvp.Value, null, null));
+                }
+                return doc;
+            }
+
+            return null; 
         }
 
         private static IValue ConvertCategory(Context context, Object value, Type type, IType returnType)
@@ -244,6 +268,10 @@ namespace prompto.csharp
         private static IValue ConvertNative(Context context, Object value, Type type)
         {
             IType itype;
+            if (type == null)
+                type = typeof(object);
+            if (type == typeof(object) && value != null)
+                type = value.GetType();
             if (typeToPromptoMap.TryGetValue(type, out itype))
                 return itype.ConvertCSharpValueToIValue(context, value);
             else
