@@ -8,400 +8,588 @@ using prompto.store;
 namespace prompto.memstore
 {
 
-	/* a utility class for running unit tests only */
-	public class MemStore : IStore
-	{
+    /* a utility class for running unit tests only */
+    public class MemStore : IStore
+    {
 
-		long lastDbId = 0;
+        long lastDbId = 0;
         Dictionary<string, long> sequences = new Dictionary<string, long>();
+        Dictionary<object, AuditMetadata> auditMetadatas = new Dictionary<object, AuditMetadata>();
+        long lastAuditMetadataId = 0;
+        Dictionary<object, AuditRecord> audits = new Dictionary<object, AuditRecord>();
+        long lastAuditId = 0;
 
-		public long NextDbId
-		{
-			get
-			{
-				return Interlocked.Increment(ref lastDbId);
-			}
-		}
-
-
-		public long NextSequenceValue(string name)
-		{
-            lock(sequences)
+        public long NextDbId
+        {
+            get
             {
-                if(sequences.ContainsKey(name))
+                return Interlocked.Increment(ref lastDbId);
+            }
+        }
+
+
+        public long NextSequenceValue(string name)
+        {
+            lock (sequences)
+            {
+                if (sequences.ContainsKey(name))
                 {
-					long value = sequences[name] + 1;
-					sequences[name] = value;
-					return value;
-				} else
+                    long value = sequences[name] + 1;
+                    sequences[name] = value;
+                    return value;
+                }
+                else
                 {
-					sequences[name] = 1;
-					return 1;
-				}
-			}
-		}
+                    sequences[name] = 1;
+                    return 1;
+                }
+            }
+        }
 
 
-		private Dictionary<long, StorableDocument> documents = new Dictionary<long, StorableDocument>();
+        private Dictionary<long, StorableDocument> documents = new Dictionary<long, StorableDocument>();
 
-		public void Store(ICollection<object> idsToDelete, ICollection<IStorable> docsToStore)
-		{
-			if (idsToDelete != null)
-			{
-				foreach (object id in idsToDelete)
-				{
-					documents.Remove((long)id);
-				}
-			}
-			if (docsToStore != null)
-			{
-				foreach (IStorable storable in docsToStore)
-				{
-					object dbId = storable.GetOrCreateDbId();
-					documents[(long)dbId] = (StorableDocument)storable;
-				}
-			}
-		}
+        public void DeleteAndStore(ICollection<object> idsToDelete, ICollection<IStorable> docsToStore, IAuditMetadata auditMeta)
+        {
+            auditMeta = StoreAuditMetadata(auditMeta);
+            if (idsToDelete != null)
+                DoDelete(idsToDelete, auditMeta);
+            if (docsToStore != null)
+                DoStore(docsToStore, auditMeta); ;
+        }
 
-		public void Flush()
-		{
-			// nothing to do
-		}
+        private void DoStore(ICollection<IStorable> docsToStore, IAuditMetadata auditMeta)
+        {
+            foreach (IStorable storable in docsToStore)
+            {
+                DoStore(storable, auditMeta);
+            }
+        }
 
-		public IStored FetchUnique(object dbId)
-		{
-			StorableDocument stored;
-			if (documents.TryGetValue((long)dbId, out stored))
-				return stored;
-			else
-				return null;
-		}
+        private void DoStore(IStorable storable, IAuditMetadata auditMeta)
+        {
+            AuditOperation operation = AuditOperation.UPDATE;
+            // ensure db id
+            StorableDocument doc = (StorableDocument)storable;
+            Object dbId = doc.DbId;
+            if (!(dbId is long)) {
+                dbId = ++lastDbId;
+                storable.SetData("dbId", dbId);
+                operation = AuditOperation.INSERT;
+            }
+            documents[(long)dbId] = (StorableDocument)storable;
+            AuditRecord audit = NewAuditRecord(auditMeta);
+            audit.InstanceDbId = dbId;
+            audit.Operation = operation;
+            audit.Instance = doc;
+            audits[audit.AuditRecordId] = audit;
+        }
 
+        private void DoDelete(ICollection<object> idsToDelete, IAuditMetadata auditMeta)
+        {
+            foreach (object id in idsToDelete)
+            {
+                DoDelete(id, auditMeta);
+            }
+        }
 
-		public IQueryBuilder NewQueryBuilder()
-		{
-			return new QueryBuilder();
-		}
+        private void DoDelete(object dbId, IAuditMetadata auditMeta)
+        {
+            documents.Remove((long)dbId);
+            AuditRecord audit = NewAuditRecord(auditMeta);
+            audit.InstanceDbId = dbId;
+            audit.Operation = AuditOperation.DELETE;
+            audits[audit.AuditRecordId] = audit;
+        }
 
+        private AuditRecord NewAuditRecord(IAuditMetadata auditMeta)
+        {
+            AuditRecord audit = new AuditRecord();
+            audit.AuditRecordId = ++lastAuditId;
+            audit.AuditMetadataId = auditMeta.AuditMetadataId;
+            audit.UTCTimestamp = auditMeta.UTCTimestamp;
+            return audit;
+        }
 
-		public IStored FetchOne(IQuery query)
-		{
-			IPredicate predicate = ((Query)query).GetPredicate();
-			foreach (StorableDocument doc in documents.Values)
-			{
-				if (doc.matches(predicate))
-					return doc;
-			}
-			return null;
-		}
+        private IAuditMetadata StoreAuditMetadata(IAuditMetadata auditMeta)
+        {
+            if (auditMeta == null)
+                auditMeta = NewAuditMetadata();
+            auditMetadatas[auditMeta.AuditMetadataId] = (AuditMetadata)auditMeta;
+            return auditMeta;
+        }
 
-		public IStoredEnumerable FetchMany(IQuery query)
-		{
-			Query q = (Query)query;
-			List<StorableDocument> allDocs = FetchManyDocs(q);
-			long totalCount = allDocs.Count;
-			List<StorableDocument> slicedDocs = Slice(q, allDocs);
-			return new StorableDocumentEnumerable(slicedDocs, totalCount);
-		}
+        public IAuditMetadata NewAuditMetadata()
+        {
+            AuditMetadata meta = new AuditMetadata();
+            meta.AuditMetadataId = ++lastAuditMetadataId;
+            meta.UTCTimestamp = DateTimeOffset.UtcNow;
+            return meta;
+        }
 
+        public void Flush()
+        {
+            // nothing to do
+        }
 
-		private List<StorableDocument> FetchManyDocs(Query query)
-		{
-			List<StorableDocument> docs = FilterDocs(query.GetPredicate());
-			docs = Sort(query.GetOrdering(), docs);
-			return docs;
-		}
-
-		private List<StorableDocument> FilterDocs(IPredicate predicate)
-		{
-			// create list of filtered docs
-			List<StorableDocument> docs = new List<StorableDocument>();
-			foreach (StorableDocument doc in documents.Values)
-			{
-				if (doc.matches(predicate))
-					docs.Add(doc);
-			}
-			return docs;
-		}
-
-		private List<StorableDocument> Slice(Query query, List<StorableDocument> docs)
-		{
-			if (docs == null || docs.Count == 0)
-				return docs;
-			long? first = query.GetFirst();
-			long? last = query.GetLast();
-			if (first == null && last == null)
-				return docs;
-			if (first == null || first < 1)
-				first = 1L;
-			if (last == null || last > docs.Count)
-				last = docs.Count;
-			if (first > last)
-				return new List<StorableDocument>();
-			return docs.Skip((int)(first - 1)).Take((int)(1 + last - first)).ToList();
-		}
-
-		private List<StorableDocument> Sort(ICollection<OrderBy> orderBy, List<StorableDocument> docs)
-		{
-			if (orderBy == null || orderBy.Count == 0 || docs.Count < 2)
-				return docs;
-			List<bool> directions = new List<bool>();
-			foreach (OrderBy o in orderBy)
-				directions.Add(o.isDescending());
-			docs.Sort((o1, o2) =>
-			{
-				DataTuple v1 = ReadTuple(o1, orderBy);
-				DataTuple v2 = ReadTuple(o2, orderBy);
-				return v1.CompareTo(v2, directions);
-			});
-			return docs;
-		}
+        public IStored FetchUnique(object dbId)
+        {
+            StorableDocument stored;
+            if (documents.TryGetValue((long)dbId, out stored))
+                return stored;
+            else
+                return null;
+        }
 
 
-		private DataTuple ReadTuple(StorableDocument doc, ICollection<OrderBy> orderBy)
-		{
-			DataTuple tuple = new DataTuple();
-			foreach (OrderBy o in orderBy)
-				tuple.Add(doc.GetData(o.getAttributeInfo().getName()));
-			return tuple;
-		}
+        public IQueryBuilder NewQueryBuilder()
+        {
+            return new QueryBuilder();
+        }
 
-		public IStorable NewStorable(List<string> categories)
-		{
-			return new StorableDocument(categories, () => NextDbId);
-		}
 
-		public Type GetDbIdType()
-		{
-			return typeof(long);
-		}
+        public IStored FetchOne(IQuery query)
+        {
+            IPredicate predicate = ((Query)query).GetPredicate();
+            foreach (StorableDocument doc in documents.Values)
+            {
+                if (doc.matches(predicate))
+                    return doc;
+            }
+            return null;
+        }
+
+        public IStoredEnumerable FetchMany(IQuery query)
+        {
+            Query q = (Query)query;
+            List<StorableDocument> allDocs = FetchManyDocs(q);
+            long totalCount = allDocs.Count;
+            List<StorableDocument> slicedDocs = Slice(q, allDocs);
+            return new StorableDocumentEnumerable(slicedDocs, totalCount);
+        }
+
+
+        private List<StorableDocument> FetchManyDocs(Query query)
+        {
+            List<StorableDocument> docs = FilterDocs(query.GetPredicate());
+            docs = Sort(query.GetOrdering(), docs);
+            return docs;
+        }
+
+        private List<StorableDocument> FilterDocs(IPredicate predicate)
+        {
+            // create list of filtered docs
+            List<StorableDocument> docs = new List<StorableDocument>();
+            foreach (StorableDocument doc in documents.Values)
+            {
+                if (doc.matches(predicate))
+                    docs.Add(doc);
+            }
+            return docs;
+        }
+
+        private List<StorableDocument> Slice(Query query, List<StorableDocument> docs)
+        {
+            if (docs == null || docs.Count == 0)
+                return docs;
+            long? first = query.GetFirst();
+            long? last = query.GetLast();
+            if (first == null && last == null)
+                return docs;
+            if (first == null || first < 1)
+                first = 1L;
+            if (last == null || last > docs.Count)
+                last = docs.Count;
+            if (first > last)
+                return new List<StorableDocument>();
+            return docs.Skip((int)(first - 1)).Take((int)(1 + last - first)).ToList();
+        }
+
+        private List<StorableDocument> Sort(ICollection<OrderBy> orderBy, List<StorableDocument> docs)
+        {
+            if (orderBy == null || orderBy.Count == 0 || docs.Count < 2)
+                return docs;
+            List<bool> directions = new List<bool>();
+            foreach (OrderBy o in orderBy)
+                directions.Add(o.isDescending());
+            docs.Sort((o1, o2) =>
+            {
+                DataTuple v1 = ReadTuple(o1, orderBy);
+                DataTuple v2 = ReadTuple(o2, orderBy);
+                return v1.CompareTo(v2, directions);
+            });
+            return docs;
+        }
+
+
+        private DataTuple ReadTuple(StorableDocument doc, ICollection<OrderBy> orderBy)
+        {
+            DataTuple tuple = new DataTuple();
+            foreach (OrderBy o in orderBy)
+                tuple.Add(doc.GetData(o.getAttributeInfo().getName()));
+            return tuple;
+        }
+
+        public IStorable NewStorable(List<string> categories, IDbIdFactory factory)
+        {
+            return new StorableDocument(categories, new DbIdFactoryProxy(this, factory));
+        }
+
+        class DbIdFactoryProxy : IDbIdFactory
+        {
+            private MemStore memStore;
+            private IDbIdFactory factory;
+
+            public DbIdFactoryProxy(MemStore memStore, IDbIdFactory factory)
+            {
+                this.memStore = memStore;
+                this.factory = factory;
+            }
+
+            public IDbIdProvider Provider {
+                get
+                {
+                    return () =>
+                    {
+                        object dbId = factory != null ? factory.Provider.Invoke() : null;
+                        return dbId != null ? dbId : memStore.NextDbId;
+                    };
+                }
+            }
+
+            public IDbIdListener Listener
+            {
+                get
+                {
+                    return dbId =>
+                    {
+                        if (factory != null)
+                            factory.Listener.Invoke(dbId);
+                    };
+                }
+            }
+
+            public bool IsUpdate()
+            {
+                return true;
+            }
+        }
+
+
+        public Type GetDbIdType()
+        {
+            return typeof(long);
+        }
 
         class DataTuple : List<object>
-		{
-			public int CompareTo(DataTuple other, List<bool> directions)
-			{
-				IEnumerator<bool> iterDirs = directions.GetEnumerator();
-				IEnumerator<object> iterThis = GetEnumerator();
-				IEnumerator<object> iterOther = other.GetEnumerator();
-				while (iterThis.MoveNext())
-				{
-					bool descending = iterDirs.MoveNext() ? iterDirs.Current : false;
-					if (iterOther.MoveNext())
-					{
-						// compare items
-						object thisVal = iterThis.Current;
-						object otherVal = iterOther.Current;
-						if (thisVal == null && otherVal == null)
-							continue;
-						else if (thisVal == null)
-							return descending ? 1 : -1;
-						else if (otherVal == null)
-							return descending ? -1 : 1;
-						else if (thisVal is IComparable)
-						{
-							int cmp = ((IComparable)thisVal).CompareTo(otherVal);
-							// if not equal, done
-							if (cmp != 0)
-								return descending ? -cmp : cmp;
-						}
-						else
-							return 0; // TODO throw ?
-					}
-					else
-						return descending ? -1 : 1;
-				}
-				bool desc2 = iterDirs.MoveNext() ? iterDirs.Current : false;
-				if (iterOther.MoveNext())
-					return desc2 ? 1 : -1;
-				else
-					return 0;
-			}
-		}
+        {
+            public int CompareTo(DataTuple other, List<bool> directions)
+            {
+                IEnumerator<bool> iterDirs = directions.GetEnumerator();
+                IEnumerator<object> iterThis = GetEnumerator();
+                IEnumerator<object> iterOther = other.GetEnumerator();
+                while (iterThis.MoveNext())
+                {
+                    bool descending = iterDirs.MoveNext() ? iterDirs.Current : false;
+                    if (iterOther.MoveNext())
+                    {
+                        // compare items
+                        object thisVal = iterThis.Current;
+                        object otherVal = iterOther.Current;
+                        if (thisVal == null && otherVal == null)
+                            continue;
+                        else if (thisVal == null)
+                            return descending ? 1 : -1;
+                        else if (otherVal == null)
+                            return descending ? -1 : 1;
+                        else if (thisVal is IComparable)
+                        {
+                            int cmp = ((IComparable)thisVal).CompareTo(otherVal);
+                            // if not equal, done
+                            if (cmp != 0)
+                                return descending ? -cmp : cmp;
+                        }
+                        else
+                            return 0; // TODO throw ?
+                    }
+                    else
+                        return descending ? -1 : 1;
+                }
+                bool desc2 = iterDirs.MoveNext() ? iterDirs.Current : false;
+                if (iterOther.MoveNext())
+                    return desc2 ? 1 : -1;
+                else
+                    return 0;
+            }
+        }
 
-		class StorableDocumentEnumerable : IStoredEnumerable
-		{
-			List<StorableDocument> slicedDocs;
-			long totalCount;
+        class StorableDocumentEnumerable : IStoredEnumerable
+        {
+            List<StorableDocument> slicedDocs;
+            long totalCount;
 
-			public StorableDocumentEnumerable(List<StorableDocument> slicedDocs, long totalCount)
-			{
-				this.slicedDocs = slicedDocs;
-				this.totalCount = totalCount;
-			}
+            public StorableDocumentEnumerable(List<StorableDocument> slicedDocs, long totalCount)
+            {
+                this.slicedDocs = slicedDocs;
+                this.totalCount = totalCount;
+            }
 
-			public long Length
-			{
-				get { return slicedDocs.Count; }
-			}
-			public long TotalLength
-			{
-				get
-				{
-					return totalCount;
-				}
-			}
+            public long Length
+            {
+                get { return slicedDocs.Count; }
+            }
+            public long TotalLength
+            {
+                get
+                {
+                    return totalCount;
+                }
+            }
 
-			public IEnumerator<IStored> GetEnumerator()
-			{
-				return new StorableDocumentEnumerator(slicedDocs, totalCount);
-			}
+            public IEnumerator<IStored> GetEnumerator()
+            {
+                return new StorableDocumentEnumerator(slicedDocs, totalCount);
+            }
 
-			IEnumerator IEnumerable.GetEnumerator()
-			{
-				return new StorableDocumentEnumerator(slicedDocs, totalCount);
-			}
+            IEnumerator IEnumerable.GetEnumerator()
+            {
+                return new StorableDocumentEnumerator(slicedDocs, totalCount);
+            }
 
-			IStoredEnumerator IStoredEnumerable.GetEnumerator()
-			{
-				return new StorableDocumentEnumerator(slicedDocs, totalCount);
-			}
-		}
+            IStoredEnumerator IStoredEnumerable.GetEnumerator()
+            {
+                return new StorableDocumentEnumerator(slicedDocs, totalCount);
+            }
+        }
 
-		class StorableDocumentEnumerator : IStoredEnumerator
-		{
-			List<StorableDocument> docs;
+        class StorableDocumentEnumerator : IStoredEnumerator
+        {
+            List<StorableDocument> docs;
             readonly long totalCount;
-			IEnumerator<StorableDocument> iter;
+            IEnumerator<StorableDocument> iter;
 
-			public StorableDocumentEnumerator(List<StorableDocument> docs, long totalCount)
-			{
-				this.docs = docs;
-				this.totalCount = totalCount;
-				iter = docs.GetEnumerator();
-			}
+            public StorableDocumentEnumerator(List<StorableDocument> docs, long totalCount)
+            {
+                this.docs = docs;
+                this.totalCount = totalCount;
+                iter = docs.GetEnumerator();
+            }
 
-			public bool MoveNext()
-			{
-				return iter.MoveNext();
-			}
+            public bool MoveNext()
+            {
+                return iter.MoveNext();
+            }
 
-			object IEnumerator.Current
-			{
-				get
-				{
-					return iter.Current;
-				}
-			}
+            object IEnumerator.Current
+            {
+                get
+                {
+                    return iter.Current;
+                }
+            }
 
-			public IStored Current
-			{
-				get
-				{
-					return iter.Current;
-				}
-			}
+            public IStored Current
+            {
+                get
+                {
+                    return iter.Current;
+                }
+            }
 
-			public long Length
-			{
-				get
-				{
-					return docs.Count;
-				}
-			}
+            public long Length
+            {
+                get
+                {
+                    return docs.Count;
+                }
+            }
 
-			public long TotalLength
-			{
-				get
-				{
-					return totalCount;
-				}
-			}
+            public long TotalLength
+            {
+                get
+                {
+                    return totalCount;
+                }
+            }
 
-			public void Dispose()
-			{
-			}
+            public void Dispose()
+            {
+            }
 
-			public void Reset()
-			{
-				throw new Exception("Unsupported!");
-			}
-		}
-
-
-		class StorableDocument : IStored, IStorable
-		{
-
-			Dictionary<string, object> document = null;
-			readonly List<string> categories;
-			Func<long> dbIdSource;
-
-			public StorableDocument(List<string> categories, Func<long> dbIdSource)
-			{
-				this.categories = categories;
-				this.dbIdSource = dbIdSource;
-			}
-
-			public object GetOrCreateDbId()
-			{
-				object dbId = GetData("dbId");
-				if (dbId == null)
-				{
-					dbId = dbIdSource.Invoke();
-					SetData("dId", dbId);
-				}
-				return dbId;
-			}
-
-			public object DbId
-			{
-				get
-				{
-					return GetData("dbId");
-				}
-			}
-
-			public bool Dirty
-			{
-				get
-				{
-					return document != null;
-				}
-				set
-				{
-					if (!value)
-						document = null;
-					else if (document == null)
-						document = newDocument(null);
-				}
-			}
+            public void Reset()
+            {
+                throw new Exception("Unsupported!");
+            }
+        }
 
 
+        class StorableDocument : IStored, IStorable
+        {
 
-			public void SetData(string name, object value)
-			{
-				if (document == null)
-					document = newDocument(null);
-				document[name] = value;
-			}
+            Dictionary<string, object> document = null;
+            readonly List<string> categories;
+            IDbIdFactory dbIdFactory;
 
-			private Dictionary<string, object> newDocument(object dbId)
-			{
-				Dictionary<string, object> doc = new Dictionary<string, object>();
-				if (categories != null)
-					doc["category"] = categories;
-				doc["dbId"] = dbId == null ? dbIdSource.Invoke() : dbId;
-				return doc;
-			}
+            public StorableDocument(List<string> categories, IDbIdFactory dbIdFactory)
+            {
+                this.categories = categories;
+                this.dbIdFactory = dbIdFactory;
+            }
 
-			public bool matches(IPredicate predicate)
-			{
-				if (predicate == null)
-					return true;
-				return predicate.matches(document);
-			}
+            public List<string> Categories
+            {
+                get
+                {
+                    return categories;
+                }
+            }
 
-			public object GetData(string name)
-			{
-				object value;
-				if (document.TryGetValue(name, out value))
-					return value;
-				else
-					return null;
-			}
-		}
+            public object GetOrCreateDbId()
+            {
+                object dbId = GetData("dbId");
+                if (dbId == null)
+                {
+                    dbId = dbIdFactory.Provider.Invoke();
+                    SetData("dbId", dbId);
+                    dbIdFactory.Listener.Invoke(dbId);
+                }
+                return dbId;
+            }
+
+            public object DbId
+            {
+                get
+                {
+                    return GetData("dbId");
+                }
+            }
+
+            public bool Dirty
+            {
+                get
+                {
+                    return document != null;
+                }
+                set
+                {
+                    if (!value)
+                        document = null;
+                    else if (document == null)
+                        document = newDocument(null);
+                }
+            }
 
 
 
-	}
+            public void SetData(string name, object value)
+            {
+                if (document == null)
+                    document = newDocument(null);
+                document[name] = value;
+            }
+
+            private Dictionary<string, object> newDocument(object dbId)
+            {
+                Dictionary<string, object> doc = new Dictionary<string, object>();
+                if (categories != null)
+                    doc["category"] = categories;
+                doc["dbId"] = dbId != null ? dbId : dbIdFactory.Provider.Invoke();
+                return doc;
+            }
+
+            public bool matches(IPredicate predicate)
+            {
+                if (predicate == null)
+                    return true;
+                return predicate.matches(document);
+            }
+
+            public object GetData(string name)
+            {
+                object value;
+                if (document.TryGetValue(name, out value))
+                    return value;
+                else
+                    return null;
+            }
+        }
+
+
+        public object FetchLatestAuditMetadataId(object dbId)
+        {
+            return FetchAuditMetadataIdsStream(dbId).First();
+        }
+
+        public List<object> FetchAllAuditMetadataIds(object dbId)
+        {
+            return FetchAuditMetadataIdsStream(dbId).ToList();
+        }
+
+        IEnumerable<object> FetchAuditMetadataIdsStream(object dbId)
+        {
+            return audits.Values
+                .Where(a => dbId.Equals(a.InstanceDbId))
+                .OrderByDescending(a => a.UTCTimestamp)
+                .Select(a => a.AuditMetadataId);
+        }
+
+        public IAuditMetadata FetchAuditMetadata(object dbId)
+        {
+            return auditMetadatas[dbId];
+        }
+
+        public IDictionary<string, object> FetchAuditMetadataAsDocument(object dbId)
+        {
+            return auditMetadatas[dbId];
+        }
+
+        class AuditRecord : Dictionary<string, Object>, IAuditRecord
+        {
+            public object AuditRecordId { get; set; }
+            public object AuditMetadataId { get; set; }
+            public DateTimeOffset? UTCTimestamp { get; set; }
+            public object InstanceDbId { get; set; }
+            public AuditOperation Operation { get; set; }
+            public IStored Instance { get; set; }
+
+            public override String ToString()
+            {
+                return "{auditId=" + AuditRecordId + ", metadataId=" + AuditMetadataId + ", utcTimeStamp=" + UTCTimestamp + ", instanceDbId=" + InstanceDbId + ", operation=" + Operation + ", instance=" + Instance + "}";
+            }
+        }
+
+        class AuditMetadata : Dictionary<string, Object>, IAuditMetadata
+        {
+            public object AuditMetadataId
+            {
+                get
+                {
+                    return this["auditMetadataId"];
+                }
+                set {
+                    this["auditMetadataId"] = value;
+                }
+            }
+
+            public DateTimeOffset? UTCTimestamp {
+                get {
+                    return (DateTimeOffset?)this["timeStamp"];
+                }
+                set {
+                    this["timeStamp"] = value;
+                }
+            }
+
+            public string Login {
+                get {
+                    return (string)this["login"];
+                }
+
+                set {
+                    this["login"] = value;
+                }
+            }
+        }
+    }
 
 }

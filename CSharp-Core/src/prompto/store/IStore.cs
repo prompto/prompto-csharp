@@ -1,11 +1,5 @@
-﻿using prompto.error;
-using prompto.expression;
-using prompto.runtime;
-using prompto.value;
-using prompto.grammar;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using prompto.type;
 
 namespace prompto.store
 {
@@ -14,14 +8,20 @@ namespace prompto.store
 	public interface IStore
 	{
 		Type GetDbIdType(); 
-		void Store (ICollection<object> idsToDelete, ICollection<IStorable> docsToStore);
+		void DeleteAndStore (ICollection<object> idsToDelete, ICollection<IStorable> docsToStore, IAuditMetadata auditMeta);
 		IQueryBuilder NewQueryBuilder();
 		IStored FetchUnique(object dbId);
 		IStored FetchOne(IQuery query);
 		IStoredEnumerable FetchMany(IQuery query);
 		void Flush();
-		IStorable NewStorable(List<string> categories);
+		IStorable NewStorable(List<string> categories, IDbIdFactory factory);
 		long NextSequenceValue(string name);
+		IAuditMetadata NewAuditMetadata();
+		object FetchLatestAuditMetadataId(object dbId);
+		List<object> FetchAllAuditMetadataIds(object dbId);
+		IAuditMetadata FetchAuditMetadata(object dbId);
+		IDictionary<string, object> FetchAuditMetadataAsDocument(object dbId);
+
 	}
 
 }

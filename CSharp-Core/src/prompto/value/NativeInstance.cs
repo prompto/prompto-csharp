@@ -36,7 +36,7 @@ namespace prompto.value
             {
                 List<string> categories = new List<string>();
                 categories.Add(declaration.GetName());
-                storable = DataStore.Instance.NewStorable(categories);
+                storable = DataStore.Instance.NewStorable(categories, null);
             }
         }
 
@@ -49,7 +49,7 @@ namespace prompto.value
             {
                 List<string> categories = new List<string>();
                 categories.Add(declaration.GetName());
-                storable = DataStore.Instance.NewStorable(categories);
+                storable = DataStore.Instance.NewStorable(categories, null);
             }
         }
 

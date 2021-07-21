@@ -30,10 +30,28 @@ namespace prompto.value
             if (declaration.Storable)
             {
                 List<String> categories = declaration.CollectCategories(context);
-                storable = DataStore.Instance.NewStorable(categories);
+                storable = DataStore.Instance.NewStorable(categories, new DbIdFactory(this));
             }
         }
 
+        class DbIdFactory : IDbIdFactory
+        {
+            ConcreteInstance instance;
+
+            public DbIdFactory(ConcreteInstance instance)
+            {
+                this.instance = instance;
+            }
+
+            public IDbIdProvider Provider => () => instance.GetDbId();
+
+            public IDbIdListener Listener => value => instance.SetDbId(value);
+
+            // sensitive topic: isUpdate is called only when getDbId() returns non-null
+            public bool IsUpdate() { return true; }
+        }
+
+ 
         public IStorable getStorable()
         {
             return storable;
@@ -91,14 +109,19 @@ namespace prompto.value
             }
         }
 
+        private void SetDbId(object dbId)
+        {
+            values["dbId"] = TypeUtils.FieldToValue(null, "dbId", dbId);
+
+        }
+
         private Object GetOrCreateDbId()
         {
             Object dbId = GetDbId();
             if (dbId == null)
             {
                 dbId = this.storable.GetOrCreateDbId();
-                IValue value = TypeUtils.FieldToValue(null, "dbId", dbId);
-                values["dbId"] = value;
+                values["dbId"] = TypeUtils.FieldToValue(null, "dbId", dbId); ;
             }
             return dbId;
         }
