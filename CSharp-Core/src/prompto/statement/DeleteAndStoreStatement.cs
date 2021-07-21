@@ -13,17 +13,19 @@ namespace prompto.statement
 {
 
 
-	public class StoreStatement : BaseStatement
+	public class DeleteAndStoreStatement : BaseStatement
 	{
 
 		ExpressionList deletables;
 		ExpressionList storables;
+		IExpression metadata; 
 		StatementList andThen;
 
-		public StoreStatement (ExpressionList deletables, ExpressionList storables, StatementList andThen)
+		public DeleteAndStoreStatement (ExpressionList deletables, ExpressionList storables, IExpression metadata, StatementList andThen)
 		{
 			this.deletables = deletables;
 			this.storables = storables;
+			this.metadata = metadata;
 			this.andThen = andThen;
 		}
 
@@ -59,7 +61,23 @@ namespace prompto.statement
 					writer.append (')');
 				}
 			}
-			if(andThen!=null) {
+			if(metadata != null)
+            {
+				if (writer.getDialect() == Dialect.E)
+				{
+					writer.append(" with ");
+					metadata.ToDialect(writer);
+					writer.append(" as metadata");
+				}
+				else
+				{
+					writer.append(" with metadata (");
+					metadata.ToDialect(writer);
+					writer.append(")");
+				}
+
+			}
+			if (andThen != null) {
 				if(writer.getDialect()==Dialect.O) {
 					writer.append(" then {").newLine().indent();
 					andThen.ToDialect(writer);
@@ -83,9 +101,9 @@ namespace prompto.statement
 				return true;
 			if (obj == null)
 				return false;
-			if (!(obj is StoreStatement))
+			if (!(obj is DeleteAndStoreStatement))
 				return false;
-			StoreStatement other = (StoreStatement)obj;
+			DeleteAndStoreStatement other = (DeleteAndStoreStatement)obj;
 			return this.storables.Equals (other.storables);
 		}
 
@@ -110,7 +128,24 @@ namespace prompto.statement
 				storables.ForEach((exp) => CollectStorables(context, exp, toStore));
 			}
 			if (deletables != null || storables != null)
-				DataStore.Instance.Store(toDelete, toStore);
+			{
+				IAuditMetadata withMeta = null;
+				if (metadata != null)
+				{
+                    IValue value = metadata.interpret(context);
+					if(value is DocumentValue)
+                    {
+						DocumentValue doc = (DocumentValue)value;
+						withMeta = DataStore.Instance.NewAuditMetadata();
+						foreach(String name in doc.GetMemberNames())
+                        {
+							value = doc.GetMemberValue(context, name, false);
+							withMeta[name] = value.GetStorableData();
+						}
+					}
+				}
+				DataStore.Instance.DeleteAndStore(toDelete, toStore, withMeta);
+			}
 			if(andThen!=null)
 				andThen.interpret(context);
 			return null;
