@@ -16,9 +16,8 @@ namespace prompto.value
 		IDictionary<String, IValue> values;
 
 		public DocumentValue()
-			: base (DocumentType.Instance)
+			: this (new Dictionary<String, IValue>())
 		{
-			values = new Dictionary<String, IValue>();
 		}
 
 		public DocumentValue(IDictionary<String, IValue> values)
