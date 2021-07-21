@@ -40,6 +40,12 @@ namespace prompto.runtime.e
 		}
 
 		[Test]
+		public void testAuditRecord()
+		{
+			CheckOutput("store/auditRecord.pec");
+		}
+
+		[Test]
 		public void testDeleteRecords()
 		{
 			CheckOutput("store/deleteRecords.pec");
