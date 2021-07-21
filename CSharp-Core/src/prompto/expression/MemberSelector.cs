@@ -51,7 +51,7 @@ namespace prompto.expression
 				IType type = check(writer.getContext());
 				if (type is MethodType)
 					writer.append("Method: ");
-			} catch (SyntaxError e)
+			} catch (SyntaxError ignored)
 			{
 				// gracefully skip exceptions
 			}
