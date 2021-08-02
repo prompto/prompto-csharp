@@ -102,6 +102,11 @@ namespace prompto.memstore
             audits[audit.AuditRecordId] = audit;
         }
 
+        public Boolean IsAuditEnabled()
+        {
+            return true;
+        }
+
         private AuditRecord NewAuditRecord(IAuditMetadata auditMeta)
         {
             AuditRecord audit = new AuditRecord();

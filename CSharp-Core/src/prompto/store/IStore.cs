@@ -16,6 +16,7 @@ namespace prompto.store
 		void Flush();
 		IStorable NewStorable(List<string> categories, IDbIdFactory factory);
 		long NextSequenceValue(string name);
+		Boolean IsAuditEnabled();
 		IAuditMetadata NewAuditMetadata();
 		object FetchLatestAuditMetadataId(object dbId);
 		List<object> FetchAllAuditMetadataIds(object dbId);
