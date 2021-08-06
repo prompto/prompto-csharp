@@ -36,7 +36,7 @@ namespace prompto.parser
         }
 
         [Test]
-        public void testRange()
+        public void parsesRange()
         {
             String statement = "[1..100]";
             OTestParser parser = new OTestParser(statement);
@@ -48,7 +48,7 @@ namespace prompto.parser
         }
 
         [Test]
-        public void testAttribute()
+        public void parsesAttribute()
         {
             String statement = "attribute id : Integer; ";
             OTestParser parser = new OTestParser(statement);
@@ -59,7 +59,7 @@ namespace prompto.parser
         }
 
         [Test]
-        public void testArrayAttribute()
+        public void parsesArrayAttribute()
         {
             String statement = "attribute id : Integer[]; ";
             OTestParser parser = new OTestParser(statement);
@@ -70,7 +70,7 @@ namespace prompto.parser
         }
 
         [Test]
-        public void testCategory1Attribute()
+        public void parsesCategory1Attribute()
         {
             String statement = "category Person ( id );";
             OTestParser parser = new OTestParser(statement);
@@ -83,7 +83,7 @@ namespace prompto.parser
         }
 
         [Test]
-        public void testCategory2Attributes()
+        public void parsesCategory2Attributes()
         {
             String statement = "category Person ( id, name );";
             OTestParser parser = new OTestParser(statement);
@@ -97,7 +97,7 @@ namespace prompto.parser
         }
 
         [Test]
-        public void testCategory1Derived1Attribute()
+        public void parsesCategory1Derived1Attribute()
         {
             String statement = "category Employee( company ) extends Person ;";
             OTestParser parser = new OTestParser(statement);
@@ -111,7 +111,7 @@ namespace prompto.parser
         }
 
         [Test]
-        public void testCategory2DerivedNoAttribute()
+        public void parsesCategory2DerivedNoAttribute()
         {
             String statement = "category Entrepreneur extends Person, Company;";
             OTestParser parser = new OTestParser(statement);
@@ -125,7 +125,7 @@ namespace prompto.parser
         }
 
         [Test]
-        public void testMemberExpression()
+        public void parsesMemberExpression()
         {
             String statement = "p.name";
             OTestParser parser = new OTestParser(statement);
@@ -139,7 +139,7 @@ namespace prompto.parser
         }
 
         [Test]
-        public void testArgument()
+        public void parsesArgument()
         {
             String statement = "Person p";
             OTestParser parser = new OTestParser(statement);
@@ -150,7 +150,7 @@ namespace prompto.parser
         }
 
         [Test]
-        public void testList1Argument()
+        public void parsesList1Argument()
         {
             String statement = "Person p";
             OTestParser parser = new OTestParser(statement);
@@ -160,7 +160,7 @@ namespace prompto.parser
         }
 
         [Test]
-        public void testList2ArgumentsComma()
+        public void parsesList2ArgumentsComma()
         {
             String statement = "Person p, Employee e";
             OTestParser parser = new OTestParser(statement);
@@ -171,7 +171,7 @@ namespace prompto.parser
 
 
         [Test]
-        public void testMethodCallExpression()
+        public void parsesMethodCallExpression()
         {
             String statement = "print (\"person\" + p.name );";
             OTestParser parser = new OTestParser(statement);
@@ -180,7 +180,7 @@ namespace prompto.parser
         }
 
         [Test]
-        public void testMethodCallWith()
+        public void parsesMethodCallWith()
         {
             String statement = "print( value = \"person\" + p.name ); ";
             OTestParser parser = new OTestParser(statement);
@@ -197,7 +197,7 @@ namespace prompto.parser
         }
 
         [Test]
-        public void testMethod1Parameter1Statement()
+        public void parsesMethod1Parameter1Statement()
         {
             String statement = "method printName ( Person p ) { print ( value = \"person\" + p.name); }";
             OTestParser parser = new OTestParser(statement);
@@ -212,7 +212,7 @@ namespace prompto.parser
         }
 
         [Test]
-        public void testMethod1Extended1Statement()
+        public void parsesMethod1Extended1Statement()
         {
             String statement = "method printName ( Object(name) o ) { print ( value = \"object\" + o.name ); }";
             OTestParser parser = new OTestParser(statement);
@@ -228,7 +228,7 @@ namespace prompto.parser
         }
 
         [Test]
-        public void testMethod1Array1Statement()
+        public void parsesMethod1Array1Statement()
         {
             String statement = "method printName ( Option[] options ) { print ( value = \"array\" + options ); }";
             OTestParser parser = new OTestParser(statement);
@@ -244,7 +244,7 @@ namespace prompto.parser
         }
 
         [Test]
-        public void testConstructor1Attribute()
+        public void parsesConstructor1Attribute()
         {
             String statement = "Company(id=1)";
             OTestParser parser = new OTestParser(statement);
@@ -253,7 +253,7 @@ namespace prompto.parser
         }
 
         [Test]
-        public void testConstructorFrom1Attribute()
+        public void parsesConstructorFrom1Attribute()
         {
             String statement = "Company(entity,id=1)";
             OTestParser parser = new OTestParser(statement);
@@ -262,7 +262,7 @@ namespace prompto.parser
         }
 
         [Test]
-        public void testConstructor2AttributesComma()
+        public void parsesConstructor2AttributesComma()
         {
             String statement = "Company(id=1, name=\"IBM\")";
             OTestParser parser = new OTestParser(statement);
@@ -286,7 +286,7 @@ namespace prompto.parser
         }
 
         [Test]
-        public void testAssignmentConstructor()
+        public void parsesAssignmentConstructor()
         {
             String statement = "c = Company ( id = 1, name = \"IBM\" );";
             OTestParser parser = new OTestParser(statement);
@@ -296,7 +296,7 @@ namespace prompto.parser
         }
 
         [Test]
-        public void testNativeJava()
+        public void parsesNativeJava()
         {
             String statement = "Java: System.str.println(value);";
             OTestParser parser = new OTestParser(statement);
@@ -306,7 +306,7 @@ namespace prompto.parser
         }
 
         [Test]
-        public void testNativeCSharp()
+        public void parsesNativeCSharp()
         {
             String statement = "C#: Console.println(value);";
             OTestParser parser = new OTestParser(statement);
@@ -316,7 +316,7 @@ namespace prompto.parser
         }
 
         [Test]
-        public void testNativeMethod()
+        public void parsesNativeMethod()
         {
             String statement = "native method print (String value) {\r\n"
                     + "\tJava: System.str.println(value); \r\n"
@@ -329,7 +329,7 @@ namespace prompto.parser
         }
 
         [Test]
-        public void testBooleanLiteral()
+        public void parsesBooleanLiteral()
         {
             String statement = "true";
             OTestParser parser = new OTestParser(statement);
@@ -348,7 +348,7 @@ namespace prompto.parser
         }
 
         [Test]
-        public void testStringLiteral()
+        public void parsesStringLiteral()
         {
             String statement = "\"hello\"";
             OTestParser parser = new OTestParser(statement);
@@ -360,7 +360,7 @@ namespace prompto.parser
         }
 
         [Test]
-        public void testIntegerLiteral()
+        public void parsesIntegerLiteral()
         {
             String statement = "1234";
             OTestParser parser = new OTestParser(statement);
@@ -372,13 +372,13 @@ namespace prompto.parser
         }
 
         [Test]
-        public void testParseHexa()
+        public void parsesParseHexa()
         {
             Assert.AreEqual(0x0A11, HexaLiteral.parseHexa("0x0A11").LongValue);
         }
 
         [Test]
-        public void testHexaLiteral()
+        public void parsesHexaLiteral()
         {
             String statement = "0x0A11";
             OTestParser parser = new OTestParser(statement);
@@ -390,7 +390,7 @@ namespace prompto.parser
         }
 
         [Test]
-        public void testDecimalLiteral()
+        public void parsesDecimalLiteral()
         {
             String statement = "1234.13";
             OTestParser parser = new OTestParser(statement);
@@ -402,7 +402,7 @@ namespace prompto.parser
         }
 
         [Test]
-        public void testEmptyListLiteral()
+        public void parsesEmptyListLiteral()
         {
             String statement = "[]";
             OTestParser parser = new OTestParser(statement);
@@ -414,7 +414,7 @@ namespace prompto.parser
         }
 
         [Test]
-        public void testSimpleListLiteral()
+        public void parsesSimpleListLiteral()
         {
             String statement = "[ john, 123 ]";
             OTestParser parser = new OTestParser(statement);
@@ -429,7 +429,7 @@ namespace prompto.parser
         }
 
         [Test]
-        public void testEmptyDictLiteral()
+        public void parsesEmptyDictLiteral()
         {
             String statement = "<:>";
             OTestParser parser = new OTestParser(statement);
@@ -440,7 +440,7 @@ namespace prompto.parser
         }
 
         [Test]
-        public void testSimpleDictLiteral()
+        public void parsesSimpleDictLiteral()
         {
             String statement = "< \"john\" : 1234, eric : 5678 >";
             OTestParser parser = new OTestParser(statement);
@@ -451,7 +451,7 @@ namespace prompto.parser
         }
 
         [Test]
-        public void testSimpleDate()
+        public void parsesSimpleDate()
         {
             String statement = "'2012-10-09'";
             OTestParser parser = new OTestParser(statement);
@@ -463,7 +463,7 @@ namespace prompto.parser
         }
 
         [Test]
-        public void testSimpleTime()
+        public void parsesSimpleTime()
         {
             String statement = "'15:03:10'";
             OTestParser parser = new OTestParser(statement);
@@ -475,7 +475,7 @@ namespace prompto.parser
         }
 
         [Test]
-        public void testDateTime()
+        public void parsesDateTime()
         {
             String statement = "'2012-10-09T15:18:17Z'";
             OTestParser parser = new OTestParser(statement);
@@ -487,7 +487,7 @@ namespace prompto.parser
         }
 
         [Test]
-        public void testDateTimeWithMillis()
+        public void parsesDateTimeWithMillis()
         {
             String statement = "'2012-10-09T15:18:17.487Z'";
             OTestParser parser = new OTestParser(statement);
@@ -499,7 +499,7 @@ namespace prompto.parser
         }
 
         [Test]
-        public void testDateTimeWithTZ()
+        public void parsesDateTimeWithTZ()
         {
             String statement = "'2012-10-09T15:18:17+02:00'";
             OTestParser parser = new OTestParser(statement);
@@ -515,7 +515,7 @@ namespace prompto.parser
 
 
         [Test]
-        public void testPeriod()
+        public void parsesPeriod()
         {
             String statement = "'P3Y'";
             OTestParser parser = new OTestParser(statement);
@@ -527,7 +527,7 @@ namespace prompto.parser
         }
 
         [Test]
-        public void testNativeSymbol()
+        public void parsesNativeSymbol()
         {
             String statement = "ENTITY_1 = \"1\"; ";
             OTestParser parser = new OTestParser(statement);
@@ -538,7 +538,7 @@ namespace prompto.parser
         }
 
         [Test]
-        public void testExpressionWith()
+        public void parsesExpressionWith()
         {
             String statement = "x = print ( value = \"1\" );";
             OTestParser parser = new OTestParser(statement);
@@ -549,7 +549,7 @@ namespace prompto.parser
         }
 
         [Test]
-        public void testMethodWith()
+        public void parsesMethodWith()
         {
             String statement = "print (\"a\", value = \"1\");";
             OTestParser parser = new OTestParser(statement);
@@ -560,7 +560,7 @@ namespace prompto.parser
         }
 
         [Test]
-        public void testInstanceExpression()
+        public void parsesInstanceExpression()
         {
             String statement = "prefix ";
             OTestParser parser = new OTestParser(statement);
@@ -575,7 +575,7 @@ namespace prompto.parser
 	print ("d" + ((1,2,3,4) contains any [4,5]));
         */
         [Test]
-        public void testHasAnyExpression()
+        public void parsesHasAnyExpression()
         {
             String statement = "(1,2,3,4) has any (1,2)";
             OTestParser parser = new OTestParser(statement);
@@ -583,7 +583,27 @@ namespace prompto.parser
             Assert.IsTrue(exp is ContainsExpression);
         }
 
-        public String generate(IDialectElement elem)
+        [Test]
+        public void parsesVersionLiterals() 
+        {
+            foreach(String literal in new String[]{ "'v1.3'", "'v1.3.15'", "'v1.3-alpha'", "'v1.3-beta'", "'v1.3-candidate'",
+                "'v1.3.15-alpha'", "'v1.3.15-beta'", "'v1.3.15-candidate'",
+                "'latest'", "'development'" })
+            {
+                parsesVersionLiteral(literal);
+            }
+        }
+
+        private void parsesVersionLiteral(String literal)
+        {
+            OTestParser parser = new OTestParser(literal);
+            IExpression exp = parser.parse_expression();
+            Assert.IsTrue(exp is VersionLiteral);
+            Assert.AreEqual(literal, "'" + ((VersionLiteral)exp).getValue().ToString() + "'");
+        }
+
+
+    public String generate(IDialectElement elem)
         {
             Context context = Context.newGlobalsContext();
             CodeWriter writer = new CodeWriter(Dialect.O, context);

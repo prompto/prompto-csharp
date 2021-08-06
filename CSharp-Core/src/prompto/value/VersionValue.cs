@@ -1,4 +1,5 @@
 using System;
+using System.Text;
 using Newtonsoft.Json.Linq;
 using prompto.error;
 using prompto.runtime;
@@ -8,34 +9,85 @@ namespace prompto.value
 {
     public class VersionValue : BaseValue, IComparable<VersionValue>
     {
+   
+        public static readonly VersionValue LATEST = ParseUInt32(0xFFFFFFFF);
+        public static readonly VersionValue DEVELOPMENT = ParseUInt32(0xEFEFEFEF);
 
-        public static VersionValue Parse(String version)
+        public static VersionValue Parse(String literal)
         {
-			if (version[0]=='v')
-				version = version.Substring(1);
-			String[] parts = version.Split('.');
-			if(parts.Length<3)
-				throw new Exception("Version must be like 1.2.3!");
+            if ("latest" == literal)
+                return LATEST;
+            else if ("development" == literal)
+                return DEVELOPMENT;
+            else
+                return ParsePrefixedSemanticVersion(literal);
+        }
+
+        static VersionValue ParsePrefixedSemanticVersion(String literal)
+        {
+            if (literal[0]=='v')
+				literal = literal.Substring(1);
+            return ParseSemanticVersion(literal);
+        }
+
+        public static VersionValue ParseSemanticVersion(String literal)
+        {
+            String[] parts = literal.Split('-');
+            VersionValue version = ParseVersionNumber(parts[0]);
+            if (parts.Length > 1)
+                version.qualifier = ParseVersionQualifier(parts[1]);
+            return version;
+        }
+
+        public static VersionValue ParseVersionNumber(String literal)
+        {
+            String[] parts = literal.Split('.');
+			if(parts.Length < 2)
+				throw new Exception("Version must be like 1.2{.3}!");
 			VersionValue v = new VersionValue();
 			v.major = Int16.Parse(parts[0]);
 			v.minor = Int16.Parse(parts[1]);
-			v.fix = Int16.Parse(parts[2]);
+            if(parts.Length > 2)
+			    v.fix = Int16.Parse(parts[2]);
 			return v;
         }
 
-        Int32 major;
-        Int32 minor;
-        Int32 fix;
+        private static Int16 ParseVersionQualifier(String literal)
+        {
+            if ("alpha" == literal)
+                return -3;
+            else if ("beta" == literal)
+                return -2;
+            else if ("candidate" == literal)
+                return -1;
+            else
+                throw new Exception("Version qualifier must be 'alpha', 'beta' or 'candidate'!");
+        }
+
+        private static VersionValue ParseUInt32(UInt32 value)
+        {
+            VersionValue v = new VersionValue();
+            v.major = (Int16)(value >> 24 & 0xFF);
+            v.minor = (Int16)(value >> 16 & 0xFF);
+            v.fix = (Int16)(value >> 8 & 0xFF);
+            v.qualifier = (Int16)(value & 0xFF);
+            return v;
+        }
 
 
-		public VersionValue()
+        Int16 major;
+        Int16 minor;
+        Int16 fix;
+        Int16 qualifier;
+
+        public VersionValue()
 			: base(VersionType.Instance)
 		{
 		}
 
 		public Int32 AsInt()
 		{
-			return (major << 24) | (minor << 16) | fix;
+			return (Int32)(major << 24) | (Int32)(minor << 16) | (Int32)(fix << 8) | (Int32)qualifier;
 		}
 
 
@@ -78,8 +130,40 @@ namespace prompto.value
         
         public override string ToString()
         {
-			return "" + major + "." + minor + "." + fix;
+            if (this == LATEST)
+                return "latest";
+            else if (this == DEVELOPMENT)
+                return "development";
+            else
+            {
+                StringBuilder sb = new StringBuilder("v")
+                    .Append(major)
+                    .Append('.')
+                    .Append(minor);
+                if (fix > 0)
+                    sb.Append('.')
+                        .Append(fix);
+                if (qualifier < 0)
+                    sb.Append('-')
+                        .Append(QualifierToString());
+                return sb.ToString();
+            }
 		}
+
+        private String QualifierToString()
+        {
+            switch (qualifier)
+            {
+                case -3:
+                    return "alpha";
+                case -2:
+                    return "beta";
+                case -1:
+                    return "candidate";
+                default:
+                    throw new Exception("Unsupported version qualifier: " + qualifier);
+            }
+        }
 
         public override JToken ToJsonToken()
         {

@@ -63,8 +63,8 @@ public partial class EParser : AbstractParser {
 		BOOLEAN_LITERAL=165, CHAR_LITERAL=166, MIN_INTEGER=167, MAX_INTEGER=168, 
 		SYMBOL_IDENTIFIER=169, TYPE_IDENTIFIER=170, VARIABLE_IDENTIFIER=171, NATIVE_IDENTIFIER=172, 
 		DOLLAR_IDENTIFIER=173, ARONDBASE_IDENTIFIER=174, TEXT_LITERAL=175, UUID_LITERAL=176, 
-		INTEGER_LITERAL=177, HEXA_LITERAL=178, DECIMAL_LITERAL=179, DATETIME_LITERAL=180, 
-		TIME_LITERAL=181, DATE_LITERAL=182, PERIOD_LITERAL=183, VERSION_LITERAL=184, 
+		VERSION_LITERAL=177, INTEGER_LITERAL=178, HEXA_LITERAL=179, DECIMAL_LITERAL=180, 
+		DATETIME_LITERAL=181, TIME_LITERAL=182, DATE_LITERAL=183, PERIOD_LITERAL=184, 
 		JSX_TEXT=185;
 	public const int
 		RULE_enum_category_declaration = 0, RULE_enum_native_declaration = 1, 
@@ -284,9 +284,9 @@ public partial class EParser : AbstractParser {
 		"WHERE", "WHILE", "WRITE", "BOOLEAN_LITERAL", "CHAR_LITERAL", "MIN_INTEGER", 
 		"MAX_INTEGER", "SYMBOL_IDENTIFIER", "TYPE_IDENTIFIER", "VARIABLE_IDENTIFIER", 
 		"NATIVE_IDENTIFIER", "DOLLAR_IDENTIFIER", "ARONDBASE_IDENTIFIER", "TEXT_LITERAL", 
-		"UUID_LITERAL", "INTEGER_LITERAL", "HEXA_LITERAL", "DECIMAL_LITERAL", 
-		"DATETIME_LITERAL", "TIME_LITERAL", "DATE_LITERAL", "PERIOD_LITERAL", 
-		"VERSION_LITERAL", "JSX_TEXT"
+		"UUID_LITERAL", "VERSION_LITERAL", "INTEGER_LITERAL", "HEXA_LITERAL", 
+		"DECIMAL_LITERAL", "DATETIME_LITERAL", "TIME_LITERAL", "DATE_LITERAL", 
+		"PERIOD_LITERAL", "JSX_TEXT"
 	};
 	public static readonly IVocabulary DefaultVocabulary = new Vocabulary(_LiteralNames, _SymbolicNames);
 
@@ -2691,6 +2691,7 @@ public partial class EParser : AbstractParser {
 			case VARIABLE_IDENTIFIER:
 			case TEXT_LITERAL:
 			case UUID_LITERAL:
+			case VERSION_LITERAL:
 			case INTEGER_LITERAL:
 			case HEXA_LITERAL:
 			case DECIMAL_LITERAL:
@@ -2698,7 +2699,6 @@ public partial class EParser : AbstractParser {
 			case TIME_LITERAL:
 			case DATE_LITERAL:
 			case PERIOD_LITERAL:
-			case VERSION_LITERAL:
 				{
 				State = 880;
 				_localctx.stmts = statement_list();
@@ -4012,6 +4012,7 @@ public partial class EParser : AbstractParser {
 			case VARIABLE_IDENTIFIER:
 			case TEXT_LITERAL:
 			case UUID_LITERAL:
+			case VERSION_LITERAL:
 			case INTEGER_LITERAL:
 			case HEXA_LITERAL:
 			case DECIMAL_LITERAL:
@@ -4019,7 +4020,6 @@ public partial class EParser : AbstractParser {
 			case TIME_LITERAL:
 			case DATE_LITERAL:
 			case PERIOD_LITERAL:
-			case VERSION_LITERAL:
 				_localctx = new UnresolvedWithArgsStatementContext(_localctx);
 				EnterOuterAlt(_localctx, 1);
 				{
@@ -5457,7 +5457,7 @@ public partial class EParser : AbstractParser {
 			State = 1207;
 			ErrorHandler.Sync(this);
 			_la = TokenStream.LA(1);
-			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << LPAR) | (1L << LBRAK) | (1L << LCURL) | (1L << MINUS) | (1L << LT) | (1L << LTGT) | (1L << LTCOLONGT))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (METHOD_COLON - 64)) | (1L << (CODE - 64)) | (1L << (DOCUMENT - 64)) | (1L << (BLOB - 64)) | (1L << (TYPE - 64)) | (1L << (CATEGORY - 64)) | (1L << (EXECUTE - 64)) | (1L << (FETCH - 64)) | (1L << (INVOKE_COLON - 64)) | (1L << (MUTABLE - 64)) | (1L << (NOT - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (NOTHING - 128)) | (1L << (READ - 128)) | (1L << (RESOURCE - 128)) | (1L << (SELF - 128)) | (1L << (SORTED - 128)) | (1L << (SUPER - 128)) | (1L << (THIS - 128)) | (1L << (BOOLEAN_LITERAL - 128)) | (1L << (CHAR_LITERAL - 128)) | (1L << (MIN_INTEGER - 128)) | (1L << (MAX_INTEGER - 128)) | (1L << (SYMBOL_IDENTIFIER - 128)) | (1L << (TYPE_IDENTIFIER - 128)) | (1L << (VARIABLE_IDENTIFIER - 128)) | (1L << (TEXT_LITERAL - 128)) | (1L << (UUID_LITERAL - 128)) | (1L << (INTEGER_LITERAL - 128)) | (1L << (HEXA_LITERAL - 128)) | (1L << (DECIMAL_LITERAL - 128)) | (1L << (DATETIME_LITERAL - 128)) | (1L << (TIME_LITERAL - 128)) | (1L << (DATE_LITERAL - 128)) | (1L << (PERIOD_LITERAL - 128)) | (1L << (VERSION_LITERAL - 128)))) != 0)) {
+			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << LPAR) | (1L << LBRAK) | (1L << LCURL) | (1L << MINUS) | (1L << LT) | (1L << LTGT) | (1L << LTCOLONGT))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (METHOD_COLON - 64)) | (1L << (CODE - 64)) | (1L << (DOCUMENT - 64)) | (1L << (BLOB - 64)) | (1L << (TYPE - 64)) | (1L << (CATEGORY - 64)) | (1L << (EXECUTE - 64)) | (1L << (FETCH - 64)) | (1L << (INVOKE_COLON - 64)) | (1L << (MUTABLE - 64)) | (1L << (NOT - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (NOTHING - 128)) | (1L << (READ - 128)) | (1L << (RESOURCE - 128)) | (1L << (SELF - 128)) | (1L << (SORTED - 128)) | (1L << (SUPER - 128)) | (1L << (THIS - 128)) | (1L << (BOOLEAN_LITERAL - 128)) | (1L << (CHAR_LITERAL - 128)) | (1L << (MIN_INTEGER - 128)) | (1L << (MAX_INTEGER - 128)) | (1L << (SYMBOL_IDENTIFIER - 128)) | (1L << (TYPE_IDENTIFIER - 128)) | (1L << (VARIABLE_IDENTIFIER - 128)) | (1L << (TEXT_LITERAL - 128)) | (1L << (UUID_LITERAL - 128)) | (1L << (VERSION_LITERAL - 128)) | (1L << (INTEGER_LITERAL - 128)) | (1L << (HEXA_LITERAL - 128)) | (1L << (DECIMAL_LITERAL - 128)) | (1L << (DATETIME_LITERAL - 128)) | (1L << (TIME_LITERAL - 128)) | (1L << (DATE_LITERAL - 128)) | (1L << (PERIOD_LITERAL - 128)))) != 0)) {
 				{
 				State = 1206;
 				_localctx.exp = expression(0);
@@ -10357,6 +10357,7 @@ public partial class EParser : AbstractParser {
 				case TYPE_IDENTIFIER:
 				case TEXT_LITERAL:
 				case UUID_LITERAL:
+				case VERSION_LITERAL:
 				case INTEGER_LITERAL:
 				case HEXA_LITERAL:
 				case DECIMAL_LITERAL:
@@ -10364,7 +10365,6 @@ public partial class EParser : AbstractParser {
 				case TIME_LITERAL:
 				case DATE_LITERAL:
 				case PERIOD_LITERAL:
-				case VERSION_LITERAL:
 					{
 					State = 1707;
 					_localctx.exp = annotation_argument_value();
@@ -10633,6 +10633,7 @@ public partial class EParser : AbstractParser {
 			case SYMBOL_IDENTIFIER:
 			case TEXT_LITERAL:
 			case UUID_LITERAL:
+			case VERSION_LITERAL:
 			case INTEGER_LITERAL:
 			case HEXA_LITERAL:
 			case DECIMAL_LITERAL:
@@ -10640,7 +10641,6 @@ public partial class EParser : AbstractParser {
 			case TIME_LITERAL:
 			case DATE_LITERAL:
 			case PERIOD_LITERAL:
-			case VERSION_LITERAL:
 				_localctx = new AnnotationLiteralValueContext(_localctx);
 				EnterOuterAlt(_localctx, 1);
 				{
@@ -11218,7 +11218,7 @@ public partial class EParser : AbstractParser {
 			State = 1783;
 			ErrorHandler.Sync(this);
 			_la = TokenStream.LA(1);
-			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << LPAR) | (1L << LBRAK) | (1L << LCURL) | (1L << MINUS) | (1L << LT) | (1L << LTGT) | (1L << LTCOLONGT))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (METHOD_COLON - 64)) | (1L << (CODE - 64)) | (1L << (DOCUMENT - 64)) | (1L << (BLOB - 64)) | (1L << (TYPE - 64)) | (1L << (CATEGORY - 64)) | (1L << (EXECUTE - 64)) | (1L << (FETCH - 64)) | (1L << (INVOKE_COLON - 64)) | (1L << (MUTABLE - 64)) | (1L << (NOT - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (NOTHING - 128)) | (1L << (READ - 128)) | (1L << (RESOURCE - 128)) | (1L << (SELF - 128)) | (1L << (SORTED - 128)) | (1L << (SUPER - 128)) | (1L << (THIS - 128)) | (1L << (BOOLEAN_LITERAL - 128)) | (1L << (CHAR_LITERAL - 128)) | (1L << (MIN_INTEGER - 128)) | (1L << (MAX_INTEGER - 128)) | (1L << (SYMBOL_IDENTIFIER - 128)) | (1L << (TYPE_IDENTIFIER - 128)) | (1L << (VARIABLE_IDENTIFIER - 128)) | (1L << (TEXT_LITERAL - 128)) | (1L << (UUID_LITERAL - 128)) | (1L << (INTEGER_LITERAL - 128)) | (1L << (HEXA_LITERAL - 128)) | (1L << (DECIMAL_LITERAL - 128)) | (1L << (DATETIME_LITERAL - 128)) | (1L << (TIME_LITERAL - 128)) | (1L << (DATE_LITERAL - 128)) | (1L << (PERIOD_LITERAL - 128)) | (1L << (VERSION_LITERAL - 128)))) != 0)) {
+			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << LPAR) | (1L << LBRAK) | (1L << LCURL) | (1L << MINUS) | (1L << LT) | (1L << LTGT) | (1L << LTCOLONGT))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (METHOD_COLON - 64)) | (1L << (CODE - 64)) | (1L << (DOCUMENT - 64)) | (1L << (BLOB - 64)) | (1L << (TYPE - 64)) | (1L << (CATEGORY - 64)) | (1L << (EXECUTE - 64)) | (1L << (FETCH - 64)) | (1L << (INVOKE_COLON - 64)) | (1L << (MUTABLE - 64)) | (1L << (NOT - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (NOTHING - 128)) | (1L << (READ - 128)) | (1L << (RESOURCE - 128)) | (1L << (SELF - 128)) | (1L << (SORTED - 128)) | (1L << (SUPER - 128)) | (1L << (THIS - 128)) | (1L << (BOOLEAN_LITERAL - 128)) | (1L << (CHAR_LITERAL - 128)) | (1L << (MIN_INTEGER - 128)) | (1L << (MAX_INTEGER - 128)) | (1L << (SYMBOL_IDENTIFIER - 128)) | (1L << (TYPE_IDENTIFIER - 128)) | (1L << (VARIABLE_IDENTIFIER - 128)) | (1L << (TEXT_LITERAL - 128)) | (1L << (UUID_LITERAL - 128)) | (1L << (VERSION_LITERAL - 128)) | (1L << (INTEGER_LITERAL - 128)) | (1L << (HEXA_LITERAL - 128)) | (1L << (DECIMAL_LITERAL - 128)) | (1L << (DATETIME_LITERAL - 128)) | (1L << (TIME_LITERAL - 128)) | (1L << (DATE_LITERAL - 128)) | (1L << (PERIOD_LITERAL - 128)))) != 0)) {
 				{
 				State = 1782;
 				expression_list();
@@ -11287,7 +11287,7 @@ public partial class EParser : AbstractParser {
 			State = 1792;
 			ErrorHandler.Sync(this);
 			_la = TokenStream.LA(1);
-			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << LPAR) | (1L << LBRAK) | (1L << LCURL) | (1L << MINUS) | (1L << LT) | (1L << LTGT) | (1L << LTCOLONGT))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (METHOD_COLON - 64)) | (1L << (CODE - 64)) | (1L << (DOCUMENT - 64)) | (1L << (BLOB - 64)) | (1L << (TYPE - 64)) | (1L << (CATEGORY - 64)) | (1L << (EXECUTE - 64)) | (1L << (FETCH - 64)) | (1L << (INVOKE_COLON - 64)) | (1L << (MUTABLE - 64)) | (1L << (NOT - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (NOTHING - 128)) | (1L << (READ - 128)) | (1L << (RESOURCE - 128)) | (1L << (SELF - 128)) | (1L << (SORTED - 128)) | (1L << (SUPER - 128)) | (1L << (THIS - 128)) | (1L << (BOOLEAN_LITERAL - 128)) | (1L << (CHAR_LITERAL - 128)) | (1L << (MIN_INTEGER - 128)) | (1L << (MAX_INTEGER - 128)) | (1L << (SYMBOL_IDENTIFIER - 128)) | (1L << (TYPE_IDENTIFIER - 128)) | (1L << (VARIABLE_IDENTIFIER - 128)) | (1L << (TEXT_LITERAL - 128)) | (1L << (UUID_LITERAL - 128)) | (1L << (INTEGER_LITERAL - 128)) | (1L << (HEXA_LITERAL - 128)) | (1L << (DECIMAL_LITERAL - 128)) | (1L << (DATETIME_LITERAL - 128)) | (1L << (TIME_LITERAL - 128)) | (1L << (DATE_LITERAL - 128)) | (1L << (PERIOD_LITERAL - 128)) | (1L << (VERSION_LITERAL - 128)))) != 0)) {
+			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << LPAR) | (1L << LBRAK) | (1L << LCURL) | (1L << MINUS) | (1L << LT) | (1L << LTGT) | (1L << LTCOLONGT))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (METHOD_COLON - 64)) | (1L << (CODE - 64)) | (1L << (DOCUMENT - 64)) | (1L << (BLOB - 64)) | (1L << (TYPE - 64)) | (1L << (CATEGORY - 64)) | (1L << (EXECUTE - 64)) | (1L << (FETCH - 64)) | (1L << (INVOKE_COLON - 64)) | (1L << (MUTABLE - 64)) | (1L << (NOT - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (NOTHING - 128)) | (1L << (READ - 128)) | (1L << (RESOURCE - 128)) | (1L << (SELF - 128)) | (1L << (SORTED - 128)) | (1L << (SUPER - 128)) | (1L << (THIS - 128)) | (1L << (BOOLEAN_LITERAL - 128)) | (1L << (CHAR_LITERAL - 128)) | (1L << (MIN_INTEGER - 128)) | (1L << (MAX_INTEGER - 128)) | (1L << (SYMBOL_IDENTIFIER - 128)) | (1L << (TYPE_IDENTIFIER - 128)) | (1L << (VARIABLE_IDENTIFIER - 128)) | (1L << (TEXT_LITERAL - 128)) | (1L << (UUID_LITERAL - 128)) | (1L << (VERSION_LITERAL - 128)) | (1L << (INTEGER_LITERAL - 128)) | (1L << (HEXA_LITERAL - 128)) | (1L << (DECIMAL_LITERAL - 128)) | (1L << (DATETIME_LITERAL - 128)) | (1L << (TIME_LITERAL - 128)) | (1L << (DATE_LITERAL - 128)) | (1L << (PERIOD_LITERAL - 128)))) != 0)) {
 				{
 				State = 1791;
 				expression_list();
@@ -16412,6 +16412,7 @@ public partial class EParser : AbstractParser {
 			case SYMBOL_IDENTIFIER:
 			case TEXT_LITERAL:
 			case UUID_LITERAL:
+			case VERSION_LITERAL:
 			case INTEGER_LITERAL:
 			case HEXA_LITERAL:
 			case DECIMAL_LITERAL:
@@ -16419,7 +16420,6 @@ public partial class EParser : AbstractParser {
 			case TIME_LITERAL:
 			case DATE_LITERAL:
 			case PERIOD_LITERAL:
-			case VERSION_LITERAL:
 				EnterOuterAlt(_localctx, 1);
 				{
 				State = 2235;
@@ -16599,7 +16599,7 @@ public partial class EParser : AbstractParser {
 			State = 2252;
 			ErrorHandler.Sync(this);
 			_la = TokenStream.LA(1);
-			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << LPAR) | (1L << LBRAK) | (1L << LCURL) | (1L << MINUS) | (1L << LT) | (1L << LTGT) | (1L << LTCOLONGT))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (METHOD_COLON - 64)) | (1L << (CODE - 64)) | (1L << (DOCUMENT - 64)) | (1L << (BLOB - 64)) | (1L << (TYPE - 64)) | (1L << (CATEGORY - 64)) | (1L << (EXECUTE - 64)) | (1L << (FETCH - 64)) | (1L << (INVOKE_COLON - 64)) | (1L << (MUTABLE - 64)) | (1L << (NOT - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (NOTHING - 128)) | (1L << (READ - 128)) | (1L << (RESOURCE - 128)) | (1L << (SELF - 128)) | (1L << (SORTED - 128)) | (1L << (SUPER - 128)) | (1L << (THIS - 128)) | (1L << (BOOLEAN_LITERAL - 128)) | (1L << (CHAR_LITERAL - 128)) | (1L << (MIN_INTEGER - 128)) | (1L << (MAX_INTEGER - 128)) | (1L << (SYMBOL_IDENTIFIER - 128)) | (1L << (TYPE_IDENTIFIER - 128)) | (1L << (VARIABLE_IDENTIFIER - 128)) | (1L << (TEXT_LITERAL - 128)) | (1L << (UUID_LITERAL - 128)) | (1L << (INTEGER_LITERAL - 128)) | (1L << (HEXA_LITERAL - 128)) | (1L << (DECIMAL_LITERAL - 128)) | (1L << (DATETIME_LITERAL - 128)) | (1L << (TIME_LITERAL - 128)) | (1L << (DATE_LITERAL - 128)) | (1L << (PERIOD_LITERAL - 128)) | (1L << (VERSION_LITERAL - 128)))) != 0)) {
+			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << LPAR) | (1L << LBRAK) | (1L << LCURL) | (1L << MINUS) | (1L << LT) | (1L << LTGT) | (1L << LTCOLONGT))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (METHOD_COLON - 64)) | (1L << (CODE - 64)) | (1L << (DOCUMENT - 64)) | (1L << (BLOB - 64)) | (1L << (TYPE - 64)) | (1L << (CATEGORY - 64)) | (1L << (EXECUTE - 64)) | (1L << (FETCH - 64)) | (1L << (INVOKE_COLON - 64)) | (1L << (MUTABLE - 64)) | (1L << (NOT - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (NOTHING - 128)) | (1L << (READ - 128)) | (1L << (RESOURCE - 128)) | (1L << (SELF - 128)) | (1L << (SORTED - 128)) | (1L << (SUPER - 128)) | (1L << (THIS - 128)) | (1L << (BOOLEAN_LITERAL - 128)) | (1L << (CHAR_LITERAL - 128)) | (1L << (MIN_INTEGER - 128)) | (1L << (MAX_INTEGER - 128)) | (1L << (SYMBOL_IDENTIFIER - 128)) | (1L << (TYPE_IDENTIFIER - 128)) | (1L << (VARIABLE_IDENTIFIER - 128)) | (1L << (TEXT_LITERAL - 128)) | (1L << (UUID_LITERAL - 128)) | (1L << (VERSION_LITERAL - 128)) | (1L << (INTEGER_LITERAL - 128)) | (1L << (HEXA_LITERAL - 128)) | (1L << (DECIMAL_LITERAL - 128)) | (1L << (DATETIME_LITERAL - 128)) | (1L << (TIME_LITERAL - 128)) | (1L << (DATE_LITERAL - 128)) | (1L << (PERIOD_LITERAL - 128)))) != 0)) {
 				{
 				State = 2251;
 				expression_tuple();
@@ -16813,7 +16813,7 @@ public partial class EParser : AbstractParser {
 			State = 2285;
 			ErrorHandler.Sync(this);
 			_la = TokenStream.LA(1);
-			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << LPAR) | (1L << LBRAK) | (1L << LCURL) | (1L << MINUS) | (1L << LT) | (1L << LTGT) | (1L << LTCOLONGT))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (METHOD_COLON - 64)) | (1L << (CODE - 64)) | (1L << (DOCUMENT - 64)) | (1L << (BLOB - 64)) | (1L << (TYPE - 64)) | (1L << (CATEGORY - 64)) | (1L << (EXECUTE - 64)) | (1L << (FETCH - 64)) | (1L << (INVOKE_COLON - 64)) | (1L << (MUTABLE - 64)) | (1L << (NOT - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (NOTHING - 128)) | (1L << (READ - 128)) | (1L << (RESOURCE - 128)) | (1L << (SELF - 128)) | (1L << (SORTED - 128)) | (1L << (SUPER - 128)) | (1L << (THIS - 128)) | (1L << (BOOLEAN_LITERAL - 128)) | (1L << (CHAR_LITERAL - 128)) | (1L << (MIN_INTEGER - 128)) | (1L << (MAX_INTEGER - 128)) | (1L << (SYMBOL_IDENTIFIER - 128)) | (1L << (TYPE_IDENTIFIER - 128)) | (1L << (VARIABLE_IDENTIFIER - 128)) | (1L << (TEXT_LITERAL - 128)) | (1L << (UUID_LITERAL - 128)) | (1L << (INTEGER_LITERAL - 128)) | (1L << (HEXA_LITERAL - 128)) | (1L << (DECIMAL_LITERAL - 128)) | (1L << (DATETIME_LITERAL - 128)) | (1L << (TIME_LITERAL - 128)) | (1L << (DATE_LITERAL - 128)) | (1L << (PERIOD_LITERAL - 128)) | (1L << (VERSION_LITERAL - 128)))) != 0)) {
+			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << LPAR) | (1L << LBRAK) | (1L << LCURL) | (1L << MINUS) | (1L << LT) | (1L << LTGT) | (1L << LTCOLONGT))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (METHOD_COLON - 64)) | (1L << (CODE - 64)) | (1L << (DOCUMENT - 64)) | (1L << (BLOB - 64)) | (1L << (TYPE - 64)) | (1L << (CATEGORY - 64)) | (1L << (EXECUTE - 64)) | (1L << (FETCH - 64)) | (1L << (INVOKE_COLON - 64)) | (1L << (MUTABLE - 64)) | (1L << (NOT - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (NOTHING - 128)) | (1L << (READ - 128)) | (1L << (RESOURCE - 128)) | (1L << (SELF - 128)) | (1L << (SORTED - 128)) | (1L << (SUPER - 128)) | (1L << (THIS - 128)) | (1L << (BOOLEAN_LITERAL - 128)) | (1L << (CHAR_LITERAL - 128)) | (1L << (MIN_INTEGER - 128)) | (1L << (MAX_INTEGER - 128)) | (1L << (SYMBOL_IDENTIFIER - 128)) | (1L << (TYPE_IDENTIFIER - 128)) | (1L << (VARIABLE_IDENTIFIER - 128)) | (1L << (TEXT_LITERAL - 128)) | (1L << (UUID_LITERAL - 128)) | (1L << (VERSION_LITERAL - 128)) | (1L << (INTEGER_LITERAL - 128)) | (1L << (HEXA_LITERAL - 128)) | (1L << (DECIMAL_LITERAL - 128)) | (1L << (DATETIME_LITERAL - 128)) | (1L << (TIME_LITERAL - 128)) | (1L << (DATE_LITERAL - 128)) | (1L << (PERIOD_LITERAL - 128)))) != 0)) {
 				{
 				State = 2277;
 				expression(0);
@@ -25695,6 +25695,7 @@ public partial class EParser : AbstractParser {
 			case ARONDBASE_IDENTIFIER:
 			case TEXT_LITERAL:
 			case UUID_LITERAL:
+			case VERSION_LITERAL:
 			case INTEGER_LITERAL:
 			case HEXA_LITERAL:
 			case DECIMAL_LITERAL:
@@ -25702,7 +25703,6 @@ public partial class EParser : AbstractParser {
 			case TIME_LITERAL:
 			case DATE_LITERAL:
 			case PERIOD_LITERAL:
-			case VERSION_LITERAL:
 			case JSX_TEXT:
 				_localctx = new JsxTextContext(_localctx);
 				EnterOuterAlt(_localctx, 1);
@@ -25728,7 +25728,7 @@ public partial class EParser : AbstractParser {
 				State = 2918;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
-				if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << LPAR) | (1L << LBRAK) | (1L << LCURL) | (1L << MINUS) | (1L << LT) | (1L << LTGT) | (1L << LTCOLONGT))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (METHOD_COLON - 64)) | (1L << (CODE - 64)) | (1L << (DOCUMENT - 64)) | (1L << (BLOB - 64)) | (1L << (TYPE - 64)) | (1L << (CATEGORY - 64)) | (1L << (EXECUTE - 64)) | (1L << (FETCH - 64)) | (1L << (INVOKE_COLON - 64)) | (1L << (MUTABLE - 64)) | (1L << (NOT - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (NOTHING - 128)) | (1L << (READ - 128)) | (1L << (RESOURCE - 128)) | (1L << (SELF - 128)) | (1L << (SORTED - 128)) | (1L << (SUPER - 128)) | (1L << (THIS - 128)) | (1L << (BOOLEAN_LITERAL - 128)) | (1L << (CHAR_LITERAL - 128)) | (1L << (MIN_INTEGER - 128)) | (1L << (MAX_INTEGER - 128)) | (1L << (SYMBOL_IDENTIFIER - 128)) | (1L << (TYPE_IDENTIFIER - 128)) | (1L << (VARIABLE_IDENTIFIER - 128)) | (1L << (TEXT_LITERAL - 128)) | (1L << (UUID_LITERAL - 128)) | (1L << (INTEGER_LITERAL - 128)) | (1L << (HEXA_LITERAL - 128)) | (1L << (DECIMAL_LITERAL - 128)) | (1L << (DATETIME_LITERAL - 128)) | (1L << (TIME_LITERAL - 128)) | (1L << (DATE_LITERAL - 128)) | (1L << (PERIOD_LITERAL - 128)) | (1L << (VERSION_LITERAL - 128)))) != 0)) {
+				if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << LPAR) | (1L << LBRAK) | (1L << LCURL) | (1L << MINUS) | (1L << LT) | (1L << LTGT) | (1L << LTCOLONGT))) != 0) || ((((_la - 64)) & ~0x3f) == 0 && ((1L << (_la - 64)) & ((1L << (METHOD_COLON - 64)) | (1L << (CODE - 64)) | (1L << (DOCUMENT - 64)) | (1L << (BLOB - 64)) | (1L << (TYPE - 64)) | (1L << (CATEGORY - 64)) | (1L << (EXECUTE - 64)) | (1L << (FETCH - 64)) | (1L << (INVOKE_COLON - 64)) | (1L << (MUTABLE - 64)) | (1L << (NOT - 64)))) != 0) || ((((_la - 128)) & ~0x3f) == 0 && ((1L << (_la - 128)) & ((1L << (NOTHING - 128)) | (1L << (READ - 128)) | (1L << (RESOURCE - 128)) | (1L << (SELF - 128)) | (1L << (SORTED - 128)) | (1L << (SUPER - 128)) | (1L << (THIS - 128)) | (1L << (BOOLEAN_LITERAL - 128)) | (1L << (CHAR_LITERAL - 128)) | (1L << (MIN_INTEGER - 128)) | (1L << (MAX_INTEGER - 128)) | (1L << (SYMBOL_IDENTIFIER - 128)) | (1L << (TYPE_IDENTIFIER - 128)) | (1L << (VARIABLE_IDENTIFIER - 128)) | (1L << (TEXT_LITERAL - 128)) | (1L << (UUID_LITERAL - 128)) | (1L << (VERSION_LITERAL - 128)) | (1L << (INTEGER_LITERAL - 128)) | (1L << (HEXA_LITERAL - 128)) | (1L << (DECIMAL_LITERAL - 128)) | (1L << (DATETIME_LITERAL - 128)) | (1L << (TIME_LITERAL - 128)) | (1L << (DATE_LITERAL - 128)) | (1L << (PERIOD_LITERAL - 128)))) != 0)) {
 					{
 					State = 2917;
 					((JsxCodeContext)_localctx).exp = expression(0);
@@ -28727,16 +28727,16 @@ public partial class EParser : AbstractParser {
 		'\xA9', '\x2', '\x2', '\x890', '\x8A7', '\a', '\xAA', '\x2', '\x2', '\x891', 
 		'\x893', '\a', '#', '\x2', '\x2', '\x892', '\x891', '\x3', '\x2', '\x2', 
 		'\x2', '\x892', '\x893', '\x3', '\x2', '\x2', '\x2', '\x893', '\x894', 
-		'\x3', '\x2', '\x2', '\x2', '\x894', '\x8A7', '\a', '\xB3', '\x2', '\x2', 
-		'\x895', '\x8A7', '\a', '\xB4', '\x2', '\x2', '\x896', '\x8A7', '\a', 
-		'\xA8', '\x2', '\x2', '\x897', '\x8A7', '\a', '\xB8', '\x2', '\x2', '\x898', 
-		'\x8A7', '\a', '\xB7', '\x2', '\x2', '\x899', '\x8A7', '\a', '\xB1', '\x2', 
+		'\x3', '\x2', '\x2', '\x2', '\x894', '\x8A7', '\a', '\xB4', '\x2', '\x2', 
+		'\x895', '\x8A7', '\a', '\xB5', '\x2', '\x2', '\x896', '\x8A7', '\a', 
+		'\xA8', '\x2', '\x2', '\x897', '\x8A7', '\a', '\xB9', '\x2', '\x2', '\x898', 
+		'\x8A7', '\a', '\xB8', '\x2', '\x2', '\x899', '\x8A7', '\a', '\xB1', '\x2', 
 		'\x2', '\x89A', '\x89C', '\a', '#', '\x2', '\x2', '\x89B', '\x89A', '\x3', 
 		'\x2', '\x2', '\x2', '\x89B', '\x89C', '\x3', '\x2', '\x2', '\x2', '\x89C', 
-		'\x89D', '\x3', '\x2', '\x2', '\x2', '\x89D', '\x8A7', '\a', '\xB5', '\x2', 
-		'\x2', '\x89E', '\x8A7', '\a', '\xB6', '\x2', '\x2', '\x89F', '\x8A7', 
-		'\a', '\xA7', '\x2', '\x2', '\x8A0', '\x8A7', '\a', '\xB9', '\x2', '\x2', 
-		'\x8A1', '\x8A7', '\a', '\xBA', '\x2', '\x2', '\x8A2', '\x8A7', '\a', 
+		'\x89D', '\x3', '\x2', '\x2', '\x2', '\x89D', '\x8A7', '\a', '\xB6', '\x2', 
+		'\x2', '\x89E', '\x8A7', '\a', '\xB7', '\x2', '\x2', '\x89F', '\x8A7', 
+		'\a', '\xA7', '\x2', '\x2', '\x8A0', '\x8A7', '\a', '\xBA', '\x2', '\x2', 
+		'\x8A1', '\x8A7', '\a', '\xB3', '\x2', '\x2', '\x8A2', '\x8A7', '\a', 
 		'\xB2', '\x2', '\x2', '\x8A3', '\x8A7', '\x5', '\xEA', 'v', '\x2', '\x8A4', 
 		'\x8A7', '\x5', '\x9C', 'O', '\x2', '\x8A5', '\x8A7', '\x5', '\x9E', 'P', 
 		'\x2', '\x8A6', '\x88F', '\x3', '\x2', '\x2', '\x2', '\x8A6', '\x890', 
@@ -28972,8 +28972,8 @@ public partial class EParser : AbstractParser {
 		'\x2', '\x9D2', '\x9D3', '\x5', '\x17E', '\xC0', '\x2', '\x9D3', '\x9D4', 
 		'\a', '\x17', '\x2', '\x2', '\x9D4', '\x18F', '\x3', '\x2', '\x2', '\x2', 
 		'\x9D5', '\x9D6', '\x5', '\x194', '\xCB', '\x2', '\x9D6', '\x191', '\x3', 
-		'\x2', '\x2', '\x2', '\x9D7', '\x9DD', '\a', '\xB3', '\x2', '\x2', '\x9D8', 
-		'\x9DD', '\a', '\xB5', '\x2', '\x2', '\x9D9', '\x9DD', '\a', '\xB1', '\x2', 
+		'\x2', '\x2', '\x2', '\x9D7', '\x9DD', '\a', '\xB4', '\x2', '\x2', '\x9D8', 
+		'\x9DD', '\a', '\xB6', '\x2', '\x2', '\x9D9', '\x9DD', '\a', '\xB1', '\x2', 
 		'\x2', '\x9DA', '\x9DD', '\a', '\xA7', '\x2', '\x2', '\x9DB', '\x9DD', 
 		'\a', '\xA8', '\x2', '\x2', '\x9DC', '\x9D7', '\x3', '\x2', '\x2', '\x2', 
 		'\x9DC', '\x9D8', '\x3', '\x2', '\x2', '\x2', '\x9DC', '\x9D9', '\x3', 
@@ -29054,8 +29054,8 @@ public partial class EParser : AbstractParser {
 		'\xA3F', '\x3', '\x2', '\x2', '\x2', '\xA3D', '\xA3B', '\x3', '\x2', '\x2', 
 		'\x2', '\xA3D', '\xA3E', '\x3', '\x2', '\x2', '\x2', '\xA3E', '\x1AB', 
 		'\x3', '\x2', '\x2', '\x2', '\xA3F', '\xA3D', '\x3', '\x2', '\x2', '\x2', 
-		'\xA40', '\xA46', '\a', '\xB3', '\x2', '\x2', '\xA41', '\xA46', '\a', 
-		'\xB5', '\x2', '\x2', '\xA42', '\xA46', '\a', '\xB1', '\x2', '\x2', '\xA43', 
+		'\xA40', '\xA46', '\a', '\xB4', '\x2', '\x2', '\xA41', '\xA46', '\a', 
+		'\xB6', '\x2', '\x2', '\xA42', '\xA46', '\a', '\xB1', '\x2', '\x2', '\xA43', 
 		'\xA46', '\a', '\xA7', '\x2', '\x2', '\xA44', '\xA46', '\a', '\xA8', '\x2', 
 		'\x2', '\xA45', '\xA40', '\x3', '\x2', '\x2', '\x2', '\xA45', '\xA41', 
 		'\x3', '\x2', '\x2', '\x2', '\xA45', '\xA42', '\x3', '\x2', '\x2', '\x2', 
@@ -29128,8 +29128,8 @@ public partial class EParser : AbstractParser {
 		'\xA9D', '\xAA0', '\x3', '\x2', '\x2', '\x2', '\xA9E', '\xA9C', '\x3', 
 		'\x2', '\x2', '\x2', '\xA9E', '\xA9F', '\x3', '\x2', '\x2', '\x2', '\xA9F', 
 		'\x1C7', '\x3', '\x2', '\x2', '\x2', '\xAA0', '\xA9E', '\x3', '\x2', '\x2', 
-		'\x2', '\xAA1', '\xAA7', '\a', '\xB3', '\x2', '\x2', '\xAA2', '\xAA7', 
-		'\a', '\xB5', '\x2', '\x2', '\xAA3', '\xAA7', '\a', '\xB1', '\x2', '\x2', 
+		'\x2', '\xAA1', '\xAA7', '\a', '\xB4', '\x2', '\x2', '\xAA2', '\xAA7', 
+		'\a', '\xB6', '\x2', '\x2', '\xAA3', '\xAA7', '\a', '\xB1', '\x2', '\x2', 
 		'\xAA4', '\xAA7', '\a', '\xA7', '\x2', '\x2', '\xAA5', '\xAA7', '\a', 
 		'\xA8', '\x2', '\x2', '\xAA6', '\xAA1', '\x3', '\x2', '\x2', '\x2', '\xAA6', 
 		'\xAA2', '\x3', '\x2', '\x2', '\x2', '\xAA6', '\xAA3', '\x3', '\x2', '\x2', 
@@ -29197,8 +29197,8 @@ public partial class EParser : AbstractParser {
 		'\xAF6', '\xAF9', '\x3', '\x2', '\x2', '\x2', '\xAF7', '\xAF5', '\x3', 
 		'\x2', '\x2', '\x2', '\xAF7', '\xAF8', '\x3', '\x2', '\x2', '\x2', '\xAF8', 
 		'\x1E1', '\x3', '\x2', '\x2', '\x2', '\xAF9', '\xAF7', '\x3', '\x2', '\x2', 
-		'\x2', '\xAFA', '\xB00', '\a', '\xB3', '\x2', '\x2', '\xAFB', '\xB00', 
-		'\a', '\xB5', '\x2', '\x2', '\xAFC', '\xB00', '\a', '\xB1', '\x2', '\x2', 
+		'\x2', '\xAFA', '\xB00', '\a', '\xB4', '\x2', '\x2', '\xAFB', '\xB00', 
+		'\a', '\xB6', '\x2', '\x2', '\xAFC', '\xB00', '\a', '\xB1', '\x2', '\x2', 
 		'\xAFD', '\xB00', '\a', '\xA7', '\x2', '\x2', '\xAFE', '\xB00', '\a', 
 		'\xA8', '\x2', '\x2', '\xAFF', '\xAFA', '\x3', '\x2', '\x2', '\x2', '\xAFF', 
 		'\xAFB', '\x3', '\x2', '\x2', '\x2', '\xAFF', '\xAFC', '\x3', '\x2', '\x2', 

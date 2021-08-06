@@ -9,7 +9,7 @@ namespace prompto.literal
     {
 
         public VersionLiteral(String text)
-            : base(text, parseVersion(text.Substring(2, text.Length - 3)))
+            : base(text, parseVersion(text.Substring(1, text.Length - 2)))
         {
         }
 
