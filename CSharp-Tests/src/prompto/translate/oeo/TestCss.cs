@@ -15,6 +15,12 @@ namespace prompto.translate.oeo
 		}
 
 		[Test]
+		public void testCompositeValue()
+		{
+			compareResourceOEO("css/compositeValue.poc");
+		}
+
+		[Test]
 		public void testHyphenName()
 		{
 			compareResourceOEO("css/hyphenName.poc");

@@ -15,6 +15,12 @@ namespace prompto.translate.omo
 		}
 
 		[Test]
+		public void testCompositeValue()
+		{
+			compareResourceOMO("css/compositeValue.poc");
+		}
+
+		[Test]
 		public void testHyphenName()
 		{
 			compareResourceOMO("css/hyphenName.poc");

@@ -11,7 +11,7 @@ namespace prompto.value
     {
    
         public static readonly VersionValue LATEST = ParseUInt32(0xFFFFFFFF);
-        public static readonly VersionValue DEVELOPMENT = ParseUInt32(0xEFEFEFEF);
+        public static readonly VersionValue DEVELOPMENT = ParseUInt32(0xFEFEFEFE);
 
         public static VersionValue Parse(String literal)
         {

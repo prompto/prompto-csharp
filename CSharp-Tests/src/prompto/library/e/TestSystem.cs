@@ -17,7 +17,6 @@ namespace prompto.library.e
 			Out.init();
 			coreContext = null;
 			LoadDependency("system");
-			LoadDependency("core");
 		}
 
 		[TearDown]

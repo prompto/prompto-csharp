@@ -15,6 +15,12 @@ namespace prompto.translate.eme
 		}
 
 		[Test]
+		public void testCompositeValue()
+		{
+			compareResourceEME("css/compositeValue.pec");
+		}
+
+		[Test]
 		public void testHyphenName()
 		{
 			compareResourceEME("css/hyphenName.pec");

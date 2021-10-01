@@ -28,6 +28,12 @@ namespace prompto.runtime.o
 		}
 
 		[Test]
+		public void testCompositeValue()
+		{
+			CheckOutput("css/compositeValue.poc");
+		}
+
+		[Test]
 		public void testHyphenName()
 		{
 			CheckOutput("css/hyphenName.poc");

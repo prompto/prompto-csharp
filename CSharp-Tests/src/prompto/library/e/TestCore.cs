@@ -50,6 +50,12 @@ namespace prompto.library.e
 		}
 
 		[Test]
+		public void testAudit()
+		{
+			CheckTests("core/audit.pec");
+		}
+
+		[Test]
 		public void testCategory()
 		{
 			CheckTests("core/category.pec");
