@@ -54,7 +54,9 @@ namespace prompto.value
 
         private static Int16 ParseVersionQualifier(String literal)
         {
-            if ("alpha" == literal)
+            if ("" == literal)
+                return 0;
+            else if ("alpha" == literal)
                 return -3;
             else if ("beta" == literal)
                 return -2;
@@ -154,6 +156,8 @@ namespace prompto.value
         {
             switch (qualifier)
             {
+                case 0:
+                    return "";
                 case -3:
                     return "alpha";
                 case -2:
