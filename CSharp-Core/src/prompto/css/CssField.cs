@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using prompto.utils;
+using System.Linq;
 
 namespace prompto.css
 {
@@ -8,26 +10,31 @@ namespace prompto.css
 	{
 
 		internal String name;
-		ICssValue value;
+		List<ICssValue> values;
 
-		public CssField(String name, ICssValue value)
+		public CssField(String name, List<ICssValue> values)
 		{
 			this.name = name;
-			this.value = value;
+			this.values = values;
 		}
 
         public override string ToString()
         {
-            return name + ": " + value.ToString();
+            return name + ": " + valuesToString();
         }
 
         public void ToDialect(CodeWriter writer)
 		{
 			writer.append(name).append(":");
-			value.ToDialect(writer);
+			foreach(ICssValue value in values)
+				value.ToDialect(writer);
 			writer.append(";");
 		}
 
+		private String valuesToString()
+        {
+			return String.Join("", values.Select(value => value.ToString()));
+		}
 
 	}
 }

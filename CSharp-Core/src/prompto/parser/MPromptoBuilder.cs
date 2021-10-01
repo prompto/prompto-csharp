@@ -19,7 +19,7 @@ using prompto.instance;
 using prompto.jsx;
 using prompto.css;
 using System.Text;
-using Antlr4.Runtime.Misc;
+using System.Linq;
 
 namespace prompto.parser
 {
@@ -3368,8 +3368,8 @@ namespace prompto.parser
         public override void ExitCss_field(MParser.Css_fieldContext ctx)
         {
             String name = ctx.name.GetText();
-            ICssValue value = GetNodeValue<ICssValue>(ctx.value);
-            SetNodeValue(ctx, new CssField(name, value));
+            List<ICssValue> values = ctx.css_value().Select(x => GetNodeValue<ICssValue>(x)).ToList();
+            SetNodeValue(ctx, new CssField(name, values));
         }
 
 
