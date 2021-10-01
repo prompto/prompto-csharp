@@ -543,6 +543,12 @@ namespace prompto.runtime.e
 			CheckOutput("builtins/uuidText.pec");
 		}
 
+		[Test]
+		public void testVersionMembers()
+		{
+			CheckOutput("builtins/versionMembers.pec");
+		}
+
 	}
 }
 

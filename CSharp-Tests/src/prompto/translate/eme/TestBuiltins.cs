@@ -542,6 +542,12 @@ namespace prompto.translate.eme
 			compareResourceEME("builtins/uuidText.pec");
 		}
 
+		[Test]
+		public void testVersionMembers()
+		{
+			compareResourceEME("builtins/versionMembers.pec");
+		}
+
 	}
 }
 
