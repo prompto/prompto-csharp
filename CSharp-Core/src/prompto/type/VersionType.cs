@@ -32,7 +32,21 @@ namespace prompto.type
         }
 
 
-        
+        public override IType checkMember(Context context, String name)
+        {
+            if ("major" == name)
+                return IntegerType.Instance;
+            else if ("minor" == name)
+                return IntegerType.Instance;
+            else if ("fix" == name)
+                return IntegerType.Instance;
+            else if ("qualifier" == name)
+                return TextType.Instance;
+            else
+                return base.checkMember(context, name);
+        }
+
+
         public override void checkCompare(Context context, IType other)
         {
             if (other is VersionType)

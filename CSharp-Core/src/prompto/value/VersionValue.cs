@@ -170,5 +170,19 @@ namespace prompto.value
             return new JValue(this.ToString());
         }
 
+        public override IValue GetMemberValue(Context context, String name, bool autoCreate)
+        {
+            if ("major" == name)
+                return new IntegerValue(major);
+            else if ("minor" == name)
+                return new IntegerValue(minor);
+           else if ("fix" == name)
+                return new IntegerValue(fix);
+           else if ("qualifier" == name)
+                return new TextValue(QualifierToString());
+            else
+                return base.GetMemberValue(context, name, autoCreate);
+        }
+
     }
 }
