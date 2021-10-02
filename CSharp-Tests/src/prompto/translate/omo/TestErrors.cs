@@ -39,6 +39,12 @@ namespace prompto.translate.omo
 		}
 
 		[Test]
+		public void testMemberInCatch()
+		{
+			compareResourceOMO("errors/memberInCatch.poc");
+		}
+
+		[Test]
 		public void testNullDict()
 		{
 			compareResourceOMO("errors/nullDict.poc");

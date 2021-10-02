@@ -39,6 +39,12 @@ namespace prompto.translate.oeo
 		}
 
 		[Test]
+		public void testMemberInCatch()
+		{
+			compareResourceOEO("errors/memberInCatch.poc");
+		}
+
+		[Test]
 		public void testNullDict()
 		{
 			compareResourceOEO("errors/nullDict.poc");

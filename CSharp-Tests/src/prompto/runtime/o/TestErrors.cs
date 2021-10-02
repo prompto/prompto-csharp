@@ -52,6 +52,12 @@ namespace prompto.runtime.o
 		}
 
 		[Test]
+		public void testMemberInCatch()
+		{
+			CheckOutput("errors/memberInCatch.poc");
+		}
+
+		[Test]
 		public void testNullDict()
 		{
 			CheckOutput("errors/nullDict.poc");

@@ -39,6 +39,12 @@ namespace prompto.translate.eme
 		}
 
 		[Test]
+		public void testMemberInCatch()
+		{
+			compareResourceEME("errors/memberInCatch.pec");
+		}
+
+		[Test]
 		public void testNullDict()
 		{
 			compareResourceEME("errors/nullDict.pec");
