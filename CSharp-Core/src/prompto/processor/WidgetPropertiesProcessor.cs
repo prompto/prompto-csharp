@@ -237,18 +237,18 @@ namespace prompto.processor
     private IType resolveType(Annotation annotation, Context context, IType type)
     {
 	    type = type.Anyfy();
-	    if (type is NativeType)
-			return type;
-		else
-	    {
-		    IDeclaration decl = context.getRegisteredDeclaration<IDeclaration>(type.GetTypeName());
-			    if(decl==null)
+			if (type is NativeType || type is TypeType)
+				return type;
+			else
+			{
+				IDeclaration decl = context.getRegisteredDeclaration<IDeclaration>(type.GetTypeName());
+				if (decl == null)
 					throw new SyntaxError("Unkown type: " + type.GetTypeName());
-			    else if(decl is MethodDeclarationMap)
-				    return new MethodType(((MethodDeclarationMap) decl).GetFirst());
-			    else
-				    return decl.GetIType(context);
-		    }
+				else if (decl is MethodDeclarationMap)
+					return new MethodType(((MethodDeclarationMap)decl).GetFirst());
+				else
+					return decl.GetIType(context);
+			}
 	    }
     }
 }

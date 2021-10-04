@@ -213,14 +213,20 @@ namespace prompto.parser
         }
 
 
-        public override void ExitTypeLiteral([NotNull] EParser.TypeLiteralContext ctx)
+        public override void ExitTypeLiteral(EParser.TypeLiteralContext ctx)
         {
             TypeLiteral type = GetNodeValue<TypeLiteral>(ctx.type_literal());
             SetNodeValue(ctx, type);
         }
 
+        public override void ExitTypeType(EParser.TypeTypeContext ctx)
+        {
+            IType type = GetNodeValue<IType>(ctx.t);
+            SetNodeValue(ctx, new TypeType(type));
+        }
 
-        public override void ExitType_literal([NotNull] EParser.Type_literalContext ctx)
+
+        public override void ExitType_literal(EParser.Type_literalContext ctx)
         {
             IType type = GetNodeValue<IType>(ctx.category_or_any_type());
             SetNodeValue(ctx, new TypeLiteral(type));

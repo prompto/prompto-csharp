@@ -2188,6 +2188,18 @@ public interface IEParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitCursorType([NotNull] EParser.CursorTypeContext context);
 	/// <summary>
+	/// Enter a parse tree produced by the <c>TypeType</c>
+	/// labeled alternative in <see cref="EParser.typedef"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterTypeType([NotNull] EParser.TypeTypeContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>TypeType</c>
+	/// labeled alternative in <see cref="EParser.typedef"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitTypeType([NotNull] EParser.TypeTypeContext context);
+	/// <summary>
 	/// Enter a parse tree produced by the <c>PrimaryType</c>
 	/// labeled alternative in <see cref="EParser.typedef"/>.
 	/// </summary>

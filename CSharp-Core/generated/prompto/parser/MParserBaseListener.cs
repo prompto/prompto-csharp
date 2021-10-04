@@ -2347,6 +2347,20 @@ public partial class MParserBaseListener : IMParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitCursorType([NotNull] MParser.CursorTypeContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by the <c>TypeType</c>
+	/// labeled alternative in <see cref="MParser.typedef"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterTypeType([NotNull] MParser.TypeTypeContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by the <c>TypeType</c>
+	/// labeled alternative in <see cref="MParser.typedef"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitTypeType([NotNull] MParser.TypeTypeContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by the <c>PrimaryType</c>
 	/// labeled alternative in <see cref="MParser.typedef"/>.
 	/// <para>The default implementation does nothing.</para>

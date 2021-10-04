@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using prompto.declaration;
 using prompto.runtime;
 using prompto.store;
+using prompto.utils;
 
 namespace prompto.type
 {
@@ -17,10 +18,21 @@ namespace prompto.type
           this.type = type;
         }
 
-
         public IType GetIType()
         {
             return type;
+        }
+
+        public override string ToString()
+        {
+            return "Type<" + type.ToString() + ">";
+        }
+
+        public override void ToDialect(CodeWriter writer)
+        {
+            writer.append("Type<");
+            type.ToDialect(writer);
+            writer.append(">");
         }
 
         public override void checkUnique(Context context)

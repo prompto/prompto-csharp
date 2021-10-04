@@ -2012,6 +2012,18 @@ public interface IOParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitCursorType([NotNull] OParser.CursorTypeContext context);
 	/// <summary>
+	/// Enter a parse tree produced by the <c>TypeType</c>
+	/// labeled alternative in <see cref="OParser.typedef"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterTypeType([NotNull] OParser.TypeTypeContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>TypeType</c>
+	/// labeled alternative in <see cref="OParser.typedef"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitTypeType([NotNull] OParser.TypeTypeContext context);
+	/// <summary>
 	/// Enter a parse tree produced by the <c>PrimaryType</c>
 	/// labeled alternative in <see cref="OParser.typedef"/>.
 	/// </summary>
