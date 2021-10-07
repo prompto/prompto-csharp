@@ -4,6 +4,7 @@ using System.Threading;
 using System.Collections;
 using System.Linq;
 using prompto.store;
+using System.Reflection;
 
 namespace prompto.memstore
 {
@@ -16,8 +17,8 @@ namespace prompto.memstore
         Dictionary<string, long> sequences = new Dictionary<string, long>();
         Dictionary<object, AuditMetadata> auditMetadatas = new Dictionary<object, AuditMetadata>();
         long lastAuditMetadataId = 0;
-        Dictionary<object, AuditRecord> audits = new Dictionary<object, AuditRecord>();
-        long lastAuditId = 0;
+        Dictionary<object, AuditRecord> auditRecords = new Dictionary<object, AuditRecord>();
+        long lastAuditRecordDbId = 0;
 
         public long NextDbId
         {
@@ -71,18 +72,20 @@ namespace prompto.memstore
             AuditOperation operation = AuditOperation.UPDATE;
             // ensure db id
             StorableDocument doc = (StorableDocument)storable;
-            Object dbId = doc.DbId;
-            if (!(dbId is long)) {
+            long dbId = doc.DbId is long ? (long)doc.DbId : -1;
+            if(dbId == -1)
+            {
                 dbId = ++lastDbId;
                 storable.SetData("dbId", dbId);
-                operation = AuditOperation.INSERT;
             }
-            documents[(long)dbId] = (StorableDocument)storable;
+            if (!documents.ContainsKey(dbId))
+                 operation = AuditOperation.INSERT;
+            documents[dbId] = (StorableDocument)storable;
             AuditRecord audit = NewAuditRecord(auditMeta);
             audit.InstanceDbId = dbId;
             audit.Operation = operation;
             audit.Instance = doc;
-            audits[audit.AuditRecordId] = audit;
+            auditRecords[audit.DbId] = audit;
         }
 
         private void DoDelete(ICollection<object> idsToDelete, IAuditMetadata auditMeta)
@@ -99,7 +102,7 @@ namespace prompto.memstore
             AuditRecord audit = NewAuditRecord(auditMeta);
             audit.InstanceDbId = dbId;
             audit.Operation = AuditOperation.DELETE;
-            audits[audit.AuditRecordId] = audit;
+            auditRecords[audit.DbId] = audit;
         }
 
         public Boolean IsAuditEnabled()
@@ -110,8 +113,8 @@ namespace prompto.memstore
         private AuditRecord NewAuditRecord(IAuditMetadata auditMeta)
         {
             AuditRecord audit = new AuditRecord();
-            audit.AuditRecordId = ++lastAuditId;
-            audit.AuditMetadataId = auditMeta.AuditMetadataId;
+            audit.DbId = ++lastAuditRecordDbId;
+            audit.MetadataDbId = auditMeta.DbId;
             audit.UTCTimestamp = auditMeta.UTCTimestamp;
             return audit;
         }
@@ -120,14 +123,14 @@ namespace prompto.memstore
         {
             if (auditMeta == null)
                 auditMeta = NewAuditMetadata();
-            auditMetadatas[auditMeta.AuditMetadataId] = (AuditMetadata)auditMeta;
+            auditMetadatas[auditMeta.DbId] = (AuditMetadata)auditMeta;
             return auditMeta;
         }
 
         public IAuditMetadata NewAuditMetadata()
         {
             AuditMetadata meta = new AuditMetadata();
-            meta.AuditMetadataId = ++lastAuditMetadataId;
+            meta.DbId = ++lastAuditMetadataId;
             meta.UTCTimestamp = DateTimeOffset.UtcNow;
             return meta;
         }
@@ -449,6 +452,14 @@ namespace prompto.memstore
                 }
             }
 
+            public ISet<String> Names
+            {
+                get
+                {
+                    return document == null ? new HashSet<String>() : new HashSet<String>(document.Keys);
+                }
+            }
+
             public object GetOrCreateDbId()
             {
                 object dbId = GetData("dbId");
@@ -512,13 +523,12 @@ namespace prompto.memstore
             public object GetData(string name)
             {
                 object value;
-                if (document.TryGetValue(name, out value))
+                if (document!=null && document.TryGetValue(name, out value))
                     return value;
                 else
                     return null;
             }
         }
-
 
         public object FetchLatestAuditMetadataId(object dbId)
         {
@@ -532,10 +542,10 @@ namespace prompto.memstore
 
         IEnumerable<object> FetchAuditMetadataIdsStream(object dbId)
         {
-            return audits.Values
+            return auditRecords.Values
                 .Where(a => dbId.Equals(a.InstanceDbId))
                 .OrderByDescending(a => a.UTCTimestamp)
-                .Select(a => a.AuditMetadataId);
+                .Select(a => a.MetadataDbId);
         }
 
         public IAuditMetadata FetchAuditMetadata(object dbId)
@@ -548,10 +558,74 @@ namespace prompto.memstore
             return auditMetadatas[dbId];
         }
 
-        class AuditRecord : Dictionary<string, Object>, IAuditRecord
+        public IAuditRecord FetchLatestAuditRecord(object dbId)
         {
-            public object AuditRecordId { get; set; }
-            public object AuditMetadataId { get; set; }
+            return auditRecords.Values
+                .Where(a => dbId.Equals(a.InstanceDbId))
+                .OrderByDescending(a => a.UTCTimestamp)
+                .First();
+        }
+
+        public IDictionary<string, object> FetchLatestAuditRecordAsDocument(object dbId)
+        {
+            IAuditRecord record = FetchLatestAuditRecord(dbId);
+            return record == null ? null : ((AuditRecord)record).AsDocument();
+        }
+
+        public List<IAuditRecord> FetchAllAuditRecords(object dbId)
+        {
+            return FetchAllAuditRecordsStream(dbId)
+                .ToList<IAuditRecord>();
+        }
+
+        public List<IDictionary<string, object>> FetchAllAuditRecordsAsDocuments(object dbId)
+        {
+            return FetchAllAuditRecordsStream(dbId)
+                 .Select(a => a.AsDocument())
+                 .ToList();
+        }
+
+        IEnumerable<AuditRecord> FetchAllAuditRecordsStream(object dbId)
+        {
+            return auditRecords.Values
+                .Where(a => dbId.Equals(a.InstanceDbId))
+                .OrderByDescending(a => a.UTCTimestamp);
+        }
+
+
+        public List<object> FetchDbIdsAffectedByAuditMetadataId(object dbId)
+        {
+            return auditRecords.Values
+                .Where(a => dbId.Equals(a.MetadataDbId))
+                .OrderByDescending(a => a.UTCTimestamp)
+                .Select(a => a.DbId)
+                .ToList();
+       }
+
+        public List<IAuditRecord> FetchAuditRecordsMatching(IDictionary<string, object> auditPredicates, IDictionary<string, object> instancePredicates)
+        {
+            return FetchAuditRecordsMatchingStream(auditPredicates, instancePredicates)
+                    .ToList<IAuditRecord>();
+        }
+
+        public List<IDictionary<string, object>> FetchAuditRecordsMatchingAsDocuments(IDictionary<string, object> auditPredicates, IDictionary<string, object> instancePredicates)
+        {
+            return FetchAuditRecordsMatchingStream(auditPredicates, instancePredicates)
+                     .Select(a => a.AsDocument())
+                    .ToList();
+        }
+
+        IEnumerable<AuditRecord> FetchAuditRecordsMatchingStream(IDictionary<string, object> auditPredicates, IDictionary<string, object> instancePredicates)
+        {
+            return auditRecords.Values
+                .Where(a => a.Matches(auditPredicates, instancePredicates))
+                .OrderByDescending(a => a.UTCTimestamp);
+        }
+
+        class AuditRecord : IAuditRecord
+        {
+            public object DbId { get; set; }
+            public object MetadataDbId { get; set; }
             public DateTimeOffset? UTCTimestamp { get; set; }
             public object InstanceDbId { get; set; }
             public AuditOperation Operation { get; set; }
@@ -559,29 +633,102 @@ namespace prompto.memstore
 
             public override String ToString()
             {
-                return "{auditId=" + AuditRecordId + ", metadataId=" + AuditMetadataId + ", utcTimeStamp=" + UTCTimestamp + ", instanceDbId=" + InstanceDbId + ", operation=" + Operation + ", instance=" + Instance + "}";
+                return AsDocument().ToString();
             }
+
+            public IDictionary<string, object> AsDocument()
+            {
+                IDictionary<string, object> doc = new Dictionary<string, object>();
+                doc["dbId"] = DbId;
+                doc["metadataDbId"] = MetadataDbId;
+                doc["utcTimeStamp"] = UTCTimestamp;
+                doc["instanceDbId"] = InstanceDbId;
+                doc["operation"] = Operation.ToString();
+                if (Instance != null)
+                    doc["instance"] = ConvertInstance(Instance);
+                return doc;
+            }
+
+            private object ConvertInstance(IStored instance)
+            {
+                IDictionary<string, object> doc = new Dictionary<string, object>();
+                foreach (string name in instance.Names)
+                    doc[name] = ConvertValue(instance.GetData(name));
+                return doc;
+            }
+
+            private object ConvertValue(object value)
+            {
+                if (value == null)
+                    return null;
+                else
+                    return value; // TODO convert to Prompto native types if required
+            }
+
+            internal bool Matches(IDictionary<string, object> auditPredicates, IDictionary<string, object> instancePredicates)
+            {
+                // at least 1 predicate is mandatory
+                if ((auditPredicates == null ? 0 : auditPredicates.Count) + (instancePredicates == null ? 0 : instancePredicates.Count) == 0)
+                    return false;
+                else
+                    return (auditPredicates == null
+                            || auditPredicates.All(kvp => AuditMatches(kvp)))
+                        && (instancePredicates == null
+                            || instancePredicates.All(kvp => InstanceMatches(kvp)));
+            }
+
+            internal bool AuditMatches(KeyValuePair<string, object> predicate)
+            {
+                Matcher matcher = FindOrCreateMatcher(predicate.Key);
+                return matcher != null && matcher.Invoke(this, predicate.Value);
+            }
+
+     
+            internal bool InstanceMatches(KeyValuePair<string, object> predicate)
+            {
+                return Instance != null && Object.Equals(Instance.GetData(predicate.Key), predicate.Value);
+            }
+
+            internal delegate bool Matcher(AuditRecord audit, Object value);
+
+            static readonly IDictionary<string, Matcher> MATCHERS = new Dictionary<string, Matcher>();
+
+            internal Matcher FindOrCreateMatcher(String name)
+            {
+                Matcher matcher = null;
+                if(!MATCHERS.TryGetValue(name, out matcher))
+                {
+                    FieldInfo field = typeof(AuditRecord).GetField(name);
+                    if(field.FieldType.IsEnum)
+                        matcher = (record, value) => Object.Equals(field.GetValue(record), value);
+                    else
+                        matcher = (record, value) => Object.Equals(field.GetValue(record), value);
+                }
+                return matcher;
+            }
+
         }
+
 
         class AuditMetadata : Dictionary<string, Object>, IAuditMetadata
         {
-            public object AuditMetadataId
+            public object DbId
             {
                 get
                 {
-                    return this["auditMetadataId"];
+                    return this["dbId"];
                 }
                 set {
-                    this["auditMetadataId"] = value;
+                    this["dbId"] = value;
                 }
             }
 
             public DateTimeOffset? UTCTimestamp {
                 get {
-                    return (DateTimeOffset?)this["timeStamp"];
+                    return (DateTimeOffset?)this["utcTimeStamp"];
                 }
                 set {
-                    this["timeStamp"] = value;
+                    this["utcTimeStamp"] = value;
                 }
             }
 
