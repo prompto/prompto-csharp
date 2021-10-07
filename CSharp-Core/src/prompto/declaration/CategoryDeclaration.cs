@@ -160,13 +160,19 @@ namespace prompto.declaration
 
         void PopulateInstance(Context context, IStored stored, IInstance instance)
         {
-            Object dbId = stored.DbId;
-            IValue value = TypeUtils.FieldToValue(context, "dbId", dbId);
-            instance.SetMemberValue(context, "dbId", value);
+            SetDbId(context, instance, stored.DbId);
             foreach (String name in GetAllAttributes(context))
                 PopulateMember(context, stored, instance, name);
             if (instance.getStorable() != null)
                 instance.getStorable().Dirty = false;
+        }
+
+        private void SetDbId(Context context, IInstance instance, object dbId)
+        {
+            if (instance is ConcreteInstance)
+                ((ConcreteInstance)instance).SetDbId(dbId);
+            else
+                throw new InvalidOperationException("SetDbId on native instance");
         }
 
         void PopulateMember(Context context, IStored stored, IInstance instance, String name)
