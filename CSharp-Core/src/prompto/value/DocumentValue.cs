@@ -1,12 +1,12 @@
 using System.Collections.Generic;
 using System;
-using prompto.value;
 using prompto.runtime;
 using prompto.type;
 using Newtonsoft.Json;
 using prompto.error;
 using System.IO;
 using Newtonsoft.Json.Linq;
+using System.Linq;
 
 namespace prompto.value
 {
@@ -233,5 +233,22 @@ namespace prompto.value
 				throw new ReadWriteError(e.Message);
 			}
 		}
-    }
+
+        public override object ConvertTo(Type type)
+        {
+			if (type == typeof(DocumentValue))
+				return this;
+			else if (type == typeof(IDictionary<string, object>))
+				return ConvertToDictionary();
+			else
+				return base.ConvertTo(type);
+        }
+
+		public IDictionary<string, object> ConvertToDictionary()
+        {
+			return this.values
+				.Select(kvp => new KeyValuePair<string, object>(kvp.Key, kvp.Value.ConvertTo(typeof(Object))))
+				.ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
+        }
+	}
 }

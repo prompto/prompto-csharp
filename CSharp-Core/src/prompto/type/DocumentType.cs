@@ -86,7 +86,7 @@ namespace prompto.type
 
         public override Type ToCSharpType(Context context)
         {
-            return typeof(DocumentValue);
+            return typeof(IDictionary<string, object>);
         }
 
         public override IValue ReadJSONValue(Context context, JToken value, Dictionary<String, byte[]> parts)
