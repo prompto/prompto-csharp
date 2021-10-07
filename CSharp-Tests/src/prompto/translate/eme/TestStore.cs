@@ -27,9 +27,27 @@ namespace prompto.translate.eme
 		}
 
 		[Test]
-		public void testAuditRecord()
+		public void testAuditDelete()
 		{
-			compareResourceEME("store/auditRecord.pec");
+			compareResourceEME("store/auditDelete.pec");
+		}
+
+		[Test]
+		public void testAuditInsert()
+		{
+			compareResourceEME("store/auditInsert.pec");
+		}
+
+		[Test]
+		public void testAuditMany()
+		{
+			compareResourceEME("store/auditMany.pec");
+		}
+
+		[Test]
+		public void testAuditUpdate()
+		{
+			compareResourceEME("store/auditUpdate.pec");
 		}
 
 		[Test]

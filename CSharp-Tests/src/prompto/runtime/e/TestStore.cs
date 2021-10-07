@@ -40,9 +40,27 @@ namespace prompto.runtime.e
 		}
 
 		[Test]
-		public void testAuditRecord()
+		public void testAuditDelete()
 		{
-			CheckOutput("store/auditRecord.pec");
+			CheckOutput("store/auditDelete.pec");
+		}
+
+		[Test]
+		public void testAuditInsert()
+		{
+			CheckOutput("store/auditInsert.pec");
+		}
+
+		[Test]
+		public void testAuditMany()
+		{
+			CheckOutput("store/auditMany.pec");
+		}
+
+		[Test]
+		public void testAuditUpdate()
+		{
+			CheckOutput("store/auditUpdate.pec");
 		}
 
 		[Test]
