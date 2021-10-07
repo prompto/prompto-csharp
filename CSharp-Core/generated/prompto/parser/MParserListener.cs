@@ -2230,6 +2230,18 @@ public interface IMParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitUUIDType([NotNull] MParser.UUIDTypeContext context);
 	/// <summary>
+	/// Enter a parse tree produced by the <c>DbIdType</c>
+	/// labeled alternative in <see cref="MParser.native_type"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterDbIdType([NotNull] MParser.DbIdTypeContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>DbIdType</c>
+	/// labeled alternative in <see cref="MParser.native_type"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitDbIdType([NotNull] MParser.DbIdTypeContext context);
+	/// <summary>
 	/// Enter a parse tree produced by the <c>HtmlType</c>
 	/// labeled alternative in <see cref="MParser.native_type"/>.
 	/// </summary>

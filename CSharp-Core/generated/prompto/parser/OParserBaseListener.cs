@@ -2651,6 +2651,20 @@ public partial class OParserBaseListener : IOParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitUUIDType([NotNull] OParser.UUIDTypeContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by the <c>DbIdType</c>
+	/// labeled alternative in <see cref="OParser.native_type"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterDbIdType([NotNull] OParser.DbIdTypeContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by the <c>DbIdType</c>
+	/// labeled alternative in <see cref="OParser.native_type"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitDbIdType([NotNull] OParser.DbIdTypeContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by the <c>HtmlType</c>
 	/// labeled alternative in <see cref="OParser.native_type"/>.
 	/// <para>The default implementation does nothing.</para>

@@ -2627,6 +2627,20 @@ public partial class MParserBaseListener : IMParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitUUIDType([NotNull] MParser.UUIDTypeContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by the <c>DbIdType</c>
+	/// labeled alternative in <see cref="MParser.native_type"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterDbIdType([NotNull] MParser.DbIdTypeContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by the <c>DbIdType</c>
+	/// labeled alternative in <see cref="MParser.native_type"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitDbIdType([NotNull] MParser.DbIdTypeContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by the <c>HtmlType</c>
 	/// labeled alternative in <see cref="MParser.native_type"/>.
 	/// <para>The default implementation does nothing.</para>

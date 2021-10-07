@@ -2252,6 +2252,18 @@ public interface IOParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitUUIDType([NotNull] OParser.UUIDTypeContext context);
 	/// <summary>
+	/// Enter a parse tree produced by the <c>DbIdType</c>
+	/// labeled alternative in <see cref="OParser.native_type"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterDbIdType([NotNull] OParser.DbIdTypeContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>DbIdType</c>
+	/// labeled alternative in <see cref="OParser.native_type"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitDbIdType([NotNull] OParser.DbIdTypeContext context);
+	/// <summary>
 	/// Enter a parse tree produced by the <c>HtmlType</c>
 	/// labeled alternative in <see cref="OParser.native_type"/>.
 	/// </summary>
