@@ -130,9 +130,6 @@ namespace prompto.csharp
             result = ConvertNative(context, value, type);
             if (result != null)
                 return result;
-            result = ConvertCategory(context, value, type, returnType);
-            if (result != null)
-                return result;
             result = ConvertDocument(context, value, type, returnType);
             if (result != null)
                 return result;
@@ -146,6 +143,9 @@ namespace prompto.csharp
             if (result != null)
                 return result;
             result = ConvertIterator(context, value, type, returnType);
+            if (result != null)
+                return result;
+            result = ConvertCategory(context, value, type, returnType);
             if (result != null)
                 return result;
             else
@@ -223,30 +223,43 @@ namespace prompto.csharp
 
         private static IValue ConvertList(Context context, Object value, Type type, IType returnType)
         {
-            if (returnType is ListType && IsA(typeof(List<>), value.GetType()))
+            if (IsA(typeof(List<>), value.GetType()))
             {
-                Type elemType = type.GetGenericArguments()[0];
-                IType itemType = ((ListType)returnType).GetItemType();
-                List<IValue> list = new List<IValue>();
-                foreach (Object obj in (IEnumerable)value)
+                if (returnType is ListType)
                 {
-                    IValue val = ConvertCSharpValueToPromptoValue(context, obj, elemType, itemType);
-                    list.Add(val);
+                    Type elemType = type.GetGenericArguments()[0];
+                    IType itemType = ((ListType)returnType).GetItemType();
+                    List<IValue> list = new List<IValue>();
+                    foreach (Object obj in (IEnumerable)value)
+                    {
+                        IValue val = ConvertCSharpValueToPromptoValue(context, obj, elemType, itemType);
+                        list.Add(val);
+                    }
+                    return new ListValue(itemType, list);
                 }
-                return new ListValue(itemType, list);
+                else if (returnType == AnyType.Instance)
+                {
+                    List<IValue> list = new List<IValue>();
+                    foreach (Object obj in (IEnumerable)value)
+                    {
+                        IValue val = ConvertCSharpValueToPromptoValue(context, obj, null, AnyType.Instance);
+                        list.Add(val);
+                    }
+                    return new ListValue(AnyType.Instance, list);
+
+                }
             }
-            else
-                return null;
+            return null;
         }
 
         private static IValue ConvertDocument(Context context, Object value, Type type, IType returnType)
         {
-            if (returnType == DocumentType.Instance && value is IDictionary<string, object>) {
+            if ((returnType == DocumentType.Instance || returnType == AnyType.Instance) && value is IDictionary<string, object>) {
                 IDictionary<string, object> dict = (IDictionary<string, object>)value;
                 DocumentValue doc = new DocumentValue();
                 foreach(KeyValuePair< string, object> kvp in dict)
                 {
-                    doc.SetMemberValue(context, kvp.Key, ConvertCSharpValueToPromptoValue(context, kvp.Value, null, null));
+                    doc.SetMemberValue(context, kvp.Key, ConvertCSharpValueToPromptoValue(context, kvp.Value, null, AnyType.Instance));
                 }
                 return doc;
             }
@@ -256,6 +269,8 @@ namespace prompto.csharp
 
         private static IValue ConvertCategory(Context context, Object value, Type type, IType returnType)
         {
+            if (type == null)
+                return null;
             NativeCategoryDeclaration decl = context.getNativeBinding(type);
             if (decl != null)
                 return new NativeInstance(decl, value);
