@@ -109,7 +109,7 @@ namespace prompto.value
             }
         }
 
-        private void SetDbId(object dbId)
+        public void SetDbId(object dbId)
         {
             values["dbId"] = TypeUtils.FieldToValue(null, "dbId", dbId);
 
