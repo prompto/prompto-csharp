@@ -124,7 +124,7 @@ namespace prompto.expression
 			if (instance == null || instance == NullValue.Instance)
 				throw new NullReferenceError();
 			else
-				return instance.GetMemberValue(context, name, true);
+				return instance.GetMemberValue(context, name, false);
 		}
 
         public override IValue interpretReference(Context context)
