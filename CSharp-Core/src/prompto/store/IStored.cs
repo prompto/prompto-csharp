@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using prompto.value;
 
 namespace prompto.store
@@ -7,5 +8,6 @@ namespace prompto.store
 	{
 		Object DbId { get; }
 		Object GetData(String name);
+		ISet<String> Names { get; }
 	}
 }
