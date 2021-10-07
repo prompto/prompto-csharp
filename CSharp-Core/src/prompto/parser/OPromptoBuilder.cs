@@ -278,6 +278,11 @@ namespace prompto.parser
             SetNodeValue(ctx, new DateTimeLiteral(ctx.GetText()));
         }
 
+        public override void ExitDbIdType(OParser.DbIdTypeContext ctx)
+        {
+            SetNodeValue(ctx, DbIdType.Instance);
+        }
+
         public override void ExitTernaryExpression(OParser.TernaryExpressionContext ctx)
         {
             IExpression condition = GetNodeValue<IExpression>(ctx.test);

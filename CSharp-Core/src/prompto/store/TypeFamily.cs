@@ -30,6 +30,7 @@ namespace prompto.store
 		// non storable
 		VOID,
 		NULL,
+		DBID,
 		ANY,
 		METHOD,
 		CURSOR,
