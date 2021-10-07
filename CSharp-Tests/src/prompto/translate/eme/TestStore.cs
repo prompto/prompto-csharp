@@ -45,6 +45,12 @@ namespace prompto.translate.eme
 		}
 
 		[Test]
+		public void testAuditMatching()
+		{
+			compareResourceEME("store/auditMatching.pec");
+		}
+
+		[Test]
 		public void testAuditUpdate()
 		{
 			compareResourceEME("store/auditUpdate.pec");

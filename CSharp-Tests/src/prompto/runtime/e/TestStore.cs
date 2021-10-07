@@ -58,6 +58,12 @@ namespace prompto.runtime.e
 		}
 
 		[Test]
+		public void testAuditMatching()
+		{
+			CheckOutput("store/auditMatching.pec");
+		}
+
+		[Test]
 		public void testAuditUpdate()
 		{
 			CheckOutput("store/auditUpdate.pec");

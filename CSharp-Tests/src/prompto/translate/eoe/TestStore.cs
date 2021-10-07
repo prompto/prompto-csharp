@@ -45,6 +45,12 @@ namespace prompto.translate.eoe
 		}
 
 		[Test]
+		public void testAuditMatching()
+		{
+			compareResourceEOE("store/auditMatching.pec");
+		}
+
+		[Test]
 		public void testAuditUpdate()
 		{
 			compareResourceEOE("store/auditUpdate.pec");
