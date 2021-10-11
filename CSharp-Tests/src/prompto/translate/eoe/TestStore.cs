@@ -57,6 +57,18 @@ namespace prompto.translate.eoe
 		}
 
 		[Test]
+		public void testDeleteAudit()
+		{
+			compareResourceEOE("store/deleteAudit.pec");
+		}
+
+		[Test]
+		public void testDeleteMeta()
+		{
+			compareResourceEOE("store/deleteMeta.pec");
+		}
+
+		[Test]
 		public void testDeleteRecords()
 		{
 			compareResourceEOE("store/deleteRecords.pec");

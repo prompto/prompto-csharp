@@ -70,6 +70,18 @@ namespace prompto.runtime.e
 		}
 
 		[Test]
+		public void testDeleteAudit()
+		{
+			CheckOutput("store/deleteAudit.pec");
+		}
+
+		[Test]
+		public void testDeleteMeta()
+		{
+			CheckOutput("store/deleteMeta.pec");
+		}
+
+		[Test]
 		public void testDeleteRecords()
 		{
 			CheckOutput("store/deleteRecords.pec");
