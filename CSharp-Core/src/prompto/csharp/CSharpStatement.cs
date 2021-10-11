@@ -34,7 +34,7 @@ namespace prompto.csharp
         {
             Object result = expression.interpret(context);
 			if(result==null) 
-				return isReturn ? VoidResult.Instance : null;
+				return isReturn ? NullValue.Instance : null;
 			else {	
 				IType type = expression.check(context);
 				if (type is CSharpClassType)
