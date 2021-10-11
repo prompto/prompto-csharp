@@ -550,12 +550,12 @@ namespace prompto.memstore
 
         public IAuditMetadata FetchAuditMetadata(object dbId)
         {
-            return auditMetadatas[dbId];
+            return auditMetadatas.ContainsKey(dbId) ? auditMetadatas[dbId] : null;
         }
 
         public IDictionary<string, object> FetchAuditMetadataAsDocument(object dbId)
         {
-            return auditMetadatas[dbId];
+            return auditMetadatas.ContainsKey(dbId) ? auditMetadatas[dbId] : null;
         }
 
         public IAuditRecord FetchLatestAuditRecord(object dbId)
@@ -563,6 +563,7 @@ namespace prompto.memstore
             return auditRecords.Values
                 .Where(a => dbId.Equals(a.InstanceDbId))
                 .OrderByDescending(a => a.UTCTimestamp)
+                .DefaultIfEmpty(null)
                 .First();
         }
 
@@ -620,6 +621,16 @@ namespace prompto.memstore
             return auditRecords.Values
                 .Where(a => a.Matches(auditPredicates, instancePredicates))
                 .OrderByDescending(a => a.UTCTimestamp);
+        }
+
+        public bool DeleteAuditMetadata(object dbId)
+        {
+            return auditMetadatas.Remove(dbId);
+        }
+
+        public bool DeleteAuditRecord(object dbId)
+        {
+            return auditRecords.Remove(dbId);
         }
 
         class AuditRecord : IAuditRecord
