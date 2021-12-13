@@ -117,6 +117,12 @@ namespace prompto.translate.eoe
 		}
 
 		[Test]
+		public void testFetchInclude()
+		{
+			compareResourceEOE("store/fetchInclude.pec");
+		}
+
+		[Test]
 		public void testFetchLesser()
 		{
 			compareResourceEOE("store/fetchLesser.pec");

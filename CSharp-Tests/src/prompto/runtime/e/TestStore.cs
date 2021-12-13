@@ -130,6 +130,12 @@ namespace prompto.runtime.e
 		}
 
 		[Test]
+		public void testFetchInclude()
+		{
+			CheckOutput("store/fetchInclude.pec");
+		}
+
+		[Test]
 		public void testFetchLesser()
 		{
 			CheckOutput("store/fetchLesser.pec");

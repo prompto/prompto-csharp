@@ -117,6 +117,12 @@ namespace prompto.translate.eme
 		}
 
 		[Test]
+		public void testFetchInclude()
+		{
+			compareResourceEME("store/fetchInclude.pec");
+		}
+
+		[Test]
 		public void testFetchLesser()
 		{
 			compareResourceEME("store/fetchLesser.pec");
