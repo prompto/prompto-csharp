@@ -3572,6 +3572,16 @@ public interface IOParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitOrder_by([NotNull] OParser.Order_byContext context);
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="OParser.include_list"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterInclude_list([NotNull] OParser.Include_listContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="OParser.include_list"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitInclude_list([NotNull] OParser.Include_listContext context);
+	/// <summary>
 	/// Enter a parse tree produced by the <c>OperatorPlus</c>
 	/// labeled alternative in <see cref="OParser.operator"/>.
 	/// </summary>

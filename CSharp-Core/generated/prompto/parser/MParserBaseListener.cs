@@ -4175,6 +4175,18 @@ public partial class MParserBaseListener : IMParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitOrder_by([NotNull] MParser.Order_byContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="MParser.include_list"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterInclude_list([NotNull] MParser.Include_listContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="MParser.include_list"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitInclude_list([NotNull] MParser.Include_listContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by the <c>OperatorPlus</c>
 	/// labeled alternative in <see cref="MParser.operator"/>.
 	/// <para>The default implementation does nothing.</para>
