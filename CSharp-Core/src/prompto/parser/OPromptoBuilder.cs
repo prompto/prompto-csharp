@@ -20,6 +20,7 @@ using prompto.jsx;
 using prompto.css;
 using System.Text;
 using System.Linq;
+using Antlr4.Runtime.Misc;
 
 namespace prompto.parser
 {
@@ -2634,37 +2635,41 @@ namespace prompto.parser
         public override void ExitFetchOne(OParser.FetchOneContext ctx)
         {
             CategoryType category = GetNodeValue<CategoryType>(ctx.typ);
-            IExpression filter = GetNodeValue<IExpression>(ctx.predicate);
-            SetNodeValue(ctx, new FetchOneExpression(category, filter));
+            IExpression predicate = GetNodeValue<IExpression>(ctx.predicate);
+            List<String> include = GetNodeValue<List<String>>(ctx.include);
+            SetNodeValue(ctx, new FetchOneExpression(category, predicate, include));
         }
 
         public override void ExitFetchOneAsync(OParser.FetchOneAsyncContext ctx)
         {
             CategoryType category = GetNodeValue<CategoryType>(ctx.typ);
-            IExpression filter = GetNodeValue<IExpression>(ctx.predicate);
+            IExpression predicate = GetNodeValue<IExpression>(ctx.predicate);
+            List<String> include = GetNodeValue<List<String>>(ctx.include);
             ThenWith thenWith = ThenWith.OrEmpty(GetNodeValue<ThenWith>(ctx.then()));
-            SetNodeValue(ctx, new FetchOneStatement(category, filter, thenWith));
+            SetNodeValue(ctx, new FetchOneStatement(category, predicate, include, thenWith));
         }
 
         public override void ExitFetchMany(OParser.FetchManyContext ctx)
         {
             CategoryType category = GetNodeValue<CategoryType>(ctx.typ);
-            IExpression filter = GetNodeValue<IExpression>(ctx.predicate);
+            IExpression predicate = GetNodeValue<IExpression>(ctx.predicate);
             IExpression start = GetNodeValue<IExpression>(ctx.xstart);
             IExpression stop = GetNodeValue<IExpression>(ctx.xstop);
+            List<String> include = GetNodeValue<List<String>>(ctx.include);
             OrderByClauseList orderBy = GetNodeValue<OrderByClauseList>(ctx.orderby);
-            SetNodeValue(ctx, new FetchManyExpression(category, filter, start, stop, orderBy));
+            SetNodeValue(ctx, new FetchManyExpression(category, predicate, start, stop, include, orderBy));
         }
 
         public override void ExitFetchManyAsync(OParser.FetchManyAsyncContext ctx)
         {
             CategoryType category = GetNodeValue<CategoryType>(ctx.typ);
-            IExpression filter = GetNodeValue<IExpression>(ctx.predicate);
+            IExpression predicate = GetNodeValue<IExpression>(ctx.predicate);
             IExpression start = GetNodeValue<IExpression>(ctx.xstart);
             IExpression stop = GetNodeValue<IExpression>(ctx.xstop);
+            List<String> include = GetNodeValue<List<String>>(ctx.include);
             OrderByClauseList orderBy = GetNodeValue<OrderByClauseList>(ctx.orderby);
             ThenWith thenWith = ThenWith.OrEmpty(GetNodeValue<ThenWith>(ctx.then()));
-            SetNodeValue(ctx, new FetchManyStatement(category, filter, start, stop, orderBy, thenWith));
+            SetNodeValue(ctx, new FetchManyStatement(category, predicate, start, stop, include, orderBy, thenWith));
         }
 
         public override void ExitThen(OParser.ThenContext ctx)
@@ -2672,6 +2677,14 @@ namespace prompto.parser
             String name = GetNodeValue<String>(ctx.name);
             StatementList stmts = GetNodeValue<StatementList>(ctx.stmts);
             SetNodeValue(ctx, new ThenWith(name, stmts));
+        }
+
+        public override void ExitInclude_list(OParser.Include_listContext ctx)
+        {
+            List<String> list = new List<String>();
+            foreach (OParser.Variable_identifierContext ctx_ in ctx.variable_identifier())
+                list.Add(GetNodeValue<string>(ctx_));
+            SetNodeValue(ctx, list);
         }
 
         public override void ExitFiltered_list_expression(OParser.Filtered_list_expressionContext ctx)

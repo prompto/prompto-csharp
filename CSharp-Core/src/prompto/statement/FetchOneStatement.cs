@@ -3,9 +3,9 @@ using prompto.expression;
 using prompto.runtime;
 using prompto.type;
 using prompto.utils;
-using prompto.parser;
 using prompto.value;
 using prompto.grammar;
+using System.Collections.Generic;
 
 namespace prompto.statement
 {
@@ -13,8 +13,8 @@ namespace prompto.statement
 	{
 		ThenWith thenWith;
 
-		public FetchOneStatement(CategoryType type, IExpression predicate, ThenWith thenWith) 
-			: base(type, predicate)
+		public FetchOneStatement(CategoryType type, IExpression predicate, List<String> include, ThenWith thenWith) 
+			: base(type, predicate, include)
 		{
 			this.thenWith = thenWith;
 		}

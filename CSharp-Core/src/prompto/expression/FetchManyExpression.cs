@@ -7,6 +7,7 @@ using prompto.error;
 using prompto.value;
 using prompto.store;
 using prompto.grammar;
+using System.Collections.Generic;
 
 namespace prompto.expression
 {
@@ -18,14 +19,16 @@ namespace prompto.expression
         IExpression predicate;
         IExpression first;
         IExpression last;
+        protected List<string> include;
         OrderByClauseList orderBy;
 
-        public FetchManyExpression(CategoryType type, IExpression filter, IExpression first, IExpression last, OrderByClauseList orderBy)
+        public FetchManyExpression(CategoryType type, IExpression predicate, IExpression first, IExpression last, List<string> include, OrderByClauseList orderBy)
         {
             this.type = type;
-            this.predicate = filter;
+            this.predicate = predicate;
             this.first = first;
             this.last = last;
+            this.include = include;
             this.orderBy = orderBy;
         }
 
@@ -74,6 +77,15 @@ namespace prompto.expression
                 predicate.ToDialect(writer);
                 writer.append(" ");
             }
+            if (include != null)
+            {
+                writer.append(" include ");
+                foreach(string name in include)
+                {
+                    writer.append(name).append(", ");
+                }
+                writer.trimLast(", ".Length);
+            }
             if (orderBy != null)
                 orderBy.ToDialect(writer);
         }
@@ -106,6 +118,16 @@ namespace prompto.expression
                 predicate.ToDialect(writer);
                 writer.append(") ");
             }
+            if (include != null)
+            {
+                writer.append(" include (");
+                foreach (string name in include)
+                {
+                    writer.append(name).append(", ");
+                }
+                writer.trimLast(", ".Length);
+                writer.append(")");
+            }
             if (orderBy != null)
                 orderBy.ToDialect(writer);
         }
@@ -135,6 +157,20 @@ namespace prompto.expression
                 writer.append(" where ");
                 predicate.ToDialect(writer);
             }
+            if (include != null)
+            {
+                writer.append(" include ");
+                if (include.Count == 1)
+                    writer.append(include[0]);
+                else { 
+                    for (int i = 0; i < include.Count - 1; i++)
+                    {
+                        writer.append(include[i]).append(", ");
+                    }
+                    writer.trimLast(", ".Length);
+                    writer.append(" and ").append(include[include.Count - 1]);
+                }
+            }
             if (orderBy != null)
             {
                 writer.append(" ");
@@ -153,22 +189,30 @@ namespace prompto.expression
                 if (decl == null)
                     throw new SyntaxError("Unknown category: " + type.GetTypeName().ToString());
             }
-            checkFilter(context);
+            checkPredicate(context);
+            checkInclude(context);
             checkOrderBy(context);
             checkSlice(context);
             return new CursorType(type);
         }
 
+        public void checkInclude(Context context)
+        {
+            // TODO
+        }
+
         public void checkOrderBy(Context context)
         {
+            // TODO
         }
 
 
         public void checkSlice(Context context)
         {
+            // TODO
         }
 
-        public void checkFilter(Context context)
+        public void checkPredicate(Context context)
         {
             if (predicate == null)
                 return;
@@ -207,6 +251,8 @@ namespace prompto.expression
                 builder.And();
             builder.SetFirst(InterpretLimit(context, first));
             builder.SetLast(InterpretLimit(context, last));
+            if (include != null)
+                builder.Project(include);
             if (orderBy != null)
                 orderBy.interpretQuery(context, builder);
             return builder.Build();

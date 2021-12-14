@@ -1,4 +1,5 @@
 ﻿
+using System.Collections.Generic;
 using prompto.store;
 
 namespace prompto.memstore
@@ -20,6 +21,10 @@ namespace prompto.memstore
 		public void SetLast(long? last)
 		{
 			query.SetLast(last);
+		}
+
+		public void Project(List<string> include) {
+			query.Project(include);
 		}
 
 		public void AddOrderByClause(AttributeInfo info, bool descending)

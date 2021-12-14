@@ -1,4 +1,5 @@
 ﻿
+using System;
 using System.Collections.Generic;
 using prompto.store;
 
@@ -9,6 +10,7 @@ namespace prompto.memstore
 
 
 		Stack<IPredicate> predicates = new Stack<IPredicate>();
+		List<string> projection = null;
 		List<OrderBy> orderBys = new List<OrderBy>();
 		long? first; // 1 based
 		long? last; // 1 based
@@ -20,6 +22,16 @@ namespace prompto.memstore
 			else
 				return predicates.Peek();
 		}
+
+		public void Project(List<string> projection)
+        {
+            this.projection = projection;
+        }
+
+		public List<string> GetProjection()
+        {
+			return projection;
+        }
 
 		public void SetFirst(long? first)
 		{

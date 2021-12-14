@@ -17,11 +17,13 @@ namespace prompto.expression
 
 		protected CategoryType type;
 		protected IExpression predicate;
+		protected List<string> include;
 
-		public FetchOneExpression(CategoryType type, IExpression predicate)
+		public FetchOneExpression(CategoryType type, IExpression predicate, List<string> include)
 		{
 			this.type = type;
 			this.predicate = predicate;
+			this.include = include;
 		}
 
 
@@ -30,32 +32,92 @@ namespace prompto.expression
 			switch (writer.getDialect())
 			{
 				case Dialect.E:
-				case Dialect.M:
-					writer.append("fetch one ");
-					if (type != null)
-					{
-						if (type.Mutable)
-							writer.append("mutable ");
-						writer.append(type.GetTypeName().ToString());
-						writer.append(" ");
-					}
-					writer.append("where ");
-					predicate.ToDialect(writer);
+					ToEDialect(writer);
 					break;
 				case Dialect.O:
-					writer.append("fetch one ");
-					if (type != null)
-					{
-						writer.append("(");
-						if (type.Mutable)
-							writer.append("mutable ");
-						writer.append(type.GetTypeName().ToString());
-						writer.append(") ");
-					}
-					writer.append("where (");
-					predicate.ToDialect(writer);
-					writer.append(")");
+					ToODialect(writer);
 					break;
+				case Dialect.M:
+					ToMDialect(writer);
+					break;
+			}
+		}
+
+		public void ToEDialect(CodeWriter writer)
+        {
+			writer.append("fetch one ");
+			if (type != null)
+			{
+				if (type.Mutable)
+					writer.append("mutable ");
+				writer.append(type.GetTypeName().ToString());
+				writer.append(" ");
+			}
+			writer.append("where ");
+			predicate.ToDialect(writer);
+			if (include != null)
+			{
+				writer.append(" include ");
+				if (include.Count == 1)
+					writer.append(include[0]);
+				else
+				{
+					for (int i = 0; i < include.Count - 1; i++)
+					{
+						writer.append(include[i]).append(", ");
+					}
+					writer.trimLast(", ".Length);
+					writer.append(" and ").append(include[include.Count - 1]);
+				}
+			}
+		}
+
+		public void ToMDialect(CodeWriter writer)
+		{
+			writer.append("fetch one ");
+			if (type != null)
+			{
+				if (type.Mutable)
+					writer.append("mutable ");
+				writer.append(type.GetTypeName().ToString());
+				writer.append(" ");
+			}
+			writer.append("where ");
+			predicate.ToDialect(writer);
+			if (include != null)
+			{
+				writer.append(" include ");
+				foreach (string name in include)
+				{
+					writer.append(name).append(", ");
+				}
+				writer.trimLast(", ".Length);
+			}
+		}
+
+		public void ToODialect(CodeWriter writer)
+		{
+			writer.append("fetch one ");
+			if (type != null)
+			{
+				writer.append("(");
+				if (type.Mutable)
+					writer.append("mutable ");
+				writer.append(type.GetTypeName().ToString());
+				writer.append(") ");
+			}
+			writer.append("where (");
+			predicate.ToDialect(writer);
+			writer.append(")");
+			if (include != null)
+			{
+				writer.append(" include (");
+				foreach (string name in include)
+				{
+					writer.append(name).append(", ");
+				}
+				writer.trimLast(", ".Length);
+				writer.append(")");
 			}
 		}
 
@@ -73,6 +135,16 @@ namespace prompto.expression
 			IType filterType = predicate.check(context);
 			if (filterType != BooleanType.Instance)
 				throw new SyntaxError("Filtering expression must return a boolean !");
+			if(include != null)
+            {
+				foreach (string name in include)
+                {
+					if(context.getRegisteredDeclaration<AttributeDeclaration>(name)==null) 
+                    {
+						throw new SyntaxError("Unknown attribute: " + name);
+					}
+				}
+			}
 			if (type != null)
 				return type;
 			else
@@ -112,6 +184,10 @@ namespace prompto.expression
 			}
 			if (type != null && predicate != null)
 				builder.And();
+            if (include != null)
+            {
+				builder.Project(include);
+			}
 			return builder.Build();
 		}
 

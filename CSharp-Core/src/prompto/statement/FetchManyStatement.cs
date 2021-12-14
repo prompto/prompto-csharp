@@ -1,4 +1,5 @@
-﻿using prompto.expression;
+﻿using System.Collections.Generic;
+using prompto.expression;
 using prompto.grammar;
 using prompto.parser;
 using prompto.runtime;
@@ -12,8 +13,8 @@ namespace prompto.statement
 	{
 		ThenWith thenWith;
 
-		public FetchManyStatement(CategoryType type, IExpression filter, IExpression first, IExpression last, OrderByClauseList orderBy, ThenWith thenWith)
-			: base(type, filter, first, last, orderBy)
+		public FetchManyStatement(CategoryType type, IExpression filter, IExpression first, IExpression last, List<string> include, OrderByClauseList orderBy, ThenWith thenWith)
+			: base(type, filter, first, last, include, orderBy)
 		{
 			this.thenWith = thenWith;
 		}

@@ -156,13 +156,16 @@ namespace prompto.memstore
         }
 
 
-        public IStored FetchOne(IQuery query)
+        public IStored FetchOne(IQuery iquery)
         {
-            IPredicate predicate = ((Query)query).GetPredicate();
+            Query query = (Query)iquery;
+            IPredicate predicate = query.GetPredicate();
             foreach (StorableDocument doc in documents.Values)
             {
                 if (doc.matches(predicate))
-                    return doc;
+                {
+                    return query.GetProjection() == null ? doc : doc.Project(query.GetProjection());
+                }
             }
             return null;
         }
@@ -176,11 +179,13 @@ namespace prompto.memstore
             return new StorableDocumentEnumerable(slicedDocs, totalCount);
         }
 
-
         private List<StorableDocument> FetchManyDocs(Query query)
         {
             List<StorableDocument> docs = FilterDocs(query.GetPredicate());
-            docs = Sort(query.GetOrdering(), docs);
+            if(query!=null && query.GetOrdering()!=null)
+                docs = Sort(query.GetOrdering(), docs);
+            if (query != null && query.GetProjection() != null)
+                docs = docs.Select(doc => doc.Project(query.GetProjection())).ToList();
             return docs;
         }
 
@@ -527,6 +532,20 @@ namespace prompto.memstore
                     return value;
                 else
                     return null;
+            }
+
+            public StorableDocument Project(List<string> fieldNames)
+            {
+                Dictionary<string, object> remaining = new Dictionary<string, object>();
+                foreach(string name in fieldNames)
+                {
+                    remaining[name] = GetData(name);
+                }
+                remaining["category"] = GetData("category");
+                remaining["dbId"] = GetData("dbId");
+                StorableDocument doc = new StorableDocument(categories, dbIdFactory);
+                doc.document = remaining;
+                return doc;
             }
         }
 

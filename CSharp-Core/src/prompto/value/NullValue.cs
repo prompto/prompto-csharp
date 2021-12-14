@@ -35,6 +35,11 @@ namespace prompto.value
 			return new JValue((string)null);
 		}
 
-	}
+        public override string ToString()
+        {
+            return "null";
+        }
+
+    }
 }
 
