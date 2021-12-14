@@ -180,9 +180,9 @@ namespace prompto.declaration
             AttributeDeclaration decl = context.getRegisteredDeclaration<AttributeDeclaration>(name);
             if (!decl.Storable)
                 return;
-            Object data = stored.GetData(name);
-            if(data != null)
+            if(stored.HasData(name))
             {
+                Object data = stored.GetData(name);
                 IValue value = decl.getIType().ConvertCSharpValueToIValue(context, data);
                 instance.SetMemberValue(context, name, value);
             }

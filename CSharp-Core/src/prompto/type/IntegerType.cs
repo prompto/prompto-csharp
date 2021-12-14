@@ -131,7 +131,9 @@ namespace prompto.type
 
         public override IValue ConvertCSharpValueToIValue(Context context, Object value)
         {
-            if (value is Int16)
+            if (value == null)
+                return NullValue.Instance;
+            else if (value is Int16)
                 return new IntegerValue((Int16)value);
             else if (value is Int16?)
                 return new IntegerValue(((Int16?)value).Value);

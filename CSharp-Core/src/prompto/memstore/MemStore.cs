@@ -501,6 +501,11 @@ namespace prompto.memstore
             }
 
 
+            public bool HasData(string name)
+            {
+                return document != null && document.ContainsKey(name);
+            }
+
 
             public void SetData(string name, object value)
             {
@@ -527,9 +532,8 @@ namespace prompto.memstore
 
             public object GetData(string name)
             {
-                object value;
-                if (document!=null && document.TryGetValue(name, out value))
-                    return value;
+                if (document!=null && document.ContainsKey(name))
+                    return document[name];
                 else
                     return null;
             }
