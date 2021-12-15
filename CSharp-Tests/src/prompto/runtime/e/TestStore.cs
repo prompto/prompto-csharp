@@ -28,9 +28,21 @@ namespace prompto.runtime.e
 		}
 
 		[Test]
+		public void testAsyncFetchManyInclude()
+		{
+			CheckOutput("store/asyncFetchManyInclude.pec");
+		}
+
+		[Test]
 		public void testAsyncFetchOne()
 		{
 			CheckOutput("store/asyncFetchOne.pec");
+		}
+
+		[Test]
+		public void testAsyncFetchOneInclude()
+		{
+			CheckOutput("store/asyncFetchOneInclude.pec");
 		}
 
 		[Test]
@@ -130,12 +142,6 @@ namespace prompto.runtime.e
 		}
 
 		[Test]
-		public void testFetchInclude()
-		{
-			CheckOutput("store/fetchInclude.pec");
-		}
-
-		[Test]
 		public void testFetchLesser()
 		{
 			CheckOutput("store/fetchLesser.pec");
@@ -145,6 +151,12 @@ namespace prompto.runtime.e
 		public void testFetchLesserEqual()
 		{
 			CheckOutput("store/fetchLesserEqual.pec");
+		}
+
+		[Test]
+		public void testFetchManyInclude()
+		{
+			CheckOutput("store/fetchManyInclude.pec");
 		}
 
 		[Test]
@@ -169,6 +181,12 @@ namespace prompto.runtime.e
 		public void testFetchNotIn()
 		{
 			CheckOutput("store/fetchNotIn.pec");
+		}
+
+		[Test]
+		public void testFetchOneInclude()
+		{
+			CheckOutput("store/fetchOneInclude.pec");
 		}
 
 		[Test]

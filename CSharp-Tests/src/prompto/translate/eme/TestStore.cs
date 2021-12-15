@@ -15,9 +15,21 @@ namespace prompto.translate.eme
 		}
 
 		[Test]
+		public void testAsyncFetchManyInclude()
+		{
+			compareResourceEME("store/asyncFetchManyInclude.pec");
+		}
+
+		[Test]
 		public void testAsyncFetchOne()
 		{
 			compareResourceEME("store/asyncFetchOne.pec");
+		}
+
+		[Test]
+		public void testAsyncFetchOneInclude()
+		{
+			compareResourceEME("store/asyncFetchOneInclude.pec");
 		}
 
 		[Test]
@@ -117,12 +129,6 @@ namespace prompto.translate.eme
 		}
 
 		[Test]
-		public void testFetchInclude()
-		{
-			compareResourceEME("store/fetchInclude.pec");
-		}
-
-		[Test]
 		public void testFetchLesser()
 		{
 			compareResourceEME("store/fetchLesser.pec");
@@ -132,6 +138,12 @@ namespace prompto.translate.eme
 		public void testFetchLesserEqual()
 		{
 			compareResourceEME("store/fetchLesserEqual.pec");
+		}
+
+		[Test]
+		public void testFetchManyInclude()
+		{
+			compareResourceEME("store/fetchManyInclude.pec");
 		}
 
 		[Test]
@@ -156,6 +168,12 @@ namespace prompto.translate.eme
 		public void testFetchNotIn()
 		{
 			compareResourceEME("store/fetchNotIn.pec");
+		}
+
+		[Test]
+		public void testFetchOneInclude()
+		{
+			compareResourceEME("store/fetchOneInclude.pec");
 		}
 
 		[Test]
