@@ -1963,6 +1963,18 @@ public partial class EParserBaseListener : IEParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitFetchManyAsync([NotNull] EParser.FetchManyAsyncContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="EParser.include_list"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterInclude_list([NotNull] EParser.Include_listContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="EParser.include_list"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitInclude_list([NotNull] EParser.Include_listContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="EParser.then"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
@@ -4416,18 +4428,6 @@ public partial class EParserBaseListener : IEParserListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitOrder_by([NotNull] EParser.Order_byContext context) { }
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="EParser.include_list"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void EnterInclude_list([NotNull] EParser.Include_listContext context) { }
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="EParser.include_list"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void ExitInclude_list([NotNull] EParser.Include_listContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by the <c>OperatorPlus</c>
 	/// labeled alternative in <see cref="EParser.operator"/>.
