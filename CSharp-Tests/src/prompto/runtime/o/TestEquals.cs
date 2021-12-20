@@ -112,6 +112,12 @@ namespace prompto.runtime.o
 		}
 
 		[Test]
+		public void testIsADictionary()
+		{
+			CheckOutput("equals/isADictionary.poc");
+		}
+
+		[Test]
 		public void testIsBoolean()
 		{
 			CheckOutput("equals/isBoolean.poc");

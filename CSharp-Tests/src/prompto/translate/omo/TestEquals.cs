@@ -99,6 +99,12 @@ namespace prompto.translate.omo
 		}
 
 		[Test]
+		public void testIsADictionary()
+		{
+			compareResourceOMO("equals/isADictionary.poc");
+		}
+
+		[Test]
 		public void testIsBoolean()
 		{
 			compareResourceOMO("equals/isBoolean.poc");

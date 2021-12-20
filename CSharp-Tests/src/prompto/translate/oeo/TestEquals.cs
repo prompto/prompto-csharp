@@ -99,6 +99,12 @@ namespace prompto.translate.oeo
 		}
 
 		[Test]
+		public void testIsADictionary()
+		{
+			compareResourceOEO("equals/isADictionary.poc");
+		}
+
+		[Test]
 		public void testIsBoolean()
 		{
 			compareResourceOEO("equals/isBoolean.poc");
