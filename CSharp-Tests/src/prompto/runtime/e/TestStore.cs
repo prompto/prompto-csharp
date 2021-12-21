@@ -46,6 +46,12 @@ namespace prompto.runtime.e
 		}
 
 		[Test]
+		public void testAsyncFetchOneNull()
+		{
+			CheckOutput("store/asyncFetchOneNull.pec");
+		}
+
+		[Test]
 		public void testAsyncStore()
 		{
 			CheckOutput("store/asyncStore.pec");

@@ -33,6 +33,12 @@ namespace prompto.translate.eoe
 		}
 
 		[Test]
+		public void testAsyncFetchOneNull()
+		{
+			compareResourceEOE("store/asyncFetchOneNull.pec");
+		}
+
+		[Test]
 		public void testAsyncStore()
 		{
 			compareResourceEOE("store/asyncStore.pec");

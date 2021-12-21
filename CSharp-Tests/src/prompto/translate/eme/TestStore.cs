@@ -33,6 +33,12 @@ namespace prompto.translate.eme
 		}
 
 		[Test]
+		public void testAsyncFetchOneNull()
+		{
+			compareResourceEME("store/asyncFetchOneNull.pec");
+		}
+
+		[Test]
 		public void testAsyncStore()
 		{
 			compareResourceEME("store/asyncStore.pec");
