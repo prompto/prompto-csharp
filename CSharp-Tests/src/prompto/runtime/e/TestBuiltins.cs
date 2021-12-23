@@ -310,6 +310,12 @@ namespace prompto.runtime.e
 		}
 
 		[Test]
+		public void testListIndexOf()
+		{
+			CheckOutput("builtins/listIndexOf.pec");
+		}
+
+		[Test]
 		public void testListJson()
 		{
 			CheckOutput("builtins/listJson.pec");

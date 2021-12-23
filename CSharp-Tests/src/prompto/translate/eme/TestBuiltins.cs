@@ -309,6 +309,12 @@ namespace prompto.translate.eme
 		}
 
 		[Test]
+		public void testListIndexOf()
+		{
+			compareResourceEME("builtins/listIndexOf.pec");
+		}
+
+		[Test]
 		public void testListJson()
 		{
 			compareResourceEME("builtins/listJson.pec");

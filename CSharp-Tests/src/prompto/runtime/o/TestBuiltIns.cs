@@ -136,6 +136,12 @@ namespace prompto.runtime.o
 		}
 
 		[Test]
+		public void testListIndexOf()
+		{
+			CheckOutput("builtins/listIndexOf.poc");
+		}
+
+		[Test]
 		public void testListJoin()
 		{
 			CheckOutput("builtins/listJoin.poc");

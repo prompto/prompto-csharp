@@ -135,6 +135,12 @@ namespace prompto.translate.omo
 		}
 
 		[Test]
+		public void testListIndexOf()
+		{
+			compareResourceOMO("builtins/listIndexOf.poc");
+		}
+
+		[Test]
 		public void testListJoin()
 		{
 			compareResourceOMO("builtins/listJoin.poc");

@@ -309,6 +309,12 @@ namespace prompto.translate.eoe
 		}
 
 		[Test]
+		public void testListIndexOf()
+		{
+			compareResourceEOE("builtins/listIndexOf.pec");
+		}
+
+		[Test]
 		public void testListJson()
 		{
 			compareResourceEOE("builtins/listJson.pec");

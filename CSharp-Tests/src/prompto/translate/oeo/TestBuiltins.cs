@@ -135,6 +135,12 @@ namespace prompto.translate.oeo
 		}
 
 		[Test]
+		public void testListIndexOf()
+		{
+			compareResourceOEO("builtins/listIndexOf.poc");
+		}
+
+		[Test]
 		public void testListJoin()
 		{
 			compareResourceOEO("builtins/listJoin.poc");
