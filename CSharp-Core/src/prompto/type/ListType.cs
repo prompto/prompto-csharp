@@ -128,6 +128,9 @@ namespace prompto.type
 				case "join":
 					methods.Add(JOIN_METHOD);
 					return methods;
+				case "indexOf":
+					methods.Add(INDEX_OF_METHOD);
+					return methods;
 				case "removeItem":
 					methods.Add(REMOVE_ITEM_METHOD);
 					return methods;
@@ -157,6 +160,7 @@ namespace prompto.type
 		internal static IParameter ITEM_ARGUMENT = new CategoryParameter(IntegerType.Instance, "item");
 		internal static IParameter VALUE_ARGUMENT = new CategoryParameter(AnyType.Instance, "value");
 
+		internal static IMethodDeclaration INDEX_OF_METHOD = new ListIndexOfMethodDeclaration();
 		internal static IMethodDeclaration REMOVE_ITEM_METHOD = new RemoveListItemMethodDeclaration();
 		internal static IMethodDeclaration REMOVE_VALUE_METHOD = new RemoveListValueMethodDeclaration();
 
@@ -170,6 +174,33 @@ namespace prompto.type
 			return list.GetEnumerable(context);
 		}
 	}
+
+	internal class ListIndexOfMethodDeclaration : BuiltInMethodDeclaration
+	{
+
+		public ListIndexOfMethodDeclaration()
+		: base("indexOf", ListType.VALUE_ARGUMENT)
+		{ }
+
+		public override IValue interpret(Context context)
+		{
+			ListValue list = (ListValue)getValue(context);
+			if (!list.IsMutable())
+				throw new NotMutableError();
+			IValue value = context.getValue("value");
+			int idx = list.IndexOf(value);
+			if (idx < 0)
+				return NullValue.Instance;
+			else
+				return new IntegerValue(idx + 1);
+		}
+
+		public override IType check(Context context)
+		{
+			return IntegerType.Instance;
+		}
+
+	};
 
 	internal class RemoveListItemMethodDeclaration : BuiltInMethodDeclaration
 	{

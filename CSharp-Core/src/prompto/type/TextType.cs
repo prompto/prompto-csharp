@@ -97,7 +97,7 @@ namespace prompto.type
         internal static IMethodDeclaration TO_UPPERCASE_METHOD = new ToUpperCaseMethodDeclaration();
         internal static IMethodDeclaration TO_CAPITALIZED_METHOD = new ToCapitalizedMethodDeclaration();
         internal static IMethodDeclaration TRIM_METHOD = new TrimMethodDeclaration();
-        internal static IMethodDeclaration INDEX_OF_METHOD = new IndexOfMethodDeclaration();
+        internal static IMethodDeclaration INDEX_OF_METHOD = new TextIndexOfMethodDeclaration();
 
         public override IType checkMember(Context context, String name)
         {
@@ -430,10 +430,10 @@ namespace prompto.type
     };
 
 
-    class IndexOfMethodDeclaration : BuiltInMethodDeclaration
+    class TextIndexOfMethodDeclaration : BuiltInMethodDeclaration
     {
 
-        public IndexOfMethodDeclaration()
+        public TextIndexOfMethodDeclaration()
             : base("indexOf", TextType.VALUE_ARGUMENT, TextType.FROM_INDEX_ARGUMENT)
         {
         }
