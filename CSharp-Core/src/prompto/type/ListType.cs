@@ -185,8 +185,6 @@ namespace prompto.type
 		public override IValue interpret(Context context)
 		{
 			ListValue list = (ListValue)getValue(context);
-			if (!list.IsMutable())
-				throw new NotMutableError();
 			IValue value = context.getValue("value");
 			int idx = list.IndexOf(value);
 			if (idx < 0)
