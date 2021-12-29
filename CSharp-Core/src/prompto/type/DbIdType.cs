@@ -37,7 +37,7 @@ namespace prompto.type
       
         public override bool isAssignableFrom(Context context, IType other)
         {
-            return other is NativeType;
+            return base.isAssignableFrom(context, other) || other is NativeType;
         }
 
         
