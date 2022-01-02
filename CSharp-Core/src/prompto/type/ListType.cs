@@ -137,6 +137,12 @@ namespace prompto.type
 				case "removeValue":
 					methods.Add(REMOVE_VALUE_METHOD);
 					return methods;
+				case "addValue":
+					methods.Add(ADD_VALUE_METHOD);
+					return methods;
+				case "insertValue":
+					methods.Add(INSERT_VALUE_METHOD);
+					return methods;
 				default:
 					return base.getMemberMethods(context, name);
 			}
@@ -159,10 +165,13 @@ namespace prompto.type
 
 		internal static IParameter ITEM_ARGUMENT = new CategoryParameter(IntegerType.Instance, "item");
 		internal static IParameter VALUE_ARGUMENT = new CategoryParameter(AnyType.Instance, "value");
+		internal static IParameter AT_INDEX_ARGUMENT = new CategoryParameter(IntegerType.Instance, "atIndex");
 
 		internal static IMethodDeclaration INDEX_OF_METHOD = new ListIndexOfMethodDeclaration();
 		internal static IMethodDeclaration REMOVE_ITEM_METHOD = new RemoveListItemMethodDeclaration();
 		internal static IMethodDeclaration REMOVE_VALUE_METHOD = new RemoveListValueMethodDeclaration();
+		internal static IMethodDeclaration ADD_VALUE_METHOD = new AddListValueMethodDeclaration();
+		internal static IMethodDeclaration INSERT_VALUE_METHOD = new InsertListValueMethodDeclaration();
 
 	}
 
@@ -238,6 +247,59 @@ namespace prompto.type
 				throw new NotMutableError();
 			IValue value = context.getValue("value");
 			list.Remove(value);
+			return null;
+		}
+
+
+
+		public override IType check(Context context)
+		{
+			return VoidType.Instance;
+		}
+
+	};
+
+	internal class AddListValueMethodDeclaration : BuiltInMethodDeclaration
+	{
+
+		public AddListValueMethodDeclaration()
+		: base("addValue", ListType.VALUE_ARGUMENT)
+		{ }
+
+		public override IValue interpret(Context context)
+		{
+			ListValue list = (ListValue)getValue(context);
+			if (!list.IsMutable())
+				throw new NotMutableError();
+			IValue value = context.getValue("value");
+			list.Add(value);
+			return null;
+		}
+
+
+
+		public override IType check(Context context)
+		{
+			return VoidType.Instance;
+		}
+
+	};
+
+	internal class InsertListValueMethodDeclaration : BuiltInMethodDeclaration
+	{
+
+		public InsertListValueMethodDeclaration()
+		: base("insertValue", ListType.VALUE_ARGUMENT, ListType.AT_INDEX_ARGUMENT)
+		{ }
+
+		public override IValue interpret(Context context)
+		{
+			ListValue list = (ListValue)getValue(context);
+			if (!list.IsMutable())
+				throw new NotMutableError();
+			IValue value = context.getValue("value");
+			IntegerValue atIndex = (IntegerValue)context.getValue("atIndex");
+			list.Insert(((int)atIndex.LongValue) - 1, value);
 			return null;
 		}
 
