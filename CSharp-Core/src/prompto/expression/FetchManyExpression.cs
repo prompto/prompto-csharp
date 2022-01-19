@@ -264,7 +264,7 @@ namespace prompto.expression
                 return null;
             IValue value = exp.interpret(context);
             if (!(value is prompto.value.IntegerValue))
-                throw new InvalidValueError("Expecting an Integer, got:" + value.GetIType().GetTypeName());
+                throw new InvalidValueError("Expecting an Integer, found:" + value.GetIType().GetTypeName());
             return ((prompto.value.IntegerValue)value).LongValue;
         }
 

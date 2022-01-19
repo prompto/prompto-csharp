@@ -49,7 +49,7 @@ namespace prompto.expression
 				if(value is CodeValue)
 					return ((CodeValue) value).check(context);
 				else
-					throw new SyntaxError("Expected code, got:" + value.ToString());
+					throw new SyntaxError("Expected code, found:" + value.ToString());
             }
             catch (PromptoError e)
             {
@@ -63,7 +63,7 @@ namespace prompto.expression
 			if(value is CodeValue)
 				return ((CodeValue) value).interpret(context);
 			else
-				throw new SyntaxError("Expected code, got:" + value.ToString());
+				throw new SyntaxError("Expected code, found:" + value.ToString());
         }
     }
 }

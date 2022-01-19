@@ -22,7 +22,7 @@ namespace prompto.expression
 		{
 			IType sourceType = source.check(context);
 			if(!(sourceType is CategoryType))
-				 throw new SyntaxError("Expected a category instance, got:" + sourceType);
+				 throw new SyntaxError("Expected a category instance, found:" + sourceType);
 			return new CategoryType((CategoryType)sourceType, true);
 		}
 

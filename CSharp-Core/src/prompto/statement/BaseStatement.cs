@@ -29,7 +29,7 @@ namespace prompto.statement
         }
         public virtual AttributeDeclaration CheckAttribute(Context context)
         {
-            throw new SyntaxError("Expected an attribute, got: " + this.ToString());
+            throw new SyntaxError("Expected an attribute, found: " + this.ToString());
         }
         public virtual bool CanReturn { get { return false; } }
 		public virtual bool IsSimple { get { return false; } }

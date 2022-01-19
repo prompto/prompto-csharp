@@ -100,7 +100,7 @@ namespace prompto.statement
 		{
 			IValue value = condition.interpret(context);
 			if (!(value is BooleanValue))
-				throw new InvalidDataError("Expected a Boolean, got:" + value.GetType().Name);
+				throw new InvalidDataError("Expected a Boolean, found:" + value.GetType().Name);
 			return value == BooleanValue.TRUE;
 		}
 

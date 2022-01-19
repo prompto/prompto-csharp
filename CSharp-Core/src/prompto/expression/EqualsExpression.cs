@@ -227,7 +227,7 @@ namespace prompto.expression
         {
             AttributeDeclaration decl = left.CheckAttribute(context);
             if (decl == null)
-                throw new SyntaxError("Expected an attribute, got: " + left.ToString());
+                throw new SyntaxError("Expected an attribute, found: " + left.ToString());
             else if (!decl.Storable)
                 throw new SyntaxError(decl.GetName() + " is not storable");
             IType rt = right.check(context);

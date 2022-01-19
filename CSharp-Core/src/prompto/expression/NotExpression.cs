@@ -33,7 +33,7 @@ namespace prompto.expression
 		public void checkQuery(Context context)
 		{
 			if (!(expression is IPredicateExpression))
-				throw new SyntaxError("Expected a predicate, got: " + expression.ToString());
+				throw new SyntaxError("Expected a predicate, found: " + expression.ToString());
 			((IPredicateExpression)expression).checkQuery(context);
 		}
 

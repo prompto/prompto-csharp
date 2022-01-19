@@ -73,10 +73,10 @@ namespace prompto.expression
 		public void checkQuery(Context context)
         {
 			if (!(left is IPredicateExpression))
-				throw new SyntaxError("Expected a predicate, got: " + left.ToString());
+				throw new SyntaxError("Expected a predicate, found: " + left.ToString());
 			((IPredicateExpression)left).checkQuery(context);
 			if (!(right is IPredicateExpression))
-				throw new SyntaxError("Expected a predicate, got: " + right.ToString());
+				throw new SyntaxError("Expected a predicate, found: " + right.ToString());
 			((IPredicateExpression)right).checkQuery(context);
 		}
 

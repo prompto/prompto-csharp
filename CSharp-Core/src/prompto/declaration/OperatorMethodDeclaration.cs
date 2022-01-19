@@ -73,7 +73,7 @@ namespace prompto.declaration
 
 		public AttributeDeclaration CheckAttribute(Context context)
 		{
-			throw new SyntaxError("Expected an attribute, got: " + this.ToString());
+			throw new SyntaxError("Expected an attribute, found: " + this.ToString());
 		}
 
 		public virtual IType checkReference(Context context)

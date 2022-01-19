@@ -27,7 +27,7 @@ namespace prompto.expression
         }
         public virtual AttributeDeclaration CheckAttribute(Context context)
         {
-            throw new SyntaxError("Expected an attribute, got: " + this.ToString());
+            throw new SyntaxError("Expected an attribute, found: " + this.ToString());
         }
 
     }

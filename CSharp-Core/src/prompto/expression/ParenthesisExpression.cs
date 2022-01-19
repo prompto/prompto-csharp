@@ -45,7 +45,7 @@ namespace prompto.expression
 		public void checkQuery(Context context)
 		{
 			if (!(expression is IPredicateExpression))
-				throw new SyntaxError("Expected a predicate, got: " + expression.ToString());
+				throw new SyntaxError("Expected a predicate, found: " + expression.ToString());
 			((IPredicateExpression)expression).checkQuery(context);
 		}
 
@@ -57,7 +57,7 @@ namespace prompto.expression
         public void interpretQuery(Context context, IQueryBuilder builder)
         {
             if (!(expression is IPredicateExpression))
-                throw new SyntaxError("Expected a predicate, got: " + expression.ToString());
+                throw new SyntaxError("Expected a predicate, found: " + expression.ToString());
             ((IPredicateExpression)expression).interpretQuery(context, builder);
         }
 

@@ -49,7 +49,7 @@ namespace prompto.value
 
 		public AttributeDeclaration CheckAttribute(Context context)
 		{
-			throw new SyntaxError("Expected an attribute, got: " + this.ToString());
+			throw new SyntaxError("Expected an attribute, found: " + this.ToString());
 		}
 
 		public virtual IValue interpret (Context context)

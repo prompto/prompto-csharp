@@ -74,7 +74,7 @@ namespace prompto.expression
 
 		public AttributeDeclaration CheckAttribute(Context context)
 		{
-			throw new SyntaxError("Expected an attribute, got: " + this.ToString());
+			throw new SyntaxError("Expected an attribute, found: " + this.ToString());
 		}
 
 		public abstract IValue interpret(Context context);

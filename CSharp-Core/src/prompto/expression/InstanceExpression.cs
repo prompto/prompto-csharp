@@ -110,7 +110,7 @@ namespace prompto.expression
             if (predicate != null)
                 predicate.checkQuery(context);
             else
-                throw new SyntaxError("Expected a predicate, got: " + name);
+                throw new SyntaxError("Expected a predicate, found: " + name);
         }
 
 
@@ -120,7 +120,7 @@ namespace prompto.expression
             if (decl == null)
                 throw new SyntaxError("Unknown identifier:" + name);
             else if (decl.GetIType(context) != BooleanType.Instance)
-                throw new SyntaxError("Expected a Boolean, got:" + decl.GetIType(context).GetTypeName());
+                throw new SyntaxError("Expected a Boolean, found:" + decl.GetIType(context).GetTypeName());
             else
                 return new EqualsExpression(this, EqOp.EQUALS, new BooleanLiteral("true"));
         }
