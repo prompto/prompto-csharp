@@ -1,0 +1,39 @@
+# Use the latest 2.1 version of CircleCI pipeline process engine.
+# See: https://circleci.com/docs/2.0/configuration-reference
+version: 2.1
+
+jobs:
+  build-and-test:
+    docker:
+      - image: microsoft/dotnet:latest
+    steps:
+      - checkout
+      - run:
+          name: Checkout git submodules
+          command: |
+            git submodule update --init --recursive
+      - run:
+          working_directory: ~/project/App.Tests
+          name: Build C&#35; Core
+          command: |
+            dotnet build -c Release -f netstandard2.0 ./CSharp-Core/CSharp-Core.csproj
+      - run:
+          working_directory: ~/project/App.Tests
+          name: Build C&#35; Runtime
+          command: |
+            dotnet build -c Release -f netstandard2.0 ./CSharp-Runtime/CSharp-Runtime.csproj
+      - run:
+          working_directory: ~/project/App.Tests
+          name: Build C&#35; Tests
+          command: |
+            dotnet build -c Release -f netcoreapp3.1 ./CSharp-Tests/CSharp-Tests.csproj
+      - run:
+          working_directory: ~/project/App.Tests
+          name: Run C&#35; Tests
+          command: |
+            dotnet test -f netcoreapp3.1 ./CSharp-Tests/bin/Release/netcoreapp3.1/CSharp-Tests.dll
+
+workflows:
+  regular: 
+    jobs:
+      - build-and-test
