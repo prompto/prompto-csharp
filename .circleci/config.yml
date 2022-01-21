@@ -13,23 +13,19 @@ jobs:
           command: |
             git submodule update --init --recursive
       - run:
-          working_directory: ~/project/App.Tests
-          name: Build C&#35; Core
+          name: Build CSharp Core
           command: |
             dotnet build -c Release -f netstandard2.0 ./CSharp-Core/CSharp-Core.csproj
       - run:
-          working_directory: ~/project/App.Tests
-          name: Build C&#35; Runtime
+          name: Build CSharp Runtime
           command: |
             dotnet build -c Release -f netstandard2.0 ./CSharp-Runtime/CSharp-Runtime.csproj
       - run:
-          working_directory: ~/project/App.Tests
-          name: Build C&#35; Tests
+          name: Build CSharp Tests
           command: |
             dotnet build -c Release -f netcoreapp3.1 ./CSharp-Tests/CSharp-Tests.csproj
       - run:
-          working_directory: ~/project/App.Tests
-          name: Run C&#35; Tests
+          name: Run CSharp Tests
           command: |
             dotnet test -f netcoreapp3.1 ./CSharp-Tests/bin/Release/netcoreapp3.1/CSharp-Tests.dll
 
