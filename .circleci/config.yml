@@ -5,7 +5,7 @@ version: 2.1
 jobs:
   build-and-test:
     docker:
-      - image: erstecardclub/circleci-dotnet-core 
+      - image: mcr.microsoft.com/dotnet/core/sdk 
     steps:
       - checkout
       - run:
