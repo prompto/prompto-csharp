@@ -5,6 +5,6 @@ namespace prompto.memstore
 {
 	public interface IPredicate
 	{
-		bool matches(Dictionary<String, Object> document);
+		bool matches(IDictionary<String, Object> document);
 	}
 }

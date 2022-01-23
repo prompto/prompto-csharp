@@ -19,7 +19,7 @@ namespace prompto.memstore
 			this.value = value;
 		}
 
-		public bool matches(Dictionary<String, Object> document)
+		public bool matches(IDictionary<String, Object> document)
 		{
 			Object data = null;
 			document.TryGetValue(info.getName(), out data);

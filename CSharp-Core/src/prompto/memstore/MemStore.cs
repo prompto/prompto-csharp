@@ -78,9 +78,15 @@ namespace prompto.memstore
                 dbId = ++lastDbId;
                 storable.SetData("dbId", dbId);
             }
-            if (!documents.ContainsKey(dbId))
-                 operation = AuditOperation.INSERT;
-            documents[dbId] = (StorableDocument)storable;
+            IDictionary<string, object> document = new Dictionary<string, object>();
+            if (documents.ContainsKey(dbId))
+                documents[dbId].Document.ToList().ForEach(kvp => document[kvp.Key] = kvp.Value);
+            else
+                operation = AuditOperation.INSERT;
+            doc.Document.ToList().ForEach(kvp => document[kvp.Key] = kvp.Value);
+            doc = new StorableDocument(doc.Categories, null);
+            doc.Document = document;
+            documents[dbId] = doc;
             AuditRecord audit = NewAuditRecord(auditMeta);
             audit.InstanceDbId = dbId;
             audit.Operation = operation;
@@ -439,14 +445,26 @@ namespace prompto.memstore
         class StorableDocument : IStored, IStorable
         {
 
-            Dictionary<string, object> document = null;
             readonly List<string> categories;
             IDbIdFactory dbIdFactory;
+            IDictionary<string, object> document = null;
 
             public StorableDocument(List<string> categories, IDbIdFactory dbIdFactory)
             {
                 this.categories = categories;
                 this.dbIdFactory = dbIdFactory;
+            }
+
+            internal IDictionary<string, object> Document
+            {
+                get
+                {
+                    return document;
+                }
+                set
+                {
+                    document = value;
+                }
             }
 
             public List<string> Categories

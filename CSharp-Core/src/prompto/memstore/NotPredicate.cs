@@ -13,7 +13,7 @@ namespace prompto.memstore
 			this.predicate = predicate;
 		}
 
-		public bool matches(Dictionary<String, Object> document)
+		public bool matches(IDictionary<String, Object> document)
 		{
 			return !predicate.matches(document);
 		}

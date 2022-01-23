@@ -15,7 +15,7 @@ namespace prompto.memstore
 			this.right = right;
 		}
 
-		public bool matches(Dictionary<String, Object> document)
+		public bool matches(IDictionary<String, Object> document)
 		{
 			return left.matches(document) || right.matches(document);
 		}
