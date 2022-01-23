@@ -219,6 +219,12 @@ namespace prompto.translate.eme
 		}
 
 		[Test]
+		public void testSimpleUpdate()
+		{
+			compareResourceEME("store/simpleUpdate.pec");
+		}
+
+		[Test]
 		public void testSlicedRecords()
 		{
 			compareResourceEME("store/slicedRecords.pec");

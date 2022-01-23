@@ -232,6 +232,12 @@ namespace prompto.runtime.e
 		}
 
 		[Test]
+		public void testSimpleUpdate()
+		{
+			CheckOutput("store/simpleUpdate.pec");
+		}
+
+		[Test]
 		public void testSlicedRecords()
 		{
 			CheckOutput("store/slicedRecords.pec");
