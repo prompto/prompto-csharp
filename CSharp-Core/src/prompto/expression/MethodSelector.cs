@@ -103,29 +103,17 @@ namespace prompto.expression
 		private IType checkParentType(Context context, bool checkInstance)
 		{
 			if (checkInstance)
-				return checkParentInstance(context);
+				return interpretParentInstance(context);
 			else
 				return checkParent(context);
 		}
 
-		private IType checkParentInstance(Context context)
+		private IType interpretParentInstance(Context context)
 		{
-			string name = null;
-			if (parent is UnresolvedIdentifier)
-				name = ((UnresolvedIdentifier)parent).getName();
-			else if(parent is InstanceExpression)
-				name = ((InstanceExpression)parent).getName();
-			if(name!=null) {
-				// don't get Singleton values
-				if (char.IsLower(name[0]))
-				{
-					IValue value = context.getValue(name);
-					if (value != null && value != NullValue.Instance)
-						return value.GetIType();
-				}
-			}
-			// TODO check result instance
-			return checkParent(context);
+			IValue value = parent.interpret(context);
+			if (value == null || value == NullValue.Instance)
+				throw new NullReferenceError();
+			return value.GetIType();
 		}
 
 		public Context newLocalContext (Context context, IMethodDeclaration declaration)
