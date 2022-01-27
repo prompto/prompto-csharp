@@ -113,7 +113,11 @@ namespace prompto.expression
 			IValue value = parent.interpret(context);
 			if (value == null || value == NullValue.Instance)
 				throw new NullReferenceError();
-			return value.GetIType();
+			IType type = value.GetIType();
+			if (parent is SuperExpression)
+				return ((CategoryType)type).getSuperType(context);
+			else
+				return type;
 		}
 
 		public Context newLocalContext (Context context, IMethodDeclaration declaration)
