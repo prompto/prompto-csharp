@@ -15,6 +15,12 @@ namespace prompto.translate.omo
 		}
 
 		[Test]
+		public void testAbstractMemberItem()
+		{
+			compareResourceOMO("methods/abstractMemberItem.poc");
+		}
+
+		[Test]
 		public void testAnonymous()
 		{
 			compareResourceOMO("methods/anonymous.poc");
