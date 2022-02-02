@@ -7,7 +7,7 @@ using prompto.declaration;
 using prompto.type;
 using prompto.value;
 using prompto.param;
-
+using prompto.expression;
 
 namespace prompto.runtime
 {
@@ -24,23 +24,179 @@ namespace prompto.runtime
             this.methodCall = methodCall;
         }
 
-        public IMethodDeclaration findMethod(bool useInstance)
+        public IMethodDeclaration findBest(bool checkInstance)
         {
-            ICollection<IMethodDeclaration> candidates = methodCall.getSelector().getCandidates(context, useInstance);
-            List<IMethodDeclaration> compatibles = filterCompatible(candidates, useInstance);
+            IMethodDeclaration decl = findBestReference(checkInstance);
+            if (decl != null)
+                return decl;
+            else
+                return findBestMethod(checkInstance);
+        }
+
+        public IMethodDeclaration findBestReference(bool checkInstance)
+        {
+            IMethodDeclaration candidate = findCandidateReference(checkInstance);
+            if (candidate == null)
+                return null;
+            ISet<IMethodDeclaration> candidates = new HashSet<IMethodDeclaration>();
+            candidates.Add(candidate);
+            IEnumerator<IMethodDeclaration> compatibles = filterCompatible(candidates, checkInstance).GetEnumerator();
+            if (compatibles.MoveNext())
+                return compatibles.Current;
+            else
+                return null;
+        }
+
+        public IMethodDeclaration findCandidateReference(bool checkInstance)
+        {
+            MethodSelector selector = methodCall.getSelector();
+            if (selector.getParent() != null)
+                return null;
+            if (checkInstance)
+            {
+                if (context.hasValue(selector.getName()))
+                {
+                    IValue value = context.getValue(selector.getName());
+                    if (value is ClosureValue)
+					return getClosureDeclaration(context, (ClosureValue)value);
+
+                else if (value is ArrowValue)
+					return getArrowDeclaration((ArrowValue)value);
+                }
+            }
+            else
+            {
+                INamed named = context.getInstance(selector.getName(), false);
+                if (named == null)
+                    return null;
+                IType type = named.GetIType(context);
+                if (type is MethodType)
+				    return ((MethodType)type).Method.AsReference();
+            }
+            return null;
+        }
+
+        private IMethodDeclaration getArrowDeclaration(ArrowValue value)
+        {
+            return new ArrowDeclaration(value);
+        }
+
+
+        private IMethodDeclaration getClosureDeclaration(Context context, ClosureValue closure)
+        {
+            IMethodDeclaration decl = closure.Method;
+            if (decl.getMemberOf() != null)
+            {
+                // the closure references a member method (useful when a method reference is needed)
+                // in which case we may simply want to return that method to avoid spilling context into method body
+                // this is only true if the closure comes straight from the method's instance context
+                // if the closure comes from an accessible context that is not the instance context
+                // then it is a local variable that needs the closure context to be interpreted
+                MethodSelector selector = methodCall.getSelector();
+                Context declaring = context.contextForValue(selector.getName());
+                if (declaring == closure.getContext())
+                    return decl;
+            }
+            return new ClosureDeclaration(closure);
+        }
+
+        public ISet<IMethodDeclaration> findPotential()
+        {
+            ISet<IMethodDeclaration> candidates = null;
+            IMethodDeclaration candidate = findCandidateReference(false);
+            if (candidate != null)
+            {
+                candidates = new HashSet<IMethodDeclaration>();
+                candidates.Add(candidate);
+            }
+            else
+                candidates = findCandidates(false);
+            if (candidates.Count == 0)
+                throw new SyntaxError("No such method: " + methodCall.ToString());
+            return filterPotential(candidates);
+        }
+
+        ISet<IMethodDeclaration> filterPotential(ISet<IMethodDeclaration> candidates)
+        {
+            ISet<IMethodDeclaration> potential = new HashSet<IMethodDeclaration>();
+            foreach (IMethodDeclaration declaration in candidates)
+            {
+                try
+                {
+                    ArgumentList args = methodCall.makeArguments(context, declaration);
+                    if (declaration.isAssignableFrom(context, args))
+                        potential.Add(declaration);
+                }
+                catch (SyntaxError e)
+                {
+                    // OK
+                }
+            }
+            return potential;
+        }
+
+
+        public IMethodDeclaration findBestMethod(bool checkInstance)
+        {
+            ISet<IMethodDeclaration> candidates = findCandidates(checkInstance);
+            ISet<IMethodDeclaration> compatibles = filterCompatible(candidates, checkInstance);
+            IEnumerator<IMethodDeclaration> enumerator = compatibles.GetEnumerator();
             switch (compatibles.Count)
             {
                 case 0:
-                    // TODO refine
-                    throw new SyntaxError("No matching prototype for:" + methodCall.ToString());
+                    return null;
                 case 1:
-                    return compatibles[0];
+                    enumerator.MoveNext();
+                    return enumerator.Current;
                 default:
-                    return findMostSpecific(compatibles, useInstance);
+                    return findMostSpecific(compatibles, checkInstance);
             }
         }
 
-        IMethodDeclaration findMostSpecific(List<IMethodDeclaration> candidates, bool useInstance)
+        public ISet<IMethodDeclaration> findCandidates(bool checkInstance)
+        {
+            ISet<IMethodDeclaration> candidates = new HashSet<IMethodDeclaration>();
+            candidates.UnionWith(findMemberCandidates(checkInstance));
+            candidates.UnionWith(findGlobalCandidates(checkInstance));
+            return candidates;
+        }
+
+        private ISet<IMethodDeclaration> findGlobalCandidates(bool checkInstance)
+        {
+            MethodSelector selector = methodCall.getSelector();
+            if (selector.getParent() != null)
+                return new HashSet<IMethodDeclaration>();
+            MethodDeclarationMap globals = context.getRegisteredDeclaration<MethodDeclarationMap>(selector.getName());
+		    return globals != null ? new HashSet<IMethodDeclaration>(globals.Values) : new HashSet<IMethodDeclaration>();
+	    }
+
+        private ISet<IMethodDeclaration> findMemberCandidates(bool checkInstance)
+        {
+            MethodSelector selector = methodCall.getSelector();
+            if (selector.getParent() == null)
+            {
+                // if called from a member method, could be a member method called without this/self
+                InstanceContext instance = context.getClosestInstanceContext();
+                if (instance != null)
+                {
+                    IType type = instance.getInstanceType();
+                    ConcreteCategoryDeclaration cd = context.getRegisteredDeclaration<ConcreteCategoryDeclaration>(type.GetTypeName());
+				    if(cd!=null) {
+					    MethodDeclarationMap members = cd.getMemberMethods(context, selector.getName());
+					    if(members!=null)
+						    return new HashSet<IMethodDeclaration>(members.Values);
+				    }
+			    }
+                return new HashSet<IMethodDeclaration>();
+            }
+            else
+            {
+                IType parentType = selector.checkParentType(context, checkInstance);
+                return parentType != null ? parentType.getMemberMethods(context, selector.getName()) : new HashSet<IMethodDeclaration>();
+            }
+	    }
+
+        IMethodDeclaration findMostSpecific(ISet<IMethodDeclaration> candidates, bool useInstance)
         {
             IMethodDeclaration candidate = null;
             List<IMethodDeclaration> ambiguous = new List<IMethodDeclaration>();
@@ -126,9 +282,9 @@ namespace prompto.runtime
             return Score.SIMILAR;
         }
 
-        List<IMethodDeclaration> filterCompatible(ICollection<IMethodDeclaration> candidates, bool useInstance)
+        ISet<IMethodDeclaration> filterCompatible(ICollection<IMethodDeclaration> candidates, bool useInstance)
         {
-            List<IMethodDeclaration> compatibles = new List<IMethodDeclaration>();
+            ISet<IMethodDeclaration> compatibles = new HashSet<IMethodDeclaration>();
             foreach (IMethodDeclaration declaration in candidates)
             {
                 try

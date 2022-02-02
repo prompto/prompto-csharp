@@ -9,7 +9,8 @@ using prompto.type;
 using prompto.utils;
 using prompto.value;
 using prompto.param;
-
+using System.Collections.Generic;
+using System.Linq;
 
 namespace prompto.statement
 {
@@ -71,7 +72,7 @@ namespace prompto.statement
             try
             {
                 MethodFinder finder = new MethodFinder(writer.getContext(), this);
-                IMethodDeclaration method = finder.findMethod(false);
+                IMethodDeclaration method = finder.findBest(false);
                 /* if method is a reference */
                 return method is AbstractMethodDeclaration || method.ClosureOf != null;
             }
@@ -85,15 +86,39 @@ namespace prompto.statement
         public override IType check(Context context)
         {
             MethodFinder finder = new MethodFinder(context, this);
-            IMethodDeclaration declaration = finder.findMethod(false);
-            Context local = IsLocalClosure(context) ? context : selector.newLocalCheckContext(context, declaration);
-            return check(declaration, context, local);
+            IMethodDeclaration declaration = finder.findBest(false);
+            if (declaration == null)
+                return VoidType.Instance;
+            if (declaration.isAbstract())
+            {
+                checkAbstractOnly(context, declaration);
+                return declaration.getReturnType() != null ? declaration.getReturnType() : VoidType.Instance;
+            }
+            else
+            {
+                Context local = IsLocalClosure(context) ? context : selector.newLocalCheckContext(context, declaration);
+                return checkDeclaration(declaration, context, local);
+            }
         }
+
+        private void checkAbstractOnly(Context context, IMethodDeclaration declaration)
+        {
+            if (declaration.IsReference()) // parameter or variable populated from a method call
+                return;
+            if (declaration.getMemberOf() != null) // the category could be subclassed (if constructor called on abstract, that would raise an error anyway)
+                return;
+            // if a global method, need to check for runtime dispatch
+            MethodFinder finder = new MethodFinder(context, this);
+            ISet<IMethodDeclaration> potential = finder.findPotential();
+            if(potential.All(decl => decl.isAbstract()))
+                throw new SyntaxError("Cannot call abstract method");
+        }
+
 
         public override IType checkReference(Context context)
         {
             MethodFinder finder = new MethodFinder(context, this);
-            IMethodDeclaration method = finder.findMethod(false);
+            IMethodDeclaration method = finder.findBest(false);
             if (method != null)
                 return new MethodType(method);
             else
@@ -108,7 +133,7 @@ namespace prompto.statement
             return decl is MethodDeclarationMap;
         }
 
-        private IType check(IMethodDeclaration declaration, Context parent, Context local)
+        private IType checkDeclaration(IMethodDeclaration declaration, Context parent, Context local)
         {
             if (declaration.isTemplate())
                 return fullCheck((ConcreteMethodDeclaration)declaration, parent, local);
@@ -153,7 +178,10 @@ namespace prompto.statement
 
         public override IValue interpret(Context context)
         {
-            IMethodDeclaration declaration = findDeclaration(context);
+            MethodFinder finder = new MethodFinder(context, this);
+            IMethodDeclaration declaration = finder.findBest(true);
+            if (declaration == null)
+                throw new SyntaxError("No such method: " + this.ToString());
             Context local = selector.newLocalContext(context, declaration);
             declaration.registerParameters(local);
             assignArguments(context, local, declaration);
@@ -202,7 +230,7 @@ namespace prompto.statement
             else
             {
                 MethodFinder finder = new MethodFinder(context, this);
-                return finder.findMethod(true);
+                return finder.findBest(true);
             }
         }
 

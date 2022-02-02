@@ -19,6 +19,7 @@ namespace prompto.declaration
         Specificity? computeSpecificity(Context context, IParameter parameter, Argument argument, bool checkInstance);
 		IValue interpret(Context local);
         bool isAssignableTo(Context context, ArgumentList arguments, bool useInstance);
+        bool isAssignableFrom(Context context, ArgumentList arguments);
         void registerParameters(Context local);
         bool isAbstract();
 		bool isTemplate();
@@ -26,7 +27,9 @@ namespace prompto.declaration
 		void setMemberOf (CategoryDeclaration declaration);
 		CategoryDeclaration getMemberOf ();
 		IType checkChild(Context context);
-	}
+        bool IsReference();
+        IMethodDeclaration AsReference();
+    }
 }
 
 

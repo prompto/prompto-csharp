@@ -6,6 +6,9 @@ using prompto.error;
 using prompto.type;
 using prompto.value;
 using prompto.expression;
+using prompto.declaration;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace prompto.param
 {
@@ -58,13 +61,39 @@ namespace prompto.param
 
         public override IValue checkValue(Context context, IExpression expression) 
         {
-            resolve(context);
-		    if(resolved is MethodType)
-			    return expression.interpretReference(context);
-		    else
-			    return base.checkValue(context, expression);
+            bool isArrow = expression is ContextualExpression && ((ContextualExpression)expression).Expression is ArrowExpression;
+            if (isArrow)
+                return checkArrowValue(context, (ContextualExpression)expression);
+            else
+                return checkSimpleValue(context, expression);
 	    }
 
+        private IValue checkSimpleValue(Context context, IExpression expression)
+        {
+            resolve(context);
+            if (resolved is MethodType)
+			    return expression.interpretReference(context);
+            else
+                return base.checkValue(context, expression);
+        }
+
+        private IValue checkArrowValue(Context context, ContextualExpression expression)
+        {
+            IMethodDeclaration decl = getAbstractMethodDeclaration(context);
+            return new ArrowValue(decl, expression.Calling, (ArrowExpression)expression.Expression); // TODO check
+        }
+
+        private IMethodDeclaration getAbstractMethodDeclaration(Context context)
+        {
+            MethodDeclarationMap methods = context.getRegisteredDeclaration<MethodDeclarationMap>(type.GetTypeName());
+		    if(methods!=null)
+            {
+                IEnumerable<IMethodDeclaration> abstracts = from decl in methods.Values where decl.isAbstract() select decl;
+                return abstracts.FirstOrDefault(null);
+            }
+		    else
+			    return null;
+	    }
 
         public override void ToDialect(CodeWriter writer)
         {

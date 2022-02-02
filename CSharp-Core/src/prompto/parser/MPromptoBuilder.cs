@@ -1122,7 +1122,7 @@ namespace prompto.parser
         }
 
 
-        public override void ExitAbstract_method_declaration(MParser.Abstract_method_declarationContext ctx)
+        public override void ExitAbstract_global_method_declaration(MParser.Abstract_global_method_declarationContext ctx)
         {
             IType type = GetNodeValue<IType>(ctx.typ);
             if (type is CategoryType)
@@ -1132,6 +1132,15 @@ namespace prompto.parser
             SetNodeValue(ctx, new AbstractMethodDeclaration(name, args, type));
         }
 
+        public override void ExitAbstract_member_method_declaration(MParser.Abstract_member_method_declarationContext ctx)
+        {
+            IType type = GetNodeValue<IType>(ctx.typ);
+            if (type is CategoryType)
+                ((CategoryType)type).Mutable = ctx.MUTABLE() != null;
+            String name = GetNodeValue<String>(ctx.name);
+            ParameterList args = GetNodeValue<ParameterList>(ctx.args);
+            SetNodeValue(ctx, new AbstractMethodDeclaration(name, args, type));
+        }
 
         public override void ExitConcrete_method_declaration(MParser.Concrete_method_declarationContext ctx)
         {

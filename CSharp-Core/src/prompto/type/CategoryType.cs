@@ -556,7 +556,7 @@ namespace prompto.type
                 args.Add(arg);
                 MethodCall proto = new MethodCall(new MethodSelector(name), args);
                 MethodFinder finder = new MethodFinder(context, proto);
-                return finder.findMethod(true) != null;
+                return finder.findBest(true) != null;
             }
             catch (PromptoError)
             {

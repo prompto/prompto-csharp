@@ -214,6 +214,13 @@ namespace prompto.runtime
             return list;
         }
 
+        public INamed getInstance(string name, bool includeParent)
+        {
+            INamed named = (parent == null || !includeParent) ? null : parent.getInstance(name, true);
+            return named != null ? named : instances.ContainsKey(name) ? instances[name] : null;
+        }
+
+
         public virtual INamed getRegistered(String name)
         {
             // resolve upwards, since local names override global ones
@@ -712,12 +719,12 @@ namespace prompto.runtime
 
     }
 
-    public class MethodDeclarationMap : Dictionary<String, IMethodDeclaration>, IDeclaration
+    public class MethodDeclarationMap : Dictionary<string, IMethodDeclaration>, IDeclaration
     {
 
-        String name;
+        string name;
 
-        public MethodDeclarationMap(String name)
+        public MethodDeclarationMap(string name)
         {
             this.name = name;
         }
@@ -734,7 +741,7 @@ namespace prompto.runtime
             }
         }
 
-        public List<CommentStatement> Comments
+        public IList<CommentStatement> Comments
         {
             get
             {
@@ -746,7 +753,7 @@ namespace prompto.runtime
             }
         }
 
-        public List<Annotation> Annotations
+        public IList<Annotation> Annotations
         {
             get
             {

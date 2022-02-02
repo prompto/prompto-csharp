@@ -40,67 +40,8 @@ namespace prompto.expression
 				base.parentAndMemberToDialect (writer);
 		}
 
-		public ISet<IMethodDeclaration> getCandidates (Context context, bool checkInstance)
-		{
-			IMethodDeclaration decl = getMethodInstance(context);
-			if (decl != null) {
-				ISet<IMethodDeclaration> methods = new HashSet<IMethodDeclaration>();
-				methods.Add(decl);
-				return methods;
-			} else if (parent == null)
-				return getGlobalCandidates (context);
-			else
-				return getMemberCandidates (context, checkInstance);
-		}
-
-
-		private IMethodDeclaration getMethodInstance(Context context)
-        {
-			INamed named = context.getRegistered(name);
-			if (named is INamedInstance)
-			{
-				IType type = named.GetIType(context);
-				if (type != null)
-				{
-					type = type.Resolve(context);
-					if (type is MethodType)
-						return ((MethodType)type).Method;
-				}
-			}
-			return null;
-
-		}
-
-
-		private ISet<IMethodDeclaration> getGlobalCandidates(Context context)
-		{
-			ISet<IMethodDeclaration> methods = new HashSet<IMethodDeclaration>();
-    		// if called from a member method, could be a member method called without this/self
-			InstanceContext instance = context.getClosestInstanceContext();
-			if (instance != null)
-			{
-				IType type = instance.getInstanceType();
-				ConcreteCategoryDeclaration cd = context.getRegisteredDeclaration<ConcreteCategoryDeclaration>(type.GetTypeName());
-				if (cd != null)
-				{
-					MethodDeclarationMap members = cd.getMemberMethods(context, name);
-					if (members != null)
-						methods.UnionWith(members.Values);
-				}
-			}
-			MethodDeclarationMap globals = context.getRegisteredDeclaration<MethodDeclarationMap>(name);
-			if (globals != null)
-				methods.UnionWith(globals.Values);
-			return methods;
-		}
-
-		private ISet<IMethodDeclaration> getMemberCandidates (Context context, bool checkInstance)
-		{
-			IType parentType = checkParentType(context, checkInstance);
-			return parentType.getMemberMethods(context, name);
-		}
-
-		private IType checkParentType(Context context, bool checkInstance)
+	
+		public IType checkParentType(Context context, bool checkInstance)
 		{
 			if (checkInstance)
 				return interpretParentInstance(context);
