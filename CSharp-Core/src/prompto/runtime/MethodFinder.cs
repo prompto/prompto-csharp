@@ -29,8 +29,11 @@ namespace prompto.runtime
             IMethodDeclaration decl = findBestReference(checkInstance);
             if (decl != null)
                 return decl;
+            decl = findBestMethod(checkInstance);
+            if (decl != null)
+                return decl;
             else
-                return findBestMethod(checkInstance);
+                throw new SyntaxError("No such method: " + methodCall.ToString());
         }
 
         public IMethodDeclaration findBestReference(bool checkInstance)

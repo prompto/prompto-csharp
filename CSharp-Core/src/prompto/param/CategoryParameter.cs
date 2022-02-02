@@ -7,7 +7,6 @@ using prompto.type;
 using prompto.value;
 using prompto.expression;
 using prompto.declaration;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace prompto.param
@@ -19,14 +18,14 @@ namespace prompto.param
         protected IType type;
         protected IType resolved;
 
-        public CategoryParameter(IType type, String name)
+        public CategoryParameter(IType type, string name)
             : base(name)
         {
             this.type = type;
             this.resolved = null;
         }
 
-		public CategoryParameter(IType type, String name, IExpression defaultValue)
+		public CategoryParameter(IType type, string name, IExpression defaultValue)
 			: base(name)
 		{
 			this.type = type;
@@ -40,13 +39,13 @@ namespace prompto.param
         }
 
         
-        public override String getSignature(Dialect dialect)
+        public override string getSignature(Dialect dialect)
         {
             return getProto();
         }
 
         
-        public override String getProto()
+        public override string getProto()
         {
             return type.GetTypeName();
         }
@@ -87,11 +86,8 @@ namespace prompto.param
         {
             MethodDeclarationMap methods = context.getRegisteredDeclaration<MethodDeclarationMap>(type.GetTypeName());
 		    if(methods!=null)
-            {
-                IEnumerable<IMethodDeclaration> abstracts = from decl in methods.Values where decl.isAbstract() select decl;
-                return abstracts.FirstOrDefault(null);
-            }
-		    else
+                return methods.Values.FirstOrDefault(decl => decl.isAbstract());
+            else
 			    return null;
 	    }
 

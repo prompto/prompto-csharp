@@ -74,7 +74,7 @@ namespace prompto.statement
                 MethodFinder finder = new MethodFinder(writer.getContext(), this);
                 IMethodDeclaration method = finder.findBest(false);
                 /* if method is a reference */
-                return method is AbstractMethodDeclaration || method.ClosureOf != null;
+                return method.isAbstract() || method.ClosureOf != null;
             }
             catch (SyntaxError /*e*/)
             {
@@ -111,7 +111,7 @@ namespace prompto.statement
             MethodFinder finder = new MethodFinder(context, this);
             ISet<IMethodDeclaration> potential = finder.findPotential();
             if(potential.All(decl => decl.isAbstract()))
-                throw new SyntaxError("Cannot call abstract method");
+                throw new SyntaxError("Cannot call abstract method: " + declaration.getSignature(Dialect.O));
         }
 
 

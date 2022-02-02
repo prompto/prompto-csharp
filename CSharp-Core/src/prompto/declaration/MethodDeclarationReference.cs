@@ -9,7 +9,7 @@ namespace prompto.declaration
         { 
         }
 
-        public bool IsReference()
+        public override bool IsReference()
         {
             return true;
         }
