@@ -129,21 +129,21 @@ namespace prompto.translate.eme
 		}
 
 		[Test]
-		public void testPolymorphic_abstract()
+		public void testPolymorphicAbstract()
 		{
-			compareResourceEME("methods/polymorphic_abstract.pec");
+			compareResourceEME("methods/polymorphicAbstract.pec");
 		}
 
 		[Test]
-		public void testPolymorphic_named()
+		public void testPolymorphicNamed()
 		{
-			compareResourceEME("methods/polymorphic_named.pec");
+			compareResourceEME("methods/polymorphicNamed.pec");
 		}
 
 		[Test]
-		public void testPolymorphic_runtime()
+		public void testPolymorphicRuntime()
 		{
-			compareResourceEME("methods/polymorphic_runtime.pec");
+			compareResourceEME("methods/polymorphicRuntime.pec");
 		}
 
 		[Test]

@@ -118,21 +118,21 @@ namespace prompto.runtime.o
 		}
 
 		[Test]
-		public void testPolymorphic_abstract()
+		public void testPolymorphicAbstract()
 		{
-			CheckOutput("methods/polymorphic_abstract.poc");
+			CheckOutput("methods/polymorphicAbstract.poc");
 		}
 
 		[Test]
-		public void testPolymorphic_named()
+		public void testPolymorphicNamed()
 		{
-			CheckOutput("methods/polymorphic_named.poc");
+			CheckOutput("methods/polymorphicNamed.poc");
 		}
 
 		[Test]
-		public void testPolymorphic_runtime()
+		public void testPolymorphicRuntime()
 		{
-			CheckOutput("methods/polymorphic_runtime.poc");
+			CheckOutput("methods/polymorphicRuntime.poc");
 		}
 
 		[Test]
