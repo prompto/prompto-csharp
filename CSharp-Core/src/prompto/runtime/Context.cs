@@ -216,8 +216,8 @@ namespace prompto.runtime
 
         public INamed getInstance(string name, bool includeParent)
         {
-            INamed named = (parent == null || !includeParent) ? null : parent.getInstance(name, true);
-            return named != null ? named : instances.ContainsKey(name) ? instances[name] : null;
+            INamed named = instances.ContainsKey(name) ? instances[name] : null;
+            return named != null ? named : (parent == null || !includeParent) ? null : parent.getInstance(name, true);
         }
 
 

@@ -69,10 +69,10 @@ namespace prompto.runtime
             }
             else
             {
-                INamed named = context.getInstance(selector.getName(), false);
+                INamed named = context.getInstance(selector.getName(), true);
                 if (named == null)
                     return null;
-                IType type = named.GetIType(context);
+                IType type = named.GetIType(context).Resolve(context);
                 if (type is MethodType)
 				    return ((MethodType)type).Method.AsReference();
             }
