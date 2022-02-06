@@ -160,12 +160,18 @@ namespace prompto.grammar
             IType actualType = checkActualType(context, requiredType, expression, checkInstance);
             bool assignable = requiredType.isAssignableFrom(context, actualType);
             // try passing category member
-            if (!assignable && (actualType is CategoryType)) 
-			    expression = new MemberSelector(expression, parameter.GetName());
+            if (!assignable && (actualType is CategoryType))
+                expression = new MemberSelector(expression, parameter.GetName());
             return expression;
-       }
+        }
 
-        public IType checkActualType(Context context, IType requiredType, IExpression expression, bool checkInstance)
+        public IType checkActualType(Context context, IType requiredType, bool checkInstance)
+        {
+             return checkActualType(context, requiredType, getExpression(), checkInstance);
+        }
+
+
+        public static IType checkActualType(Context context, IType requiredType, IExpression expression, bool checkInstance)
         {
             IType actualType = null;
             bool isArrow = isArrowExpression(expression);
@@ -176,27 +182,28 @@ namespace prompto.grammar
                 else
                     actualType = VoidType.Instance;
             }
-            else if(requiredType is MethodType)
+            else if (requiredType is MethodType)
                 actualType = expression.checkReference(context.getCallingContext());
             else
                 actualType = expression.check(context.getCallingContext());
-            if (checkInstance && actualType is CategoryType) {
+            if (checkInstance && actualType is CategoryType)
+            {
                 Object value = expression.interpret(context.getCallingContext());
                 if (value is IInstance)
-				    actualType = ((IInstance)value).getType();
+                    actualType = ((IInstance)value).getType();
             }
             return actualType;
         }
 
-        private IType checkArrowExpression(Context context, MethodType requiredType, IExpression expression)
+        private static IType checkArrowExpression(Context context, MethodType requiredType, IExpression expression)
         {
             context = expression is ContextualExpression ? ((ContextualExpression)expression).Calling : context.getCallingContext();
-            ArrowExpression arrow = (ArrowExpression)(expression is ArrowExpression ? expression: ((ContextualExpression)expression).Expression);
+            ArrowExpression arrow = (ArrowExpression)(expression is ArrowExpression ? expression : ((ContextualExpression)expression).Expression);
             return requiredType.checkArrowExpression(context, arrow);
         }
 
 
-        private bool isArrowExpression(IExpression expression)
+        private static bool isArrowExpression(IExpression expression)
         {
             if (expression is ContextualExpression)
                 expression = ((ContextualExpression)expression).Expression;

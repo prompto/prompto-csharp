@@ -274,15 +274,25 @@ public interface IEParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitAttributeListItem([NotNull] EParser.AttributeListItemContext context);
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="EParser.abstract_method_declaration"/>.
+	/// Enter a parse tree produced by <see cref="EParser.abstract_global_method_declaration"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterAbstract_method_declaration([NotNull] EParser.Abstract_method_declarationContext context);
+	void EnterAbstract_global_method_declaration([NotNull] EParser.Abstract_global_method_declarationContext context);
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="EParser.abstract_method_declaration"/>.
+	/// Exit a parse tree produced by <see cref="EParser.abstract_global_method_declaration"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitAbstract_method_declaration([NotNull] EParser.Abstract_method_declarationContext context);
+	void ExitAbstract_global_method_declaration([NotNull] EParser.Abstract_global_method_declarationContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="EParser.abstract_member_method_declaration"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterAbstract_member_method_declaration([NotNull] EParser.Abstract_member_method_declarationContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="EParser.abstract_member_method_declaration"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitAbstract_member_method_declaration([NotNull] EParser.Abstract_member_method_declarationContext context);
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="EParser.concrete_method_declaration"/>.
 	/// </summary>

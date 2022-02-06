@@ -1111,7 +1111,17 @@ namespace prompto.parser
             SetNodeValue(ctx, stmt);
         }
 
-        public override void ExitAbstract_method_declaration(OParser.Abstract_method_declarationContext ctx)
+        public override void ExitAbstract_global_method_declaration(OParser.Abstract_global_method_declarationContext ctx)
+        {
+            IType type = GetNodeValue<IType>(ctx.typ);
+            if (type is CategoryType)
+                ((CategoryType)type).Mutable = ctx.MUTABLE() != null;
+            String name = GetNodeValue<String>(ctx.name);
+            ParameterList args = GetNodeValue<ParameterList>(ctx.args);
+            SetNodeValue(ctx, new AbstractMethodDeclaration(name, args, type));
+        }
+
+        public override void ExitAbstract_member_method_declaration(OParser.Abstract_member_method_declarationContext ctx)
         {
             IType type = GetNodeValue<IType>(ctx.typ);
             if (type is CategoryType)

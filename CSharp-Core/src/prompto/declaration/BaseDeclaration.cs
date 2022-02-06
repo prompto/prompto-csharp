@@ -12,8 +12,8 @@ namespace prompto.declaration
 
 	public abstract class BaseDeclaration : Section, IDeclaration
 	{
-		List<CommentStatement> comments = null;
-		List<Annotation> annotations = null;
+		IList<CommentStatement> comments = null;
+		IList<Annotation> annotations = null;
 
  		protected String name;
 
@@ -22,7 +22,7 @@ namespace prompto.declaration
 			this.name = name;
 		}
 
-		public List<CommentStatement> Comments {
+		public IList<CommentStatement> Comments {
 			get {
 				return comments;
 			}
@@ -31,7 +31,7 @@ namespace prompto.declaration
 			}
 		}
 
-		public List<Annotation> Annotations
+		public IList<Annotation> Annotations
 		{
 			get
 			{

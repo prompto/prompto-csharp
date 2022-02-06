@@ -34,6 +34,16 @@ namespace prompto.declaration
             this.returnType = returnType;
         }
 
+        public bool IsReference()
+        {
+            return false;
+        }
+
+        public IMethodDeclaration AsReference()
+        {
+            return new MethodDeclarationReference(this);
+        }
+
         public void setMemberOf(CategoryDeclaration declaration)
         {
             this.memberOf = declaration;
@@ -167,6 +177,57 @@ namespace prompto.declaration
             return computeSpecificity(context, parameter, argument, useInstance) != Specificity.INCOMPATIBLE;
         }
 
+        public bool isAssignableFrom(Context context, ArgumentList arguments)
+        {
+            try
+            {
+                Context local = context.newLocalContext();
+                registerParameters(local);
+                ArgumentList argsList = new ArgumentList(arguments);
+                foreach (IParameter parameter in parameters)
+                {
+                    Argument argument = argsList.find(parameter.GetName());
+                    if (argument == null)
+                    {
+                        IExpression expression = parameter.DefaultValue;
+                        if (expression != null)
+                            argument = new Argument(parameter, expression);
+                    }
+                    if (argument == null) // missing argument
+                        return false;
+                    if (!isArgumentAssignableFrom(local, parameter, argument))
+                        return false;
+                    argsList.Remove(argument);
+                }
+                return argsList.Count == 0;
+            }
+            catch (SyntaxError e)
+            {
+                return false;
+            }
+        }
+
+        private bool isArgumentAssignableFrom(Context context, IParameter parameter, Argument argument)
+        {
+            try
+            {
+                IType requiredType = parameter.GetIType(context);
+                IType actualType = argument.checkActualType(context, requiredType, false);
+                if (actualType.Equals(requiredType)
+                        || actualType.isAssignableFrom(context, requiredType)
+                        || requiredType.isAssignableFrom(context, actualType))
+                    return true;
+                actualType = argument.resolve(context, this, false).check(context);
+                return actualType.Equals(requiredType)
+                        || actualType.isAssignableFrom(context, requiredType)
+                        || requiredType.isAssignableFrom(context, actualType);
+            }
+            catch (PromptoError error)
+            {
+                return false;
+            }
+        }
+
         public Specificity? computeSpecificity(Context context, IParameter parameter, Argument argument, bool useInstance)
         {
             try
@@ -176,8 +237,7 @@ namespace prompto.declaration
                     return Specificity.INCOMPATIBLE;
                 else
                     requiredType = requiredType.Resolve(context);
-                IExpression expression = argument.getExpression();
-                IType actualType = argument.checkActualType(context, requiredType, expression, useInstance);
+                IType actualType = Argument.checkActualType(context, requiredType, argument.getExpression(), useInstance);
                 if (actualType == null)
                     return Specificity.INCOMPATIBLE;
                 else

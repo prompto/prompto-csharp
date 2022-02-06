@@ -1,5 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Linq;
 using prompto.declaration;
 using prompto.error;
 using prompto.jsx;
@@ -34,7 +34,7 @@ namespace prompto.property
             if (type is MethodType) {
                 MethodDeclarationMap decls = context.getRegisteredDeclaration<MethodDeclarationMap>(type.GetTypeName());
 			    if(decls!=null)
-				    return new HashSet<IMethodDeclaration>(decls.Values);
+				    return new HashSet<IMethodDeclaration>(decls.Values.Select(m => m.AsReference()));
 		    } 
 		    return base.GetMethodDeclarations(context);
 

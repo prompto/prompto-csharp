@@ -246,15 +246,25 @@ public interface IMParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitNativeCategoryBindingList([NotNull] MParser.NativeCategoryBindingListContext context);
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="MParser.abstract_method_declaration"/>.
+	/// Enter a parse tree produced by <see cref="MParser.abstract_global_method_declaration"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterAbstract_method_declaration([NotNull] MParser.Abstract_method_declarationContext context);
+	void EnterAbstract_global_method_declaration([NotNull] MParser.Abstract_global_method_declarationContext context);
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="MParser.abstract_method_declaration"/>.
+	/// Exit a parse tree produced by <see cref="MParser.abstract_global_method_declaration"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitAbstract_method_declaration([NotNull] MParser.Abstract_method_declarationContext context);
+	void ExitAbstract_global_method_declaration([NotNull] MParser.Abstract_global_method_declarationContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="MParser.abstract_member_method_declaration"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterAbstract_member_method_declaration([NotNull] MParser.Abstract_member_method_declarationContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="MParser.abstract_member_method_declaration"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitAbstract_member_method_declaration([NotNull] MParser.Abstract_member_method_declarationContext context);
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="MParser.concrete_method_declaration"/>.
 	/// </summary>

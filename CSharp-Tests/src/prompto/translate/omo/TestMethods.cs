@@ -117,21 +117,21 @@ namespace prompto.translate.omo
 		}
 
 		[Test]
-		public void testPolymorphic_abstract()
+		public void testPolymorphicAbstract()
 		{
-			compareResourceOMO("methods/polymorphic_abstract.poc");
+			compareResourceOMO("methods/polymorphicAbstract.poc");
 		}
 
 		[Test]
-		public void testPolymorphic_named()
+		public void testPolymorphicNamed()
 		{
-			compareResourceOMO("methods/polymorphic_named.poc");
+			compareResourceOMO("methods/polymorphicNamed.poc");
 		}
 
 		[Test]
-		public void testPolymorphic_runtime()
+		public void testPolymorphicRuntime()
 		{
-			compareResourceOMO("methods/polymorphic_runtime.poc");
+			compareResourceOMO("methods/polymorphicRuntime.poc");
 		}
 
 		[Test]
