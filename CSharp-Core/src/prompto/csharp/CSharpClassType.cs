@@ -41,6 +41,7 @@ namespace prompto.csharp
             typeToPromptoMap[typeof(DateTimeValue)] = DateTimeType.Instance; // TODO until we have a compiler
             typeToPromptoMap[typeof(PeriodValue)] = PeriodType.Instance; // TODO until we have a compiler
             typeToPromptoMap[typeof(VersionValue)] = VersionType.Instance; // TODO until we have a compiler
+            typeToPromptoMap[typeof(JsxValue)] = JsxType.Instance; // TODO until we have a compiler
             typeToPromptoMap[typeof(object)] = AnyType.Instance;
             typeToPromptoMap[typeof(IValue)] = AnyType.Instance;
         }
