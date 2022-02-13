@@ -135,6 +135,12 @@ namespace prompto.translate.eoe
 		}
 
 		[Test]
+		public void testPolymorphicMember()
+		{
+			compareResourceEOE("methods/polymorphicMember.pec");
+		}
+
+		[Test]
 		public void testPolymorphicNamed()
 		{
 			compareResourceEOE("methods/polymorphicNamed.pec");

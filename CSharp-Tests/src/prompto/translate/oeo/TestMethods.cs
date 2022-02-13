@@ -93,6 +93,12 @@ namespace prompto.translate.oeo
 		}
 
 		[Test]
+		public void testLocalMember()
+		{
+			compareResourceOEO("methods/localMember.poc");
+		}
+
+		[Test]
 		public void testMember()
 		{
 			compareResourceOEO("methods/member.poc");
@@ -120,6 +126,12 @@ namespace prompto.translate.oeo
 		public void testPolymorphicAbstract()
 		{
 			compareResourceOEO("methods/polymorphicAbstract.poc");
+		}
+
+		[Test]
+		public void testPolymorphicMember()
+		{
+			compareResourceOEO("methods/polymorphicMember.poc");
 		}
 
 		[Test]

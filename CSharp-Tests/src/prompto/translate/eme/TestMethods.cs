@@ -135,6 +135,12 @@ namespace prompto.translate.eme
 		}
 
 		[Test]
+		public void testPolymorphicMember()
+		{
+			compareResourceEME("methods/polymorphicMember.pec");
+		}
+
+		[Test]
 		public void testPolymorphicNamed()
 		{
 			compareResourceEME("methods/polymorphicNamed.pec");

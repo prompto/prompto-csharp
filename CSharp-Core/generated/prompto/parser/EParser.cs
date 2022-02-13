@@ -7350,13 +7350,13 @@ public partial class EParser : AbstractParser {
 	}
 
 	public partial class Invocation_expressionContext : ParserRuleContext {
-		public Variable_identifierContext name;
+		public Unresolved_expressionContext exp;
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode INVOKE_COLON() { return GetToken(EParser.INVOKE_COLON, 0); }
 		[System.Diagnostics.DebuggerNonUserCode] public Invocation_trailerContext invocation_trailer() {
 			return GetRuleContext<Invocation_trailerContext>(0);
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public Variable_identifierContext variable_identifier() {
-			return GetRuleContext<Variable_identifierContext>(0);
+		[System.Diagnostics.DebuggerNonUserCode] public Unresolved_expressionContext unresolved_expression() {
+			return GetRuleContext<Unresolved_expressionContext>(0);
 		}
 		public Invocation_expressionContext(ParserRuleContext parent, int invokingState)
 			: base(parent, invokingState)
@@ -7385,7 +7385,7 @@ public partial class EParser : AbstractParser {
 			State = 1384;
 			Match(INVOKE_COLON);
 			State = 1385;
-			_localctx.name = variable_identifier();
+			_localctx.exp = unresolved_expression(0);
 			State = 1386;
 			invocation_trailer();
 			}
@@ -28682,7 +28682,7 @@ public partial class EParser : AbstractParser {
 		'\x33', '\x18', '\x3', '\x567', '\x568', '\a', '\x15', '\x2', '\x2', '\x568', 
 		'\x569', '\x5', '\xE4', 's', '\x2', '\x569', '\x65', '\x3', '\x2', '\x2', 
 		'\x2', '\x56A', '\x56B', '\a', 'z', '\x2', '\x2', '\x56B', '\x56C', '\x5', 
-		'\xE8', 'u', '\x2', '\x56C', '\x56D', '\x5', 'h', '\x35', '\x2', '\x56D', 
+		'\x62', '\x32', '\x2', '\x56C', '\x56D', '\x5', 'h', '\x35', '\x2', '\x56D', 
 		'g', '\x3', '\x2', '\x2', '\x2', '\x56E', '\x56F', '\x6', '\x35', '\x19', 
 		'\x3', '\x56F', 'i', '\x3', '\x2', '\x2', '\x2', '\x570', '\x576', '\x5', 
 		'\x132', '\x9A', '\x2', '\x571', '\x576', '\x5', '\x134', '\x9B', '\x2', 

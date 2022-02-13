@@ -3132,9 +3132,16 @@ namespace prompto.parser
 
         public override void ExitInvocation_expression(EParser.Invocation_expressionContext ctx)
         {
-            String name = GetNodeValue<String>(ctx.name);
-            MethodSelector select = new MethodSelector(name);
-            SetNodeValue(ctx, new MethodCall(select));
+            MethodSelector selector = null;
+            IExpression expression = GetNodeValue< IExpression>(ctx.exp);
+            if (expression is UnresolvedIdentifier)
+			    selector = new MethodSelector(((UnresolvedIdentifier)expression).getName());
+            else if (expression is MemberSelector) {
+                selector = new MethodSelector(((MemberSelector)expression).getName());
+                selector.setParent(((MemberSelector)expression).getParent());
+            }
+            if (selector != null)
+                SetNodeValue(ctx, new MethodCall(selector));
         }
 
 

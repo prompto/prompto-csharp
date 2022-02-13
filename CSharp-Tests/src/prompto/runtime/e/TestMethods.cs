@@ -136,6 +136,12 @@ namespace prompto.runtime.e
 		}
 
 		[Test]
+		public void testPolymorphicMember()
+		{
+			CheckOutput("methods/polymorphicMember.pec");
+		}
+
+		[Test]
 		public void testPolymorphicNamed()
 		{
 			CheckOutput("methods/polymorphicNamed.pec");
