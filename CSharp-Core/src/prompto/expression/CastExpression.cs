@@ -84,9 +84,9 @@ namespace prompto.expression
                         value = new value.DecimalValue(((IntegerValue)value).DoubleValue);
                     else if (target == IntegerType.Instance && value is value.DecimalValue)
                         value = new IntegerValue(((value.DecimalValue)value).LongValue);
-                    else if (target.isAssignableFrom(context, value.GetIType()))
+                    else if(value.GetIType().isAssignableFrom(context, target))
                         value.SetIType(type);
-                    else if(!value.GetIType().isAssignableFrom(context, target))
+                    else if(!target.isAssignableFrom(context, value.GetIType()))
                         throw new SyntaxError("Cannot cast " + value.GetIType().ToString() + " to " + target.ToString());
                 }
             }
