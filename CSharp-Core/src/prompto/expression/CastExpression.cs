@@ -36,7 +36,7 @@ namespace prompto.expression
                 return target;
             // check downcast
             if (actual.isAssignableFrom(context, target))
-                return type;
+                return target;
             throw new SyntaxError("Cannot cast " + actual.ToString() + " to " + target.ToString());
         }
 
@@ -84,9 +84,9 @@ namespace prompto.expression
                         value = new value.DecimalValue(((IntegerValue)value).DoubleValue);
                     else if (target == IntegerType.Instance && value is value.DecimalValue)
                         value = new IntegerValue(((value.DecimalValue)value).LongValue);
-                    else if (target.isMoreSpecificThan(context, value.GetIType()))
+                    else if (target.isAssignableFrom(context, value.GetIType()))
                         value.SetIType(type);
-                    else if(!value.GetIType().isMoreSpecificThan(context, target))
+                    else if(!value.GetIType().isAssignableFrom(context, target))
                         throw new SyntaxError("Cannot cast " + value.GetIType().ToString() + " to " + target.ToString());
                 }
             }
