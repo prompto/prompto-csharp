@@ -56,7 +56,7 @@ namespace prompto.type
 
 		public override bool isMoreSpecificThan(Context context, IType other)
 		{
-			return false;
+			return other == MissingType.Instance || other == AnyType.Instance;
 		}
 
 		public override Comparer<IValue> getComparer(Context context, IExpression key, bool descending)
