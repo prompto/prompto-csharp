@@ -27,6 +27,12 @@ namespace prompto.translate.omo
 		}
 
 		[Test]
+		public void testCastEnum()
+		{
+			compareResourceOMO("cast/castEnum.poc");
+		}
+
+		[Test]
 		public void testCastMethod()
 		{
 			compareResourceOMO("cast/castMethod.poc");

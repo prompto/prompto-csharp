@@ -40,6 +40,12 @@ namespace prompto.runtime.o
 		}
 
 		[Test]
+		public void testCastEnum()
+		{
+			CheckOutput("cast/castEnum.poc");
+		}
+
+		[Test]
 		public void testCastMethod()
 		{
 			CheckOutput("cast/castMethod.poc");
