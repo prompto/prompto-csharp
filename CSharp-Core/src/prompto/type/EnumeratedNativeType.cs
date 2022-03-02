@@ -69,8 +69,7 @@ namespace prompto.type
 
 		public override System.Type ToCSharpType(Context context)
 		{
-			// TODO Auto-generated method stub
-			return null;
+			throw new NotSupportedException();
 		}
 
 
@@ -90,7 +89,7 @@ namespace prompto.type
 
 		public override bool isMoreSpecificThan(Context context, IType other)
 		{
-			throw new NotSupportedException();
+			return false;
 		}
 
 		public override ISet<IMethodDeclaration> getStaticMemberMethods(Context context, string name)
