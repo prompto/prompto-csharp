@@ -51,6 +51,12 @@ namespace prompto.translate.omo
 		}
 
 		[Test]
+		public void testCastParent()
+		{
+			compareResourceOMO("cast/castParent.poc");
+		}
+
+		[Test]
 		public void testIsAChild()
 		{
 			compareResourceOMO("cast/isAChild.poc");

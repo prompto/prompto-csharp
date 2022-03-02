@@ -51,6 +51,12 @@ namespace prompto.translate.oeo
 		}
 
 		[Test]
+		public void testCastParent()
+		{
+			compareResourceOEO("cast/castParent.poc");
+		}
+
+		[Test]
 		public void testIsAChild()
 		{
 			compareResourceOEO("cast/isAChild.poc");
