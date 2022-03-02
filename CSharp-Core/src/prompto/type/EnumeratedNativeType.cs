@@ -76,22 +76,21 @@ namespace prompto.type
 
 		public override void checkUnique(Context context)
 		{
-			// TODO Auto-generated method stub
+			// nothing to do
 
 		}
 
 
 		public override void checkExists(Context context)
 		{
-			// TODO Auto-generated method stub
+			// nothing to do
 
 		}
 
 
 		public override bool isMoreSpecificThan(Context context, IType other)
 		{
-			// TODO Auto-generated method stub
-			return false;
+			throw new NotSupportedException();
 		}
 
 		public override ISet<IMethodDeclaration> getStaticMemberMethods(Context context, string name)
