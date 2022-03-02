@@ -75,7 +75,7 @@ namespace prompto.expression
         public override IValue interpret(Context context)
         {
             IValue value = expression.interpret(context);
-            if (value != null)
+            if (value != NullValue.Instance)
             {
                 IType target = getTargetType(context, type, mutable);
                 if (!target.Equals(value.GetIType()))
