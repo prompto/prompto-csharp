@@ -86,6 +86,8 @@ namespace prompto.expression
                         value = new IntegerValue(((value.DecimalValue)value).LongValue);
                     else if (target.isMoreSpecificThan(context, value.GetIType()))
                         value.SetIType(type);
+                    else if(!value.GetIType().isMoreSpecificThan(context, target))
+                        throw new SyntaxError("Cannot cast " + value.GetIType().ToString() + " to " + target.ToString());
                 }
             }
             return value;
