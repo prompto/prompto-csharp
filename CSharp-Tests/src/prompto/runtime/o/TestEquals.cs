@@ -118,6 +118,18 @@ namespace prompto.runtime.o
 		}
 
 		[Test]
+		public void testIsAParentInstance()
+		{
+			CheckOutput("equals/isAParentInstance.poc");
+		}
+
+		[Test]
+		public void testIsAnInstance()
+		{
+			CheckOutput("equals/isAnInstance.poc");
+		}
+
+		[Test]
 		public void testIsBoolean()
 		{
 			CheckOutput("equals/isBoolean.poc");

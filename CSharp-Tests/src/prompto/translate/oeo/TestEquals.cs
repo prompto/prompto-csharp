@@ -105,6 +105,18 @@ namespace prompto.translate.oeo
 		}
 
 		[Test]
+		public void testIsAParentInstance()
+		{
+			compareResourceOEO("equals/isAParentInstance.poc");
+		}
+
+		[Test]
+		public void testIsAnInstance()
+		{
+			compareResourceOEO("equals/isAnInstance.poc");
+		}
+
+		[Test]
 		public void testIsBoolean()
 		{
 			compareResourceOEO("equals/isBoolean.poc");

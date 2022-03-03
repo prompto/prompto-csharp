@@ -105,6 +105,18 @@ namespace prompto.translate.omo
 		}
 
 		[Test]
+		public void testIsAParentInstance()
+		{
+			compareResourceOMO("equals/isAParentInstance.poc");
+		}
+
+		[Test]
+		public void testIsAnInstance()
+		{
+			compareResourceOMO("equals/isAnInstance.poc");
+		}
+
+		[Test]
 		public void testIsBoolean()
 		{
 			compareResourceOMO("equals/isBoolean.poc");
