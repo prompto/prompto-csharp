@@ -24,17 +24,17 @@ namespace prompto.csharp
         }
 
         CSharpIdentifierExpression parent;
-        String identifier;
+        string name;
 
         public CSharpIdentifierExpression(String identifier)
         {
-            this.identifier = identifier;
+            this.name = identifier;
         }
 
         public CSharpIdentifierExpression(CSharpIdentifierExpression parent, String identifier)
         {
             this.parent = parent;
-            this.identifier = identifier;
+            this.name = identifier;
         }
 
         public CSharpIdentifierExpression getParent()
@@ -42,18 +42,18 @@ namespace prompto.csharp
             return parent;
         }
 
-        public String getIdentifier()
+        public string getIdentifier()
         {
-            return identifier;
+            return name;
         }
 
 
-        public override String ToString()
+        public override string ToString()
         {
             if (parent == null)
-                return identifier;
+                return name;
             else
-                return parent.ToString() + "." + identifier;
+                return parent.ToString() + "." + name;
         }
 
         public override void ToDialect(CodeWriter writer)
@@ -63,10 +63,10 @@ namespace prompto.csharp
                 parent.ToDialect(writer);
                 writer.append('.');
             }
-            writer.append(identifier);
+            writer.append(name);
         }
 
-        public override Object interpret(Context context)
+        public override object interpret(Context context)
         {
             if (parent == null)
                 return interpret_root(context);
@@ -74,9 +74,9 @@ namespace prompto.csharp
                 return interpret_child(context);
         }
 
-        Object interpret_root(Context context)
+        object interpret_root(Context context)
         {
-            Object o = interpret_presto(context);
+            Object o = interpret_prompto(context);
             if (o != null)
                 return o;
             o = interpret_instance(context);
@@ -86,9 +86,9 @@ namespace prompto.csharp
                 return interpret_type(); // as an instance for static field/method
         }
 
-        Object interpret_presto(Context context)
+        object interpret_prompto(Context context)
         {
-            switch (identifier)
+            switch (name)
             {
                 case "$context":
                     return context;
@@ -98,11 +98,13 @@ namespace prompto.csharp
             return null;
         }
 
-        Object interpret_instance(Context context)
+        object interpret_instance(Context context)
         {
-            try
+            if ("null".Equals(name))
+                return null;
+            else try
             {
-                return context.getValue(identifier);
+                return context.getValue(name);
             }
             catch (SyntaxError)
             {
@@ -160,16 +162,16 @@ namespace prompto.csharp
             }
         }
 
-        Object interpret_child(Context context)
+        object interpret_child(Context context)
         {
-            Object o = parent.interpret(context);
+            object o = parent.interpret(context);
             if (o != null)
                 return interpret_field_or_property(o);
             else
                 return interpret_type();
         }
 
-        Object interpret_field_or_property(Object o)
+        object interpret_field_or_property(object o)
         {
             Type klass = null;
             if (o is Type)
@@ -179,10 +181,10 @@ namespace prompto.csharp
             }
             else
                 klass = o.GetType();
-            FieldInfo field = klass.GetField(identifier);
+            FieldInfo field = klass.GetField(name);
             if (field != null)
                 return field.GetValue(o);
-            PropertyInfo prop = klass.GetProperty(identifier);
+            PropertyInfo prop = klass.GetProperty(name);
             if (prop != null)
                 return prop.GetValue(o, null);
             return null;
@@ -210,7 +212,7 @@ namespace prompto.csharp
 
         IType check_prompto(Context context)
         {
-            switch (identifier)
+            switch (name)
             {
                 case "$context":
                     return new CSharpClassType(context.GetType());
@@ -222,7 +224,7 @@ namespace prompto.csharp
 
         IType check_instance(Context context)
         {
-            INamed named = context.getRegisteredValue<INamed>(identifier);
+            INamed named = context.getRegisteredValue<INamed>(name);
             if (named == null)
                 return null;
             try
@@ -258,10 +260,10 @@ namespace prompto.csharp
             if (!(t is CSharpClassType))
                 return null;
             Type klass = ((CSharpClassType)t).type;
-            FieldInfo field = klass.GetField(identifier);
+            FieldInfo field = klass.GetField(name);
             if (field != null)
                 return new CSharpClassType(field.FieldType);
-            PropertyInfo prop = klass.GetProperty(identifier);
+            PropertyInfo prop = klass.GetProperty(name);
             if (prop != null)
                 return new CSharpClassType(prop.PropertyType);
             else
