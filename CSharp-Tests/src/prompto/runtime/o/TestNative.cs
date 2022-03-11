@@ -118,6 +118,12 @@ namespace prompto.runtime.o
 		}
 
 		[Test]
+		public void testReturnNullValue()
+		{
+			CheckOutput("native/returnNullValue.poc");
+		}
+
+		[Test]
 		public void testReturnStringLiteral()
 		{
 			CheckOutput("native/returnStringLiteral.poc");

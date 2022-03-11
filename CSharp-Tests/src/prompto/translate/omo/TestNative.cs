@@ -111,6 +111,12 @@ namespace prompto.translate.omo
 		}
 
 		[Test]
+		public void testReturnNullValue()
+		{
+			compareResourceOMO("native/returnNullValue.poc");
+		}
+
+		[Test]
 		public void testReturnStringLiteral()
 		{
 			compareResourceOMO("native/returnStringLiteral.poc");

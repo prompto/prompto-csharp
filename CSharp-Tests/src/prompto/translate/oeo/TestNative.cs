@@ -111,6 +111,12 @@ namespace prompto.translate.oeo
 		}
 
 		[Test]
+		public void testReturnNullValue()
+		{
+			compareResourceOEO("native/returnNullValue.poc");
+		}
+
+		[Test]
 		public void testReturnStringLiteral()
 		{
 			compareResourceOEO("native/returnStringLiteral.poc");
