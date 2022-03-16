@@ -180,7 +180,7 @@ namespace prompto.value
         }
 
         
-        public override Object ConvertTo(Type type)
+        public override Object ConvertTo(Context context, Type type)
         {
             if(type == typeof(DateTime))
                 return new DateTime()
@@ -197,7 +197,7 @@ namespace prompto.value
 
         public long TotalMilliseconds()
         {
-            DateTime period = (DateTime)ConvertTo(typeof(DateTime));
+            DateTime period = (DateTime)ConvertTo(null, typeof(DateTime));
             return period.Ticks / 10000; // 1 tick = 100 nanosecond
         }
 

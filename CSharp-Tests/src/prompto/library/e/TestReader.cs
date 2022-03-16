@@ -39,6 +39,12 @@ namespace prompto.library.e
 		}
 
 		[Test]
+		public void testXml()
+		{
+			CheckTests("reader/xml.pec");
+		}
+
+		[Test]
 		public void testYaml()
 		{
 			CheckTests("reader/yaml.pec");

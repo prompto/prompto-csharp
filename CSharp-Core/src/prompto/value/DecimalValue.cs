@@ -117,7 +117,7 @@ namespace prompto.value
         }
 
         
-        public override Object ConvertTo(Type type)
+        public override Object ConvertTo(Context context, Type type)
         {
             return value;
         }

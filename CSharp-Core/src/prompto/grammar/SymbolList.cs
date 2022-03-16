@@ -125,7 +125,7 @@ namespace prompto.grammar
 			throw new NotSupportedException("No member support for " + this.GetType().Name);
 		}
 
-		public virtual Object ConvertTo(Type type)
+		public virtual Object ConvertTo(Context context, Type type)
 		{
 			return this;
 		}

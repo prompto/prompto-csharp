@@ -1,4 +1,6 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using System;
+using Newtonsoft.Json.Linq;
+using prompto.runtime;
 using prompto.type;
 
 namespace prompto.value
@@ -20,7 +22,7 @@ namespace prompto.value
 		{
 		}
 
-		public override object ConvertTo (System.Type type)
+		public override object ConvertTo (Context context, Type type)
 		{
 			return null; // YES! you read correctly
 		}

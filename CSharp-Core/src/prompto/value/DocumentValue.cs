@@ -234,20 +234,20 @@ namespace prompto.value
 			}
 		}
 
-        public override object ConvertTo(Type type)
+        public override object ConvertTo(Context context, Type type)
         {
 			if (type == typeof(DocumentValue))
 				return this;
 			else if (type == typeof(IDictionary<string, object>))
-				return ConvertToDictionary();
+				return ConvertToDictionary(context);
 			else
-				return base.ConvertTo(type);
+				return base.ConvertTo(context, type);
         }
 
-		public IDictionary<string, object> ConvertToDictionary()
+		public IDictionary<string, object> ConvertToDictionary(Context context)
         {
 			return this.values
-				.Select(kvp => new KeyValuePair<string, object>(kvp.Key, kvp.Value.ConvertTo(typeof(Object))))
+				.Select(kvp => new KeyValuePair<string, object>(kvp.Key, kvp.Value.ConvertTo(context, kvp.Value.GetIType().ToCSharpType(context))))
 				.ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
         }
 	}

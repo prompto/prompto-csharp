@@ -107,7 +107,7 @@ namespace prompto.value
 			throw new NotSupportedException("No item support for " + this.GetType().Name);
 		}
 
-		public virtual Object ConvertTo(Type type)
+		public virtual Object ConvertTo(Context context, Type type)
         {
             return this;
         }

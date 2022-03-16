@@ -215,7 +215,7 @@ namespace prompto.value
                 context.setValue(attrName, value);
                 value = setter.interpret(context);
             }
-            setPropertyOrField(value, attrName);
+            setPropertyOrField(context, value, attrName);
             if (storable != null && decl.Storable)
             {
                 // TODO convert object graph if(value instanceof IInstance)
@@ -223,28 +223,28 @@ namespace prompto.value
             }
         }
 
-        private void setPropertyOrField(IValue value, string attrName)
+        private void setPropertyOrField(Context context, IValue value, string attrName)
         {
-            if (TrySetProperty(value, attrName))
+            if (TrySetProperty(context, value, attrName))
                 return;
-            if (TrySetField(value, attrName))
+            if (TrySetField(context, value, attrName))
                 return;
             throw new SyntaxError("Missing property or field:" + attrName);
         }
 
-        private bool TrySetField(IValue value, string attrName)
+        private bool TrySetField(Context context, IValue value, string attrName)
         {
             FieldInfo field = instance.GetType().GetField(attrName, bindingFlags);
             if (field != null)
-                field.SetValue(instance, value.ConvertTo(field.FieldType));
+                field.SetValue(instance, value.ConvertTo(context, field.FieldType));
             return field != null;
         }
 
-        private bool TrySetProperty(IValue value, string attrName)
+        private bool TrySetProperty(Context context, IValue value, string attrName)
         {
             PropertyInfo property = instance.GetType().GetProperty(attrName, bindingFlags);
             if (property != null)
-                property.SetValue(instance, value.ConvertTo(property.PropertyType), null);
+                property.SetValue(instance, value.ConvertTo(context, property.PropertyType), null);
             return property != null;
         }
 

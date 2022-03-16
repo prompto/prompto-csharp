@@ -229,13 +229,13 @@ namespace prompto.value
             this[(TextValue)item] = value;
         }
 
-        public virtual Object ConvertTo(Type type)
+        public virtual Object ConvertTo(Context context, Type type)
         {
             Dictionary<String, Object> dict = new Dictionary<string, object>();
             foreach (KeyValuePair<TextValue, IValue> kvp in ((Dictionary<TextValue, IValue>)this))
             {
-                string key = (string)kvp.Key.ConvertTo(typeof(String));
-                object value = kvp.Value.ConvertTo(typeof(Object));
+                string key = (string)kvp.Key.ConvertTo(context, typeof(String));
+                object value = kvp.Value.ConvertTo(context, typeof(Object));
                 dict[key] = value;
             }
             return dict;

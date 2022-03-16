@@ -84,17 +84,17 @@ namespace prompto.csharp
 			ParameterInfo[] parms = method.GetParameters ();
 			Object[] args = new Object[arguments.Count];
 			for (int i = 0; i < args.Length; i++)
-				args [i] = evaluate_argument (context, arguments [i], parms [i]);
+				args [i] = interpret_argument (context, arguments [i], parms [i]);
 			return args;
 		}
 
-		Object evaluate_argument (Context context, CSharpExpression expression, ParameterInfo parm)
+		Object interpret_argument(Context context, CSharpExpression expression, ParameterInfo parm)
 		{
 			Object value = expression.interpret (context);
 			if (value is IExpression)
 				value = ((IExpression)value).interpret (context);
 			if (value is IValue)
-				value = ((IValue)value).ConvertTo (parm.ParameterType);
+				value = ((IValue)value).ConvertTo (context, parm.ParameterType);
 			return value;
 		}
 
@@ -166,7 +166,8 @@ namespace prompto.csharp
 
 		bool IsValidArgument (Context context, Type klass, CSharpExpression argument)
 		{
-			Type type = argument.check (context).ToCSharpType(context);
+			IType itype = argument.check(context);
+			Type type = itype.ToCSharpType(context);
 			return IsValidArgument (klass, type);
 		}
 

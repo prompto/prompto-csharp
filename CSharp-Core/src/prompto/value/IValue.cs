@@ -24,7 +24,7 @@ namespace prompto.value
 		IValue GetItem(Context context, IValue item);
 		void SetItem(Context context, IValue item, IValue value);
 		Int32 CompareTo(Context context, IValue value);
-		Object ConvertTo(Type type);
+		Object ConvertTo(Context context, Type type);
 		bool Equals(Context context, IValue value);
 		bool Roughly(Context context, IValue value);
 		bool Contains(Context context, IValue value);

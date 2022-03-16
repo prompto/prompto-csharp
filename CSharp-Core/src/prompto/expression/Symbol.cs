@@ -145,7 +145,7 @@ namespace prompto.expression
 			throw new NotSupportedException("No ToJson support for " + this.GetType().Name);
 		}
 
-		public virtual Object ConvertTo(Type type)
+		public virtual Object ConvertTo(Context context, Type type)
 		{
 			return this;
 		}

@@ -94,7 +94,7 @@ namespace prompto.value
             get { return type.GetItemType(); }
         }
 
-        public Object ConvertTo(Type type)
+        public Object ConvertTo(Context context, Type type)
         {
             return this;
         }
