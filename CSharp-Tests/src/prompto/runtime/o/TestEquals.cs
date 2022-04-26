@@ -130,6 +130,12 @@ namespace prompto.runtime.o
 		}
 
 		[Test]
+		public void testIsAnInstanceTernary()
+		{
+			CheckOutput("equals/isAnInstanceTernary.poc");
+		}
+
+		[Test]
 		public void testIsBoolean()
 		{
 			CheckOutput("equals/isBoolean.poc");
