@@ -28,6 +28,8 @@ namespace prompto.expression
             IType type = condition.check(context);
             if (!(type is BooleanType))
 				throw new SyntaxError("Cannot test condition on " + type.GetTypeName());
+            if (condition is EqualsExpression)
+                context = ((EqualsExpression)condition).downcast(context, false);
             TypeMap types = new TypeMap();
             types.add(ifTrue.check(context));
             types.add(ifFalse.check(context));
@@ -37,7 +39,9 @@ namespace prompto.expression
         public override IValue interpret(Context context)
 		{
 			IValue test = condition.interpret(context);
-			if(test == BooleanValue.TRUE)
+            if (condition is EqualsExpression)
+			    context = ((EqualsExpression)condition).downcast(context, true);
+            if (test == BooleanValue.TRUE)
 				return ifTrue.interpret(context);
 			else
 				return ifFalse.interpret(context);
