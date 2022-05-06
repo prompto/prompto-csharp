@@ -15,6 +15,7 @@ namespace prompto.declaration
     {
 
         protected StatementList statements;
+        bool beingChecked;
 
         public ConcreteMethodDeclaration(String name, ParameterList parameters, IType returnType, StatementList statements)
              : base(name, parameters, returnType)
@@ -112,7 +113,7 @@ namespace prompto.declaration
         public override IType check(Context context, bool isStart)
         {
             if (canBeChecked(context, isStart))
-                return fullCheck(context, isStart);
+                return recursiveCheck(context, isStart);
             else
                 return VoidType.Instance;
         }
@@ -139,7 +140,29 @@ namespace prompto.declaration
         }
 
 
-        protected virtual IType fullCheck(Context context, bool isStart)
+       protected virtual IType recursiveCheck(Context context, bool isStart)
+        {
+            if(beingChecked)
+            {
+                if (returnType != null)
+                    return returnType;
+                else
+                    throw new SyntaxError("Cannot check recursive method " + this.name + " without a return type!");
+            } else
+            {
+                beingChecked = true;
+                try
+                {
+                    return fullCheck(context, isStart);
+                }
+                finally
+                {
+                    beingChecked = false;
+                }
+            }
+        }
+
+       protected virtual IType fullCheck(Context context, bool isStart)
         {
             if (isStart)
             {
