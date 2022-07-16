@@ -65,8 +65,9 @@ namespace prompto.param
         }
 
         
-        public override void check(Context context)
+        public override IType check(Context context)
         {
+            return CodeType.Instance;
         }
 
         override

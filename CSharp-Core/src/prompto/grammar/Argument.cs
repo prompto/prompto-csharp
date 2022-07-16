@@ -122,24 +122,33 @@ namespace prompto.grammar
                     && this.getExpression().Equals(other.getExpression());
         }
 
-        public IType check(Context context)
+        public void check(Context context)
         {
-            INamed actual = context.getRegisteredValue<INamed>(Parameter.GetName());
-            if (actual == null)
-            {
-                IType actualType = getExpression().check(context);
-                context.registerValue(new Variable(Parameter.GetName(), actualType));
-            }
+            if (Expression == null)
+                checkParameterOnly(context);
             else
-            {
-                // need to check type compatibility
-                IType actualType = actual.GetIType(context);
-                IType newType = getExpression().check(context);
-                actualType.checkAssignableFrom(context, newType);
-            }
-            return VoidType.Instance;
+                checkParameterAndExpression(context);
         }
 
+        private void checkParameterOnly(Context context)
+        {
+            INamed registered = context.getRegisteredValue<INamed>(Parameter.GetName());
+		    if(registered == null)
+			    throw new SyntaxError("Unknown identifier: " + Parameter.GetName());
+		    else {
+			    IType requiredType = Parameter.check(context);
+                IType actualType = registered.GetIType(context);
+                requiredType.checkAssignableFrom(context, actualType);
+            }
+        }
+
+        private void checkParameterAndExpression(Context context)
+        {
+            IType requiredType = Parameter.check(context);
+            IType actualType = getExpression().check(context);
+            requiredType.checkAssignableFrom(context, actualType);
+        }
+    
         public IExpression resolve(Context context, IMethodDeclaration methodDeclaration, bool checkInstance)
         {
             IParameter parameter = findParameter(methodDeclaration);

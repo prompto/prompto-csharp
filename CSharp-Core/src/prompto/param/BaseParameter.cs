@@ -55,7 +55,7 @@ namespace prompto.param
         abstract public String getSignature(Dialect dialect);
         abstract public String getProto();
         abstract public void register(Context context);
-        abstract public void check(Context context);
+        abstract public IType check(Context context);
         abstract public IType GetIType(Context context);
   
     }

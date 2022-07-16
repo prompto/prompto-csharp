@@ -4,7 +4,7 @@ using prompto.runtime;
 using prompto.expression;
 using prompto.value;
 using prompto.grammar;
-
+using prompto.type;
 
 namespace prompto.param
 {
@@ -15,7 +15,7 @@ namespace prompto.param
         String getProto();
         String getSignature(Dialect dialect);
         void register(Context context);
-        void check(Context context);
+        IType check(Context context);
 		IValue checkValue(Context context, IExpression expression);
 		IExpression DefaultValue { get; }
 		bool setMutable(bool set);

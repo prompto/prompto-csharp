@@ -118,7 +118,7 @@ namespace prompto.param
 		}
 
 
-		public override void check(Context context)
+		public override IType check(Context context)
 		{
 			type.checkExists(context);
 			foreach (String attribute in attributes)
@@ -127,6 +127,7 @@ namespace prompto.param
 				if (actual == null && attribute != "text")
 					throw new SyntaxError("Unknown attribute: \"" + attribute + "\"");
 			}
+			return type;
 		}
 
 

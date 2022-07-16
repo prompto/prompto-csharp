@@ -62,11 +62,12 @@ namespace prompto.param
 		}
 
 
-		public override void check(Context context)
+		public override IType check(Context context)
 		{
 			IMethodDeclaration actual = context.getRegisteredDeclaration<IMethodDeclaration>(name);
 			if (actual == null)
 				throw new SyntaxError("Unknown method: \"" + name + "\"");
+			return new MethodType(actual);
 		}
 
 

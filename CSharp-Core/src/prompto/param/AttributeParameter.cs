@@ -66,18 +66,18 @@ namespace prompto.param
         }
 
         
-        public override void check(Context context)
+        public override IType check(Context context)
         {
             AttributeDeclaration actual = context.getRegisteredDeclaration<AttributeDeclaration>(name);
             if (actual == null)
                 throw new SyntaxError("Unknown attribute: \"" + name + "\"");
+            return actual.GetIType(context);
         }
 
         
         public override IType GetIType(Context context)
         {
-            IDeclaration named = context.getRegisteredDeclaration<IDeclaration>(name);
-            return named.GetIType(context);
+            return check(context);
         }
 
         override

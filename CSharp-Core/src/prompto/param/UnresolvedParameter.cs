@@ -41,9 +41,9 @@ namespace prompto.param
 			}
        }
 
-		public override void check(Context context)
+		public override IType check(Context context)
         {
-            resolveAndCheck(context);
+            return resolveAndCheck(context);
         }
 
 		public override String getProto()
@@ -53,8 +53,7 @@ namespace prompto.param
 
 		public override IType GetIType(Context context)
         {
-            resolveAndCheck(context);
-            return resolved.GetIType(context);
+            return resolveAndCheck(context);
         }
 
 		public override void register(Context context)
@@ -69,8 +68,13 @@ namespace prompto.param
 			return resolved.checkValue(context, expression);
         }
 
-        private void resolveAndCheck(Context context)
+        private IType resolveAndCheck(Context context)
         {
+            resolveAndCheck(context);
+            return resolved.GetIType(context);
+        }
+
+        private void resolve(Context context) {
             if (resolved != null)
                 return;
             IDeclaration named = context.getRegisteredDeclaration<IDeclaration>(name);
