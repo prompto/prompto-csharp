@@ -9,12 +9,6 @@ namespace prompto.translate.omo
 	{
 
 		[Test]
-		public void testReactState1()
-		{
-			compareResourceOMO("annotations/ReactState1.poc");
-		}
-
-		[Test]
 		public void testReactWidgetProps1()
 		{
 			compareResourceOMO("annotations/ReactWidgetProps1.poc");

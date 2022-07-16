@@ -9,12 +9,6 @@ namespace prompto.translate.oeo
 	{
 
 		[Test]
-		public void testReactState1()
-		{
-			compareResourceOEO("annotations/ReactState1.poc");
-		}
-
-		[Test]
 		public void testReactWidgetProps1()
 		{
 			compareResourceOEO("annotations/ReactWidgetProps1.poc");

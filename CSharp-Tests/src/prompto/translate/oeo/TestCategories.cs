@@ -9,6 +9,12 @@ namespace prompto.translate.oeo
 	{
 
 		[Test]
+		public void testAttributeConstructor()
+		{
+			compareResourceOEO("categories/attributeConstructor.poc");
+		}
+
+		[Test]
 		public void testCopyFromAscendant()
 		{
 			compareResourceOEO("categories/copyFromAscendant.poc");
@@ -45,9 +51,21 @@ namespace prompto.translate.oeo
 		}
 
 		[Test]
+		public void testEmptyConstructor()
+		{
+			compareResourceOEO("categories/emptyConstructor.poc");
+		}
+
+		[Test]
 		public void testEquals()
 		{
 			compareResourceOEO("categories/equals.poc");
+		}
+
+		[Test]
+		public void testLiteralConstructor()
+		{
+			compareResourceOEO("categories/literalConstructor.poc");
 		}
 
 		[Test]
@@ -60,6 +78,18 @@ namespace prompto.translate.oeo
 		public void testResourceAttribute()
 		{
 			compareResourceOEO("categories/resourceAttribute.poc");
+		}
+
+		[Test]
+		public void testSynonymConstructor()
+		{
+			compareResourceOEO("categories/synonymConstructor.poc");
+		}
+
+		[Test]
+		public void testValueConstructor()
+		{
+			compareResourceOEO("categories/valueConstructor.poc");
 		}
 
 	}

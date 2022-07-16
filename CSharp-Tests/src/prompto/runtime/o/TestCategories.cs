@@ -22,6 +22,12 @@ namespace prompto.runtime.o
 		}
 
 		[Test]
+		public void testAttributeConstructor()
+		{
+			CheckOutput("categories/attributeConstructor.poc");
+		}
+
+		[Test]
 		public void testCopyFromAscendant()
 		{
 			CheckOutput("categories/copyFromAscendant.poc");
@@ -58,9 +64,21 @@ namespace prompto.runtime.o
 		}
 
 		[Test]
+		public void testEmptyConstructor()
+		{
+			CheckOutput("categories/emptyConstructor.poc");
+		}
+
+		[Test]
 		public void testEquals()
 		{
 			CheckOutput("categories/equals.poc");
+		}
+
+		[Test]
+		public void testLiteralConstructor()
+		{
+			CheckOutput("categories/literalConstructor.poc");
 		}
 
 		[Test]
@@ -73,6 +91,18 @@ namespace prompto.runtime.o
 		public void testResourceAttribute()
 		{
 			CheckOutput("categories/resourceAttribute.poc");
+		}
+
+		[Test]
+		public void testSynonymConstructor()
+		{
+			CheckOutput("categories/synonymConstructor.poc");
+		}
+
+		[Test]
+		public void testValueConstructor()
+		{
+			CheckOutput("categories/valueConstructor.poc");
 		}
 
 	}
