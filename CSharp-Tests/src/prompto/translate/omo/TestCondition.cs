@@ -27,9 +27,15 @@ namespace prompto.translate.omo
 		}
 
 		[Test]
-		public void testReturnIf()
+		public void testReturnTextIf()
 		{
-			compareResourceOMO("condition/returnIf.poc");
+			compareResourceOMO("condition/returnTextIf.poc");
+		}
+
+		[Test]
+		public void testReturnVoidIf()
+		{
+			compareResourceOMO("condition/returnVoidIf.poc");
 		}
 
 		[Test]

@@ -21,9 +21,15 @@ namespace prompto.translate.eoe
 		}
 
 		[Test]
-		public void testReturnIf()
+		public void testReturnTextIf()
 		{
-			compareResourceEOE("condition/returnIf.pec");
+			compareResourceEOE("condition/returnTextIf.pec");
+		}
+
+		[Test]
+		public void testReturnVoidIf()
+		{
+			compareResourceEOE("condition/returnVoidIf.pec");
 		}
 
 		[Test]

@@ -34,9 +34,15 @@ namespace prompto.runtime.e
 		}
 
 		[Test]
-		public void testReturnIf()
+		public void testReturnTextIf()
 		{
-			CheckOutput("condition/returnIf.pec");
+			CheckOutput("condition/returnTextIf.pec");
+		}
+
+		[Test]
+		public void testReturnVoidIf()
+		{
+			CheckOutput("condition/returnVoidIf.pec");
 		}
 
 		[Test]

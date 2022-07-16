@@ -40,9 +40,15 @@ namespace prompto.runtime.o
 		}
 
 		[Test]
-		public void testReturnIf()
+		public void testReturnTextIf()
 		{
-			CheckOutput("condition/returnIf.poc");
+			CheckOutput("condition/returnTextIf.poc");
+		}
+
+		[Test]
+		public void testReturnVoidIf()
+		{
+			CheckOutput("condition/returnVoidIf.poc");
 		}
 
 		[Test]

@@ -21,9 +21,15 @@ namespace prompto.translate.eme
 		}
 
 		[Test]
-		public void testReturnIf()
+		public void testReturnTextIf()
 		{
-			compareResourceEME("condition/returnIf.pec");
+			compareResourceEME("condition/returnTextIf.pec");
+		}
+
+		[Test]
+		public void testReturnVoidIf()
+		{
+			compareResourceEME("condition/returnVoidIf.pec");
 		}
 
 		[Test]
