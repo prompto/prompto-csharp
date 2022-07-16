@@ -70,7 +70,7 @@ namespace prompto.param
 
         private IType resolveAndCheck(Context context)
         {
-            resolveAndCheck(context);
+            resolve(context);
             return resolved.GetIType(context);
         }
 
