@@ -153,6 +153,12 @@ namespace prompto.translate.oeo
 		}
 
 		[Test]
+		public void testForEachTextCharacter()
+		{
+			compareResourceOEO("loops/forEachTextCharacter.poc");
+		}
+
+		[Test]
 		public void testForEachTimeRange()
 		{
 			compareResourceOEO("loops/forEachTimeRange.poc");

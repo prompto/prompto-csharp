@@ -153,6 +153,12 @@ namespace prompto.translate.omo
 		}
 
 		[Test]
+		public void testForEachTextCharacter()
+		{
+			compareResourceOMO("loops/forEachTextCharacter.poc");
+		}
+
+		[Test]
 		public void testForEachTimeRange()
 		{
 			compareResourceOMO("loops/forEachTimeRange.poc");

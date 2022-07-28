@@ -166,6 +166,12 @@ namespace prompto.runtime.o
 		}
 
 		[Test]
+		public void testForEachTextCharacter()
+		{
+			CheckOutput("loops/forEachTextCharacter.poc");
+		}
+
+		[Test]
 		public void testForEachTimeRange()
 		{
 			CheckOutput("loops/forEachTimeRange.poc");
