@@ -168,6 +168,12 @@ namespace prompto.type
             return this;
         }
 
+        public override IType checkIterator(Context context)
+        {
+            return CharacterType.Instance;
+        }
+
+
 
 
         public override String ToString(Object value)
