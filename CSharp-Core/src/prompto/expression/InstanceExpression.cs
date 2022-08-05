@@ -62,9 +62,7 @@ namespace prompto.expression
             INamed named = context.getRegistered(name);
 			if (named == null)
 				named = context.getRegisteredDeclaration<IDeclaration>(name);
-            if (named == null)
-                throw new SyntaxError("Unknown identifier:" + name);
-            else if (named is Variable) // local variable
+            if (named is Variable) // local variable
                 return named.GetIType(context);
 			else if(named is LinkedVariable) // local variable
 				return named.GetIType(context);
