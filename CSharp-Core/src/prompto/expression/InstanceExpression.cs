@@ -64,20 +64,24 @@ namespace prompto.expression
 				named = context.getRegisteredDeclaration<IDeclaration>(name);
             if (named is Variable) // local variable
                 return named.GetIType(context);
-			else if(named is LinkedVariable) // local variable
-				return named.GetIType(context);
-           else if (named is IParameter) // named argument
+            else if (named is LinkedVariable) // local variable
+                return named.GetIType(context);
+            else if (named is IParameter) // named argument
                 return named.GetIType(context);
             else if (named is CategoryDeclaration) // any p with x
                 return named.GetIType(context);
             else if (named is AttributeDeclaration) // in category method
                 return named.GetIType(context);
-			else if (named is MethodDeclarationMap) { // global method or closure
-				IEnumerator<IMethodDeclaration> decls = ((MethodDeclarationMap)named).Values.GetEnumerator();
-				decls.MoveNext();
-				return new MethodType(decls.Current);
-			} else
+            else if (named is MethodDeclarationMap)
+            { // global method or closure
+                IEnumerator<IMethodDeclaration> decls = ((MethodDeclarationMap)named).Values.GetEnumerator();
+                decls.MoveNext();
+                return new MethodType(decls.Current);
+            }
+            else if (named != null)
                 throw new SyntaxError(name + "  is not a value or method:" + named.GetType().Name);
+            else
+                throw new SyntaxError("Unknown identifier " + name);
         }
 
         public override AttributeDeclaration CheckAttribute(Context context)
