@@ -50,11 +50,11 @@ namespace prompto.expression
             else if (type is NativeType)
                 return type;
             else
-                return getTargetAtomicType(context, type);
+                return getTargetAtomicType(context, type, mutable);
         }
 
 
-        private static IType getTargetAtomicType(Context context, IType type)
+        private static IType getTargetAtomicType(Context context, IType type, bool mutable)
         {
             IDeclaration decl = context.getRegisteredDeclaration<IDeclaration>(type.GetTypeName());
             if (decl == null)
@@ -68,7 +68,7 @@ namespace prompto.expression
                     throw new SyntaxError("Ambiguous identifier: " + type.GetTypeName());
             }
             else
-                return decl.GetIType(context);
+                return decl.GetIType(context).AsMutable(context, mutable);
         }
 
 
@@ -85,7 +85,7 @@ namespace prompto.expression
                     else if (target == IntegerType.Instance && value is value.DecimalValue)
                         value = new IntegerValue(((value.DecimalValue)value).LongValue);
                     else if(value.GetIType().isAssignableFrom(context, target))
-                        value.SetIType(type);
+                        value.SetIType(target);
                     else if(!target.isAssignableFrom(context, value.GetIType()))
                         throw new SyntaxError("Cannot cast " + value.GetIType().ToString() + " to " + target.ToString());
                 }

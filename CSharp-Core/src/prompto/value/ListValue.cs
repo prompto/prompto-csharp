@@ -23,20 +23,25 @@ namespace prompto.value
         bool mutable = false;
 
         public ListValue(IType itemType)
+            : this(itemType, new List<IValue>())
         {
-            type = new ListType(itemType);
         }
 
         public ListValue(IType itemType, IValue value)
+            : this(itemType, value, false)
+        {
+        }
+
+        public ListValue(IType itemType, IValue value, bool mutable)
         {
             type = new ListType(itemType);
             Add(value);
+            this.mutable = mutable;
         }
 
         public ListValue(IType itemType, IEnumerable<IValue> values)
+            : this(itemType, values, false)
         {
-            type = new ListType(itemType);
-            AddRange(values);
         }
 
         public ListValue(IType itemType, IEnumerable<IValue> values, bool mutable)
@@ -205,14 +210,14 @@ namespace prompto.value
         {
             if (value is ListValue)
             {
-                ListValue result = new ListValue(type.GetItemType());
+                ListValue result = new ListValue(type.GetItemType(), new List<IValue>(), mutable) ;
                 result.AddRange(this);
                 result.AddRange((ListValue)value);
                 return result;
             }
             else if (value is SetValue)
             {
-                ListValue result = new ListValue(type.GetItemType());
+                ListValue result = new ListValue(type.GetItemType(), new List<IValue>(), mutable);
                 result.AddRange(this);
                 result.AddRange(((SetValue)value).getItems());
                 return result;

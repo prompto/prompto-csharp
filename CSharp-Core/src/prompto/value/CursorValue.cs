@@ -180,7 +180,7 @@ namespace prompto.value
 		public override string ToString()
 		{
 			IType itemType = ((CursorType)GetIType()).GetItemType();
-			ListValue values = new ListValue(itemType, this, false);
+			ListValue values = new ListValue(itemType, (IEnumerable<IValue>)this, false);
 			return values.ToString();
 		}
 	}

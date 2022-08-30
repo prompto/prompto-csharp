@@ -16,9 +16,17 @@ namespace prompto.type
 	public class ListType : ContainerType
 	{
 
+		bool mutable;
+
 		public ListType(IType itemType)
+		    : this(itemType, false)
+		{ 
+		}
+
+        public ListType(IType itemType, bool mutable)
 			: base(TypeFamily.LIST, itemType, itemType.GetTypeName() + "[]")
 		{
+			this.mutable = mutable;
 		}
 
 		public override IterableType WithItemType(IType itemType)
@@ -26,8 +34,16 @@ namespace prompto.type
 			return new ListType(itemType);
 		}
 
+        public override IType AsMutable(Context context, bool mutable)
+        {
+			if (mutable == this.mutable)
+				return this;
+			else
+                return new ListType(itemType, mutable);
+        }
 
-		public override Type ToCSharpType(Context context)
+
+        public override Type ToCSharpType(Context context)
 		{
 			return typeof(ListValue);
 		}

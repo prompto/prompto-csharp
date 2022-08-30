@@ -17,13 +17,13 @@ namespace prompto.literal
 		ExpressionList expressions = null;
 
 		public ListLiteral (bool mutable)
-			: base ("[]", new ListValue (MissingType.Instance))
+			: base ("[]", new ListValue (MissingType.Instance, new List<IValue>(), mutable))
 		{
 			this.mutable = mutable;
 		}
 
 		public ListLiteral (ExpressionList expressions, bool mutable)
-			: base ("[" + expressions.ToString () + "]", new ListValue (MissingType.Instance))
+			: base ("[" + expressions.ToString () + "]", new ListValue (MissingType.Instance, new List<IValue>(), mutable))
 		{
 			this.expressions = expressions;
 			this.mutable = mutable;
