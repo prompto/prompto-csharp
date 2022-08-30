@@ -69,6 +69,18 @@ namespace prompto.translate.oeo
 		}
 
 		[Test]
+		public void testMutableEntity()
+		{
+			compareResourceOEO("cast/mutableEntity.poc");
+		}
+
+		[Test]
+		public void testMutableList()
+		{
+			compareResourceOEO("cast/mutableList.poc");
+		}
+
+		[Test]
 		public void testNullIsNotAText()
 		{
 			compareResourceOEO("cast/nullIsNotAText.poc");

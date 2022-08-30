@@ -82,6 +82,18 @@ namespace prompto.runtime.o
 		}
 
 		[Test]
+		public void testMutableEntity()
+		{
+			CheckOutput("cast/mutableEntity.poc");
+		}
+
+		[Test]
+		public void testMutableList()
+		{
+			CheckOutput("cast/mutableList.poc");
+		}
+
+		[Test]
 		public void testNullIsNotAText()
 		{
 			CheckOutput("cast/nullIsNotAText.poc");

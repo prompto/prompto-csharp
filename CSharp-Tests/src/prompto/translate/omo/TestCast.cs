@@ -69,6 +69,18 @@ namespace prompto.translate.omo
 		}
 
 		[Test]
+		public void testMutableEntity()
+		{
+			compareResourceOMO("cast/mutableEntity.poc");
+		}
+
+		[Test]
+		public void testMutableList()
+		{
+			compareResourceOMO("cast/mutableList.poc");
+		}
+
+		[Test]
 		public void testNullIsNotAText()
 		{
 			compareResourceOMO("cast/nullIsNotAText.poc");
