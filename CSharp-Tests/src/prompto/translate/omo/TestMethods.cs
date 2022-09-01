@@ -93,6 +93,12 @@ namespace prompto.translate.omo
 		}
 
 		[Test]
+		public void testInheritedMember()
+		{
+			compareResourceOMO("methods/inheritedMember.poc");
+		}
+
+		[Test]
 		public void testLocalMember()
 		{
 			compareResourceOMO("methods/localMember.poc");

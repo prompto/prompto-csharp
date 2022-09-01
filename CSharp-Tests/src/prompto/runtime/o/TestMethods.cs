@@ -94,6 +94,12 @@ namespace prompto.runtime.o
 		}
 
 		[Test]
+		public void testInheritedMember()
+		{
+			CheckOutput("methods/inheritedMember.poc");
+		}
+
+		[Test]
 		public void testLocalMember()
 		{
 			CheckOutput("methods/localMember.poc");
