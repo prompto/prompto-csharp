@@ -7427,7 +7427,7 @@ public partial class EParser : AbstractParser {
 			EnterOuterAlt(_localctx, 1);
 			{
 			State = 1388;
-			if (!(this.willBe(EParser.LF))) throw new FailedPredicateException(this, "$parser.willBe(EParser.LF)");
+			if (!(this.willBeIn(EParser.LF, EParser.DEDENT))) throw new FailedPredicateException(this, "$parser.willBeIn(EParser.LF, EParser.DEDENT)");
 			}
 		}
 		catch (RecognitionException re) {
@@ -27049,7 +27049,7 @@ public partial class EParser : AbstractParser {
 	}
 	private bool invocation_trailer_sempred(Invocation_trailerContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 23: return this.willBe(EParser.LF);
+		case 23: return this.willBeIn(EParser.LF, EParser.DEDENT);
 		}
 		return true;
 	}
