@@ -51,7 +51,7 @@ namespace prompto.expression
 			}
 			else if (expression is UnresolvedSelector)
 			{
-				writer.append(expression.ToString());
+				((UnresolvedSelector)expression).ToDialect(writer, true);
 			}
 			else
 				throw new NotImplementedException();

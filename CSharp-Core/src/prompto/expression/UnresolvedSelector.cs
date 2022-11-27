@@ -4,6 +4,7 @@ using prompto.grammar;
 using prompto.runtime;
 using prompto.statement;
 using prompto.type;
+using prompto.utils;
 
 namespace prompto.expression
 {
@@ -35,8 +36,14 @@ namespace prompto.expression
 			return (parent == null ? "" : parent.ToString() + '.') + name;
 		}
 
-		public override void ToDialect(utils.CodeWriter writer)
+		public override void ToDialect(CodeWriter writer)
 		{
+			ToDialect(writer, false);
+
+        }
+
+        public void ToDialect(CodeWriter writer, bool asRef)
+        {
 			try
 			{
 				resolve(writer.getContext(), false);
@@ -44,7 +51,11 @@ namespace prompto.expression
 			catch (SyntaxError)
 			{
 			}
-			if (resolved != null)
+			if (asRef && resolved is UnresolvedCall)
+				resolved = ((UnresolvedCall)resolved).getCaller();
+			if (resolved is MethodSelector)
+				((MethodSelector)resolved).ToDialect(writer, asRef);
+			else if (resolved != null)
 				resolved.ToDialect(writer);
 			else
 			{

@@ -38,8 +38,10 @@ namespace prompto.jsx
 		public IType checkProto(Context context, MethodType type)
 		{
 			if (expression is ArrowExpression)
-			    return type.checkArrowExpression(context, (ArrowExpression)expression);
-		    else
+				return type.checkArrowExpression(context, (ArrowExpression)expression);
+			else if (expression is TypeLiteral)
+				return ((TypeLiteral)expression).getType().Resolve(context);
+			else
 				return expression.check(context);
 		}
 

@@ -58,7 +58,7 @@ namespace prompto.statement
         {
             if (requiresInvoke(writer))
                 writer.append("invoke: ");
-            selector.ToDialect(writer);
+            selector.ToDialect(writer, false);
             if (arguments != null)
                 arguments.ToDialect(writer);
             else if (writer.getDialect() != Dialect.E)

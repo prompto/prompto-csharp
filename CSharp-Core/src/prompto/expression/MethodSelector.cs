@@ -32,9 +32,17 @@ namespace prompto.expression
 			return parent==null ? name : base.ToString();
 		}
 
-		public override void ToDialect (CodeWriter writer)
+		public override void ToDialect(CodeWriter writer)
 		{
-			if (parent == null)
+			ToDialect(writer, true);
+		}
+
+
+        public void ToDialect(CodeWriter writer, bool asRef)
+		{
+			if(asRef && writer.getDialect() == Dialect.E)
+                writer.append("Method: ");
+            if (parent == null)
 				writer.append (name);
 			else
 				base.parentAndMemberToDialect (writer);
