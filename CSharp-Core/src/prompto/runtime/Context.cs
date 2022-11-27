@@ -244,10 +244,14 @@ namespace prompto.runtime
             // resolve upwards, since local names override global ones
             IDeclaration actual;
             declarations.TryGetValue(name, out actual);
-            if (actual == null && parent != null)
-                actual = parent.getRegisteredDeclaration<T>(name);
-            if (actual == null && globals != this)
-                actual = globals.getRegisteredDeclaration<T>(name);
+            if (actual == null)
+            {
+                if (parent != null)
+                    return parent.getRegisteredDeclaration<T>(name);
+                else if (globals != this)
+                    return globals.getRegisteredDeclaration<T>(name);
+                // TODO look in code store
+            }
             if (actual != null)
                 return TypeUtils.downcast<T>(actual);
             else
