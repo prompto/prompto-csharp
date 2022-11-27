@@ -1168,7 +1168,13 @@ namespace prompto.parser
         }
 
 
-        public override void ExitMethodSelector(MParser.MethodSelectorContext ctx)
+        public override void ExitMethodRefSelector(MParser.MethodRefSelectorContext ctx)
+        {
+            String name = GetNodeValue<String>(ctx.name);
+            SetNodeValue(ctx, new MethodSelector(name));
+        }
+
+        public override void ExitMethodCallSelector(MParser.MethodCallSelectorContext ctx)
         {
             UnresolvedCall call = this.GetNodeValue<UnresolvedCall>(ctx.method);
             if (call.getCaller() is UnresolvedIdentifier)
@@ -3216,8 +3222,7 @@ namespace prompto.parser
 
         public override void ExitMethod_identifier(MParser.Method_identifierContext ctx)
         {
-            Object exp = GetNodeValue<Object>(ctx.GetChild(0));
-            SetNodeValue(ctx, exp);
+            SetNodeValue(ctx, ctx.GetText());
         }
 
         public override void ExitOperator_argument(MParser.Operator_argumentContext ctx)

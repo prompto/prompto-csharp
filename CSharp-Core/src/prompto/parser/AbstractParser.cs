@@ -66,6 +66,21 @@ namespace prompto.parser
             return false;
         }
 
+        public bool afterWillBeIn(int skipType, params int[] types)
+        {
+            var idx = 1;
+            var next = this.InputStream.LA(idx);
+            while(next == skipType)
+                next = this.InputStream.LA(++idx);
+            var iter = types.GetEnumerator();
+            while (iter.MoveNext())
+            {
+                if (next == (int)iter.Current)
+                    return true;
+            }
+            return false;
+        }
+
         public bool willNotBe(int type)
         {
             return this.InputStream.LA(1) != type;

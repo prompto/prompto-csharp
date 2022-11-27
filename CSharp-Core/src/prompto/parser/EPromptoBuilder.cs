@@ -891,6 +891,12 @@ namespace prompto.parser
         }
 
 
+        public override void ExitMethodSelector(EParser.MethodSelectorContext ctx)
+        {
+            String name = GetNodeValue<String>(ctx.name);
+            SetNodeValue(ctx, new UnresolvedSelector(name)); 
+        }
+
         public override void ExitItemSelector(EParser.ItemSelectorContext ctx)
         {
             IExpression exp = GetNodeValue<IExpression>(ctx.exp);
@@ -3347,6 +3353,7 @@ namespace prompto.parser
             SetNodeValue(ctx, exp);
         }
 
+     
         public override void ExitMethod_declaration(EParser.Method_declarationContext ctx)
         {
             IDeclaration exp = GetNodeValue<IDeclaration>(ctx.GetChild(0));
@@ -3355,8 +3362,7 @@ namespace prompto.parser
 
         public override void ExitMethod_identifier(EParser.Method_identifierContext ctx)
         {
-            Object exp = GetNodeValue<Object>(ctx.GetChild(0));
-            SetNodeValue(ctx, exp);
+            SetNodeValue(ctx, ctx.GetText());
         }
 
         public override void ExitOperator_argument(EParser.Operator_argumentContext ctx)
