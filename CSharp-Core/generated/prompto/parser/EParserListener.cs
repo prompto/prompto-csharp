@@ -1510,6 +1510,18 @@ public interface IEParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitMemberSelector([NotNull] EParser.MemberSelectorContext context);
 	/// <summary>
+	/// Enter a parse tree produced by the <c>MethodSelector</c>
+	/// labeled alternative in <see cref="EParser.instance_selector"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterMethodSelector([NotNull] EParser.MethodSelectorContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>MethodSelector</c>
+	/// labeled alternative in <see cref="EParser.instance_selector"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitMethodSelector([NotNull] EParser.MethodSelectorContext context);
+	/// <summary>
 	/// Enter a parse tree produced by the <c>SliceSelector</c>
 	/// labeled alternative in <see cref="EParser.instance_selector"/>.
 	/// </summary>
@@ -2572,16 +2584,6 @@ public interface IEParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitType_identifier_list([NotNull] EParser.Type_identifier_listContext context);
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="EParser.method_identifier"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterMethod_identifier([NotNull] EParser.Method_identifierContext context);
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="EParser.method_identifier"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitMethod_identifier([NotNull] EParser.Method_identifierContext context);
-	/// <summary>
 	/// Enter a parse tree produced by <see cref="EParser.identifier_or_keyword"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
@@ -2657,6 +2659,16 @@ public interface IEParserListener : IParseTreeListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void ExitMember_identifier([NotNull] EParser.Member_identifierContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="EParser.method_identifier"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterMethod_identifier([NotNull] EParser.Method_identifierContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="EParser.method_identifier"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitMethod_identifier([NotNull] EParser.Method_identifierContext context);
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="EParser.variable_identifier"/>.
 	/// </summary>

@@ -1561,19 +1561,33 @@ public partial class MParserBaseListener : IMParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitMemberSelector([NotNull] MParser.MemberSelectorContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by the <c>MethodSelector</c>
+	/// Enter a parse tree produced by the <c>MethodRefSelector</c>
 	/// labeled alternative in <see cref="MParser.instance_selector"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void EnterMethodSelector([NotNull] MParser.MethodSelectorContext context) { }
+	public virtual void EnterMethodRefSelector([NotNull] MParser.MethodRefSelectorContext context) { }
 	/// <summary>
-	/// Exit a parse tree produced by the <c>MethodSelector</c>
+	/// Exit a parse tree produced by the <c>MethodRefSelector</c>
 	/// labeled alternative in <see cref="MParser.instance_selector"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void ExitMethodSelector([NotNull] MParser.MethodSelectorContext context) { }
+	public virtual void ExitMethodRefSelector([NotNull] MParser.MethodRefSelectorContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by the <c>MethodCallSelector</c>
+	/// labeled alternative in <see cref="MParser.instance_selector"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterMethodCallSelector([NotNull] MParser.MethodCallSelectorContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by the <c>MethodCallSelector</c>
+	/// labeled alternative in <see cref="MParser.instance_selector"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitMethodCallSelector([NotNull] MParser.MethodCallSelectorContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by the <c>SliceSelector</c>
 	/// labeled alternative in <see cref="MParser.instance_selector"/>.
@@ -2785,18 +2799,6 @@ public partial class MParserBaseListener : IMParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitType_identifier_list([NotNull] MParser.Type_identifier_listContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="MParser.method_identifier"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void EnterMethod_identifier([NotNull] MParser.Method_identifierContext context) { }
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="MParser.method_identifier"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void ExitMethod_identifier([NotNull] MParser.Method_identifierContext context) { }
-	/// <summary>
 	/// Enter a parse tree produced by <see cref="MParser.identifier_or_keyword"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
@@ -2886,6 +2888,18 @@ public partial class MParserBaseListener : IMParserListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitMember_identifier([NotNull] MParser.Member_identifierContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="MParser.method_identifier"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterMethod_identifier([NotNull] MParser.Method_identifierContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="MParser.method_identifier"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitMethod_identifier([NotNull] MParser.Method_identifierContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="MParser.variable_identifier"/>.
 	/// <para>The default implementation does nothing.</para>

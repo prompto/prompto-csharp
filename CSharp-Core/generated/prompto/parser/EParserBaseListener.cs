@@ -1775,6 +1775,20 @@ public partial class EParserBaseListener : IEParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitMemberSelector([NotNull] EParser.MemberSelectorContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by the <c>MethodSelector</c>
+	/// labeled alternative in <see cref="EParser.instance_selector"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterMethodSelector([NotNull] EParser.MethodSelectorContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by the <c>MethodSelector</c>
+	/// labeled alternative in <see cref="EParser.instance_selector"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitMethodSelector([NotNull] EParser.MethodSelectorContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by the <c>SliceSelector</c>
 	/// labeled alternative in <see cref="EParser.instance_selector"/>.
 	/// <para>The default implementation does nothing.</para>
@@ -3027,18 +3041,6 @@ public partial class EParserBaseListener : IEParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitType_identifier_list([NotNull] EParser.Type_identifier_listContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="EParser.method_identifier"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void EnterMethod_identifier([NotNull] EParser.Method_identifierContext context) { }
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="EParser.method_identifier"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void ExitMethod_identifier([NotNull] EParser.Method_identifierContext context) { }
-	/// <summary>
 	/// Enter a parse tree produced by <see cref="EParser.identifier_or_keyword"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
@@ -3128,6 +3130,18 @@ public partial class EParserBaseListener : IEParserListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitMember_identifier([NotNull] EParser.Member_identifierContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="EParser.method_identifier"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterMethod_identifier([NotNull] EParser.Method_identifierContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="EParser.method_identifier"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitMethod_identifier([NotNull] EParser.Method_identifierContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="EParser.variable_identifier"/>.
 	/// <para>The default implementation does nothing.</para>

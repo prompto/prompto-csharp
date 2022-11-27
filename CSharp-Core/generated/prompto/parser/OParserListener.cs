@@ -1516,17 +1516,29 @@ public interface IOParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitMemberSelector([NotNull] OParser.MemberSelectorContext context);
 	/// <summary>
-	/// Enter a parse tree produced by the <c>MethodSelector</c>
+	/// Enter a parse tree produced by the <c>MethodRefSelector</c>
 	/// labeled alternative in <see cref="OParser.instance_selector"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterMethodSelector([NotNull] OParser.MethodSelectorContext context);
+	void EnterMethodRefSelector([NotNull] OParser.MethodRefSelectorContext context);
 	/// <summary>
-	/// Exit a parse tree produced by the <c>MethodSelector</c>
+	/// Exit a parse tree produced by the <c>MethodRefSelector</c>
 	/// labeled alternative in <see cref="OParser.instance_selector"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitMethodSelector([NotNull] OParser.MethodSelectorContext context);
+	void ExitMethodRefSelector([NotNull] OParser.MethodRefSelectorContext context);
+	/// <summary>
+	/// Enter a parse tree produced by the <c>MethodCallSelector</c>
+	/// labeled alternative in <see cref="OParser.instance_selector"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterMethodCallSelector([NotNull] OParser.MethodCallSelectorContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>MethodCallSelector</c>
+	/// labeled alternative in <see cref="OParser.instance_selector"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitMethodCallSelector([NotNull] OParser.MethodCallSelectorContext context);
 	/// <summary>
 	/// Enter a parse tree produced by the <c>ItemSelector</c>
 	/// labeled alternative in <see cref="OParser.instance_selector"/>.
@@ -2386,16 +2398,6 @@ public interface IOParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitType_identifier_list([NotNull] OParser.Type_identifier_listContext context);
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="OParser.method_identifier"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterMethod_identifier([NotNull] OParser.Method_identifierContext context);
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="OParser.method_identifier"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitMethod_identifier([NotNull] OParser.Method_identifierContext context);
-	/// <summary>
 	/// Enter a parse tree produced by <see cref="OParser.identifier_or_keyword"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
@@ -2471,6 +2473,16 @@ public interface IOParserListener : IParseTreeListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void ExitMember_identifier([NotNull] OParser.Member_identifierContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="OParser.method_identifier"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterMethod_identifier([NotNull] OParser.Method_identifierContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="OParser.method_identifier"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitMethod_identifier([NotNull] OParser.Method_identifierContext context);
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="OParser.variable_identifier"/>.
 	/// </summary>

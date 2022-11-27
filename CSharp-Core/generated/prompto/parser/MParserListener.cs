@@ -1326,17 +1326,29 @@ public interface IMParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitMemberSelector([NotNull] MParser.MemberSelectorContext context);
 	/// <summary>
-	/// Enter a parse tree produced by the <c>MethodSelector</c>
+	/// Enter a parse tree produced by the <c>MethodRefSelector</c>
 	/// labeled alternative in <see cref="MParser.instance_selector"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterMethodSelector([NotNull] MParser.MethodSelectorContext context);
+	void EnterMethodRefSelector([NotNull] MParser.MethodRefSelectorContext context);
 	/// <summary>
-	/// Exit a parse tree produced by the <c>MethodSelector</c>
+	/// Exit a parse tree produced by the <c>MethodRefSelector</c>
 	/// labeled alternative in <see cref="MParser.instance_selector"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitMethodSelector([NotNull] MParser.MethodSelectorContext context);
+	void ExitMethodRefSelector([NotNull] MParser.MethodRefSelectorContext context);
+	/// <summary>
+	/// Enter a parse tree produced by the <c>MethodCallSelector</c>
+	/// labeled alternative in <see cref="MParser.instance_selector"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterMethodCallSelector([NotNull] MParser.MethodCallSelectorContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>MethodCallSelector</c>
+	/// labeled alternative in <see cref="MParser.instance_selector"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitMethodCallSelector([NotNull] MParser.MethodCallSelectorContext context);
 	/// <summary>
 	/// Enter a parse tree produced by the <c>SliceSelector</c>
 	/// labeled alternative in <see cref="MParser.instance_selector"/>.
@@ -2364,16 +2376,6 @@ public interface IMParserListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitType_identifier_list([NotNull] MParser.Type_identifier_listContext context);
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="MParser.method_identifier"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterMethod_identifier([NotNull] MParser.Method_identifierContext context);
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="MParser.method_identifier"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitMethod_identifier([NotNull] MParser.Method_identifierContext context);
-	/// <summary>
 	/// Enter a parse tree produced by <see cref="MParser.identifier_or_keyword"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
@@ -2449,6 +2451,16 @@ public interface IMParserListener : IParseTreeListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void ExitMember_identifier([NotNull] MParser.Member_identifierContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="MParser.method_identifier"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterMethod_identifier([NotNull] MParser.Method_identifierContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="MParser.method_identifier"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitMethod_identifier([NotNull] MParser.Method_identifierContext context);
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="MParser.variable_identifier"/>.
 	/// </summary>

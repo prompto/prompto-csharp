@@ -1785,19 +1785,33 @@ public partial class OParserBaseListener : IOParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitMemberSelector([NotNull] OParser.MemberSelectorContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by the <c>MethodSelector</c>
+	/// Enter a parse tree produced by the <c>MethodRefSelector</c>
 	/// labeled alternative in <see cref="OParser.instance_selector"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void EnterMethodSelector([NotNull] OParser.MethodSelectorContext context) { }
+	public virtual void EnterMethodRefSelector([NotNull] OParser.MethodRefSelectorContext context) { }
 	/// <summary>
-	/// Exit a parse tree produced by the <c>MethodSelector</c>
+	/// Exit a parse tree produced by the <c>MethodRefSelector</c>
 	/// labeled alternative in <see cref="OParser.instance_selector"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void ExitMethodSelector([NotNull] OParser.MethodSelectorContext context) { }
+	public virtual void ExitMethodRefSelector([NotNull] OParser.MethodRefSelectorContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by the <c>MethodCallSelector</c>
+	/// labeled alternative in <see cref="OParser.instance_selector"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterMethodCallSelector([NotNull] OParser.MethodCallSelectorContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by the <c>MethodCallSelector</c>
+	/// labeled alternative in <see cref="OParser.instance_selector"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitMethodCallSelector([NotNull] OParser.MethodCallSelectorContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by the <c>ItemSelector</c>
 	/// labeled alternative in <see cref="OParser.instance_selector"/>.
@@ -2809,18 +2823,6 @@ public partial class OParserBaseListener : IOParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitType_identifier_list([NotNull] OParser.Type_identifier_listContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="OParser.method_identifier"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void EnterMethod_identifier([NotNull] OParser.Method_identifierContext context) { }
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="OParser.method_identifier"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void ExitMethod_identifier([NotNull] OParser.Method_identifierContext context) { }
-	/// <summary>
 	/// Enter a parse tree produced by <see cref="OParser.identifier_or_keyword"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
@@ -2910,6 +2912,18 @@ public partial class OParserBaseListener : IOParserListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitMember_identifier([NotNull] OParser.Member_identifierContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="OParser.method_identifier"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterMethod_identifier([NotNull] OParser.Method_identifierContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="OParser.method_identifier"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitMethod_identifier([NotNull] OParser.Method_identifierContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="OParser.variable_identifier"/>.
 	/// <para>The default implementation does nothing.</para>
