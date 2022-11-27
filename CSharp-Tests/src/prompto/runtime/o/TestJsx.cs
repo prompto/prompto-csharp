@@ -70,6 +70,18 @@ namespace prompto.runtime.o
 		}
 
 		[Test]
+		public void testMethodCall()
+		{
+			CheckOutput("jsx/methodCall.poc");
+		}
+
+		[Test]
+		public void testMethodRef()
+		{
+			CheckOutput("jsx/methodRef.poc");
+		}
+
+		[Test]
 		public void testNonAsciiTextElement()
 		{
 			CheckOutput("jsx/nonAsciiTextElement.poc");
@@ -91,6 +103,24 @@ namespace prompto.runtime.o
 		public void testTextElement()
 		{
 			CheckOutput("jsx/textElement.poc");
+		}
+
+		[Test]
+		public void testThisLowerMethodRef()
+		{
+			CheckOutput("jsx/thisLowerMethodRef.poc");
+		}
+
+		[Test]
+		public void testThisMethodCall()
+		{
+			CheckOutput("jsx/thisMethodCall.poc");
+		}
+
+		[Test]
+		public void testThisUpperMethodRef()
+		{
+			CheckOutput("jsx/thisUpperMethodRef.poc");
 		}
 
 	}

@@ -63,6 +63,18 @@ namespace prompto.translate.oeo
 		}
 
 		[Test]
+		public void testMethodCall()
+		{
+			compareResourceOEO("jsx/methodCall.poc");
+		}
+
+		[Test]
+		public void testMethodRef()
+		{
+			compareResourceOEO("jsx/methodRef.poc");
+		}
+
+		[Test]
 		public void testNonAsciiTextElement()
 		{
 			compareResourceOEO("jsx/nonAsciiTextElement.poc");
@@ -84,6 +96,24 @@ namespace prompto.translate.oeo
 		public void testTextElement()
 		{
 			compareResourceOEO("jsx/textElement.poc");
+		}
+
+		[Test]
+		public void testThisLowerMethodRef()
+		{
+			compareResourceOEO("jsx/thisLowerMethodRef.poc");
+		}
+
+		[Test]
+		public void testThisMethodCall()
+		{
+			compareResourceOEO("jsx/thisMethodCall.poc");
+		}
+
+		[Test]
+		public void testThisUpperMethodRef()
+		{
+			compareResourceOEO("jsx/thisUpperMethodRef.poc");
 		}
 
 	}

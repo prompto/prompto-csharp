@@ -63,6 +63,18 @@ namespace prompto.translate.omo
 		}
 
 		[Test]
+		public void testMethodCall()
+		{
+			compareResourceOMO("jsx/methodCall.poc");
+		}
+
+		[Test]
+		public void testMethodRef()
+		{
+			compareResourceOMO("jsx/methodRef.poc");
+		}
+
+		[Test]
 		public void testNonAsciiTextElement()
 		{
 			compareResourceOMO("jsx/nonAsciiTextElement.poc");
@@ -84,6 +96,24 @@ namespace prompto.translate.omo
 		public void testTextElement()
 		{
 			compareResourceOMO("jsx/textElement.poc");
+		}
+
+		[Test]
+		public void testThisLowerMethodRef()
+		{
+			compareResourceOMO("jsx/thisLowerMethodRef.poc");
+		}
+
+		[Test]
+		public void testThisMethodCall()
+		{
+			compareResourceOMO("jsx/thisMethodCall.poc");
+		}
+
+		[Test]
+		public void testThisUpperMethodRef()
+		{
+			compareResourceOMO("jsx/thisUpperMethodRef.poc");
 		}
 
 	}
